@@ -2,58 +2,58 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id D159263D55
-	for <lists+linux-ntfs-dev@lfdr.de>; Tue,  9 Jul 2019 23:29:26 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C2B47298C
+	for <lists+linux-ntfs-dev@lfdr.de>; Wed, 24 Jul 2019 10:09:55 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
+	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1hkxfu-0005Na-Fb; Tue, 09 Jul 2019 21:29:22 +0000
+	id 1hqCLO-0005Us-Io; Wed, 24 Jul 2019 08:09:50 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <ebiggers@kernel.org>) id 1hkwho-0005sO-PL
- for linux-ntfs-dev@lists.sourceforge.net; Tue, 09 Jul 2019 20:27:16 +0000
+ (envelope-from <ebiggers@kernel.org>) id 1hq73U-0000ry-9q
+ for linux-ntfs-dev@lists.sourceforge.net; Wed, 24 Jul 2019 02:31:00 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Message-ID:Subject:Cc:To:
  From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=18opOsh7kOeLg9TBOApnD/SZn9L2J2Ysc+XkLkkv2C4=; b=gUby6ilSjA9h7Jow7+PUy3B119
- O3uv5HvLio/Tp9ldfu3IaHLF1HkF511WmH54YGZlqHtLSyCouoCoFqOTrf23igWv43VHjmIqrpHys
- coHrrVsIQdiTutVfFRFT3ewoNDtZo08jlh1AywuID1cltSF5eV1XyLOYdz8WMIeithVg=;
+ bh=hS5uD1zNz1M3XRgjxbqn7QhojILA7K7xoE0dPoyK9NQ=; b=N5+mrhwJIs/pdUysNA4DsmLxRu
+ nx4wTahUQimQl7dGpUfivsAPRngCD42D8/ELMReileNw6YWiPDFNmz4/CExucHokVH0YAWx43t0qm
+ ZVnNk4uG7j2aZUqeXCMBJ8zsNOkTEq/hvv/7NDplTpolUCJ1gMqpprWwrjFUb2C/KwVQ=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Type:MIME-Version:Message-ID:Subject:Cc:To:From:Date:Sender:
  Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
  :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=18opOsh7kOeLg9TBOApnD/SZn9L2J2Ysc+XkLkkv2C4=; b=W
- JoRBzOjOsAIfA1Ub8+4ts8jix7443em1yhu+iwrK5UYt+P4no2RucuGz/TO+esywCTXs5KHknKNOZ
- QoMOjAg3Tfv5Y7G6RFGgufYwxfHT0qeSPOmawWZ4YPQU1ntrqmG+ZkPysQkPEXRBxIGKJoMNGdncS
- HX+VHltGhkltm8KQ=;
+ List-Owner:List-Archive; bh=hS5uD1zNz1M3XRgjxbqn7QhojILA7K7xoE0dPoyK9NQ=; b=c
+ tDXul1fiXv8U7jiScM/zBZ5BH9tNsAZrcyPDZvLnc3Vn8c0fs6sqXNAIrcSn8iQNki/ViZvUU957J
+ AHQuoMpQ1TunRRWBvq21C0kS9KHk2N8xdDLYdfF1MF1mHsy0+XVDcBDQ6XQ1Ql7MDk1Cvcng8Zkr9
+ GIvaBYE1Q2n5Ztbw=;
 Received: from mail.kernel.org ([198.145.29.99])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-3.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- id 1hkwhn-00CrKU-CT
- for linux-ntfs-dev@lists.sourceforge.net; Tue, 09 Jul 2019 20:27:16 +0000
+ id 1hq73R-00DVc9-6V
+ for linux-ntfs-dev@lists.sourceforge.net; Wed, 24 Jul 2019 02:31:00 +0000
 Received: from sol.localdomain (c-24-5-143-220.hsd1.ca.comcast.net
  [24.5.143.220])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id B31382087F;
- Tue,  9 Jul 2019 20:27:07 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id DAB5820665;
+ Wed, 24 Jul 2019 02:30:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1562704028;
- bh=mJu8YPIjroJCPthF/1rwdFHUMvx5hem/a49NVTk6Lw0=;
+ s=default; t=1563935450;
+ bh=AvFDvRbEqQ6kVr1F3yE0oyIcq6MoknP0WTni6CBefdw=;
  h=Date:From:To:Cc:Subject:From;
- b=zqdTLtkICEfzubXbyFncqW72ufWZEWeVkibIE47VoYT3W2/c5cJpQBSjuzbm2Deaq
- yPSDHRs9yxeaKPLRf1jHzJOJ0QBQsymanxoA41wLgLvt3ZfzhM00zvVjLmXzPC3Ehj
- qOprhxbNQZMh+GrVQda3UimTVxzyEaHRZyHXBr5c=
-Date: Tue, 9 Jul 2019 13:27:06 -0700
+ b=jpzT5y8fC7JrQROjChZq1Tn6Be54ygFdq+d1SM5qPgRQxvD7mLnIjV8VEeGj9p8E3
+ VrgceaAsS9qS/4mZiTUdtgJkk4lWEppskeSOad1vJbhFsGgiHiBydu/iQP2Zr45TjH
+ r1spgYbvzYMrrU8mMcs9uVzG+6WyxreLMzLM4nN4=
+Date: Tue, 23 Jul 2019 19:30:48 -0700
 From: Eric Biggers <ebiggers@kernel.org>
 To: linux-ntfs-dev@lists.sourceforge.net, Anton Altaparmakov <anton@tuxera.com>
-Message-ID: <20190709202706.GL641@sol.localdomain>
+Message-ID: <20190724023048.GT643@sol.localdomain>
 Mail-Followup-To: linux-ntfs-dev@lists.sourceforge.net,
  Anton Altaparmakov <anton@tuxera.com>, linux-kernel@vger.kernel.org,
  syzkaller-bugs@googlegroups.com
@@ -68,15 +68,15 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: appspotmail.com]
+ for more information. [URIs: syzkaller.appspot.com]
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
  -0.0 DKIMWL_WL_HIGH         DKIMwl.org - Whitelisted High sender
-X-Headers-End: 1hkwhn-00CrKU-CT
-X-Mailman-Approved-At: Tue, 09 Jul 2019 21:29:21 +0000
+X-Headers-End: 1hq73R-00DVc9-6V
+X-Mailman-Approved-At: Wed, 24 Jul 2019 08:09:48 +0000
 Subject: [Linux-NTFS-Dev] Reminder: 5 open syzbot bugs in "fs/ntfs" subsystem
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -116,15 +116,15 @@ Here are the bugs:
 
 --------------------------------------------------------------------------------
 Title:              WARNING: bad unlock balance in rcu_core
-Last occurred:      1 day ago
-Reported:           86 days ago
+Last occurred:      0 days ago
+Reported:           100 days ago
 Branches:           Mainline and others
 Dashboard link:     https://syzkaller.appspot.com/bug?id=0d5bdaf028e4283ad7404609d17e5077f48ff26d
 Original thread:    https://lkml.kernel.org/lkml/000000000000c0bffa0586795098@google.com/T/#u
 
 Unfortunately, this bug does not have a reproducer.
 
-No one has replied to the original thread for this bug yet.
+No one replied to the original thread for this bug.
 
 If you fix this bug, please add the following tag to the commit:
     Reported-by: syzbot+36baa6c2180e959e19b1@syzkaller.appspotmail.com
@@ -135,29 +135,9 @@ if the thread isn't in your mailbox, see the "Reply instructions" at
 https://lkml.kernel.org/r/000000000000c0bffa0586795098@google.com
 
 --------------------------------------------------------------------------------
-Title:              KASAN: use-after-free Read in ntfs_read_locked_inode
-Last occurred:      460 days ago
-Reported:           460 days ago
-Branches:           Mainline
-Dashboard link:     https://syzkaller.appspot.com/bug?id=5c5466347d4969ec80f5000c5e049056f48e3e2e
-Original thread:    https://lkml.kernel.org/lkml/001a11441b6c6cb96c0569120042@google.com/T/#u
-
-This bug has a C reproducer.
-
-No one replied to the original thread for this bug.
-
-If you fix this bug, please add the following tag to the commit:
-    Reported-by: syzbot+19b469021157c136116a@syzkaller.appspotmail.com
-
-If you send any email or patch for this bug, please consider replying to the
-original thread.  For the git send-email command to use, or tips on how to reply
-if the thread isn't in your mailbox, see the "Reply instructions" at
-https://lkml.kernel.org/r/001a11441b6c6cb96c0569120042@google.com
-
---------------------------------------------------------------------------------
 Title:              WARNING: bad unlock balance in rcu_lock_release
-Last occurred:      5 days ago
-Reported:           16 days ago
+Last occurred:      0 days ago
+Reported:           30 days ago
 Branches:           Mainline
 Dashboard link:     https://syzkaller.appspot.com/bug?id=a939746456c0350d6a368a9d30a4dcfcafa800be
 Original thread:    https://lkml.kernel.org/lkml/000000000000fdd3f3058bfcf369@google.com/T/#u
@@ -175,9 +155,29 @@ if the thread isn't in your mailbox, see the "Reply instructions" at
 https://lkml.kernel.org/r/000000000000fdd3f3058bfcf369@google.com
 
 --------------------------------------------------------------------------------
+Title:              KASAN: use-after-free Read in ntfs_read_locked_inode
+Last occurred:      474 days ago
+Reported:           474 days ago
+Branches:           Mainline
+Dashboard link:     https://syzkaller.appspot.com/bug?id=5c5466347d4969ec80f5000c5e049056f48e3e2e
+Original thread:    https://lkml.kernel.org/lkml/001a11441b6c6cb96c0569120042@google.com/T/#u
+
+This bug has a C reproducer.
+
+No one replied to the original thread for this bug.
+
+If you fix this bug, please add the following tag to the commit:
+    Reported-by: syzbot+19b469021157c136116a@syzkaller.appspotmail.com
+
+If you send any email or patch for this bug, please consider replying to the
+original thread.  For the git send-email command to use, or tips on how to reply
+if the thread isn't in your mailbox, see the "Reply instructions" at
+https://lkml.kernel.org/r/001a11441b6c6cb96c0569120042@google.com
+
+--------------------------------------------------------------------------------
 Title:              KASAN: slab-out-of-bounds Read in ntfs_attr_find
-Last occurred:      463 days ago
-Reported:           463 days ago
+Last occurred:      477 days ago
+Reported:           477 days ago
 Branches:           Mainline
 Dashboard link:     https://syzkaller.appspot.com/bug?id=731ba1daa85050266cef2836e917da1cc785f50a
 Original thread:    https://lkml.kernel.org/lkml/001a11447acae6b4560568e08829@google.com/T/#u
@@ -196,8 +196,8 @@ https://lkml.kernel.org/r/001a11447acae6b4560568e08829@google.com
 
 --------------------------------------------------------------------------------
 Title:              kernel BUG at fs/ntfs/aops.c:LINE!
-Last occurred:      446 days ago
-Reported:           446 days ago
+Last occurred:      460 days ago
+Reported:           460 days ago
 Branches:           Mainline
 Dashboard link:     https://syzkaller.appspot.com/bug?id=86d590f642a6d325d2f9dc9571e6702bed1a77ee
 Original thread:    https://lkml.kernel.org/lkml/000000000000c4b45a056a36872f@google.com/T/#u
