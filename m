@@ -2,96 +2,94 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 843F37B5B6
-	for <lists+linux-ntfs-dev@lfdr.de>; Wed, 31 Jul 2019 00:29:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E92F37B5E8
+	for <lists+linux-ntfs-dev@lfdr.de>; Wed, 31 Jul 2019 00:54:46 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
 	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1hsacf-0001H8-VA; Tue, 30 Jul 2019 22:29:33 +0000
+	id 1hsb11-0002A0-Pw; Tue, 30 Jul 2019 22:54:43 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <deepa.kernel@gmail.com>)
- id 1hsVtZ-0000H3-Py; Tue, 30 Jul 2019 17:26:41 +0000
+ (envelope-from <anton@tuxera.com>)
+ id 1hsaoo-0005tN-Rb; Tue, 30 Jul 2019 22:42:06 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
- In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
- :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=MIME-Version:Content-Transfer-Encoding:Content-ID:
+ Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From:Sender
+ :Reply-To:Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To
+ :Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=tsLPrLOcclqm31GATo5KG4DgL5WcwoSIYZV9oMmibkM=; b=U6vLi0c0fW5sUCGk+DDDrJjrOU
- QolgPkFL7HHeNjfWAOJwGClGOi/rVhgMsr/AdE21WIK2S37BfTed/Sds9bwe+UUXOhLOk0hAmHrpj
- jn8h/jwL+t3YPcH91RHzqmAABPrjeACDSM9O870QUI32jMoe5YJ8x8RL9Enk780ZB6q4=;
+ bh=urmhA2y+GwgCsLzGj5ttvXejlOMHZLIWs5q1TOQVmXo=; b=ExJvCp65PjyI0kYez3ImJmT54x
+ udygM+Y1Ot0bVX2rmwMdyjA/KVmPbGkl34FWn1aGNlu0FOxpx4lOtp12W4RhgtMFTttnvy8pn/Rv+
+ dSwzoSidyFNE37WUUUs28K8+6K1En58zREKxsVV0gkDjEM2pZ5+wAsz8k6jM5cAmD1NE=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
- MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:
+ In-Reply-To:References:Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=tsLPrLOcclqm31GATo5KG4DgL5WcwoSIYZV9oMmibkM=; b=jpwVnFWlTWdBZEajxsTs5P0mwf
- NW30kHHIWFTRRieucXZD37zKCdsSdy3aa6wSbQs6FC2ps6vbVcWYJ65oMySxRE0Ds67yutQs6vKBe
- CdNgKR8YVEhxevtGIeBY5VC9yKKWXG6Gnnybdzptn/EhBbrYtmHCtS2409+T92yegaeE=;
-Received: from mail-io1-f67.google.com ([209.85.166.67])
- by sfi-mx-3.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.90_1)
- id 1hsVtY-004wRV-3A; Tue, 30 Jul 2019 17:26:41 +0000
-Received: by mail-io1-f67.google.com with SMTP id h6so4767255iom.7;
- Tue, 30 Jul 2019 10:26:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=tsLPrLOcclqm31GATo5KG4DgL5WcwoSIYZV9oMmibkM=;
- b=LUamGemkbRqnOVHbq7CXnlGi/lEYqOEEySiKtSrwXqEp6shA4gxXuseHjOaOiH3aa7
- q4CF5Eum/dqTa4wC00EDfSR4wSTPClq6Y3O6fnjnuTa8UISAGRv24/2prGpJP4yj+/5K
- pp6QgCoaOkGX8YfVQJvI0ldkf7g5Qtz5YPjBIm1MafS1QJbnmne2KPhWiFiOFjpLhpua
- 9zkTIHWrBNLvn7Si20xo61CMzJCVm2tyy8IPzybo7iqfWECXz7HiHXR7qDV7Zs/ri977
- AjNYEbpGf5FVBSgWnRjBEI6oRswJ4WN7oBSH2Oh+cBt5ZquUgXtZtN3ILEA184MLtXtW
- bQ/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=tsLPrLOcclqm31GATo5KG4DgL5WcwoSIYZV9oMmibkM=;
- b=OKY9WoGMacLXMe7hQlnQbWQVdTYK2E1Jnz1BPLCJ1GmJ151ytgIF6IIThaCz4//DcC
- xrJk4Ydxwwi/UMTTMOvfqPviCxr+mj5Qoz9t63jTLHIt5JAfuCIoYQcfxw1VwsTZb5AF
- U3iHPz9dsDmQC0/8z0OGTQ9CqaCGR7Kybh6MQc6ZFAwt9AAOP81yAFEFYFSHcvVinW39
- lM8YKikWGMCkMGcGcWRGHrO2PvlnvO0A+QjFU7LbWTp5bkiAcsWaidCpUOdlHy+0am7n
- 4iQDBSD7JmsBmPVlrysRCvEPEca+X0p5o0NYO78E1l+9GVY4O+KcdpsQ/sTqLc6TiFgG
- OnoA==
-X-Gm-Message-State: APjAAAUfGhpy1K8CegU0DgFyzR9NKSZ65MEw7s1dWyUgeal1JjCRX1ZF
- MGjFpybEE34MPeGQVKaU8WLO4q781rJWTXuRP0M=
-X-Google-Smtp-Source: APXvYqy+9zDOTHm2OHuBLA2soclNQ3YwB8p18dgCUYzErzvrXdSDbEEW8GCwNV3FQCvXOrwwAN9MF+uqzNXPUM4I49E=
-X-Received: by 2002:a5e:8210:: with SMTP id l16mr81558885iom.240.1564507594217; 
- Tue, 30 Jul 2019 10:26:34 -0700 (PDT)
-MIME-Version: 1.0
+ bh=urmhA2y+GwgCsLzGj5ttvXejlOMHZLIWs5q1TOQVmXo=; b=P0AwAEzD8QnY3PkJnlixgo5tkv
+ wp3aOPr4+dX6NFJDgwYeBt4OJql5Skc2fdM5k6pWjRASc0DJMPlJA4dJ6vjp5Aa8zlHw1R6VhpyBH
+ rYV/qbA6NE88nAU+DxkRv+JLL+2MFvm4x00QZ463SIaIMSGe3ADYnZvt5jqcYK89DN08=;
+Received: from mgw-02.mpynet.fi ([82.197.21.91])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
+ id 1hsaok-001jPb-Si; Tue, 30 Jul 2019 22:42:06 +0000
+Received: from pps.filterd (mgw-02.mpynet.fi [127.0.0.1])
+ by mgw-02.mpynet.fi (8.16.0.27/8.16.0.27) with SMTP id x6UMSZio119596;
+ Wed, 31 Jul 2019 01:28:35 +0300
+Received: from ex13.tuxera.com (ex13.tuxera.com [178.16.184.72])
+ by mgw-02.mpynet.fi with ESMTP id 2u0a9uvs4r-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+ Wed, 31 Jul 2019 01:28:34 +0300
+Received: from tuxera-exch.ad.tuxera.com (10.20.48.11) by
+ tuxera-exch.ad.tuxera.com (10.20.48.11) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Wed, 31 Jul 2019 01:28:34 +0300
+Received: from tuxera-exch.ad.tuxera.com ([fe80::552a:f9f0:68c3:d789]) by
+ tuxera-exch.ad.tuxera.com ([fe80::552a:f9f0:68c3:d789%12]) with mapi id
+ 15.00.1395.000; Wed, 31 Jul 2019 01:28:34 +0300
+From: Anton Altaparmakov <anton@tuxera.com>
+To: Deepa Dinamani <deepa.kernel@gmail.com>
+Thread-Topic: [PATCH 03/20] timestamp_truncate: Replace users of
+ timespec64_trunc
+Thread-Index: AQHVRrCO7mUMDQahbUu7RSH43rBZCqbjOCQAgABUboA=
+Date: Tue, 30 Jul 2019 22:28:33 +0000
+Message-ID: <5340224D-5625-48A6-909E-70B24D2084BC@tuxera.com>
 References: <20190730014924.2193-1-deepa.kernel@gmail.com>
  <20190730014924.2193-4-deepa.kernel@gmail.com>
  <87d0hsapwr.fsf@mail.parknet.co.jp>
-In-Reply-To: <87d0hsapwr.fsf@mail.parknet.co.jp>
-From: Deepa Dinamani <deepa.kernel@gmail.com>
-Date: Tue, 30 Jul 2019 10:26:22 -0700
-Message-ID: <CABeXuvqgaxDSR8N_D1Tdw06g_5PGinZS--6nx-bPtAWP4v+mwg@mail.gmail.com>
-To: OGAWA Hirofumi <hirofumi@mail.parknet.co.jp>
-X-Spam-Score: -0.1 (/)
+ <CABeXuvqgaxDSR8N_D1Tdw06g_5PGinZS--6nx-bPtAWP4v+mwg@mail.gmail.com>
+In-Reply-To: <CABeXuvqgaxDSR8N_D1Tdw06g_5PGinZS--6nx-bPtAWP4v+mwg@mail.gmail.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [86.151.122.143]
+Content-ID: <92684FF0F17B42478243313B03823A34@tuxera.com>
+MIME-Version: 1.0
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:, ,
+ definitions=2019-07-30_10:, , signatures=0
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0
+ malwarescore=0
+ phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=800
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.0.1-1906280000 definitions=main-1907300224
+X-Spam-Score: 0.0 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [209.85.166.67 listed in list.dnswl.org]
- 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
- (deepa.kernel[at]gmail.com)
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: lkml.org]
+ for more information. [URIs: tuxera.com]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [82.197.21.91 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
- domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
- not necessarily valid
-X-Headers-End: 1hsVtY-004wRV-3A
-X-Mailman-Approved-At: Tue, 30 Jul 2019 22:29:32 +0000
+X-Headers-End: 1hsaok-001jPb-Si
+X-Mailman-Approved-At: Tue, 30 Jul 2019 22:54:33 +0000
 Subject: Re: [Linux-NTFS-Dev] [PATCH 03/20] timestamp_truncate: Replace
  users of timespec64_trunc
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
@@ -107,53 +105,73 @@ List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
 Cc: Arnd Bergmann <arnd@arndb.de>, Artem Bityutskiy <dedekind1@gmail.com>,
- y2038 Mailman List <y2038@lists.linaro.org>,
- Greg KH <gregkh@linuxfoundation.org>, yuchao0@huawei.com,
- Adrian Hunter <adrian.hunter@intel.com>,
+ y2038
+ Mailman List <y2038@lists.linaro.org>, Greg KH <gregkh@linuxfoundation.org>,
+ "yuchao0@huawei.com" <yuchao0@huawei.com>,
  Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Tejun Heo <tj@kernel.org>, linux-mtd <linux-mtd@lists.infradead.org>,
+ Adrian Hunter <adrian.hunter@intel.com>, Tejun Heo <tj@kernel.org>,
+ linux-mtd <linux-mtd@lists.infradead.org>,
  Alexander Viro <viro@zeniv.linux.org.uk>, Richard Weinberger <richard@nod.at>,
  Linux FS-devel Mailing List <linux-fsdevel@vger.kernel.org>,
  Jaegeuk Kim <jaegeuk@kernel.org>, "Linux F2FS DEV,
  Mailing List" <linux-f2fs-devel@lists.sourceforge.net>,
- linux-ntfs-dev@lists.sourceforge.net, stoph Hellwig <hch@lst.de>,
- anton@tuxera.com, Joel Becker <jlbec@evilplan.org>
+ "linux-ntfs-dev@lists.sourceforge.net" <linux-ntfs-dev@lists.sourceforge.net>,
+ stoph Hellwig <hch@lst.de>, OGAWA Hirofumi <hirofumi@mail.parknet.co.jp>,
+ Joel Becker <jlbec@evilplan.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-On Tue, Jul 30, 2019 at 1:27 AM OGAWA Hirofumi
-<hirofumi@mail.parknet.co.jp> wrote:
->
-> Deepa Dinamani <deepa.kernel@gmail.com> writes:
->
-> > diff --git a/fs/fat/misc.c b/fs/fat/misc.c
-> > index 1e08bd54c5fb..53bb7c6bf993 100644
-> > --- a/fs/fat/misc.c
-> > +++ b/fs/fat/misc.c
-> > @@ -307,8 +307,9 @@ int fat_truncate_time(struct inode *inode, struct timespec64 *now, int flags)
-> >               inode->i_atime = (struct timespec64){ seconds, 0 };
-> >       }
-> >       if (flags & S_CTIME) {
-> > -             if (sbi->options.isvfat)
-> > -                     inode->i_ctime = timespec64_trunc(*now, 10000000);
-> > +             if (sbi->options.isvfat) {
-> > +                     inode->i_ctime = timestamp_truncate(*now, inode);
-> > +             }
-> >               else
-> >                       inode->i_ctime = fat_timespec64_trunc_2secs(*now);
-> >       }
->
-> Looks like broken. It changed to sb->s_time_gran from 10000000, and
-> changed coding style.
+Hi Deepa,
 
-This is using a new api: timestamp_truncate(). granularity is gotten
-by inode->sb->s_time_gran. See Patch [2/20]:
-https://lkml.org/lkml/2019/7/29/1853
+> On 30 Jul 2019, at 18:26, Deepa Dinamani <deepa.kernel@gmail.com> wrote:
+> 
+> On Tue, Jul 30, 2019 at 1:27 AM OGAWA Hirofumi
+> <hirofumi@mail.parknet.co.jp> wrote:
+>> 
+>> Deepa Dinamani <deepa.kernel@gmail.com> writes:
+>> 
+>>> diff --git a/fs/fat/misc.c b/fs/fat/misc.c
+>>> index 1e08bd54c5fb..53bb7c6bf993 100644
+>>> --- a/fs/fat/misc.c
+>>> +++ b/fs/fat/misc.c
+>>> @@ -307,8 +307,9 @@ int fat_truncate_time(struct inode *inode, struct timespec64 *now, int flags)
+>>>              inode->i_atime = (struct timespec64){ seconds, 0 };
+>>>      }
+>>>      if (flags & S_CTIME) {
+>>> -             if (sbi->options.isvfat)
+>>> -                     inode->i_ctime = timespec64_trunc(*now, 10000000);
+>>> +             if (sbi->options.isvfat) {
+>>> +                     inode->i_ctime = timestamp_truncate(*now, inode);
+>>> +             }
+>>>              else
+>>>                      inode->i_ctime = fat_timespec64_trunc_2secs(*now);
+>>>      }
+>> 
+>> Looks like broken. It changed to sb->s_time_gran from 10000000, and
+>> changed coding style.
+> 
+> This is using a new api: timestamp_truncate(). granularity is gotten
+> by inode->sb->s_time_gran. See Patch [2/20]:
+> https://lkml.org/lkml/2019/7/29/1853
+> 
+> So this is not broken if fat is filling in the right granularity in the sb.
 
-So this is not broken if fat is filling in the right granularity in the sb.
+It is broken for FAT because FAT has different granularities for different timestamps so it cannot put the correct value in the sb as that only allows one granularity.  Your patch is totally broken for fat as it would be immediately obvious if you spent a few minutes looking at the code...
 
--Deepa
+Best regards,
+
+	Anton
+
+> 
+> -Deepa
+
+
+-- 
+Anton Altaparmakov <anton at tuxera.com> (replace at with @)
+Lead in File System Development, Tuxera Inc., http://www.tuxera.com/
+Linux NTFS maintainer
+
 
 
 _______________________________________________
