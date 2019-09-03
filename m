@@ -2,51 +2,51 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7D71ABBA9
-	for <lists+linux-ntfs-dev@lfdr.de>; Fri,  6 Sep 2019 17:00:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2832ABBAB
+	for <lists+linux-ntfs-dev@lfdr.de>; Fri,  6 Sep 2019 17:00:52 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1i6FjF-0004EF-5K; Fri, 06 Sep 2019 15:00:49 +0000
+	id 1i6FjF-0004Eh-Cd; Fri, 06 Sep 2019 15:00:49 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <Markus.Elfring@web.de>) id 1i5BMp-0002QM-2V
- for linux-ntfs-dev@lists.sourceforge.net; Tue, 03 Sep 2019 16:09:15 +0000
+ (envelope-from <Markus.Elfring@web.de>) id 1i5BMt-0003XR-MW
+ for linux-ntfs-dev@lists.sourceforge.net; Tue, 03 Sep 2019 16:09:19 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
  :Date:Message-ID:Subject:From:Cc:To:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=KUy5l1aYg1BplaWt5hk1/LzklThfhOdIiUHfqLC9kmc=; b=hJSWojL4Rjh40kfC8WbyzwMsl6
- 52nOnvBBZNqlAcUjR0IxfO++Hl7OCc9UuBckZWPjAacjey9/kVJ3RhHId1D/eoY0xCfveUc1Mtmyj
- KFpox1R5rtvluahzFsVB1VccCNNhgKjyPDGkZ+zbe9A8df3W1apFZoM50fzVz10RxbZM=;
+ bh=KUy5l1aYg1BplaWt5hk1/LzklThfhOdIiUHfqLC9kmc=; b=HOOLb+2Q0r2TOYJMjwPdlLam+t
+ KJRs0yVYxLfxsOQA3wrnHww5LFHvOjJA2gsNwTX9eyBD/HQRFhSN01+vFxAg/Cy9Rbool30mBEO0K
+ GGLu0Ixg8tfDzh+ehzK4jbLJU0YSulDI9LMMMF/vW2EcqalAA7HWGdrmsf0T1L/cd5x8=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:Date:Message-ID:
  Subject:From:Cc:To:Sender:Reply-To:Content-ID:Content-Description:Resent-Date
  :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=KUy5l1aYg1BplaWt5hk1/LzklThfhOdIiUHfqLC9kmc=; b=f
- kuBcqqYvZd54llp5tZO6qDrAqBMp2Qn4oEl5aWA1siMySj03V7qptrFTLqsEBOZjny86KwSB3y84m
- +NRsDORGQqeiB/7se1DeS9yz0K5+DU9WvEDhX0uvtY3Rqeoi18XTrhnLJuGUqC+Omnj+PxdVLEwbE
- bPuvkPyUzPHG84sA=;
+ List-Owner:List-Archive; bh=KUy5l1aYg1BplaWt5hk1/LzklThfhOdIiUHfqLC9kmc=; b=j
+ KO/Jj3xP/MAf6aXv7mpOjRfdxKf7JiT6IiUGNj+weMNGvTfiHEQxiEdbf7IJLn56c6HK5k1l2awgl
+ BVExFrj9N48Ngyfz2Mw7clz4OeBxOnPeKJuaH0oZ2tmGx4N949+fgzhCqJafyqRxcZCc2QJJagZMU
+ xEJJWce0EnMi6Utw=;
 Received: from mout.web.de ([212.227.17.12])
  by sfi-mx-4.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.90_1)
- id 1i5BMn-007yQj-BZ
- for linux-ntfs-dev@lists.sourceforge.net; Tue, 03 Sep 2019 16:09:15 +0000
+ id 1i5BMs-007yQr-8e
+ for linux-ntfs-dev@lists.sourceforge.net; Tue, 03 Sep 2019 16:09:19 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
- s=dbaedf251592; t=1567526946;
+ s=dbaedf251592; t=1567526951;
  bh=vMgAzBXUWskQTecRcuVXqAK+gjDpq21bPltTH0WE3wk=;
  h=X-UI-Sender-Class:To:Cc:From:Subject:Date;
- b=OJ8VupIU7C+2baKH/1W0z+ODszuol5s80aYhzQbm1HwnnHpbjid9dAMGRg0e/1IW3
- 321etAG/dJPtXIl3rNqLsy92SZCxTNPGSFdIvu3B12KnZQevfv73kMf08SQz65arF+
- AGcd/H/dG9WMz1fe8Ux2yabfOj7vHFPc9InReKL0=
+ b=lfUzzTsfbvf9yg8cyhmajplMic+HsbqHv4LJXLxf9O+MPS+/BYjYtY8ACSGtRsUlN
+ 8KfsOh7SRLCChXKH5Cb4W6b+MkMT2bGIHHlSXs215jpy3Ful0jzHJSDKWBxtk8o5lZ
+ oOHMAczvoMTdEe0lEc+gWuNFCCxZRz7KfG0ibHHY=
 X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
-Received: from [192.168.1.2] ([93.133.133.43]) by smtp.web.de (mrweb102
- [213.165.67.124]) with ESMTPSA (Nemesis) id 0MbQKW-1hmNpv439g-00Ii7G; Tue, 03
+Received: from [192.168.1.2] ([93.133.133.43]) by smtp.web.de (mrweb101
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 0MgwZQ-1hrs0h3yYy-00M3cJ; Tue, 03
  Sep 2019 16:20:44 +0200
 To: linux-ntfs-dev@lists.sourceforge.net, Anton Altaparmakov <anton@tuxera.com>
 From: Markus Elfring <Markus.Elfring@web.de>
@@ -93,35 +93,35 @@ Autocrypt: addr=Markus.Elfring@web.de; prefer-encrypt=mutual; keydata=
  Z/wsLiWTgKlih2QYULvW61XU+mWsK8+ZlYUrRMpkauN4CJ5yTpvp+Orcz5KixHQmc5tbkLWf
  x0n1QFc1xxJhbzN+r9djSGGN/5IBDfUqSANC8cWzHpWaHmSuU3JSAMB/N+yQjIad2ztTckZY
  pwT6oxng29LzZspTYUEzMz3wK2jQHw+U66qBFk8whA7B2uAU1QdGyPgahLYSOa4XAEGb6wbI FEE=
-Message-ID: <43a59c6a-3635-1fab-1945-292d637663c9@web.de>
-Date: Tue, 3 Sep 2019 16:20:42 +0200
+Message-ID: <9d047687-af84-4688-c025-13103cc22a52@web.de>
+Date: Tue, 3 Sep 2019 16:20:43 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.0
 MIME-Version: 1.0
 Content-Language: en-US
-X-Provags-ID: V03:K1:ztnoEwB7aMfeVUajX7qUfS9p3bmeZ+tI6B5JJX3RDPEb+rx6u+e
- AhF0Nmvk8ckkG0Q7m1ou9EBafIyIc/fDLaZHj+dQrcISogiH4Y7ZDSxK6wN/yRgRMn7S895
- 2kly7v5wiPInx6nwBoJjJRnr14EGgm0f7TFdNdBFf5tUwQh2vrOxh7LaQqVkT4Q9DgSgpkr
- MCLp1Y2CUuWabv3RfAmJw==
+X-Provags-ID: V03:K1:0jR0GS55GaFdFydxT9bQ63zyKh3AOSnu2BwcrtffX82rI2Nh+rd
+ E1lvLYUJPtSUvdq56al/VyGkMSEP8fbHSQN0lzMuf3BvECj4VXYZgCgUaYUBTJ539pVJG6K
+ rCYI84xyfu95ue3XHspWwGLE0PZfN1azwBZu244b2XEjvp8sUtRzLDnN9Z6uZl8UdwjVBpA
+ /kYbBFBZ96+ogN7SMp6MQ==
 X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:/N5txeF2U/A=:Z+kuxXeuCyWMIUJKwlvBlW
- Y3/Zcuuwdc1+6twq2KWlm3U/wr/SbCjjHe/Jq/RGjeC6s5+BMEVv2c7oOkKKoeotNlOREiQmu
- DNU73uzLUBwO+hUK49lqP4+7bnmdAC8pFnhrEpfhblp5XG324+4wWfibD7eopy6DvL2CZZw96
- OqtopoMOvEYrp7WdZhhPmNy/XMa/kB4dSTpumJBFY0CNEvFLwgq1o/UIpoK6v95JhYZ48KJU0
- 9teOKej7WJYDWRLSsnjKoHzPiVfCoOeUpbM0R1ZL+62HNCaFHA3Mbog5872QHBNBWL9SEOwSk
- zGBJOws1/zTOnOJYwizz8tmm/s6T3UmyUXTVM1C5Gj4xQfq84ZikMGTzj+wu7SZjtbgVa9VpB
- nmo/xBFF/4LzBmfsuWNSUJqFJmJqil2zsViMfCN22m1k4oqJKBkKVblEWycOcsslT9YOzIFHK
- vPafOdtsC91MKCATahn40davcr0MMtQnbErsJhuPhYUxhTfHIAwcYpexbU5fOwXlbMyn+lxRm
- mvhfhPa9ZDNwoIVKeOUv7gjNM8cIXlHF2S9Q3Jz1c0uG4KZaMsH+Nk1DBIHYi1lLeC8mcUjO2
- e+QSX8dfMRrkLKywBroHYJc3edn5O2nBC6BGiIY8urSh312iij8HJGzKqw5fbI10mSW8YOUbD
- rQiaM/KCrAYBjM25QvKAnM9GnyXI1Sik05JfUQprhPA5DNSDZXe7sd9wbaAoDoBDPR4j9ePFD
- vm/zSoOMs21xNNi2U2WpElFvcwjroqLnHbqzyST6eutd8F0i0O+IqXJo+HVsN5uJupyItLCdb
- IyO20K5xIqcnv0Xy5j19mGF69Ga4EhoSCTSMzQe3UtyklwPISyofdqaWS+jEI/Q743XonxQLh
- 2Gf6F++R5Gas412m+DaAiW+NzRJfuIMaDnkY6OkloZfkM+q2RSER8+w1W2Gkfu1iaZZx+/fKU
- kIa56R11OEMG8qRSeFUsLsnpqB1vUqjgtkvJgjprIGsPXyk/suqFbbD5NzT52tK0lIc+zPre1
- da0l7qlUHjeb4b7/Aa0gxBFKBGfRFh+9gbR/EodTov83rF1YHictrYxx8CtapXYVqx4D+deyr
- aUa6jwwRLIJQwhxj78joZT23LJWAwJckSZGkwXaDWfzMQxqukFTINRhZDho4vmYGIRIhvM33d
- KPntE1FQqx6QPmtRDeHHtFw8z+8u2TRwAZ+8fUpa9YN2YEWQ==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:6MIQKHDOJgE=:dv1Zuh9lqFPvE0HVrX2NSr
+ rFhfsYBNyt8DbMu53nOsXyhUxQKnFDsyrX4GcA7g1HmgniVGLC0OLkXkycJ1n0EGpGpTB1iw/
+ 9DiVcsZ2YMAUtY9evh5ttMwZ09hLzLEQPjb8RJKXoICHx5uLyWSx1/T82N9NvBn526qr0RZdj
+ zoRuDnoYmtYPyt9aVT0ESnT+Erc9GmbOZD6EDJoqhqF+R2zye/7i32GStoULmtlTb3V0UtK68
+ 9sqk7M/pPVaB6T6GHrVLbx+HL9CsKbO9KjU/SU7pBrt6IxNvI0RcFXGHnNm6teMcT462Czq8r
+ 7nz1xfKoT1KlISFLJZ5NCs3SOPkj6w798FDHJIqbJbqV0dVL1agt11js+0Gb16k8CyF//uL2s
+ aelKAM8K/TDfUbdt5J3Ek9mRuQzeNgUms2mJSFzKevESefukn6PHDoLyBFWU3LV9N1qsV2HAj
+ TKE1zik6TGZxl+FVgNQrKOW/BfFUVq6m45OC1DZX9JlOGXvDEmqCjP2zwYR1fiZTkhZIxdHe6
+ duHM2EKZqO3GsuoeOpJFkMN+6coDBFg4f0MPu96bQj0fXCZv7IUUFXOTyWUtiWP+SrQZWpW8o
+ a1CjwDO6oTu6rS4UTKcqzzKTiDRSKraieVoPq8J95+eDGk40pseTBQkzj2IZgKK0oyoFzROoM
+ Kn7ReONUKWNOvxB/D92ATjJHZPKpEV0BWFfJpgfBNmfbZaS8etVv09BNYvtjCZ9fX5Ul+esNw
+ XiNRJP1F4jbOXHsrIYP1fIR1IS0KPIMslL2AnuCwRU1tEQ9eu9NCoVdRzT4EZiycvZKhzIBYR
+ m7h2CpNtXQIZOtVaordgKrJ6whpqYqjByRLUnK6Wed3ACV0O5eZRIeriY+4ialF8MZe/2Fy36
+ 6ojTJIwbSgr2uXvtS0e2QRvf8h+hZKb4jkPqXt7UFirafOpxuz1+cPYPrbizeT1Y9R3DU6YDG
+ 8kkkYpZ6J3k2nGS+dIX/Q40anh7ng077+uEkH/+1kYcIEi7Hh+X1V8giC26ThEEjrPuranOt9
+ oMM1sPhR2ldwEncqRvOfuKrCcxBrq3sskH/r0RivfY67DrKG6gl9Rh6qiza7BFfV0lUcNhd1M
+ f3pLrAFhmJfUZDonHXRPZt8mggtL/TO8AEPkxAKdOJ1ZrYYm/LozMlmQHigmICRU63mJgvoGl
+ LTC+eAPy0J6HXNGC9g4d+Can92uEnB+zTNTQX66Z8RwnMg5A==
 X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
@@ -134,7 +134,7 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
-X-Headers-End: 1i5BMn-007yQj-BZ
+X-Headers-End: 1i5BMs-007yQr-8e
 X-Mailman-Approved-At: Fri, 06 Sep 2019 15:00:43 +0000
 Subject: [Linux-NTFS-Dev] [PATCH] ntfs: Delete unnecessary checks before
  brelse()
