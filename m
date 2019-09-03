@@ -2,85 +2,131 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCBE8ABB9D
-	for <lists+linux-ntfs-dev@lfdr.de>; Fri,  6 Sep 2019 17:00:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C7D71ABBA9
+	for <lists+linux-ntfs-dev@lfdr.de>; Fri,  6 Sep 2019 17:00:51 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1i6FjB-00049L-FL; Fri, 06 Sep 2019 15:00:45 +0000
+	id 1i6FjF-0004EF-5K; Fri, 06 Sep 2019 15:00:49 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <deepa.kernel@gmail.com>)
- id 1i4CCU-0006je-2H; Sat, 31 Aug 2019 22:50:30 +0000
+ (envelope-from <Markus.Elfring@web.de>) id 1i5BMp-0002QM-2V
+ for linux-ntfs-dev@lists.sourceforge.net; Tue, 03 Sep 2019 16:09:15 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
- In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
- :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
+ :Date:Message-ID:Subject:From:Cc:To:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=1oc+uIAZAMYuOvhDPlikaVjREiDzvlKPCeE4Nt1ZrJE=; b=Xgi4cExYXMEAVD42fL0IUSlEud
- NsuyxKgdLsufH/nLYO0ejqvEPawr5GDpsB4xt+nIjvuVBd3jG3XMcZcZaUN2QGd10aZ0le44Hpk7p
- cvGYHmzmEVisdQGDoTNHxVvO20mhEcmmdVv9Yz3mthSJYFixurnmLRxB9Y/6ySUDkfZ4=;
+ bh=KUy5l1aYg1BplaWt5hk1/LzklThfhOdIiUHfqLC9kmc=; b=hJSWojL4Rjh40kfC8WbyzwMsl6
+ 52nOnvBBZNqlAcUjR0IxfO++Hl7OCc9UuBckZWPjAacjey9/kVJ3RhHId1D/eoY0xCfveUc1Mtmyj
+ KFpox1R5rtvluahzFsVB1VccCNNhgKjyPDGkZ+zbe9A8df3W1apFZoM50fzVz10RxbZM=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
- MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=1oc+uIAZAMYuOvhDPlikaVjREiDzvlKPCeE4Nt1ZrJE=; b=WW9xuaeWm+DCv8uxjCrCHG6s36
- Rod6phCfWnCGAoZBWz+S1It0yBe15YqQVDGt+2VjL2hJkoNZZndgaahT+jqI/SDgTOO++dUxR1fI6
- ihS7YhZq5s3N/m2JAefAazw8KivDG9l6Tgs9y4yR9eu/NW6j0Y4X3fvY8gmD9qsuXY4I=;
-Received: from mail-io1-f66.google.com ([209.85.166.66])
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Date:Message-ID:
+ Subject:From:Cc:To:Sender:Reply-To:Content-ID:Content-Description:Resent-Date
+ :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=KUy5l1aYg1BplaWt5hk1/LzklThfhOdIiUHfqLC9kmc=; b=f
+ kuBcqqYvZd54llp5tZO6qDrAqBMp2Qn4oEl5aWA1siMySj03V7qptrFTLqsEBOZjny86KwSB3y84m
+ +NRsDORGQqeiB/7se1DeS9yz0K5+DU9WvEDhX0uvtY3Rqeoi18XTrhnLJuGUqC+Omnj+PxdVLEwbE
+ bPuvkPyUzPHG84sA=;
+Received: from mout.web.de ([212.227.17.12])
  by sfi-mx-4.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.90_1)
- id 1i4CCQ-004nkk-73; Sat, 31 Aug 2019 22:50:30 +0000
-Received: by mail-io1-f66.google.com with SMTP id p12so21870239iog.5;
- Sat, 31 Aug 2019 15:50:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=1oc+uIAZAMYuOvhDPlikaVjREiDzvlKPCeE4Nt1ZrJE=;
- b=aXcTp5ORUJ9v6lvzIgnO3kFSbLpXDiwrjmF8wY+g2guepKA06q9bi3Rm9msLfVfOjQ
- KNRvWmw8ak6S3NwzAdmSxBIeG1Sb4eSNm5e0ZjmAgk9ZlM4k21SSALJLCNoiAvHUizK4
- zOmrFrhQJgVIgE1sjux3jaSKnzRaF/6H90IkDMl/BMTaq8C/TCYMXEN7O4ZJQQtSqb0a
- GFuX6/WoU+ZaNaNKXJ3mYccQ7I8pJ4ma0YPOCysvVSCuZ0omHUn2dF26yyXMeNNj0vzq
- AXHMjcuekyx7LGzDWacrH+K9/2E8bcBn8KFkWIoTNCkGetG/vTsXGmlPsdXHkSwFh3F/
- GYew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=1oc+uIAZAMYuOvhDPlikaVjREiDzvlKPCeE4Nt1ZrJE=;
- b=TRRLnFHdeDdDvP1Duxn1UZJPwItbMcZ/wHQqIusPUPV4ekLZXrH1CM3BqtSWmMcilS
- IGtcZyY1CRq92fIefalox/wv/rlrPfFXeOTk1LHe6Dv2+VBXyLmkny2OrK2W+5w6kIUR
- MWOxsN5oCb9FUU5xCT+CGSRkfcNvk1YAn6/9BNAG9RGeKb58WVvApWJ0otiiYrG1Nqx1
- /p2tYEntA2wCL4qBqS+qIBVdHmao3jUbxAtn7qmUckpQMcQUAa+1UbMeS+BVtqk6pLS8
- 3hDfp6/mZGqo33Spd7f01OLt5OEq3CZcWP6CiqpqkHBtWrBpwDFf3qZdJAVAulu5gVvT
- KP5g==
-X-Gm-Message-State: APjAAAUdzp6TRRLWd4QRdP/wgFM2v1BLdfx1Vw0Qe/vF/EPiiMvFjxvg
- RNCcafL6eESnexPecoX4FZb/uCghjzjZ+SZVp3c=
-X-Google-Smtp-Source: APXvYqyTRG8TWby1CMDSb8c+t9UhDYnpFv7cJIBGTaHwW7d+/cTfJvK+wGxNxwIJlNTmqmGSFTPf1WR9NOkPmivvWCA=
-X-Received: by 2002:a02:904d:: with SMTP id y13mr12652386jaf.139.1567291820141; 
- Sat, 31 Aug 2019 15:50:20 -0700 (PDT)
+ id 1i5BMn-007yQj-BZ
+ for linux-ntfs-dev@lists.sourceforge.net; Tue, 03 Sep 2019 16:09:15 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
+ s=dbaedf251592; t=1567526946;
+ bh=vMgAzBXUWskQTecRcuVXqAK+gjDpq21bPltTH0WE3wk=;
+ h=X-UI-Sender-Class:To:Cc:From:Subject:Date;
+ b=OJ8VupIU7C+2baKH/1W0z+ODszuol5s80aYhzQbm1HwnnHpbjid9dAMGRg0e/1IW3
+ 321etAG/dJPtXIl3rNqLsy92SZCxTNPGSFdIvu3B12KnZQevfv73kMf08SQz65arF+
+ AGcd/H/dG9WMz1fe8Ux2yabfOj7vHFPc9InReKL0=
+X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
+Received: from [192.168.1.2] ([93.133.133.43]) by smtp.web.de (mrweb102
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 0MbQKW-1hmNpv439g-00Ii7G; Tue, 03
+ Sep 2019 16:20:44 +0200
+To: linux-ntfs-dev@lists.sourceforge.net, Anton Altaparmakov <anton@tuxera.com>
+From: Markus Elfring <Markus.Elfring@web.de>
+Autocrypt: addr=Markus.Elfring@web.de; prefer-encrypt=mutual; keydata=
+ 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 FEE=
+Message-ID: <43a59c6a-3635-1fab-1945-292d637663c9@web.de>
+Date: Tue, 3 Sep 2019 16:20:42 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.0
 MIME-Version: 1.0
-References: <20190829041132.26677-1-deepa.kernel@gmail.com>
- <CABeXuvoKD83B7iUqE33Y9E2OVtf61DKv-swZr-N=ozz-cMmGOA@mail.gmail.com>
- <CAOg9mSR25eAH7e1KhDZt_uscJSzyuSmELbCxgyh=-KWRxjZtcw@mail.gmail.com>
- <CABeXuvpe9vADLZUr4zHrH0izt=1BaLQvBMxAu=T1A2CV3AN4vA@mail.gmail.com>
- <CAK8P3a0NMUv2xOw=fCxJXo_2wbmBMG24Fst3U1LT-m7C8uxz0w@mail.gmail.com>
-In-Reply-To: <CAK8P3a0NMUv2xOw=fCxJXo_2wbmBMG24Fst3U1LT-m7C8uxz0w@mail.gmail.com>
-From: Deepa Dinamani <deepa.kernel@gmail.com>
-Date: Sat, 31 Aug 2019 15:50:08 -0700
-Message-ID: <CABeXuvrm76iKnFrd7Wo=z4d0v7i7xT+Ta37D-mwVwy7-P3YyUg@mail.gmail.com>
-To: Arnd Bergmann <arnd@arndb.de>
+Content-Language: en-US
+X-Provags-ID: V03:K1:ztnoEwB7aMfeVUajX7qUfS9p3bmeZ+tI6B5JJX3RDPEb+rx6u+e
+ AhF0Nmvk8ckkG0Q7m1ou9EBafIyIc/fDLaZHj+dQrcISogiH4Y7ZDSxK6wN/yRgRMn7S895
+ 2kly7v5wiPInx6nwBoJjJRnr14EGgm0f7TFdNdBFf5tUwQh2vrOxh7LaQqVkT4Q9DgSgpkr
+ MCLp1Y2CUuWabv3RfAmJw==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:/N5txeF2U/A=:Z+kuxXeuCyWMIUJKwlvBlW
+ Y3/Zcuuwdc1+6twq2KWlm3U/wr/SbCjjHe/Jq/RGjeC6s5+BMEVv2c7oOkKKoeotNlOREiQmu
+ DNU73uzLUBwO+hUK49lqP4+7bnmdAC8pFnhrEpfhblp5XG324+4wWfibD7eopy6DvL2CZZw96
+ OqtopoMOvEYrp7WdZhhPmNy/XMa/kB4dSTpumJBFY0CNEvFLwgq1o/UIpoK6v95JhYZ48KJU0
+ 9teOKej7WJYDWRLSsnjKoHzPiVfCoOeUpbM0R1ZL+62HNCaFHA3Mbog5872QHBNBWL9SEOwSk
+ zGBJOws1/zTOnOJYwizz8tmm/s6T3UmyUXTVM1C5Gj4xQfq84ZikMGTzj+wu7SZjtbgVa9VpB
+ nmo/xBFF/4LzBmfsuWNSUJqFJmJqil2zsViMfCN22m1k4oqJKBkKVblEWycOcsslT9YOzIFHK
+ vPafOdtsC91MKCATahn40davcr0MMtQnbErsJhuPhYUxhTfHIAwcYpexbU5fOwXlbMyn+lxRm
+ mvhfhPa9ZDNwoIVKeOUv7gjNM8cIXlHF2S9Q3Jz1c0uG4KZaMsH+Nk1DBIHYi1lLeC8mcUjO2
+ e+QSX8dfMRrkLKywBroHYJc3edn5O2nBC6BGiIY8urSh312iij8HJGzKqw5fbI10mSW8YOUbD
+ rQiaM/KCrAYBjM25QvKAnM9GnyXI1Sik05JfUQprhPA5DNSDZXe7sd9wbaAoDoBDPR4j9ePFD
+ vm/zSoOMs21xNNi2U2WpElFvcwjroqLnHbqzyST6eutd8F0i0O+IqXJo+HVsN5uJupyItLCdb
+ IyO20K5xIqcnv0Xy5j19mGF69Ga4EhoSCTSMzQe3UtyklwPISyofdqaWS+jEI/Q743XonxQLh
+ 2Gf6F++R5Gas412m+DaAiW+NzRJfuIMaDnkY6OkloZfkM+q2RSER8+w1W2Gkfu1iaZZx+/fKU
+ kIa56R11OEMG8qRSeFUsLsnpqB1vUqjgtkvJgjprIGsPXyk/suqFbbD5NzT52tK0lIc+zPre1
+ da0l7qlUHjeb4b7/Aa0gxBFKBGfRFh+9gbR/EodTov83rF1YHictrYxx8CtapXYVqx4D+deyr
+ aUa6jwwRLIJQwhxj78joZT23LJWAwJckSZGkwXaDWfzMQxqukFTINRhZDho4vmYGIRIhvM33d
+ KPntE1FQqx6QPmtRDeHHtFw8z+8u2TRwAZ+8fUpa9YN2YEWQ==
 X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
- (deepa.kernel[at]gmail.com)
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [209.85.166.66 listed in list.dnswl.org]
+ (markus.elfring[at]web.de)
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
@@ -88,10 +134,10 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
-X-Headers-End: 1i4CCQ-004nkk-73
-X-Mailman-Approved-At: Fri, 06 Sep 2019 15:00:42 +0000
-Subject: Re: [Linux-NTFS-Dev] [GIT PULL] vfs: Add support for timestamp
- limits
+X-Headers-End: 1i5BMn-007yQj-BZ
+X-Mailman-Approved-At: Fri, 06 Sep 2019 15:00:43 +0000
+Subject: [Linux-NTFS-Dev] [PATCH] ntfs: Delete unnecessary checks before
+ brelse()
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -104,122 +150,52 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Cc: Latchesar Ionkov <lucho@ionkov.net>,
- Martin Brandenburg <martin@omnibond.com>, jfs-discussion@lists.sourceforge.net,
- Dave Kleikamp <shaggy@kernel.org>, Anders Larsen <al@alarsen.net>,
- Chao Yu <yuchao0@huawei.com>, Bob Copeland <me@bobcopeland.com>,
- Adrian Hunter <adrian.hunter@intel.com>,
- Andreas Dilger <adilger.kernel@dilger.ca>, mikulas@artax.karlin.mff.cuni.cz,
- stoph Hellwig <hch@lst.de>, Nicolas Pitre <nico@fluxnic.net>,
- Mike Marshall <hubcap@omnibond.com>, linux-cifs@vger.kernel.org, "Yan,
- Zheng" <zyan@redhat.com>, Sage Weil <sage@redhat.com>,
- "Darrick J. Wong" <darrick.wong@oracle.com>,
- y2038 Mailman List <y2038@lists.linaro.org>,
- Richard Weinberger <richard@nod.at>, Steve French <sfrench@samba.org>,
- Anton Vorontsov <anton@enomsg.org>,
- Russell King - ARM Linux <linux@armlinux.org.uk>, codalist@coda.cs.cmu.edu,
- Christoph Hellwig <hch@infradead.org>, coda@cs.cmu.edu,
- V9FS Developers <v9fs-developer@lists.sourceforge.net>,
- Ilya Dryomov <idryomov@gmail.com>,
- Ext4 Developers List <linux-ext4@vger.kernel.org>, salah.triki@gmail.com,
- asmadeus@codewreck.org, devel@lists.orangefs.org,
- Evgeniy Dushistov <dushistov@mail.ru>, Kees Cook <keescook@chromium.org>,
- Eric Van Hensbergen <ericvh@gmail.com>, Jan Kara <jack@suse.com>,
- reiserfs-devel@vger.kernel.org, Tejun Heo <tj@kernel.org>,
- Alexander Viro <viro@zeniv.linux.org.uk>, aivazian.tigran@gmail.com,
- phillip@squashfs.org.uk, David Sterba <dsterba@suse.com>,
- Jaegeuk Kim <jaegeuk@kernel.org>, ceph-devel <ceph-devel@vger.kernel.org>,
- trond.myklebust@hammerspace.com, OGAWA Hirofumi <hirofumi@mail.parknet.co.jp>,
- Andreas Dilger <adilger@dilger.ca>, Jan Harkes <jaharkes@cs.cmu.edu>,
- Linux NFS Mailing List <linux-nfs@vger.kernel.org>,
- Tony Luck <tony.luck@intel.com>, Theodore Ts'o <tytso@mit.edu>,
- Luis de Bethencourt <luisbg@kernel.org>,
- Artem Bityutskiy <dedekind1@gmail.com>, linux-ntfs-dev@lists.sourceforge.net,
- Greg KH <gregkh@linuxfoundation.org>, linux-karma-devel@lists.sourceforge.net,
- Jeff Layton <jlayton@kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, "Linux F2FS DEV,
- Mailing List" <linux-f2fs-devel@lists.sourceforge.net>,
- linux-xfs <linux-xfs@vger.kernel.org>, Colin Cross <ccross@android.com>,
- Linux FS-devel Mailing List <linux-fsdevel@vger.kernel.org>,
- linux-mtd <linux-mtd@lists.infradead.org>,
- David Woodhouse <dwmw2@infradead.org>,
- Anna Schumaker <anna.schumaker@netapp.com>, Joel Becker <jlbec@evilplan.org>
+Cc: kernel-janitors@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-> I think it's unclear from the orangefs source code what the intention is,
-> as there is a mixed of signed and unsigned types used for the inode
-> stamps:
->
-> #define encode_PVFS_time encode_int64_t
-> #define encode_int64_t(pptr,x) do { \
->     *(int64_t*) *(pptr) = cpu_to_le64(*(x)); \
->     *(pptr) += 8; \
-> } while (0)
-> #define decode_PVFS_time decode_int64_t
-> #define decode_int64_t(pptr,x) do { \
->     *(x) = le64_to_cpu(*(int64_t*) *(pptr)); \
->     *(pptr) += 8; \
-> } while (0)
->
-> This suggests that making it unsigned may have been an accident.
->
-> Then again,  it's clearly and consistently printed as unsigned in
-> user space:
->
->         gossip_debug(
->             GOSSIP_GETATTR_DEBUG, " VERSION is %llu, mtime is %llu\n",
->             llu(s_op->attr.mtime), llu(resp_attr->mtime));
+From: Markus Elfring <elfring@users.sourceforge.net>
+Date: Tue, 3 Sep 2019 16:18:07 +0200
 
-I think I had noticed these two and decided maybe the intention was to
-use unsigned types.
+The brelse() function tests whether its argument is NULL
+and then returns immediately.
+Thus the tests around the shown calls are not needed.
 
-> A related issue I noticed is this:
->
-> PVFS_time PINT_util_mktime_version(PVFS_time time)
-> {
->     struct timeval t = {0,0};
->     PVFS_time version = (time << 32);
->
->     gettimeofday(&t, NULL);
->     version |= (PVFS_time)t.tv_usec;
->     return version;
-> }
-> PVFS_time PINT_util_mkversion_time(PVFS_time version)
-> {
->     return (PVFS_time)(version >> 32);
-> }
-> static PINT_sm_action getattr_verify_attribs(
->         struct PINT_smcb *smcb, job_status_s *js_p)
-> {
-> ...
->     resp_attr->mtime = PINT_util_mkversion_time(s_op->attr.mtime);
-> ...
-> }
->
-> which suggests that at least for some purposes, the mtime field
-> is only an unsigned 32-bit number (1970..2106). From my readiing,
-> this affects the on-disk format, but not the protocol implemented
-> by the kernel.
->
-> atime and ctime are apparently 64-bit, but mtime is only 32-bit
-> seconds, plus a 32-bit 'version'. I suppose the server could be
-> fixed to allow a larger range, but probably would take it out of
-> the 'version' bits, not the upper half.
+This issue was detected by using the Coccinelle software.
 
-I had missed this part. Thanks.
+Signed-off-by: Markus Elfring <elfring@users.sourceforge.net>
+---
+ fs/ntfs/super.c | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-> To be on the safe side, I suppose the kernel can only assume
-> an unsigned 32-bit range to be available. If the server gets
-> extended beyond that, it would have to pass a feature flag.
+diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
+index 29621d40f448..f0ed1a3e5c7e 100644
+--- a/fs/ntfs/super.c
++++ b/fs/ntfs/super.c
+@@ -676,8 +676,7 @@ static struct buffer_head *read_ntfs_boot_sector(struct super_block *sb,
+ 	} else if (!silent)
+ 		ntfs_error(sb, read_err_str, "primary");
+ 	if (!(NTFS_SB(sb)->on_errors & ON_ERRORS_RECOVER)) {
+-		if (bh_primary)
+-			brelse(bh_primary);
++		brelse(bh_primary);
+ 		if (!silent)
+ 			ntfs_error(sb, "Mount option errors=recover not used. "
+ 					"Aborting without trying to recover.");
+@@ -703,8 +702,7 @@ static struct buffer_head *read_ntfs_boot_sector(struct super_block *sb,
+ 	} else if (!silent)
+ 		ntfs_error(sb, read_err_str, "backup");
+ 	/* We failed. Cleanup and return. */
+-	if (bh_primary)
+-		brelse(bh_primary);
++	brelse(bh_primary);
+ 	return NULL;
+ hotfix_primary_boot_sector:
+ 	if (bh_primary) {
+--
+2.23.0
 
-This makes sense to me also. And, as Arnd pointed out on the IRC, if
-there are negative timestamps that are already in use, this will be a
-problem for those use cases.
-I can update tha patch to use limits 0-u32_max.
-
--Deepa
 
 
 _______________________________________________
