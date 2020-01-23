@@ -2,69 +2,109 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60DE314666D
-	for <lists+linux-ntfs-dev@lfdr.de>; Thu, 23 Jan 2020 12:15:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 996C314730E
+	for <lists+linux-ntfs-dev@lfdr.de>; Thu, 23 Jan 2020 22:20:48 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1iuaSZ-0000wL-SW; Thu, 23 Jan 2020 11:15:39 +0000
+	id 1iuju8-0003kj-2m; Thu, 23 Jan 2020 21:20:44 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <colin.king@canonical.com>) id 1iuQNH-0000Ox-IP
- for linux-ntfs-dev@lists.sourceforge.net; Thu, 23 Jan 2020 00:29:31 +0000
+ (envelope-from <axboe@kernel.dk>) id 1iuiqN-0003JD-C3
+ for linux-ntfs-dev@lists.sourceforge.net; Thu, 23 Jan 2020 20:12:47 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+ MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=niT5MJIwDPh1F9QQlZaT09NvlVvmG+M7u1EDGg2fXrg=; b=FzkCvZHkG4sCvQpn+pCErTWlsq
- x1ib+yDirm8W6SiUlWcw1e/pL/s0mobYx6QIFynDOO9stiy9yFdHyVlOeXnmHNSTF2vtu27TnQxo7
- 5zfOGapaBaz8TO5NoV16YSblZqX+jswyaqQcRwUfOFxT1HJl3kUfunlRgj+/TetYanKY=;
+ bh=hVVJiVofuq6jqT8tysqA5aMKgAsODtyC1uhbEikyAQ8=; b=LYe1L/C1Q4Fj6f8zidp2n8H43B
+ qvRkdGrh34h0RIOcEzN/c/l5UbSD4SjEBcCy9xV1czEsyQApNmsNfQR+7m98WRT88hKVgQ4Fuknq5
+ uGSG83cRrxvoqylPrBkbrwdfvI/qcjKECwauSzdpvE6TGncXO/1/XfUius4Hk777jBsE=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:
- Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:Resent-Date
- :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=niT5MJIwDPh1F9QQlZaT09NvlVvmG+M7u1EDGg2fXrg=; b=C
- zbPsewrYE8YrX0UyRTSqVA11LIYTv5wkTKMJiWPBLX85mv/cO1resJjDUGdP574gqjxefT3zyiFTe
- 9TVyimpsqhuMCEFdWPrsHTS8O6SfhTFrXbtNueZ8Mk7EJFCJrEW8y75AQAks8EvdV5IOi8POV1oo8
- 1F7PwOzHuz1si2c0=;
-Received: from youngberry.canonical.com ([91.189.89.112])
- by sfi-mx-4.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES128-SHA:128) (Exim 4.92.2) id 1iuQNF-00FD46-CJ
- for linux-ntfs-dev@lists.sourceforge.net; Thu, 23 Jan 2020 00:29:31 +0000
-Received: from [82.43.126.140] (helo=localhost)
- by youngberry.canonical.com with esmtpsa
- (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128) (Exim 4.86_2)
- (envelope-from <colin.king@canonical.com>)
- id 1iuQN8-0004aM-9o; Thu, 23 Jan 2020 00:29:22 +0000
-From: Colin King <colin.king@canonical.com>
-To: Richard Russon <ldm@flatcap.org>, Jens Axboe <axboe@kernel.dk>,
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:Date:
+ Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=hVVJiVofuq6jqT8tysqA5aMKgAsODtyC1uhbEikyAQ8=; b=g07G3LCa1VHFFCU/h1kvX3TfIq
+ Uap5qDWv2AutsUVN3Wxs17anYYZbgWqbhNHoCIJwRs7HZmTbqmvHo/mLaxmmDcHNM3KQUoeR03j0A
+ tv42HR/GA88P0gaCea+EdCOBxF47ZraiOmi/hGyQLH7Dzl2WqcZvnPERS4xqijNm8eHU=;
+Received: from mail-il1-f194.google.com ([209.85.166.194])
+ by sfi-mx-3.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.2)
+ id 1iuiqK-00GB6P-MX
+ for linux-ntfs-dev@lists.sourceforge.net; Thu, 23 Jan 2020 20:12:47 +0000
+Received: by mail-il1-f194.google.com with SMTP id t2so3033190ilq.9
+ for <linux-ntfs-dev@lists.sourceforge.net>;
+ Thu, 23 Jan 2020 12:12:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=kernel-dk.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-language:content-transfer-encoding;
+ bh=hVVJiVofuq6jqT8tysqA5aMKgAsODtyC1uhbEikyAQ8=;
+ b=qrnuqwTbuWLKb92ONC2CXaYTQWIYfF8DxdwKhjeaVXX6GAs7puvD94VO3ij/4IcOsk
+ QliauhYOoWF4e4na4cD1Pve2IFiHHDPMc/r9o7NLl9AuTRiu7gJ4AKJYo4OsLW5LRV4F
+ 1IiT1yR8dcgGaLN4wfGR6Kn4vky0fGbPGMXf9Soc5VsFaWCemq0stfHFjiPn/U5KSQLS
+ +wS24wFzJm21kkj+wSckN6tilYc98lc4PfKRh/EXA5g9/Hte1mxFZuaF6rBqGqIUPnpX
+ aFnQaE/NxMZna4tB6oAf7PkQ4EVqDvyyj6g9Sa59qLEG+NaXcBS9/cokO/DAU/GA27EH
+ Im7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=hVVJiVofuq6jqT8tysqA5aMKgAsODtyC1uhbEikyAQ8=;
+ b=hjrKi1E4FUxKz8LC1yjN91oBlDbNS8v/3fpu23q+1P8ynqkqoLI4nakt5cwfRh1e+L
+ 75OhfKCNlnoYSBP3oCLubhHnhbsxFiunEa1qwxacv59Wk5mL3+cJf4qtwSoet27PmxGa
+ bJsV7QIcVLho8ulxSNa1XBFfYq6ItnH75lbH16hPOp6Oj2jy1jRynZ6s/hOnHBskOnPy
+ D9BpDHrLW5OYtzl8X3ObiRV95Fhao15xv0pf6JsgIdBeT1L7UZUVoHUBNMmbAEyvN4SH
+ 7jliOg0AMnA+m5yEoIdRhEd7DfzM0d3klIcUU8iEU1AjRqUX6PbjHcFSDxdY3lphAs+1
+ gWVQ==
+X-Gm-Message-State: APjAAAXk+0TLVPPbXYc2G0BEcLbHmXMDctnLJQPXfcQw/oypO0Bmio2m
+ IN8uN4HXy7lXr8CCsaiekS6+JeXKrjXTZQ==
+X-Google-Smtp-Source: APXvYqxyUlS85/lEfnr4wwXVf6rmaypUzEXpVAItiquKi8D7EUEX0nSWXUwQiG3fuTzpGObtNiSJDQ==
+X-Received: by 2002:a63:1210:: with SMTP id h16mr139816pgl.171.1579804915805; 
+ Thu, 23 Jan 2020 10:41:55 -0800 (PST)
+Received: from ?IPv6:2600:380:4562:fb25:b980:6664:b71f:35b5?
+ ([2600:380:4562:fb25:b980:6664:b71f:35b5])
+ by smtp.gmail.com with ESMTPSA id s26sm3520454pfe.166.2020.01.23.10.41.54
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 23 Jan 2020 10:41:55 -0800 (PST)
+To: Colin King <colin.king@canonical.com>, Richard Russon <ldm@flatcap.org>,
  linux-ntfs-dev@lists.sourceforge.net, linux-block@vger.kernel.org
-Date: Thu, 23 Jan 2020 00:29:21 +0000
-Message-Id: <20200123002921.2832716-1-colin.king@canonical.com>
-X-Mailer: git-send-email 2.24.0
+References: <20200123002921.2832716-1-colin.king@canonical.com>
+From: Jens Axboe <axboe@kernel.dk>
+Message-ID: <0d383b8a-b2c5-7669-f989-4239531d3fc0@kernel.dk>
+Date: Thu, 23 Jan 2020 11:41:53 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
+In-Reply-To: <20200123002921.2832716-1-colin.king@canonical.com>
+Content-Language: en-US
 X-Spam-Score: -0.4 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [209.85.166.194 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.166.194 listed in wl.mailspike.net]
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
  for more information. [URIs: canonical.com]
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [91.189.89.112 listed in wl.mailspike.net]
- 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
+ -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
  -0.4 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1iuQNF-00FD46-CJ
-X-Mailman-Approved-At: Thu, 23 Jan 2020 11:15:38 +0000
-Subject: [Linux-NTFS-Dev] [PATCH] partitions/ldm: fix spelling mistake "to"
- -> "too"
+X-Headers-End: 1iuiqK-00GB6P-MX
+X-Mailman-Approved-At: Thu, 23 Jan 2020 21:20:42 +0000
+Subject: Re: [Linux-NTFS-Dev] [PATCH] partitions/ldm: fix spelling mistake
+ "to" -> "too"
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -82,30 +122,15 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-From: Colin Ian King <colin.king@canonical.com>
+On 1/22/20 5:29 PM, Colin King wrote:
+> From: Colin Ian King <colin.king@canonical.com>
+> 
+> There is a spelling mistake in a ldm_error message. Fix it.
 
-There is a spelling mistake in a ldm_error message. Fix it.
+Applied, thanks.
 
-Signed-off-by: Colin Ian King <colin.king@canonical.com>
----
- block/partitions/ldm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/block/partitions/ldm.c b/block/partitions/ldm.c
-index fe5d970e2e60..a2d97ee1908c 100644
---- a/block/partitions/ldm.c
-+++ b/block/partitions/ldm.c
-@@ -1233,7 +1233,7 @@ static bool ldm_frag_add (const u8 *data, int size, struct list_head *frags)
- 	BUG_ON (!data || !frags);
- 
- 	if (size < 2 * VBLK_SIZE_HEAD) {
--		ldm_error("Value of size is to small.");
-+		ldm_error("Value of size is too small.");
- 		return false;
- 	}
- 
 -- 
-2.24.0
+Jens Axboe
 
 
 
