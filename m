@@ -2,82 +2,114 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id C19EC16C285
-	for <lists+linux-ntfs-dev@lfdr.de>; Tue, 25 Feb 2020 14:39:03 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
-	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A06B16FA0E
+	for <lists+linux-ntfs-dev@lfdr.de>; Wed, 26 Feb 2020 09:55:59 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1j6aQN-0004t0-Bj; Tue, 25 Feb 2020 13:38:59 +0000
+	id 1j6sTx-0008EQ-GM; Wed, 26 Feb 2020 08:55:53 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <mchehab+huawei@kernel.org>)
- id 1j4R10-0003X6-E5; Wed, 19 Feb 2020 15:11:54 +0000
+ (envelope-from <gustavo@embeddedor.com>) id 1j6kEf-0002vB-7o
+ for linux-ntfs-dev@lists.sourceforge.net; Wed, 26 Feb 2020 00:07:33 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Message-ID:Subject:Cc:To:
+ From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Uvk/WRH89AWMdOVPSMRB0SCJsQtjKOS/wrWpFHrNMmM=; b=jDbcu9auHiUD2Z/wWSZCV8UIJf
- Q0KXnVpXS1QyqUkLLCua9UZ0wGS1DtoRXtFvu8cAZsM6eQ2JAm4xcMu5zQix28/yI99OXH5HMGx6i
- gva03TKvyvNXqHLQpYQCBa9szZ+CNEW1o7nBFqnA1I5jiS6tJzgQ9okq2ERehAriAKBs=;
+ bh=8kpppuVxEfbw1HY9gBs/P7x/njX6QXOO1jMPxsNR6sQ=; b=fIjp+PQe/R/j9YvxPR1BolMj7Q
+ WxOoGYw3hh19oThvKyMEq38YCrUeYnVv7LtDhJe2sqJR+lRHil4KpFa9cds7yRI3muoLxn0rpABHx
+ r/aXVSwekI+tz7PgMY1D73ONXbxeC4RScmLmTqMczSqb/zimMbVWTyBTj3AdDKpmTxtM=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=Uvk/WRH89AWMdOVPSMRB0SCJsQtjKOS/wrWpFHrNMmM=; b=V5RsBMxT4KVFZVFJX48/go8K6y
- tHJIe4bQGN9F3HGkkZCM/RaRFtu1YJFq/7sdd8nBhMPejooLSDWQQ0C1fFT6Zo4fjIdBUMcYjiyb1
- BR6IF6+aDKj/SCRPO4jRaGSban2AptyAWqnrtq95TpzNHNmC/Gxg3VRbXATLou4+WlfM=;
-Received: from bombadil.infradead.org ([198.137.202.133])
+ h=Content-Type:MIME-Version:Message-ID:Subject:Cc:To:From:Date:Sender:
+ Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+ :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=8kpppuVxEfbw1HY9gBs/P7x/njX6QXOO1jMPxsNR6sQ=; b=f
+ 54DwPnMeIqwx3EEGxBuYNHYVPQ2pzvnq+iGvjvPXMdgnGlND0rAxp8zh8FoyMgM4mjxZeiKDVic1h
+ VdcWRkiAiIqZP2YsO4jil4HaAbvAezuAw7eWiyCIdkwiQ7h/WuZpbKsoCrQCSkQ55Yj7K+P2d68bM
+ o5p1wHUySdM+GgXk=;
+Received: from gateway33.websitewelcome.com ([192.185.146.195])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1j4R0y-0001k6-Js; Wed, 19 Feb 2020 15:11:54 +0000
+ id 1j6kEa-00GXvW-Q6
+ for linux-ntfs-dev@lists.sourceforge.net; Wed, 26 Feb 2020 00:07:33 +0000
+Received: from cm16.websitewelcome.com (cm16.websitewelcome.com [100.42.49.19])
+ by gateway33.websitewelcome.com (Postfix) with ESMTP id B47EB32CB3
+ for <linux-ntfs-dev@lists.sourceforge.net>;
+ Tue, 25 Feb 2020 17:45:49 -0600 (CST)
+Received: from gator4166.hostgator.com ([108.167.133.22]) by cmsmtp with SMTP
+ id 6jtdj2wMx8vkB6jtdjyDXL; Tue, 25 Feb 2020 17:45:49 -0600
+X-Authority-Reason: nr=8
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20170209; h=Content-Transfer-Encoding:
- Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
- From:Date:Sender:Reply-To:Content-ID:Content-Description;
- bh=Uvk/WRH89AWMdOVPSMRB0SCJsQtjKOS/wrWpFHrNMmM=; b=j2lHtYJz/WtcOazwhe9FYpwcMw
- PilYDNbrwf0g6lTRRzQa0QrB8HYHq4emi91b2LPURX5BgK7AAbxvYBLaMzwrtvNwImG/Fe2WBhENT
- w8oYGUiDuQf2Y82cs6KthEC4N0cGjMFvIJAk4el1ecH1mDO7oFTBYBHPrpOVoJsBiVYOKlrN2kKul
- jQ+c46w/yklPdM3nTe4K6vkbqBn0SiKUJhg0HquiKuRPfo0HM7Lr7fZNwQXZL0MIsJvqc+OP48inL
- 1yZzyFDMvMB/XYuYLRKDH8PYvPOr4nLtGpKWOIh6aa0/SJvmYFsuI5VmNJkbOVZjHKZow7nLGP4Vl
- BXjkRYUA==;
-Received: from tmo-109-126.customers.d1-online.com ([80.187.109.126]
- helo=localhost)
- by bombadil.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j4R0Y-0000UF-OT; Wed, 19 Feb 2020 15:11:26 +0000
-Date: Wed, 19 Feb 2020 16:11:13 +0100
-From: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To: Jonathan Corbet <corbet@lwn.net>
-Message-ID: <20200219161113.41add6e4@kernel.org>
-In-Reply-To: <20200219023234.7b704acb@lwn.net>
-References: <cover.1581955849.git.mchehab+huawei@kernel.org>
- <20200218040146.GM7778@bombadil.infradead.org>
- <20200218110406.098fdc09@kernel.org>
- <20200219023234.7b704acb@lwn.net>
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+ d=embeddedor.com; s=default; h=Content-Type:MIME-Version:Message-ID:Subject:
+ Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=8kpppuVxEfbw1HY9gBs/P7x/njX6QXOO1jMPxsNR6sQ=; b=LdFi92iGDpBZAOEsGks8AdD4mT
+ auLnIL2SJ/JwRgBeofSCcegK3Uv5sAHC2DZfOZ2k2yOpHIy8hWmokqXZojvcnp5U5t5C18ared7y4
+ fH2sRDUIpzmxnyX/j2/hnOOcik3PohMovNqK/m2+9LZve2J6y71A7vYqydRumrArUNyeeiZ8k+gUX
+ uGUwCFc0WJH2XLrMxyivzrz6wLTpe81q2ysj3PJv4emwPEmXQFMKNZqtHBF7iwdfZfOCfztLJPwzt
+ ErqJagG72z1hQ/8Nx5Rj/HvJgsLQJLBqmtKcW47hVisLRS2ET9m5tGNkUYyb3VU1gTMnzPvHiH2UT
+ 0cwKBDeQ==;
+Received: from [201.162.241.105] (port=30500 helo=embeddedor)
+ by gator4166.hostgator.com with esmtpa (Exim 4.92)
+ (envelope-from <gustavo@embeddedor.com>)
+ id 1j6jtb-001yzF-GN; Tue, 25 Feb 2020 17:45:48 -0600
+Date: Tue, 25 Feb 2020 17:48:37 -0600
+From: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
+To: "Richard Russon (FlatCap)" <ldm@flatcap.org>, Jens Axboe <axboe@kernel.dk>,
+ Philipp Reisner <philipp.reisner@linbit.com>,
+ Lars Ellenberg <lars.ellenberg@linbit.com>,
+ Ilya Dryomov <idryomov@gmail.com>, Sage Weil <sage@redhat.com>,
+ Dongsheng Yang <dongsheng.yang@easystack.cn>
+Message-ID: <20200225234836.GA31741@embeddedor>
 MIME-Version: 1.0
-X-Spam-Score: 0.1 (/)
+Content-Disposition: inline
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - gator4166.hostgator.com
+X-AntiAbuse: Original Domain - lists.sourceforge.net
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - embeddedor.com
+X-BWhitelist: no
+X-Source-IP: 201.162.241.105
+X-Source-L: No
+X-Exim-ID: 1j6jtb-001yzF-GN
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: (embeddedor) [201.162.241.105]:30500
+X-Source-Auth: gustavo@embeddedor.com
+X-Email-Count: 8
+X-Source-Cap: Z3V6aWRpbmU7Z3V6aWRpbmU7Z2F0b3I0MTY2Lmhvc3RnYXRvci5jb20=
+X-Local-Domain: yes
+X-Spam-Score: -0.3 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 1.0 SPF_SOFTFAIL           SPF: sender does not match SPF record (softfail)
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
- not necessarily valid
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: lwn.net]
- -0.9 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1j4R0y-0001k6-Js
-X-Mailman-Approved-At: Tue, 25 Feb 2020 13:38:57 +0000
-Subject: Re: [Linux-NTFS-Dev] [PATCH 00/44] Manually convert filesystem FS
- documents to ReST
+ for more information. [URIs: gnu.org]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [192.185.146.195 listed in list.dnswl.org]
+ -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+ -0.2 AWL AWL: Adjusted score from AWL reputation of From: address
+X-Headers-End: 1j6kEa-00GXvW-Q6
+X-Mailman-Approved-At: Wed, 26 Feb 2020 08:55:53 +0000
+Subject: [Linux-NTFS-Dev] [PATCH][next] block: Replace zero-length array
+ with flexible-array member
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -90,65 +122,132 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Cc: Latchesar Ionkov <lucho@ionkov.net>,
- Martin Brandenburg <martin@omnibond.com>, Jan Kara <jack@suse.cz>,
- Linux Doc Mailing List <linux-doc@vger.kernel.org>,
- Dominique Martinet <asmadeus@codewreck.org>,
- Amir Goldstein <amir73il@gmail.com>, Bob Copeland <me@bobcopeland.com>,
- David Howells <dhowells@redhat.com>, Chris Mason <clm@fb.com>,
- linux-mtd@lists.infradead.org, Ilya Dryomov <idryomov@gmail.com>,
- linux-afs@lists.infradead.org, Mike Marshall <hubcap@omnibond.com>,
- Naohiro Aota <naohiro.aota@wdc.com>, Christoph Hellwig <hch@infradead.org>,
- linux-nilfs@vger.kernel.org, Andreas Gruenbacher <agruenba@redhat.com>,
- Sage Weil <sage@redhat.com>, Richard Weinberger <richard@nod.at>,
- Matthew Wilcox <willy@infradead.org>, Tyler Hicks <code@tyhicks.com>,
- cluster-devel@redhat.com, v9fs-developer@lists.sourceforge.net,
- Gao Xiang <xiang@kernel.org>, linux-ext4@vger.kernel.org,
- Salah Triki <salah.triki@gmail.com>, Alexey Dobriyan <adobriyan@gmail.com>,
- devel@lists.orangefs.org, Chao Yu <chao@kernel.org>,
- Eric Van Hensbergen <ericvh@gmail.com>, ecryptfs@vger.kernel.org,
- Josef Bacik <josef@toxicpanda.com>, Bob Peterson <rpeterso@redhat.com>,
- "Tigran A. Aivazian" <aivazian.tigran@gmail.com>,
- David Sterba <dsterba@suse.com>, Jaegeuk Kim <jaegeuk@kernel.org>,
- ceph-devel@vger.kernel.org, Ryusuke Konishi <konishi.ryusuke@gmail.com>,
- Anton Altaparmakov <anton@tuxera.com>, Damien Le Moal <damien.lemoal@wdc.com>,
- Luis de Bethencourt <luisbg@kernel.org>, Nicolas Pitre <nico@fluxnic.net>,
- linux-ntfs-dev@lists.sourceforge.net, Jeff Layton <jlayton@kernel.org>,
- linux-f2fs-devel@lists.sourceforge.net, ocfs2-devel@oss.oracle.com,
- Jan Kara <jack@suse.com>, linux-fsdevel@vger.kernel.org,
- Phillip Lougher <phillip@squashfs.org.uk>, Johannes Thumshirn <jth@kernel.org>,
- linux-erofs@lists.ozlabs.org, linux-karma-devel@lists.sourceforge.net,
- linux-btrfs@vger.kernel.org
+Cc: "Gustavo A. R. Silva" <gustavo@embeddedor.com>,
+ linux-ntfs-dev@lists.sourceforge.net, linux-kernel@vger.kernel.org,
+ linux-block@vger.kernel.org, ceph-devel@vger.kernel.org,
+ drbd-dev@lists.linbit.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-Em Wed, 19 Feb 2020 02:32:34 -0700
-Jonathan Corbet <corbet@lwn.net> escreveu:
+The current codebase makes use of the zero-length array language
+extension to the C90 standard, but the preferred mechanism to declare
+variable-length types such as these ones is a flexible array member[1][2],
+introduced in C99:
 
-> On Tue, 18 Feb 2020 11:04:06 +0100
-> Mauro Carvalho Chehab <mchehab+huawei@kernel.org> wrote:
-> 
-> > Then, do a second pass at files outside the new directories (like
-> > admin-guide), in order to better organize things, eventually splitting
-> > some files into kAPI, uAPI and/or admin-guide.  
-> 
-> I'm looking forward to this phase!  Yes it is harder, and it often
-> requires selling the idea to skeptical maintainers.  But that is how,
-> IMO, we get from where we're at now to something closer to a set of
-> coherent kernel docs.
+struct foo {
+        int stuff;
+        struct boo array[];
+};
 
-Yeah, fully agreed that this is an important step.
+By making use of the mechanism above, we will get a compiler warning
+in case the flexible array does not occur last in the structure, which
+will help us prevent some kind of undefined behavior bugs from being
+inadvertently introduced[3] to the codebase from now on.
 
-I'm even more anxious for a third phase: filling the gaps. I'm pretty sure
-that several important parts of the Kernel aren't properly represented
-at Documentation.
+Also, notice that, dynamic memory allocations won't be affected by
+this change:
 
-Yet, before start writing new things, we should first organizing what we
-already have, making them well-organized.
+"Flexible array members have incomplete type, and so the sizeof operator
+may not be applied. As a quirk of the original implementation of
+zero-length arrays, sizeof evaluates to zero."[1]
 
-Cheers,
-Mauro
+This issue was found with the help of Coccinelle.
+
+[1] https://gcc.gnu.org/onlinedocs/gcc/Zero-Length.html
+[2] https://github.com/KSPP/linux/issues/21
+[3] commit 76497732932f ("cxgb3/l2t: Fix undefined behaviour")
+
+Signed-off-by: Gustavo A. R. Silva <gustavo@embeddedor.com>
+---
+ block/partitions/ldm.h             | 2 +-
+ drivers/block/drbd/drbd_int.h      | 2 +-
+ drivers/block/drbd/drbd_protocol.h | 8 ++++----
+ drivers/block/rbd_types.h          | 2 +-
+ 4 files changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/block/partitions/ldm.h b/block/partitions/ldm.h
+index 1ca63e97bccc..172432ce5c0f 100644
+--- a/block/partitions/ldm.h
++++ b/block/partitions/ldm.h
+@@ -93,7 +93,7 @@ struct frag {				/* VBLK Fragment handling */
+ 	u8		num;		/* Total number of records */
+ 	u8		rec;		/* This is record number n */
+ 	u8		map;		/* Which portions are in use */
+-	u8		data[0];
++	u8		data[];
+ };
+ 
+ /* In memory LDM database structures. */
+diff --git a/drivers/block/drbd/drbd_int.h b/drivers/block/drbd/drbd_int.h
+index aae99a2d7bd4..a3314dd781a7 100644
+--- a/drivers/block/drbd/drbd_int.h
++++ b/drivers/block/drbd/drbd_int.h
+@@ -620,7 +620,7 @@ struct fifo_buffer {
+ 	unsigned int head_index;
+ 	unsigned int size;
+ 	int total; /* sum of all values */
+-	int values[0];
++	int values[];
+ };
+ extern struct fifo_buffer *fifo_alloc(unsigned int fifo_size);
+ 
+diff --git a/drivers/block/drbd/drbd_protocol.h b/drivers/block/drbd/drbd_protocol.h
+index e6fc5ad72501..dea59c92ecc1 100644
+--- a/drivers/block/drbd/drbd_protocol.h
++++ b/drivers/block/drbd/drbd_protocol.h
+@@ -271,7 +271,7 @@ struct p_rs_param {
+ 	u32 resync_rate;
+ 
+ 	      /* Since protocol version 88 and higher. */
+-	char verify_alg[0];
++	char verify_alg[];
+ } __packed;
+ 
+ struct p_rs_param_89 {
+@@ -305,7 +305,7 @@ struct p_protocol {
+ 	u32 two_primaries;
+ 
+ 	/* Since protocol version 87 and higher. */
+-	char integrity_alg[0];
++	char integrity_alg[];
+ 
+ } __packed;
+ 
+@@ -360,7 +360,7 @@ struct p_sizes {
+ 	u16	    dds_flags; /* use enum dds_flags here. */
+ 
+ 	/* optional queue_limits if (agreed_features & DRBD_FF_WSAME) */
+-	struct o_qlim qlim[0];
++	struct o_qlim qlim[];
+ } __packed;
+ 
+ struct p_state {
+@@ -409,7 +409,7 @@ struct p_compressed_bm {
+ 	 */
+ 	u8 encoding;
+ 
+-	u8 code[0];
++	u8 code[];
+ } __packed;
+ 
+ struct p_delay_probe93 {
+diff --git a/drivers/block/rbd_types.h b/drivers/block/rbd_types.h
+index ac98ab6ccd3b..a600e0eb6b6f 100644
+--- a/drivers/block/rbd_types.h
++++ b/drivers/block/rbd_types.h
+@@ -93,7 +93,7 @@ struct rbd_image_header_ondisk {
+ 	__le32 snap_count;
+ 	__le32 reserved;
+ 	__le64 snap_names_len;
+-	struct rbd_image_snap_ondisk snaps[0];
++	struct rbd_image_snap_ondisk snaps[];
+ } __attribute__((packed));
+ 
+ 
+-- 
+2.25.0
+
 
 
 _______________________________________________
