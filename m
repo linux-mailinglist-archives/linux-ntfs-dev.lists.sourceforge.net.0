@@ -2,104 +2,102 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A3201A266A
-	for <lists+linux-ntfs-dev@lfdr.de>; Wed,  8 Apr 2020 17:55:04 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id C8ADB1A6D7B
+	for <lists+linux-ntfs-dev@lfdr.de>; Mon, 13 Apr 2020 22:43:41 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1jMD2a-0001Y7-PD; Wed, 08 Apr 2020 15:55:00 +0000
+	id 1jO5ve-0006nE-HG; Mon, 13 Apr 2020 20:43:38 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <dsterba@suse.cz>) id 1jMCzn-0001Nh-G5
- for linux-ntfs-dev@lists.sourceforge.net; Wed, 08 Apr 2020 15:52:07 +0000
+ (envelope-from <luca.stefani.ge1@gmail.com>) id 1jO2j4-0008OO-Qr
+ for linux-ntfs-dev@lists.sourceforge.net; Mon, 13 Apr 2020 17:18:26 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Message-Id:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=gm8ArUa6n6/ETa5zuIPndvUQzvZ3CGDDPb8lGzGsISQ=; b=UMK9An+ZnnnfT2qhTt3XXr6SHe
- 1NM5Vo01RZgNGXDk9tSUqIqHhVbeaS/ZOp5zAd/ec2dm7NXJ6fKtsgyAZ3/OAVsi2wz1k2B59sdFn
- CUWOinNXs213sbhY778flhnauTY1noI3i8N4DPOdp8axqI3YDj2TNZYgZa/0IPR2sikY=;
+ bh=qm0BGfFD79pts7YvBtXmz+2vlrjm8dZDdh5XrgUaCJw=; b=MO9+lZqzqNNYDl/BW8hzNbVqfX
+ +etWVrCBsRox+pTLUyXmrmWdalquG7wLR2KTA8rJ+QDiO6OtQQoJ18uzEAIzttYafWSUEDgpg+sC6
+ 0NDPQlSAtEo6NTPbVMmyvEOHYGi6xlWD/Dj60vSJ6d4P62QjudfElFerJ8ukjCBKNBCY=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Reply-To:Message-ID:
- Subject:Cc:To:From:Date:Sender:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=gm8ArUa6n6/ETa5zuIPndvUQzvZ3CGDDPb8lGzGsISQ=; b=kQOuqfeBtBEQsgDq9axT9BJw7f
- GsRozzvHvaVp0RZQgilBjEmAihnf8nc53IhfdXAgibbcKNYRs00Xrkwf+L6jaivZdzZn5GR1Cbsmx
- JQud/XEqE064BYAy0af6jy1LZYf7Q9BeCudPfJ8Jh8OT3wBfc2t8IArXvph2ZwsbBjtk=;
-Received: from mx2.suse.de ([195.135.220.15])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1jMCzl-007mZ4-Be
- for linux-ntfs-dev@lists.sourceforge.net; Wed, 08 Apr 2020 15:52:07 +0000
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
- by mx2.suse.de (Postfix) with ESMTP id D9CC7AF6E;
- Wed,  8 Apr 2020 15:51:51 +0000 (UTC)
-Received: by ds.suse.cz (Postfix, from userid 10065)
- id 0B140DA730; Wed,  8 Apr 2020 17:51:10 +0200 (CEST)
-Date: Wed, 8 Apr 2020 17:51:10 +0200
-From: David Sterba <dsterba@suse.cz>
-To: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Message-ID: <20200408155110.GW5920@suse.cz>
-Mail-Followup-To: dsterba@suse.cz,
- Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
- Linux Doc Mailing List <linux-doc@vger.kernel.org>,
- linux-kernel@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
- Jan Kara <jack@suse.cz>, Amir Goldstein <amir73il@gmail.com>,
- Michael Ellerman <mpe@ellerman.id.au>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- Paul Mackerras <paulus@samba.org>,
- Federico Vaga <federico.vaga@vaga.pv.it>,
- Harry Wei <harryxiyou@gmail.com>,
- Alex Shi <alex.shi@linux.alibaba.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Alexander Viro <viro@zeniv.linux.org.uk>,
- David Sterba <dsterba@suse.com>,
- David Howells <dhowells@redhat.com>,
- "Tigran A. Aivazian" <aivazian.tigran@gmail.com>,
- Nicolas Pitre <nico@fluxnic.net>, Tyler Hicks <code@tyhicks.com>,
- Mikulas Patocka <mikulas@artax.karlin.mff.cuni.cz>,
- Anton Altaparmakov <anton@tuxera.com>,
- Mark Fasheh <mark@fasheh.com>, Joel Becker <jlbec@evilplan.org>,
- Joseph Qi <joseph.qi@linux.alibaba.com>,
- Alexey Dobriyan <adobriyan@gmail.com>,
- Christoph Hellwig <hch@infradead.org>,
- linux-fsdevel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, linux-afs@lists.infradead.org,
- ecryptfs@vger.kernel.org, linux-ntfs-dev@lists.sourceforge.net,
- ocfs2-devel@oss.oracle.com
-References: <cover.1586359676.git.mchehab+huawei@kernel.org>
- <bcfddf36f60d928c78473af4e6a0b29904213c44.1586359676.git.mchehab+huawei@kernel.org>
+ h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From
+ :Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=qm0BGfFD79pts7YvBtXmz+2vlrjm8dZDdh5XrgUaCJw=; b=Z
+ S5lV0Yq6gHDHPja5d/cARM7w1Ul8qQrcsJVeR+M5DVSPS67DMKP//TcKPrroIUZufj4SZWXOzVf+B
+ THtzMwnYezke5th6Jw1AF3vtFjw6SZndPILYw9dAjhGWeLQPckX5B+nuJc3Ra6/95+GAapq0eFBju
+ KTIlqiyj1z3b9IVM=;
+Received: from mail-wr1-f67.google.com ([209.85.221.67])
+ by sfi-mx-4.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.2)
+ id 1jO2j1-00HT6O-3A
+ for linux-ntfs-dev@lists.sourceforge.net; Mon, 13 Apr 2020 17:18:26 +0000
+Received: by mail-wr1-f67.google.com with SMTP id u13so10448828wrp.3
+ for <linux-ntfs-dev@lists.sourceforge.net>;
+ Mon, 13 Apr 2020 10:18:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=qm0BGfFD79pts7YvBtXmz+2vlrjm8dZDdh5XrgUaCJw=;
+ b=pw6HztuMmAbGkR0JdAecBIxAfW6/Lrccu98CuNxSuidGMSf3denHR+NRaDV7QiuOE5
+ 70BgLDRBFgVcDjfyB4im0HMcL588ZxO0h9WYCMLhBZyNZUTYrEOI8OzKXiwHykNaMkeE
+ aIWPpOntLB1e3Q74dzuAYKEvg2OJ4kMPTdN7TEu8KXGkpxILe9QppIySFczT7wlvH6lS
+ 8Wqz6DY8vJwnEHxpt05jtcWIPcBSZpd2+zcgN+so3P/PlpzzzqBGtbi9UZtpgk8rTqz5
+ NZKUjEnqThb/v//vx7OZt4uLvksdkTLTyNtCqdmwWo9idSD6+33UvGD/FHANlRuRTMUQ
+ v/Ow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=qm0BGfFD79pts7YvBtXmz+2vlrjm8dZDdh5XrgUaCJw=;
+ b=czERL3UbHdaTNBxvnkZlHogfYYmlSlxIV70qrTO0PhcEw3TpINv2237VUZJOvDvZYx
+ 9nuLov3jePHxaUMI3Cm14+VFWNt853+MRsPMSt2CQ+aGv2NGMEaGL2ffcHaLDzJjvug+
+ 0UDmrXOsmGASemDVRnN1DquKpplUo+rEdw8hH6qlOiN7W8Fz+VQrl9jf8t8C40gsu0eX
+ Uq1jXeVtL/T310nQJYhbJ/zd7Ftug0aLqFhK8k4rJv/pJn8yE/dZxvAZv7ZMC28FGVIn
+ FeFXLWm+d4zQzwXiCKePvD+nI5Hj4aKgnEbZIGsXo/kV+ZC3kHjxo4Rwo4gZNCaZX/M5
+ sHow==
+X-Gm-Message-State: AGi0PuZfQIdIEQGgu2vDP8ssyM4LhQ/pn5cWC8loygHhAxnFVKK++RZ4
+ FxQck7k/bbr4+lyGKuqz12c=
+X-Google-Smtp-Source: APiQypLX+9g89/OVTINZ4UpZYJZntXB76CMMRMAyrqqRVCVhw6hPfCumT3Vrh0A4iTaQwGOubQGbmA==
+X-Received: by 2002:a5d:6a47:: with SMTP id t7mr20276701wrw.29.1586798294074; 
+ Mon, 13 Apr 2020 10:18:14 -0700 (PDT)
+Received: from luca020400-arch.lan ([2001:b07:5d33:19f:e2b6:8927:31e7:d93f])
+ by smtp.googlemail.com with ESMTPSA id q10sm11568826wrv.95.2020.04.13.10.18.13
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 13 Apr 2020 10:18:13 -0700 (PDT)
+From: Luca Stefani <luca.stefani.ge1@gmail.com>
+To: 
+Date: Mon, 13 Apr 2020 19:18:10 +0200
+Message-Id: <20200413171811.35736-1-luca.stefani.ge1@gmail.com>
+X-Mailer: git-send-email 2.26.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <bcfddf36f60d928c78473af4e6a0b29904213c44.1586359676.git.mchehab+huawei@kernel.org>
-User-Agent: Mutt/1.5.23.1-rc1 (2014-03-12)
-X-Spam-Score: 0.0 (/)
+X-Spam-Score: -0.7 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [195.135.220.15 listed in wl.mailspike.net]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [209.85.221.67 listed in list.dnswl.org]
+ 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+ (luca.stefani.ge1[at]gmail.com)
+ -0.8 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.221.67 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
- See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: suse.com]
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
-X-Headers-End: 1jMCzl-007mZ4-Be
-X-Mailman-Approved-At: Wed, 08 Apr 2020 15:54:59 +0000
-Subject: Re: [Linux-NTFS-Dev] [PATCH 05/35] docs: filesystems: fix renamed
- references
+ 0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends in
+ digit (luca.stefani.ge1[at]gmail.com)
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+X-Headers-End: 1jO2j1-00HT6O-3A
+X-Mailman-Approved-At: Mon, 13 Apr 2020 20:43:37 +0000
+Subject: [Linux-NTFS-Dev] [PATCH] ntfs: Fix ntfs_test_inode and
+ ntfs_init_locked_inode function type
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -112,45 +110,179 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Reply-To: dsterba@suse.cz
-Cc: Jan Kara <jack@suse.cz>, Linux Doc Mailing List <linux-doc@vger.kernel.org>,
- David Airlie <airlied@linux.ie>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- Amir Goldstein <amir73il@gmail.com>, dri-devel@lists.freedesktop.org,
- David Howells <dhowells@redhat.com>, Joseph Qi <joseph.qi@linux.alibaba.com>,
- Harry Wei <harryxiyou@gmail.com>, Paul Mackerras <paulus@samba.org>,
- Mikulas Patocka <mikulas@artax.karlin.mff.cuni.cz>,
- Alex Shi <alex.shi@linux.alibaba.com>, linux-afs@lists.infradead.org,
- Jonathan Corbet <corbet@lwn.net>, Michael Ellerman <mpe@ellerman.id.au>,
- Mark Fasheh <mark@fasheh.com>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Tyler Hicks <code@tyhicks.com>, Christoph Hellwig <hch@infradead.org>,
- Federico Vaga <federico.vaga@vaga.pv.it>,
- Alexey Dobriyan <adobriyan@gmail.com>, freedreno@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, ecryptfs@vger.kernel.org,
- Alexander Viro <viro@zeniv.linux.org.uk>,
- "Tigran A. Aivazian" <aivazian.tigran@gmail.com>,
- David Sterba <dsterba@suse.com>, Sean Paul <sean@poorly.run>,
- Anton Altaparmakov <anton@tuxera.com>, Nicolas Pitre <nico@fluxnic.net>,
- linux-ntfs-dev@lists.sourceforge.net,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-kernel@vger.kernel.org,
- Rob Clark <robdclark@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- linux-fsdevel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- ocfs2-devel@oss.oracle.com, Joel Becker <jlbec@evilplan.org>
+Cc: linux-ntfs-dev@lists.sourceforge.net,
+ freak07 <michalechner92@googlemail.com>, linux-kernel@vger.kernel.org,
+ Anton Altaparmakov <anton@tuxera.com>,
+ Luca Stefani <luca.stefani.ge1@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-On Wed, Apr 08, 2020 at 05:45:57PM +0200, Mauro Carvalho Chehab wrote:
-> Some filesystem references got broken by a previous patch
-> series I submitted. Address those.
-> 
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+If the kernel is built with CFI we hit a __cfi_check_fail
+while mounting a partition
 
-For
+Call trace:
+__cfi_check_fail+0x1c/0x24
+name_to_dev_t+0x0/0x404
+iget5_locked+0x594/0x5e8
+ntfs_fill_super+0xbfc/0x43ec
+mount_bdev+0x30c/0x3cc
+ntfs_mount+0x18/0x24
+mount_fs+0x1b0/0x380
+vfs_kern_mount+0x90/0x398
+do_mount+0x5d8/0x1a10
+SyS_mount+0x108/0x144
+el0_svc_naked+0x34/0x38
 
->  fs/affs/Kconfig                                             | 2 +-
+Fixing iget5_locked and ilookup5 callers seems enough
 
-Acked-by: David Sterba <dsterba@suse.com>
+Signed-off-by: Luca Stefani <luca.stefani.ge1@gmail.com>
+Tested-by: freak07 <michalechner92@googlemail.com>
+---
+ fs/ntfs/dir.c   |  2 +-
+ fs/ntfs/inode.c | 23 ++++++++++++-----------
+ fs/ntfs/inode.h |  4 +---
+ fs/ntfs/mft.c   |  4 ++--
+ 4 files changed, 16 insertions(+), 17 deletions(-)
+
+diff --git a/fs/ntfs/dir.c b/fs/ntfs/dir.c
+index 3c4811469ae8..e278bfc5ee7f 100644
+--- a/fs/ntfs/dir.c
++++ b/fs/ntfs/dir.c
+@@ -1503,7 +1503,7 @@ static int ntfs_dir_fsync(struct file *filp, loff_t start, loff_t end,
+ 	na.type = AT_BITMAP;
+ 	na.name = I30;
+ 	na.name_len = 4;
+-	bmp_vi = ilookup5(vi->i_sb, vi->i_ino, (test_t)ntfs_test_inode, &na);
++	bmp_vi = ilookup5(vi->i_sb, vi->i_ino, ntfs_test_inode, &na);
+ 	if (bmp_vi) {
+  		write_inode_now(bmp_vi, !datasync);
+ 		iput(bmp_vi);
+diff --git a/fs/ntfs/inode.c b/fs/ntfs/inode.c
+index d4359a1df3d5..a5d3bebe7a85 100644
+--- a/fs/ntfs/inode.c
++++ b/fs/ntfs/inode.c
+@@ -30,7 +30,7 @@
+ /**
+  * ntfs_test_inode - compare two (possibly fake) inodes for equality
+  * @vi:		vfs inode which to test
+- * @na:		ntfs attribute which is being tested with
++ * @data:		data which is being tested with
+  *
+  * Compare the ntfs attribute embedded in the ntfs specific part of the vfs
+  * inode @vi for equality with the ntfs attribute @na.
+@@ -43,8 +43,9 @@
+  * NOTE: This function runs with the inode_hash_lock spin lock held so it is not
+  * allowed to sleep.
+  */
+-int ntfs_test_inode(struct inode *vi, ntfs_attr *na)
++int ntfs_test_inode(struct inode *vi, void *data)
+ {
++	ntfs_attr *na = (ntfs_attr *)data;
+ 	ntfs_inode *ni;
+ 
+ 	if (vi->i_ino != na->mft_no)
+@@ -72,7 +73,7 @@ int ntfs_test_inode(struct inode *vi, ntfs_attr *na)
+ /**
+  * ntfs_init_locked_inode - initialize an inode
+  * @vi:		vfs inode to initialize
+- * @na:		ntfs attribute which to initialize @vi to
++ * @data:		data which to initialize @vi to
+  *
+  * Initialize the vfs inode @vi with the values from the ntfs attribute @na in
+  * order to enable ntfs_test_inode() to do its work.
+@@ -87,8 +88,9 @@ int ntfs_test_inode(struct inode *vi, ntfs_attr *na)
+  * NOTE: This function runs with the inode->i_lock spin lock held so it is not
+  * allowed to sleep. (Hence the GFP_ATOMIC allocation.)
+  */
+-static int ntfs_init_locked_inode(struct inode *vi, ntfs_attr *na)
++static int ntfs_init_locked_inode(struct inode *vi, void *data)
+ {
++	ntfs_attr *na = (ntfs_attr *)data;
+ 	ntfs_inode *ni = NTFS_I(vi);
+ 
+ 	vi->i_ino = na->mft_no;
+@@ -131,7 +133,6 @@ static int ntfs_init_locked_inode(struct inode *vi, ntfs_attr *na)
+ 	return 0;
+ }
+ 
+-typedef int (*set_t)(struct inode *, void *);
+ static int ntfs_read_locked_inode(struct inode *vi);
+ static int ntfs_read_locked_attr_inode(struct inode *base_vi, struct inode *vi);
+ static int ntfs_read_locked_index_inode(struct inode *base_vi,
+@@ -164,8 +165,8 @@ struct inode *ntfs_iget(struct super_block *sb, unsigned long mft_no)
+ 	na.name = NULL;
+ 	na.name_len = 0;
+ 
+-	vi = iget5_locked(sb, mft_no, (test_t)ntfs_test_inode,
+-			(set_t)ntfs_init_locked_inode, &na);
++	vi = iget5_locked(sb, mft_no, ntfs_test_inode,
++			ntfs_init_locked_inode, &na);
+ 	if (unlikely(!vi))
+ 		return ERR_PTR(-ENOMEM);
+ 
+@@ -225,8 +226,8 @@ struct inode *ntfs_attr_iget(struct inode *base_vi, ATTR_TYPE type,
+ 	na.name = name;
+ 	na.name_len = name_len;
+ 
+-	vi = iget5_locked(base_vi->i_sb, na.mft_no, (test_t)ntfs_test_inode,
+-			(set_t)ntfs_init_locked_inode, &na);
++	vi = iget5_locked(base_vi->i_sb, na.mft_no, ntfs_test_inode,
++			ntfs_init_locked_inode, &na);
+ 	if (unlikely(!vi))
+ 		return ERR_PTR(-ENOMEM);
+ 
+@@ -280,8 +281,8 @@ struct inode *ntfs_index_iget(struct inode *base_vi, ntfschar *name,
+ 	na.name = name;
+ 	na.name_len = name_len;
+ 
+-	vi = iget5_locked(base_vi->i_sb, na.mft_no, (test_t)ntfs_test_inode,
+-			(set_t)ntfs_init_locked_inode, &na);
++	vi = iget5_locked(base_vi->i_sb, na.mft_no, ntfs_test_inode,
++			ntfs_init_locked_inode, &na);
+ 	if (unlikely(!vi))
+ 		return ERR_PTR(-ENOMEM);
+ 
+diff --git a/fs/ntfs/inode.h b/fs/ntfs/inode.h
+index 98e670fbdd31..363e4e820673 100644
+--- a/fs/ntfs/inode.h
++++ b/fs/ntfs/inode.h
+@@ -253,9 +253,7 @@ typedef struct {
+ 	ATTR_TYPE type;
+ } ntfs_attr;
+ 
+-typedef int (*test_t)(struct inode *, void *);
+-
+-extern int ntfs_test_inode(struct inode *vi, ntfs_attr *na);
++extern int ntfs_test_inode(struct inode *vi, void *data);
+ 
+ extern struct inode *ntfs_iget(struct super_block *sb, unsigned long mft_no);
+ extern struct inode *ntfs_attr_iget(struct inode *base_vi, ATTR_TYPE type,
+diff --git a/fs/ntfs/mft.c b/fs/ntfs/mft.c
+index 3aac5c917afe..58234b42d68f 100644
+--- a/fs/ntfs/mft.c
++++ b/fs/ntfs/mft.c
+@@ -958,7 +958,7 @@ bool ntfs_may_write_mft_record(ntfs_volume *vol, const unsigned long mft_no,
+ 		 * dirty code path of the inode dirty code path when writing
+ 		 * $MFT occurs.
+ 		 */
+-		vi = ilookup5_nowait(sb, mft_no, (test_t)ntfs_test_inode, &na);
++		vi = ilookup5_nowait(sb, mft_no, ntfs_test_inode, &na);
+ 	}
+ 	if (vi) {
+ 		ntfs_debug("Base inode 0x%lx is in icache.", mft_no);
+@@ -1019,7 +1019,7 @@ bool ntfs_may_write_mft_record(ntfs_volume *vol, const unsigned long mft_no,
+ 		vi = igrab(mft_vi);
+ 		BUG_ON(vi != mft_vi);
+ 	} else
+-		vi = ilookup5_nowait(sb, na.mft_no, (test_t)ntfs_test_inode,
++		vi = ilookup5_nowait(sb, na.mft_no, ntfs_test_inode,
+ 				&na);
+ 	if (!vi) {
+ 		/*
+-- 
+2.26.0
+
 
 
 _______________________________________________
