@@ -2,108 +2,80 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCA401A81DA
-	for <lists+linux-ntfs-dev@lfdr.de>; Tue, 14 Apr 2020 17:17:24 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 761501A8614
+	for <lists+linux-ntfs-dev@lfdr.de>; Tue, 14 Apr 2020 18:57:31 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1jONJO-0004ad-FV; Tue, 14 Apr 2020 15:17:18 +0000
+	id 1jOOsK-0006p3-A1; Tue, 14 Apr 2020 16:57:28 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <luca.stefani.ge1@gmail.com>) id 1jONFA-0004Ms-Q1
- for linux-ntfs-dev@lists.sourceforge.net; Tue, 14 Apr 2020 15:12:56 +0000
+ (envelope-from <mchehab@kernel.org>)
+ id 1jOOkP-0000yv-Th; Tue, 14 Apr 2020 16:49:17 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
- In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Sender:Content-Transfer-Encoding:MIME-Version:
+ Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=rxT3vou5Ng+mQOZHM3dbFCXV6meSuH1elQDi0zPfdzI=; b=SbTGeNGXj1ZVKW5Hvl/Jc+/phs
- i8aK79MVE1Hfr1a3RxgCab1tXNlbx7unas+KFLkD5a3pZtQaAyiXqTLzATECs3CHWcUsUBjOmm6s6
- CV1NuqY4Az3reGo+cQN+7s7f6IJySPXyPx00dzSUg6kWlIPyAszXg3sbM5wFdapz9i9s=;
+ bh=9V2NaBihS+eHWyh0p1+nIccVMnzd/N30RKOhQZwz2lU=; b=GD4zktH0SyN8RvLkWx2EwMEaQB
+ xA0GeCBc+s3YzhkwzQUGPYxt5FVjOHIBQD7z5mtoCt6VzdGVv5ns6V7Hcr9rNCyIWBTq2fQcgIZir
+ w9L76teHeqqvcyE4LYh2NMEKLcTwg5tcxzK3N4vBjuH2apTKWkLd/1jS2k+gGhDdHzl8=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=rxT3vou5Ng+mQOZHM3dbFCXV6meSuH1elQDi0zPfdzI=; b=YZGW7nevve4BwtzjCY3/l6NeVf
- 1BFKLH2yGe/6tjBePhn3wfE80bymBscnXwdBPQ+pSS4W2ppAD3WricpjFv45B5wTIDw1qvhMiTKpK
- hv14138YHQT9nGe9ANlXIB6MmKpsJ2rOqTeP4ZODerozGPWxHlZ1B1HGb1AJHYSdoMg8=;
-Received: from mail-wr1-f66.google.com ([209.85.221.66])
- by sfi-mx-4.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.2)
- id 1jONF9-000s0I-47
- for linux-ntfs-dev@lists.sourceforge.net; Tue, 14 Apr 2020 15:12:56 +0000
-Received: by mail-wr1-f66.google.com with SMTP id k1so7526165wrx.4
- for <linux-ntfs-dev@lists.sourceforge.net>;
- Tue, 14 Apr 2020 08:12:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=rxT3vou5Ng+mQOZHM3dbFCXV6meSuH1elQDi0zPfdzI=;
- b=d0lbYpoHGJvCsc+g8nt+4TtD3NySeZvbdlGW1KKvb6a20nuvghJPaqzeBDra+EjoI/
- dH4/9TSUOa3OdEaJb+wI8zRamhlIJjfO3l2FmGsRGjcTkVlSZ1cZvFJUItmYMPk1Ujr5
- yFPykgC0yt8FOSIW35+fzjqSOcvq/CDRitl7+gbJBDu1/d174wVg38jGrsifgLMafxqp
- Eda6AlxwCgiYpZqaYXF25odui3kZ6HnsdSLmHFCJGhcRRA8RO/UCBpq4QpnNHp7DuuM5
- hVDpxTdMp/wJrcRgFCXfSAfopEiKvSa2+jEPam4H7FcU9qgoJz2G58KR59LckaLnfTou
- chuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=rxT3vou5Ng+mQOZHM3dbFCXV6meSuH1elQDi0zPfdzI=;
- b=E+uonoZDX/a4UE5jsA8NYbvpkmMXoXeNGEmqMMw5LLyOOMFD2K1zXXkjpyzusAyzHg
- N12Hd7EU1ZJIqCYOc4nj84L92rxYzhSbvZ2p/Cc8YxNlSazd4xbF3H6hbR7Txpq1oDYl
- qDSwryGiGPz1o4fBlfSs4V2np13MO5+i+UHjZl3OUDSVfamBpV+dVf/0t6b5pjx2aNA1
- BvtsVP9KI3eTpbMyvpaUYA3YfrcvrNOAOJgOaKwtYjw/plj30h7Xi/gvgoDseRK3WTop
- CPcVor0XSpUQQ91Ero2e/gbMY/yfE5W9ubIQ3dIzNf9GlqPaLdRPT0/HZ8tFihKUlkI6
- s78w==
-X-Gm-Message-State: AGi0PuYUHMzSRWHk7dfnnmpgne9zLAX6WhkHTP0yGAfZvitWJl5HaSvb
- 67p5KI8ck8aRI8Q1Edy2p78=
-X-Google-Smtp-Source: APiQypK3G3FyKLKbfD9Pms5jxsBQE/WA38s7A6vwbkv/il5B79vmC9oQSkYQLlfH5eFcm/iHa9xaBA==
-X-Received: by 2002:adf:f1cd:: with SMTP id z13mr13562208wro.166.1586877168520; 
- Tue, 14 Apr 2020 08:12:48 -0700 (PDT)
-Received: from luca020400-arch.lan ([2001:b07:5d33:19f:e2b6:8927:31e7:d93f])
- by smtp.googlemail.com with ESMTPSA id q4sm20622523wmj.1.2020.04.14.08.12.47
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 14 Apr 2020 08:12:47 -0700 (PDT)
-From: Luca Stefani <luca.stefani.ge1@gmail.com>
-To: 
-Date: Tue, 14 Apr 2020 17:12:46 +0200
-Message-Id: <20200414151246.627197-1-luca.stefani.ge1@gmail.com>
-X-Mailer: git-send-email 2.26.0
-In-Reply-To: <20200414145903.GA11720@infradead.org>
-References: <20200414145903.GA11720@infradead.org>
+ h=Sender:Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:
+ To:From:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=9V2NaBihS+eHWyh0p1+nIccVMnzd/N30RKOhQZwz2lU=; b=T
+ shYHFDliN28/FryDGfn3V9Nkb0+QWRwhWdnoYj2mMGGriWfJoWUkKtD0BuaRY1crhIVejg9EYkmco
+ EP5r4VhA49VWOfKn/JP84d/Nk8UqcaIBK4hO2WqNWRSfOVtR9Baj9UYGYwr7S53pUhoGzcfwZLFMr
+ 22M08PtK9Dbz3pyY=;
+Received: from mail.kernel.org ([198.145.29.99])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
+ id 1jOOkL-00G2im-4v; Tue, 14 Apr 2020 16:49:17 +0000
+Received: from mail.kernel.org (ip5f5ad4d8.dynamic.kabel-deutschland.de
+ [95.90.212.216])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 64BDD20787;
+ Tue, 14 Apr 2020 16:49:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1586882942;
+ bh=hpU3ilpDhIBh1EkpHoT8CRglKxDNGuySrswIRHuRmXU=;
+ h=From:To:Cc:Subject:Date:From;
+ b=qP/fh2JuBrTWMBDU0Po9QgHcYacrRlFhnHwEY8en7h953JH1K2J6xRWgtWi+ouXIY
+ 3gGiDenojv2rrUzJ4Wxk3whARW64aaikv0MOeHbofi1sPuRVe5IZT8BpzPaRPNxcO+
+ 07Ps8XSWU9UmRtIfijlblMPlQG+5+iBYwuA7KjAY=
+Received: from mchehab by mail.kernel.org with local (Exim 4.92.3)
+ (envelope-from <mchehab@kernel.org>)
+ id 1jOOk8-0068kv-FR; Tue, 14 Apr 2020 18:49:00 +0200
+From: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To: Linux Doc Mailing List <linux-doc@vger.kernel.org>
+Date: Tue, 14 Apr 2020 18:48:26 +0200
+Message-Id: <cover.1586881715.git.mchehab+huawei@kernel.org>
+X-Mailer: git-send-email 2.25.2
 MIME-Version: 1.0
-X-Spam-Score: -0.7 (/)
+X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
- See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: googlemail.com]
- 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
- (luca.stefani.ge1[at]gmail.com)
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [209.85.221.66 listed in list.dnswl.org]
- -0.8 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.221.66 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends in
- digit (luca.stefani.ge1[at]gmail.com)
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
-X-Headers-End: 1jONF9-000s0I-47
-X-Mailman-Approved-At: Tue, 14 Apr 2020 15:17:15 +0000
-Subject: [Linux-NTFS-Dev] [PATCH v2] ntfs: Fix ntfs_test_inode and
- ntfs_init_locked_inode function type
+ 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
+ See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [URIs: conf.py]
+ -0.0 DKIMWL_WL_HIGH         DKIMwl.org - Whitelisted High sender
+X-Headers-End: 1jOOkL-00G2im-4v
+X-Mailman-Approved-At: Tue, 14 Apr 2020 16:57:26 +0000
+Subject: [Linux-NTFS-Dev] [PATCH v2 00/33] Documentation fixes for Kernel 5.8
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -116,179 +88,216 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-ntfs-dev@lists.sourceforge.net,
- freak07 <michalechner92@googlemail.com>, linux-kernel@vger.kernel.org,
- Anton Altaparmakov <anton@tuxera.com>,
- Luca Stefani <luca.stefani.ge1@gmail.com>
+Cc: kvm@vger.kernel.org, linux-pci@vger.kernel.org,
+ Linus Walleij <linus.walleij@linaro.org>, dri-devel@lists.freedesktop.org,
+ linux-unionfs@vger.kernel.org, linux-mm@kvack.org, netdev@vger.kernel.org,
+ linux-i2c@vger.kernel.org, linux1394-devel@lists.sourceforge.net,
+ kvmarm@lists.cs.columbia.edu, linux-arch@vger.kernel.org,
+ Rob Herring <robh@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>,
+ Jonathan Corbet <corbet@lwn.net>,
+ Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+ Kishon Vijay Abraham I <kishon@ti.com>, linux-rockchip@lists.infradead.org,
+ Matthias Kaehlcke <mka@chromium.org>, Sandeep Maheswaram <sanm@codeaurora.org>,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-afs@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ ecryptfs@vger.kernel.org, kvm-ppc@vger.kernel.org,
+ Stephen Boyd <swboyd@chromium.org>, Maxime Ripard <maxime@cerno.tech>,
+ linux-arm-kernel@lists.infradead.org, linux-edac@vger.kernel.org,
+ Matthias Brugger <mbrugger@suse.com>, Yuti Amonkar <yamonkar@cadence.com>,
+ linux-ide@vger.kernel.org, linux-ntfs-dev@lists.sourceforge.net,
+ freedreno@lists.freedesktop.org, linux-usb@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+ linux-rdma@vger.kernel.org, linux-crypto@vger.kernel.org,
+ Sudeep Holla <sudeep.holla@arm.com>, linux-fsdevel@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, ocfs2-devel@oss.oracle.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-If the kernel is built with CFI we hit a __cfi_check_fail
-while mounting a partition
+Patches 1 to 5 contain changes to the documentation toolset:
 
-Call trace:
-__cfi_check_fail+0x1c/0x24
-name_to_dev_t+0x0/0x404
-iget5_locked+0x594/0x5e8
-ntfs_fill_super+0xbfc/0x43ec
-mount_bdev+0x30c/0x3cc
-ntfs_mount+0x18/0x24
-mount_fs+0x1b0/0x380
-vfs_kern_mount+0x90/0x398
-do_mount+0x5d8/0x1a10
-SyS_mount+0x108/0x144
-el0_svc_naked+0x34/0x38
+- The first 3 patches help to reduce a lot the number of reported
+  kernel-doc issues, by making the tool more smart.
 
-Fixing iget5_locked and ilookup5 callers seems enough
+- Patches 4 and 5 are meant to partially address the PDF
+  build, with now requires Sphinx version 2.4 or upper.
 
-Signed-off-by: Luca Stefani <luca.stefani.ge1@gmail.com>
-Tested-by: freak07 <michalechner92@googlemail.com>
----
- fs/ntfs/dir.c   |  2 +-
- fs/ntfs/inode.c | 23 ++++++++++++-----------
- fs/ntfs/inode.h |  4 +---
- fs/ntfs/mft.c   |  5 ++---
- 4 files changed, 16 insertions(+), 18 deletions(-)
+The remaining patches fix broken references detected by
+this tool:
 
-diff --git a/fs/ntfs/dir.c b/fs/ntfs/dir.c
-index 3c4811469ae8..e278bfc5ee7f 100644
---- a/fs/ntfs/dir.c
-+++ b/fs/ntfs/dir.c
-@@ -1503,7 +1503,7 @@ static int ntfs_dir_fsync(struct file *filp, loff_t start, loff_t end,
- 	na.type = AT_BITMAP;
- 	na.name = I30;
- 	na.name_len = 4;
--	bmp_vi = ilookup5(vi->i_sb, vi->i_ino, (test_t)ntfs_test_inode, &na);
-+	bmp_vi = ilookup5(vi->i_sb, vi->i_ino, ntfs_test_inode, &na);
- 	if (bmp_vi) {
-  		write_inode_now(bmp_vi, !datasync);
- 		iput(bmp_vi);
-diff --git a/fs/ntfs/inode.c b/fs/ntfs/inode.c
-index d4359a1df3d5..34c919bc0dfe 100644
---- a/fs/ntfs/inode.c
-+++ b/fs/ntfs/inode.c
-@@ -30,7 +30,7 @@
- /**
-  * ntfs_test_inode - compare two (possibly fake) inodes for equality
-  * @vi:		vfs inode which to test
-- * @na:		ntfs attribute which is being tested with
-+ * @data:		data which is being tested with
-  *
-  * Compare the ntfs attribute embedded in the ntfs specific part of the vfs
-  * inode @vi for equality with the ntfs attribute @na.
-@@ -43,8 +43,9 @@
-  * NOTE: This function runs with the inode_hash_lock spin lock held so it is not
-  * allowed to sleep.
-  */
--int ntfs_test_inode(struct inode *vi, ntfs_attr *na)
-+int ntfs_test_inode(struct inode *vi, void *data)
- {
-+	ntfs_attr *na = data;
- 	ntfs_inode *ni;
- 
- 	if (vi->i_ino != na->mft_no)
-@@ -72,7 +73,7 @@ int ntfs_test_inode(struct inode *vi, ntfs_attr *na)
- /**
-  * ntfs_init_locked_inode - initialize an inode
-  * @vi:		vfs inode to initialize
-- * @na:		ntfs attribute which to initialize @vi to
-+ * @data:		data which to initialize @vi to
-  *
-  * Initialize the vfs inode @vi with the values from the ntfs attribute @na in
-  * order to enable ntfs_test_inode() to do its work.
-@@ -87,8 +88,9 @@ int ntfs_test_inode(struct inode *vi, ntfs_attr *na)
-  * NOTE: This function runs with the inode->i_lock spin lock held so it is not
-  * allowed to sleep. (Hence the GFP_ATOMIC allocation.)
-  */
--static int ntfs_init_locked_inode(struct inode *vi, ntfs_attr *na)
-+static int ntfs_init_locked_inode(struct inode *vi, void *data)
- {
-+	ntfs_attr *na = data;
- 	ntfs_inode *ni = NTFS_I(vi);
- 
- 	vi->i_ino = na->mft_no;
-@@ -131,7 +133,6 @@ static int ntfs_init_locked_inode(struct inode *vi, ntfs_attr *na)
- 	return 0;
- }
- 
--typedef int (*set_t)(struct inode *, void *);
- static int ntfs_read_locked_inode(struct inode *vi);
- static int ntfs_read_locked_attr_inode(struct inode *base_vi, struct inode *vi);
- static int ntfs_read_locked_index_inode(struct inode *base_vi,
-@@ -164,8 +165,8 @@ struct inode *ntfs_iget(struct super_block *sb, unsigned long mft_no)
- 	na.name = NULL;
- 	na.name_len = 0;
- 
--	vi = iget5_locked(sb, mft_no, (test_t)ntfs_test_inode,
--			(set_t)ntfs_init_locked_inode, &na);
-+	vi = iget5_locked(sb, mft_no, ntfs_test_inode,
-+			ntfs_init_locked_inode, &na);
- 	if (unlikely(!vi))
- 		return ERR_PTR(-ENOMEM);
- 
-@@ -225,8 +226,8 @@ struct inode *ntfs_attr_iget(struct inode *base_vi, ATTR_TYPE type,
- 	na.name = name;
- 	na.name_len = name_len;
- 
--	vi = iget5_locked(base_vi->i_sb, na.mft_no, (test_t)ntfs_test_inode,
--			(set_t)ntfs_init_locked_inode, &na);
-+	vi = iget5_locked(base_vi->i_sb, na.mft_no, ntfs_test_inode,
-+			ntfs_init_locked_inode, &na);
- 	if (unlikely(!vi))
- 		return ERR_PTR(-ENOMEM);
- 
-@@ -280,8 +281,8 @@ struct inode *ntfs_index_iget(struct inode *base_vi, ntfschar *name,
- 	na.name = name;
- 	na.name_len = name_len;
- 
--	vi = iget5_locked(base_vi->i_sb, na.mft_no, (test_t)ntfs_test_inode,
--			(set_t)ntfs_init_locked_inode, &na);
-+	vi = iget5_locked(base_vi->i_sb, na.mft_no, ntfs_test_inode,
-+			ntfs_init_locked_inode, &na);
- 	if (unlikely(!vi))
- 		return ERR_PTR(-ENOMEM);
- 
-diff --git a/fs/ntfs/inode.h b/fs/ntfs/inode.h
-index 98e670fbdd31..363e4e820673 100644
---- a/fs/ntfs/inode.h
-+++ b/fs/ntfs/inode.h
-@@ -253,9 +253,7 @@ typedef struct {
- 	ATTR_TYPE type;
- } ntfs_attr;
- 
--typedef int (*test_t)(struct inode *, void *);
+        ./scripts/documentation-file-ref-check
+
+and address other random errors due to tags being mis-interpreted
+or mis-used.
+
+They are independent each other, but some may depend on
+the kernel-doc improvements.
+
+PS.: Due to the large number of C/C, I opted to keep a smaller
+set of C/C at this first e-mail (only e-mails with "L:" tag from
+MAINTAINERS file).
+
+Jon,
+
+Those patches should apply cleanly at docs-next, once you
+pull from v5.7-rc1.
+
+
 -
--extern int ntfs_test_inode(struct inode *vi, ntfs_attr *na);
-+extern int ntfs_test_inode(struct inode *vi, void *data);
- 
- extern struct inode *ntfs_iget(struct super_block *sb, unsigned long mft_no);
- extern struct inode *ntfs_attr_iget(struct inode *base_vi, ATTR_TYPE type,
-diff --git a/fs/ntfs/mft.c b/fs/ntfs/mft.c
-index 3aac5c917afe..1f1dbf4c41b5 100644
---- a/fs/ntfs/mft.c
-+++ b/fs/ntfs/mft.c
-@@ -958,7 +958,7 @@ bool ntfs_may_write_mft_record(ntfs_volume *vol, const unsigned long mft_no,
- 		 * dirty code path of the inode dirty code path when writing
- 		 * $MFT occurs.
- 		 */
--		vi = ilookup5_nowait(sb, mft_no, (test_t)ntfs_test_inode, &na);
-+		vi = ilookup5_nowait(sb, mft_no, ntfs_test_inode, &na);
- 	}
- 	if (vi) {
- 		ntfs_debug("Base inode 0x%lx is in icache.", mft_no);
-@@ -1019,8 +1019,7 @@ bool ntfs_may_write_mft_record(ntfs_volume *vol, const unsigned long mft_no,
- 		vi = igrab(mft_vi);
- 		BUG_ON(vi != mft_vi);
- 	} else
--		vi = ilookup5_nowait(sb, na.mft_no, (test_t)ntfs_test_inode,
--				&na);
-+		vi = ilookup5_nowait(sb, na.mft_no, ntfs_test_inode, &na);
- 	if (!vi) {
- 		/*
- 		 * The base inode is not in icache, write this extent mft
+
+v2:
+
+- patches re-ordered;
+- added reviewed/acked-by tags;
+- rebased on the top of docs-next + v5.7-rc1.
+
+
+Mauro Carvalho Chehab (33):
+  scripts: kernel-doc: proper handle @foo->bar()
+  scripts: kernel-doc: accept negation like !@var
+  scripts: kernel-doc: accept blank lines on parameter description
+  docs: update recommended Sphinx version to 2.4.4
+  docs: LaTeX/PDF: drop list of documents
+  MAINTAINERS: dt: update display/allwinner file entry
+  MAINTAINERS: dt: fix pointers for ARM Integrator, Versatile and
+    RealView
+  docs: dt: fix broken reference to phy-cadence-torrent.yaml
+  docs: fix broken references to text files
+  docs: fix broken references for ReST files that moved around
+  docs: filesystems: fix renamed references
+  docs: amu: supress some Sphinx warnings
+  docs: arm64: booting.rst: get rid of some warnings
+  docs: pci: boot-interrupts.rst: improve html output
+  docs: ras: get rid of some warnings
+  docs: ras: don't need to repeat twice the same thing
+  docs: infiniband: verbs.c: fix some documentation warnings
+  docs: spi: spi.h: fix a doc building warning
+  docs: drivers: fix some warnings at base/platform.c when building docs
+  docs: mm: userfaultfd.rst: use ``foo`` for literals
+  docs: mm: userfaultfd.rst: use a cross-reference for a section
+  docs: vm: index.rst: add an orphan doc to the building system
+  docs: dt: qcom,dwc3.txt: fix cross-reference for a converted file
+  docs: dt: fix a broken reference for a file converted to json
+  docs: powerpc: cxl.rst: mark two section titles as such
+  docs: i2c: rename i2c.svg to i2c_bus.svg
+  docs: Makefile: place final pdf docs on a separate dir
+  docs: dt: rockchip,dwc3.txt: fix a pointer to a renamed file
+  ata: libata-core: fix a doc warning
+  firewire: firewire-cdev.hL get rid of a docs warning
+  fs: inode.c: get rid of docs warnings
+  futex: get rid of a kernel-docs build warning
+  lib: bitmap.c: get rid of some doc warnings
+
+ Documentation/ABI/stable/sysfs-devices-node   |   2 +-
+ Documentation/ABI/testing/procfs-smaps_rollup |   2 +-
+ Documentation/Makefile                        |   6 +-
+ Documentation/PCI/boot-interrupts.rst         |  34 +--
+ Documentation/admin-guide/cpu-load.rst        |   2 +-
+ Documentation/admin-guide/mm/userfaultfd.rst  | 209 +++++++++---------
+ Documentation/admin-guide/nfs/nfsroot.rst     |   2 +-
+ Documentation/admin-guide/ras.rst             |  18 +-
+ Documentation/arm64/amu.rst                   |   5 +
+ Documentation/arm64/booting.rst               |  36 +--
+ Documentation/conf.py                         |  38 ----
+ .../bindings/net/qualcomm-bluetooth.txt       |   2 +-
+ .../bindings/phy/ti,phy-j721e-wiz.yaml        |   2 +-
+ .../devicetree/bindings/usb/qcom,dwc3.txt     |   4 +-
+ .../devicetree/bindings/usb/rockchip,dwc3.txt |   2 +-
+ .../doc-guide/maintainer-profile.rst          |   2 +-
+ .../driver-api/driver-model/device.rst        |   4 +-
+ .../driver-api/driver-model/overview.rst      |   2 +-
+ Documentation/filesystems/dax.txt             |   2 +-
+ Documentation/filesystems/dnotify.txt         |   2 +-
+ .../filesystems/ramfs-rootfs-initramfs.rst    |   2 +-
+ Documentation/filesystems/sysfs.rst           |   2 +-
+ Documentation/i2c/{i2c.svg => i2c_bus.svg}    |   2 +-
+ Documentation/i2c/summary.rst                 |   2 +-
+ Documentation/memory-barriers.txt             |   2 +-
+ Documentation/powerpc/cxl.rst                 |   2 +
+ .../powerpc/firmware-assisted-dump.rst        |   2 +-
+ Documentation/process/adding-syscalls.rst     |   2 +-
+ Documentation/process/submit-checklist.rst    |   2 +-
+ Documentation/sphinx/requirements.txt         |   2 +-
+ .../it_IT/process/adding-syscalls.rst         |   2 +-
+ .../it_IT/process/submit-checklist.rst        |   2 +-
+ .../translations/ko_KR/memory-barriers.txt    |   2 +-
+ .../translations/zh_CN/filesystems/sysfs.txt  |   8 +-
+ .../zh_CN/process/submit-checklist.rst        |   2 +-
+ Documentation/virt/kvm/arm/pvtime.rst         |   2 +-
+ Documentation/virt/kvm/devices/vcpu.rst       |   2 +-
+ Documentation/virt/kvm/hypercalls.rst         |   4 +-
+ Documentation/virt/kvm/mmu.rst                |   2 +-
+ Documentation/virt/kvm/review-checklist.rst   |   2 +-
+ Documentation/vm/index.rst                    |   1 +
+ MAINTAINERS                                   |   7 +-
+ arch/powerpc/include/uapi/asm/kvm_para.h      |   2 +-
+ arch/x86/kvm/mmu/mmu.c                        |   2 +-
+ drivers/ata/libata-core.c                     |   2 +-
+ drivers/base/core.c                           |   2 +-
+ drivers/base/platform.c                       |   6 +-
+ .../allwinner/sun8i-ce/sun8i-ce-cipher.c      |   2 +-
+ .../crypto/allwinner/sun8i-ce/sun8i-ce-core.c |   2 +-
+ .../allwinner/sun8i-ss/sun8i-ss-cipher.c      |   2 +-
+ .../crypto/allwinner/sun8i-ss/sun8i-ss-core.c |   2 +-
+ drivers/gpu/drm/Kconfig                       |   2 +-
+ drivers/gpu/drm/drm_ioctl.c                   |   2 +-
+ drivers/gpu/drm/msm/disp/dpu1/dpu_kms.h       |   2 +-
+ drivers/hwtracing/coresight/Kconfig           |   2 +-
+ drivers/infiniband/core/verbs.c               |   7 +-
+ drivers/media/v4l2-core/v4l2-fwnode.c         |   2 +-
+ fs/Kconfig                                    |   2 +-
+ fs/Kconfig.binfmt                             |   2 +-
+ fs/adfs/Kconfig                               |   2 +-
+ fs/affs/Kconfig                               |   2 +-
+ fs/afs/Kconfig                                |   6 +-
+ fs/bfs/Kconfig                                |   2 +-
+ fs/cramfs/Kconfig                             |   2 +-
+ fs/ecryptfs/Kconfig                           |   2 +-
+ fs/fat/Kconfig                                |   8 +-
+ fs/fuse/Kconfig                               |   2 +-
+ fs/fuse/dev.c                                 |   2 +-
+ fs/hfs/Kconfig                                |   2 +-
+ fs/hpfs/Kconfig                               |   2 +-
+ fs/inode.c                                    |   6 +-
+ fs/isofs/Kconfig                              |   2 +-
+ fs/namespace.c                                |   2 +-
+ fs/notify/inotify/Kconfig                     |   2 +-
+ fs/ntfs/Kconfig                               |   2 +-
+ fs/ocfs2/Kconfig                              |   2 +-
+ fs/overlayfs/Kconfig                          |   6 +-
+ fs/proc/Kconfig                               |   4 +-
+ fs/romfs/Kconfig                              |   2 +-
+ fs/sysfs/dir.c                                |   2 +-
+ fs/sysfs/file.c                               |   2 +-
+ fs/sysfs/mount.c                              |   2 +-
+ fs/sysfs/symlink.c                            |   2 +-
+ fs/sysv/Kconfig                               |   2 +-
+ fs/udf/Kconfig                                |   2 +-
+ include/linux/kobject.h                       |   2 +-
+ include/linux/kobject_ns.h                    |   2 +-
+ include/linux/mm.h                            |   4 +-
+ include/linux/relay.h                         |   2 +-
+ include/linux/spi/spi.h                       |   1 +
+ include/linux/sysfs.h                         |   2 +-
+ include/uapi/linux/ethtool_netlink.h          |   2 +-
+ include/uapi/linux/firewire-cdev.h            |   2 +-
+ include/uapi/linux/kvm.h                      |   4 +-
+ include/uapi/rdma/rdma_user_ioctl_cmds.h      |   2 +-
+ kernel/futex.c                                |   3 +
+ kernel/relay.c                                |   2 +-
+ lib/bitmap.c                                  |  27 +--
+ lib/kobject.c                                 |   4 +-
+ mm/gup.c                                      |  12 +-
+ scripts/kernel-doc                            |  41 ++--
+ tools/include/uapi/linux/kvm.h                |   4 +-
+ virt/kvm/arm/vgic/vgic-mmio-v3.c              |   2 +-
+ virt/kvm/arm/vgic/vgic.h                      |   4 +-
+ 104 files changed, 343 insertions(+), 326 deletions(-)
+ rename Documentation/i2c/{i2c.svg => i2c_bus.svg} (99%)
+
 -- 
-2.26.0
+2.25.2
+
 
 
 
