@@ -2,89 +2,96 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8ADB1A6D7B
-	for <lists+linux-ntfs-dev@lfdr.de>; Mon, 13 Apr 2020 22:43:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 855491A81DB
+	for <lists+linux-ntfs-dev@lfdr.de>; Tue, 14 Apr 2020 17:17:25 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1jO5ve-0006nE-HG; Mon, 13 Apr 2020 20:43:38 +0000
+	id 1jONJO-0004aV-CS; Tue, 14 Apr 2020 15:17:18 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <luca.stefani.ge1@gmail.com>) id 1jO2j4-0008OO-Qr
- for linux-ntfs-dev@lists.sourceforge.net; Mon, 13 Apr 2020 17:18:26 +0000
+ (envelope-from <luca.stefani.ge1@gmail.com>) id 1jON8V-00043v-4O
+ for linux-ntfs-dev@lists.sourceforge.net; Tue, 14 Apr 2020 15:06:03 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Message-Id:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
+ In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=qm0BGfFD79pts7YvBtXmz+2vlrjm8dZDdh5XrgUaCJw=; b=MO9+lZqzqNNYDl/BW8hzNbVqfX
- +etWVrCBsRox+pTLUyXmrmWdalquG7wLR2KTA8rJ+QDiO6OtQQoJ18uzEAIzttYafWSUEDgpg+sC6
- 0NDPQlSAtEo6NTPbVMmyvEOHYGi6xlWD/Dj60vSJ6d4P62QjudfElFerJ8ukjCBKNBCY=;
+ bh=YCu8SmZlQQrvTwGnZEBEHTSKRA9LI4WZwU6LxVhIW2I=; b=jJuhv6HOuP9gNkARQi9688riaF
+ r8eZJXz4tLGAvmDKjZxJ7SUlZ/XyzzbaNfLmPltj1EDzRCVRNCz74EfRFgenH7ANMxKxdqEWzzaT4
+ 1CNKm52LihDhFkUICZoQ/eXBxe43eL5dbokLaAFmpSC7aidJ3veEnw+VImVpM0uBNORw=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From
- :Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=qm0BGfFD79pts7YvBtXmz+2vlrjm8dZDdh5XrgUaCJw=; b=Z
- S5lV0Yq6gHDHPja5d/cARM7w1Ul8qQrcsJVeR+M5DVSPS67DMKP//TcKPrroIUZufj4SZWXOzVf+B
- THtzMwnYezke5th6Jw1AF3vtFjw6SZndPILYw9dAjhGWeLQPckX5B+nuJc3Ra6/95+GAapq0eFBju
- KTIlqiyj1z3b9IVM=;
-Received: from mail-wr1-f67.google.com ([209.85.221.67])
- by sfi-mx-4.v28.lw.sourceforge.com with esmtps
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=YCu8SmZlQQrvTwGnZEBEHTSKRA9LI4WZwU6LxVhIW2I=; b=LMoiyq/qeK6KX27bMChIkpLxoq
+ wJ4RxpUnT/lWUwhto0VtUFZiUJbzDpPIh9DfFI80AGZWQsQ5DZq7upjnhRjRj30Du0PNIBssh/zlr
+ cBmHsWHTE0uHTlHJB3r9oItMNP4zsaJtCayZBJB6EuCxmvJejWn09c3hgH6HvA81IOZw=;
+Received: from mail-wm1-f67.google.com ([209.85.128.67])
+ by sfi-mx-3.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.2)
- id 1jO2j1-00HT6O-3A
- for linux-ntfs-dev@lists.sourceforge.net; Mon, 13 Apr 2020 17:18:26 +0000
-Received: by mail-wr1-f67.google.com with SMTP id u13so10448828wrp.3
+ id 1jON8R-00EmRm-Uy
+ for linux-ntfs-dev@lists.sourceforge.net; Tue, 14 Apr 2020 15:06:03 +0000
+Received: by mail-wm1-f67.google.com with SMTP id r26so14390130wmh.0
  for <linux-ntfs-dev@lists.sourceforge.net>;
- Mon, 13 Apr 2020 10:18:22 -0700 (PDT)
+ Tue, 14 Apr 2020 08:05:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=qm0BGfFD79pts7YvBtXmz+2vlrjm8dZDdh5XrgUaCJw=;
- b=pw6HztuMmAbGkR0JdAecBIxAfW6/Lrccu98CuNxSuidGMSf3denHR+NRaDV7QiuOE5
- 70BgLDRBFgVcDjfyB4im0HMcL588ZxO0h9WYCMLhBZyNZUTYrEOI8OzKXiwHykNaMkeE
- aIWPpOntLB1e3Q74dzuAYKEvg2OJ4kMPTdN7TEu8KXGkpxILe9QppIySFczT7wlvH6lS
- 8Wqz6DY8vJwnEHxpt05jtcWIPcBSZpd2+zcgN+so3P/PlpzzzqBGtbi9UZtpgk8rTqz5
- NZKUjEnqThb/v//vx7OZt4uLvksdkTLTyNtCqdmwWo9idSD6+33UvGD/FHANlRuRTMUQ
- v/Ow==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=YCu8SmZlQQrvTwGnZEBEHTSKRA9LI4WZwU6LxVhIW2I=;
+ b=hX+v2xexC+JxczsTf+vhb6u9QmWqqrDpHDHNVBzS6+xYJkukYlaXeHNMAIkS2Lk8/r
+ sV23hdRSmBOCGVk4yRYPpVppXxgzy6FpFSZJyPfK+b35VJBPGr3zRCv4WDvhkLpbNy6N
+ dbh8c6IsKzWMnkFeQd+BGgH/0RGhVr1spwyb2hvTSdBf66pfHJEHOhXRbQtqdLuPcC3i
+ 4ijIrOYZFMURcp85P1uMKJHCbW9BXJeiT8LhFf8IqSUDSBiEjcETq5nmHQUR0t016qRc
+ 4pHJIG1yn+pxEvPL0UuCPpSYVvvOuTK6f2xl0ImHvrS7viyq0ud4jCOPbMZTm91BJXnI
+ UXeA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=qm0BGfFD79pts7YvBtXmz+2vlrjm8dZDdh5XrgUaCJw=;
- b=czERL3UbHdaTNBxvnkZlHogfYYmlSlxIV70qrTO0PhcEw3TpINv2237VUZJOvDvZYx
- 9nuLov3jePHxaUMI3Cm14+VFWNt853+MRsPMSt2CQ+aGv2NGMEaGL2ffcHaLDzJjvug+
- 0UDmrXOsmGASemDVRnN1DquKpplUo+rEdw8hH6qlOiN7W8Fz+VQrl9jf8t8C40gsu0eX
- Uq1jXeVtL/T310nQJYhbJ/zd7Ftug0aLqFhK8k4rJv/pJn8yE/dZxvAZv7ZMC28FGVIn
- FeFXLWm+d4zQzwXiCKePvD+nI5Hj4aKgnEbZIGsXo/kV+ZC3kHjxo4Rwo4gZNCaZX/M5
- sHow==
-X-Gm-Message-State: AGi0PuZfQIdIEQGgu2vDP8ssyM4LhQ/pn5cWC8loygHhAxnFVKK++RZ4
- FxQck7k/bbr4+lyGKuqz12c=
-X-Google-Smtp-Source: APiQypLX+9g89/OVTINZ4UpZYJZntXB76CMMRMAyrqqRVCVhw6hPfCumT3Vrh0A4iTaQwGOubQGbmA==
-X-Received: by 2002:a5d:6a47:: with SMTP id t7mr20276701wrw.29.1586798294074; 
- Mon, 13 Apr 2020 10:18:14 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=YCu8SmZlQQrvTwGnZEBEHTSKRA9LI4WZwU6LxVhIW2I=;
+ b=Lxc/YKbep5NZ/2M4inU2ae41S0/bkPQWhMBQ7gQZhiFU0fXLeIBZwKSyN2RJDbOJst
+ nMlnKNmDid+wHR+DqJQ5Uzyy4Rk7lDCC5LuEUOSxY4qCwaaNplaq9Pj+/KWsgq8pEdHi
+ rmpctW8tGxXFie1s1Cm8BqxbDa4x+dYhC1nrhTD1jPuaCz3EklEwpTvDgVO0cCNkDEo9
+ mS6gBgtfBzgJriKZSKQwLgzzriGeYcKetmJaOPHYAwtIePDYlmATpfUec0Um70IrAqOE
+ 77lw9gdxYmV93FnGPbuy5Ea3W/yi+yg0FITsfJtG44yDO7O1xl/gCmWpp1V6trBjTYS8
+ piMg==
+X-Gm-Message-State: AGi0PuYX2XbNDGcKAa6g3xHIuGINQKQH8yoO0IgsCr5H6B9ZafioudW4
+ SCNeNSJnPy/rmScm/ZEz6g8=
+X-Google-Smtp-Source: APiQypJRDt+Uphs6DsJZlszr7x/jEoWuuTZWuj59pXPpC09iwHl/oRYuWEyFAltRc+tGFfgDiyYUGA==
+X-Received: by 2002:a1c:e203:: with SMTP id z3mr307985wmg.71.1586876753226;
+ Tue, 14 Apr 2020 08:05:53 -0700 (PDT)
 Received: from luca020400-arch.lan ([2001:b07:5d33:19f:e2b6:8927:31e7:d93f])
- by smtp.googlemail.com with ESMTPSA id q10sm11568826wrv.95.2020.04.13.10.18.13
+ by smtp.googlemail.com with ESMTPSA id
+ q143sm20078133wme.31.2020.04.14.08.05.52
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 13 Apr 2020 10:18:13 -0700 (PDT)
+ Tue, 14 Apr 2020 08:05:52 -0700 (PDT)
 From: Luca Stefani <luca.stefani.ge1@gmail.com>
 To: 
-Date: Mon, 13 Apr 2020 19:18:10 +0200
-Message-Id: <20200413171811.35736-1-luca.stefani.ge1@gmail.com>
+Date: Tue, 14 Apr 2020 17:05:51 +0200
+Message-Id: <20200414150551.625799-1-luca.stefani.ge1@gmail.com>
 X-Mailer: git-send-email 2.26.0
+In-Reply-To: <20200414145903.GA11720@infradead.org>
+References: <20200414145903.GA11720@infradead.org>
 MIME-Version: 1.0
 X-Spam-Score: -0.7 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [209.85.221.67 listed in list.dnswl.org]
+ 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
+ See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [URIs: googlemail.com]
  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
  (luca.stefani.ge1[at]gmail.com)
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [209.85.128.67 listed in list.dnswl.org]
  -0.8 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.221.67 listed in wl.mailspike.net]
+ [209.85.128.67 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends in
@@ -94,9 +101,9 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
-X-Headers-End: 1jO2j1-00HT6O-3A
-X-Mailman-Approved-At: Mon, 13 Apr 2020 20:43:37 +0000
-Subject: [Linux-NTFS-Dev] [PATCH] ntfs: Fix ntfs_test_inode and
+X-Headers-End: 1jON8R-00EmRm-Uy
+X-Mailman-Approved-At: Tue, 14 Apr 2020 15:17:15 +0000
+Subject: [Linux-NTFS-Dev] [PATCH v2] ntfs: Fix ntfs_test_inode and
  ntfs_init_locked_inode function type
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -138,6 +145,11 @@ Fixing iget5_locked and ilookup5 callers seems enough
 
 Signed-off-by: Luca Stefani <luca.stefani.ge1@gmail.com>
 Tested-by: freak07 <michalechner92@googlemail.com>
+
+---
+Changes in v2:
+* Addressed comments
+
 ---
  fs/ntfs/dir.c   |  2 +-
  fs/ntfs/inode.c | 23 ++++++++++++-----------
