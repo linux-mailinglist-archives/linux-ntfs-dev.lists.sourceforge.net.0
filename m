@@ -2,68 +2,106 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DDDA1BF40B
-	for <lists+linux-ntfs-dev@lfdr.de>; Thu, 30 Apr 2020 11:22:00 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
-	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E9E11C0A37
+	for <lists+linux-ntfs-dev@lfdr.de>; Fri,  1 May 2020 00:15:07 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1jU5OF-0002dz-Uv; Thu, 30 Apr 2020 09:21:55 +0000
+	id 1jUHSR-0003A0-Fk; Thu, 30 Apr 2020 22:15:03 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <zou_wei@huawei.com>) id 1jTz6w-0000Mr-UU
- for linux-ntfs-dev@lists.sourceforge.net; Thu, 30 Apr 2020 02:39:38 +0000
+ (envelope-from <guoqing.jiang@cloud.ionos.com>) id 1jUHDP-0001nf-58
+ for linux-ntfs-dev@lists.sourceforge.net; Thu, 30 Apr 2020 21:59:31 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Message-ID:Date:Subject:
- CC:To:From:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=References:In-Reply-To:Message-Id:Date:Subject:Cc:
+ To:From:Sender:Reply-To:MIME-Version:Content-Type:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Y4IJAjSbIRMr56MtfTW2uk87Xs5lH+qEv68FWrI2tlA=; b=HuitVosRtiqU6W3p2IwbCHzlGK
- ZiUuwMU0jvx0t025tWuvz7QgUIZw4b91NFfL89WywFSos+deLLhh+8p3/Q0pTkU7sArg5VVuE+MXt
- 3fi6UE96HC1rClTQcGEAhKp8DOhFKyE5ZFqkRYwQ6W3rgydiSKTc49JPLF17N1ob2C70=;
+ bh=2Cwm7q37wd5a49T4hM9tpsz7D3qzUxu8CT8JBwv0w4c=; b=HxLJEhCRUDL53rw1J6S9v8FcyC
+ +Uz4x2I2lJExVAA0dQYQXZxd90+t7vE2cI9GdB5nGFZo0mjbf6RuNpKPVUQ67qvzzJjf0F2Fw0ep3
+ Ab237HanV9rpXSAZ4vtyz5K3vEinYGqvku/LBXGBDZK805HNNE3pXGc58Tkm+VjWT1KU=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From:Sender:
- Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
- :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=Y4IJAjSbIRMr56MtfTW2uk87Xs5lH+qEv68FWrI2tlA=; b=k
- yVBiYJVUgdRkCpYo7Zk5CYAvVthPmxshdHSvrZuwh3ut4Mg8UUh+REDeylLwxnyQZERZvVms3k2Tf
- fOrGDbghxj8TczsGkUWgK2Q1iHCzMBcQnMc/QZlyOs1wz3+znw3Ju3NR9mFZa2i4xquO8WUlA29Br
- 6/KPi+ZcbFhUe7ic=;
-Received: from szxga07-in.huawei.com ([45.249.212.35] helo=huawei.com)
+ h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To
+ :MIME-Version:Content-Type:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=2Cwm7q37wd5a49T4hM9tpsz7D3qzUxu8CT8JBwv0w4c=; b=hjC1frVBuhS5r7aKlRQSMqa9qD
+ lfVIo0oAl1AmLHK+wJeHFu/2OAkhmYEJu6l/fxAsbgQx0segTIEWkWJ9jpDlQFKtYPC9IVckOXlXS
+ joq8/bTMr2vPc6dWw6+fri69EeJB7hDjcGSKAorWONWoMqmB7MkFwmhdmXoPfy4QEm0Q=;
+Received: from mail-ed1-f68.google.com ([209.85.208.68])
  by sfi-mx-4.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1jTz6u-002tpL-Pa
- for linux-ntfs-dev@lists.sourceforge.net; Thu, 30 Apr 2020 02:39:38 +0000
-Received: from DGGEMS401-HUB.china.huawei.com (unknown [172.30.72.59])
- by Forcepoint Email with ESMTP id 1B6DEBFF82905B21826C;
- Thu, 30 Apr 2020 10:39:28 +0800 (CST)
-Received: from linux-lmwb.huawei.com (10.175.103.112) by
- DGGEMS401-HUB.china.huawei.com (10.3.19.201) with Microsoft SMTP Server id
- 14.3.487.0; Thu, 30 Apr 2020 10:39:21 +0800
-From: Zou Wei <zou_wei@huawei.com>
-To: <anton@tuxera.com>
-Date: Thu, 30 Apr 2020 10:45:34 +0800
-Message-ID: <1588214734-49415-1-git-send-email-zou_wei@huawei.com>
-X-Mailer: git-send-email 2.6.2
-MIME-Version: 1.0
-X-Originating-IP: [10.175.103.112]
-X-CFilter-Loop: Reflected
+ (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.2)
+ id 1jUHDN-003n2n-BK
+ for linux-ntfs-dev@lists.sourceforge.net; Thu, 30 Apr 2020 21:59:31 +0000
+Received: by mail-ed1-f68.google.com with SMTP id g16so5841475eds.1
+ for <linux-ntfs-dev@lists.sourceforge.net>;
+ Thu, 30 Apr 2020 14:59:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=cloud.ionos.com; s=google;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references;
+ bh=2Cwm7q37wd5a49T4hM9tpsz7D3qzUxu8CT8JBwv0w4c=;
+ b=NGAEKGruhKtx7ZWTrFdEqTmqAVl/YDbNX5SVHiheCt5mgGQXMvPqVsB2mWj4W+6TZx
+ avj1y2aqFM2fM4mYbpeY1mNHjz5L5wFBJHZ7nqGDO/UfrsVe7K3fK+19Qz0xhaRBCJF8
+ cnG9jsv0Y3cuCHExnrUC59PgGg5ldN6zReZ4l/MkqDih/pWf2Qq5leOqyJa1Ea1uUvqL
+ KSJUgjKhSgiIMTbhcESV0rK/2/wlrqs0rRp/j53oVanG3NSXpHazoglUXFC2CIoq8QGs
+ T0RBK7fYVyj0odwSJ7t5g5PDfIz9c6vhMkT7fz1ruAgadlRAj8EWlz0SjkauUs46ppHW
+ r7PQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references;
+ bh=2Cwm7q37wd5a49T4hM9tpsz7D3qzUxu8CT8JBwv0w4c=;
+ b=ToN1MKg5d3ohOd5gFsBiMxRcGWVd329XeLpMABwngBJGb9Qk3kw1sNUoTKhH/9MMXS
+ ShecUl9PNzZNseOCgolKGbeN1sfPACPcMDZJMjXegkDntqw1aJxBmowltp8osnLaMSzx
+ BgDaXK56bJ86Znvpcv/YyEuQsrpp5S4tx4r4MQsCLk4Cs8iLI1NM2aD3yMDpGTbQEqAA
+ D5s/SWkcuYgwqsrl3HPGlC1yTeCDV56bILfhZ33PNjjsViXA+sc5FjTcvPU5vKkE0CBD
+ LSkscDA0Pj2dileBU0/lMHC6BXn/ORvTo6Zfnc5/he0DytpxdA56kUyv+OTjxjXR7Zqd
+ NYHA==
+X-Gm-Message-State: AGi0PuYGCnHIK0Q3tydrXyHMXDYjTgWE89yk+tmnAG2VPJ+mxngKni/g
+ nEnIvfrqyD0wDX1+y4nxJu/mfiJmXpFx/Q==
+X-Google-Smtp-Source: APiQypIDTj3Uj7biPphTd2Cba892cORi5pdinqFvBm6XPxrzHDikqrxlAy/dZ1nN6NDVa1Eq5TMhqw==
+X-Received: by 2002:a17:906:b2c4:: with SMTP id
+ cf4mr538626ejb.340.1588283557346; 
+ Thu, 30 Apr 2020 14:52:37 -0700 (PDT)
+Received: from ls00508.pb.local ([2001:1438:4010:2540:b82f:dfc:5e2a:e7cc])
+ by smtp.gmail.com with ESMTPSA id f13sm92022ejd.2.2020.04.30.14.52.36
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 30 Apr 2020 14:52:36 -0700 (PDT)
+From: Guoqing Jiang <guoqing.jiang@cloud.ionos.com>
+To: linux-fsdevel@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Date: Thu, 30 Apr 2020 23:44:42 +0200
+Message-Id: <20200430214450.10662-2-guoqing.jiang@cloud.ionos.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20200430214450.10662-1-guoqing.jiang@cloud.ionos.com>
+References: <20200430214450.10662-1-guoqing.jiang@cloud.ionos.com>
 X-Spam-Score: -0.4 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: huawei.com]
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
+ for more information. [URIs: tuxera.com]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [209.85.208.68 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.208.68 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.4 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1jTz6u-002tpL-Pa
-X-Mailman-Approved-At: Thu, 30 Apr 2020 09:21:52 +0000
-Subject: [Linux-NTFS-Dev] [PATCH -next] NTFS: Remove unneeded semicolon
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+ -0.3 AWL AWL: Adjusted score from AWL reputation of From: address
+X-Headers-End: 1jUHDN-003n2n-BK
+X-Mailman-Approved-At: Thu, 30 Apr 2020 22:14:56 +0000
+Subject: [Linux-NTFS-Dev] [RFC PATCH V2 1/9] include/linux/pagemap.h:
+ introduce attach/clear_page_private
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -76,62 +114,131 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-ntfs-dev@lists.sourceforge.net, Zou Wei <zou_wei@huawei.com>,
- linux-kernel@vger.kernel.org
+Cc: Martin Brandenburg <martin@omnibond.com>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>, david@fromorbit.com,
+ Song Liu <song@kernel.org>, Yafang Shao <laoar.shao@gmail.com>,
+ Mike Marshall <hubcap@omnibond.com>, Andreas Gruenbacher <agruenba@redhat.com>,
+ "Darrick J. Wong" <darrick.wong@oracle.com>, Chris Mason <clm@fb.com>,
+ willy@infradead.org, hch@infradead.org, devel@lists.orangefs.org,
+ Chao Yu <chao@kernel.org>, Josef Bacik <josef@toxicpanda.com>,
+ linux-raid@vger.kernel.org, Alexander Viro <viro@zeniv.linux.org.uk>,
+ David Sterba <dsterba@suse.com>, Jaegeuk Kim <jaegeuk@kernel.org>,
+ Thomas Gleixner <tglx@linutronix.de>, Anton Altaparmakov <anton@tuxera.com>,
+ Andreas Dilger <adilger@dilger.ca>,
+ Guoqing Jiang <guoqing.jiang@cloud.ionos.com>,
+ Yang Shi <yang.shi@linux.alibaba.com>,
+ William Kucharski <william.kucharski@oracle.com>,
+ linux-ntfs-dev@lists.sourceforge.net, linux-f2fs-devel@lists.sourceforge.net,
+ linux-xfs@vger.kernel.org,
+ "Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>,
+ Andrew Morton <akpm@linux-foundation.org>, Roman Gushchin <guro@fb.com>,
+ linux-btrfs@vger.kernel.org
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-Fixes coccicheck warnings:
+The logic in attach_page_buffers and  __clear_page_buffers are quite
+paired, but
 
-fs/ntfs/lcnalloc.c:902:2-3: Unneeded semicolon
-fs/ntfs/super.c:1615:2-3: Unneeded semicolon
-fs/ntfs/super.c:1684:2-3: Unneeded semicolon
+1. they are located in different files.
 
-Reported-by: Hulk Robot <hulkci@huawei.com>
-Signed-off-by: Zou Wei <zou_wei@huawei.com>
+2. attach_page_buffers is implemented in buffer_head.h, so it could be
+   used by other files. But __clear_page_buffers is static function in
+   buffer.c and other potential users can't call the function, md-bitmap
+   even copied the function.
+
+So, introduce the new attach/clear_page_private to replace them. With
+the new pair of function, we will remove the usage of attach_page_buffers
+and  __clear_page_buffers in next patches. Thanks for the new names from
+Christoph Hellwig.
+
+Suggested-by: Matthew Wilcox <willy@infradead.org>
+Cc: Andrew Morton <akpm@linux-foundation.org>
+Cc: "Darrick J. Wong" <darrick.wong@oracle.com>
+Cc: William Kucharski <william.kucharski@oracle.com>
+Cc: "Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>
+Cc: Andreas Gruenbacher <agruenba@redhat.com>
+Cc: Yang Shi <yang.shi@linux.alibaba.com>
+Cc: Yafang Shao <laoar.shao@gmail.com>
+Cc: Song Liu <song@kernel.org>
+Cc: linux-raid@vger.kernel.org
+Cc: Chris Mason <clm@fb.com>
+Cc: Josef Bacik <josef@toxicpanda.com>
+Cc: David Sterba <dsterba@suse.com>
+Cc: linux-btrfs@vger.kernel.org
+Cc: Alexander Viro <viro@zeniv.linux.org.uk>
+Cc: Jaegeuk Kim <jaegeuk@kernel.org>
+Cc: Chao Yu <chao@kernel.org>
+Cc: linux-f2fs-devel@lists.sourceforge.net
+Cc: Christoph Hellwig <hch@infradead.org>
+Cc: linux-xfs@vger.kernel.org
+Cc: Anton Altaparmakov <anton@tuxera.com>
+Cc: linux-ntfs-dev@lists.sourceforge.net
+Cc: Mike Marshall <hubcap@omnibond.com>
+Cc: Martin Brandenburg <martin@omnibond.com>
+Cc: devel@lists.orangefs.org
+Cc: Thomas Gleixner <tglx@linutronix.de>
+Cc: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Cc: Roman Gushchin <guro@fb.com>
+Cc: Andreas Dilger <adilger@dilger.ca>
+Signed-off-by: Guoqing Jiang <guoqing.jiang@cloud.ionos.com>
 ---
- fs/ntfs/lcnalloc.c | 2 +-
- fs/ntfs/super.c    | 4 ++--
- 2 files changed, 3 insertions(+), 3 deletions(-)
+RFC -> RFC V2:  Address the comments from Christoph Hellwig
+1. change function names to attach/clear_page_private and add comments.
+2. change the return type of attach_page_private.
 
-diff --git a/fs/ntfs/lcnalloc.c b/fs/ntfs/lcnalloc.c
-index eda9972..66c2b29 100644
---- a/fs/ntfs/lcnalloc.c
-+++ b/fs/ntfs/lcnalloc.c
-@@ -899,7 +899,7 @@ s64 __ntfs_cluster_free(ntfs_inode *ni, const VCN start_vcn, s64 count,
- 		}
- 		/* We have freed @to_free real clusters. */
- 		real_freed = to_free;
--	};
-+	}
- 	/* Go to the next run and adjust the number of clusters left to free. */
- 	++rl;
- 	if (count >= 0)
-diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
-index 7dc3bc6..d78d312 100644
---- a/fs/ntfs/super.c
-+++ b/fs/ntfs/super.c
-@@ -1612,7 +1612,7 @@ static bool load_and_init_attrdef(ntfs_volume *vol)
- 		memcpy((u8*)vol->attrdef + (index++ << PAGE_SHIFT),
- 				page_address(page), size);
- 		ntfs_unmap_page(page);
--	};
-+	}
- 	if (size == PAGE_SIZE) {
- 		size = i_size & ~PAGE_MASK;
- 		if (size)
-@@ -1681,7 +1681,7 @@ static bool load_and_init_upcase(ntfs_volume *vol)
- 		memcpy((char*)vol->upcase + (index++ << PAGE_SHIFT),
- 				page_address(page), size);
- 		ntfs_unmap_page(page);
--	};
-+	}
- 	if (size == PAGE_SIZE) {
- 		size = i_size & ~PAGE_MASK;
- 		if (size)
+ include/linux/pagemap.h | 35 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 35 insertions(+)
+
+diff --git a/include/linux/pagemap.h b/include/linux/pagemap.h
+index a8f7bd8ea1c6..2e515f210b18 100644
+--- a/include/linux/pagemap.h
++++ b/include/linux/pagemap.h
+@@ -205,6 +205,41 @@ static inline int page_cache_add_speculative(struct page *page, int count)
+ 	return __page_cache_add_speculative(page, count);
+ }
+ 
++/**
++ * attach_page_private - attach data to page's private field and set PG_private.
++ * @page: page to be attached and set flag.
++ * @data: data to attach to page's private field.
++ *
++ * Need to take reference as mm.h said "Setting PG_private should also increment
++ * the refcount".
++ */
++static inline void attach_page_private(struct page *page, void *data)
++{
++	get_page(page);
++	set_page_private(page, (unsigned long)data);
++	SetPagePrivate(page);
++}
++
++/**
++ * clear_page_private - clear page's private field and PG_private.
++ * @page: page to be cleared.
++ *
++ * The counterpart function of attach_page_private.
++ * Return: private data of page or NULL if page doesn't have private data.
++ */
++static inline void *clear_page_private(struct page *page)
++{
++	void *data = (void *)page_private(page);
++
++	if (!PagePrivate(page))
++		return NULL;
++	ClearPagePrivate(page);
++	set_page_private(page, 0);
++	put_page(page);
++
++	return data;
++}
++
+ #ifdef CONFIG_NUMA
+ extern struct page *__page_cache_alloc(gfp_t gfp);
+ #else
 -- 
-2.6.2
+2.17.1
 
 
 
