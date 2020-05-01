@@ -2,26 +2,26 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 356191C0F48
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DDC71C0F4B
 	for <lists+linux-ntfs-dev@lfdr.de>; Fri,  1 May 2020 10:18:02 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1jUQrv-0000DB-8f; Fri, 01 May 2020 08:17:59 +0000
+	id 1jUQrv-0000EN-Oi; Fri, 01 May 2020 08:17:59 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <guoqing.jiang@cloud.ionos.com>) id 1jUPKn-0006Hz-Ch
- for linux-ntfs-dev@lists.sourceforge.net; Fri, 01 May 2020 06:39:41 +0000
+ (envelope-from <guoqing.jiang@cloud.ionos.com>) id 1jUPli-00022j-Su
+ for linux-ntfs-dev@lists.sourceforge.net; Fri, 01 May 2020 07:07:30 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
  MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=/mcb2FvhqEDcRhiT/KLUXGr3wPUe4NuYg1JLX3+jiqE=; b=Wt7ZuKb1GqM8Kx3dueFXIk4v01
- iuKMfiVKoufZ85ynGAPIl8+2mpETo7gAPxFao7tPVzV3nRPufhrLAjsc2KMYzPddOojEpx2lUvqyv
- x3QcGHSRDHZcg2NAiRt8cA3m2BahUgHGkp9ikv0YXxXwdguIW8riMj9oIvTOludfOC50=;
+ bh=cpQ8/VzVs0qy6Coq4jsY7ccdDFl3LgDWXkhtB9YYQco=; b=maSCOgZe9EJ2sU/uP4UW1qCSoV
+ R5QTK2pWgJePZIwwAjCCFkqEL4BQ+/xCWqm1QOwgWwQZcVuQugLEHqmZu3/tmGn2UkOKqZEz5O+Sh
+ 7/0xLPF8UdhyA/YKClbFIdu03d45oBG4jsO7vuQxwcOkBQ4P40aocAe4kR9YJK8Pbmjs=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:Date:
@@ -29,69 +29,71 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=/mcb2FvhqEDcRhiT/KLUXGr3wPUe4NuYg1JLX3+jiqE=; b=ajE9W/V+gUFVY5hpjw9Rra9Zo1
- sZaOGu2rJ/hOi4Xvte+6ZhaCyjLH6qMdaJrKZHYxR70gYV8+jQNLuoDC9yM08HGHdSfovnalT9m5Y
- FlQY3X5+wv4fcIz536saS9BWaN7cqSv5q8cAPrz3wDqQyvsACk5Q5YA+e8tvn4Jr7MDQ=;
-Received: from mail-wr1-f65.google.com ([209.85.221.65])
- by sfi-mx-3.v28.lw.sourceforge.com with esmtps
+ bh=cpQ8/VzVs0qy6Coq4jsY7ccdDFl3LgDWXkhtB9YYQco=; b=EMN/xxeJaBPhBJlU9iyC6ZVlFo
+ h7my6zFWOhMo9+NluUkZ5c8KnlXA3ZhAvv4eHOr2pqqQgypEyC4qNQi9OCWKyC14UgXFBwui0vqIA
+ dsWi25UobIr7bV6viZhsHrUx1wwYpRTpdSPhXzRLt3qW+nlKprZNL79P+GpX/goJVkJM=;
+Received: from mail-wm1-f68.google.com ([209.85.128.68])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.2)
- id 1jUPKl-000ZcR-Gz
- for linux-ntfs-dev@lists.sourceforge.net; Fri, 01 May 2020 06:39:41 +0000
-Received: by mail-wr1-f65.google.com with SMTP id e16so5310773wra.7
+ id 1jUPlg-006Lp8-JL
+ for linux-ntfs-dev@lists.sourceforge.net; Fri, 01 May 2020 07:07:30 +0000
+Received: by mail-wm1-f68.google.com with SMTP id v8so9199041wma.0
  for <linux-ntfs-dev@lists.sourceforge.net>;
- Thu, 30 Apr 2020 23:39:39 -0700 (PDT)
+ Fri, 01 May 2020 00:07:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=cloud.ionos.com; s=google;
  h=subject:to:cc:references:from:message-id:date:user-agent
  :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=/mcb2FvhqEDcRhiT/KLUXGr3wPUe4NuYg1JLX3+jiqE=;
- b=ITMTdeWM0lw7Wru0eFXJAnEr1Q6q4HFk5v1XlpgZnZbtXLcf3eDkzjU1Bp+lmrZNXG
- r04sUX4E35L8ViJV/N47J1dNlqJhrdWkEypiTBASldElIUtzCm0wbRgGhdzPyB0sDBaH
- LmA1M3tEAM3xu0Mom5/2IrReXnIQPeu+YuGVpy0/n97ySJX978yvonOgogz2mjkcDwNY
- 5EaAbXb8Nsdj/6RVMYfucaVhGriNK0nMa2gUmlE1QSnASYuha9TSSXSOUbZknhZuj49U
- aN348T48UXISwMCg/bL1x1wBWSVN0upisb1oHtFw26Z9CcsTPs4tveBe1nLlFMj8LOlX
- 5Sag==
+ bh=cpQ8/VzVs0qy6Coq4jsY7ccdDFl3LgDWXkhtB9YYQco=;
+ b=GqsIZQEErtxp95UJWpKrQY3O4F4Sx0g6/X7lDuIF3bXx91ATcAP7/DgLZaXrIRReWa
+ znotQmlfvGIU7bhOau/vG2ipCW6ay1jPpHU3dkPnfckc/TMFNyCGl5XeXfWbalOtQFX6
+ gHm3zFY30ObZXefKrk/18Gy2OZL756D02eheTA1eXn1hgUUuYr/zXY5w9hicdvsi4iBD
+ i020Okt4saC0RwlJrU73As1XgAjtDLrTAZicCsFsg88M5CUlGGFssxUDRySCbpKtqxbR
+ BDN9qezqrIubk6PtQC5phFq9yawZi0lU9ffYH6Pj6n7nOgRjbcS5uv/clrIpOkDaYgOd
+ H9Xw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:message-id:date
  :user-agent:mime-version:in-reply-to:content-transfer-encoding
  :content-language;
- bh=/mcb2FvhqEDcRhiT/KLUXGr3wPUe4NuYg1JLX3+jiqE=;
- b=UCHHIto3T1vBHeS+UwVSc9fWg8TCh592dkywX9Rk46mXP9+hmNignVkKTGFpCVQTcf
- JHYpgShZqxkxi5/lop6QsINGAiXZg5yChGB1xE35aBJEV42CenTD295bZNJmP6k5xGhy
- iUZhhDArx5hD8DBREu1q/spWApQdeaa0Kk2SsbFvrYe9pI11TKVRG4qH6pZ07+/QqAAw
- orBoMkO/GHvSs4eVbV9KVMh6xGAD2x9N7n6vNI89JoxAXECXZkfebXL0m+Vcr2UpQr+2
- ZP+LUlqDjG/HAdjbZEPkmcaZyvDDpiTafSf8MeJrZSUzoS9BWGsR4Mib2ZIXqzpo6YeK
- Vaww==
-X-Gm-Message-State: AGi0PuZWV+K+/GwSuN+CuYlIrKvB6w9QZm9UGsNXjxMivw+28lkOnOqB
- QN/KR1JuvcvSqxRzchRpmM0rIQ==
-X-Google-Smtp-Source: APiQypKr/Cov9lBLfeX8odUPVKbRN1IPp5JWnyg7FEbdsE5fkPQXlhR/GgRBnVvt0v2I8N4upI/E9Q==
-X-Received: by 2002:adf:f2c5:: with SMTP id d5mr2306494wrp.285.1588315172931; 
- Thu, 30 Apr 2020 23:39:32 -0700 (PDT)
+ bh=cpQ8/VzVs0qy6Coq4jsY7ccdDFl3LgDWXkhtB9YYQco=;
+ b=lwbgf1cwU50t41YZD5EoPViWz/YXrVx/XUbrRaZdgjlUUdwnfeekLFuPwMz+OCr7ze
+ yMK0j/gzlSpebLyNOnR5yA3Ri970V4bPV8WqYr7oAgOZi3wrg+q411rQxNbKuAuyYw16
+ CZxqkU/Xnw10nMfd6NjmFN+wAViK8fIFmY0H9K3RTfNQpr4ktl5+BQuf7g9gyQOoR5OE
+ rZdiTKR/T6PwsUvkjDEFFUBzFXXrDgHchfFfKb9krqUw77zbL355TAWeR8lkTbtD2B5A
+ hCysuTShUINi4UK/pfVMPF3utvx6JWwLaeyn4t3qCZA+gLCjFFFPF6lO3aMq/FR44MDh
+ 7jvA==
+X-Gm-Message-State: AGi0PubJ2D4YObB7Naqk1W7WOsNY9DAOgSPESaH/zQiTSf6c7CFglPEW
+ yHVDnEga3lRv7FU967srE2l6dD7dN74BL7Ie
+X-Google-Smtp-Source: APiQypJhB8+PWaUoN3to5dH+glY2Sg5fXS6DS+6PXPXyjLj6QnarNlU5QbgDxRGc63eafm6Rtglqrg==
+X-Received: by 2002:a1c:e302:: with SMTP id a2mr2364418wmh.96.1588315299701;
+ Thu, 30 Apr 2020 23:41:39 -0700 (PDT)
 Received: from ?IPv6:2001:16b8:48db:9b00:e80e:f5df:f780:7d57?
  ([2001:16b8:48db:9b00:e80e:f5df:f780:7d57])
- by smtp.gmail.com with ESMTPSA id s9sm3225364wrg.27.2020.04.30.23.39.31
+ by smtp.gmail.com with ESMTPSA id u127sm2576769wme.8.2020.04.30.23.41.38
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 30 Apr 2020 23:39:32 -0700 (PDT)
-To: Matthew Wilcox <willy@infradead.org>
+ Thu, 30 Apr 2020 23:41:39 -0700 (PDT)
+To: Al Viro <viro@zeniv.linux.org.uk>, Matthew Wilcox <willy@infradead.org>
 References: <20200430214450.10662-1-guoqing.jiang@cloud.ionos.com>
  <20200430214450.10662-2-guoqing.jiang@cloud.ionos.com>
  <20200430221338.GY29705@bombadil.infradead.org>
+ <20200501014229.GB23230@ZenIV.linux.org.uk>
+ <20200501014954.GC23230@ZenIV.linux.org.uk>
 From: Guoqing Jiang <guoqing.jiang@cloud.ionos.com>
-Message-ID: <4c177757-7e27-420e-621b-98353ec43ea1@cloud.ionos.com>
-Date: Fri, 1 May 2020 08:39:31 +0200
+Message-ID: <aacdc25b-4650-6251-acf5-5c2c8b77f292@cloud.ionos.com>
+Date: Fri, 1 May 2020 08:41:37 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.7.0
 MIME-Version: 1.0
-In-Reply-To: <20200430221338.GY29705@bombadil.infradead.org>
+In-Reply-To: <20200501014954.GC23230@ZenIV.linux.org.uk>
 Content-Language: en-US
-X-Spam-Score: -0.5 (/)
+X-Spam-Score: -0.3 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [209.85.221.65 listed in list.dnswl.org]
+ trust [209.85.128.68 listed in list.dnswl.org]
  -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.221.65 listed in wl.mailspike.net]
+ [209.85.128.68 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
@@ -99,8 +101,8 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- -0.4 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1jUPKl-000ZcR-Gz
+ -0.2 AWL AWL: Adjusted score from AWL reputation of From: address
+X-Headers-End: 1jUPlg-006Lp8-JL
 X-Mailman-Approved-At: Fri, 01 May 2020 08:17:58 +0000
 Subject: Re: [Linux-NTFS-Dev] [RFC PATCH V2 1/9] include/linux/pagemap.h:
  introduce attach/clear_page_private
@@ -123,10 +125,9 @@ Cc: Martin Brandenburg <martin@omnibond.com>,
  "Darrick J. Wong" <darrick.wong@oracle.com>, Chris Mason <clm@fb.com>,
  hch@infradead.org, devel@lists.orangefs.org, Chao Yu <chao@kernel.org>,
  Josef Bacik <josef@toxicpanda.com>, linux-raid@vger.kernel.org,
- Alexander Viro <viro@zeniv.linux.org.uk>, David Sterba <dsterba@suse.com>,
- Jaegeuk Kim <jaegeuk@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
- Anton Altaparmakov <anton@tuxera.com>, Andreas Dilger <adilger@dilger.ca>,
- Yang Shi <yang.shi@linux.alibaba.com>,
+ David Sterba <dsterba@suse.com>, Jaegeuk Kim <jaegeuk@kernel.org>,
+ Thomas Gleixner <tglx@linutronix.de>, Anton Altaparmakov <anton@tuxera.com>,
+ Andreas Dilger <adilger@dilger.ca>, Yang Shi <yang.shi@linux.alibaba.com>,
  William Kucharski <william.kucharski@oracle.com>,
  linux-ntfs-dev@lists.sourceforge.net, linux-kernel@vger.kernel.org,
  linux-f2fs-devel@lists.sourceforge.net, linux-xfs@vger.kernel.org,
@@ -137,50 +138,26 @@ Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-On 5/1/20 12:13 AM, Matthew Wilcox wrote:
-> On Thu, Apr 30, 2020 at 11:44:42PM +0200, Guoqing Jiang wrote:
->> +/**
->> + * attach_page_private - attach data to page's private field and set PG_private.
->> + * @page: page to be attached and set flag.
->> + * @data: data to attach to page's private field.
->> + *
->> + * Need to take reference as mm.h said "Setting PG_private should also increment
->> + * the refcount".
->> + */
-> I don't think this will read well when added to the API documentation.
-> Try this:
->
-> /**
->   * attach_page_private - Attach private data to a page.
->   * @page: Page to attach data to.
->   * @data: Data to attach to page.
->   *
->   * Attaching private data to a page increments the page's reference count.
->   * The data must be detached before the page will be freed.
->   */
->
->> +/**
->> + * clear_page_private - clear page's private field and PG_private.
->> + * @page: page to be cleared.
->> + *
->> + * The counterpart function of attach_page_private.
->> + * Return: private data of page or NULL if page doesn't have private data.
->> + */
-> Seems to me that the opposite of "attach" is "detach", not "clear".
->
-> /**
->   * detach_page_private - Detach private data from a page.
->   * @page: Page to detach data from.
->   *
->   * Removes the data that was previously attached to the page and decrements
->   * the refcount on the page.
->   *
->   * Return: Data that was attached to the page.
->   */
+On 5/1/20 3:49 AM, Al Viro wrote:
+> On Fri, May 01, 2020 at 02:42:29AM +0100, Al Viro wrote:
+>> On Thu, Apr 30, 2020 at 03:13:38PM -0700, Matthew Wilcox wrote:
+>>
+>>>> +/**
+>>>> + * clear_page_private - clear page's private field and PG_private.
+>>>> + * @page: page to be cleared.
+>>>> + *
+>>>> + * The counterpart function of attach_page_private.
+>>>> + * Return: private data of page or NULL if page doesn't have private data.
+>>>> + */
+>>> Seems to me that the opposite of "attach" is "detach", not "clear".
+>> Or "remove", perhaps...
+> Actually, "detach" is better - neither "clear" nor "remove" imply "... and give
+> me what used to be attached there", as this thing is doing.
 
-Thanks you very much, Mattew! Will change them in next version.
+Ok, seems we have reached the agreement about the new name ;-), will 
+follow the instruction.
 
-Best Regards,
+Thanks & Regards,
 Guoqing
 
 
