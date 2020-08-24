@@ -2,85 +2,102 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2737924F0F8
-	for <lists+linux-ntfs-dev@lfdr.de>; Mon, 24 Aug 2020 04:01:47 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 12CA224F104
+	for <lists+linux-ntfs-dev@lfdr.de>; Mon, 24 Aug 2020 04:14:23 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1kA1nr-0002Of-Qy; Mon, 24 Aug 2020 02:01:43 +0000
+	id 1kA203-00089R-L1; Mon, 24 Aug 2020 02:14:19 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <anton@tuxera.com>) id 1kA1no-0002OW-M4
- for linux-ntfs-dev@lists.sourceforge.net; Mon, 24 Aug 2020 02:01:40 +0000
+ (envelope-from <rkovhaev@gmail.com>) id 1kA1nZ-0002Ni-6K
+ for linux-ntfs-dev@lists.sourceforge.net; Mon, 24 Aug 2020 02:01:25 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=MIME-Version:Content-Transfer-Encoding:Content-ID:
- Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From:Sender
- :Reply-To:Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To
- :Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=dIutawNJR+f8s10kR7L2x6wwvNVf0GvMUjP4In3Zi/s=; b=QfIFoSYND9agIdnd8uJMcadAE/
- 2lGagh3PBnmKreF7pO0bZmfvtxmYziC9zt6zorSaRttblAbC7WghY0QEuj1aBU2cCVbREhAENNMhV
- eAqmu20LX58i751FYrQUQ9mRhhlZqZqUSz3BHEjmHLdkCirt67q+vZaw4RUhQMoDFJZo=;
+ bh=/EPwsOjNAOJnCAlukSWZN+FIBKRBbYip6lL2WUYmrb4=; b=jRwW6LLFOzJ54a0XCGmCh+mV5F
+ ZLUR/FrX1EdgHsCWxxw6DgjBtCqn7SeXGgwP33h4wYPHihsdfN6RhsoFodrblGrXDBAYQo+gQJ3cM
+ BkRAu/j/FWWpxsA3ClWE8Oex7pUFL5qVt7FkoZ39/vEYPu6GH8k3IqBWuU0/Q8xGuvHw=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:
- In-Reply-To:References:Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=dIutawNJR+f8s10kR7L2x6wwvNVf0GvMUjP4In3Zi/s=; b=NZd5gQ+rEp57KUs83rSYHMLzWL
- 80YpNkmYn+kOsr5irmMVz6iVCjgxQA7qAJmQJ7Xf5UwpLYMASw7wUo7BdusOj30tf3Yh1cSiDjPzP
- rVQBUoZj3cNrgvt596iUvl1wYRNs19CwimZMgOxOPdUDIWhlpY+n5v00w/s0opfHuJMw=;
-Received: from mgw-01.mpynet.fi ([82.197.21.90])
- by sfi-mx-3.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1kA1nl-0027ka-Gd
- for linux-ntfs-dev@lists.sourceforge.net; Mon, 24 Aug 2020 02:01:40 +0000
-Received: from pps.filterd (mgw-01.mpynet.fi [127.0.0.1])
- by mgw-01.mpynet.fi (8.16.0.42/8.16.0.42) with SMTP id 07O1Y27U013400;
- Mon, 24 Aug 2020 04:44:08 +0300
-Received: from ex13.tuxera.com (ex13.tuxera.com [178.16.184.72])
- by mgw-01.mpynet.fi with ESMTP id 3342qur0yw-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
- Mon, 24 Aug 2020 04:44:08 +0300
-Received: from tuxera-exch.ad.tuxera.com (10.20.48.11) by
- tuxera-exch.ad.tuxera.com (10.20.48.11) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 24 Aug 2020 04:44:07 +0300
-Received: from tuxera-exch.ad.tuxera.com ([fe80::552a:f9f0:68c3:d789]) by
- tuxera-exch.ad.tuxera.com ([fe80::552a:f9f0:68c3:d789%12]) with mapi id
- 15.00.1497.006; Mon, 24 Aug 2020 04:44:07 +0300
-From: Anton Altaparmakov <anton@tuxera.com>
-To: Rustam Kovhaev <rkovhaev@gmail.com>
-Thread-Topic: [PATCH] ntfs: add check for mft record size in superblock
-Thread-Index: AQHWeWEcxiS4EJ2kEU6+ZB9zUJco96lGSw4A
-Date: Mon, 24 Aug 2020 01:44:06 +0000
-Message-ID: <F206DE99-102C-475D-9129-5B9ACBAED8E6@tuxera.com>
+ bh=/EPwsOjNAOJnCAlukSWZN+FIBKRBbYip6lL2WUYmrb4=; b=YUUEASY2fKHq3ObeEdeuyv0Q0I
+ VDvprhYWpWvVaYdGFH9XrC49uMQmMTf3zoDsgY252Ug/XVvU2FjK5lJrVTKZBF50asdf+oPeaE5qq
+ Q05BfowON8OY59z9munOmZtL6cv1ZCxkgPsRv0m/8C0RwVHtnYVwTndnAolHYKONSoUo=;
+Received: from mail-pg1-f195.google.com ([209.85.215.195])
+ by sfi-mx-4.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.2)
+ id 1kA1nW-004woD-Nm
+ for linux-ntfs-dev@lists.sourceforge.net; Mon, 24 Aug 2020 02:01:25 +0000
+Received: by mail-pg1-f195.google.com with SMTP id o13so3827936pgf.0
+ for <linux-ntfs-dev@lists.sourceforge.net>;
+ Sun, 23 Aug 2020 19:01:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=/EPwsOjNAOJnCAlukSWZN+FIBKRBbYip6lL2WUYmrb4=;
+ b=X4fLhJpuYLT9HBTn0MCHAO23k+DOxUoepGCYCLJcNCdkw+2uo7fXEY2BA340MEwfCB
+ d7ehL2aAhL9p7UzcVSCa/KI+OtxPiIGcHErN1yKPlmoLaZ6JHwHpQv2vcsZ+PkhRQTpI
+ QAvDmyLsOe56m9Oi9rNodzo3h6xmKIWMx76q4O7F47NpfdMRMvgxZqwTlgWceDZALmEq
+ Pwk9ImMaYtalMkB9TCaYwDXh947gnkugHtsHtH5OFaiXi/nqm7TvgzBU9OEhbldHvpoG
+ ABJ70gaXptcBtQYXwkH4Cc8dj8kSy0DBXjfEp/4dNUcGYanJ/nqJeUBNCxyrJgCG8Nxj
+ Ma/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=/EPwsOjNAOJnCAlukSWZN+FIBKRBbYip6lL2WUYmrb4=;
+ b=M+/kVPLPci3kGYNRXGkZnkoxdiKwVZtNTh764BSCY+WlwYIOZ/cRMqI0OfDB5rzh4t
+ CCnBKZBn6izSO2B3/XHX8vI/Q/xjAN50uIp+fxhoH7JZKQcEvFqKt6tIJBCCUyzjJ3nU
+ FGqEIND+PmB5P5KIGNIadE5yVaYzAb/fIxVhKz3WYemjDVgwLpozYQ8ly2/vnkOz3+1b
+ qPC5Fmv+is6HVgqZvA5BkiV5rb+Ydp2zr4tie0L+QOu6hYzVY05TXGryaJ3JnsDLkgM+
+ Rai1UHOQTuajJ7klMEoQNPQjkTHtHrlsRx5aBeR7kLEtwAetnTyLbYas6jUetZpT7S67
+ 5Ueg==
+X-Gm-Message-State: AOAM533yHs5hXPoCT2tLfpwNaNS0VDVmA40A3tsgRxrSre/pRmFYr80/
+ LYYhyE8f4bYJYwicDbOinJA=
+X-Google-Smtp-Source: ABdhPJxFfBdTcZQPgJcrxm+oQh/zQtDnzfKaFDqAVIatruFMa4d8yl7DsgEe6TtRST/nV59dfqRmlg==
+X-Received: by 2002:a63:6a47:: with SMTP id f68mr2052164pgc.170.1598234469821; 
+ Sun, 23 Aug 2020 19:01:09 -0700 (PDT)
+Received: from thinkpad (104.36.148.139.aurocloud.com. [104.36.148.139])
+ by smtp.gmail.com with ESMTPSA id y72sm9584176pfg.58.2020.08.23.19.01.09
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 23 Aug 2020 19:01:09 -0700 (PDT)
+Date: Sun, 23 Aug 2020 19:01:46 -0700
+From: Rustam Kovhaev <rkovhaev@gmail.com>
+To: Anton Altaparmakov <anton@tuxera.com>
+Message-ID: <20200824020146.GA209078@thinkpad>
 References: <20200823152147.55766-1-rkovhaev@gmail.com>
-In-Reply-To: <20200823152147.55766-1-rkovhaev@gmail.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [109.145.212.211]
-Content-ID: <B6F2F1A9B99CD045AD3A609E096CD389@ex13.tuxera.com>
+ <F206DE99-102C-475D-9129-5B9ACBAED8E6@tuxera.com>
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235, 18.0.687
- definitions=2020-08-24_01:2020-08-21,
- 2020-08-24 signatures=0
-X-Proofpoint-Spam-Details: rule=mpy_notspam policy=mpy score=0 mlxlogscore=999
- adultscore=0
- malwarescore=0 bulkscore=0 mlxscore=0 spamscore=0 phishscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2006250000 definitions=main-2008240003
-X-Spam-Score: 0.0 (/)
+Content-Disposition: inline
+In-Reply-To: <F206DE99-102C-475D-9129-5B9ACBAED8E6@tuxera.com>
+X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
+ 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+ (rkovhaev[at]gmail.com)
+ -0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [209.85.215.195 listed in wl.mailspike.net]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [209.85.215.195 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
-X-Headers-End: 1kA1nl-0027ka-Gd
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+ -0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+X-Headers-End: 1kA1nW-004woD-Nm
+X-Mailman-Approved-At: Mon, 24 Aug 2020 02:14:17 +0000
 Subject: Re: [Linux-NTFS-Dev] [PATCH] ntfs: add check for mft record size in
  superblock
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
@@ -103,63 +120,25 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-Hi Rustam,
-
-Thank you for the patch but it introduces an endianness bug - you have to us le32_to_cpu(m->bytes_allocated) both when doing the comparison and then printing the message.
-
-Also, please drop the square brackets.  Wherever the driver prints such things it never uses brackets around the numbers and it would be better to have this consistent throughout.
-
-Can you please resend with the above issues addressed?  You can then also add to the commit message:
-
-	Acked-by: Anton Altaparmakov <anton@tuxera.com>
-
-Thanks!
-
-Best regards,
-
-	Anton
-
-> On 23 Aug 2020, at 16:21, Rustam Kovhaev <rkovhaev@gmail.com> wrote:
+On Mon, Aug 24, 2020 at 01:44:06AM +0000, Anton Altaparmakov wrote:
+> Hi Rustam,
 > 
-> number of bytes allocated for mft record should be equal to the mft
-> record size stored in ntfs superblock
-> as reported by syzbot, userspace might trigger out-of-bounds read by
-> dereferencing ctx->attr in ntfs_attr_find()
+> Thank you for the patch but it introduces an endianness bug - you have to us le32_to_cpu(m->bytes_allocated) both when doing the comparison and then printing the message.
 > 
-> Reported-and-tested-by: syzbot+aed06913f36eff9b544e@syzkaller.appspotmail.com
-> Link: https://syzkaller.appspot.com/bug?extid=aed06913f36eff9b544e
-> Signed-off-by: Rustam Kovhaev <rkovhaev@gmail.com>
-> ---
-> fs/ntfs/inode.c | 6 ++++++
-> 1 file changed, 6 insertions(+)
+> Also, please drop the square brackets.  Wherever the driver prints such things it never uses brackets around the numbers and it would be better to have this consistent throughout.
 > 
-> diff --git a/fs/ntfs/inode.c b/fs/ntfs/inode.c
-> index 9bb9f0952b18..6407af7c2e4f 100644
-> --- a/fs/ntfs/inode.c
-> +++ b/fs/ntfs/inode.c
-> @@ -1810,6 +1810,12 @@ int ntfs_read_inode_mount(struct inode *vi)
-> 		brelse(bh);
-> 	}
+> Can you please resend with the above issues addressed?  You can then also add to the commit message:
 > 
-> +	if (m->bytes_allocated != vol->mft_record_size) {
-> +		ntfs_error(sb, "Incorrect mft record size [%u] in superblock, should be [%u].",
-> +				m->bytes_allocated, vol->mft_record_size);
-> +		goto err_out;
-> +	}
-> +
-> 	/* Apply the mst fixups. */
-> 	if (post_read_mst_fixup((NTFS_RECORD*)m, vol->mft_record_size)) {
-> 		/* FIXME: Try to use the $MFTMirr now. */
-> -- 
-> 2.28.0
+> 	Acked-by: Anton Altaparmakov <anton@tuxera.com>
 > 
-
-
--- 
-Anton Altaparmakov <anton at tuxera.com> (replace at with @)
-Lead in File System Development, Tuxera Inc., http://www.tuxera.com/
-Linux NTFS maintainer
-
+> Thanks!
+> 
+> Best regards,
+> 
+> 	Anton
+> 
+hi Anton,
+thank you for the review, my bad, i'll get it fixed and i'll resend the patch
 
 
 _______________________________________________
