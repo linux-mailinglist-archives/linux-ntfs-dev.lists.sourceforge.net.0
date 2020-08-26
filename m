@@ -2,87 +2,95 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id C11E324F144
-	for <lists+linux-ntfs-dev@lfdr.de>; Mon, 24 Aug 2020 04:46:18 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 694FF252C18
+	for <lists+linux-ntfs-dev@lfdr.de>; Wed, 26 Aug 2020 13:05:13 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
+	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1kA2Ux-00045o-Pd; Mon, 24 Aug 2020 02:46:15 +0000
+	id 1kAtEq-0003sn-Bx; Wed, 26 Aug 2020 11:05:08 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <anton@tuxera.com>) id 1kA2Uw-00045c-Da
- for linux-ntfs-dev@lists.sourceforge.net; Mon, 24 Aug 2020 02:46:14 +0000
+ (envelope-from
+ <3UjtGXwkbAOEVbcNDOOHUDSSLG.JRRJOHXVHUFRQWHQW.FRP@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
+ id 1kAsns-00028D-8u
+ for linux-ntfs-dev@lists.sourceforge.net; Wed, 26 Aug 2020 10:37:16 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=MIME-Version:Content-Transfer-Encoding:Content-ID:
- Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From:Sender
- :Reply-To:Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To
- :Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:To:From:Subject:Message-ID:In-Reply-To
+ :Date:MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Huax/WyJSOBv6WqIkrNIUCXAD6eNqjiy5K7YJ810WYg=; b=Gzp/H009lgE+do1IqHxCta+6Bz
- 43/PZ1+211KrifQYuJle5OXgFxNPZWRDhDZ4Y87uRVCwOp9xVV0ufgWdJdpkPqOmySqfzMAXv+WLK
- pNqluS8oaKY1CoY5bQsZTTvy6rbFZ5qrhcF5rAXOLHc7Un8c2fru/cEc/JYyIwHnkLf0=;
+ bh=s+S1ybGzUd8iygNXODv3AXT+lmQWjeR11J2cV5mYm3w=; b=SInZH/4xSgCZ4IGivnqXJLzlne
+ 9rdwcXr8RHqI6Sa5LJgZreuntw8lsgqH8ks2fBD3A17uBe9NALgQodpw6jqsQFFBipu6WYQxZeEIA
+ pUyKtsxuy/ngFFiz4sTEPaPWbmL5apR7qAuy8p/I62qdZEk8VhFYI84+O9LLAE5+qA0E=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:
- In-Reply-To:References:Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=Huax/WyJSOBv6WqIkrNIUCXAD6eNqjiy5K7YJ810WYg=; b=V6ZLEB2gA1qswND9kKQTcpwcyw
- 00jMJudLHwWIoh5el7R+nun5rR3w7+DHZURNWSiH3oaEaQ7UhTXC0OxxGvIw1Zj5xxs9RqkA5WtwS
- fvGQXWHIthr6qNhIaqU8ar1w7z9gvIGHbA5sWYF8XjtwKKaXdBNDFbF3pFnIcI5gALDs=;
-Received: from mgw-01.mpynet.fi ([82.197.21.90])
- by sfi-mx-3.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1kA2Uu-00291F-CL
- for linux-ntfs-dev@lists.sourceforge.net; Mon, 24 Aug 2020 02:46:14 +0000
-Received: from pps.filterd (mgw-01.mpynet.fi [127.0.0.1])
- by mgw-01.mpynet.fi (8.16.0.42/8.16.0.42) with SMTP id 07O2jdsq114953;
- Mon, 24 Aug 2020 05:46:01 +0300
-Received: from ex13.tuxera.com (ex13.tuxera.com [178.16.184.72])
- by mgw-01.mpynet.fi with ESMTP id 3342qur1pd-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
- Mon, 24 Aug 2020 05:46:01 +0300
-Received: from tuxera-exch.ad.tuxera.com (10.20.48.11) by
- tuxera-exch.ad.tuxera.com (10.20.48.11) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 24 Aug 2020 05:46:00 +0300
-Received: from tuxera-exch.ad.tuxera.com ([fe80::552a:f9f0:68c3:d789]) by
- tuxera-exch.ad.tuxera.com ([fe80::552a:f9f0:68c3:d789%12]) with mapi id
- 15.00.1497.006; Mon, 24 Aug 2020 05:46:00 +0300
-From: Anton Altaparmakov <anton@tuxera.com>
-To: Andrew Morton <akpm@linux-foundation.org>
-Thread-Topic: [PATCH] ntfs: add check for mft record size in superblock
-Thread-Index: AQHWeb4qTTgnzi6Afk6ibcYrpfnrp6lGW56A
-Date: Mon, 24 Aug 2020 02:46:00 +0000
-Message-ID: <E72182A7-D6F9-4AE3-95B3-B732B2F0D7BD@tuxera.com>
-References: <20200824022804.226242-1-rkovhaev@gmail.com>
-In-Reply-To: <20200824022804.226242-1-rkovhaev@gmail.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [109.145.212.211]
-Content-ID: <CCAA8F4232D2714792B297CED56AEC38@ex13.tuxera.com>
+ h=Content-Type:To:From:Subject:Message-ID:In-Reply-To:Date:MIME-Version:
+ Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=s+S1ybGzUd8iygNXODv3AXT+lmQWjeR11J2cV5mYm3w=; b=C
+ 0r3FXM7kVapE0+HnnFiWr6+3xTiXB/ZVFKN/3aNiy337Z9t/LTJxNsXCT96KSXFBHnmUAxXvCGigf
+ TVBDJ3+xYuwAJszMBeX00aIdTSOcaapJnLWgFioBq5xyESuMolzMmf7WFUljdPmqaCJQLlAbDG+IF
+ wampNc7LV0RQO5/Y=;
+Received: from mail-il1-f200.google.com ([209.85.166.200])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.2)
+ id 1kAsnq-001CbV-TJ
+ for linux-ntfs-dev@lists.sourceforge.net; Wed, 26 Aug 2020 10:37:16 +0000
+Received: by mail-il1-f200.google.com with SMTP id k8so1191219ili.21
+ for <linux-ntfs-dev@lists.sourceforge.net>;
+ Wed, 26 Aug 2020 03:37:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
+ :from:to;
+ bh=s+S1ybGzUd8iygNXODv3AXT+lmQWjeR11J2cV5mYm3w=;
+ b=TKQhWyhMdN8imIDdAgY1XjDbkDUPfxt9GceA/JDu/eREPpPV9flX8B5KCABtBjzEZG
+ /9ghOvua53Klx332072N6XYQfsZ0rpgutmsdirunlm68TdAwAFinlq/K7pTre16j/Qg5
+ SjaYaCriy1k4sNbXZesCjxW7k9Cwmttsm1jjle+POv9wKsUhhg2CLFlAIhLRzyhaV0o6
+ e+hbH2JQzbJ30KLBz8Z6rySj+S1ybmCS2SNhrsg0KPZdH3GaRU5gpD9tK+9SUKN9LAKR
+ /Ma1nv/wuNDkuj9tMZXj60w/C2GUekl5vqFdMWoP6DJIB/Ef1Cfau8ajJZ5p9lKC+yMU
+ k5/Q==
+X-Gm-Message-State: AOAM5314GYv3CIqItybXyh79oHgT0qWC49hUAKhITdVJ3Xx81PB9LoL2
+ BKuFeje8HF5DdHjBOLppmFYJgQW8RVu4e2Up73PKSZKyWbPz
+X-Google-Smtp-Source: ABdhPJwFOkEQiQlcbrLBZrdR500P0BvYg8EmtIBu12QCrRopxNO8xUNUEPw9NT9y4coEXoVv2cQ5uxkxQoYT8AjUb6itEQrOVS2C
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235, 18.0.687
- definitions=2020-08-24_01:2020-08-21,
- 2020-08-24 signatures=0
-X-Proofpoint-Spam-Details: rule=mpy_notspam policy=mpy score=0 mlxlogscore=999
- adultscore=0
- malwarescore=0 bulkscore=0 mlxscore=0 spamscore=0 phishscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2006250000 definitions=main-2008240011
-X-Spam-Score: 0.0 (/)
+X-Received: by 2002:a92:9181:: with SMTP id e1mr12178268ill.274.1598438226931; 
+ Wed, 26 Aug 2020 03:37:06 -0700 (PDT)
+Date: Wed, 26 Aug 2020 03:37:06 -0700
+In-Reply-To: <001a11441b6c6cb96c0569120042@google.com>
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <000000000000b636f005adc56621@google.com>
+From: syzbot <syzbot+19b469021157c136116a@syzkaller.appspotmail.com>
+To: anton@tuxera.com, daniel@iogearbox.net, deller@gmx.de, dvyukov@google.com, 
+ jejb@parisc-linux.org, keescook@chromium.org, linux-kernel@vger.kernel.org,
+ linux-ntfs-dev@lists.sourceforge.net, linux-parisc@vger.kernel.org, 
+ luto@amacapital.net, sdf@google.com, songliubraving@fb.com, 
+ syzkaller-bugs@googlegroups.com, viro@zeniv.linux.org.uk, wad@chromium.org
+X-Spam-Score: 3.1 (+++)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
+ 0.3 FROM_LOCAL_HEX         From: localpart has long hexadecimal sequence
+ 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
+ See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [URIs: syzkaller.appspot.com]
+ 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
+ domains are different
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.166.200 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
-X-Headers-End: 1kA2Uu-00291F-CL
-Subject: Re: [Linux-NTFS-Dev] [PATCH] ntfs: add check for mft record size in
- superblock
+ 2.5 SORTED_RECIPS          Recipient list is sorted by address
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [209.85.166.200 listed in list.dnswl.org]
+X-Headers-End: 1kAsnq-001CbV-TJ
+X-Mailman-Approved-At: Wed, 26 Aug 2020 11:05:07 +0000
+Subject: Re: [Linux-NTFS-Dev] KASAN: use-after-free Read in
+ ntfs_read_locked_inode
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -95,65 +103,31 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Cc: "linux-ntfs-dev@lists.sourceforge.net"
- <linux-ntfs-dev@lists.sourceforge.net>, Greg KH <gregkh@linuxfoundation.org>,
- LKML <linux-kernel@vger.kernel.org>, Rustam Kovhaev <rkovhaev@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-Hi Andrew,
+syzbot suspects this issue was fixed by commit:
 
-Can you please merge this patch?  Thanks a lot in advance!
+commit f7c6cb1d9728dea9d9f131ef57303d6821afb0f8
+Author: Stanislav Fomichev <sdf@google.com>
+Date:   Wed Jul 29 00:31:03 2020 +0000
 
-Rustam, thank you for the updated patch!
+    bpf: Expose socket storage to BPF_PROG_TYPE_CGROUP_SOCK
 
-Best regards,
+bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=16480fa9900000
+start commit:   3e968c9f Merge tag 'ext4_for_linus' of git://git.kernel.or..
+git tree:       upstream
+kernel config:  https://syzkaller.appspot.com/x/.config?x=7e8c053ac965e0dd
+dashboard link: https://syzkaller.appspot.com/bug?extid=19b469021157c136116a
+syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=142d219b800000
+C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=143029db800000
 
-	Anton
+If the result looks correct, please mark the issue as fixed by replying with:
 
-> On 24 Aug 2020, at 03:28, Rustam Kovhaev <rkovhaev@gmail.com> wrote:
-> 
-> number of bytes allocated for mft record should be equal to the mft
-> record size stored in ntfs superblock
-> as reported by syzbot, userspace might trigger out-of-bounds read by
-> dereferencing ctx->attr in ntfs_attr_find()
-> 
-> Reported-and-tested-by: syzbot+aed06913f36eff9b544e@syzkaller.appspotmail.com
-> Link: https://syzkaller.appspot.com/bug?extid=aed06913f36eff9b544e
-> Signed-off-by: Rustam Kovhaev <rkovhaev@gmail.com>
-> Acked-by: Anton Altaparmakov <anton@tuxera.com>
-> ---
-> fs/ntfs/inode.c | 6 ++++++
-> 1 file changed, 6 insertions(+)
-> 
-> diff --git a/fs/ntfs/inode.c b/fs/ntfs/inode.c
-> index 9bb9f0952b18..caf563981532 100644
-> --- a/fs/ntfs/inode.c
-> +++ b/fs/ntfs/inode.c
-> @@ -1810,6 +1810,12 @@ int ntfs_read_inode_mount(struct inode *vi)
-> 		brelse(bh);
-> 	}
-> 
-> +	if (le32_to_cpu(m->bytes_allocated) != vol->mft_record_size) {
-> +		ntfs_error(sb, "Incorrect mft record size %u in superblock, should be %u.",
-> +				le32_to_cpu(m->bytes_allocated), vol->mft_record_size);
-> +		goto err_out;
-> +	}
-> +
-> 	/* Apply the mst fixups. */
-> 	if (post_read_mst_fixup((NTFS_RECORD*)m, vol->mft_record_size)) {
-> 		/* FIXME: Try to use the $MFTMirr now. */
-> -- 
-> 2.28.0
-> 
+#syz fix: bpf: Expose socket storage to BPF_PROG_TYPE_CGROUP_SOCK
 
-
--- 
-Anton Altaparmakov <anton at tuxera.com> (replace at with @)
-Lead in File System Development, Tuxera Inc., http://www.tuxera.com/
-Linux NTFS maintainer
-
+For information about bisection process see: https://goo.gl/tpsmEJ#bisection
 
 
 _______________________________________________
