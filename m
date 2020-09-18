@@ -2,26 +2,26 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 106F326FF20
-	for <lists+linux-ntfs-dev@lfdr.de>; Fri, 18 Sep 2020 15:50:58 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id CDB0F26FF22
+	for <lists+linux-ntfs-dev@lfdr.de>; Fri, 18 Sep 2020 15:51:40 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1kJGmn-0003zY-MP; Fri, 18 Sep 2020 13:50:49 +0000
+	id 1kJGnZ-0008Ao-Rk; Fri, 18 Sep 2020 13:51:37 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <anton@tuxera.com>) id 1kJGml-0003z5-NI
- for linux-ntfs-dev@lists.sourceforge.net; Fri, 18 Sep 2020 13:50:47 +0000
+ (envelope-from <anton@tuxera.com>) id 1kJGnY-0008Ag-Mj
+ for linux-ntfs-dev@lists.sourceforge.net; Fri, 18 Sep 2020 13:51:36 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=MIME-Version:Content-Transfer-Encoding:Content-ID:
  Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From:Sender
  :Reply-To:Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To
  :Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=OfMPlgUV0FCZ3jiTkAlLnltR0+5x1dEawHAsPebwaDg=; b=UBMpuXVJXCTu3Da0E80+LA2MXN
- PuNYchLqih8SL+8UEORZmjOpS0sEkpYY8I7K+yU7TN66RqEW6Be3Q3hEUQkGrUzE/dz8gu9qtRxoq
- o22kIBwPzzruGRhXqC5lsZnu6W4QZjSIivIprWdM96BaZx1oMcbGpPwA/sphqkNoIYwQ=;
+ bh=MG3o+wzvhkdPG7T3anJqR4vl6XgLBDwgHpVM1D+N1TQ=; b=Oa6nhhJuww4W+zWYjPE0geFSIy
+ o7tfFGBY6rETdfjB3Smp3li13w9Juj8Xz3ssHkmwRY4Y/o2tUJARBElxLIkYjRhlEQp/k82UPBGwu
+ z1XnoL1A4KaNRITjtmQMTwTFpOY255uUf7lnB37KOsxO5TaGTX0y0ose9olfGQH5G99c=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:
@@ -29,35 +29,35 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=OfMPlgUV0FCZ3jiTkAlLnltR0+5x1dEawHAsPebwaDg=; b=Cv5LBdOlxGNDgfVtbKoE2vnzYG
- 3FdBx6HVDKdvecq/liXSL7oYzJosVfFpF5N0E7Z0QO7de0d5PWr4QsdA1NPyHrFU38BtNUFs59bDC
- XU3Z9zkRgdRWgt08ibG5s+E642VSS+2s7OLnLqBHRGowp7Jr0HXA+pZlh5u4i65vWp+M=;
+ bh=MG3o+wzvhkdPG7T3anJqR4vl6XgLBDwgHpVM1D+N1TQ=; b=Bo8irhPRendX+wwUzG9jHSuad1
+ yKFz2C8EqfvCxo/LNWaM5VZtQlXuLFd86GfE0X7uBl688jomMg451A2RafdvejV3gBoeAdne9L2p0
+ p5OKYRZZ3AT5r+iRXLdmnutOzjuJ4g3eXyi4cQjPnh8OHkxnMguJ8NCvvnhDPURnBsAU=;
 Received: from mgw-01.mpynet.fi ([82.197.21.90])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1kJGma-00FZrk-Hb
- for linux-ntfs-dev@lists.sourceforge.net; Fri, 18 Sep 2020 13:50:47 +0000
+ id 1kJGnO-00FZvn-T8
+ for linux-ntfs-dev@lists.sourceforge.net; Fri, 18 Sep 2020 13:51:36 +0000
 Received: from pps.filterd (mgw-01.mpynet.fi [127.0.0.1])
- by mgw-01.mpynet.fi (8.16.0.42/8.16.0.42) with SMTP id 08IDjwQW105193;
- Fri, 18 Sep 2020 16:50:17 +0300
+ by mgw-01.mpynet.fi (8.16.0.42/8.16.0.42) with SMTP id 08IDjvx1105182;
+ Fri, 18 Sep 2020 16:51:17 +0300
 Received: from ex13.tuxera.com (ex13.tuxera.com [178.16.184.72])
- by mgw-01.mpynet.fi with ESMTP id 33mx0hr06y-1
+ by mgw-01.mpynet.fi with ESMTP id 33mx0hr07u-1
  (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
- Fri, 18 Sep 2020 16:50:17 +0300
+ Fri, 18 Sep 2020 16:51:16 +0300
 Received: from tuxera-exch.ad.tuxera.com (10.20.48.11) by
  tuxera-exch.ad.tuxera.com (10.20.48.11) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 18 Sep 2020 16:50:15 +0300
+ 15.0.1497.2; Fri, 18 Sep 2020 16:51:15 +0300
 Received: from tuxera-exch.ad.tuxera.com ([fe80::552a:f9f0:68c3:d789]) by
  tuxera-exch.ad.tuxera.com ([fe80::552a:f9f0:68c3:d789%12]) with mapi id
- 15.00.1497.006; Fri, 18 Sep 2020 16:50:15 +0300
+ 15.00.1497.006; Fri, 18 Sep 2020 16:51:15 +0300
 From: Anton Altaparmakov <anton@tuxera.com>
 To: Randy Dunlap <rdunlap@infradead.org>
-Thread-Topic: [PATCH RESEND] ntfs: layout.h: delete duplicated words
-Thread-Index: AQHWjVno/QViatPVMke4USkB+fdGRKluOEeA
-Date: Fri, 18 Sep 2020 13:50:15 +0000
-Message-ID: <7CF99C49-7EB0-455C-808A-72EA117E113B@tuxera.com>
-References: <20200918012021.6255-1-rdunlap@infradead.org>
-In-Reply-To: <20200918012021.6255-1-rdunlap@infradead.org>
+Thread-Topic: [PATCH RESEND] ntfs: drop unneeded semi-colons
+Thread-Index: AQHWjVnswLx9rgGqKE+C2Won5QI6nqluOI0A
+Date: Fri, 18 Sep 2020 13:51:14 +0000
+Message-ID: <D97E170A-13E7-4263-B590-32D7F85B9AC6@tuxera.com>
+References: <20200918012034.6305-1-rdunlap@infradead.org>
+In-Reply-To: <20200918012034.6305-1-rdunlap@infradead.org>
 Accept-Language: en-GB, en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -65,7 +65,7 @@ X-MS-TNEF-Correlator:
 x-ms-exchange-messagesentrepresentingtype: 1
 x-ms-exchange-transport-fromentityheader: Hosted
 x-originating-ip: [86.162.107.15]
-Content-ID: <7D7B7EA98255504CB75B25F78D5A4EAA@ex13.tuxera.com>
+Content-ID: <6F51FD6D1C4537498A1ABF9928B4181B@ex13.tuxera.com>
 MIME-Version: 1.0
 X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235, 18.0.687
  definitions=2020-09-18_14:2020-09-16,
@@ -80,9 +80,8 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
-X-Headers-End: 1kJGma-00FZrk-Hb
-Subject: Re: [Linux-NTFS-Dev] [PATCH RESEND] ntfs: layout.h: delete
- duplicated words
+X-Headers-End: 1kJGnO-00FZvn-T8
+Subject: Re: [Linux-NTFS-Dev] [PATCH RESEND] ntfs: drop unneeded semi-colons
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -106,9 +105,9 @@ Hi Randy,
 
 Sorry, I don't know how I missed those originally.
 
-Andrew, please could you add this to your tree for merging with Linus?
+Andrew, please could you add this to your tree for merging with Linus as well?
 
-Please feel free to add: Acked-by: Anton Altaparmakov <anton@tuxera.com>
+And again, please feel free to add: Acked-by: Anton Altaparmakov <anton@tuxera.com>
 
 Thanks a lot!
 
@@ -118,7 +117,13 @@ Best regards,
 
 > On 18 Sep 2020, at 02:20, Randy Dunlap <rdunlap@infradead.org> wrote:
 > 
-> Drop the repeated words "the" and "in" in comments.
+> Coccinelle scripts report:
+> 
+> fs/ntfs/lcnalloc.c:902:2-3: Unneeded semicolon
+> fs/ntfs/super.c:1615:2-3: Unneeded semicolon
+> fs/ntfs/super.c:1684:2-3: Unneeded semicolon
+> 
+> so remove the extraneous semicolons.
 > 
 > Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
 > Cc: Anton Altaparmakov <anton@tuxera.com>
@@ -127,29 +132,41 @@ Best regards,
 > ---
 > Adding Andrew to recipients, otherwise this patch is lost/ignored.
 > 
-> fs/ntfs/layout.h |    4 ++--
-> 1 file changed, 2 insertions(+), 2 deletions(-)
+> fs/ntfs/lcnalloc.c |    2 +-
+> fs/ntfs/super.c    |    4 ++--
+> 2 files changed, 3 insertions(+), 3 deletions(-)
 > 
-> --- linux-next-20200917.orig/fs/ntfs/layout.h
-> +++ linux-next-20200917/fs/ntfs/layout.h
-> @@ -703,7 +703,7 @@ typedef struct {
-> /* 14*/	le16 instance;		/* The instance of this attribute record. This
-> 				   number is unique within this mft record (see
-> 				   MFT_RECORD/next_attribute_instance notes in
-> -				   in mft.h for more details). */
-> +				   mft.h for more details). */
-> /* 16*/	union {
-> 		/* Resident attributes. */
-> 		struct {
-> @@ -1838,7 +1838,7 @@ typedef struct {
->  * Also, each security descriptor is stored twice in the $SDS stream with a
->  * fixed offset of 0x40000 bytes (256kib, the Windows cache manager's max size)
->  * between them; i.e. if a SDS_ENTRY specifies an offset of 0x51d0, then the
-> - * the first copy of the security descriptor will be at offset 0x51d0 in the
-> + * first copy of the security descriptor will be at offset 0x51d0 in the
->  * $SDS data stream and the second copy will be at offset 0x451d0.
->  */
-> typedef struct {
+> --- linux-next-20200917.orig/fs/ntfs/lcnalloc.c
+> +++ linux-next-20200917/fs/ntfs/lcnalloc.c
+> @@ -899,7 +899,7 @@ s64 __ntfs_cluster_free(ntfs_inode *ni,
+> 		}
+> 		/* We have freed @to_free real clusters. */
+> 		real_freed = to_free;
+> -	};
+> +	}
+> 	/* Go to the next run and adjust the number of clusters left to free. */
+> 	++rl;
+> 	if (count >= 0)
+> --- linux-next-20200917.orig/fs/ntfs/super.c
+> +++ linux-next-20200917/fs/ntfs/super.c
+> @@ -1612,7 +1612,7 @@ read_partial_attrdef_page:
+> 		memcpy((u8*)vol->attrdef + (index++ << PAGE_SHIFT),
+> 				page_address(page), size);
+> 		ntfs_unmap_page(page);
+> -	};
+> +	}
+> 	if (size == PAGE_SIZE) {
+> 		size = i_size & ~PAGE_MASK;
+> 		if (size)
+> @@ -1681,7 +1681,7 @@ read_partial_upcase_page:
+> 		memcpy((char*)vol->upcase + (index++ << PAGE_SHIFT),
+> 				page_address(page), size);
+> 		ntfs_unmap_page(page);
+> -	};
+> +	}
+> 	if (size == PAGE_SIZE) {
+> 		size = i_size & ~PAGE_MASK;
+> 		if (size)
 
 
 -- 
