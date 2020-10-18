@@ -2,26 +2,26 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 485F6291E35
-	for <lists+linux-ntfs-dev@lfdr.de>; Sun, 18 Oct 2020 21:52:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EDA7A291E34
+	for <lists+linux-ntfs-dev@lfdr.de>; Sun, 18 Oct 2020 21:52:01 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1kUEij-0007Iy-RM; Sun, 18 Oct 2020 19:51:57 +0000
+	id 1kUEij-0007JA-U7; Sun, 18 Oct 2020 19:51:57 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <sashal@kernel.org>) id 1kUEIh-0000Ht-Bg
- for linux-ntfs-dev@lists.sourceforge.net; Sun, 18 Oct 2020 19:25:03 +0000
+ (envelope-from <sashal@kernel.org>) id 1kUEJp-0000Kw-Jo
+ for linux-ntfs-dev@lists.sourceforge.net; Sun, 18 Oct 2020 19:26:13 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
  In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=g5ng7tnMYg8bCZaNoOk+FTNGsFDCQoBhGqMh9b5uSzI=; b=Z8z5PpRgdLCEcvt7d3ePVLtoY3
- RJnT1fmbXaUE+JrLZ9tnfX2tJEl12vIqD3L2oenV8a4/qSowxit+3AtSrx4O2LMB5i8Eiq20XHsXz
- K7iJhBX/kFq0Ey9jqDKTf2IoSaA9mz1Cb14C3BptcnZU90vRtCE0KRWSHVb5yprIzO0o=;
+ bh=kp4Ix/KNPEFvVxMhTG9170n8GLpA2iBpBpmaRrG+nNo=; b=OnHiY/56m/OQr5mYBmv8j3YHxH
+ gxWhkOj9bxBVSZzhxwDnP4Hf3qMGYVXyGgc/7wtwCw4f30nn/NhxVtOjjLZXt3Dvv3NR2dl4aAwMU
+ STrp5Oic3Q/36d2EIVQvLHkXr/PhbvsxaQRB15L4Eh8zBtCasgRubKrsNIXiw6sNcKSQ=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -29,35 +29,35 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=g5ng7tnMYg8bCZaNoOk+FTNGsFDCQoBhGqMh9b5uSzI=; b=eVIa8ODfQpw6D47TS44LZ/hKm0
- EarQLwVBKoq9PS/U3ZcPKiVqrLk08FnDmP6K4uD5TWlMPTq00lDxzcVkXJCbMTvAaPDpBh3VNiju3
- osgGoQ209gLjBKPd96WYs8rruByc/LVnONzZ01XVG1Y9n57qO8+p+xHTt2TVeHokY0QA=;
+ bh=kp4Ix/KNPEFvVxMhTG9170n8GLpA2iBpBpmaRrG+nNo=; b=e/PV1B/z2905jnDZ9Q2nLgvAH/
+ s2d+ScoJoF+56YAHeusIMUYd54sDpE7bdhA+Sn3qpVJ/86BuQ4oAK/nWUVJMtZpzieYC+7VgDRHrD
+ LVdM9S+sJiELAfHwTBpHay3bobNtID/V/4vmMYlA4JQ/vgcUd58YWaZzhkxvzO8+/vFs=;
 Received: from mail.kernel.org ([198.145.29.99])
  by sfi-mx-3.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1kUEIc-00Esx0-AS
- for linux-ntfs-dev@lists.sourceforge.net; Sun, 18 Oct 2020 19:25:03 +0000
+ id 1kUEJl-00Et0D-1a
+ for linux-ntfs-dev@lists.sourceforge.net; Sun, 18 Oct 2020 19:26:13 +0000
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id BD12A20791;
- Sun, 18 Oct 2020 19:24:44 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 8161620791;
+ Sun, 18 Oct 2020 19:25:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1603049085;
- bh=qi2SWvH8OnbZSAA+Lj4+2USDL3B778JY3OcM72CBu9s=;
+ s=default; t=1603049156;
+ bh=wwcSHnEGzPMRuAF0NbOb9fwXJ3eDhP46kueuiqZkXOc=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=WM+a9xoidlgIT5U3yKMOjZ6nMKitnplzG4z9raxbBKOgYQ36aLml/G7E83BFvP+gZ
- oP4KjC7kk/+f/X3JPAhiO/9FIKgltng4RrpvAw9M3XMoCz1Juis4LSiQwX1HzIK3Ro
- F1ywqaKLp/p2M/9cuVQMZrstej+r/t1ZhRoUFGzM=
+ b=1yxk3hhTwSAf2wxiZKns22Yuu0N06msaV1NbR4TfXfsH6RuZB68Gn97qzpEOT/woS
+ G4un1Wq2Th2uBKgOeksX0fcqgWSjCTAztNg2Z1S0PTUz23diioViBQm+Ql6sHNvVGd
+ QsWIpS84k66RK+DHL66J8UfSgEgdBkgZ/f8lTYZ0=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Date: Sun, 18 Oct 2020 15:23:43 -0400
-Message-Id: <20201018192417.4055228-22-sashal@kernel.org>
+Date: Sun, 18 Oct 2020 15:24:58 -0400
+Message-Id: <20201018192530.4055730-21-sashal@kernel.org>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201018192417.4055228-1-sashal@kernel.org>
-References: <20201018192417.4055228-1-sashal@kernel.org>
+In-Reply-To: <20201018192530.4055730-1-sashal@kernel.org>
+References: <20201018192530.4055730-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -76,9 +76,9 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
  -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1kUEIc-00Esx0-AS
+X-Headers-End: 1kUEJl-00Et0D-1a
 X-Mailman-Approved-At: Sun, 18 Oct 2020 19:51:51 +0000
-Subject: [Linux-NTFS-Dev] [PATCH AUTOSEL 4.19 22/56] ntfs: add check for mft
+Subject: [Linux-NTFS-Dev] [PATCH AUTOSEL 4.14 21/52] ntfs: add check for mft
  record size in superblock
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -123,10 +123,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 6 insertions(+)
 
 diff --git a/fs/ntfs/inode.c b/fs/ntfs/inode.c
-index bd3221cbdd956..0d4b5b9843b62 100644
+index 7c410f8794124..2aa073b82d30f 100644
 --- a/fs/ntfs/inode.c
 +++ b/fs/ntfs/inode.c
-@@ -1835,6 +1835,12 @@ int ntfs_read_inode_mount(struct inode *vi)
+@@ -1844,6 +1844,12 @@ int ntfs_read_inode_mount(struct inode *vi)
  		brelse(bh);
  	}
  
