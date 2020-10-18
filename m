@@ -2,26 +2,26 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4EDF291E30
+	by mail.lfdr.de (Postfix) with ESMTPS id E9220291E32
 	for <lists+linux-ntfs-dev@lfdr.de>; Sun, 18 Oct 2020 21:52:01 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1kUEij-0007Ia-JC; Sun, 18 Oct 2020 19:51:57 +0000
+	id 1kUEij-0007Ij-M4; Sun, 18 Oct 2020 19:51:57 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <sashal@kernel.org>) id 1kUEFG-0005yL-D9
- for linux-ntfs-dev@lists.sourceforge.net; Sun, 18 Oct 2020 19:21:30 +0000
+ (envelope-from <sashal@kernel.org>) id 1kUEH0-00040z-9H
+ for linux-ntfs-dev@lists.sourceforge.net; Sun, 18 Oct 2020 19:23:18 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
  In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=MdYpqr2TPu5XfT+YCg4kvE0wZrzHlQCykOnpBmAMwhw=; b=jzkNWSsbbpNEkt58/r7Q612t+8
- AVd47l/sxA8FKk5m83NrtUVPuV63TPBBSccXkvRqlvxCySokbEbxx0DWJ8zpFbRT0DBC7TDMSMI64
- KF96aNx2g7GAU0ASk4stJJZjVVyQgoiB98kRxDNDP+DhEqylOe983ymtzOEtf3AgT9yE=;
+ bh=MdYpqr2TPu5XfT+YCg4kvE0wZrzHlQCykOnpBmAMwhw=; b=D2N7hjpRagRNSSEW7F4rZKUpVn
+ 68lLSg8hYEEpQAPsL54lF6vX1/6TOC3kAztNIG8+K3Wpmo5zC7U3yDQi5M6ZAH2CnJI/YJ/jsv7SH
+ zN+n6s6NlwOHWuZ2hFEo9Y4rRjvLKzSmxPLGFxiAwX2k8RoLo+ZTMvQqo1nETg5gFbKI=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -29,35 +29,35 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=MdYpqr2TPu5XfT+YCg4kvE0wZrzHlQCykOnpBmAMwhw=; b=WIKPHkihKxLThWa80h9P9xLP8I
- mr2ojt9HuK04w9MQ8L8V9W9xFyWYwqIejHS/hhrMDpi0XkKmQdHyTT1THqEL28GqaH0G21hlLcHZv
- A8eP0OX8VJqvCu75gSnNIsGyuz8kOVUI+46cOJEtlph4zXcVE29t3TzyOjfxDzKIVKv0=;
+ bh=MdYpqr2TPu5XfT+YCg4kvE0wZrzHlQCykOnpBmAMwhw=; b=Uu8tG8lqOts4rkg+n1z177iZul
+ oiPHLpTu15UtwQMp6pAENs8VzRTz0HeEQdzZxNfMeFQhpEHC4Z7iDuPTkRIBnuHsOOu6UfdHH4jS/
+ QKbEMOC9ne7VqqN4s7kl3KLSUD+NaQYIQlP2Fq/Z9kg1mg2L73ZpscgH7UpkORp2erQU=;
 Received: from mail.kernel.org ([198.145.29.99])
  by sfi-mx-3.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1kUEF7-00Eslv-7i
- for linux-ntfs-dev@lists.sourceforge.net; Sun, 18 Oct 2020 19:21:30 +0000
+ id 1kUEGw-00EssZ-AB
+ for linux-ntfs-dev@lists.sourceforge.net; Sun, 18 Oct 2020 19:23:18 +0000
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id C22BA22365;
- Sun, 18 Oct 2020 19:21:07 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id A6481222EB;
+ Sun, 18 Oct 2020 19:23:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1603048868;
+ s=default; t=1603048988;
  bh=v1Z+kyM00XJqxJX/GQ2PGnu5D3WwgfqCSvSBlCHzPZw=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=lca/e7GtzBqP4azZKQ40Cog4lt4nLY2lpoV/L6K8Yzbn2K63d+CSdynVf1j6kODdu
- J2fRrL8SBvpHZrGyVT7fCNF18EVIRe4kV+UWzlTmEcAISmRQLBY8G5Uy43ouQCtC/P
- 3s/TFRt7mnMesGnx74t56eJraq+e1KUGxCpqyGak=
+ b=1WWofq6qmq1TYumnOjyAytET5Hyl/fEeI7NIy0DCZHRh/4Cdrgn5hs76oohtDikjs
+ MNlIkw0OYj83beSOPur6oARgdZi5uEquDcE4puqcv9lxt8ynfWRtZ6NFgcovLNUdG0
+ HS1Tniyo9Vtn3DTKwxMZO17xNDzYCeB/3mIBbmX8=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Date: Sun, 18 Oct 2020 15:19:19 -0400
-Message-Id: <20201018192026.4053674-34-sashal@kernel.org>
+Date: Sun, 18 Oct 2020 15:21:39 -0400
+Message-Id: <20201018192231.4054535-28-sashal@kernel.org>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201018192026.4053674-1-sashal@kernel.org>
-References: <20201018192026.4053674-1-sashal@kernel.org>
+In-Reply-To: <20201018192231.4054535-1-sashal@kernel.org>
+References: <20201018192231.4054535-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -67,7 +67,7 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: linux-foundation.org]
+ for more information. [URIs: tuxera.com]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
@@ -76,10 +76,10 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
  -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1kUEF7-00Eslv-7i
+X-Headers-End: 1kUEGw-00EssZ-AB
 X-Mailman-Approved-At: Sun, 18 Oct 2020 19:51:51 +0000
-Subject: [Linux-NTFS-Dev] [PATCH AUTOSEL 5.8 034/101] ntfs: add check for
- mft record size in superblock
+Subject: [Linux-NTFS-Dev] [PATCH AUTOSEL 5.4 28/80] ntfs: add check for mft
+ record size in superblock
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
