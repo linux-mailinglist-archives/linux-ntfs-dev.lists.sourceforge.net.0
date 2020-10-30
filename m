@@ -2,76 +2,86 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00766297E24
-	for <lists+linux-ntfs-dev@lfdr.de>; Sat, 24 Oct 2020 21:35:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 338B42A1B66
+	for <lists+linux-ntfs-dev@lfdr.de>; Sun,  1 Nov 2020 01:28:16 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
 	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1kWPKJ-0002nE-Ks; Sat, 24 Oct 2020 19:35:43 +0000
+	id 1kZ1EB-0001tA-VW; Sun, 01 Nov 2020 00:28:11 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <willy@infradead.org>) id 1kW1l5-0003gB-Ju
- for linux-ntfs-dev@lists.sourceforge.net; Fri, 23 Oct 2020 18:25:47 +0000
+ (envelope-from <almaz.alexandrovich@paragon-software.com>)
+ id 1kYVxf-0007gF-SL
+ for linux-ntfs-dev@lists.sourceforge.net; Fri, 30 Oct 2020 15:05:03 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
+ :Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=u0/bR0JXIWljNk0VNX4SxhSAaiuv2GldCnPLWjMch9I=; b=aLiCAFqNevPxZ4Zfw56vb+NMU1
- Na4yrtlVEDNg/eJ9le6yGBj6khhIpmBxtF9aV6fo4s1ppBImP9T7VkM7RVNK2mhoQP76660zB9Tzq
- 6nJAhDgF+s00VoJ/Hs3RE/IlDy6Iw60s3OIw8PZGue5Qy0D2gzA8LyX+gHHU8Lk2lwHk=;
+ bh=fhZl7OP2dqz9jup6Nu5SrVMqgLyV9oMKzBF2nI5Z2As=; b=WYQVmpKSA20ZYtUvWuUTLLyASu
+ 0LVMtB/F0JogGkiMcR2qKYzfDLSGMf7txUcMGYBdoBGC4ZHcuUcHJjFV2qzOlBIfNS8KHau3Jyz9b
+ l5kTxZQnMkZBY1lDmHDxur2qW7lOItyQttyYGuI98R5//T7JJPBH/dXKdYSjUA3p3p0g=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=u0/bR0JXIWljNk0VNX4SxhSAaiuv2GldCnPLWjMch9I=; b=CrFmad+G1nIditTUw8MVCbR+px
- CwTIhKBreszPz87oNWeNlKJ7HKXT/csEff+vUpi+m9iDqMrFdzG3mtB6bZrmfcMvSFfpZURatQmZY
- RGdjJlmnbWUk7ubQET3g6vTBlBPSPCFudLyzcRbJ+y8QsfZG1d0b8xlV98v0iVyLY8Bo=;
-Received: from casper.infradead.org ([90.155.50.34])
+ h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:
+ Subject:CC:To:From:Sender:Reply-To:Content-ID:Content-Description:Resent-Date
+ :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=fhZl7OP2dqz9jup6Nu5SrVMqgLyV9oMKzBF2nI5Z2As=; b=H
+ 4zWc7LmGZk6JXjuc355Zu1Xy2IW8hI6OzV2CbSDVGg42dwRrVSTnLT7IRrDWRMB+c+2ekx/4PYdbM
+ R9bguVNmXKmdHl105A+J+N9Yq4yeIaRcgCbCaaizNs6DSrm7q4HQk5tKlOT9haQKzzb/sbmsgG1g9
+ Pz/XLLPaXTFuRMns=;
+Received: from relayfre-01.paragon-software.com ([176.12.100.13])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1kW1ko-00AUtC-Sh
- for linux-ntfs-dev@lists.sourceforge.net; Fri, 23 Oct 2020 18:25:46 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=u0/bR0JXIWljNk0VNX4SxhSAaiuv2GldCnPLWjMch9I=; b=JWdyPz2DsQEVqUAElZovbld7ZJ
- fSjSKY+U+rEThybQrnXAlfgcv4jcFErG4EQzOfMTD9gYEAsc0/+SXHI/MgIJd8/2mpihU9b+xVNd3
- xtpDAckmH7svHLr+Erx7v04473GzUAOPo06oDPCkc5dK+MecSyQBM6L9WZ4AjTfpCE57lUofxhdlx
- 7UCFX2ZkK1/s1tYSH2hxbmLuyFZyeuSBSi1kNAIquLBKCxMALkf4JQ7HPIpU+jwiZQ2TZDILi319y
- 2AsEhNu61KGKRdUtjI4SkqvlTQ+LDTUiUsd4sRbKgYHD9ufzDBwC+YTw50C6DAt9YK8nkw8HEPaGw
- S0soAF+Q==;
-Received: from willy by casper.infradead.org with local (Exim 4.92.3 #3 (Red
- Hat Linux)) id 1kW1kO-00005y-2u; Fri, 23 Oct 2020 18:25:04 +0000
-Date: Fri, 23 Oct 2020 19:25:03 +0100
-From: Matthew Wilcox <willy@infradead.org>
-To: Konstantin Komarov <almaz.alexandrovich@paragon-software.com>
-Message-ID: <20201023182503.GE20115@casper.infradead.org>
-References: <20201023154431.1853715-1-almaz.alexandrovich@paragon-software.com>
- <20201023154431.1853715-3-almaz.alexandrovich@paragon-software.com>
+ id 1kYVxa-002h2B-QI
+ for linux-ntfs-dev@lists.sourceforge.net; Fri, 30 Oct 2020 15:05:03 +0000
+Received: from dlg2.mail.paragon-software.com
+ (vdlg-exch-02.paragon-software.com [172.30.1.105])
+ by relayfre-01.paragon-software.com (Postfix) with ESMTPS id 25BD26A;
+ Fri, 30 Oct 2020 18:04:45 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=paragon-software.com; s=mail; t=1604070285;
+ bh=fhZl7OP2dqz9jup6Nu5SrVMqgLyV9oMKzBF2nI5Z2As=;
+ h=From:To:CC:Subject:Date;
+ b=Q+HdX69pkHsWrGt6ujFxRJntsZlARXlf5Qms1g7CU9OVseU9eiTuWHF57mHjjZwjb
+ fitd6Tr7Wg4cjwTCxuRQsNxkS/BCW3NzBNr/Yj2+O+2QVY1wgO7mi//Vrbp/Y9jawW
+ T3oMkYkvVuGkjDQVS6OrtX+hugbgWr//71pVH9Ec=
+Received: from fsd-lkpg.ufsd.paragon-software.com (172.30.114.105) by
+ vdlg-exch-02.paragon-software.com (172.30.1.105) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1847.3; Fri, 30 Oct 2020 18:04:44 +0300
+From: Konstantin Komarov <almaz.alexandrovich@paragon-software.com>
+To: <linux-fsdevel@vger.kernel.org>
+Date: Fri, 30 Oct 2020 18:02:29 +0300
+Message-ID: <20201030150239.3957156-1-almaz.alexandrovich@paragon-software.com>
+X-Mailer: git-send-email 2.25.4
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201023154431.1853715-3-almaz.alexandrovich@paragon-software.com>
+X-Originating-IP: [172.30.114.105]
+X-ClientProxiedBy: vdlg-exch-02.paragon-software.com (172.30.1.105) To
+ vdlg-exch-02.paragon-software.com (172.30.1.105)
 X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [176.12.100.13 listed in list.dnswl.org]
+ 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
+ See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [URIs: checkpatch.pl]
+ -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- 0.0 TIME_LIMIT_EXCEEDED    Exceeded time limit / deadline
-X-Headers-End: 1kW1ko-00AUtC-Sh
-X-Mailman-Approved-At: Sat, 24 Oct 2020 19:35:40 +0000
-Subject: Re: [Linux-NTFS-Dev] [PATCH v10 02/10] fs/ntfs3: Add initialization
- of super block
+X-Headers-End: 1kYVxa-002h2B-QI
+X-Mailman-Approved-At: Sun, 01 Nov 2020 00:28:08 +0000
+Subject: [Linux-NTFS-Dev] [PATCH v11 00/10] NTFS read-write driver GPL
+ implementation by Paragon Software
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -85,71 +95,154 @@ List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
 Cc: nborisov@suse.com, linux-kernel@vger.kernel.org, rdunlap@infradead.org,
- aaptel@suse.com, dsterba@suse.cz, joe@perches.com, viro@zeniv.linux.org.uk,
- linux-fsdevel@vger.kernel.org, linux-ntfs-dev@lists.sourceforge.net,
+ aaptel@suse.com, willy@infradead.org, dsterba@suse.cz,
+ Konstantin Komarov <almaz.alexandrovich@paragon-software.com>,
+ linux-ntfs-dev@lists.sourceforge.net, viro@zeniv.linux.org.uk, joe@perches.com,
  pali@kernel.org, mark@harmstone.com, anton@tuxera.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-On Fri, Oct 23, 2020 at 06:44:23PM +0300, Konstantin Komarov wrote:
-> +
-> +/*ntfs_readpage*/
-> +/*ntfs_readpages*/
-> +/*ntfs_writepage*/
-> +/*ntfs_writepages*/
-> +/*ntfs_block_truncate_page*/
+This patch adds NTFS Read-Write driver to fs/ntfs3.
 
-What are these for?
+Having decades of expertise in commercial file systems development and huge
+test coverage, we at Paragon Software GmbH want to make our contribution to
+the Open Source Community by providing implementation of NTFS Read-Write
+driver for the Linux Kernel.
 
-> +int ntfs_readpage(struct file *file, struct page *page)
-> +{
-> +	int err;
-> +	struct address_space *mapping = page->mapping;
-> +	struct inode *inode = mapping->host;
-> +	struct ntfs_inode *ni = ntfs_i(inode);
-> +	u64 vbo = (u64)page->index << PAGE_SHIFT;
-> +	u64 valid;
-> +	struct ATTRIB *attr;
-> +	const char *data;
-> +	u32 data_size;
-> +
-[...]
-> +
-> +	if (is_compressed(ni)) {
-> +		if (PageUptodate(page)) {
-> +			unlock_page(page);
-> +			return 0;
-> +		}
+This is fully functional NTFS Read-Write driver. Current version works with
+NTFS(including v3.1) and normal/compressed/sparse files and supports journal replaying.
 
-You can skip this -- the readpage op won't be called for pages which
-are Uptodate.
+We plan to support this version after the codebase once merged, and add new
+features and fix bugs. For example, full journaling support over JBD will be
+added in later updates.
 
-> +	/* normal + sparse files */
-> +	err = mpage_readpage(page, ntfs_get_block);
-> +	if (err)
-> +		goto out;
+v2:
+ - patch splitted to chunks (file-wise)
+ - build issues fixed
+ - sparse and checkpatch.pl errors fixed
+ - NULL pointer dereference on mkfs.ntfs-formatted volume mount fixed
+ - cosmetics + code cleanup
 
-It would be nice to use iomap instead of mpage, but that's a big ask.
+v3:
+ - added acl, noatime, no_acs_rules, prealloc mount options
+ - added fiemap support
+ - fixed encodings support
+ - removed typedefs
+ - adapted Kernel-way logging mechanisms
+ - fixed typos and corner-case issues
 
-> +	valid = ni->i_valid;
-> +	if (vbo < valid && valid < vbo + PAGE_SIZE) {
-> +		if (PageLocked(page))
-> +			wait_on_page_bit(page, PG_locked);
-> +		if (PageError(page)) {
-> +			ntfs_inode_warn(inode, "file garbage at 0x%llx", valid);
-> +			goto out;
-> +		}
-> +		zero_user_segment(page, valid & (PAGE_SIZE - 1), PAGE_SIZE);
+v4:
+ - atomic_open() refactored
+ - code style updated
+ - bugfixes
 
-Nono, you can't zero data after the page has been unlocked.  You can
-handle this case in ntfs_get_block().  If the block is entirely beyond
-i_size, returning a hole will cause mpage_readpage() to zero it.  If it
-straddles i_size, you can either ensure that the on-media block contains
-zeroes after the EOF, or if you can't depend on that, you can read it
-in synchronously in your get_block() and then zero the tail and set the
-buffer Uptodate.  Not the most appetising solution, but what you have here
-is racy with the user writing to it after reading.
+v5:
+- nls/nls_alt mount options added
+- Unicode conversion fixes
+- Improved very fragmented files operations
+- logging cosmetics
+
+v6:
+- Security Descriptors processing changed
+  added system.ntfs_security xattr to set
+  SD
+- atomic_open() optimized
+- cosmetics
+
+v7:
+- Security Descriptors validity checks added (by Mark Harmstone)
+- atomic_open() fixed for the compressed file creation with directio
+  case
+- remount support
+- temporarily removed readahead usage
+- cosmetics
+
+v8:
+- Compressed files operations fixed
+
+v9:
+- Further cosmetics applied as suggested
+by Joe Perches
+
+v10:
+- operations with compressed/sparse files on very fragmented volumes improved
+- reduced memory consumption for above cases
+
+v11:
+- further compressed files optimizations: reads/writes are now skipping bufferization
+- journal wipe to the initial state optimized (bufferization is also skipped)
+- optimized run storage (re-packing cluster metainformation)
+- fixes based on Matthew Wilcox feedback to the v10
+- compressed/sparse/normal could be set for empty files with 'system.ntfs_attrib' xattr
+
+Konstantin Komarov (10):
+  fs/ntfs3: Add headers and misc files
+  fs/ntfs3: Add initialization of super block
+  fs/ntfs3: Add bitmap
+  fs/ntfs3: Add file operations and implementation
+  fs/ntfs3: Add attrib operations
+  fs/ntfs3: Add compression
+  fs/ntfs3: Add NTFS journal
+  fs/ntfs3: Add Kconfig, Makefile and doc
+  fs/ntfs3: Add NTFS3 in fs/Kconfig and fs/Makefile
+  fs/ntfs3: Add MAINTAINERS
+
+ Documentation/filesystems/ntfs3.rst |  112 +
+ MAINTAINERS                         |    7 +
+ fs/Kconfig                          |    1 +
+ fs/Makefile                         |    1 +
+ fs/ntfs3/Kconfig                    |   23 +
+ fs/ntfs3/Makefile                   |   11 +
+ fs/ntfs3/attrib.c                   | 1400 +++++++
+ fs/ntfs3/attrlist.c                 |  463 +++
+ fs/ntfs3/bitfunc.c                  |  135 +
+ fs/ntfs3/bitmap.c                   | 1504 ++++++++
+ fs/ntfs3/debug.h                    |   61 +
+ fs/ntfs3/dir.c                      |  610 ++++
+ fs/ntfs3/file.c                     | 1153 ++++++
+ fs/ntfs3/frecord.c                  | 2696 ++++++++++++++
+ fs/ntfs3/fslog.c                    | 5221 +++++++++++++++++++++++++++
+ fs/ntfs3/fsntfs.c                   | 2565 +++++++++++++
+ fs/ntfs3/index.c                    | 2665 ++++++++++++++
+ fs/ntfs3/inode.c                    | 2030 +++++++++++
+ fs/ntfs3/lznt.c                     |  452 +++
+ fs/ntfs3/namei.c                    |  576 +++
+ fs/ntfs3/ntfs.h                     | 1262 +++++++
+ fs/ntfs3/ntfs_fs.h                  |  988 +++++
+ fs/ntfs3/record.c                   |  613 ++++
+ fs/ntfs3/run.c                      | 1190 ++++++
+ fs/ntfs3/super.c                    | 1479 ++++++++
+ fs/ntfs3/upcase.c                   |   77 +
+ fs/ntfs3/xattr.c                    | 1069 ++++++
+ 27 files changed, 28364 insertions(+)
+ create mode 100644 Documentation/filesystems/ntfs3.rst
+ create mode 100644 fs/ntfs3/Kconfig
+ create mode 100644 fs/ntfs3/Makefile
+ create mode 100644 fs/ntfs3/attrib.c
+ create mode 100644 fs/ntfs3/attrlist.c
+ create mode 100644 fs/ntfs3/bitfunc.c
+ create mode 100644 fs/ntfs3/bitmap.c
+ create mode 100644 fs/ntfs3/debug.h
+ create mode 100644 fs/ntfs3/dir.c
+ create mode 100644 fs/ntfs3/file.c
+ create mode 100644 fs/ntfs3/frecord.c
+ create mode 100644 fs/ntfs3/fslog.c
+ create mode 100644 fs/ntfs3/fsntfs.c
+ create mode 100644 fs/ntfs3/index.c
+ create mode 100644 fs/ntfs3/inode.c
+ create mode 100644 fs/ntfs3/lznt.c
+ create mode 100644 fs/ntfs3/namei.c
+ create mode 100644 fs/ntfs3/ntfs.h
+ create mode 100644 fs/ntfs3/ntfs_fs.h
+ create mode 100644 fs/ntfs3/record.c
+ create mode 100644 fs/ntfs3/run.c
+ create mode 100644 fs/ntfs3/super.c
+ create mode 100644 fs/ntfs3/upcase.c
+ create mode 100644 fs/ntfs3/xattr.c
+
+-- 
+2.25.4
 
 
 
