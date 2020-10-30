@@ -2,77 +2,67 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F5902A1B6F
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CCEE2A1B6E
 	for <lists+linux-ntfs-dev@lfdr.de>; Sun,  1 Nov 2020 01:28:17 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
 	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1kZ1EC-0001uF-FE; Sun, 01 Nov 2020 00:28:12 +0000
+	id 1kZ1EC-0001ur-Jo; Sun, 01 Nov 2020 00:28:12 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <almaz.alexandrovich@paragon-software.com>)
- id 1kYVxw-00047E-L1
- for linux-ntfs-dev@lists.sourceforge.net; Fri, 30 Oct 2020 15:05:20 +0000
+ (envelope-from <pali@kernel.org>) id 1kYWH6-0004U8-3x
+ for linux-ntfs-dev@lists.sourceforge.net; Fri, 30 Oct 2020 15:25:08 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
- :References:In-Reply-To:Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=ryC1O+KjPCuBYVk17xa91BOxLPmINLD4FPXxdPXSapU=; b=iJ2MR6Xk4oA7EKlR9ghh+6LZuc
- ypksM4+PfJxEeovXcm2VrG62YrbF+PmyfFd3XyIuDAopwLpZZk0k5Df035e5YOFS2149AEuIsVRbo
- xFf1cgK211YBoMvKa7I3ZIbWvaho1o1vBufTWwebsNyxgT1pYY/HLDis4CkNdntCikiY=;
+ bh=T2KvBAlC4JJIyi5sSwStQYRy5LCf5duxKL2gGp64a+g=; b=CqcK0kPikIT3NDWRvewEFos+q8
+ v1rU3sODhM+8YQURQ6k5QdNIxxyEuz+wO4WNx5QqlyNlJ08ni1t8vjwFSvVq4sx8lP047pQHSzbZs
+ g352auf14k3b280HFT4Bj/NZIfjRXvyVbl/jLbUvkvxO+ePM66K5lH40BcbAqotpAF3o=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:Content-ID:
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=ryC1O+KjPCuBYVk17xa91BOxLPmINLD4FPXxdPXSapU=; b=PNhcwUuNxswskIhpUYwiqi1xnx
- layAaCFd/lw45oME+M71dZ5FPZKvjWHS958Kduu3M2UbRreaGBuQ5OElHMkZRE1GwLcjA0mv5k4Rj
- 3KldhzseP7Zhm8EJL9qcwFv6Be7gIdrEpzsca8tWEYntloj2Ro2XVe5UIF+MGOYcd9to=;
-Received: from relayfre-01.paragon-software.com ([176.12.100.13])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ bh=T2KvBAlC4JJIyi5sSwStQYRy5LCf5duxKL2gGp64a+g=; b=WeDRaPX15XF52Ds4S8LoAM5yze
+ 9SB+rNIqxSugTs/Rpw2/EhmGyyYpN3MDIFJqDtbmETK61I28hPTl2A7wQHNPI5MsRr03x5y0Jg+f9
+ M+7PbBo/f9K5E1l75RSqIGg1+uhROJQ0/qiMbDuqSNe+hAF+nKa8vB5yU2kz5iMxwxm4=;
+Received: from mail.kernel.org ([198.145.29.99])
+ by sfi-mx-3.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1kYVxt-002h3V-Fo
- for linux-ntfs-dev@lists.sourceforge.net; Fri, 30 Oct 2020 15:05:20 +0000
-Received: from dlg2.mail.paragon-software.com
- (vdlg-exch-02.paragon-software.com [172.30.1.105])
- by relayfre-01.paragon-software.com (Postfix) with ESMTPS id D3A9D1D5D;
- Fri, 30 Oct 2020 18:04:48 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=paragon-software.com; s=mail; t=1604070288;
- bh=ryC1O+KjPCuBYVk17xa91BOxLPmINLD4FPXxdPXSapU=;
- h=From:To:CC:Subject:Date:In-Reply-To:References;
- b=Zc3nck+995vW2Gvs7vsjZu9l4b27yFzD+ElfqGQ+RIfr4k8knZ6kfd1/6hgF7i9+a
- urI15AK6Cyy/UNe6myqM8HA94eONKtw+MV6pX0t2vmdPet+/DVMC1zZiXpb+vz4e0G
- 7/myq1ulhEYckwFFZzBSWcRwHrYP22zSiK7zaJ4I=
-Received: from fsd-lkpg.ufsd.paragon-software.com (172.30.114.105) by
- vdlg-exch-02.paragon-software.com (172.30.1.105) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1847.3; Fri, 30 Oct 2020 18:04:48 +0300
-From: Konstantin Komarov <almaz.alexandrovich@paragon-software.com>
-To: <linux-fsdevel@vger.kernel.org>
-Date: Fri, 30 Oct 2020 18:02:38 +0300
-Message-ID: <20201030150239.3957156-10-almaz.alexandrovich@paragon-software.com>
-X-Mailer: git-send-email 2.25.4
-In-Reply-To: <20201030150239.3957156-1-almaz.alexandrovich@paragon-software.com>
+ id 1kYWGw-00D6hn-Jw
+ for linux-ntfs-dev@lists.sourceforge.net; Fri, 30 Oct 2020 15:25:08 +0000
+Received: from pali.im (pali.im [31.31.79.79])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id E707820725;
+ Fri, 30 Oct 2020 15:24:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1604071493;
+ bh=T2KvBAlC4JJIyi5sSwStQYRy5LCf5duxKL2gGp64a+g=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=PztylyBAKxmttAPFkdF06ceMHW1ttTYxC1mWX3RWyEfn+YlSDPFwl4UDGKOtVkzw1
+ y/v9iPcEQt+r/UmjmcWTT8nZ3jTBzdOPXzu2vtTBiEf/WqPTCR3uJoVQRqtK+Icjcs
+ fedZmAR80qlTgfOmiDSYpN9WQOd2NJUKVlTeHULk=
+Received: by pali.im (Postfix)
+ id BA0C586D; Fri, 30 Oct 2020 16:24:50 +0100 (CET)
+Date: Fri, 30 Oct 2020 16:24:50 +0100
+From: Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To: Konstantin Komarov <almaz.alexandrovich@paragon-software.com>
+Message-ID: <20201030152450.77mtzkxjove36qfd@pali>
 References: <20201030150239.3957156-1-almaz.alexandrovich@paragon-software.com>
 MIME-Version: 1.0
-X-Originating-IP: [172.30.114.105]
-X-ClientProxiedBy: vdlg-exch-02.paragon-software.com (172.30.1.105) To
- vdlg-exch-02.paragon-software.com (172.30.1.105)
+Content-Disposition: inline
+In-Reply-To: <20201030150239.3957156-1-almaz.alexandrovich@paragon-software.com>
+User-Agent: NeoMutt/20180716
 X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
- See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: paragon-software.com]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [176.12.100.13 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
@@ -80,10 +70,11 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
-X-Headers-End: 1kYVxt-002h3V-Fo
-X-Mailman-Approved-At: Sun, 01 Nov 2020 00:28:08 +0000
-Subject: [Linux-NTFS-Dev] [PATCH v11 09/10] fs/ntfs3: Add NTFS3 in
- fs/Kconfig and fs/Makefile
+ -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1kYWGw-00D6hn-Jw
+X-Mailman-Approved-At: Sun, 01 Nov 2020 00:28:09 +0000
+Subject: Re: [Linux-NTFS-Dev] [PATCH v11 00/10] NTFS read-write driver GPL
+ implementation by Paragon Software
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -97,49 +88,43 @@ List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
 Cc: nborisov@suse.com, linux-kernel@vger.kernel.org, rdunlap@infradead.org,
- aaptel@suse.com, willy@infradead.org, dsterba@suse.cz,
- Konstantin Komarov <almaz.alexandrovich@paragon-software.com>,
- linux-ntfs-dev@lists.sourceforge.net, viro@zeniv.linux.org.uk, joe@perches.com,
- pali@kernel.org, mark@harmstone.com, anton@tuxera.com
+ aaptel@suse.com, willy@infradead.org, dsterba@suse.cz, joe@perches.com,
+ viro@zeniv.linux.org.uk, linux-fsdevel@vger.kernel.org,
+ linux-ntfs-dev@lists.sourceforge.net, mark@harmstone.com, anton@tuxera.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-This adds NTFS3 in fs/Kconfig and fs/Makefile
+Hello and thanks for update!
 
-Signed-off-by: Konstantin Komarov <almaz.alexandrovich@paragon-software.com>
----
- fs/Kconfig  | 1 +
- fs/Makefile | 1 +
- 2 files changed, 2 insertions(+)
+I have just two comments for the last v11 version.
 
-diff --git a/fs/Kconfig b/fs/Kconfig
-index aa4c12282301..eae96d55ab67 100644
---- a/fs/Kconfig
-+++ b/fs/Kconfig
-@@ -145,6 +145,7 @@ menu "DOS/FAT/EXFAT/NT Filesystems"
- source "fs/fat/Kconfig"
- source "fs/exfat/Kconfig"
- source "fs/ntfs/Kconfig"
-+source "fs/ntfs3/Kconfig"
- 
- endmenu
- endif # BLOCK
-diff --git a/fs/Makefile b/fs/Makefile
-index 999d1a23f036..4f5242cdaee2 100644
---- a/fs/Makefile
-+++ b/fs/Makefile
-@@ -100,6 +100,7 @@ obj-$(CONFIG_SYSV_FS)		+= sysv/
- obj-$(CONFIG_CIFS)		+= cifs/
- obj-$(CONFIG_HPFS_FS)		+= hpfs/
- obj-$(CONFIG_NTFS_FS)		+= ntfs/
-+obj-$(CONFIG_NTFS3_FS)		+= ntfs3/
- obj-$(CONFIG_UFS_FS)		+= ufs/
- obj-$(CONFIG_EFS_FS)		+= efs/
- obj-$(CONFIG_JFFS2_FS)		+= jffs2/
--- 
-2.25.4
+I really do not like nls_alt mount option and I do not think we should
+merge this mount option into ntfs kernel driver. Details I described in:
+https://lore.kernel.org/linux-fsdevel/20201009154734.andv4es3azkkskm5@pali/
 
+tl;dr it is not systematic solution and is incompatible with existing
+in-kernel ntfs driver, also incompatible with in-kernel vfat, udf and
+ext4 (with UNICODE support) drivers. In my opinion, all kernel fs
+drivers which deals with UNICODE should handle it in similar way.
+
+It would be really bad if userspace application need to behave
+differently for this new ntfs driver and differently for all other
+UNICODE drivers.
+
+Second comment is simplification of usage nls_load() with UTF-8 parameter
+which I described in older email:
+https://lore.kernel.org/linux-fsdevel/948ac894450d494ea15496c2e5b8c906@paragon-software.com/
+
+You wrote that you have applied it, but seems it was lost (maybe during
+rebase?) as it is not present in the last v11 version.
+
+I suggested to not use nls_load() with UTF-8 at all. Your version of
+ntfs driver does not use kernel's nls utf8 module for UTF-8 support, so
+trying to load it should be avoided. Also kernel can be compiled without
+utf8 nls module (which is moreover broken) and with my above suggestion,
+ntfs driver would work correctly. Without that suggestion, mounting
+would fail.
 
 
 _______________________________________________
