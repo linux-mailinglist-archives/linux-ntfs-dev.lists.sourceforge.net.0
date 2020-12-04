@@ -2,26 +2,26 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC2392D25A3
-	for <lists+linux-ntfs-dev@lfdr.de>; Tue,  8 Dec 2020 09:19:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A8AA2D25A7
+	for <lists+linux-ntfs-dev@lfdr.de>; Tue,  8 Dec 2020 09:19:28 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1kmYDU-0002yq-SG; Tue, 08 Dec 2020 08:19:24 +0000
+	id 1kmYDU-0002zo-Uu; Tue, 08 Dec 2020 08:19:24 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <ebiggers@kernel.org>) id 1klFyn-0000sU-Iw
- for linux-ntfs-dev@lists.sourceforge.net; Fri, 04 Dec 2020 18:38:53 +0000
+ (envelope-from <ebiggers@kernel.org>) id 1klG1e-0004b3-6p
+ for linux-ntfs-dev@lists.sourceforge.net; Fri, 04 Dec 2020 18:41:50 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
  Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=UghJh+j8A/ECTKYdJRAJzY0oDZ1rKvFxRdPj37nT6s4=; b=FZqtmND6vTyzrH7F2h20YLo5ng
- /aW6FdemmO6To9/S1FR0IoEbm4uZ8qSbYKTOLqJrxW/R4ZyVLWDAmX75SiM247FWSTtYdObFdvNv2
- kGIPqBE0oU3bbZ/i1+2SorEcIHNYO3hLCaZIUYSE7nYUAXB3RR/WfKW546S8pGzmJWxc=;
+ bh=4ql9NPaldxjl9adE/3KU6n0IibpC8Bx0ap5jU3lsrHI=; b=SJRnzUy3SOtcpNj1Q5cEFTlatq
+ 4eAoFA5XQcm1d9jiKiRU7U86dIfVlsQsuN4Km3hC4o6y+Yw9x7Alw78oKp65qLxJQUOwYkeaiv4fb
+ 1VOwZDY1FwB8W/8GiFAIDJFWN8PKJbURDdkuM8kHIX0kyYZsizZpEKogMFsyyc1Es4Z4=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
@@ -29,33 +29,33 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=UghJh+j8A/ECTKYdJRAJzY0oDZ1rKvFxRdPj37nT6s4=; b=ThpTsoig+8dDZKUvetF0DABb4B
- eOD6syzOrlukyRkWEUJK0OI0RTB7c02Piyou7iAD8cYinYiX2+BiinNZFFQL/BOBdhRHoyis6xVX6
- 718v3xrwtJwzTTDTCYFaMu3/Tc7fIb04v9fFYk7JhlkSO8qHDBzHMGOD2UjjMfi+mQQk=;
+ bh=4ql9NPaldxjl9adE/3KU6n0IibpC8Bx0ap5jU3lsrHI=; b=ANypnWirEzXqu2/3iUzNXS7xsL
+ jpO8KH3ECQxVatspixtARLgFNvH9v6vXi1Zz/tfUcOa6Dy/qxtorwto2DOEoLN3lU7UuRzQby126h
+ HRnH0nm9Jzw7Oj1EcssATk4Zuxc4Kzy/zk5sgICepV0BnF39t1uw7HxHoegAf0vPspCg=;
 Received: from mail.kernel.org ([198.145.29.99])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-3.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1klFyf-00FcPm-RG
- for linux-ntfs-dev@lists.sourceforge.net; Fri, 04 Dec 2020 18:38:53 +0000
-Date: Fri, 4 Dec 2020 10:38:37 -0800
+ id 1klG1U-0026Lq-Il
+ for linux-ntfs-dev@lists.sourceforge.net; Fri, 04 Dec 2020 18:41:44 +0000
+Date: Fri, 4 Dec 2020 10:41:32 -0800
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1607107120;
- bh=D0VwnsQjiZd2p/qMGY9WV/AY29U7e8/pE7AugozrGvQ=;
+ s=k20201202; t=1607107295;
+ bh=25oeJh7b6yTNs1uUjAz7FURgo0slNPpUweE8Jq1EW2U=;
  h=From:To:Cc:Subject:References:In-Reply-To:From;
- b=FmeSO1dCGWCpOlO8wpniiJ1ANCDVVBGa97IucG4eL4WhlMp8CmgYdlvh/B0h3RbWN
- zY/Q0e8MER7rAwEqxjQ84cuX/3eSB9iGpHVL1LP7Uj9U0uFpsWSfk0nFa4M6Ku1o7g
- g7ExD/x89MWdXT7bfWxkVkM3Hp4O2oosMuTHNIDGwbRiwgRg9tOGUu4BFK8hyoOybZ
- NVkuV3iWU2z6BfbmyrtOxS/4MlNe3VKZXwlv52ELqNPHOI0T5tXpoUeW/00IkZwIMi
- NjnYti7V++dHVfyRC5HMP2Z8B+2BciuONki7MZeY9Xk22l9Khj/OyJx92ZR5i0ETuN
- /Nqc1aMyvuw2A==
+ b=ZQJGYf8Sv9pjnoC8grlmknSQ7fK2DeQW3ZN4xj/sHziOSYiJYQgvgmY7naIbepwhj
+ 58MNntm9lXg1LjFRiUzFe3x5wvBUaZAyJ5BdbApGZyEe7dSwuffMMkO7YtshfTpdvr
+ pRIXYQ/TVzPZwEz7drZlSGXoYQ+dBTbR7by6VGLscHXBsjpi/rVkRMp/Hf6ZjejDDY
+ Ajqv47VBbzRMdg0zEV1xaZclxA4/apnHKrA9kkxTbtZfGiY738obJt0Jy9uuPW0s0k
+ oMz1ZYOrs6PtW4cDPXi4sHJuVqePMCfTkdzPgaL6ZyCkRLabb2lxkS4ZwTE2Qtf1ed
+ UA1xt6u5fWz/w==
 From: Eric Biggers <ebiggers@kernel.org>
 To: Konstantin Komarov <almaz.alexandrovich@paragon-software.com>
-Message-ID: <X8qCLXJOit0M+4X7@sol.localdomain>
+Message-ID: <X8qC3NaNv1kmCO4c@sol.localdomain>
 References: <20201204154600.1546096-1-almaz.alexandrovich@paragon-software.com>
- <20201204154600.1546096-7-almaz.alexandrovich@paragon-software.com>
+ <20201204154600.1546096-5-almaz.alexandrovich@paragon-software.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20201204154600.1546096-7-almaz.alexandrovich@paragon-software.com>
+In-Reply-To: <20201204154600.1546096-5-almaz.alexandrovich@paragon-software.com>
 X-Spam-Score: -1.6 (-)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
@@ -67,9 +67,10 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
  -1.5 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1klFyf-00FcPm-RG
+X-Headers-End: 1klG1U-0026Lq-Il
 X-Mailman-Approved-At: Tue, 08 Dec 2020 08:19:01 +0000
-Subject: Re: [Linux-NTFS-Dev] [PATCH v14 06/10] fs/ntfs3: Add compression
+Subject: Re: [Linux-NTFS-Dev] [PATCH v14 04/10] fs/ntfs3: Add file
+ operations and implementation
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -91,51 +92,78 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-On Fri, Dec 04, 2020 at 06:45:56PM +0300, Konstantin Komarov wrote:
-> This adds compression
-> 
-> Signed-off-by: Konstantin Komarov <almaz.alexandrovich@paragon-software.com>
-> ---
->  fs/ntfs3/lib/common_defs.h       | 196 +++++++++++
->  fs/ntfs3/lib/decompress_common.c | 314 +++++++++++++++++
->  fs/ntfs3/lib/decompress_common.h | 558 +++++++++++++++++++++++++++++++
->  fs/ntfs3/lib/lzx_common.c        | 204 +++++++++++
->  fs/ntfs3/lib/lzx_common.h        |  31 ++
->  fs/ntfs3/lib/lzx_constants.h     | 113 +++++++
->  fs/ntfs3/lib/lzx_decompress.c    | 553 ++++++++++++++++++++++++++++++
->  fs/ntfs3/lib/xpress_constants.h  |  23 ++
->  fs/ntfs3/lib/xpress_decompress.c | 165 +++++++++
->  fs/ntfs3/lznt.c                  | 452 +++++++++++++++++++++++++
->  10 files changed, 2609 insertions(+)
->  create mode 100644 fs/ntfs3/lib/common_defs.h
->  create mode 100644 fs/ntfs3/lib/decompress_common.c
->  create mode 100644 fs/ntfs3/lib/decompress_common.h
->  create mode 100644 fs/ntfs3/lib/lzx_common.c
->  create mode 100644 fs/ntfs3/lib/lzx_common.h
->  create mode 100644 fs/ntfs3/lib/lzx_constants.h
->  create mode 100644 fs/ntfs3/lib/lzx_decompress.c
->  create mode 100644 fs/ntfs3/lib/xpress_constants.h
->  create mode 100644 fs/ntfs3/lib/xpress_decompress.c
->  create mode 100644 fs/ntfs3/lznt.c
+On Fri, Dec 04, 2020 at 06:45:54PM +0300, Konstantin Komarov wrote:
+> +/* external compression lzx/xpress */
+> +static int decompress_lzx_xpress(struct ntfs_sb_info *sbi, const char *cmpr,
+> +				 size_t cmpr_size, void *unc, size_t unc_size,
+> +				 u32 frame_size)
+> +{
+> +	int err;
+> +	void *ctx;
+> +
+> +	if (cmpr_size == unc_size) {
+> +		/* frame not compressed */
+> +		memcpy(unc, cmpr, unc_size);
+> +		return 0;
+> +	}
+> +
+> +	err = 0;
+> +	ctx = NULL;
+> +	spin_lock(&sbi->compress.lock);
+> +	if (frame_size == 0x8000) {
+> +		/* LZX: frame compressed */
+> +		if (!sbi->compress.lzx) {
+> +			/* Lazy initialize lzx decompress context */
+> +			spin_unlock(&sbi->compress.lock);
+> +			ctx = lzx_allocate_decompressor(0x8000);
+> +			if (!ctx)
+> +				return -ENOMEM;
+> +			if (IS_ERR(ctx)) {
+> +				/* should never failed */
+> +				err = PTR_ERR(ctx);
+> +				goto out;
+> +			}
+> +
+> +			spin_lock(&sbi->compress.lock);
+> +			if (!sbi->compress.lzx) {
+> +				sbi->compress.lzx = ctx;
+> +				ctx = NULL;
+> +			}
+> +		}
+> +
+> +		if (lzx_decompress(sbi->compress.lzx, cmpr, cmpr_size, unc,
+> +				   unc_size)) {
+> +			err = -EINVAL;
+> +		}
+> +	} else {
+> +		/* XPRESS: frame compressed */
+> +		if (!sbi->compress.xpress) {
+> +			/* Lazy initialize xpress decompress context */
+> +			spin_unlock(&sbi->compress.lock);
+> +			ctx = xpress_allocate_decompressor();
+> +			if (!ctx)
+> +				return -ENOMEM;
+> +
+> +			spin_lock(&sbi->compress.lock);
+> +			if (!sbi->compress.xpress) {
+> +				sbi->compress.xpress = ctx;
+> +				ctx = NULL;
+> +			}
+> +		}
+> +
+> +		if (xpress_decompress(sbi->compress.xpress, cmpr, cmpr_size,
+> +				      unc, unc_size)) {
+> +			err = -EINVAL;
+> +		}
+> +	}
+> +	spin_unlock(&sbi->compress.lock);
+> +out:
+> +	ntfs_free(ctx);
+> +	return err;
+> +}
 
-This really could use a much better commit message.  Including mentioning where
-the LZX and XPRESS decompression code came from
-(https://github.com/ebiggers/ntfs-3g-system-compression).
-
-Also note you've marked the files as "SPDX-License-Identifier: GPL-2.0",
-but they really are "SPDX-License-Identifier: GPL-2.0-or-later".
-
-Also I still think you should consider using the simpler version from
-ntfs-3g-system-compression commit 3ddd227ee8e3, which I had originally intended
-to be included in NTFS-3G itself.  That version was fewer lines of code and
-fewer files, as it was simplified for decompression-only.  The latest version
-(the one you're using) is shared with a project that also implements compression
-(so that I can more easily maintain both projects), so it's more complex than
-needed for decompression-only support.  But in the kernel context it may make
-sense to go with a simpler version.  There are a few performance optimizations
-you'd miss by going with the older version, but they weren't too significant,
-and probably you don't need to squeeze out every bit of performance possible
-when reading XPRESS and LZX-compressed files in this context?
+Decompression is a somewhat heavyweight operation.  Not the type of thing that
+should be done while holding a spin lock.
 
 - Eric
 
