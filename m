@@ -2,92 +2,74 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id D50822D510D
-	for <lists+linux-ntfs-dev@lfdr.de>; Thu, 10 Dec 2020 03:52:14 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 913D72D5189
+	for <lists+linux-ntfs-dev@lfdr.de>; Thu, 10 Dec 2020 04:41:27 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
+	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1knC3u-0004jl-BM; Thu, 10 Dec 2020 02:52:10 +0000
+	id 1knCpY-0002zj-Im; Thu, 10 Dec 2020 03:41:24 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <anton@tuxera.com>) id 1knC3s-0004jX-SM
- for linux-ntfs-dev@lists.sourceforge.net; Thu, 10 Dec 2020 02:52:08 +0000
+ (envelope-from <akpm@linux-foundation.org>) id 1knC5v-0006Kn-49
+ for linux-ntfs-dev@lists.sourceforge.net; Thu, 10 Dec 2020 02:54:15 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=MIME-Version:Content-Transfer-Encoding:Content-ID:
- Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From:Sender
- :Reply-To:Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To
- :Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:Mime-Version
+ :References:In-Reply-To:Message-Id:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=X6xvtSTEc4qIertH9FRc1VbG71yarxarVAxvDTwRKow=; b=j0GWHQ2BNOtJMubpGrpSWdC8ez
- 7kPAe4Xgugy83dkf78DfP40XP+JZCSu2JwIrsBL6CQ2ytKlDnMvg0QggwOkR7pgjwYyF8akNNEOBZ
- nup2mn4ps6P8om7v9TT77FAvGbN03nM9Sxf5WeXt+iZwgTD+QWU9YH9rxMj72xTdw29o=;
+ bh=MgsQAo7ptWV4XpZrwWbYZLdNr5VF7O9yJnEK+K9ay0E=; b=mm5jKsU2tQDexPyBf923kGBajk
+ mxh4Fdt5NkehQE8+xf6nYL1H5JMOqnEtUOcqkGonr8Eq3JrRvhvKClUuhqaWfzKPt6k7wkAM7v23t
+ FORu2OzUZDY6b+yYtFtZKX9bslxLzHfUKpXk7mbD1bl/gne9jIk7f7dLewgvQyqV/32s=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:
- In-Reply-To:References:Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:
+ h=Content-Transfer-Encoding:Content-Type:Mime-Version:References:
+ In-Reply-To:Message-Id:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=X6xvtSTEc4qIertH9FRc1VbG71yarxarVAxvDTwRKow=; b=FT8hVlawbGeKUe31J9va0Ip/QB
- TxciRKVLuQ3YTnLNUtV+MGbKsq8Xl/9BnedEy8nS5htQxdJQmB1v61wAV0ZSINMVKOwtbUm6F1asi
- N6LlDloY8/j7SUywAqZRk12EQj+9OHAFC146e/GdX/bhSIqd9k40t4Wr+BUBbQ5u7ZOM=;
-Received: from mgw-01.mpynet.fi ([82.197.21.90])
+ bh=MgsQAo7ptWV4XpZrwWbYZLdNr5VF7O9yJnEK+K9ay0E=; b=e6kj+zcSf8hrIISJiS49uD5T8j
+ 3OzWQqbhetT+1o4nh3UiIYMMhRfe7FhoVblFQTr9vZ96Be4oxDx7llKBbDIpUxwARPjmVRhTtSdmd
+ qfQMe5CJs1mj/wSLL01Uu4wp4e/QhCKJ1cbVUTvXg1XjOlrJGzDG/aoD9DLCxkyinm7U=;
+Received: from mail.kernel.org ([198.145.29.99])
  by sfi-mx-3.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1knC3k-008VBD-2l
- for linux-ntfs-dev@lists.sourceforge.net; Thu, 10 Dec 2020 02:52:08 +0000
-Received: from pps.filterd (mgw-01.mpynet.fi [127.0.0.1])
- by mgw-01.mpynet.fi (8.16.0.42/8.16.0.42) with SMTP id 0BA2al1U015078;
- Thu, 10 Dec 2020 04:51:18 +0200
-Received: from ex13.tuxera.com (ex13.tuxera.com [178.16.184.72])
- by mgw-01.mpynet.fi with ESMTP id 35b9r801es-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
- Thu, 10 Dec 2020 04:51:18 +0200
-Received: from tuxera-exch.ad.tuxera.com (10.20.48.11) by
- tuxera-exch.ad.tuxera.com (10.20.48.11) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 10 Dec 2020 04:51:17 +0200
-Received: from tuxera-exch.ad.tuxera.com ([fe80::552a:f9f0:68c3:d789]) by
- tuxera-exch.ad.tuxera.com ([fe80::552a:f9f0:68c3:d789%12]) with mapi id
- 15.00.1497.006; Thu, 10 Dec 2020 04:51:17 +0200
-From: Anton Altaparmakov <anton@tuxera.com>
-To: Andrew Morton <akpm@linux-foundation.org>
-Thread-Topic: [PATCH -next] fs/ntfs: fix set but not used variable
- 'log_page_mask'
-Thread-Index: AQHV+CW2KXvc7M5VpE2Aohqtho6jyqnuZSUAgALDiICAAAQoAA==
-Date: Thu, 10 Dec 2020 02:51:17 +0000
-Message-ID: <C1D18C59-3E1B-4825-881C-B7AE6FACF4D7@tuxera.com>
+ id 1knC5k-008VFt-TA
+ for linux-ntfs-dev@lists.sourceforge.net; Thu, 10 Dec 2020 02:54:15 +0000
+Date: Wed, 9 Dec 2020 18:36:23 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-foundation.org;
+ s=korg; t=1607567785;
+ bh=XvfNSBjtRQDwTQaWQYMVMSpT8H8nutp1mjAcQR7vP6Q=;
+ h=From:To:Cc:Subject:In-Reply-To:References:From;
+ b=Z9i631HDe1R5jmoeOhXA3++25nKEC+BRYA5F0FDi7zEdV8m6hVveolSt2t+AYiDeb
+ BrIfrbaAFU1attLpFoEnDkLbBp9A5TZCZpr0T6wTmAKOx7vq23trf36rOisG3LCu4g
+ Iiw2tgeTCsbq69cGwJD84zvIoGWxj+a2L59ElcS4=
+From: Andrew Morton <akpm@linux-foundation.org>
+To: Anton Altaparmakov <anton@tuxera.com>
+Message-Id: <20201209183623.b26e90de3d0aa92a72010ff0@linux-foundation.org>
+In-Reply-To: <94ED375C-C57C-464B-A1CA-BFB1EEF71BB2@tuxera.com>
 References: <20200312041353.19877-1-zhengzengkai@huawei.com>
  <94ED375C-C57C-464B-A1CA-BFB1EEF71BB2@tuxera.com>
- <20201209183623.b26e90de3d0aa92a72010ff0@linux-foundation.org>
-In-Reply-To: <20201209183623.b26e90de3d0aa92a72010ff0@linux-foundation.org>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [86.134.252.216]
-Content-ID: <3C28FABD37D07B4CA17E13423600CA60@ex13.tuxera.com>
-MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.343, 18.0.737
- definitions=2020-12-09_19:2020-12-09,
- 2020-12-09 signatures=0
-X-Proofpoint-Spam-Details: rule=mpy_notspam policy=mpy score=0 spamscore=0
- bulkscore=0 suspectscore=0
- malwarescore=0 mlxlogscore=999 phishscore=0 mlxscore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
- definitions=main-2012100018
-X-Spam-Score: 0.0 (/)
+X-Mailer: Sylpheed 3.5.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: linux-foundation.org]
+ for more information. [URIs: tuxera.com]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
-X-Headers-End: 1knC3k-008VBD-2l
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+ -0.0 NICE_REPLY_A           Looks like a legit reply (A)
+X-Headers-End: 1knC5k-008VFt-TA
+X-Mailman-Approved-At: Thu, 10 Dec 2020 03:41:23 +0000
 Subject: Re: [Linux-NTFS-Dev] [PATCH -next] fs/ntfs: fix set but not used
  variable 'log_page_mask'
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
@@ -109,45 +91,26 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-Hi Andrew,
+On Tue, 8 Dec 2020 08:24:02 +0000 Anton Altaparmakov <anton@tuxera.com> wrote:
 
-Ah, oops!  Thank you and apologies.  Quite right the alternative patch was even better.  No need to apply this patch after all...
+> Can you please apply this?
+>
+> ...
+>
+> > --- a/fs/ntfs/logfile.c
+> > +++ b/fs/ntfs/logfile.c
+> > @@ -507,7 +507,7 @@ bool ntfs_check_logfile(struct inode *log_vi, RESTART_PAGE_HEADER **rp)
+> > 	 * optimize log_page_size and log_page_bits into constants.
+> > 	 */
+> > 	log_page_bits = ntfs_ffs(log_page_size) - 1;
+> > -	size &= ~(s64)(log_page_size - 1);
+> > +	size &= ~(s64)(log_page_mask);
+> > 	/*
+> > 	 * Ensure the log file is big enough to store at least the two restart
+> > 	 * pages and the minimum number of log record pages.
 
-Zheng, the log_page_mask variable was removed altogether so your patch no longer makes sense.
-
-Best regards,
-
-	Anton
-
-> On 10 Dec 2020, at 02:36, Andrew Morton <akpm@linux-foundation.org> wrote:
-> 
-> On Tue, 8 Dec 2020 08:24:02 +0000 Anton Altaparmakov <anton@tuxera.com> wrote:
-> 
->> Can you please apply this?
->> 
->> ...
->> 
->>> --- a/fs/ntfs/logfile.c
->>> +++ b/fs/ntfs/logfile.c
->>> @@ -507,7 +507,7 @@ bool ntfs_check_logfile(struct inode *log_vi, RESTART_PAGE_HEADER **rp)
->>> 	 * optimize log_page_size and log_page_bits into constants.
->>> 	 */
->>> 	log_page_bits = ntfs_ffs(log_page_size) - 1;
->>> -	size &= ~(s64)(log_page_size - 1);
->>> +	size &= ~(s64)(log_page_mask);
->>> 	/*
->>> 	 * Ensure the log file is big enough to store at least the two restart
->>> 	 * pages and the minimum number of log record pages.
-> 
-> https://lore.kernel.org/lkml/1604821092-54631-1-git-send-email-alex.shi@linux.alibaba.com/
-> addressed this?
-> 
-
-
--- 
-Anton Altaparmakov <anton at tuxera.com> (replace at with @)
-Lead in File System Development, Tuxera Inc., http://www.tuxera.com/
-Linux NTFS maintainer
+https://lore.kernel.org/lkml/1604821092-54631-1-git-send-email-alex.shi@linux.alibaba.com/
+addressed this?
 
 
 
