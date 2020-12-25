@@ -2,89 +2,94 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27D672DEDF6
-	for <lists+linux-ntfs-dev@lfdr.de>; Sat, 19 Dec 2020 10:22:59 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 49C442E33B0
+	for <lists+linux-ntfs-dev@lfdr.de>; Mon, 28 Dec 2020 03:45:41 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:Cc:
+	Reply-To:From:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Subject:MIME-Version:Message-ID:Date:To:Sender:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=sfpr924wxhjUOn1kUYfZH1CsR7SpfdnY3JwVWDDqfbY=; b=b5F7EUEuXQGwaCioP8dnDzgEM1
+	6QGOWD1h4tMFeCvw1EbSMQBH+C1GOpdRxO1WaGU3XtLwZrcEjrIg9O3GBlZ39DrtsLit/f9QjXOIA
+	sFuoMsSn+1gNsSXP/kZpvPAMO9rJpbmGM/iH/HgG/gPotQI2vK/nbnBb9VKrHXsxyqWQ=;
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1kqYRz-0000SN-OR; Sat, 19 Dec 2020 09:22:55 +0000
+	id 1ktiXQ-000290-OJ; Mon, 28 Dec 2020 02:45:36 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <jhubbard@nvidia.com>)
- id 1kqWIK-0001Ql-C5; Sat, 19 Dec 2020 07:04:48 +0000
+ (envelope-from <almaz.alexandrovich@paragon-software.com>)
+ id 1ksnXP-0002DD-5y
+ for linux-ntfs-dev@lists.sourceforge.net; Fri, 25 Dec 2020 13:53:47 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- MIME-Version:Date:Message-ID:From:References:CC:To:Subject:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
+ :Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=A9fBx0IN5qsLyTEaO2K4aLwibDOVSe+bKLpimCocLwU=; b=hN2rWzhLTmSiU0pmEJfjRboA2n
- 8cISS3mcaG89HfqfFrdp/BrfIA7I2+KGMC7x1anJHMW4P8zqBlNAHl1a2+S/gs0aK5ncHEcHlTnNQ
- natEH1wFcvte5j5fH1d+d3BprGHcKTeaQcLRq9OkCP7HC1oN+DI7cU5AgeuEDlHmVuNs=;
+ bh=HyBjUVa16LhSsRtSrs4cXtCZuhVAFBv1MGKJTI7apxk=; b=HxxunerDtmiVBWZ+p5CdKYXS1Z
+ Q2LcFvpCdUiflxJiYBljf10FKC9SDfC5fH98r9FkCAbRy1DXtzDSqcZg5JYlOQm5Eqq9sY8OzIXfQ
+ xjAFhAAvrhECuTm7i+9unD70PQ8EFTUxJYB4sa66xe/9OCCV/mdD17yptvoa4DS46mUU=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:Date:
- Message-ID:From:References:CC:To:Subject:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=A9fBx0IN5qsLyTEaO2K4aLwibDOVSe+bKLpimCocLwU=; b=NVBvvA+8gkvG9aazkzcQ6wphzl
- P03EskfqvWoj2bqC5Nbccw6dThLlEfd0tNPzdBoYLuyMp6fp5p2f32KL5uU4lHwuP+v8vrIhXhlhi
- U+B3xPq/nz9xycRf9F+J7iyQhC5rjcxKzdSVVZvv+hBZD5jGlhOgpbji7IwRABCsdXts=;
-Received: from hqnvemgate25.nvidia.com ([216.228.121.64])
+ h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:
+ Subject:CC:To:From:Sender:Reply-To:Content-ID:Content-Description:Resent-Date
+ :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=HyBjUVa16LhSsRtSrs4cXtCZuhVAFBv1MGKJTI7apxk=; b=N
+ +VpAtKg8AA37UuJxx1jDUrHUbCe2/aFUqGy85CE7SHpktATpY02vBnA2S8N/D1Gdn9n0SBZN6QzS0
+ 4anko1E0I2q3P5xae7RIG8bcQozoCizzjv9Led9nHiHBTRcIcqSbuLzcQ8wFUoerup9Q/y7fLUk5q
+ AkLEzcLqoOZxrJj8=;
+Received: from relayfre-01.paragon-software.com ([176.12.100.13])
  by sfi-mx-3.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1kqWI9-0023M5-1Y; Sat, 19 Dec 2020 07:04:48 +0000
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by
- hqnvemgate25.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
- id <B5fdda5f80000>; Fri, 18 Dec 2020 23:04:24 -0800
-Received: from [10.2.61.104] (172.20.145.6) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Sat, 19 Dec
- 2020 07:04:23 +0000
-To: Matthew Wilcox <willy@infradead.org>
-References: <20201218160531.GL15600@casper.infradead.org>
- <20201218220316.GO15600@casper.infradead.org>
- <20201219051852.GP15600@casper.infradead.org>
- <7a7c3052-74c7-c63b-5fe3-65d692c1c5d1@nvidia.com>
- <20201219065057.GR15600@casper.infradead.org>
-From: John Hubbard <jhubbard@nvidia.com>
-Message-ID: <43f05a8f-25ce-a400-5825-d8fa159ee7f6@nvidia.com>
-Date: Fri, 18 Dec 2020 23:04:23 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:84.0) Gecko/20100101
- Thunderbird/84.0
+ id 1ksnXB-00CJPq-SS
+ for linux-ntfs-dev@lists.sourceforge.net; Fri, 25 Dec 2020 13:53:47 +0000
+Received: from dlg2.mail.paragon-software.com
+ (vdlg-exch-02.paragon-software.com [172.30.1.105])
+ by relayfre-01.paragon-software.com (Postfix) with ESMTPS id 549431D39;
+ Fri, 25 Dec 2020 16:53:25 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=paragon-software.com; s=mail; t=1608904405;
+ bh=HyBjUVa16LhSsRtSrs4cXtCZuhVAFBv1MGKJTI7apxk=;
+ h=From:To:CC:Subject:Date;
+ b=gjWKT7vCkEoIwduSNrtt4FEnbVR8JKG5Xa+7yM4heMfJWF/SJw3b6tIdkfFIntqa8
+ CWO/LCoxeBE6zwO71Fg2/TSzUg7mqh6NdiS9UrMU2RGgBW0p8JYhft3I95iP9IqMLp
+ MtONkCHWdGf981PI4rtCOn96eifS7s6J25+WVWkc=
+Received: from fsd-lkpg.ufsd.paragon-software.com (172.30.114.105) by
+ vdlg-exch-02.paragon-software.com (172.30.1.105) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1847.3; Fri, 25 Dec 2020 16:53:24 +0300
+To: <linux-fsdevel@vger.kernel.org>
+Date: Fri, 25 Dec 2020 16:51:09 +0300
+Message-ID: <20201225135119.3666763-1-almaz.alexandrovich@paragon-software.com>
+X-Mailer: git-send-email 2.25.4
 MIME-Version: 1.0
-In-Reply-To: <20201219065057.GR15600@casper.infradead.org>
-Content-Language: en-US
-X-Originating-IP: [172.20.145.6]
-X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
- HQMAIL107.nvidia.com (172.20.187.13)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
- t=1608361464; bh=A9fBx0IN5qsLyTEaO2K4aLwibDOVSe+bKLpimCocLwU=;
- h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
- MIME-Version:In-Reply-To:Content-Type:Content-Language:
- Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy;
- b=Bgc3aR4z753YGJlW70WoLrtQ1KN8IbRzq31juKs6PfBN2zkSGHtinWPesncivbs4W
- VzTsGi5zW6I314mN0sALuVKM7eV85d/U7RnCFRj/tuktF25zg4GPCpkEmzSS3hoUHK
- PP07gVgvL8A0z77WSBOvwn20T/s6MvL8eDcowYD4Rs6BCV3hJUYhWaiMpxkCZoQAqY
- RxKeghrOfimP4wXYxSRuO2xATbM6n5/MhNO06xr/el270Y+5EbFgXIlop0FK1iDT07
- VWPAhXQlelzCRLSGyvDrtBjTpyiR5AjbZTqDfGwl3tId3hrMABj+K1hpMKyp1AXgv6
- lwMu3rKNfv89A==
+X-Originating-IP: [172.30.114.105]
+X-ClientProxiedBy: vdlg-exch-02.paragon-software.com (172.30.1.105) To
+ vdlg-exch-02.paragon-software.com (172.30.1.105)
 X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [176.12.100.13 listed in list.dnswl.org]
+ 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
+ See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [URIs: checkpatch.pl]
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- -0.0 NICE_REPLY_A           Looks like a legit reply (A)
- -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1kqWI9-0023M5-1Y
-X-Mailman-Approved-At: Sat, 19 Dec 2020 09:22:52 +0000
-Subject: Re: [Linux-NTFS-Dev] set_page_dirty vs truncate
+X-Headers-End: 1ksnXB-00CJPq-SS
+X-Mailman-Approved-At: Mon, 28 Dec 2020 02:45:33 +0000
+Subject: [Linux-NTFS-Dev] [PATCH v16 00/10] NTFS read-write driver GPL
+ implementation by Paragon Software
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -97,91 +102,196 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Cc: Martin Brandenburg <martin@omnibond.com>, linux-cifs@vger.kernel.org,
- jfs-discussion@lists.sourceforge.net, Miklos Szeredi <miklos@szeredi.hu>,
- Dave Kleikamp <shaggy@kernel.org>, Richard Weinberger <richard@nod.at>,
- Dominique Martinet <asmadeus@codewreck.org>, linux-um@lists.infradead.org,
- linux-nfs@vger.kernel.org, Trond Myklebust <trond.myklebust@hammerspace.com>,
- Steve French <sfrench@samba.org>, linux-ntfs-dev@lists.sourceforge.net,
- Hans de Goede <hdegoede@redhat.com>, devel@lists.orangefs.org,
- Anna Schumaker <anna.schumaker@netapp.com>, linux-fsdevel@vger.kernel.org,
- v9fs-developer@lists.sourceforge.net, Jeff Dike <jdike@addtoit.com>,
- Anton Altaparmakov <anton@tuxera.com>, Mike Marshall <hubcap@omnibond.com>
+From: Konstantin Komarov via Linux-NTFS-Dev
+ <linux-ntfs-dev@lists.sourceforge.net>
+Reply-To: Konstantin Komarov <almaz.alexandrovich@paragon-software.com>
+Cc: Konstantin Komarov <almaz.alexandrovich@paragon-software.com>,
+ nborisov@suse.com, linux-kernel@vger.kernel.org, rdunlap@infradead.org,
+ aaptel@suse.com, willy@infradead.org, dsterba@suse.cz, ebiggers@kernel.org,
+ linux-ntfs-dev@lists.sourceforge.net, hch@lst.de, viro@zeniv.linux.org.uk,
+ joe@perches.com, dan.carpenter@oracle.com, pali@kernel.org, mark@harmstone.com,
+ anton@tuxera.com
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-On 12/18/20 10:50 PM, Matthew Wilcox wrote:
-...
->>> Hmmm ... looks like __set_page_dirty_nobuffers() has a similar problem:
->>>
->>> {
->>>           lock_page_memcg(page);
->>>           if (!TestSetPageDirty(page)) {
->>>                   struct address_space *mapping = page_mapping(page);
->>>                   unsigned long flags;
->>>
->>>                   if (!mapping) {
->>>                           unlock_page_memcg(page);
->>>                           return 1;
->>>                   }
->>>
->>>                   xa_lock_irqsave(&mapping->i_pages, flags);
->>>                   BUG_ON(page_mapping(page) != mapping);
->>>
->>> sure, we check that the page wasn't truncated between set_page_dirty()
->>> and the call to TestSetPageDirty(), but we can truncate dirty pages
->>> with no problem.  So between the call to TestSetPageDirty() and
->>> the call to xa_lock_irqsave(), the page can be truncated, and the
->>> BUG_ON should fire.
->>>
->>> I haven't been able to find any examples of this, but maybe it's just a very
->>> narrow race.  Does anyone recognise this signature?  Adding the filesystems
->>> which use __set_page_dirty_nobuffers() directly without extra locking.
->>
->>
->> That sounds like the same *kind* of failure that Jan Kara and I were
->> seeing on live systems[1], that led eventually to the gup-to-pup
->> conversion exercise.
->>
->> That crash happened due to calling set_page_dirty() on pages that had no
->> buffers on them [2]. And that sounds like *exactly* the same thing as
->> calling __set_page_dirty_nobuffers() without extra locking. So I'd
->> expect that it's Just Wrong To Do, for the same reasons as Jan spells
->> out very clearly in [1].
-> 
-> Interesting.  It's a bit different, *but* Jan's race might be what's
-> causing this symptom.  The reason is that the backtrace contains
-> set_page_dirty_lock() which holds the page lock.  So there can't be
-> a truncation race because truncate holds the page lock when calling
-> ->invalidatepage.
-> 
-> That said, the syzbot reproducer doesn't have any O_DIRECT in it
-> either.  So maybe this is some other race?
+This patch adds NTFS Read-Write driver to fs/ntfs3.
 
-Jan's race can be also be reproduced *without* O_DIRECT. I first saw
-it via a program that just did these steps on a normal ext4 filesystem:
+Having decades of expertise in commercial file systems development and huge
+test coverage, we at Paragon Software GmbH want to make our contribution to
+the Open Source Community by providing implementation of NTFS Read-Write
+driver for the Linux Kernel.
 
-a) pin ext4 file-backed pages, via get_user_pages(). Actually the way
-it got here was due to using what *looked* like anonymous RAM to the
-program, but was really file-backed RAM, because the admin had it
-set up to mount ext4 on /tmp, instead of using tmpfs, to "save RAM",
-but I digress. :)
+This is fully functional NTFS Read-Write driver. Current version works with
+NTFS(including v3.1) and normal/compressed/sparse files and supports journal replaying.
 
-b) wait a while, optionally do some DMA on the pages from a GPU, drink
-coffee...
+We plan to support this version after the codebase once merged, and add new
+features and fix bugs. For example, full journaling support over JBD will be
+added in later updates.
 
-c) call set_pages_dirty()
+v2:
+ - patch splitted to chunks (file-wise)
+ - build issues fixed
+ - sparse and checkpatch.pl errors fixed
+ - NULL pointer dereference on mkfs.ntfs-formatted volume mount fixed
+ - cosmetics + code cleanup
 
-d) unpin the pages
+v3:
+ - added acl, noatime, no_acs_rules, prealloc mount options
+ - added fiemap support
+ - fixed encodings support
+ - removed typedefs
+ - adapted Kernel-way logging mechanisms
+ - fixed typos and corner-case issues
 
-e) BUG_ON() in page_buffers().
+v4:
+ - atomic_open() refactored
+ - code style updated
+ - bugfixes
 
+v5:
+- nls/nls_alt mount options added
+- Unicode conversion fixes
+- Improved very fragmented files operations
+- logging cosmetics
 
-thanks,
+v6:
+- Security Descriptors processing changed
+  added system.ntfs_security xattr to set
+  SD
+- atomic_open() optimized
+- cosmetics
+
+v7:
+- Security Descriptors validity checks added (by Mark Harmstone)
+- atomic_open() fixed for the compressed file creation with directio
+  case
+- remount support
+- temporarily removed readahead usage
+- cosmetics
+
+v8:
+- Compressed files operations fixed
+
+v9:
+- Further cosmetics applied as suggested
+by Joe Perches
+
+v10:
+- operations with compressed/sparse files on very fragmented volumes improved
+- reduced memory consumption for above cases
+
+v11:
+- further compressed files optimizations: reads/writes are now skipping bufferization
+- journal wipe to the initial state optimized (bufferization is also skipped)
+- optimized run storage (re-packing cluster metainformation)
+- fixes based on Matthew Wilcox feedback to the v10
+- compressed/sparse/normal could be set for empty files with 'system.ntfs_attrib' xattr
+
+v12:
+- nls_alt mount option removed after discussion with Pali Rohar
+- fixed ni_repack()
+- fixed resident files transition to non-resident when size increasing
+
+v13:
+- nested_lock fix (lockdep)
+- out-of-bounds read fix (KASAN warning)
+- resident->nonresident transition fixed for compressed files
+- load_nls() missed fix applied
+- some sparse utility warnings fixes
+
+v14:
+- support for additional compression types (we've adapted WIMLIB's
+  implementation, authored by Eric Biggers, into ntfs3)
+
+v15:
+- kernel test robot warnings fixed
+- lzx/xpress compression license headers updated
+
+v16:
+- lzx/xpress compression types are adapted to the initial ntfs-3g plugin code
+- mutexes introduced for the each compression type instead of a global spinlock
+- FALLOC_FL_PUNCH_HOLE and FALLOC_FL_COLLAPSE_RANGE implemented
+- decompression for system
+
+Konstantin Komarov (10):
+  fs/ntfs3: Add headers and misc files
+  fs/ntfs3: Add initialization of super block
+  fs/ntfs3: Add bitmap
+  fs/ntfs3: Add file operations and implementation
+  fs/ntfs3: Add attrib operations
+  fs/ntfs3: Add compression
+  fs/ntfs3: Add NTFS journal
+  fs/ntfs3: Add Kconfig, Makefile and doc
+  fs/ntfs3: Add NTFS3 in fs/Kconfig and fs/Makefile
+  fs/ntfs3: Add MAINTAINERS
+
+ Documentation/filesystems/ntfs3.rst |  107 +
+ MAINTAINERS                         |    7 +
+ fs/Kconfig                          |    1 +
+ fs/Makefile                         |    1 +
+ fs/ntfs3/Kconfig                    |   41 +
+ fs/ntfs3/Makefile                   |   31 +
+ fs/ntfs3/attrib.c                   | 2080 +++++++++++
+ fs/ntfs3/attrlist.c                 |  463 +++
+ fs/ntfs3/bitfunc.c                  |  135 +
+ fs/ntfs3/bitmap.c                   | 1504 ++++++++
+ fs/ntfs3/debug.h                    |   61 +
+ fs/ntfs3/dir.c                      |  575 +++
+ fs/ntfs3/file.c                     | 1140 ++++++
+ fs/ntfs3/frecord.c                  | 3088 ++++++++++++++++
+ fs/ntfs3/fslog.c                    | 5220 +++++++++++++++++++++++++++
+ fs/ntfs3/fsntfs.c                   | 2527 +++++++++++++
+ fs/ntfs3/index.c                    | 2665 ++++++++++++++
+ fs/ntfs3/inode.c                    | 2061 +++++++++++
+ fs/ntfs3/lib/decompress_common.c    |  332 ++
+ fs/ntfs3/lib/decompress_common.h    |  352 ++
+ fs/ntfs3/lib/lib.h                  |   26 +
+ fs/ntfs3/lib/lzx_decompress.c       |  683 ++++
+ fs/ntfs3/lib/xpress_decompress.c    |  155 +
+ fs/ntfs3/lznt.c                     |  452 +++
+ fs/ntfs3/namei.c                    |  590 +++
+ fs/ntfs3/ntfs.h                     | 1237 +++++++
+ fs/ntfs3/ntfs_fs.h                  | 1050 ++++++
+ fs/ntfs3/record.c                   |  614 ++++
+ fs/ntfs3/run.c                      | 1254 +++++++
+ fs/ntfs3/super.c                    | 1477 ++++++++
+ fs/ntfs3/upcase.c                   |   77 +
+ fs/ntfs3/xattr.c                    | 1072 ++++++
+ 32 files changed, 31078 insertions(+)
+ create mode 100644 Documentation/filesystems/ntfs3.rst
+ create mode 100644 fs/ntfs3/Kconfig
+ create mode 100644 fs/ntfs3/Makefile
+ create mode 100644 fs/ntfs3/attrib.c
+ create mode 100644 fs/ntfs3/attrlist.c
+ create mode 100644 fs/ntfs3/bitfunc.c
+ create mode 100644 fs/ntfs3/bitmap.c
+ create mode 100644 fs/ntfs3/debug.h
+ create mode 100644 fs/ntfs3/dir.c
+ create mode 100644 fs/ntfs3/file.c
+ create mode 100644 fs/ntfs3/frecord.c
+ create mode 100644 fs/ntfs3/fslog.c
+ create mode 100644 fs/ntfs3/fsntfs.c
+ create mode 100644 fs/ntfs3/index.c
+ create mode 100644 fs/ntfs3/inode.c
+ create mode 100644 fs/ntfs3/lib/decompress_common.c
+ create mode 100644 fs/ntfs3/lib/decompress_common.h
+ create mode 100644 fs/ntfs3/lib/lib.h
+ create mode 100644 fs/ntfs3/lib/lzx_decompress.c
+ create mode 100644 fs/ntfs3/lib/xpress_decompress.c
+ create mode 100644 fs/ntfs3/lznt.c
+ create mode 100644 fs/ntfs3/namei.c
+ create mode 100644 fs/ntfs3/ntfs.h
+ create mode 100644 fs/ntfs3/ntfs_fs.h
+ create mode 100644 fs/ntfs3/record.c
+ create mode 100644 fs/ntfs3/run.c
+ create mode 100644 fs/ntfs3/super.c
+ create mode 100644 fs/ntfs3/upcase.c
+ create mode 100644 fs/ntfs3/xattr.c
+
 -- 
-John Hubbard
-NVIDIA
+2.25.4
+
 
 
 _______________________________________________
