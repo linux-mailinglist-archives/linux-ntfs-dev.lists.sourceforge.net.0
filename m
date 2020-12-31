@@ -2,36 +2,36 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 036C92E83AB
-	for <lists+linux-ntfs-dev@lfdr.de>; Fri,  1 Jan 2021 13:44:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F2AB92E83AA
+	for <lists+linux-ntfs-dev@lfdr.de>; Fri,  1 Jan 2021 13:44:27 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:Cc:
 	Reply-To:From:List-Subscribe:List-Help:List-Post:List-Archive:
 	List-Unsubscribe:List-Id:Subject:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:To:Sender:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=H/GrJqCfg3TFgac4ht2hN8yd/DtESm0gnvSbMD37qlM=; b=GYJauao1tjO7JMD6pPS0LFGcb
-	ZQ1foPosP9SwnqKFAT30lDpc1HsjYuWFOKl2QUA0LgBU8aUy6TfNdtqTK1x4UbuMkvqRSvrQxEw+3
-	eqrTKVBc2GHG64KaSjWW6gKa01RdN4nsu0sxIrTQ/R3oXcUC6axAA5dyafvApwjXwhEiM=;
+	 bh=+xglIPjVG4lQcrCRiBaQPcQ62GsvSuBbg4GxKGl3xvg=; b=DemQivyb01lrb+oOSUqcohVq8
+	8MGOu/t3bBfzQw0rOzEPJ9WQpUWd3/1JJQe8cj9xGIOrZh6eePE/6wVzqvzX2e3poSK2M25JvmG/f
+	0wOavqnf1QiuXHsHirGNqIj78+gK/IBaKYVkzoY1roFA/TKYaLe4hzKZWPJJ/PJVW0hYk=;
 Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
 	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1kvJn6-0004eM-Kj; Fri, 01 Jan 2021 12:44:24 +0000
+	id 1kvJn6-0004ea-MY; Fri, 01 Jan 2021 12:44:24 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
  (envelope-from <almaz.alexandrovich@paragon-software.com>)
- id 1kuzqO-0001Ks-6r
- for linux-ntfs-dev@lists.sourceforge.net; Thu, 31 Dec 2020 15:26:28 +0000
+ id 1kuzqR-00012w-6Z
+ for linux-ntfs-dev@lists.sourceforge.net; Thu, 31 Dec 2020 15:26:31 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
  :References:In-Reply-To:Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Rcj18t1V+4cKUqwx4dhyTMZ1FYj8KVbuPQgwv+4Z0UY=; b=m7vTa1qwv+nSpGcJmPmDAb1j+W
- CcoAmIy8GhJoJu+KjhdK4rozbs8BFuIDHocb/41XYZ7jpDaxKPjZ4c3cu6DM6TKwx5xJ3v7zO8yMl
- iHz4+68aZLkOh6rY9H1PefkTRs6pkv+/Geh67S6IKf3e2Q8O8HS9nLP2L6oKqEX2gf3c=;
+ bh=ryC1O+KjPCuBYVk17xa91BOxLPmINLD4FPXxdPXSapU=; b=DQNMfT1uUt2A8Z5aQCaXRPhlnn
+ cE7p42JJvd4UP8LORkwXdPEZvY5EbaHLQs2FgXC68P6q/K+y6f57abOaUKsnL56HnJHYnEwjby823
+ LVtN1YavuZ9csGLopJ0/OolimR9c6ztwiyDW7R+02KDkDBBXjwh9om/0RMeldWZeURP4=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:
@@ -39,32 +39,32 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=Rcj18t1V+4cKUqwx4dhyTMZ1FYj8KVbuPQgwv+4Z0UY=; b=Rsbp1OU/ihp27MK2FmlG49YhbP
- n3LSjxZucau/xqJ+iFGs5cmIHZYAo3gYVSaazVOsY5c/jkoueEBoRH92c/rW0zF0rGWl4+AYkAU2v
- pgI8lDBdt3hBUYT2YHp89tOiXDHqwex91SZ6xsHNtgTo65gf5ETHOD/RkTNAj2VSBs20=;
-Received: from relaydlg-01.paragon-software.com ([81.5.88.159])
- by sfi-mx-3.v28.lw.sourceforge.com with esmtps
+ bh=ryC1O+KjPCuBYVk17xa91BOxLPmINLD4FPXxdPXSapU=; b=XeMwg/lMkMatujG5AwvWaNbvmU
+ uuriARyM/aqhXiITimaUYvBvKKnQRugzls9y08qVEErhCRIWiGP+AXb2a2nPWpehGQgW3ajltpEoB
+ ZHpNr25tpAsBnpygVEL1QvXBju6kcAjaWQLSmIQOEU1Cmq9WNLCtNq+go/GdG6k4IKWk=;
+Received: from relayfre-01.paragon-software.com ([176.12.100.13])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1kuzqI-00CSn6-TX
- for linux-ntfs-dev@lists.sourceforge.net; Thu, 31 Dec 2020 15:26:28 +0000
+ id 1kuzqJ-00Glbn-4L
+ for linux-ntfs-dev@lists.sourceforge.net; Thu, 31 Dec 2020 15:26:31 +0000
 Received: from dlg2.mail.paragon-software.com
  (vdlg-exch-02.paragon-software.com [172.30.1.105])
- by relaydlg-01.paragon-software.com (Postfix) with ESMTPS id 4BB6082259;
+ by relayfre-01.paragon-software.com (Postfix) with ESMTPS id 8A3591D78;
  Thu, 31 Dec 2020 18:26:09 +0300 (MSK)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=paragon-software.com; s=mail; t=1609428369;
- bh=Rcj18t1V+4cKUqwx4dhyTMZ1FYj8KVbuPQgwv+4Z0UY=;
+ bh=ryC1O+KjPCuBYVk17xa91BOxLPmINLD4FPXxdPXSapU=;
  h=From:To:CC:Subject:Date:In-Reply-To:References;
- b=XrFx2NTzaIOTNskirG7oE/5onXTC79osFeuyeyc6Ek6ad1L1orhW3L15r/rCig+bw
- JqY5CYPpcnj9AqhTQGbugjgGRIyZFKsxhzsD3anaKvr9U8A6JnDUirqjwQ2wNmiyF5
- quZIhPZ0NdmU1WPySEGtRPmVgl6jk21/ozxePwnI=
+ b=gqYolIwx7dEijm6nnpLsHttItkqHjEMaGcLu78O9oClYrV3kAU6Hp2z/Qxue/aWHV
+ 3EHBUp442OVXuwfjZKx78jbiwDipc2mx9xE3MkulMhth6OUPTLSgBwCcA1/QkIx5HG
+ tBxJrZPm46857nPrUL8phOoZwk5J4GWsAdwwOxT4=
 Received: from fsd-lkpg.ufsd.paragon-software.com (172.30.114.105) by
  vdlg-exch-02.paragon-software.com (172.30.1.105) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1847.3; Thu, 31 Dec 2020 18:26:08 +0300
+ 15.1.1847.3; Thu, 31 Dec 2020 18:26:09 +0300
 To: <linux-fsdevel@vger.kernel.org>
-Date: Thu, 31 Dec 2020 18:23:59 +0300
-Message-ID: <20201231152401.3162425-9-almaz.alexandrovich@paragon-software.com>
+Date: Thu, 31 Dec 2020 18:24:00 +0300
+Message-ID: <20201231152401.3162425-10-almaz.alexandrovich@paragon-software.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20201231152401.3162425-1-almaz.alexandrovich@paragon-software.com>
 References: <20201231152401.3162425-1-almaz.alexandrovich@paragon-software.com>
@@ -75,6 +75,8 @@ X-ClientProxiedBy: vdlg-exch-02.paragon-software.com (172.30.1.105) To
 X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [176.12.100.13 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
@@ -82,10 +84,10 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
-X-Headers-End: 1kuzqI-00CSn6-TX
+X-Headers-End: 1kuzqJ-00Glbn-4L
 X-Mailman-Approved-At: Fri, 01 Jan 2021 12:44:20 +0000
-Subject: [Linux-NTFS-Dev] [PATCH v17 08/10] fs/ntfs3: Add Kconfig,
- Makefile and doc
+Subject: [Linux-NTFS-Dev] [PATCH v17 09/10] fs/ntfs3: Add NTFS3 in
+ fs/Kconfig and fs/Makefile
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -111,216 +113,38 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-This adds Kconfig, Makefile and doc
+This adds NTFS3 in fs/Kconfig and fs/Makefile
 
 Signed-off-by: Konstantin Komarov <almaz.alexandrovich@paragon-software.com>
 ---
- Documentation/filesystems/ntfs3.rst | 107 ++++++++++++++++++++++++++++
- fs/ntfs3/Kconfig                    |  41 +++++++++++
- fs/ntfs3/Makefile                   |  31 ++++++++
- 3 files changed, 179 insertions(+)
- create mode 100644 Documentation/filesystems/ntfs3.rst
- create mode 100644 fs/ntfs3/Kconfig
- create mode 100644 fs/ntfs3/Makefile
+ fs/Kconfig  | 1 +
+ fs/Makefile | 1 +
+ 2 files changed, 2 insertions(+)
 
-diff --git a/Documentation/filesystems/ntfs3.rst b/Documentation/filesystems/ntfs3.rst
-new file mode 100644
-index 000000000000..fb29067360cc
---- /dev/null
-+++ b/Documentation/filesystems/ntfs3.rst
-@@ -0,0 +1,107 @@
-+.. SPDX-License-Identifier: GPL-2.0
-+
-+=====
-+NTFS3
-+=====
-+
-+
-+Summary and Features
-+====================
-+
-+NTFS3 is fully functional NTFS Read-Write driver. The driver works with
-+NTFS versions up to 3.1, normal/compressed/sparse files
-+and journal replaying. File system type to use on mount is 'ntfs3'.
-+
-+- This driver implements NTFS read/write support for normal, sparse and
-+  compressed files.
-+- Supports native journal replaying;
-+- Supports extended attributes
-+	Predefined extended attributes:
-+	- 'system.ntfs_security' gets/sets security
-+			descriptor (SECURITY_DESCRIPTOR_RELATIVE)
-+	- 'system.ntfs_attrib' gets/sets ntfs file/dir attributes.
-+		Note: applied to empty files, this allows to switch type between
-+		sparse(0x200), compressed(0x800) and normal;
-+- Supports NFS export of mounted NTFS volumes.
-+
-+Mount Options
-+=============
-+
-+The list below describes mount options supported by NTFS3 driver in addition to
-+generic ones.
-+
-+===============================================================================
-+
-+nls=name		This option informs the driver how to interpret path
-+			strings and translate them to Unicode and back. If
-+			this option is not set, the default codepage will be
-+			used (CONFIG_NLS_DEFAULT).
-+			Examples:
-+				'nls=utf8'
-+
-+uid=
-+gid=
-+umask=			Controls the default permissions for files/directories created
-+			after the NTFS volume is mounted.
-+
-+fmask=
-+dmask=			Instead of specifying umask which applies both to
-+			files and directories, fmask applies only to files and
-+			dmask only to directories.
-+
-+nohidden		Files with the Windows-specific HIDDEN (FILE_ATTRIBUTE_HIDDEN)
-+			attribute will not be shown under Linux.
-+
-+sys_immutable		Files with the Windows-specific SYSTEM
-+			(FILE_ATTRIBUTE_SYSTEM) attribute will be marked as system
-+			immutable files.
-+
-+discard			Enable support of the TRIM command for improved performance
-+			on delete operations, which is recommended for use with the
-+			solid-state drives (SSD).
-+
-+force			Forces the driver to mount partitions even if 'dirty' flag
-+			(volume dirty) is set. Not recommended for use.
-+
-+sparse			Create new files as "sparse".
-+
-+showmeta		Use this parameter to show all meta-files (System Files) on
-+			a mounted NTFS partition.
-+			By default, all meta-files are hidden.
-+
-+prealloc		Preallocate space for files excessively when file size is
-+			increasing on writes. Decreases fragmentation in case of
-+			parallel write operations to different files.
-+
-+no_acs_rules		"No access rules" mount option sets access rights for
-+			files/folders to 777 and owner/group to root. This mount
-+			option absorbs all other permissions:
-+			- permissions change for files/folders will be reported
-+				as successful, but they will remain 777;
-+			- owner/group change will be reported as successful, but
-+				they will stay as root
-+
-+acl			Support POSIX ACLs (Access Control Lists). Effective if
-+			supported by Kernel. Not to be confused with NTFS ACLs.
-+			The option specified as acl enables support for POSIX ACLs.
-+
-+noatime			All files and directories will not update their last access
-+			time attribute if a partition is mounted with this parameter.
-+			This option can speed up file system operation.
-+
-+===============================================================================
-+
-+ToDo list
-+=========
-+
-+- Full journaling support (currently journal replaying is supported) over JBD.
-+
-+
-+References
-+==========
-+https://www.paragon-software.com/home/ntfs-linux-professional/
-+	- Commercial version of the NTFS driver for Linux.
-+
-+almaz.alexandrovich@paragon-software.com
-+	- Direct e-mail address for feedback and requests on the NTFS3 implementation.
-+
-diff --git a/fs/ntfs3/Kconfig b/fs/ntfs3/Kconfig
-new file mode 100644
-index 000000000000..f9b732f4a5a0
---- /dev/null
-+++ b/fs/ntfs3/Kconfig
-@@ -0,0 +1,41 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+config NTFS3_FS
-+	tristate "NTFS Read-Write file system support"
-+	select NLS
-+	help
-+	  Windows OS native file system (NTFS) support up to NTFS version 3.1.
-+
-+	  Y or M enables the NTFS3 driver with full features enabled (read,
-+	  write, journal replaying, sparse/compressed files support).
-+	  File system type to use on mount is "ntfs3". Module name (M option)
-+	  is also "ntfs3".
-+
-+	  Documentation: <file:Documentation/filesystems/ntfs3.rst>
-+
-+config NTFS3_64BIT_CLUSTER
-+	bool "64 bits per NTFS clusters"
-+	depends on NTFS3_FS && 64BIT
-+	help
-+	  Windows implementation of ntfs.sys uses 32 bits per clusters.
-+	  If activated 64 bits per clusters you will be able to use 4k cluster
-+	  for 16T+ volumes. Windows will not be able to mount such volumes.
-+
-+	  It is recommended to say N here.
-+
-+config NTFS3_LZX_XPRESS
-+	bool "activate support of external compressions lzx/xpress"
-+	depends on NTFS3_FS
-+	help
-+	  In Windows 10 one can use command "compact" to compress any files.
-+	  4 possible variants of compression are: xpress4k, xpress8k, xpress16 and lzx.
-+	  To read such "compacted" files say Y here.
-+
-+config NTFS3_POSIX_ACL
-+	bool "NTFS POSIX Access Control Lists"
-+	depends on NTFS3_FS
-+	select FS_POSIX_ACL
-+	help
-+	  POSIX Access Control Lists (ACLs) support additional access rights
-+	  for users and groups beyond the standard owner/group/world scheme,
-+	  and this option selects support for ACLs specifically for ntfs
-+	  filesystems.
-diff --git a/fs/ntfs3/Makefile b/fs/ntfs3/Makefile
-new file mode 100644
-index 000000000000..b9aacc061781
---- /dev/null
-+++ b/fs/ntfs3/Makefile
-@@ -0,0 +1,31 @@
-+# SPDX-License-Identifier: GPL-2.0
-+#
-+# Makefile for the ntfs3 filesystem support.
-+#
-+
-+obj-$(CONFIG_NTFS3_FS) += ntfs3.o
-+
-+ntfs3-y :=	attrib.o \
-+		attrlist.o \
-+		bitfunc.o \
-+		bitmap.o \
-+		dir.o \
-+		fsntfs.o \
-+		frecord.o \
-+		file.o \
-+		fslog.o \
-+		inode.o \
-+		index.o \
-+		lznt.o \
-+		namei.o \
-+		record.o \
-+		run.o \
-+		super.o \
-+		upcase.o \
-+		xattr.o
-+
-+ntfs3-$(CONFIG_NTFS3_LZX_XPRESS) += $(addprefix lib/,\
-+		decompress_common.o \
-+		lzx_decompress.o \
-+		xpress_decompress.o \
-+		)
-\ No newline at end of file
+diff --git a/fs/Kconfig b/fs/Kconfig
+index aa4c12282301..eae96d55ab67 100644
+--- a/fs/Kconfig
++++ b/fs/Kconfig
+@@ -145,6 +145,7 @@ menu "DOS/FAT/EXFAT/NT Filesystems"
+ source "fs/fat/Kconfig"
+ source "fs/exfat/Kconfig"
+ source "fs/ntfs/Kconfig"
++source "fs/ntfs3/Kconfig"
+ 
+ endmenu
+ endif # BLOCK
+diff --git a/fs/Makefile b/fs/Makefile
+index 999d1a23f036..4f5242cdaee2 100644
+--- a/fs/Makefile
++++ b/fs/Makefile
+@@ -100,6 +100,7 @@ obj-$(CONFIG_SYSV_FS)		+= sysv/
+ obj-$(CONFIG_CIFS)		+= cifs/
+ obj-$(CONFIG_HPFS_FS)		+= hpfs/
+ obj-$(CONFIG_NTFS_FS)		+= ntfs/
++obj-$(CONFIG_NTFS3_FS)		+= ntfs3/
+ obj-$(CONFIG_UFS_FS)		+= ufs/
+ obj-$(CONFIG_EFS_FS)		+= efs/
+ obj-$(CONFIG_JFFS2_FS)		+= jffs2/
 -- 
 2.25.4
 
