@@ -2,26 +2,26 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35F7C2E8F69
+	by mail.lfdr.de (Postfix) with ESMTPS id 6263A2E8F6E
 	for <lists+linux-ntfs-dev@lfdr.de>; Mon,  4 Jan 2021 03:24:13 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1kwFXV-0005vy-2t; Mon, 04 Jan 2021 02:24:09 +0000
+	id 1kwFXV-0005wA-65; Mon, 04 Jan 2021 02:24:09 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <kari.argillander@gmail.com>) id 1kwBXV-0007Ih-49
- for linux-ntfs-dev@lists.sourceforge.net; Sun, 03 Jan 2021 22:07:53 +0000
+ (envelope-from <kari.argillander@gmail.com>) id 1kwCAE-0007cW-Hb
+ for linux-ntfs-dev@lists.sourceforge.net; Sun, 03 Jan 2021 22:47:54 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
  Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=iIGt/9zpbYpG6wzXWtXdyQg2ktAIzGOKEGAmeFmpvRg=; b=YAVvJK2+2U4SNnTLoZsIguHT44
- XMzGSNylYKShKYrUlXPejGUqYbdr3mApviJTvNRcSMuSz+cNeq2ON+uxQJTvJ1d+qFinkdXzCXk3w
- yXBV52ek314wAsIanNy5putYUCbrpPN4u2cO3i/Vz88hyWRyokSqH8Bu/muD/l3cuFFw=;
+ bh=87RUIw64Kr1A5OliwMJO/pfdIRcRUQAtOYF9J54FhFc=; b=UvnijCnYPGJoBoB1EL/0ds9DpD
+ 4R8UIY1mFAsegVYaknsKWWM02lFBo0eVF0JBa1jREBrUst5AP2XRyNIwqoaCNjOc8BdPpCihDBMXt
+ 8t5kvkzJK/s6t947djGe2lG7gnpkP+Uu5dJbt4l6Y+qaKuQ1Jc8uPQwUCKAhhldHb08E=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
@@ -29,66 +29,66 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=iIGt/9zpbYpG6wzXWtXdyQg2ktAIzGOKEGAmeFmpvRg=; b=dsOZUkLXGbxrBsNY4259ApxmAJ
- OrrxQAxgvPe5Mk8YczlfGciJ7pR6Z4O8n575rS4mpv7ViH8/0mG5tc6LIZUOOZwpa4We3GX6ntSN6
- hoiw966OM0UPsBgB3BYR2DmJnTLHP1DeqsjH6TP2hinzUOjQmZDcQ0YstoVHAxI+cZNo=;
-Received: from mail-lf1-f44.google.com ([209.85.167.44])
- by sfi-mx-3.v28.lw.sourceforge.com with esmtps
+ bh=87RUIw64Kr1A5OliwMJO/pfdIRcRUQAtOYF9J54FhFc=; b=CSmsNo03Ap3XQ+KZeLnUtDPN9J
+ 9RzmuTgY7zwSyZ1F9Q51Fh4qhsB2Qt7VUOH3ph4PD75nqxqColPdBvfZ/0Go104kjtMtz4Zid3+NH
+ 5qnQT3eTnfS0+NqBCJsDZZ+a/kK2KGyHGrOAoSG+B8ihqarhoMTz5SOk89I7bGE3InIs=;
+Received: from mail-lf1-f52.google.com ([209.85.167.52])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.2)
- id 1kwBXQ-004Swm-Vq
- for linux-ntfs-dev@lists.sourceforge.net; Sun, 03 Jan 2021 22:07:53 +0000
-Received: by mail-lf1-f44.google.com with SMTP id h205so60251435lfd.5
+ id 1kwCA5-009yc3-4e
+ for linux-ntfs-dev@lists.sourceforge.net; Sun, 03 Jan 2021 22:47:54 +0000
+Received: by mail-lf1-f52.google.com with SMTP id o13so60435394lfr.3
  for <linux-ntfs-dev@lists.sourceforge.net>;
- Sun, 03 Jan 2021 14:07:48 -0800 (PST)
+ Sun, 03 Jan 2021 14:47:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=date:from:to:cc:subject:message-id:references:mime-version
  :content-disposition:in-reply-to;
- bh=iIGt/9zpbYpG6wzXWtXdyQg2ktAIzGOKEGAmeFmpvRg=;
- b=ZWVFggDpWHLYGN7D+phAIvoSpc716LmaO+EBAYcfKzeGscBeaZcSwYAgT10co1BLlk
- 7/2WasNQI8ysauoXkvSAbPiaRQP90om287P3OZ5fDtwU6Z/q2TMnXPtKXPB5MGKJBxIG
- iGozzcRneCPnxPQrDigW3jfBjJrLEMyvUhpRlrVn4rYP1AytyvHECnv0iE4+I5wSIhNE
- vknuKXUmVUcyXK805rwU85FbepFk3n9acVh/ebKo7csKRpcV3z2nNDx9qmmjB3Na7p4A
- XLpPlFT3W/MQEW2fNi2Dpw+lXVG6BZhT6qaZj17QKibTJzw6qzlf3JH49g9OXt0h/Wip
- Fh4Q==
+ bh=87RUIw64Kr1A5OliwMJO/pfdIRcRUQAtOYF9J54FhFc=;
+ b=R/1h1w3CLjy283V6oGtpIoG1Q3tLeo2fn53+eC1YwCEqKLEFXFGLAqt8u+HgEcM2y2
+ pDJw2mk8uRs2GlW/WHf2OJNXPkE5rggyNItKfJKVA0kqq5qbiRWFJrOmQ15FEPE+iDRU
+ TE5q6RPjuuHIXzV7C0yJ91mjOy+/R7ZOTc/847mTrDZrObKDo3D4yx6/vqKXl2FUXAky
+ 6tZ/n2T+UIgCBkFxqwQT/DLnmokz9lkteidCq9xlzSoX2Z8kVdjMpSs7y/SCC00TYjyi
+ hxnYNMuBdxJ1rzw0xmj8jA/g4pdH/eL/nxULesRToDb6X3S4Xc06jhiwEpAyT4EOQKTl
+ yXCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to;
- bh=iIGt/9zpbYpG6wzXWtXdyQg2ktAIzGOKEGAmeFmpvRg=;
- b=Nc8DDuKL+TThYv5U21y64RM/Ad26Luj84X/gQunxNHnDX2nyblB8T01wfwdqtOEmeJ
- IWNDQvMjNsk3zRCgKVcdvEnQWSXoOUNHquDcacB1bTTBm6i1nVKvj1RzdAx1jkylavng
- lAXyR5/yqmTHE/E2G3of3wk8o3jo2n0WWzs8naqu6My+s4pgnoPDoOoDasPh9rkFXv14
- 05OfxG+sQqSfouIGYFQF7RzSlHfFlr0SDSV30nkw6P1EXbwyjroG+endO43WOU9rBfi3
- oSFm7vjSd3z4IRXc4/EAJ4vGMMmubHD5kluGg8DfdiRj1G0WpxdItBFgUQ9HEkB26bXb
- ze/Q==
-X-Gm-Message-State: AOAM533lgrJMMYR7I/NedDoLgbgtx/GovQgrHgIFAYao/hqMD7lvZ1J1
- +1kcyC3KODqVGVjwPAHtBog=
-X-Google-Smtp-Source: ABdhPJyBOTNRTyOCBerwLXvB8C0DG5CIj1T1Ii1iriOBFi17B/jVs4BMmb8uOwbdo2W1KQUgazeDlA==
-X-Received: by 2002:ac2:44ba:: with SMTP id c26mr29339438lfm.132.1609711662388; 
- Sun, 03 Jan 2021 14:07:42 -0800 (PST)
+ bh=87RUIw64Kr1A5OliwMJO/pfdIRcRUQAtOYF9J54FhFc=;
+ b=uAaOAPCVMJNQBxKY1vbhsmqZwggEAgQ4jBW6a/xESwkLqgx44/hP55zl3R+aSJXdiG
+ vBIWOVhSrLzo6oVNehvTvh0q9gz/hOMMNb8KdqLgGW5HhswpYymYxUSsQalMalAtNJ4G
+ VYekKH8Vtn2T0wMbfOAiPoFMxZomRd8RpcfcqwOSirjXuBl8FwCWLBGmnkz/4ndvGe2X
+ cSrxbSdpryweBwk8UcRks0sQ39V7BGJXWiksVqSAm9T7VDE51CZjD/x+ydP0+Vql5aUs
+ hU7kMrsOGQaGc02ZkAb+12MSPVtabjMeapf3zZv2c+zw55y5Ej+bLQhWf8XscQeAL0Jb
+ TCoA==
+X-Gm-Message-State: AOAM5326UoTNhQ+Y2Dy/gtx+cbNWoXzIiFTMqPr5auiX5LMuIpNeZKC6
+ uXYufYGw+ldasKYDNisxnjQ=
+X-Google-Smtp-Source: ABdhPJxgZE7Fua+oorVTutxvrhFL61TMXKPZjfQDeihCiOf41/1uIS8p4sX7RhggqGKOwgIFs0bGzw==
+X-Received: by 2002:a2e:909a:: with SMTP id l26mr33223108ljg.182.1609714058543; 
+ Sun, 03 Jan 2021 14:47:38 -0800 (PST)
 Received: from kari-VirtualBox (87-95-193-210.bb.dnainternet.fi.
  [87.95.193.210])
- by smtp.gmail.com with ESMTPSA id m8sm7054382lfg.134.2021.01.03.14.07.41
+ by smtp.gmail.com with ESMTPSA id k11sm7095916lfd.3.2021.01.03.14.47.36
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 03 Jan 2021 14:07:41 -0800 (PST)
-Date: Mon, 4 Jan 2021 00:07:39 +0200
+ Sun, 03 Jan 2021 14:47:37 -0800 (PST)
+Date: Mon, 4 Jan 2021 00:47:35 +0200
 From: Kari Argillander <kari.argillander@gmail.com>
 To: Konstantin Komarov <almaz.alexandrovich@paragon-software.com>
-Message-ID: <20210103220739.2gkh6gy3iatv4fog@kari-VirtualBox>
+Message-ID: <20210103224735.gtirbmcpkdsietrl@kari-VirtualBox>
 References: <20201231152401.3162425-1-almaz.alexandrovich@paragon-software.com>
- <20201231152401.3162425-9-almaz.alexandrovich@paragon-software.com>
+ <20201231152401.3162425-8-almaz.alexandrovich@paragon-software.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20201231152401.3162425-9-almaz.alexandrovich@paragon-software.com>
+In-Reply-To: <20201231152401.3162425-8-almaz.alexandrovich@paragon-software.com>
 X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [209.85.167.44 listed in list.dnswl.org]
  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
  (kari.argillander[at]gmail.com)
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [209.85.167.52 listed in list.dnswl.org]
  -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.167.44 listed in wl.mailspike.net]
+ [209.85.167.52 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
@@ -96,10 +96,9 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
-X-Headers-End: 1kwBXQ-004Swm-Vq
+X-Headers-End: 1kwCA5-009yc3-4e
 X-Mailman-Approved-At: Mon, 04 Jan 2021 02:24:06 +0000
-Subject: Re: [Linux-NTFS-Dev] [PATCH v17 08/10] fs/ntfs3: Add Kconfig,
- Makefile and doc
+Subject: Re: [Linux-NTFS-Dev] [PATCH v17 07/10] fs/ntfs3: Add NTFS journal
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -122,78 +121,203 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-On Thu, Dec 31, 2020 at 06:23:59PM +0300, Konstantin Komarov wrote:
-> This adds Kconfig, Makefile and doc
+On Thu, Dec 31, 2020 at 06:23:58PM +0300, Konstantin Komarov wrote:
+> This adds NTFS journal
 > 
 > Signed-off-by: Konstantin Komarov <almaz.alexandrovich@paragon-software.com>
 > ---
->  Documentation/filesystems/ntfs3.rst | 107 ++++++++++++++++++++++++++++
->  fs/ntfs3/Kconfig                    |  41 +++++++++++
->  fs/ntfs3/Makefile                   |  31 ++++++++
-
-Also Documentation/filesystems/index.rst should contain ntfs3.
-
->  3 files changed, 179 insertions(+)
->  create mode 100644 Documentation/filesystems/ntfs3.rst
->  create mode 100644 fs/ntfs3/Kconfig
->  create mode 100644 fs/ntfs3/Makefile
+>  fs/ntfs3/fslog.c | 5220 ++++++++++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 5220 insertions(+)
+>  create mode 100644 fs/ntfs3/fslog.c
 > 
+> diff --git a/fs/ntfs3/fslog.c b/fs/ntfs3/fslog.c
 
-> diff --git a/fs/ntfs3/Kconfig b/fs/ntfs3/Kconfig
-> new file mode 100644
-> index 000000000000..f9b732f4a5a0
-> --- /dev/null
-> +++ b/fs/ntfs3/Kconfig
-> @@ -0,0 +1,41 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +config NTFS3_FS
-> +	tristate "NTFS Read-Write file system support"
-> +	select NLS
-> +	help
-> +	  Windows OS native file system (NTFS) support up to NTFS version 3.1.
-> +
-> +	  Y or M enables the NTFS3 driver with full features enabled (read,
-> +	  write, journal replaying, sparse/compressed files support).
-> +	  File system type to use on mount is "ntfs3". Module name (M option)
-> +	  is also "ntfs3".
-> +
-> +	  Documentation: <file:Documentation/filesystems/ntfs3.rst>
-> +
-> +config NTFS3_64BIT_CLUSTER
-> +	bool "64 bits per NTFS clusters"
-> +	depends on NTFS3_FS && 64BIT
-> +	help
-> +	  Windows implementation of ntfs.sys uses 32 bits per clusters.
-> +	  If activated 64 bits per clusters you will be able to use 4k cluster
-> +	  for 16T+ volumes. Windows will not be able to mount such volumes.
-> +
-> +	  It is recommended to say N here.
-> +
-> +config NTFS3_LZX_XPRESS
-> +	bool "activate support of external compressions lzx/xpress"
-> +	depends on NTFS3_FS
-> +	help
-> +	  In Windows 10 one can use command "compact" to compress any files.
-> +	  4 possible variants of compression are: xpress4k, xpress8k, xpress16 and lzx.
-> +	  To read such "compacted" files say Y here.
+> +static int read_log_page(struct ntfs_log *log, u32 vbo,
+> +			 struct RECORD_PAGE_HDR **buffer, bool allow_errors,
+> +			 bool ignore_usa_error, bool *usa_error)
 
-It would be nice that we tell what is recommend. I think that this is recommend.
-Of course if this use lot's of resource that is different story but I do not
-think that is the case.
+Allow_errors does nothing. I also think that no need for
+ignore_usa_error. We can just check usa_error if we need
+it. We just never raise return error for usa_error. And
+then caller can decide if want's to use it. 
+
+> +{
+> +	int err = 0;
+> +	u32 page_idx = vbo >> log->page_bits;
+> +	u32 page_off = vbo & log->page_mask;
+> +	u32 bytes = log->page_size - page_off;
+> +	void *to_free = NULL;
+> +	u32 page_vbo = page_idx << log->page_bits;
+> +	struct RECORD_PAGE_HDR *page_buf;
+> +	struct ntfs_inode *ni = log->ni;
+> +	bool bBAAD;
+> +
+> +	if (vbo >= log->l_size)
+> +		return -EINVAL;
+> +
+> +	if (!*buffer) {
+> +		to_free = ntfs_alloc(bytes, 0);
+> +		if (!to_free)
+> +			return -ENOMEM;
+> +		*buffer = to_free;
+> +	}
+> +
+> +	page_buf = page_off ? log->one_page_buf : *buffer;
+> +
+> +	err = ntfs_read_run_nb(ni->mi.sbi, &ni->file.run, page_vbo, page_buf,
+> +			       log->page_size, NULL);
+> +	if (err)
+> +		goto out;
+> +
+> +	if (page_buf->rhdr.sign != NTFS_FFFF_SIGNATURE)
+> +		ntfs_fix_post_read(&page_buf->rhdr, PAGE_SIZE, false);
+> +
+> +	if (page_buf != *buffer)
+> +		memcpy(*buffer, Add2Ptr(page_buf, page_off), bytes);
+> +
+> +	bBAAD = page_buf->rhdr.sign == NTFS_BAAD_SIGNATURE;
+> +
+> +	/* Check that the update sequence array for this page is valid */
+> +	if (bBAAD) {
+> +		/* If we don't allow errors, raise an error status */
+> +		if (!ignore_usa_error) {
+> +			err = -EINVAL;
+> +			goto out;
+> +		}
+> +	}
+> +
+> +	if (usa_error)
+> +		*usa_error = bBAAD;
+> +
+
+So here we can just
+	delete if(bBAAD)
+and use
+	if (usa_error)
+		*usa_error = page_buf->rhdr.sign == NTFS_BAAD_SIGNATURE;
+
+> +out:
+> +	if (err && to_free) {
+> +		ntfs_free(to_free);
+> +		*buffer = NULL;
+> +	}
+> +
+> +	return err;
+> +}
+
+> +/*
+> + * last_log_lsn
+> + *
+> + * This routine walks through the log pages for a file, searching for the
+> + * last log page written to the file
+> + */
+> +static int last_log_lsn(struct ntfs_log *log)
+> +{
+
+> +	struct RECORD_PAGE_HDR *first_tail = NULL;
+> +	struct RECORD_PAGE_HDR *second_tail = NULL;
+
+> +next_tail:
+> +	/* Read second tail page (at pos 3/0x12000) */
+> +	if (read_log_page(log, second_off, &second_tail, true, true,
+> +			  &usa_error) ||
+> +	    usa_error || second_tail->rhdr.sign != NTFS_RCRD_SIGNATURE) {
+> +		ntfs_free(second_tail);
+> +		second_tail = NULL;
+> +		second_file_off = 0;
+> +		lsn2 = 0;
+> +	} else {
+> +		second_file_off = hdr_file_off(log, second_tail);
+> +		lsn2 = le64_to_cpu(second_tail->record_hdr.last_end_lsn);
+> +	}
+
+What will happend if we get -ENOMEM from read_log_page(). Log page
+might still be valid we will just ignore it. This doesn't sound 
+right. 
+
+This same thing happens many place with read_log_page().
 
 > +
-> +config NTFS3_POSIX_ACL
-> +	bool "NTFS POSIX Access Control Lists"
-> +	depends on NTFS3_FS
-> +	select FS_POSIX_ACL
-> +	help
-> +	  POSIX Access Control Lists (ACLs) support additional access rights
-> +	  for users and groups beyond the standard owner/group/world scheme,
-> +	  and this option selects support for ACLs specifically for ntfs
-> +	  filesystems.
+> +	/* Read first tail page (at pos 2/0x2000 ) */
+> +	if (read_log_page(log, final_off, &first_tail, true, true,
+> +			  &usa_error) ||
+> +	    usa_error || first_tail->rhdr.sign != NTFS_RCRD_SIGNATURE) {
+> +		ntfs_free(first_tail);
+> +		first_tail = NULL;
+> +		first_file_off = 0;
+> +		lsn1 = 0;
+> +	} else {
+> +		first_file_off = hdr_file_off(log, first_tail);
+> +		lsn1 = le64_to_cpu(first_tail->record_hdr.last_end_lsn);
+> +	}
 
-Same here. Let's suggest what user should do. Is this recommend if we wan't 
-to use volume also in Windows?
+> +	if (first_tail && second_tail) {
+> +		if (best_lsn1 > best_lsn2) {
+> +			best_lsn = best_lsn1;
+> +			best_page = first_tail;
+> +			this_off = first_file_off;
+> +		} else {
+> +			best_lsn = best_lsn2;
+> +			best_page = second_tail;
+> +			this_off = second_file_off;
+> +		}
+> +	} else if (first_tail) {
+> +		best_lsn = best_lsn1;
+> +		best_page = first_tail;
+> +		this_off = first_file_off;
+> +	} else if (second_tail) {
+> +		best_lsn = best_lsn2;
+> +		best_page = second_tail;
+> +		this_off = second_file_off;
+> +	} else {
+> +		goto free_and_tail_read;
+
+Can't we just use straight tail_read here? 
+
+> +	}
+> +
+> +	best_page_pos = le16_to_cpu(best_page->page_pos);
+
+> +	} else {
+> +free_and_tail_read:
+> +		ntfs_free(first_tail);
+> +		ntfs_free(second_tail);
+> +		goto tail_read;
+> +	}
+> +
+> +	ntfs_free(first_tail_prev);
+> +	first_tail_prev = first_tail;
+> +	final_off_prev = first_file_off;
+> +	first_tail = NULL;
+> +
+> +	ntfs_free(second_tail_prev);
+> +	second_tail_prev = second_tail;
+> +	second_off_prev = second_file_off;
+> +	second_tail = NULL;
+> +
+> +	final_off += log->page_size;
+> +	second_off += log->page_size;
+> +
+> +	if (tails < 0x10)
+> +		goto next_tail;
+> +tail_read:
+> +	first_tail = first_tail_prev;
+> +	final_off = final_off_prev;
+
+> +int log_replay(struct ntfs_inode *ni)
+> +{
+
+> +	/* Now we need to walk through looking for the last lsn */
+> +	err = last_log_lsn(log);
+> +	if (err == -EROFS)
+> +		goto out;
+> +
+
+No need for this if below is whole err check.
+
+> +	if (err)
+> +		goto out;
+ 
 
 
 _______________________________________________
