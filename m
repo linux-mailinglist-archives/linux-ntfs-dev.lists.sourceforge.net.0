@@ -2,114 +2,106 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E8CF2FA344
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BFD92FA343
 	for <lists+linux-ntfs-dev@lfdr.de>; Mon, 18 Jan 2021 15:40:28 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1l1Vhg-0005cm-6T; Mon, 18 Jan 2021 14:40:24 +0000
+	id 1l1Vhg-0005d0-B1; Mon, 18 Jan 2021 14:40:24 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <mark.harmstone@gmail.com>) id 1l1Ung-0000gU-RG
- for linux-ntfs-dev@lists.sourceforge.net; Mon, 18 Jan 2021 13:42:32 +0000
+ (envelope-from <kari.argillander@gmail.com>) id 1l1VDz-0004hA-N4
+ for linux-ntfs-dev@lists.sourceforge.net; Mon, 18 Jan 2021 14:09:43 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=q5isUwhLkIrwtYU6nmgpmTKGhNdkuDOrfeEhUb5gcvA=; b=caxQfRr2uhyvFrj4jA0mvVf43a
- 3vHT21MtukNdzfzhNfuKiOuaEl3vynyffQX31gEIuKfZa8pYfAP6NnRTpC9Fqj7B70I2JwJSrnfeH
- /HkPCkXJCLxmtQRN4k6ScLeEEHPaJcbFfNsbPUQCjX5i7NoF6Y+tZcP3+T7VFAQqamYM=;
+ bh=iG/KODEdFe2K5XObeKF2Vt9sHmAGSpX5UKzCfopjxSU=; b=Z6Y6rbK3f+MBXP4DbXjJo2i0cB
+ 4jGRJMB4cJwcOqv5+T1VI5T6ODu6uuonuUHpPdjrMmDNS6Mj/vEF5qDgHOsYcCPHvldzcsJ5uaNk9
+ mKt3N2q5Gdev7vrBMSqrp7MC1uNwZGClYjyPtOIypIzgnFwGYxVMR+46sE5iehFGLh5I=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:Date:
- Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:Content-ID:
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=q5isUwhLkIrwtYU6nmgpmTKGhNdkuDOrfeEhUb5gcvA=; b=hndiMeLsqubsUC2lheJ+8+dKwv
- gBln/wTq9HLXMB9EV+i9lrKCxp/1hCQOxaafWPIU14P0iMEHrfwmwdAAFMNPHtftWU5UdVYKlIOJR
- ahRSvQtoNFaEGWKcbbGABzM6M0p67zflL5JC3tae0rRNJWvs2TxIGAO9osjMy65B4cyM=;
-Received: from mail-wm1-f41.google.com ([209.85.128.41])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ bh=iG/KODEdFe2K5XObeKF2Vt9sHmAGSpX5UKzCfopjxSU=; b=Mp1Om5Ys1QfV02bRGqQKoG1kal
+ X5oIsNGtLLslOQTjMiaBetEDNq5U2Owkmb2clouYvsiYlD0wAsAHTlz4mTK1jhEFvDRdZs+uHvaib
+ 2Yl/dUQxiNywxLYY84ulNeunDsRAg7YmJq+tQPrk7LVO8eWWeO2EiMJX8J4ZBsvnRt8k=;
+Received: from mail-lj1-f182.google.com ([209.85.208.182])
+ by sfi-mx-3.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.2)
- id 1l1UnW-005SOy-8J
- for linux-ntfs-dev@lists.sourceforge.net; Mon, 18 Jan 2021 13:42:32 +0000
-Received: by mail-wm1-f41.google.com with SMTP id r4so13800352wmh.5
+ id 1l1VDx-00CifT-DU
+ for linux-ntfs-dev@lists.sourceforge.net; Mon, 18 Jan 2021 14:09:43 +0000
+Received: by mail-lj1-f182.google.com with SMTP id w26so18356204ljo.4
  for <linux-ntfs-dev@lists.sourceforge.net>;
- Mon, 18 Jan 2021 05:42:22 -0800 (PST)
+ Mon, 18 Jan 2021 06:09:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=sender:subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=q5isUwhLkIrwtYU6nmgpmTKGhNdkuDOrfeEhUb5gcvA=;
- b=G2O5upPd2pC3Tnob5zTrjjGwRG4GBgaBrojfzoYZ84o2PQDqoUqZnlOLKEzek2K+zl
- WO7DmjhUFIJ2AW3wFC+SR+QnDz3AMbVXZjon50dfpx6igjzvkkKmLBE0Aad1FeAZiC9a
- h8vRvD5neo0+La701dKo3lZJHFIzi2YPb6LkgHslroE6SVy2PIx1w8Mbk2tHVmEU1Yyc
- c68jkA1mAljySRaILsZuijeQXanV/g4ZXVtLa8PFjo8mEUUHtVYzYhsilQxbtD+sVCOo
- IAfp4wKhNeAUBcC12uN6S2b62lG5QukWUVcwrUwZiaMToCoKFhrjB4SgzcP9dLdOIh56
- TsRg==
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=iG/KODEdFe2K5XObeKF2Vt9sHmAGSpX5UKzCfopjxSU=;
+ b=Doz5K836XN1Hu+ccBz6D+76OvCCWqvKkTjJEAyQHNkKqiW4p8y8ozBLbZTrINgHPyp
+ VuNMnMugMs+ZDX4Hpa5bMn4VXIk46qKF4OrdpToe2/qcEFtMszNKdhSk1fgDh8yMex2X
+ fiPsJW+kYFl2JskHlpVQzzyZKfWTQo923x35mOiTa2nlrS8HVwYTe8n+GMuSKqO2M7iO
+ 83HX6CI3Y/Dd8klK+A06De/2Peb1dQ+qChXMAdvjSktv/KOQ427Zv6Ru4tBfNq6GBnk2
+ MvhxbZg28tKsGm5ahRBPRR0XQ8tOmBM7rx1UErFmOEbugwnaMWfTPyZZ/YJfiMA49OHP
+ aOVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
- :date:user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=q5isUwhLkIrwtYU6nmgpmTKGhNdkuDOrfeEhUb5gcvA=;
- b=dMZB13QAeZI7cN/ERME93Qrv0EZwTEEdnDyuDR2FdStbmKE3dfziq+EO4bRI9TQMqL
- qbQl8EHWkVIcRZzsDw1NSZep0srkwZ80OsYco7v5jgf+6jzYrflDjWd0D1B1h7ceuFCG
- 7kgagOg5tk0tDzmfIscLMlIsuGMOFk175eKxfhuO8pxeNuz9t/1P3ajcLZ8YlF4hq94m
- mHoiowd+2VXUp2gsku2W2/CfxBd32r+RCS2X2A7mtIVHuTlHs9KdRbkXYylByXNoFFRb
- l9PKPXuXFrqHZ+sX0WiCq5XnOqP1RIoaCYVzfMvHcD8RUcgNEBO67WDLusJOSRRLOL6O
- pYVg==
-X-Gm-Message-State: AOAM532yb01jSyimQo6BZilv5qUYvB3hAN0t4lo2lxFpixwCou35l4js
- 8MBdlzPYKU8bk5WoeAXn1/TniTv/z19O/ciQ
-X-Google-Smtp-Source: ABdhPJzoK1VolekfvjLQEc6HBtz4xTC11RI2s8YqOS6Ibyk5Uo5LWtl87LZhRtYJxzjv0LQ0vd++7A==
-X-Received: by 2002:a1c:a1c1:: with SMTP id
- k184mr20790767wme.101.1610977335972; 
- Mon, 18 Jan 2021 05:42:15 -0800 (PST)
-Received: from ?IPv6:2a02:8010:64ea:0:fad1:11ff:fead:57db?
- ([2a02:8010:64ea:0:fad1:11ff:fead:57db])
- by smtp.googlemail.com with ESMTPSA id z6sm25197472wmi.15.2021.01.18.05.42.14
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 18 Jan 2021 05:42:15 -0800 (PST)
-To: Konstantin Komarov <almaz.alexandrovich@paragon-software.com>,
- Kari Argillander <kari.argillander@gmail.com>
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=iG/KODEdFe2K5XObeKF2Vt9sHmAGSpX5UKzCfopjxSU=;
+ b=RzQHCj7cVWpsPuzDqUqIs5xIUIze06sJJbGywSjbwYDa4LlJNidk+IOjLYiacklUdj
+ q7DAndxlAoPcxr8nhRzdZrKG60JsGtL7BVynnTYODC7X3XI17Qm/7b2lUTwJNse6FQcC
+ 7+emvbKAjj0PsuCcL8TbGGCiPX2EnHKk6Ps1u9F4upui9VmhFa0Ci5QTJr3NIGygRBFj
+ D3zCfjhSFM2R1qiN3xvMq2sENEUJrfw9Cxo22s1u6pduqRWqAhDjadE84Hc0DhUHRwg6
+ c0ZBb7a6XVQ6rPo05qHWW4NGR68uPUgAW6E+flB2f1K/tNMpUwk+Ms2D+gPrgseme1TR
+ Cn0A==
+X-Gm-Message-State: AOAM530qpa1CF6LxaxLOEWr3n6cZ7x1dtmkTVCRJ5FeJRqRj/bqyAFGm
+ cwYE4CwlauYYouBmEl/NhP8=
+X-Google-Smtp-Source: ABdhPJw1Gz9tbnGLQVkzqltWwFI0JVgvnT623otswaeYadxrv4/5z7VU+iCrgj9FnAJXYbtqgUBEng==
+X-Received: by 2002:a2e:9246:: with SMTP id v6mr10308478ljg.221.1610978974812; 
+ Mon, 18 Jan 2021 06:09:34 -0800 (PST)
+Received: from kari-VirtualBox (87-95-193-210.bb.dnainternet.fi.
+ [87.95.193.210])
+ by smtp.gmail.com with ESMTPSA id v11sm1695394ljg.128.2021.01.18.06.09.33
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 18 Jan 2021 06:09:34 -0800 (PST)
+Date: Mon, 18 Jan 2021 16:09:31 +0200
+From: Kari Argillander <kari.argillander@gmail.com>
+To: Konstantin Komarov <almaz.alexandrovich@paragon-software.com>
+Message-ID: <20210118140931.e2qdposfez2jsbbr@kari-VirtualBox>
 References: <20201231152401.3162425-1-almaz.alexandrovich@paragon-software.com>
- <20201231152401.3162425-9-almaz.alexandrovich@paragon-software.com>
- <20210103220739.2gkh6gy3iatv4fog@kari-VirtualBox>
- <baa71c9fa715473e87172c3afa3cc7d2@paragon-software.com>
-From: Mark Harmstone <mark@harmstone.com>
-Message-ID: <548f5de7-9e24-c1bc-3ef5-641bc8a3dd37@harmstone.com>
-Date: Mon, 18 Jan 2021 13:42:14 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.1
+ <20201231152401.3162425-3-almaz.alexandrovich@paragon-software.com>
+ <20210103195017.fim2msuzj3kup6rq@kari-VirtualBox>
+ <750a0cef33f34c0989cacfb0bcd4ac5e@paragon-software.com>
 MIME-Version: 1.0
-In-Reply-To: <baa71c9fa715473e87172c3afa3cc7d2@paragon-software.com>
-Content-Language: en-US
-X-Spam-Score: 0.3 (/)
+Content-Disposition: inline
+In-Reply-To: <750a0cef33f34c0989cacfb0bcd4ac5e@paragon-software.com>
+X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
- (mark.harmstone[at]gmail.com)
+ (kari.argillander[at]gmail.com)
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [209.85.128.41 listed in list.dnswl.org]
+ trust [209.85.208.182 listed in list.dnswl.org]
  -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.128.41 listed in wl.mailspike.net]
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
- domains are different
+ [209.85.208.182 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- 0.2 FREEMAIL_FORGED_FROMDOMAIN 2nd level domains in From and EnvelopeFrom
- freemail headers are different
- -0.2 NICE_REPLY_A           Looks like a legit reply (A)
-X-Headers-End: 1l1UnW-005SOy-8J
+X-Headers-End: 1l1VDx-00CifT-DU
 X-Mailman-Approved-At: Mon, 18 Jan 2021 14:40:22 +0000
-Subject: Re: [Linux-NTFS-Dev] [PATCH v17 08/10] fs/ntfs3: Add Kconfig,
- Makefile and doc
+Subject: Re: [Linux-NTFS-Dev] [PATCH v17 02/10] fs/ntfs3: Add initialization
+ of super block
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -133,100 +125,38 @@ Cc: "andy.lavr@gmail.com" <andy.lavr@gmail.com>,
  "joe@perches.com" <joe@perches.com>, "hch@lst.de" <hch@lst.de>,
  "viro@zeniv.linux.org.uk" <viro@zeniv.linux.org.uk>,
  "linux-fsdevel@vger.kernel.org" <linux-fsdevel@vger.kernel.org>,
- "dan.carpenter@oracle.com" <dan.carpenter@oracle.com>,
- "pali@kernel.org" <pali@kernel.org>,
  "linux-ntfs-dev@lists.sourceforge.net" <linux-ntfs-dev@lists.sourceforge.net>,
+ "dan.carpenter@oracle.com" <dan.carpenter@oracle.com>,
+ "pali@kernel.org" <pali@kernel.org>, "mark@harmstone.com" <mark@harmstone.com>,
  "anton@tuxera.com" <anton@tuxera.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-On 18/1/21 11:43 am, Konstantin Komarov wrote:
+On Mon, Jan 18, 2021 at 09:35:05AM +0000, Konstantin Komarov wrote:
 > From: Kari Argillander <kari.argillander@gmail.com>
-> Sent: Monday, January 4, 2021 1:08 AM
->> To: Konstantin Komarov <almaz.alexandrovich@paragon-software.com>
->> Cc: linux-fsdevel@vger.kernel.org; viro@zeniv.linux.org.uk; linux-kernel@vger.kernel.org; pali@kernel.org; dsterba@suse.cz;
->> aaptel@suse.com; willy@infradead.org; rdunlap@infradead.org; joe@perches.com; mark@harmstone.com; nborisov@suse.com;
->> linux-ntfs-dev@lists.sourceforge.net; anton@tuxera.com; dan.carpenter@oracle.com; hch@lst.de; ebiggers@kernel.org;
->> andy.lavr@gmail.com
->> Subject: Re: [PATCH v17 08/10] fs/ntfs3: Add Kconfig, Makefile and doc
->>
->> On Thu, Dec 31, 2020 at 06:23:59PM +0300, Konstantin Komarov wrote:
->>> This adds Kconfig, Makefile and doc
->>>
->>> Signed-off-by: Konstantin Komarov <almaz.alexandrovich@paragon-software.com>
->>> ---
->>>  Documentation/filesystems/ntfs3.rst | 107 ++++++++++++++++++++++++++++
->>>  fs/ntfs3/Kconfig                    |  41 +++++++++++
->>>  fs/ntfs3/Makefile                   |  31 ++++++++
->> Also Documentation/filesystems/index.rst should contain ntfs3.
->>
->>>  3 files changed, 179 insertions(+)
->>>  create mode 100644 Documentation/filesystems/ntfs3.rst
->>>  create mode 100644 fs/ntfs3/Kconfig
->>>  create mode 100644 fs/ntfs3/Makefile
->>>
->>> diff --git a/fs/ntfs3/Kconfig b/fs/ntfs3/Kconfig
->>> new file mode 100644
->>> index 000000000000..f9b732f4a5a0
->>> --- /dev/null
->>> +++ b/fs/ntfs3/Kconfig
->>> @@ -0,0 +1,41 @@
->>> +# SPDX-License-Identifier: GPL-2.0-only
->>> +config NTFS3_FS
->>> +	tristate "NTFS Read-Write file system support"
->>> +	select NLS
->>> +	help
->>> +	  Windows OS native file system (NTFS) support up to NTFS version 3.1.
->>> +
->>> +	  Y or M enables the NTFS3 driver with full features enabled (read,
->>> +	  write, journal replaying, sparse/compressed files support).
->>> +	  File system type to use on mount is "ntfs3". Module name (M option)
->>> +	  is also "ntfs3".
->>> +
->>> +	  Documentation: <file:Documentation/filesystems/ntfs3.rst>
->>> +
->>> +config NTFS3_64BIT_CLUSTER
->>> +	bool "64 bits per NTFS clusters"
->>> +	depends on NTFS3_FS && 64BIT
->>> +	help
->>> +	  Windows implementation of ntfs.sys uses 32 bits per clusters.
->>> +	  If activated 64 bits per clusters you will be able to use 4k cluster
->>> +	  for 16T+ volumes. Windows will not be able to mount such volumes.
->>> +
->>> +	  It is recommended to say N here.
->>> +
->>> +config NTFS3_LZX_XPRESS
->>> +	bool "activate support of external compressions lzx/xpress"
->>> +	depends on NTFS3_FS
->>> +	help
->>> +	  In Windows 10 one can use command "compact" to compress any files.
->>> +	  4 possible variants of compression are: xpress4k, xpress8k, xpress16 and lzx.
->>> +	  To read such "compacted" files say Y here.
->> It would be nice that we tell what is recommend. I think that this is recommend.
->> Of course if this use lot's of resource that is different story but I do not
->> think that is the case.
->>
->>> +
->>> +config NTFS3_POSIX_ACL
->>> +	bool "NTFS POSIX Access Control Lists"
->>> +	depends on NTFS3_FS
->>> +	select FS_POSIX_ACL
->>> +	help
->>> +	  POSIX Access Control Lists (ACLs) support additional access rights
->>> +	  for users and groups beyond the standard owner/group/world scheme,
->>> +	  and this option selects support for ACLs specifically for ntfs
->>> +	  filesystems.
->> Same here. Let's suggest what user should do. Is this recommend if we wan't
->> to use volume also in Windows?
-> Hi! All done, thanks for pointing these out.
+> Sent: Sunday, January 3, 2021 10:50 PM
+> > On Thu, Dec 31, 2020 at 06:23:53PM +0300, Konstantin Komarov wrote:
+> > > diff --git a/fs/ntfs3/inode.c b/fs/ntfs3/inode.c
+> > 
+> > > +int ntfs_create_inode(struct inode *dir, struct dentry *dentry,
+> > > +		      const struct cpu_str *uni, umode_t mode, dev_t dev,
+> > > +		      const char *symname, u32 size, int excl,
+> > > +		      struct ntfs_fnd *fnd, struct inode **new_inode)
+> > > +{
+> > 
+> > > +#ifdef CONFIG_NTFS3_FS_POSIX_ACL
+> > 
+> > In Kconfig this is NTFS3_POSIX_ACL. This repeat every file.
+> > 
+> 
+> This is OK. You may refer to similar parts of ext4/btrfs sources as a
+> reference:
+> fs/ext4/Kconfig or fs/btrfs/Kconfig
+> 
 
-Is the existence of NTFS3_64BIT_CLUSTER wise? I mean, what on earth is the
-point of an NTFS volume that Windows refuses to read?
-
-If NTFS was properly documented by Microsoft, fair enough, but AFAIK it's
-defined by what ntfs.sys does. I don't think we should be extending the
-specification like this.
+But in ext4 and btrfs Kconfig specify *_FS_POSIX_ACL. In ntfs3 Kconfig
+specify *_POSIX_ACL. So we missing _FS_ in our Kconfig?
 
 
 
