@@ -2,77 +2,105 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85ADC302F26
-	for <lists+linux-ntfs-dev@lfdr.de>; Mon, 25 Jan 2021 23:38:06 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
-	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id C51EE307522
+	for <lists+linux-ntfs-dev@lfdr.de>; Thu, 28 Jan 2021 12:50:10 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1l4AUj-0007s3-Jg; Mon, 25 Jan 2021 22:38:01 +0000
+	id 1l55oM-00030d-20; Thu, 28 Jan 2021 11:50:06 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <rdunlap@infradead.org>) id 1l47sK-0005qb-6q
- for linux-ntfs-dev@lists.sourceforge.net; Mon, 25 Jan 2021 19:50:14 +0000
+ (envelope-from <kari.argillander@gmail.com>) id 1l51NL-0006wM-QX
+ for linux-ntfs-dev@lists.sourceforge.net; Thu, 28 Jan 2021 07:05:55 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Message-Id:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=JCt8Xz6iMYYmXPAUHZqX3DBBjm5slw3913VPH4LauYk=; b=ThDfqWoTyVodJT7E9yoA1WzRo0
- Il98nk5ahZRDrXXCMH1cOSTt4Sq65T6RmvNNE0bTHt3rB/AwazX6V4skYAUPilJrFuPXNx3rw+O82
- GwEMaNQstaUSbQN3hsnzPVzcCvGR4H9Ncsvgg1mYVON4iweMVPHu6jJ2KPTm+sG2e6/I=;
+ bh=k6Ja0b6no5eZDxYMF3LcCjisrlOc+aXrwQbbpI1j+FU=; b=TLus7omAcI1BuTHKXU6nNDsPMj
+ onsGugN42BtFpOSLtgoaJouWYW7ctHb1+96DG28VLH8Wvf+abst+4QT2TnyXo2UhuS9J8q/DpdDoQ
+ w1RLqnQe6ba+BKLr4wQej+Gft1cyHvqr8DGBUoUeVjZeUJY4N8Djuq1iF+CKpKpRR3oo=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From
- :Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=JCt8Xz6iMYYmXPAUHZqX3DBBjm5slw3913VPH4LauYk=; b=l
- D4RnIxqDRlCnquqa8svm08v6dHF1LCe7U+yHdkhNS1V8AcVXjQJJKumxmBrdfeNiTT3Zdiasd63os
- beCGRFGv3cvWizYOQZ4FwlgQmODJbZbcVd8qVAAlFxqxg3RYtcNZHXvvZiRZ6OewbGIK2d+ZKhCpB
- tEJ+nkHezRb+L8x8=;
-Received: from merlin.infradead.org ([205.233.59.134])
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=k6Ja0b6no5eZDxYMF3LcCjisrlOc+aXrwQbbpI1j+FU=; b=S9rOAfZ0xkpxDR1heEBK6Uxz+9
+ swPM24bbRb42VLYbhDBdliqIzFFfQneyl9ZedWluPrJ45gc4A5SLtI0pYRWR+LCd2xDv5WvVCC9pB
+ Lv0ySMqpPXaxFV/MybMzq02v9NrSW3L/BXmicDLZMNLEb0bh5Mju94yUYUINPoMq2Xc8=;
+Received: from mail-lj1-f180.google.com ([209.85.208.180])
  by sfi-mx-3.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1l47s8-007LkO-OU
- for linux-ntfs-dev@lists.sourceforge.net; Mon, 25 Jan 2021 19:50:12 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=merlin.20170209; h=Content-Transfer-Encoding:MIME-Version:
- Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:In-Reply-To:References;
- bh=JCt8Xz6iMYYmXPAUHZqX3DBBjm5slw3913VPH4LauYk=; b=SaSrZLN8K9AmzmEiVTTHtuO2li
- FWqXP1Z7b9whcLdQ8Rwk8hUDEWtZW5QDigILcgXusCEvfNBX2S1iIhI48Ws8nWA1OZox7YXNlidh4
- ke8enUzMOE1jBpw2YHQHGDVTnmA0wmwNhEQrQN02QEbY9tX7P0iVEtWhwOwskXz0t1W+eHTAOMliJ
- GR8uUPypLCXJGklC7F5vUi2npA8RJ5hzAcmkSU7BUf+LzqJ6oP3WacKDzcsyjzfDAmdSic3TS2nmy
- BOVr7tuWwjcDlVw6+JvnngL08UMmfUnPsH+/yyhin6KLo24oHFtwJug+c2WV14YBSQ2lZFXtCxnqB
- LQaI5ADg==;
-Received: from [2601:1c0:6280:3f0::7650] (helo=merlin.infradead.org)
- by merlin.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
- id 1l47rr-0006un-3u; Mon, 25 Jan 2021 19:49:43 +0000
-From: Randy Dunlap <rdunlap@infradead.org>
-To: linux-kernel@vger.kernel.org
-Date: Mon, 25 Jan 2021 11:49:37 -0800
-Message-Id: <20210125194937.24627-1-rdunlap@infradead.org>
-X-Mailer: git-send-email 2.26.2
+ (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.2)
+ id 1l51NH-00GGbI-AR
+ for linux-ntfs-dev@lists.sourceforge.net; Thu, 28 Jan 2021 07:05:55 +0000
+Received: by mail-lj1-f180.google.com with SMTP id 3so5085146ljc.4
+ for <linux-ntfs-dev@lists.sourceforge.net>;
+ Wed, 27 Jan 2021 23:05:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=k6Ja0b6no5eZDxYMF3LcCjisrlOc+aXrwQbbpI1j+FU=;
+ b=vR3wxqh/qmhwGrbVwupmBVa176b9HWbzlBi+iHpE2Ycg3SLdVUaFFVWJRoDflvOdUM
+ aWsfXml59wmBYin5SlN4xPN6RcIK4dNQcXmOWado8NdbDeiQYMEx9jUwc2FSefBaZsTb
+ UppvhET8UGl0VaK3nPfEI3NeSolRoxAjUmD/Twjh8E4UabvGtnBhvdK4Pp/0MfZgKspn
+ EbnXKBnWSLwOuA8eGVoZOC1ie3IunASVVcj3NKoElHEMt6SbJYta7lDwO2SMVvg2m/by
+ 5Dg/ReU5K8DaNZiZQw6REGpMyc2vLhV0PBbGGTcgWEnqc/YsiI2u5nxThcqW1igtLrDg
+ FA3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=k6Ja0b6no5eZDxYMF3LcCjisrlOc+aXrwQbbpI1j+FU=;
+ b=sG5v51Z27pWGbX7APhumjfUiWb55TpB6W4NMAbTzTbzFAS9YaYA6RkFQXbWJYApcb2
+ VFWmz7EPrxm6P/Nok+q3ugLeDClGvEBTrYYspWYx8WMxokSI7KVlcOZbwsbZx2efkZJB
+ LcbsWGmQMxFVeQTZ8Us60BXtriapidNNn11JK8HMdwzyOmkK3LUw1iUte6MRo+a1Xbjn
+ uCqn/jhNI9yXgrLGtklplbO4Uv0QwQtIzl0m9eSf5bnYXfLwVzdmqerxx/8OIlFqCTUl
+ 8Y+lPoUVbB6bZyV/8lzq3xj6B6efdGqS67LHbxqQZeI9l7uk8yT/qe7Anc4onmwNnbBf
+ 1xWw==
+X-Gm-Message-State: AOAM530rC9YSoP4qJIfZN1d3YB+FoAj9Z3evtJFljXpWHQ/KGAEyMSIS
+ OarkN2ZJ44vKvAbVA+gAeF0=
+X-Google-Smtp-Source: ABdhPJyBKxRLdlULivn3zwS67VsgEmgyzQZjno9E0hYhphWAEuj721B0R/ffUiJ+gvuTBqvxO9A/aw==
+X-Received: by 2002:a2e:964f:: with SMTP id z15mr7511737ljh.368.1611817544692; 
+ Wed, 27 Jan 2021 23:05:44 -0800 (PST)
+Received: from kari-VirtualBox (87-95-193-210.bb.dnainternet.fi.
+ [87.95.193.210])
+ by smtp.gmail.com with ESMTPSA id r2sm1324510lff.143.2021.01.27.23.05.43
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 27 Jan 2021 23:05:44 -0800 (PST)
+Date: Thu, 28 Jan 2021 09:05:41 +0200
+From: Kari Argillander <kari.argillander@gmail.com>
+To: Mark Harmstone <mark@harmstone.com>
+Message-ID: <20210128070541.ynzsgpniyo2xe23k@kari-VirtualBox>
+References: <20210122140159.4095083-1-almaz.alexandrovich@paragon-software.com>
+ <20210122140159.4095083-2-almaz.alexandrovich@paragon-software.com>
+ <45515008-e4a9-26e3-3ce4-026bfacf7d53@harmstone.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <45515008-e4a9-26e3-3ce4-026bfacf7d53@harmstone.com>
 X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [205.233.59.134 listed in wl.mailspike.net]
- 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
+ 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+ (kari.argillander[at]gmail.com)
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [209.85.208.180 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.208.180 listed in wl.mailspike.net]
+ -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
-X-Headers-End: 1l47s8-007LkO-OU
-X-Mailman-Approved-At: Mon, 25 Jan 2021 22:37:59 +0000
-Subject: [Linux-NTFS-Dev] [PATCH RESEND2] ntfs: layout.h: delete duplicated
- words
+X-Headers-End: 1l51NH-00GGbI-AR
+X-Mailman-Approved-At: Thu, 28 Jan 2021 11:50:05 +0000
+Subject: Re: [Linux-NTFS-Dev] [PATCH v18 01/10] fs/ntfs3: Add headers and
+ misc files
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -85,47 +113,37 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-ntfs-dev@lists.sourceforge.net,
- Andrew Morton <akpm@linux-foundation.org>,
- Randy Dunlap <rdunlap@infradead.org>, Anton Altaparmakov <anton@tuxera.com>
+Cc: ebiggers@kernel.org, andy.lavr@gmail.com, nborisov@suse.com,
+ rdunlap@infradead.org, dsterba@suse.cz, willy@infradead.org,
+ linux-kernel@vger.kernel.org,
+ Konstantin Komarov <almaz.alexandrovich@paragon-software.com>, joe@perches.com,
+ hch@lst.de, viro@zeniv.linux.org.uk, linux-fsdevel@vger.kernel.org,
+ aaptel@suse.com, dan.carpenter@oracle.com, pali@kernel.org,
+ linux-ntfs-dev@lists.sourceforge.net, anton@tuxera.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-Drop the repeated words "the" and "in" in comments.
+On Fri, Jan 22, 2021 at 02:55:30PM +0000, Mark Harmstone wrote:
+> On 22/1/21 2:01 pm, Konstantin Komarov wrote:
+> > diff --git a/fs/ntfs3/upcase.c b/fs/ntfs3/upcase.c
 
-Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
-Cc: Anton Altaparmakov <anton@tuxera.com>
-Cc: linux-ntfs-dev@lists.sourceforge.net
-Acked-by: Anton Altaparmakov <anton@tuxera.com>
-Cc: Andrew Morton <akpm@linux-foundation.org>
----
-Andrew, Anton asked you to merge this patch:
-  https://lore.kernel.org/lkml/7CF99C49-7EB0-455C-808A-72EA117E113B@tuxera.com/
+> > +static inline u16 upcase_unicode_char(const u16 *upcase, u16 chr)
+> > +{
+> > +	if (chr < 'a')
+> > +		return chr;
+> > +
+> > +	if (chr <= 'z')
+> > +		return chr - ('a' - 'A');
+> > +
+> > +	return upcase[chr];
+> > +}
+> 
+> Shouldn't upcase_unicode_char be using the NTFS pseudo-file $UpCase?
+> That way you should also be covered for other bicameral alphabets.
 
- fs/ntfs/layout.h |    4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
---- linux-next-20200717.orig/fs/ntfs/layout.h
-+++ linux-next-20200717/fs/ntfs/layout.h
-@@ -703,7 +703,7 @@ typedef struct {
- /* 14*/	le16 instance;		/* The instance of this attribute record. This
- 				   number is unique within this mft record (see
- 				   MFT_RECORD/next_attribute_instance notes in
--				   in mft.h for more details). */
-+				   mft.h for more details). */
- /* 16*/	union {
- 		/* Resident attributes. */
- 		struct {
-@@ -1838,7 +1838,7 @@ typedef struct {
-  * Also, each security descriptor is stored twice in the $SDS stream with a
-  * fixed offset of 0x40000 bytes (256kib, the Windows cache manager's max size)
-  * between them; i.e. if a SDS_ENTRY specifies an offset of 0x51d0, then the
-- * the first copy of the security descriptor will be at offset 0x51d0 in the
-+ * first copy of the security descriptor will be at offset 0x51d0 in the
-  * $SDS data stream and the second copy will be at offset 0x451d0.
-  */
- typedef struct {
+return upcase[chr] is just for that? Upcase table from $UpCase is constucted
+in super.c and this will get it in and use it.
 
 
 _______________________________________________
