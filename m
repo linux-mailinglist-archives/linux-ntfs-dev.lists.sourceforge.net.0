@@ -2,95 +2,66 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33B4430751F
-	for <lists+linux-ntfs-dev@lfdr.de>; Thu, 28 Jan 2021 12:50:10 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:Cc:
-	Reply-To:From:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Subject:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:To:Sender:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=ZOaPsYwO1yPLht+31Eps6f8WZGz58Wot7/UwKmcigNw=; b=l1SJaG8NTdbEL6SoC0KqcFUmC
-	POjeXw5civTdSS28vuyCUJvctdAAoRFcR3VhS4GqwqxA7wj5V9o+RhhrtRbZH4cr3z8bGQV0JpLGK
-	Qyvmd73e3cubjIuayQ+vPCP557G974gemcliQizV2nJHEOG5Zgnb47KaHEeueyceztJxY=;
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 53B9B3106D4
+	for <lists+linux-ntfs-dev@lfdr.de>; Fri,  5 Feb 2021 09:38:07 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1l55oN-00031o-Iq; Thu, 28 Jan 2021 11:50:07 +0000
+	id 1l7wcr-0007q5-Pt; Fri, 05 Feb 2021 08:38:01 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <almaz.alexandrovich@paragon-software.com>)
- id 1l53Fd-0007S1-Ij
- for linux-ntfs-dev@lists.sourceforge.net; Thu, 28 Jan 2021 09:06:05 +0000
+ (envelope-from <yang.lee@linux.alibaba.com>) id 1l77VR-0005eJ-L5
+ for linux-ntfs-dev@lists.sourceforge.net; Wed, 03 Feb 2021 02:02:57 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
- :References:In-Reply-To:Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
+ MIME-Version:Content-Type:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=KLNyrps2qmGeDqx5R4mR8X8dmMbswrU34yUsJwY7weI=; b=PDozDI8WPB0/2KAWZbVIa5u4Ti
- 7ZKuq60RL5JYdEnvnfIgUtrHYa+guE3EpA5N87p3jIKJC540yKzM+lCPHCYKv05kbqDDcJ/PZsZgK
- MNbfA3/GGEuje4uidjRNkYgSrGVboKWXjtTaG3QXmB7gvS3vAGPzf1RRNTrCjPp4dj64=;
+ bh=thAj9s50EmJx3jQEs6fzEwDhMKjUcCNxN/0QwVX4pO8=; b=QTC+N7nmF3rXFo8CPhcqx1buJ9
+ LUPk/VPIvKcz7aZ8jHfMRinoX2xqHc0XHGk2Xgea3c6fJv6oLwDX5WgAWvMAPSz3TD4bnbENYbn1L
+ 9tXurQUzJ9WAJyIlTMwfeDJumbmXP1rX3zeoFr/AE/csAZkQO6usgVAqiRgYPpDloJnE=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:MIME-Version:
+ Content-Type:Content-Transfer-Encoding:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=KLNyrps2qmGeDqx5R4mR8X8dmMbswrU34yUsJwY7weI=; b=lCkOxOLxmmi0s0cOgpXwqQSckm
- XfPL+BxU7pyRehPIeqD2EYm5Hdp6WSwoIk5Q0Z324k3/vLGkRzONTHPsuwgWYNRhPB3Nyt7vQVKaz
- 6H017ynN7mPEuo/iF+WfgAoC+TioEJ0l1mrF1RDlQ1YT5sm8BzIBVK3ewDSGf/OfLej8=;
-Received: from relayfre-01.paragon-software.com ([176.12.100.13])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1l53Em-0002so-VT
- for linux-ntfs-dev@lists.sourceforge.net; Thu, 28 Jan 2021 09:05:25 +0000
-Received: from dlg2.mail.paragon-software.com
- (vdlg-exch-02.paragon-software.com [172.30.1.105])
- by relayfre-01.paragon-software.com (Postfix) with ESMTPS id 2781E1F89;
- Thu, 28 Jan 2021 12:05:05 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=paragon-software.com; s=mail; t=1611824705;
- bh=KLNyrps2qmGeDqx5R4mR8X8dmMbswrU34yUsJwY7weI=;
- h=From:To:CC:Subject:Date:In-Reply-To:References;
- b=A1p3uVrCGngcrPmgvVnR68AoTmkMBYfaNRfdMkNjd+it8BODL+CPsgxwswRPEOZGu
- UP7/D1df+GQnPY1HjDDHI6ayObgu9aSikoTc3ZDDaTRZW/m9lRDLrElHoUMGsPITE4
- uS+aOCazVsp9aLTO/gpO4bslnTCJRQczuRddmU2s=
-Received: from fsd-lkpg.ufsd.paragon-software.com (172.30.114.105) by
- vdlg-exch-02.paragon-software.com (172.30.1.105) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1847.3; Thu, 28 Jan 2021 12:05:04 +0300
-To: <linux-fsdevel@vger.kernel.org>
-Date: Thu, 28 Jan 2021 12:04:55 +0300
-Message-ID: <20210128090455.3576502-11-almaz.alexandrovich@paragon-software.com>
-X-Mailer: git-send-email 2.25.4
-In-Reply-To: <20210128090455.3576502-1-almaz.alexandrovich@paragon-software.com>
-References: <20210128090455.3576502-1-almaz.alexandrovich@paragon-software.com>
-MIME-Version: 1.0
-X-Originating-IP: [172.30.114.105]
-X-ClientProxiedBy: vdlg-exch-02.paragon-software.com (172.30.1.105) To
- vdlg-exch-02.paragon-software.com (172.30.1.105)
-X-Spam-Score: -0.1 (/)
+ bh=thAj9s50EmJx3jQEs6fzEwDhMKjUcCNxN/0QwVX4pO8=; b=M7BXuQ+Z/aF00Z7VvXiP53133f
+ of6/IMuCIWQUtSqMywA6VORdnOeA8LImgbvPT/ezVl5ox1pJMGMaVA1CvjUho+ZC2KNz0rUsJhgDz
+ iPDOELRBHAmsER3qnbZLmIwrgiU2dwGKshFTE+AkpY2cSb0DgX+/LVpQqEx/X03Xxicg=;
+Received: from out30-45.freemail.mail.aliyun.com ([115.124.30.45])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
+ id 1l77VI-0001MG-9E
+ for linux-ntfs-dev@lists.sourceforge.net; Wed, 03 Feb 2021 02:02:57 +0000
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R211e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=e01e01424; MF=yang.lee@linux.alibaba.com;
+ NM=1; PH=DS; RN=4; SR=0; TI=SMTPD_---0UNiyGIu_1612316800; 
+Received: from
+ j63c13417.sqa.eu95.tbsite.net(mailfrom:yang.lee@linux.alibaba.com
+ fp:SMTPD_---0UNiyGIu_1612316800) by smtp.aliyun-inc.com(127.0.0.1);
+ Wed, 03 Feb 2021 09:46:41 +0800
+From: Yang Li <yang.lee@linux.alibaba.com>
+To: anton@tuxera.com
+Date: Wed,  3 Feb 2021 09:46:38 +0800
+Message-Id: <1612316798-67953-1-git-send-email-yang.lee@linux.alibaba.com>
+X-Mailer: git-send-email 1.8.3.1
+X-Spam-Score: -8.0 (--------)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
- See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: paragon-software.com]
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [176.12.100.13 listed in list.dnswl.org]
+ trust [115.124.30.45 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
- domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
- not necessarily valid
-X-Headers-End: 1l53Em-0002so-VT
-X-Mailman-Approved-At: Thu, 28 Jan 2021 11:50:04 +0000
-Subject: [Linux-NTFS-Dev] [PATCH v19 10/10] fs/ntfs3: Add MAINTAINERS
+ -7.5 USER_IN_DEF_SPF_WL     From: address is in the default SPF white-list
+ 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay lines
+ -0.5 ENV_AND_HDR_SPF_MATCH  Env and Hdr From used in default SPF WL Match
+X-Headers-End: 1l77VI-0001MG-9E
+X-Mailman-Approved-At: Fri, 05 Feb 2021 08:37:55 +0000
+Subject: [Linux-NTFS-Dev] [PATCH] ntfs: remove unneeded semicolon
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -103,46 +74,47 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-From: Konstantin Komarov via Linux-NTFS-Dev
- <linux-ntfs-dev@lists.sourceforge.net>
-Reply-To: Konstantin Komarov <almaz.alexandrovich@paragon-software.com>
-Cc: Konstantin Komarov <almaz.alexandrovich@paragon-software.com>,
- andy.lavr@gmail.com, nborisov@suse.com, linux-kernel@vger.kernel.org,
- rdunlap@infradead.org, aaptel@suse.com, willy@infradead.org, dsterba@suse.cz,
- ebiggers@kernel.org, linux-ntfs-dev@lists.sourceforge.net, hch@lst.de,
- viro@zeniv.linux.org.uk, joe@perches.com, dan.carpenter@oracle.com,
- pali@kernel.org, mark@harmstone.com, anton@tuxera.com
+Cc: linux-ntfs-dev@lists.sourceforge.net, Yang Li <yang.lee@linux.alibaba.com>,
+ linux-kernel@vger.kernel.org
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-This adds MAINTAINERS
+Eliminate the following coccicheck warning:
+./fs/ntfs/super.c:1615:2-3: Unneeded semicolon
+./fs/ntfs/super.c:1684:2-3: Unneeded semicolon
 
-Signed-off-by: Konstantin Komarov <almaz.alexandrovich@paragon-software.com>
+Reported-by: Abaci Robot <abaci@linux.alibaba.com>
+Signed-off-by: Yang Li <yang.lee@linux.alibaba.com>
 ---
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+ fs/ntfs/super.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 992fe3b0900a..33fc38d7bb2f 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12668,6 +12668,13 @@ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/aia21/ntfs.git
- F:	Documentation/filesystems/ntfs.rst
- F:	fs/ntfs/
- 
-+NTFS3 FILESYSTEM
-+M:	Konstantin Komarov <almaz.alexandrovich@paragon-software.com>
-+S:	Supported
-+W:	http://www.paragon-software.com/
-+F:	Documentation/filesystems/ntfs3.rst
-+F:	fs/ntfs3/
-+
- NUBUS SUBSYSTEM
- M:	Finn Thain <fthain@telegraphics.com.au>
- L:	linux-m68k@lists.linux-m68k.org
+diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
+index 0d7e948..a45e06f 100644
+--- a/fs/ntfs/super.c
++++ b/fs/ntfs/super.c
+@@ -1612,7 +1612,7 @@ static bool load_and_init_attrdef(ntfs_volume *vol)
+ 		memcpy((u8*)vol->attrdef + (index++ << PAGE_SHIFT),
+ 				page_address(page), size);
+ 		ntfs_unmap_page(page);
+-	};
++	}
+ 	if (size == PAGE_SIZE) {
+ 		size = i_size & ~PAGE_MASK;
+ 		if (size)
+@@ -1681,7 +1681,7 @@ static bool load_and_init_upcase(ntfs_volume *vol)
+ 		memcpy((char*)vol->upcase + (index++ << PAGE_SHIFT),
+ 				page_address(page), size);
+ 		ntfs_unmap_page(page);
+-	};
++	}
+ 	if (size == PAGE_SIZE) {
+ 		size = i_size & ~PAGE_MASK;
+ 		if (size)
 -- 
-2.25.4
+1.8.3.1
 
 
 
