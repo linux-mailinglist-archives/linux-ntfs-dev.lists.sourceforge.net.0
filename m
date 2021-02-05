@@ -2,7 +2,7 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9CDB311808
+	by mail.lfdr.de (Postfix) with ESMTPS id C65DB311806
 	for <lists+linux-ntfs-dev@lfdr.de>; Sat,  6 Feb 2021 02:10:40 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:Cc:
@@ -10,28 +10,28 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:Subject:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:To:Sender:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=+xglIPjVG4lQcrCRiBaQPcQ62GsvSuBbg4GxKGl3xvg=; b=aGPCj8/cPkZyY8sZGA9fyC+A5
-	9mkQ/XvUT2+Gak8/qqpuXTc+wQLmKZb1waKCV0OPY+0cSO4M1Yb0CC0mCd1VUGL/0E0oZSNe8N2ze
-	Jy34wowzcLpyMhfvuJkFwvqvzBs8suE+EdXNCZ5IeWt3MvVzn+F6upj3UvSRdPLteOOao=;
+	 bh=j9maWHHUGctTHcWRDNHqobVBQCq7VczauoLGoCquBcQ=; b=Yojpc1lJa1KeVpHNbDg6A8Ps6
+	ceBYxvYH86bSX3hmQAqjjVvROW78p9iWKzgCs9Nka3yhW2Gaitz8AsaYiUKhgXuE6PGGLItkBarIi
+	G6BWK2wNb5N1vk35RDlQr6YkPmlRsIYoqUKztLGbQvjUhZB/IMEyvxZp0fdesufMVl8do=;
 Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
 	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1l8C7Q-0005CY-NI; Sat, 06 Feb 2021 01:10:36 +0000
+	id 1l8C7R-0005Dk-3r; Sat, 06 Feb 2021 01:10:37 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
  (envelope-from <almaz.alexandrovich@paragon-software.com>)
- id 1l82fr-0006QN-0J
- for linux-ntfs-dev@lists.sourceforge.net; Fri, 05 Feb 2021 15:05:31 +0000
+ id 1l82ft-00079Z-Q6
+ for linux-ntfs-dev@lists.sourceforge.net; Fri, 05 Feb 2021 15:05:33 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
  :References:In-Reply-To:Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=ryC1O+KjPCuBYVk17xa91BOxLPmINLD4FPXxdPXSapU=; b=GD4HOSE0TwMrCu2+TD9jkTaKaN
- 4/jNR0DOqIir/vgT1iZpaRLs+c5z+04h+cyuIX5ruMhJMh5/7X/P14wC/udQff8TxHzPp40UmTD+h
- XH+vyW3RFGlSFl83lMNeqs96PGAmLJ2oF2PWuOqkg3dawuKhD3Qq3bFGokOFKaHTX6ks=;
+ bh=NfyY3iX65Q/4+GcKwqC47CSNJ5zav/58cgw1es/g0h0=; b=fBOuulPLDcXb2PjpwUB4jeN7RC
+ TH7WK9CJ6Es7MGqqGmvAp7rUxrCIzVaeMIzxiMn3/Eg5wSzsvC1TSd/WIOQWKByVa44XRQ+nBGZZH
+ diY2Jmp6UeF0ieL7GEF+WxgxHQRRzRDJWns9/zY4W+GAJQrgKBz6281XGaHgjKQVbMB0=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:
@@ -39,32 +39,32 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=ryC1O+KjPCuBYVk17xa91BOxLPmINLD4FPXxdPXSapU=; b=BFvy5NnsbtojbIsAVFHUoxdvgS
- 7DaHx+KPiYsD/7TkYXl5qQXm5pJBBIs4UpmNYP//KZ/tXfBloZbIjwk9SrrskIioxDZf9tajgDqrq
- YqFzBfRZ/jS8yBQrKkRfZm4ZIq8DwtyWyVncCS460JFWSz2V+wNX1Dxp/YVBr02IO88w=;
+ bh=NfyY3iX65Q/4+GcKwqC47CSNJ5zav/58cgw1es/g0h0=; b=Ywufti+BY4Ng8aCpF46Qn5yXH+
+ DLnOvb8/PNZEZXv4K522xN9Tg5FpxfdrQj6YnHiwv3pUUfKWTZGsdwokfI7iyWQQ/CDa7M7ZWkPC5
+ L62W6kXvAWqJyNm+WJLu+9zcROZs2cUD9R9wL38mVO4AKSkdjNdsowkRAaH22APNY3jc=;
 Received: from relayfre-01.paragon-software.com ([176.12.100.13])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1l82fh-008PZc-Km
- for linux-ntfs-dev@lists.sourceforge.net; Fri, 05 Feb 2021 15:05:30 +0000
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
+ id 1l82fh-0002Ys-Jx
+ for linux-ntfs-dev@lists.sourceforge.net; Fri, 05 Feb 2021 15:05:33 +0000
 Received: from dlg2.mail.paragon-software.com
  (vdlg-exch-02.paragon-software.com [172.30.1.105])
- by relayfre-01.paragon-software.com (Postfix) with ESMTPS id D5C591E64;
- Fri,  5 Feb 2021 18:04:54 +0300 (MSK)
+ by relayfre-01.paragon-software.com (Postfix) with ESMTPS id 536CC1E76;
+ Fri,  5 Feb 2021 18:04:55 +0300 (MSK)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=paragon-software.com; s=mail; t=1612537494;
- bh=ryC1O+KjPCuBYVk17xa91BOxLPmINLD4FPXxdPXSapU=;
+ d=paragon-software.com; s=mail; t=1612537495;
+ bh=NfyY3iX65Q/4+GcKwqC47CSNJ5zav/58cgw1es/g0h0=;
  h=From:To:CC:Subject:Date:In-Reply-To:References;
- b=jI2XafcpObejPMCa1aX3CYZ/trtlAKzYwcoEjUWnhCXhtF02R8IaUa8t3p2qDs4WP
- Xj15lhrbpdvAHV97LEFHSdVSPJ9t6Rta4Pg5OpoBAQO8m0rUFhG+inui6ngYUkpS+X
- CwPE0iyhlA3cugvpeEme8tiF3Hc+/CX79csVrsl8=
+ b=UKvVEs2r/78UKu5N0Fs7NyEZJyNP4UD/Govq37T7Pa2J8CKb/QWJk0Fs8P3xbwNeR
+ Rw8NAnvQNvsYlOht9imCBYuE4B7rJiRGzl8DOKclHaDcNxDTt1X9KbK+/Oa4gf1kjD
+ P78MhM6ufIVEdMI+YmWSRNGEF6dRBSENMHXnzing=
 Received: from fsd-lkpg.ufsd.paragon-software.com (172.30.114.105) by
  vdlg-exch-02.paragon-software.com (172.30.1.105) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1847.3; Fri, 5 Feb 2021 18:04:53 +0300
+ 15.1.1847.3; Fri, 5 Feb 2021 18:04:54 +0300
 To: <linux-fsdevel@vger.kernel.org>
-Date: Fri, 5 Feb 2021 18:02:43 +0300
-Message-ID: <20210205150244.542628-10-almaz.alexandrovich@paragon-software.com>
+Date: Fri, 5 Feb 2021 18:02:44 +0300
+Message-ID: <20210205150244.542628-11-almaz.alexandrovich@paragon-software.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20210205150244.542628-1-almaz.alexandrovich@paragon-software.com>
 References: <20210205150244.542628-1-almaz.alexandrovich@paragon-software.com>
@@ -88,10 +88,9 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
-X-Headers-End: 1l82fh-008PZc-Km
+X-Headers-End: 1l82fh-0002Ys-Jx
 X-Mailman-Approved-At: Sat, 06 Feb 2021 01:10:34 +0000
-Subject: [Linux-NTFS-Dev] [PATCH v20 09/10] fs/ntfs3: Add NTFS3 in
- fs/Kconfig and fs/Makefile
+Subject: [Linux-NTFS-Dev] [PATCH v20 10/10] fs/ntfs3: Add MAINTAINERS
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -117,38 +116,31 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-This adds NTFS3 in fs/Kconfig and fs/Makefile
+This adds MAINTAINERS
 
 Signed-off-by: Konstantin Komarov <almaz.alexandrovich@paragon-software.com>
 ---
- fs/Kconfig  | 1 +
- fs/Makefile | 1 +
- 2 files changed, 2 insertions(+)
+ MAINTAINERS | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/fs/Kconfig b/fs/Kconfig
-index aa4c12282301..eae96d55ab67 100644
---- a/fs/Kconfig
-+++ b/fs/Kconfig
-@@ -145,6 +145,7 @@ menu "DOS/FAT/EXFAT/NT Filesystems"
- source "fs/fat/Kconfig"
- source "fs/exfat/Kconfig"
- source "fs/ntfs/Kconfig"
-+source "fs/ntfs3/Kconfig"
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 2a0737dfca89..a46036abc9df 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -12667,6 +12667,13 @@ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/aia21/ntfs.git
+ F:	Documentation/filesystems/ntfs.rst
+ F:	fs/ntfs/
  
- endmenu
- endif # BLOCK
-diff --git a/fs/Makefile b/fs/Makefile
-index 999d1a23f036..4f5242cdaee2 100644
---- a/fs/Makefile
-+++ b/fs/Makefile
-@@ -100,6 +100,7 @@ obj-$(CONFIG_SYSV_FS)		+= sysv/
- obj-$(CONFIG_CIFS)		+= cifs/
- obj-$(CONFIG_HPFS_FS)		+= hpfs/
- obj-$(CONFIG_NTFS_FS)		+= ntfs/
-+obj-$(CONFIG_NTFS3_FS)		+= ntfs3/
- obj-$(CONFIG_UFS_FS)		+= ufs/
- obj-$(CONFIG_EFS_FS)		+= efs/
- obj-$(CONFIG_JFFS2_FS)		+= jffs2/
++NTFS3 FILESYSTEM
++M:	Konstantin Komarov <almaz.alexandrovich@paragon-software.com>
++S:	Supported
++W:	http://www.paragon-software.com/
++F:	Documentation/filesystems/ntfs3.rst
++F:	fs/ntfs3/
++
+ NUBUS SUBSYSTEM
+ M:	Finn Thain <fthain@telegraphics.com.au>
+ L:	linux-m68k@lists.linux-m68k.org
 -- 
 2.25.4
 
