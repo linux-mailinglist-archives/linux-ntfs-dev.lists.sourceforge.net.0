@@ -2,93 +2,93 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93D3D31CE0F
-	for <lists+linux-ntfs-dev@lfdr.de>; Tue, 16 Feb 2021 17:31:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E08631F3B6
+	for <lists+linux-ntfs-dev@lfdr.de>; Fri, 19 Feb 2021 02:55:02 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
 	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1lC3Fp-0002Vo-8U; Tue, 16 Feb 2021 16:31:13 +0000
+	id 1lCv0R-0007IB-Ii; Fri, 19 Feb 2021 01:54:55 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <rkovhaev@gmail.com>) id 1lC39Q-0004IY-Hr
- for linux-ntfs-dev@lists.sourceforge.net; Tue, 16 Feb 2021 16:24:36 +0000
+ (envelope-from <rkovhaev@gmail.com>) id 1lCPFU-0001MH-4s
+ for linux-ntfs-dev@lists.sourceforge.net; Wed, 17 Feb 2021 16:00:20 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Message-Id:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=JT99kJbdPlhIu/0TowIURKsvoVzFDyN/pQVtyCtqv1A=; b=KvY7uYlqcfTRvdkRs7St9pccWu
- vXznrUFCiY04QBB2z1Iy1vD/8RTa4UuLWVbEiBYUGfMZ37QWAV29aWA+UR3WXlUQhsMW/2xYcjwZv
- VdM9T0Mwi1PPkecUpOTwUeasYDPBqCxgMPGEJ29PEl58oqEkUn+Qvs+K4/fzCYSZ7gQc=;
+ bh=GOQVmvgp4dt65rKsAQWxL7KavP/pmOa+Mhm9+94yhA0=; b=NZAIubxCXO+pmfzbCO9MuVnFek
+ bbatpzT4KSLUbcsUP3TYAvyUxEH0RE/oY6qvyiPP0yqWFGeVrnNjA7+DC7LyBxw5qRj1u7ekDVUpn
+ TfhVnrb4dM+Yw+fFpukf0Ej7FXhLPEU7x/HBFNpB11FyHzDuq/roTMauVb6o/JIVaGFM=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=JT99kJbdPlhIu/0TowIURKsvoVzFDyN/pQVtyCtqv1A=; b=gtXpZYDpNH7v/8DXSxS+JCCjaT
- p9XT4LoBEIPxsairJryFEHKZtRV6O2PmRoQaP77/agEipfcYYjDZ0KR5YaQ3SZOotvyAY/c1snMw7
- Edu+HqhV5AmeUGNWU6Y5ZqfcVtNFja2OcYNS7OzB8o3KEJlMYWkszNOG+8eodIlsJTmI=;
-Received: from mail-pj1-f51.google.com ([209.85.216.51])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.3)
- id 1lC39L-00068I-Ln
- for linux-ntfs-dev@lists.sourceforge.net; Tue, 16 Feb 2021 16:24:34 +0000
-Received: by mail-pj1-f51.google.com with SMTP id l18so6254779pji.3
+ h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From
+ :Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=GOQVmvgp4dt65rKsAQWxL7KavP/pmOa+Mhm9+94yhA0=; b=M
+ b14XEs251q6Cc9Unu84/4vkbUsIACy/kxd2785/JRDWqewnFOOErqISmBkmURA7mfrcQ5jIAatAP6
+ CZNQXX/SFq/FQmwr2xRqVHFGNOIDEYMQDQ3rdtfzJ1I598J/3pp/443bklGmp3wMOgVTi/9Io7W+T
+ SxrgIrK+qODCq7+Q=;
+Received: from mail-pg1-f174.google.com ([209.85.215.174])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.2)
+ id 1lCPFO-00CZ14-Bm
+ for linux-ntfs-dev@lists.sourceforge.net; Wed, 17 Feb 2021 16:00:20 +0000
+Received: by mail-pg1-f174.google.com with SMTP id z68so8772080pgz.0
  for <linux-ntfs-dev@lists.sourceforge.net>;
- Tue, 16 Feb 2021 08:24:31 -0800 (PST)
+ Wed, 17 Feb 2021 08:00:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=JT99kJbdPlhIu/0TowIURKsvoVzFDyN/pQVtyCtqv1A=;
- b=mGtOjvRdKBKLndMLC58MjliqHoj61eZp6LR6snXXa2lhUVw5TJJ6NUx3VJ7pvfhCq8
- 0GUbZ0dQqLSbl8KAHXkJd1P2I1g8UnSg85+kgYSdEJsLnXZMM3poJt8qE8jd1hirkX5N
- Us7oP5m5er5ImPMXAY6gPK2/00HrbjhXgt8JeiZjRzYzYqDcjk/7HdXpTS+dEwEKZ+5D
- 1Orp4ecwCTLm7RUQrXxkyLrtEAjYngOEogWZ7iNmHatsfopLWE1GGcLdd15vcOVrigee
- YslFWrIZz+1p7Mc+rGMIBPnHUMwxtRYyGmkCoEQTsi3TWxQicivOAFqGM1SKNViZCZUa
- RI3w==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=GOQVmvgp4dt65rKsAQWxL7KavP/pmOa+Mhm9+94yhA0=;
+ b=OgWgfmcXzUIfi/RaYLY+BdMNraMTmk6AGXnvuMXh263tKqYsVRvv5S6QkszHfK6p9e
+ R7ugb2dwa7Sys1Pdo2kHaqCYHLUo4t7HGHzt1X7d0Y5gqr7awVtUJh1+VKnQsDtsgcb4
+ MpHY6dJyhLutgPzx08UrSWpabf4/q+scQi3p4S74LBkq2x4/NrxQf1OnXUdk8O7Imu/6
+ TvoJ/FFTaQtt3bW4ciD5DSBsDjfrdLaDM+AgRwWLbDTTqnO9XUvrbuuKVQBDNbWRjS1Q
+ xUFs4lmZmP95+DzJefEFUcvMVvKjAVpMWcJzx7vOpqzCw1FIW7Nq3cVS5VBu++zkbnWI
+ WVzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=JT99kJbdPlhIu/0TowIURKsvoVzFDyN/pQVtyCtqv1A=;
- b=lbScEj3MeDj0CZvXmxBY053LMXOi1uQA5qOAJ6Bi1yBZayLEnKRJqHPJoKt78s91oo
- n2xTri57OIsB71ecoJd5hQLWdKijTRyzGXsh3RV52bBGuwju3eN7M4o2LAUpyV02ZGkT
- 8U/xUjbibrtjZZHjXXeWqIi1jBh15m80DsktYJcg4si+OZt7s1BOOmZg9u5/E3gV75Ab
- 9ScdmV22E4v5M+AOWavFct3r2SId2Kz3Wq78WvpMlaJolISXTXIuEolQ54r+N2GIu05H
- 0JCQlhJpe1V68VSQRlin7KXQ2FazcJR6JxSfCbZqQlsbTZxZOkMrx5h1DcxE9NesCsDW
- ue3A==
-X-Gm-Message-State: AOAM530JsPxaus04NGO+bxiIfpZ2O5lZhHSZ1u5WqCyh2Wn9WnFpI9o+
- 8SEMk5JkIPgbZ4xF2KWZIIY=
-X-Google-Smtp-Source: ABdhPJw9uY5E0tuQjCz2+2HB8BHQeX/rAtdev8nofs6lEJ6ENJkXmcykk3SniQ2JnQpRuyOCEXaNDQ==
-X-Received: by 2002:a17:90a:12c5:: with SMTP id
- b5mr4309128pjg.89.1613492666031; 
- Tue, 16 Feb 2021 08:24:26 -0800 (PST)
-Received: from nuc10 (104.36.148.139.aurocloud.com. [104.36.148.139])
- by smtp.gmail.com with ESMTPSA id q22sm22111838pgi.66.2021.02.16.08.24.23
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=GOQVmvgp4dt65rKsAQWxL7KavP/pmOa+Mhm9+94yhA0=;
+ b=f/peAeZ2fAQbTF4cGphUoronRvOiR3aENETvh9slVb+LKvcVafFg0S4UgGfzmNoQ37
+ Y1ikZH66Hc+IywocFgOtdbIj3jvBUz5u+ZIBiIVgbk72nz+FawGe0sYtxblSISMEuofe
+ vAGfvAJZsjHDsSSEEFihXMiugv3R2gpxl6cr6MvqHz+HY+WvQ+kdLzOGDZm5sLul/n7U
+ udjt0/b2vA92/7PEaDA+Cs+dlO6rR+r733tSyt4+Kx8r874JgtHa9Jd4NjlwgzbuMiKv
+ DwX+ud5MzPjGHYHsg1GGfQjFfHokZmlrygR68Gq5LlPYIZY+tjU45kZOke68KZWeJnjc
+ L47w==
+X-Gm-Message-State: AOAM53043wCd8ytYAPBSJxcMENLfFBzC0zFRP0qY/6RGdgXsW2qPal9P
+ K1EOIQYKu6quxp8rcWfLR74=
+X-Google-Smtp-Source: ABdhPJwwiktyfKOXgb8Yb//e1wziSLZ4qWg8ZQIuFlYzLgICbjZMZ+Sc5K/88aC9aX/mkrZnPbAJuw==
+X-Received: by 2002:a63:e602:: with SMTP id g2mr57105pgh.290.1613577608768;
+ Wed, 17 Feb 2021 08:00:08 -0800 (PST)
+Received: from nuc10.amust.local (104.36.148.139.aurocloud.com.
+ [104.36.148.139])
+ by smtp.gmail.com with ESMTPSA id 74sm2911183pfw.53.2021.02.17.08.00.06
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 16 Feb 2021 08:24:25 -0800 (PST)
-Date: Tue, 16 Feb 2021 08:24:20 -0800
+ Wed, 17 Feb 2021 08:00:08 -0800 (PST)
 From: Rustam Kovhaev <rkovhaev@gmail.com>
-To: Anton Altaparmakov <anton@tuxera.com>
-Message-ID: <YCvxtL5WYeO3ofKW@nuc10>
-References: <20210214221247.621431-1-rkovhaev@gmail.com>
- <2727F0B7-4992-4B24-963F-CC3C4D94CFD2@tuxera.com>
+To: anton@tuxera.com,
+	linux-ntfs-dev@lists.sourceforge.net
+Date: Wed, 17 Feb 2021 07:59:30 -0800
+Message-Id: <20210217155930.1506815-1-rkovhaev@gmail.com>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <2727F0B7-4992-4B24-963F-CC3C4D94CFD2@tuxera.com>
 X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
  (rkovhaev[at]gmail.com)
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [209.85.216.51 listed in wl.mailspike.net]
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [209.85.216.51 listed in list.dnswl.org]
+ trust [209.85.215.174 listed in list.dnswl.org]
+ 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
+ See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [URIs: tuxera.com]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
@@ -96,11 +96,13 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [209.85.215.174 listed in wl.mailspike.net]
  0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
-X-Headers-End: 1lC39L-00068I-Ln
-X-Mailman-Approved-At: Tue, 16 Feb 2021 16:31:11 +0000
-Subject: Re: [Linux-NTFS-Dev] [PATCH] ntfs: move check for valid resident
- attribute offset and length
+X-Headers-End: 1lCPFO-00CZ14-Bm
+X-Mailman-Approved-At: Fri, 19 Feb 2021 01:54:54 +0000
+Subject: [Linux-NTFS-Dev] [PATCH] ntfs: check for valid standard information
+ attribute
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -113,32 +115,43 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Cc: "linux-ntfs-dev@lists.sourceforge.net"
- <linux-ntfs-dev@lists.sourceforge.net>,
- "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
- LKML <linux-kernel@vger.kernel.org>
+Cc: gregkh@linuxfoundation.org, linux-kernel@vger.kernel.org,
+ Rustam Kovhaev <rkovhaev@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-On Tue, Feb 16, 2021 at 02:40:37AM +0000, Anton Altaparmakov wrote:
-> Hi Rustam,
-> 
-> Thank you for the patch but it is not quite correct:
-> 
-> 1) The first delta: yes that is a good idea to add this check but the error message is incorrect.  It should say "Corrupt standard information attribute in inode." instead.
-> 
-> 2) The second delta: The check of the attribute list attribute needs to remain, i.e. your second delta needs to be deleted.
-> 
-> Please could you address both of the above comments and then resend?  Please then also add: "Acked-by: Anton Altaparmakov <anton@tuxera.com>" to the patch.
-> 
-> Thanks a lot in advance!
-> 
-> Best regards,
-> 
-> 	Anton
-> 
-hi Anton, thank you for the review! I'll resend the patch!
+we should check for valid STANDARD_INFORMATION attribute offset and
+length before trying to access it
+
+Reported-and-tested-by: syzbot+c584225dabdea2f71969@syzkaller.appspotmail.com
+Signed-off-by: Rustam Kovhaev <rkovhaev@gmail.com>
+Acked-by: Anton Altaparmakov <anton@tuxera.com>
+Link: https://syzkaller.appspot.com/bug?extid=c584225dabdea2f71969
+---
+ fs/ntfs/inode.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/fs/ntfs/inode.c b/fs/ntfs/inode.c
+index f7e4cbc26eaf..be4ff9386ec0 100644
+--- a/fs/ntfs/inode.c
++++ b/fs/ntfs/inode.c
+@@ -629,6 +629,12 @@ static int ntfs_read_locked_inode(struct inode *vi)
+ 	}
+ 	a = ctx->attr;
+ 	/* Get the standard information attribute value. */
++	if ((u8 *)a + le16_to_cpu(a->data.resident.value_offset)
++			+ le32_to_cpu(a->data.resident.value_length) >
++			(u8 *)ctx->mrec + vol->mft_record_size) {
++		ntfs_error(vi->i_sb, "Corrupt standard information attribute in inode.");
++		goto unm_err_out;
++	}
+ 	si = (STANDARD_INFORMATION*)((u8*)a +
+ 			le16_to_cpu(a->data.resident.value_offset));
+ 
+-- 
+2.30.0
+
 
 
 _______________________________________________
