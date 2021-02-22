@@ -2,88 +2,105 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F42E321A0A
-	for <lists+linux-ntfs-dev@lfdr.de>; Mon, 22 Feb 2021 15:19:15 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id ADB1D32240B
+	for <lists+linux-ntfs-dev@lfdr.de>; Tue, 23 Feb 2021 03:11:07 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1lEC3M-0003ZV-Kk; Mon, 22 Feb 2021 14:19:12 +0000
+	id 1lENAE-0007we-W4; Tue, 23 Feb 2021 02:11:02 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <anton@tuxera.com>) id 1lEC3L-0003ZO-DJ
- for linux-ntfs-dev@lists.sourceforge.net; Mon, 22 Feb 2021 14:19:11 +0000
+ (envelope-from <rkovhaev@gmail.com>) id 1lEDuW-0001N3-4M
+ for linux-ntfs-dev@lists.sourceforge.net; Mon, 22 Feb 2021 16:18:12 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=MIME-Version:Content-Transfer-Encoding:Content-ID:
- Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From:Sender
- :Reply-To:Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To
- :Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=QNtT6dbEWvadNqojy6QF3Yii5xgzsa74OlwxmdPYlbI=; b=j+P1ItCVGA1WdyUXyIQvo99Xqe
- cKU2hK5hwBdiFZcECys+Ye+HeGGsuKBUKQwfmPMO7ikLH/ybarD5pGqQp6N+rOWzk14UJMBrsgzet
- KsqXuaHC5SMyGrnB5se3QA4bUFnA6pCJdNhb0KuJtxbJijF6EYE0TRQ+BzjuQw1UpIHo=;
+ bh=0oTXE9HVvDGBzY+kLMPkfFY7CNArufakj02yyUEBmno=; b=FwlBj+2fOIj3FGOoYRixWsA6xm
+ FjMH16L2g9GcUy+ax2qiz82otQlaK2UqGHh9frP60SuOkSRmovU+owF1DpHl0UJJZtgcNRfOz0CTx
+ 1uF9/WuG2lTOJiTdMgzicoCQsn31VAEIqoaU3BSIqITb2iKYQY68MIJ8QxpSszqzaVEM=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:
- In-Reply-To:References:Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=QNtT6dbEWvadNqojy6QF3Yii5xgzsa74OlwxmdPYlbI=; b=HRe+Ba6aCjEswe8edkvCRs4rmj
- q0TxsIKYZZApEGQwPwIrNjl5/dFyVO49kHJ0vffNgidEV7db7zJ5Qdvx0moxJhwxOOPTQ/y7PEiPi
- EtrD1z2K7HsJZ5f+WFv4LGmcCzBX28m5sZFDh4nEN+pADvLFm7w8DpknOeAowQSeOLrc=;
-Received: from mgw-02.mpynet.fi ([82.197.21.91])
+ bh=0oTXE9HVvDGBzY+kLMPkfFY7CNArufakj02yyUEBmno=; b=f8FOPcGy4dr1Cv6SHNG7fpjH09
+ x6zlfERJSnWoUGAu1gwGGtdGSDFLWeE5FWxdgBARuww42WXqTDQ0IcfUZ9tcW2zqrzbBEmvon5E1u
+ e9jrpeI4Eb7fvns2LgGaZFipjhiU3zYGhWa7WFTBU2V3hVp66ff5+tdcrp66jOZbAkgw=;
+Received: from mail-pj1-f50.google.com ([209.85.216.50])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1lEC3E-0008FM-Ca
- for linux-ntfs-dev@lists.sourceforge.net; Mon, 22 Feb 2021 14:19:11 +0000
-Received: from pps.filterd (mgw-02.mpynet.fi [127.0.0.1])
- by mgw-02.mpynet.fi (8.16.0.42/8.16.0.42) with SMTP id 11MEH0wD032555;
- Mon, 22 Feb 2021 16:18:51 +0200
-Received: from ex13.tuxera.com (ex13.tuxera.com [178.16.184.72])
- by mgw-02.mpynet.fi with ESMTP id 36tq071dhd-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
- Mon, 22 Feb 2021 16:18:51 +0200
-Received: from tuxera-exch.ad.tuxera.com (10.20.48.11) by
- tuxera-exch.ad.tuxera.com (10.20.48.11) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 22 Feb 2021 16:18:50 +0200
-Received: from tuxera-exch.ad.tuxera.com ([fe80::552a:f9f0:68c3:d789]) by
- tuxera-exch.ad.tuxera.com ([fe80::552a:f9f0:68c3:d789%12]) with mapi id
- 15.00.1497.010; Mon, 22 Feb 2021 16:18:50 +0200
-From: Anton Altaparmakov <anton@tuxera.com>
-To: Andrew Morton <akpm@linux-foundation.org>
-Thread-Topic: [PATCH] ntfs: check for valid standard information attribute
-Thread-Index: AQHXBUX43Bx0ygm+wEC4t5YdRoTv2qpemD8AgAEbtgCABGs/AA==
-Date: Mon, 22 Feb 2021 14:18:50 +0000
-Message-ID: <A4498E63-33DC-4DAA-837D-D97B8F29F70C@tuxera.com>
+ (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.3)
+ id 1lEDuL-00048Q-Pl
+ for linux-ntfs-dev@lists.sourceforge.net; Mon, 22 Feb 2021 16:18:12 +0000
+Received: by mail-pj1-f50.google.com with SMTP id ds5so1586778pjb.2
+ for <linux-ntfs-dev@lists.sourceforge.net>;
+ Mon, 22 Feb 2021 08:18:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=0oTXE9HVvDGBzY+kLMPkfFY7CNArufakj02yyUEBmno=;
+ b=i2eLFEYtrH5/NOdWQgdMxO6XM8eLfaIS9LJvKXZSM7PbjDjMHqzHltePB9u1NHtObE
+ FUa3176Ox5VlOmH9Ofsemis8eM5xkxLkxpRHn3AzD+qe2J+X1G4+P1AViF+czhL+Kjg7
+ 7Kb91jgGSZh3VB+ssjnbVdip8eabWswa5+ON899RdjuUuqzM8AzaUC8ow1MT171yRWoB
+ yox9sZHMQAnczIS7DpBNqrPJ6H4Agy5IhBc9g837YJbd7RT34QI/fS6qd8K8r0DzaVrf
+ gcA/cPWsvh6S6K9tsgyj23ejw9cOCajinDZ8b9uVRqRlzJYOLSi8zr3b6E+C7GoiaN1z
+ hkXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=0oTXE9HVvDGBzY+kLMPkfFY7CNArufakj02yyUEBmno=;
+ b=MBrf3bsOIhhWqR0L6he0lyvVpEnSIfcxbNkCPgrBfhavf9se5ENj6OhHxwhabok+UU
+ pGIanAspyNmPWGfd6mc9rPCyL88Xwm8EMCMLkCRmZQ4HetoEKCY4whIGQLVYmW9lA9RE
+ 8DyKCyvh0iEplSNiC04zE1UCVM23FtXa1koAAspsS/ngocoAuH1UEu4LyK+VyIbf4cXQ
+ ql2hblCna1ILkXLU+EbUJNfLlZeTTc7bxH3YqKRz7L61//c8m4iubnx1h5Q+ecMRCpNn
+ wGPeS7oFo6Wz0cdllIn0a4Xk13mXlpryPTgpQxul6+868KEkhQ5Ps+d3UQ5qN1gDMVFF
+ z+OA==
+X-Gm-Message-State: AOAM532RGUPARqkiNyQY4lqp6AGVZ8yYR+3/9L6NGeM19WCBIv2Paa7x
+ V10QxllVHhPdb6qTV/1iV00=
+X-Google-Smtp-Source: ABdhPJw6D3qE+/uQHgJBtNurxFxZfoOXiXjC7C10ymQXt0Sq4JgqsmuZC0WuHVUE/aLz0I2GeOZmUQ==
+X-Received: by 2002:a17:90a:4dc1:: with SMTP id
+ r1mr24490758pjl.12.1614010676264; 
+ Mon, 22 Feb 2021 08:17:56 -0800 (PST)
+Received: from nuc10 (104.36.148.139.aurocloud.com. [104.36.148.139])
+ by smtp.gmail.com with ESMTPSA id ml7sm14216393pjb.28.2021.02.22.08.17.52
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 22 Feb 2021 08:17:54 -0800 (PST)
+Date: Mon, 22 Feb 2021 08:17:49 -0800
+From: Rustam Kovhaev <rkovhaev@gmail.com>
+To: Anton Altaparmakov <anton@tuxera.com>
+Message-ID: <YDPZLTZ/eLEw9rLT@nuc10>
 References: <20210217155930.1506815-1-rkovhaev@gmail.com>
  <42B686E5-92C1-4AD3-8CF4-E9AB39CBDB7B@tuxera.com>
  <20210219104956.09e869c36f065a78d1901725@linux-foundation.org>
-In-Reply-To: <20210219104956.09e869c36f065a78d1901725@linux-foundation.org>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [109.155.251.193]
-Content-ID: <E0CA92CF3C57764CBAD62349D499E051@ex13.tuxera.com>
+ <A4498E63-33DC-4DAA-837D-D97B8F29F70C@tuxera.com>
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369, 18.0.761
- definitions=2021-02-22_02:2021-02-22,
- 2021-02-22 signatures=0
-X-Proofpoint-Spam-Details: rule=mpy_notspam policy=mpy score=0 phishscore=0
- adultscore=0
- suspectscore=0 spamscore=0 bulkscore=0 malwarescore=0 mlxscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2102220132
-X-Spam-Score: 1.0 (+)
+Content-Disposition: inline
+In-Reply-To: <A4498E63-33DC-4DAA-837D-D97B8F29F70C@tuxera.com>
+X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
+ 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+ (rkovhaev[at]gmail.com)
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [209.85.216.50 listed in list.dnswl.org]
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [209.85.216.50 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 1.0 PDS_BAD_THREAD_QP_64   Bad thread header - short QP
-X-Headers-End: 1lEC3E-0008FM-Ca
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+X-Headers-End: 1lEDuL-00048Q-Pl
+X-Mailman-Approved-At: Tue, 23 Feb 2021 02:11:01 +0000
 Subject: Re: [Linux-NTFS-Dev] [PATCH] ntfs: check for valid standard
  information attribute
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
@@ -101,53 +118,21 @@ List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>,
 Cc: "linux-ntfs-dev@lists.sourceforge.net"
  <linux-ntfs-dev@lists.sourceforge.net>,
  "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Rustam Kovhaev <rkovhaev@gmail.com>
+ Andrew Morton <akpm@linux-foundation.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-Hi Andrew,
+On Mon, Feb 22, 2021 at 02:18:50PM +0000, Anton Altaparmakov wrote:
+> Rustam would you like to resubmit with an improved/extended description?
+sure thing, no problem!
 
-Sorry for the delay in replying.
-
-> On 19 Feb 2021, at 18:49, Andrew Morton <akpm@linux-foundation.org> wrote:
-> 
-> On Fri, 19 Feb 2021 01:54:30 +0000 Anton Altaparmakov <anton@tuxera.com> wrote:
-> 
->> Hi Andrew,
->> 
->> Can you please push this one upstream?  Thanks a lot in advance!
-> 
-> The changelog is a bit brief...
-
-Yes you are right it is a bit brief.  I guess I thought the syzkaller link was sufficient...  Rustam would you like to resubmit with an improved/extended description?
-
->>> On 17 Feb 2021, at 15:59, Rustam Kovhaev <rkovhaev@gmail.com> wrote:
->>> 
->>> we should check for valid STANDARD_INFORMATION attribute offset and
->>> length before trying to access it
-> 
-> It's a kernel a crash and I assume it results from mounting a corrupted
-> filesystem?
-> 
-> I think it's worth a cc:stable, yes?
-
-The problem is an invalid memory access due to corrupt on-disk metadata.
-
-The issue with NTFS is that it is effectively a relational database so it is full of "struct X, field A" contains offset to "struct Y" so you get: "&struct Y = &struct X + X->A" and if the value of A is corrupt on-disk then your Y pointer is now pointing to random memory.
-
-The patch fixes one such place by validating that Y pointer is within bounds of the structure/buffer it is in.
-
-So I guess this could be worth a cc:stable?  I guess we can add it and Greg / others can decide whether to put it into stable or not...  Rustam when resubmitting with better description, please also add the "Cc: stable@vger.kernel.org" line together with the "Signed-off-by", etc lines (note no need to actually put this in CC: field of the email iteslf).
-
-Best regards,
-
-	Anton
--- 
-Anton Altaparmakov <anton at tuxera.com> (replace at with @)
-Lead in File System Development, Tuxera Inc., http://www.tuxera.com/
-Linux NTFS maintainer
+> when resubmitting with better description, please also add the 
+> "Cc: stable@vger.kernel.org" line together with the "Signed-off-by", 
+> etc lines (note no need to actually put this in CC: field of the email 
+> iteslf).
+i will do that, thanks Andrew and Anton
 
 
 
