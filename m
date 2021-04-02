@@ -2,84 +2,88 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3040F34BA1F
-	for <lists+linux-ntfs-dev@lfdr.de>; Sun, 28 Mar 2021 00:16:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7485B35320B
+	for <lists+linux-ntfs-dev@lfdr.de>; Sat,  3 Apr 2021 04:07:59 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:Cc:
 	Reply-To:From:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Subject:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:To:Sender:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=BPbYV4RjCqJ1XJvJ7yiDGsbKSwrZG/yD09DrZyWEo5I=; b=BvsWmUrCTEiC4iAvXuaVbEhNG
-	EvxHNBAD4b+1oFS/kXfqLhmURgbMh4tvJ5H/IpXQCorUNTRzCG1ttX8XoTeZ5PV81BJx8ffzHFCbw
-	johrHwzJnSgRc9/wv/+EfYDHcrhZBDYY2ONpyCVooPQrAaU1h1hAvtr8518K375Ru7vnI=;
-Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
-	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	List-Unsubscribe:List-Id:Subject:MIME-Version:Message-ID:Date:To:Sender:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=S1aYWp/M1pG8G1/QMzPs69VSp+rsXE+CR9xJ8Dtccuk=; b=cC/Vv4ROAZgkFNfUtFwjFVPmes
+	U6eiWKjMtY6wGCDjeClz5d4Y+f1KDRqGeJDvXvsTFFl48GEX3IESN0Xw0hHqboQinG6wUV/0IRDm5
+	Xe/ErjGSRRzaTKTAImsk+NKrj0vM0RYIHgmQmlUoq6YVZ49kFkvqpczO/fLwtqJcWekc=;
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1lQIAR-0004Mi-0B; Sat, 27 Mar 2021 23:16:31 +0000
+	id 1lSVhb-00052S-IR; Sat, 03 Apr 2021 02:07:55 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
  (envelope-from <almaz.alexandrovich@paragon-software.com>)
- id 1lQGiF-0004yo-4F
- for linux-ntfs-dev@lists.sourceforge.net; Sat, 27 Mar 2021 21:43:19 +0000
+ id 1lSMIP-0004jB-W6
+ for linux-ntfs-dev@lists.sourceforge.net; Fri, 02 Apr 2021 16:05:18 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
- :References:In-Reply-To:Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ :Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=hMrdjomfNUx81SQGI895Lj99/Ld+2JIcHIQiI5PgAmU=; b=kp8KnEjZK9ZmvApi3pJz+81k/I
- tRP77SZ2t33DgzAffr/C5IesjNSGCvavI8LrA4t1XaP5f9bTK76ZyUC38561fwSVQYkw13YGS248D
- vo3wSabKkIZ/gNqpsQJOqto455PbwanrROHZElTovpl4G2Kn9d0p6+RDjPi75sDxeoMM=;
+ bh=S/7zVh9/xRZgRgDYMrd9v5RV3aKGKdnrSle+oS4EEso=; b=SVT27Bu6AXBzS01+af2pJKrGjQ
+ ED0iNdVRA+x9bc4Om7LTOrs8gCDSTQo5wjCHCwtMoVlA1zfZUFZCw2g2S1z/Cqfxv8kS1U+P6dKJ9
+ WvdeOiyYCJxEX9bu3R2xQYdM01x/xtSELja3+ZR/9w0X83d7xDMiMSzzFNoEyZGTPZCM=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=hMrdjomfNUx81SQGI895Lj99/Ld+2JIcHIQiI5PgAmU=; b=HZwMgJZItt9G/CMwUKZkjfVxVW
- q+45v62geaIGaF4eVF/Q1QU6oqxp/UE0bsegahynMppNzUmeYsW4BR4kLcjVlNxQd04ivYAbf5YO9
- RuFzD4Eehv7a+Mx5gwgMBWH9btlU7YtJg+5K2voOV4mtWZWmt/HYfSz8btn1kiKbwDHs=;
-Received: from relaydlg-01.paragon-software.com ([81.5.88.159])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1lQGhu-001rRr-98
- for linux-ntfs-dev@lists.sourceforge.net; Sat, 27 Mar 2021 21:43:18 +0000
+ h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:
+ Subject:CC:To:From:Sender:Reply-To:Content-ID:Content-Description:Resent-Date
+ :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=S/7zVh9/xRZgRgDYMrd9v5RV3aKGKdnrSle+oS4EEso=; b=D
+ r1emSU9c2oezid7kxLf6DcsXi/G7qgIErOy4XBcjTvoQNjlTeQM8X3EBqxKfESh9J0aY0to8Lf/dv
+ OiVJARnRHo2BDKe2VyL1FEvQ4b/q8S/eDuufyf3ABDx6ZllkwE+46s9/XPga0ZxKS13XtUBRb9tDG
+ KRFMy21CG4BCmORo=;
+Received: from relayfre-01.paragon-software.com ([176.12.100.13])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
+ id 1lSM7W-0008Va-Eh
+ for linux-ntfs-dev@lists.sourceforge.net; Fri, 02 Apr 2021 15:54:35 +0000
 Received: from dlg2.mail.paragon-software.com
  (vdlg-exch-02.paragon-software.com [172.30.1.105])
- by relaydlg-01.paragon-software.com (Postfix) with ESMTPS id A901A82239;
- Sun, 28 Mar 2021 00:42:31 +0300 (MSK)
+ by relayfre-01.paragon-software.com (Postfix) with ESMTPS id CE3A1F8;
+ Fri,  2 Apr 2021 18:53:52 +0300 (MSK)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=paragon-software.com; s=mail; t=1616881351;
- bh=hMrdjomfNUx81SQGI895Lj99/Ld+2JIcHIQiI5PgAmU=;
- h=From:To:CC:Subject:Date:In-Reply-To:References;
- b=YQcqs2HdJULD3h6aGVQt+x7y/X2t5AhXV6yoifcXGF/+qJCqGgR7GF0gqKuNLBxsx
- Mcm+9jNfmEgC+3H/Zce2NBiOzhtC/PhUAYywGR2MkqLboMtZrhO4XQlNTi/PrOcKsZ
- zDZaR5z4lnHsU2WnFqKfqEDjotyxKh32cZklyKBw=
+ d=paragon-software.com; s=mail; t=1617378832;
+ bh=S/7zVh9/xRZgRgDYMrd9v5RV3aKGKdnrSle+oS4EEso=;
+ h=From:To:CC:Subject:Date;
+ b=e8Vw851rEeuY2ZZxkHNT0tnjR89syXQfOnzhhsAuUfhXSwSMIBCukw69iUXE/OC7A
+ l+/IY1yFPj8UIOi6pIvbn6XuIY8qmhOARkut69N9oA/xz+V7yGMEn29QbzH2v60Adq
+ ru1fkvpLZFu/34ukLomiUakFrpqpRATZ1cXA61J8=
 Received: from fsd-lkpg.ufsd.paragon-software.com (172.30.114.105) by
  vdlg-exch-02.paragon-software.com (172.30.1.105) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Sun, 28 Mar 2021 00:42:31 +0300
+ 15.1.2176.2; Fri, 2 Apr 2021 18:53:52 +0300
 To: <linux-fsdevel@vger.kernel.org>
-Date: Sun, 28 Mar 2021 00:40:23 +0300
-Message-ID: <20210327214023.3214923-11-almaz.alexandrovich@paragon-software.com>
+Date: Fri, 2 Apr 2021 18:53:37 +0300
+Message-ID: <20210402155347.64594-1-almaz.alexandrovich@paragon-software.com>
 X-Mailer: git-send-email 2.25.4
-In-Reply-To: <20210327214023.3214923-1-almaz.alexandrovich@paragon-software.com>
-References: <20210327214023.3214923-1-almaz.alexandrovich@paragon-software.com>
 MIME-Version: 1.0
 X-Originating-IP: [172.30.114.105]
 X-ClientProxiedBy: vdlg-exch-02.paragon-software.com (172.30.1.105) To
  vdlg-exch-02.paragon-software.com (172.30.1.105)
-X-Spam-Score: 1.1 (+)
+X-Spam-Score: 0.0 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 1.1 DKIM_ADSP_ALL          No valid author signature, domain signs all mail
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [176.12.100.13 listed in list.dnswl.org]
+ 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
+ See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [URIs: checkpatch.pl]
  0.0 TIME_LIMIT_EXCEEDED    Exceeded time limit / deadline
-X-Headers-End: 1lQGhu-001rRr-98
-X-Mailman-Approved-At: Sat, 27 Mar 2021 23:16:28 +0000
-Subject: [Linux-NTFS-Dev] [PATCH v25 10/10] fs/ntfs3: Add MAINTAINERS
+X-Headers-End: 1lSM7W-0008Va-Eh
+X-Mailman-Approved-At: Sat, 03 Apr 2021 02:07:52 +0000
+Subject: [Linux-NTFS-Dev] [PATCH v26 00/10] NTFS read-write driver GPL
+ implementation by Paragon Software
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -106,31 +110,245 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-This adds MAINTAINERS
+This patch adds NTFS Read-Write driver to fs/ntfs3.
 
-Signed-off-by: Konstantin Komarov <almaz.alexandrovich@paragon-software.com>
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+Having decades of expertise in commercial file systems development and huge
+test coverage, we at Paragon Software GmbH want to make our contribution to
+the Open Source Community by providing implementation of NTFS Read-Write
+driver for the Linux Kernel.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 67b104202..832f7d4d0 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12875,6 +12875,13 @@ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/aia21/ntfs.git
- F:	Documentation/filesystems/ntfs.rst
- F:	fs/ntfs/
- 
-+NTFS3 FILESYSTEM
-+M:	Konstantin Komarov <almaz.alexandrovich@paragon-software.com>
-+S:	Supported
-+W:	http://www.paragon-software.com/
-+F:	Documentation/filesystems/ntfs3.rst
-+F:	fs/ntfs3/
-+
- NUBUS SUBSYSTEM
- M:	Finn Thain <fthain@telegraphics.com.au>
- L:	linux-m68k@lists.linux-m68k.org
+This is fully functional NTFS Read-Write driver. Current version works with
+NTFS(including v3.1) and normal/compressed/sparse files and supports journal replaying.
+
+We plan to support this version after the codebase once merged, and add new
+features and fix bugs. For example, full journaling support over JBD will be
+added in later updates.
+
+v2:
+ - patch splitted to chunks (file-wise)
+ - build issues fixed
+ - sparse and checkpatch.pl errors fixed
+ - NULL pointer dereference on mkfs.ntfs-formatted volume mount fixed
+ - cosmetics + code cleanup
+
+v3:
+ - added acl, noatime, no_acs_rules, prealloc mount options
+ - added fiemap support
+ - fixed encodings support
+ - removed typedefs
+ - adapted Kernel-way logging mechanisms
+ - fixed typos and corner-case issues
+
+v4:
+ - atomic_open() refactored
+ - code style updated
+ - bugfixes
+
+v5:
+- nls/nls_alt mount options added
+- Unicode conversion fixes
+- Improved very fragmented files operations
+- logging cosmetics
+
+v6:
+- Security Descriptors processing changed
+  added system.ntfs_security xattr to set
+  SD
+- atomic_open() optimized
+- cosmetics
+
+v7:
+- Security Descriptors validity checks added (by Mark Harmstone)
+- atomic_open() fixed for the compressed file creation with directio
+  case
+- remount support
+- temporarily removed readahead usage
+- cosmetics
+
+v8:
+- Compressed files operations fixed
+
+v9:
+- Further cosmetics applied as suggested
+by Joe Perches
+
+v10:
+- operations with compressed/sparse files on very fragmented volumes improved
+- reduced memory consumption for above cases
+
+v11:
+- further compressed files optimizations: reads/writes are now skipping bufferization
+- journal wipe to the initial state optimized (bufferization is also skipped)
+- optimized run storage (re-packing cluster metainformation)
+- fixes based on Matthew Wilcox feedback to the v10
+- compressed/sparse/normal could be set for empty files with 'system.ntfs_attrib' xattr
+
+v12:
+- nls_alt mount option removed after discussion with Pali Rohar
+- fixed ni_repack()
+- fixed resident files transition to non-resident when size increasing
+
+v13:
+- nested_lock fix (lockdep)
+- out-of-bounds read fix (KASAN warning)
+- resident->nonresident transition fixed for compressed files
+- load_nls() missed fix applied
+- some sparse utility warnings fixes
+
+v14:
+- support for additional compression types (we've adapted WIMLIB's
+  implementation, authored by Eric Biggers, into ntfs3)
+
+v15:
+- kernel test robot warnings fixed
+- lzx/xpress compression license headers updated
+
+v16:
+- lzx/xpress moved to initial ntfs-3g plugin code
+- mutexes instead of a global spinlock for compresions
+- FALLOC_FL_PUNCH_HOLE and FALLOC_FL_COLLAPSE_RANGE implemented
+- CONFIG_NTFS3_FS_POSIX_ACL added
+
+v17:
+- FALLOC_FL_COLLAPSE_RANGE fixed
+- fixes for Mattew Wilcox's and Andy Lavr's concerns
+
+v18:
+- ntfs_alloc macro splitted into two ntfs_malloc + ntfs_zalloc
+- attrlist.c: always use ntfs_cmp_names instead of memcmp; compare entry names
+  only for entry with vcn == 0
+- dir.c: remove unconditional ni_lock in ntfs_readdir
+- fslog.c: corrected error case behavior
+- index.c: refactored due to modification of ntfs_cmp_names; use rw_semaphore
+  for read/write access to alloc_run and bitmap_run while ntfs_readdir
+- run.c: separated big/little endian code in functions
+- upcase.c: improved ntfs_cmp_names, thanks to Kari Argillander for idea
+  and 'bothcase' implementation
+
+v19:
+- fixed directory bitmap for 2MB cluster size
+- fixed rw_semaphore init for directories
+
+v20:
+- fixed issue with incorrect hidden/system attribute setting on
+  root subdirectories
+- use kvmalloc instead of kmalloc for runs array
+- fixed index behavior on volumes with cluster size more than 4k
+- current build info is added into module info instead of printing on insmod
+
+v21:
+- fixes for clang CFI checks
+- fixed sb->s_maxbytes for 32bit clusters
+- user.DOSATTRIB is no more intercepted by ntfs3
+- corrected xattr limits;  is used
+- corrected CONFIG_NTFS3_64BIT_CLUSTER usage
+- info about current build is added into module info and printing
+on insmod (by Andy Lavr's request)
+note: v21 is applicable for 'linux-next' not older than 2021.01.28
+
+v22:
+- ntfs_cmp_names() fixed
+- raise warning if 'nls->uni2char' fails
+- hot fix free clusters code optimized
+- use clang-format 11.0 instead of 10.0 to format code
+
+v23:
+- corrections for Kernel Test Robot warnings
+- kmem_cache_create() utilized to allocate memory in bitmap.c
+- cosmetics and comments thru the code
+
+v24:
+- BIO_MAX_PAGES -> BIO_MAX_VECS (fix for build issue of v23 vs linux-next)
+- minor optimization for LogFile: do not fill it with -1, if it's already there
+- index.c: removed 'inline' in definition of hdr_find_split() and hdr_insert_head()
+
+v25:
+- restore fs/Makefile in patch
+- refactor ntfs_create_inode() to use error-valued pointer
+- use mi_get_ref to fill MFT_REF
+- minimize checkpatch.pl warnings: replace LogFile with \x24LogFile when printing
+
+v26:
+- fixed coccinelle warnings
+- fslog.c: fix memory leak and memory overwrite
+
+Konstantin Komarov (10):
+  fs/ntfs3: Add headers and misc files
+  fs/ntfs3: Add initialization of super block
+  fs/ntfs3: Add bitmap
+  fs/ntfs3: Add file operations and implementation
+  fs/ntfs3: Add attrib operations
+  fs/ntfs3: Add compression
+  fs/ntfs3: Add NTFS journal
+  fs/ntfs3: Add Kconfig, Makefile and doc
+  fs/ntfs3: Add NTFS3 in fs/Kconfig and fs/Makefile
+  fs/ntfs3: Add MAINTAINERS
+
+ Documentation/filesystems/ntfs3.rst |  107 +
+ MAINTAINERS                         |    7 +
+ fs/Kconfig                          |    1 +
+ fs/Makefile                         |    1 +
+ fs/ntfs3/Kconfig                    |   46 +
+ fs/ntfs3/Makefile                   |   34 +
+ fs/ntfs3/attrib.c                   | 2082 +++++++++++
+ fs/ntfs3/attrlist.c                 |  456 +++
+ fs/ntfs3/bitfunc.c                  |  135 +
+ fs/ntfs3/bitmap.c                   | 1519 ++++++++
+ fs/ntfs3/debug.h                    |   64 +
+ fs/ntfs3/dir.c                      |  594 +++
+ fs/ntfs3/file.c                     | 1130 ++++++
+ fs/ntfs3/frecord.c                  | 3071 ++++++++++++++++
+ fs/ntfs3/fslog.c                    | 5181 +++++++++++++++++++++++++++
+ fs/ntfs3/fsntfs.c                   | 2542 +++++++++++++
+ fs/ntfs3/index.c                    | 2641 ++++++++++++++
+ fs/ntfs3/inode.c                    | 2033 +++++++++++
+ fs/ntfs3/lib/decompress_common.c    |  332 ++
+ fs/ntfs3/lib/decompress_common.h    |  352 ++
+ fs/ntfs3/lib/lib.h                  |   26 +
+ fs/ntfs3/lib/lzx_decompress.c       |  683 ++++
+ fs/ntfs3/lib/xpress_decompress.c    |  155 +
+ fs/ntfs3/lznt.c                     |  452 +++
+ fs/ntfs3/namei.c                    |  578 +++
+ fs/ntfs3/ntfs.h                     | 1238 +++++++
+ fs/ntfs3/ntfs_fs.h                  | 1085 ++++++
+ fs/ntfs3/record.c                   |  609 ++++
+ fs/ntfs3/run.c                      | 1111 ++++++
+ fs/ntfs3/super.c                    | 1500 ++++++++
+ fs/ntfs3/upcase.c                   |  105 +
+ fs/ntfs3/xattr.c                    | 1046 ++++++
+ 32 files changed, 30916 insertions(+)
+ create mode 100644 Documentation/filesystems/ntfs3.rst
+ create mode 100644 fs/ntfs3/Kconfig
+ create mode 100644 fs/ntfs3/Makefile
+ create mode 100644 fs/ntfs3/attrib.c
+ create mode 100644 fs/ntfs3/attrlist.c
+ create mode 100644 fs/ntfs3/bitfunc.c
+ create mode 100644 fs/ntfs3/bitmap.c
+ create mode 100644 fs/ntfs3/debug.h
+ create mode 100644 fs/ntfs3/dir.c
+ create mode 100644 fs/ntfs3/file.c
+ create mode 100644 fs/ntfs3/frecord.c
+ create mode 100644 fs/ntfs3/fslog.c
+ create mode 100644 fs/ntfs3/fsntfs.c
+ create mode 100644 fs/ntfs3/index.c
+ create mode 100644 fs/ntfs3/inode.c
+ create mode 100644 fs/ntfs3/lib/decompress_common.c
+ create mode 100644 fs/ntfs3/lib/decompress_common.h
+ create mode 100644 fs/ntfs3/lib/lib.h
+ create mode 100644 fs/ntfs3/lib/lzx_decompress.c
+ create mode 100644 fs/ntfs3/lib/xpress_decompress.c
+ create mode 100644 fs/ntfs3/lznt.c
+ create mode 100644 fs/ntfs3/namei.c
+ create mode 100644 fs/ntfs3/ntfs.h
+ create mode 100644 fs/ntfs3/ntfs_fs.h
+ create mode 100644 fs/ntfs3/record.c
+ create mode 100644 fs/ntfs3/run.c
+ create mode 100644 fs/ntfs3/super.c
+ create mode 100644 fs/ntfs3/upcase.c
+ create mode 100644 fs/ntfs3/xattr.c
+
+
+base-commit: 454c576c3f5e51d60f00a4ac0dde07f4f9d70e9d
 -- 
 2.25.4
 
