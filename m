@@ -2,68 +2,95 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 948273813E9
+	by mail.lfdr.de (Postfix) with ESMTPS id 6860C3813E6
 	for <lists+linux-ntfs-dev@lfdr.de>; Sat, 15 May 2021 00:48:45 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1lhgbo-0007Rz-Dn; Fri, 14 May 2021 22:48:40 +0000
+	id 1lhgbp-0007So-4M; Fri, 14 May 2021 22:48:41 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- (envelope-from <arnd@kernel.org>) id 1lhUgk-0003Zv-7T
- for linux-ntfs-dev@lists.sourceforge.net; Fri, 14 May 2021 10:04:58 +0000
+ (envelope-from <torvalds@linuxfoundation.org>) id 1lhbgc-00072Z-Cv
+ for linux-ntfs-dev@lists.sourceforge.net; Fri, 14 May 2021 17:33:18 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
- In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
+ In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
+ :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=AE8y/MovTkfEdmpKiaeay/llu1wDUVGEXxyDNTigIqo=; b=INLLqynXk0y6Ghb7PQjO8f27T6
- tAdQ58MSyMBCkj35QL0Ts72GqxJCu/rP53ADuiI5F+uyo4On7Oo563BtpepQcjR4uSN1b7w1Dbel6
- jDv7pWcaXUOwdDY/gwBqpdSd5QRPAoy7U5TSeFIxJeolhZ2Jh6qopr8RNHrMXo0B6p8Q=;
+ bh=3bmbAftPboaY7hu+DnMgt2b6hH50EmPqKJHrC7bAGn8=; b=AeKZDTBakPLZ1O9rSda4PxJJ0J
+ WfZv76eZNsCz5zWKzChVvTxE+Sng0VH0+R2LGqI++/Fk0//Ud1p9U1Ca5KszNMzMQKX1KSR3vIx1T
+ qq98qOxruIlPZzMUYQ/zowCwtZ5zgDdeiGsJNKru3mrjEHrLR+gfsouLzq8BibOn+MXI=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+ MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=AE8y/MovTkfEdmpKiaeay/llu1wDUVGEXxyDNTigIqo=; b=RGYpcRJHc5t5ZVA1TCOOinUTfG
- SJPfvQjSoYoQGoo8WTtfgY+sv2RAm/3uqiclGrv8U7Bm1uZTMWhcz5mF1caW7IJy6V2Zd58UcD4qi
- OKAYxAR12npK3aFt+8oWKpXKVaS23bq+SV9o8plm9Ae3qDSWWlGdD90ct5XTQtvz+9n4=;
-Received: from mail.kernel.org ([198.145.29.99])
+ bh=3bmbAftPboaY7hu+DnMgt2b6hH50EmPqKJHrC7bAGn8=; b=PPqqe8tQaAmUdoTlCxhwKsZ8xC
+ q5Pnrw+HK45xP7zfSL3vONuYkOmP8dinqpkSgXO+GAdXrKvTk9bl23q9ROyKl1vqvNUpSlvG++Zs2
+ 63sOPd4Q20i3bG99zdtAq4nsB8ObCO1+qQVhSmtNtqipp1+XIOEvTN3VcQU/zWhlaAiU=;
+Received: from mail-lf1-f46.google.com ([209.85.167.46])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1lhUga-0008Dr-Un
- for linux-ntfs-dev@lists.sourceforge.net; Fri, 14 May 2021 10:04:58 +0000
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 22781613BC;
- Fri, 14 May 2021 10:04:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1620986678;
- bh=59qmX/8bNt05Y62LGNDKy0eALe4d0WbxN5MMLh0uyE0=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=XJeJt9KiXSVd7Gjq10XACURQrKMRUKIA5Xi5HhXtHAF3CHfLFnIb47YVbTZ+sxreQ
- k4cGHJDE3p+eWz2chSFug4b80fJK3B/bEOgdL13hEDEfIscA9883HjawAPUbbPS1ZO
- NnRVZcIe/8XSfBiNSYROKJ59f3nrZ+qPB/t94c+KRhmlJZGsn28nLmyL647z+bhsGO
- sSDKnb0TC3CGNCOhIsdqzBG1+aqYOxmP12bKiDXKftDCLXUUPBQbm1ONjGxie8/j5P
- F9XIrsm90TU4dQQTq6HpLjeJkpiiMJ1WDj2eTIkhBdEgTL3BIz/y0hPjKS9cheoKoX
- 7/LYqK0DGl9Zw==
-From: Arnd Bergmann <arnd@kernel.org>
-To: linux-arch@vger.kernel.org
-Date: Fri, 14 May 2021 12:00:56 +0200
-Message-Id: <20210514100106.3404011-9-arnd@kernel.org>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210514100106.3404011-1-arnd@kernel.org>
-References: <20210514100106.3404011-1-arnd@kernel.org>
+ (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.3)
+ id 1lhbgU-0008Rc-Og
+ for linux-ntfs-dev@lists.sourceforge.net; Fri, 14 May 2021 17:33:18 +0000
+Received: by mail-lf1-f46.google.com with SMTP id i22so1139628lfl.10
+ for <linux-ntfs-dev@lists.sourceforge.net>;
+ Fri, 14 May 2021 10:33:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linux-foundation.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=3bmbAftPboaY7hu+DnMgt2b6hH50EmPqKJHrC7bAGn8=;
+ b=OCUpNcjguSpqlmqGqLclnsNCOhgzU3pBtJ+0aWvCc2SR59QNIHWTyn2iHNnFIXoHb/
+ IlrJnYgxa3QKa7TD5DPjuhh0hv9dsnnG2SJC44eepw5A/YU6NsZQR/5smJrlWciM7Uz7
+ oY/UTgSqeb9/fYqELWpyA+6END7cpdJzA1bkA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=3bmbAftPboaY7hu+DnMgt2b6hH50EmPqKJHrC7bAGn8=;
+ b=tqBn8mAWozuJRLG9JhRo9Ty0H6Staua6RP7rAGTZplttsTprrnwGxNGBzau54qNaDB
+ NZ66YG2nXlSE/KZqjhKSyEyG/MDf8Ty29dN6Sj0ZQIRZ1G2qVbhTmkiF56dGh0NKCeHW
+ nHX48FGKDfaKn9TFcPwNU7oUp/xZOlCWTAV1OHn2QZhfb4OB2daS4+yVmkYT9WIZ7D3v
+ wThuSibndY09dmY5hgD2ZUslwOP+wb/07v6LOplm1uD/UC75Cl99NkoKlq7lssinDc+r
+ 6fsoNfzuvSpWFgoUgCeEMo5QOR0eUHk2be9kas82SpT5HViioAs9fKO1klYF2oupnEVF
+ xUJw==
+X-Gm-Message-State: AOAM5306UaxshI3GDCaR1VWoSp0Z+jBd8WU1HH7faD1Gs9OhdS4oZ8vH
+ tkPIuoaLkSr7YboNrnF2nZmHpsvea92u2OIrivU=
+X-Google-Smtp-Source: ABdhPJxWKRJo5D6GgJL+8nhnk5N278q/K63ZqUafDaIa7sux41LaTG8uhElLFRW7hbVDbhpIJZTrpg==
+X-Received: by 2002:ac2:5f5c:: with SMTP id 28mr790923lfz.609.1621013584794;
+ Fri, 14 May 2021 10:33:04 -0700 (PDT)
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com.
+ [209.85.167.43])
+ by smtp.gmail.com with ESMTPSA id j8sm853877lfg.250.2021.05.14.10.33.03
+ for <linux-ntfs-dev@lists.sourceforge.net>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 14 May 2021 10:33:04 -0700 (PDT)
+Received: by mail-lf1-f43.google.com with SMTP id a2so23103436lfc.9
+ for <linux-ntfs-dev@lists.sourceforge.net>;
+ Fri, 14 May 2021 10:33:03 -0700 (PDT)
+X-Received: by 2002:a2e:9251:: with SMTP id v17mr38807472ljg.507.1621013573543; 
+ Fri, 14 May 2021 10:32:53 -0700 (PDT)
 MIME-Version: 1.0
-X-Spam-Score: -0.8 (/)
+References: <20210514100106.3404011-1-arnd@kernel.org>
+In-Reply-To: <20210514100106.3404011-1-arnd@kernel.org>
+From: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Fri, 14 May 2021 10:32:37 -0700
+X-Gmail-Original-Message-ID: <CAHk-=whGObOKruA_bU3aPGZfoDqZM1_9wBkwREp0H0FgR-90uQ@mail.gmail.com>
+Message-ID: <CAHk-=whGObOKruA_bU3aPGZfoDqZM1_9wBkwREp0H0FgR-90uQ@mail.gmail.com>
+To: Arnd Bergmann <arnd@kernel.org>
+X-Spam-Score: 0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
- See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: arndb.de]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [209.85.167.46 listed in list.dnswl.org]
+ 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
+ domains are different
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.167.46 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
@@ -71,11 +98,10 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1lhUga-0008Dr-Un
-X-Mailman-Approved-At: Fri, 14 May 2021 22:48:38 +0000
-Subject: [Linux-NTFS-Dev] [PATCH v2 08/13] partitions: msdos: fix one-byte
- get_unaligned()
+X-Headers-End: 1lhbgU-0008Rc-Og
+X-Mailman-Approved-At: Fri, 14 May 2021 22:48:39 +0000
+Subject: Re: [Linux-NTFS-Dev] [PATCH v2 00/13] Unify asm/unaligned.h around
+ struct helper
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -88,60 +114,59 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Cc: Jens Axboe <axboe@kernel.dk>, Arnd Bergmann <arnd@arndb.de>,
- linux-ntfs-dev@lists.sourceforge.net, Vineet Gupta <vgupta@synopsys.com>,
- linux-kernel@vger.kernel.org, linux-block@vger.kernel.org,
+Cc: Rich Felker <dalias@libc.org>, Linux-sh list <linux-sh@vger.kernel.org>,
  "Richard Russon \(FlatCap\)" <ldm@flatcap.org>,
- Linus Torvalds <torvalds@linux-foundation.org>
+ Amitkumar Karwar <amitkarwar@gmail.com>, Russell King <linux@armlinux.org.uk>,
+ Eric Dumazet <edumazet@google.com>, Paul Mackerras <paulus@samba.org>,
+ "H. Peter Anvin" <hpa@zytor.com>, linux-sparc <sparclinux@vger.kernel.org>,
+ Thomas Gleixner <tglx@linutronix.de>, linux-arch <linux-arch@vger.kernel.org>,
+ Florian Fainelli <f.fainelli@gmail.com>,
+ Yoshinori Sato <ysato@users.sourceforge.jp>,
+ Michael Ellerman <mpe@ellerman.id.au>,
+ the arch/x86 maintainers <x86@kernel.org>, James Morris <jmorris@namei.org>,
+ Ingo Molnar <mingo@redhat.com>, Geert Uytterhoeven <geert@linux-m68k.org>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>,
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+ Jakub Kicinski <kuba@kernel.org>, "Serge E. Hallyn" <serge@hallyn.com>,
+ Jonas Bonn <jonas@southpole.se>, Arnd Bergmann <arnd@arndb.de>,
+ Ganapathi Bhat <ganapathi017@gmail.com>,
+ Stefan Kristiansson <stefan.kristiansson@saunalahti.fi>,
+ linux-block <linux-block@vger.kernel.org>,
+ linux-m68k <linux-m68k@lists.linux-m68k.org>, openrisc@lists.librecores.org,
+ Borislav Petkov <bp@alien8.de>, Stafford Horne <shorne@gmail.com>,
+ Kalle Valo <kvalo@codeaurora.org>, Jens Axboe <axboe@kernel.dk>,
+ John Johansen <john.johansen@canonical.com>,
+ Xinming Hu <huxinming820@gmail.com>, Vineet Gupta <vgupta@synopsys.com>,
+ linux-wireless <linux-wireless@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Vladimir Oltean <vladimir.oltean@nxp.com>,
+ linux-ntfs-dev@lists.sourceforge.net,
+ LSM List <linux-security-module@vger.kernel.org>,
+ Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
+ Netdev <netdev@vger.kernel.org>, linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+ Sharvari Harisangam <sharvari.harisangam@nxp.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-From: Arnd Bergmann <arnd@arndb.de>
+On Fri, May 14, 2021 at 3:02 AM Arnd Bergmann <arnd@kernel.org> wrote:
+>
+> I've included this version in the asm-generic tree for 5.14 already,
+> addressing the few issues that were pointed out in the RFC. If there
+> are any remaining problems, I hope those can be addressed as follow-up
+> patches.
 
-A simplification of get_unaligned() clashes with callers that pass
-in a character pointer, causing a harmless warning like:
+This continues to look great to me, and now has the even simpler
+remaining implementation.
 
-block/partitions/msdos.c: In function 'msdos_partition':
-include/asm-generic/unaligned.h:13:22: warning: 'packed' attribute ignored for field of type 'u8' {aka 'unsigned char'} [-Wattributes]
+I'd be tempted to just pull it in for 5.13, but I guess we don't
+actually have any _outstanding_ bug in this area (the bug was in our
+zlib code, required -O3 to trigger, has been fixed now, and the biggy
+case didn't even use "get_unaligned()").
 
-Remove the get_unaligned() call and just use the byte directly.
+So I guess your 5.14 timing is the right thing to do.
 
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
----
- block/partitions/ldm.h   | 2 +-
- block/partitions/msdos.c | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/block/partitions/ldm.h b/block/partitions/ldm.h
-index d8d6beaa72c4..1a77ff09cc5f 100644
---- a/block/partitions/ldm.h
-+++ b/block/partitions/ldm.h
-@@ -85,7 +85,7 @@ struct parsed_partitions;
- #define TOC_BITMAP2		"log"		/* bitmaps in the TOCBLOCK. */
- 
- /* Borrowed from msdos.c */
--#define SYS_IND(p)		(get_unaligned(&(p)->sys_ind))
-+#define SYS_IND(p)		((p)->sys_ind)
- 
- struct frag {				/* VBLK Fragment handling */
- 	struct list_head list;
-diff --git a/block/partitions/msdos.c b/block/partitions/msdos.c
-index 8f2fcc080264..d78549d7619d 100644
---- a/block/partitions/msdos.c
-+++ b/block/partitions/msdos.c
-@@ -38,7 +38,7 @@
-  */
- #include <asm/unaligned.h>
- 
--#define SYS_IND(p)	get_unaligned(&p->sys_ind)
-+#define SYS_IND(p)	(p->sys_ind)
- 
- static inline sector_t nr_sects(struct msdos_partition *p)
- {
--- 
-2.29.2
-
+        Linus
 
 
 _______________________________________________
