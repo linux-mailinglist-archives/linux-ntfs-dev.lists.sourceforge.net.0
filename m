@@ -2,26 +2,26 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BC30394534
+	by mail.lfdr.de (Postfix) with ESMTPS id 5432D394532
 	for <lists+linux-ntfs-dev@lfdr.de>; Fri, 28 May 2021 17:37:08 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1lmeXl-00030g-Ki; Fri, 28 May 2021 15:37:01 +0000
+	id 1lmeXl-00030K-FP; Fri, 28 May 2021 15:37:01 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- (envelope-from <lee.jones@linaro.org>) id 1ljhmk-0004hh-Dd
- for linux-ntfs-dev@lists.sourceforge.net; Thu, 20 May 2021 12:28:18 +0000
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
+ (envelope-from <lee.jones@linaro.org>) id 1ljhUJ-0000zH-Ga
+ for linux-ntfs-dev@lists.sourceforge.net; Thu, 20 May 2021 12:09:15 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
  In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=RmIzqZ1vxn50jmDhJrSjkM4TUNU/Mv1FO2GF43pfOTE=; b=j13+1nT6wxCFBRzZVYtuPSKK7p
- rldXilOXefkQIOWMpu4KzymG5lw8jSPMMvbSp91xmokgJjkR+j1VyRfhZYfvZjJZhKc/gmrhrbbwR
- Y4Uq6cX9LvMut6OTmH6oo9FWI4Tc1G+w5JZhDK2J2lLcOtL4P5cig7RAB74qN4HUs+20=;
+ bh=LSk8PJWA2mLFQptLpvRy6SQT0qGCu3VNDirVI3p3YFM=; b=GOgaekuU/beoa/PBLr6yCxx3pj
+ W8FWrKtMZJ2WoFadGBcAeuHOWr0o9w5ZQNUxIcJ9+TaaVnnLpdsoWV0CZxBR/APYQQBOuVLcA7BiM
+ YzVqLCX1144n4yBkxc7dnsgeo9LpWpaVeQpq8URr+G2LazpAYsplxcXNGumWCrSs6PvE=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -29,51 +29,51 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=RmIzqZ1vxn50jmDhJrSjkM4TUNU/Mv1FO2GF43pfOTE=; b=Gd1hUdYtmStVqSYHULj48lu0uO
- C9hbTVtjaF6R+eGvCS6pJSdNu681XeCCf3xV11f9377JMwG7Zv5Lg0HtGsXkSWXiXYV7c/NiXxlg0
- 4ak2Vz9Id5WNLa5+eonrDQTwm7RITNtcv2mqsnOMzDh8PlQb6dzShMbjSVEpa/xz/7LE=;
-Received: from mail-lf1-f45.google.com ([209.85.167.45])
+ bh=LSk8PJWA2mLFQptLpvRy6SQT0qGCu3VNDirVI3p3YFM=; b=YJFib/LY6Ar9vkbE8QzFHaJbgs
+ pn7CT473Nd9eAGfR8exdicuX1wHs5WvkeIv0r7+lB3LEcW8wmkL/UM9bF7Rxl+l7zuVzwOEtMXcxV
+ d1tx8n7BmU8gVaACyKpt8uvGzLrQqH23+FLe6mXkh1T0I1lA/CeXaxZgLrKM6ueYgtRc=;
+Received: from mail-lj1-f173.google.com ([209.85.208.173])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.3)
- id 1ljhmb-0004li-7z
- for linux-ntfs-dev@lists.sourceforge.net; Thu, 20 May 2021 12:28:16 +0000
-Received: by mail-lf1-f45.google.com with SMTP id j6so21549788lfr.11
+ id 1ljhUD-00035g-Cj
+ for linux-ntfs-dev@lists.sourceforge.net; Thu, 20 May 2021 12:09:15 +0000
+Received: by mail-lj1-f173.google.com with SMTP id 131so19414009ljj.3
  for <linux-ntfs-dev@lists.sourceforge.net>;
- Thu, 20 May 2021 05:28:10 -0700 (PDT)
+ Thu, 20 May 2021 05:09:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=RmIzqZ1vxn50jmDhJrSjkM4TUNU/Mv1FO2GF43pfOTE=;
- b=kBQBqlR/7lraonsM2N+Fyep4B8UizGXLVJeo5rraP6VR4DqJskq7f0dXZd2KnogYnN
- aJMh/LdYRwOKUO6gZ/Jc1jLg6mNN7yYCONybr5KKVFN0BYj+uBBtVkTQArvGPLMQbSZ8
- lxIZ1qgq+ztZ2SwijJiWyuvI5MDNVC5XF0toY24agdbW9WoJjAxxUygDflPbEcLTwGlT
- 4N5/40ouNruiNN+j46JZ+BssRfuhnk2niHjXUcLYeUFUo3/jyPSGZkubA91vEepZgHaO
- NXpHg2mPyyNwHXcxGLJRyNCgnloL/vlZqdrTZhRmIy4YJ/NVHDKto7yCThVNP8UD6HR9
- 5c/w==
+ bh=LSk8PJWA2mLFQptLpvRy6SQT0qGCu3VNDirVI3p3YFM=;
+ b=ryk/qhWaGWbbs1acfB/NE3DeKWAKr1FiJRHcXoyvdhDZDhM0d4FyBU6CJ/6bC3F1Kt
+ VoeK427t0Ocyjr7o7CNSAou5JIaKHZZJZG8bIfXxLuuMZnS98PCG4uR+VVEaCWHVVZS0
+ 0+TG4YXxlVmlSIEbQCkMyur7FFIKVZ99IN9mpiQLpRuK4hTbIEVpqvS5VfBpeEiRC+vZ
+ z9K1Vzg1pzEvW5Q7grA659abPt4jvlDSAYj3Xie3v6VPbQz9hygPCtrtXSk36NIATWj7
+ +i9GEhS7fIdnc353fUsxHV48/0emHfNmwr0bSp+6ZNutRsEp76b5ML9PAjUDfHHdrZgm
+ IGIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=RmIzqZ1vxn50jmDhJrSjkM4TUNU/Mv1FO2GF43pfOTE=;
- b=d3mFSLWzXrJktUjEnUiHvuJQ8UUgYTu+BdrXNtOzSETqqmbpj2LQwoDob1cgroQPSG
- F1v2rayAqujJmug+altbIBC/cxghsz2o22lavmq8u9ARwlMH8bEAZ2E3zi7jO4n76nxL
- KOnQjudcjckzAC+A9qa8+isE4QSZarcWpf0CEgD62352BQshAWSiaEIQtQ6vOQdWlFRc
- tpZFoR3jd0TVMOhoT+AvxvxNz6y1EF5dChp5oOmvpXUQOC0c5+1ZanJVtuGDfZa38TYO
- z4NwyZB2mKDZhoQA2WaUhBX/kHmdGjx2JaHEKcMMOWRf0ymVfLBdzRYs27+TsoLUtiG9
- Gv7g==
-X-Gm-Message-State: AOAM532M89CX3XO5MMunMn4DvfK+/YI9AGe903/f6dJ62bCcc3A2K6vc
- doXvd/nVo99GqzfxXHW11F/toHXUm1T5Jg==
-X-Google-Smtp-Source: ABdhPJxeShEtHbO3i7XfshSUArsOOf9UFESQ8PBmRmFbaClKPJz3v9p3bh6bnyWkmc5vs3OKqgzc4A==
-X-Received: by 2002:adf:d081:: with SMTP id y1mr3844589wrh.179.1621512048447; 
- Thu, 20 May 2021 05:00:48 -0700 (PDT)
+ bh=LSk8PJWA2mLFQptLpvRy6SQT0qGCu3VNDirVI3p3YFM=;
+ b=ukJAuanZ3vx7k8B9Nl2p/fg9G1pjn9GTrCNDjtVYK+gL+z4CVZ+cloDSKrr79xn3rJ
+ hnstxMVhVfhMEqZ2DKjJ6vAi8inHLDQXvq/BsxErDmwpztCh/ekpwgXMIaF3ig9WfOLu
+ d/w72EYLH+gKB/yeGQ2ukpPhTyIvLdxVxCNRxmL2ffeqLdYHx+t5B1+Cour03bZgOkhh
+ +gwTWfARm1Tex0hAKUOxR2rk4/DbmuhGr5C3EEZj1rH5i1e9wt6XXaiYF1+CQrx+TYQV
+ dhq265wkI9JNvVScf4kHIMxYYg2Q3uLN8cShNDPnXfl6gh1uJToTt2c1ixfD/e63jLHC
+ Ba3g==
+X-Gm-Message-State: AOAM532hfMa044sd6MApvthbEwIgD8SAfLkpO3v36kg87FzUjh/iYxgJ
+ yR4h9Agnf+svuk2KDUb0VVhWS41ANnm44A==
+X-Google-Smtp-Source: ABdhPJzu5t4scsuBudttjz2xSwz5DOedJgiewDQe4MinYJ1i57ogOz9OqzzK2ducKUUPjKe9tTVgAA==
+X-Received: by 2002:a5d:44cb:: with SMTP id z11mr3984539wrr.159.1621512049315; 
+ Thu, 20 May 2021 05:00:49 -0700 (PDT)
 Received: from dell.default ([91.110.221.215])
- by smtp.gmail.com with ESMTPSA id s199sm8848269wme.43.2021.05.20.05.00.47
+ by smtp.gmail.com with ESMTPSA id s199sm8848269wme.43.2021.05.20.05.00.48
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 20 May 2021 05:00:47 -0700 (PDT)
+ Thu, 20 May 2021 05:00:48 -0700 (PDT)
 From: Lee Jones <lee.jones@linaro.org>
 To: lee.jones@linaro.org
-Date: Thu, 20 May 2021 13:00:31 +0100
-Message-Id: <20210520120043.3462759-4-lee.jones@linaro.org>
+Date: Thu, 20 May 2021 13:00:32 +0100
+Message-Id: <20210520120043.3462759-5-lee.jones@linaro.org>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210520120043.3462759-1-lee.jones@linaro.org>
 References: <20210520120043.3462759-1-lee.jones@linaro.org>
@@ -86,9 +86,7 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
  for more information. [URIs: tuxera.com]
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [209.85.167.45 listed in list.dnswl.org]
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.167.45 listed in wl.mailspike.net]
+ trust [209.85.208.173 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
@@ -96,10 +94,12 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
-X-Headers-End: 1ljhmb-0004li-7z
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.208.173 listed in wl.mailspike.net]
+X-Headers-End: 1ljhUD-00035g-Cj
 X-Mailman-Approved-At: Fri, 28 May 2021 15:36:59 +0000
-Subject: [Linux-NTFS-Dev] [PATCH 03/15] fs: ntfs: namei: Demote
- non-conformant kernel-doc headers
+Subject: [Linux-NTFS-Dev] [PATCH 04/15] fs: ntfs: unistr: Add missing param
+ descriptions for 'name{1, 2}_len'
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -120,38 +120,30 @@ Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
 Fixes the following W=1 kernel build warning(s):
 
- fs/ntfs/namei.c:263: warning: wrong kernel-doc identifier on line:
- fs/ntfs/namei.c:368: warning: wrong kernel-doc identifier on line:
+ fs/ntfs/unistr.c:87: warning: Function parameter or member 'name1_len' not described in 'ntfs_collate_names'
+ fs/ntfs/unistr.c:87: warning: Function parameter or member 'name2_len' not described in 'ntfs_collate_names'
 
 Cc: Anton Altaparmakov <anton@tuxera.com>
 Cc: linux-ntfs-dev@lists.sourceforge.net
 Signed-off-by: Lee Jones <lee.jones@linaro.org>
 ---
- fs/ntfs/namei.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ fs/ntfs/unistr.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/fs/ntfs/namei.c b/fs/ntfs/namei.c
-index 4e6a44bc654ce..ab44f2db533be 100644
---- a/fs/ntfs/namei.c
-+++ b/fs/ntfs/namei.c
-@@ -259,7 +259,7 @@ static struct dentry *ntfs_lookup(struct inode *dir_ino, struct dentry *dent,
-    }
- }
- 
--/**
-+/*
-  * Inode operations for directories.
-  */
- const struct inode_operations ntfs_dir_inode_ops = {
-@@ -364,7 +364,7 @@ static struct dentry *ntfs_fh_to_parent(struct super_block *sb, struct fid *fid,
- 				    ntfs_nfs_get_inode);
- }
- 
--/**
-+/*
-  * Export operations allowing NFS exporting of mounted NTFS partitions.
-  *
-  * We use the default ->encode_fh() for now.  Note that they
+diff --git a/fs/ntfs/unistr.c b/fs/ntfs/unistr.c
+index a6b6c64f14a93..faa73be4201f1 100644
+--- a/fs/ntfs/unistr.c
++++ b/fs/ntfs/unistr.c
+@@ -65,7 +65,9 @@ bool ntfs_are_names_equal(const ntfschar *s1, size_t s1_len,
+ /**
+  * ntfs_collate_names - collate two Unicode names
+  * @name1:	first Unicode name to compare
++ * @name1_len:	length of @name1
+  * @name2:	second Unicode name to compare
++ * @name2_len:	length of @name2
+  * @err_val:	if @name1 contains an invalid character return this value
+  * @ic:		either CASE_SENSITIVE or IGNORE_CASE
+  * @upcase:	upcase table (ignored if @ic is CASE_SENSITIVE)
 -- 
 2.31.1
 
