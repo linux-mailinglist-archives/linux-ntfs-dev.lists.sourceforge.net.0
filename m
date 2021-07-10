@@ -2,26 +2,26 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE9433C364E
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B3B33C364C
 	for <lists+linux-ntfs-dev@lfdr.de>; Sat, 10 Jul 2021 21:12:50 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1m2IP7-0000RT-7A; Sat, 10 Jul 2021 19:12:45 +0000
+	id 1m2IP7-0000Rb-Ao; Sat, 10 Jul 2021 19:12:45 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- (envelope-from <sashal@kernel.org>) id 1m22Zh-0005LN-5P
- for linux-ntfs-dev@lists.sourceforge.net; Sat, 10 Jul 2021 02:18:37 +0000
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
+ (envelope-from <sashal@kernel.org>) id 1m22dV-00078Y-Cf
+ for linux-ntfs-dev@lists.sourceforge.net; Sat, 10 Jul 2021 02:22:33 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
  In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=zkw6U0Y6xh/YBmFJleYaxO9Y4gpi+6ZWIv3Xh/JVFqM=; b=ed4TPCdJXa7XwAj29eKolqVrNX
- TTWep4ZO9A+nOZ1I+mr8nWLHJdJ207ZSZ2BstZ7XHh4/VeNslt1t/fpNAUGpQwKLIXLYcFiBUhzib
- 5scjY/Ke/3iaa4ErQ4qiHnctzqFaiuO8tUFBBECEX4IdLKW7rHlHmB68UH1EHs8XJjtQ=;
+ bh=zkw6U0Y6xh/YBmFJleYaxO9Y4gpi+6ZWIv3Xh/JVFqM=; b=N1KwYRZw/EmqFb6tkShaKyUyWC
+ 5EQnMSpaE+iPIdgfv38sUHisHtWYsLBjyM9CNCZrn05DvE7E2dXIFxamZtr7/7gpCCGJOIevgYtA1
+ Kc4jtibqvAtU0VvwubUwAaVDKazIIMZn9l63/5D6s51xu5d4VTN40wKB1qgTcRl0KYOc=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -29,55 +29,55 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=zkw6U0Y6xh/YBmFJleYaxO9Y4gpi+6ZWIv3Xh/JVFqM=; b=G3t6v/i6BxVJ+PnIY+SzkJ5b3V
- 8+0lrV7uHvXY4svznphYXefja+m6qzMQT3GxPhYfMD9mlJIgBfvJzXaoyAPV8x1mwPfEe7KhrM86w
- fIOVqh3vXjFkrdloPE5GEyoe4xucAFWo+yETGoGZKik5Cxze1sYu49I2y0Fe2ZX23ARM=;
+ bh=zkw6U0Y6xh/YBmFJleYaxO9Y4gpi+6ZWIv3Xh/JVFqM=; b=KaoKKAg85bqNCXgetelfTiZsdX
+ 0df8e37kVyqts4RNqYePjBc6HF6VKCy16oGqZP4bRE1neOP7nPSE7vtW6FJpzD1wk2cGCLbO7uw4g
+ D1ITlZvCB1KfRTpX8lDZxhFFZeE3hsh+8yU4m7otkMtCNBsBUkIWfm9ZCq0bBAQcXf8w=;
 Received: from mail.kernel.org ([198.145.29.99])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1m22ZV-002mqm-Bi
- for linux-ntfs-dev@lists.sourceforge.net; Sat, 10 Jul 2021 02:18:37 +0000
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 7C9F7613C5;
- Sat, 10 Jul 2021 02:18:12 +0000 (UTC)
+ id 1m22dM-0004Rm-6l
+ for linux-ntfs-dev@lists.sourceforge.net; Sat, 10 Jul 2021 02:22:33 +0000
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8D593613CC;
+ Sat, 10 Jul 2021 02:22:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1625883493;
+ s=k20201202; t=1625883736;
  bh=NIOvFFYGolkiUWHbQp1PRNxwIQ3ks2cXnYip0cqAkgI=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=fVC6letm+zxcCqTzGQW8Td+lbuRZl+uUwEMOwru30ms38ANsrM6c0arIzeeCOzahJ
- 29y/Hv+dlAWkB9871dV4qH0t8BJtbh1rajforapZeJVCEX6ecashbDjEMtYtp2aAQo
- BAHVitmUmj8dABxKqSmOllK7ayRgfiTb4XRPLF4bJwouGjMgzE/XewLshOESbUX6uQ
- iPIa0JjUnl/l+nh8xCoFiL+FrulziE03XCeC4alm3IkCrDFA7gxSL64yTw6vm0oRaA
- UbJN4oS3jMS8N9PPveQBvwD34eZnEBdmIyz5qzQKPh9o0IA6sPJPe1I6Mj0v9dUwvJ
- 2Uns2Bq0Fw0aQ==
+ b=iNzm+lyfQeBBGh3A15D1PA/6UF0rhOq0+7oK+Ux2d5pROnBhwQDLd0bM8PBiq4LS9
+ U0ELVrBqMHrK2GzL0Y2XxuAFchi93kRmfOozCzJ+2gy/xH5PU/T604WbyabI32Ur0h
+ YOSIFIZXAE5FBNed+up1aSYQDdhbN4vPX7EfsnzN1af6+QEb7Eg18LCB33b92ukSW1
+ XmdDtayhY15XuqE8W7jM66NC4oJSAtdN6KORMVS1Sq042PBJIOyqg9Zwt2RqZeBL5s
+ w0wq3qe7waC4FLr5LpzsDEuHWeu2Vlrn/Tt6sHJZNTJkKBtCOM5wtcW7PUx/+29vDI
+ HC17rgN0kTSLA==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Date: Fri,  9 Jul 2021 22:16:11 -0400
-Message-Id: <20210710021748.3167666-17-sashal@kernel.org>
+Date: Fri,  9 Jul 2021 22:20:27 -0400
+Message-Id: <20210710022156.3168825-15-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210710021748.3167666-1-sashal@kernel.org>
-References: <20210710021748.3167666-1-sashal@kernel.org>
+In-Reply-To: <20210710022156.3168825-1-sashal@kernel.org>
+References: <20210710022156.3168825-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-Spam-Score: -0.5 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
  for more information. [URIs: arndb.de]
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
  -0.5 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1m22ZV-002mqm-Bi
+X-Headers-End: 1m22dM-0004Rm-6l
 X-Mailman-Approved-At: Sat, 10 Jul 2021 19:12:43 +0000
-Subject: [Linux-NTFS-Dev] [PATCH AUTOSEL 5.13 017/114] partitions: msdos:
+Subject: [Linux-NTFS-Dev] [PATCH AUTOSEL 5.12 015/104] partitions: msdos:
  fix one-byte get_unaligned()
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
