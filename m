@@ -2,87 +2,83 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CA2F3B737B
-	for <lists+linux-ntfs-dev@lfdr.de>; Tue, 29 Jun 2021 15:50:33 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
-	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE9433C364E
+	for <lists+linux-ntfs-dev@lfdr.de>; Sat, 10 Jul 2021 21:12:50 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1lyE8B-0008O2-S4; Tue, 29 Jun 2021 13:50:27 +0000
+	id 1m2IP7-0000RT-7A; Sat, 10 Jul 2021 19:12:45 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- (envelope-from <lijian_8010a29@163.com>) id 1ly9he-0006L1-7O
- for linux-ntfs-dev@lists.sourceforge.net; Tue, 29 Jun 2021 09:06:46 +0000
+ (envelope-from <sashal@kernel.org>) id 1m22Zh-0005LN-5P
+ for linux-ntfs-dev@lists.sourceforge.net; Sat, 10 Jul 2021 02:18:37 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
- MIME-Version:Content-Type:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
+ In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=2IFJwus0pkEsCVVjuo0SmrtcURGJHkcj08Y0nJHOo7Q=; b=eUprmMGph1u2GkgfogMhVkENdA
- PULXXH7LsA4ZFBtvTbG4OaYvMRvEFODjV2v6j14E3CDfZ9wOo4ZNmQ+M3Hqn+mAM3EhoEUh6K9IHv
- 4Niomi79w2ZaiCW8b5/HjYUS/FdtgS+MH2o3FFST+/HlgHgzf+Om3O1/ZLgoPV80p710=;
+ bh=zkw6U0Y6xh/YBmFJleYaxO9Y4gpi+6ZWIv3Xh/JVFqM=; b=ed4TPCdJXa7XwAj29eKolqVrNX
+ TTWep4ZO9A+nOZ1I+mr8nWLHJdJ207ZSZ2BstZ7XHh4/VeNslt1t/fpNAUGpQwKLIXLYcFiBUhzib
+ 5scjY/Ke/3iaa4ErQ4qiHnctzqFaiuO8tUFBBECEX4IdLKW7rHlHmB68UH1EHs8XJjtQ=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:MIME-Version:
- Content-Type:Content-Transfer-Encoding:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=2IFJwus0pkEsCVVjuo0SmrtcURGJHkcj08Y0nJHOo7Q=; b=Sw+QaXT5cM6rSqI4nBOZCGV3nf
- vmPs4I2h2AC2eUiiMl/Hd92W8fhzzhnoPtjKQOZ0TbbBLe8TIqYQba0bQWftilEsT2V9q3sEKiZ6S
- p/uCo46ZzpeW5LLr3WQl4bzv5LbCTGDCxLyXzQUfunchQkhUn0P0qwdHe/5umayPnd6o=;
-Received: from m12-12.163.com ([220.181.12.12])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtp (Exim 4.92.3)
- id 1ly9hY-002x22-L3
- for linux-ntfs-dev@lists.sourceforge.net; Tue, 29 Jun 2021 09:06:46 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
- s=s110527; h=From:Subject:Date:Message-Id; bh=2IFJwus0pkEsCVVjuo
- 0SmrtcURGJHkcj08Y0nJHOo7Q=; b=GH/s/ppWW88xkERZ5du9MPajZodIkEPWfw
- NB3Gi6RWKIAyBVm8iVYl7bgZOlOcKO94wqi0akh5X5mDGdVizdLMulsbuxa8dhCd
- EECc7O6DL8fYVTnMZg0EUYIQEdZOSpAqxO4F2zQ9BqP4Rc7+zFYHPspBUCIBAIzl
- AHFoxdVyE=
-Received: from localhost.localdomain (unknown [218.17.89.92])
- by smtp8 (Coremail) with SMTP id DMCowABHHzCY4tpgdGV3MQ--.41752S2;
- Tue, 29 Jun 2021 17:06:33 +0800 (CST)
-From: lijian_8010a29@163.com
-To: anton@tuxera.com
-Date: Tue, 29 Jun 2021 09:06:15 +0000
-Message-Id: <20210629090615.114432-1-lijian_8010a29@163.com>
-X-Mailer: git-send-email 2.17.1
-X-CM-TRANSID: DMCowABHHzCY4tpgdGV3MQ--.41752S2
-X-Coremail-Antispam: 1Uf129KBjvdXoW7Jr45Jw43ZF4UuryDJw45GFg_yoWfXrg_ua
- yxCFWxAFWDJryjk393KanrtFWayw4rCF12gFnrKFyYgF45t3y5tr4qqrWFqr45ur43Zr4D
- Cw4jkrW3ur43GjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
- 9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU55R67UUUUU==
-X-Originating-IP: [218.17.89.92]
-X-CM-SenderInfo: 5olmxttqbyiikqdsmqqrwthudrp/1tbi3xnAUGB0GqwxOgAAs-
-X-Spam-Score: 0.2 (/)
+ bh=zkw6U0Y6xh/YBmFJleYaxO9Y4gpi+6ZWIv3Xh/JVFqM=; b=G3t6v/i6BxVJ+PnIY+SzkJ5b3V
+ 8+0lrV7uHvXY4svznphYXefja+m6qzMQT3GxPhYfMD9mlJIgBfvJzXaoyAPV8x1mwPfEe7KhrM86w
+ fIOVqh3vXjFkrdloPE5GEyoe4xucAFWo+yETGoGZKik5Cxze1sYu49I2y0Fe2ZX23ARM=;
+Received: from mail.kernel.org ([198.145.29.99])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
+ id 1m22ZV-002mqm-Bi
+ for linux-ntfs-dev@lists.sourceforge.net; Sat, 10 Jul 2021 02:18:37 +0000
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7C9F7613C5;
+ Sat, 10 Jul 2021 02:18:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1625883493;
+ bh=NIOvFFYGolkiUWHbQp1PRNxwIQ3ks2cXnYip0cqAkgI=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=fVC6letm+zxcCqTzGQW8Td+lbuRZl+uUwEMOwru30ms38ANsrM6c0arIzeeCOzahJ
+ 29y/Hv+dlAWkB9871dV4qH0t8BJtbh1rajforapZeJVCEX6ecashbDjEMtYtp2aAQo
+ BAHVitmUmj8dABxKqSmOllK7ayRgfiTb4XRPLF4bJwouGjMgzE/XewLshOESbUX6uQ
+ iPIa0JjUnl/l+nh8xCoFiL+FrulziE03XCeC4alm3IkCrDFA7gxSL64yTw6vm0oRaA
+ UbJN4oS3jMS8N9PPveQBvwD34eZnEBdmIyz5qzQKPh9o0IA6sPJPe1I6Mj0v9dUwvJ
+ 2Uns2Bq0Fw0aQ==
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Date: Fri,  9 Jul 2021 22:16:11 -0400
+Message-Id: <20210710021748.3167666-17-sashal@kernel.org>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20210710021748.3167666-1-sashal@kernel.org>
+References: <20210710021748.3167666-1-sashal@kernel.org>
+MIME-Version: 1.0
+X-stable: review
+X-Patchwork-Hint: Ignore
+X-Spam-Score: -0.5 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
- (lijian_8010a29[at]163.com)
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [220.181.12.12 listed in wl.mailspike.net]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [220.181.12.12 listed in list.dnswl.org]
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: yulong.com]
- -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends in
- digit (lijian_8010a29[at]163.com)
+ for more information. [URIs: arndb.de]
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
-X-Headers-End: 1ly9hY-002x22-L3
-X-Mailman-Approved-At: Tue, 29 Jun 2021 13:50:26 +0000
-Subject: [Linux-NTFS-Dev] [PATCH] fs: ntfs: super: removed unneeded semicolon
+ -0.5 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1m22ZV-002mqm-Bi
+X-Mailman-Approved-At: Sat, 10 Jul 2021 19:12:43 +0000
+Subject: [Linux-NTFS-Dev] [PATCH AUTOSEL 5.13 017/114] partitions: msdos:
+ fix one-byte get_unaligned()
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -95,47 +91,148 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-ntfs-dev@lists.sourceforge.net, linux-kernel@vger.kernel.org,
- lijian <lijian@yulong.com>
-MIME-Version: 1.0
+Cc: Sasha Levin <sashal@kernel.org>, linux-ntfs-dev@lists.sourceforge.net,
+ linux-block@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-From: lijian <lijian@yulong.com>
+From: Arnd Bergmann <arnd@arndb.de>
 
-removed unneeded semicolon ';'.
+[ Upstream commit 1b1774998b2dec837a57d729d1a22e5eb2d6d206 ]
 
-Signed-off-by: lijian <lijian@yulong.com>
+A simplification of get_unaligned() clashes with callers that pass
+in a character pointer, causing a harmless warning like:
+
+block/partitions/msdos.c: In function 'msdos_partition':
+include/asm-generic/unaligned.h:13:22: warning: 'packed' attribute ignored for field of type 'u8' {aka 'unsigned char'} [-Wattributes]
+
+Remove the SYS_IND() macro with the get_unaligned() call
+and just use the ->ind field directly.
+
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- fs/ntfs/super.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ block/partitions/ldm.c   |  2 +-
+ block/partitions/ldm.h   |  3 ---
+ block/partitions/msdos.c | 24 +++++++++++-------------
+ 3 files changed, 12 insertions(+), 17 deletions(-)
 
-diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
-index 0d7e948cb29c..a45e06fa8a73 100644
---- a/fs/ntfs/super.c
-+++ b/fs/ntfs/super.c
-@@ -1612,7 +1612,7 @@ static bool load_and_init_attrdef(ntfs_volume *vol)
- 		memcpy((u8*)vol->attrdef + (index++ << PAGE_SHIFT),
- 				page_address(page), size);
- 		ntfs_unmap_page(page);
--	};
-+	}
- 	if (size == PAGE_SIZE) {
- 		size = i_size & ~PAGE_MASK;
- 		if (size)
-@@ -1681,7 +1681,7 @@ static bool load_and_init_upcase(ntfs_volume *vol)
- 		memcpy((char*)vol->upcase + (index++ << PAGE_SHIFT),
- 				page_address(page), size);
- 		ntfs_unmap_page(page);
--	};
-+	}
- 	if (size == PAGE_SIZE) {
- 		size = i_size & ~PAGE_MASK;
- 		if (size)
+diff --git a/block/partitions/ldm.c b/block/partitions/ldm.c
+index d333786b5c7e..cc86534c80ad 100644
+--- a/block/partitions/ldm.c
++++ b/block/partitions/ldm.c
+@@ -510,7 +510,7 @@ static bool ldm_validate_partition_table(struct parsed_partitions *state)
+ 
+ 	p = (struct msdos_partition *)(data + 0x01BE);
+ 	for (i = 0; i < 4; i++, p++)
+-		if (SYS_IND (p) == LDM_PARTITION) {
++		if (p->sys_ind == LDM_PARTITION) {
+ 			result = true;
+ 			break;
+ 		}
+diff --git a/block/partitions/ldm.h b/block/partitions/ldm.h
+index d8d6beaa72c4..8693704dcf5e 100644
+--- a/block/partitions/ldm.h
++++ b/block/partitions/ldm.h
+@@ -84,9 +84,6 @@ struct parsed_partitions;
+ #define TOC_BITMAP1		"config"	/* Names of the two defined */
+ #define TOC_BITMAP2		"log"		/* bitmaps in the TOCBLOCK. */
+ 
+-/* Borrowed from msdos.c */
+-#define SYS_IND(p)		(get_unaligned(&(p)->sys_ind))
+-
+ struct frag {				/* VBLK Fragment handling */
+ 	struct list_head list;
+ 	u32		group;
+diff --git a/block/partitions/msdos.c b/block/partitions/msdos.c
+index 8f2fcc080264..c94de377c502 100644
+--- a/block/partitions/msdos.c
++++ b/block/partitions/msdos.c
+@@ -38,8 +38,6 @@
+  */
+ #include <asm/unaligned.h>
+ 
+-#define SYS_IND(p)	get_unaligned(&p->sys_ind)
+-
+ static inline sector_t nr_sects(struct msdos_partition *p)
+ {
+ 	return (sector_t)get_unaligned_le32(&p->nr_sects);
+@@ -52,9 +50,9 @@ static inline sector_t start_sect(struct msdos_partition *p)
+ 
+ static inline int is_extended_partition(struct msdos_partition *p)
+ {
+-	return (SYS_IND(p) == DOS_EXTENDED_PARTITION ||
+-		SYS_IND(p) == WIN98_EXTENDED_PARTITION ||
+-		SYS_IND(p) == LINUX_EXTENDED_PARTITION);
++	return (p->sys_ind == DOS_EXTENDED_PARTITION ||
++		p->sys_ind == WIN98_EXTENDED_PARTITION ||
++		p->sys_ind == LINUX_EXTENDED_PARTITION);
+ }
+ 
+ #define MSDOS_LABEL_MAGIC1	0x55
+@@ -193,7 +191,7 @@ static void parse_extended(struct parsed_partitions *state,
+ 
+ 			put_partition(state, state->next, next, size);
+ 			set_info(state, state->next, disksig);
+-			if (SYS_IND(p) == LINUX_RAID_PARTITION)
++			if (p->sys_ind == LINUX_RAID_PARTITION)
+ 				state->parts[state->next].flags = ADDPART_FLAG_RAID;
+ 			loopct = 0;
+ 			if (++state->next == state->limit)
+@@ -546,7 +544,7 @@ static void parse_minix(struct parsed_partitions *state,
+ 	 * a secondary MBR describing its subpartitions, or
+ 	 * the normal boot sector. */
+ 	if (msdos_magic_present(data + 510) &&
+-	    SYS_IND(p) == MINIX_PARTITION) { /* subpartition table present */
++	    p->sys_ind == MINIX_PARTITION) { /* subpartition table present */
+ 		char tmp[1 + BDEVNAME_SIZE + 10 + 9 + 1];
+ 
+ 		snprintf(tmp, sizeof(tmp), " %s%d: <minix:", state->name, origin);
+@@ -555,7 +553,7 @@ static void parse_minix(struct parsed_partitions *state,
+ 			if (state->next == state->limit)
+ 				break;
+ 			/* add each partition in use */
+-			if (SYS_IND(p) == MINIX_PARTITION)
++			if (p->sys_ind == MINIX_PARTITION)
+ 				put_partition(state, state->next++,
+ 					      start_sect(p), nr_sects(p));
+ 		}
+@@ -643,7 +641,7 @@ int msdos_partition(struct parsed_partitions *state)
+ 	p = (struct msdos_partition *) (data + 0x1be);
+ 	for (slot = 1 ; slot <= 4 ; slot++, p++) {
+ 		/* If this is an EFI GPT disk, msdos should ignore it. */
+-		if (SYS_IND(p) == EFI_PMBR_OSTYPE_EFI_GPT) {
++		if (p->sys_ind == EFI_PMBR_OSTYPE_EFI_GPT) {
+ 			put_dev_sector(sect);
+ 			return 0;
+ 		}
+@@ -685,11 +683,11 @@ int msdos_partition(struct parsed_partitions *state)
+ 		}
+ 		put_partition(state, slot, start, size);
+ 		set_info(state, slot, disksig);
+-		if (SYS_IND(p) == LINUX_RAID_PARTITION)
++		if (p->sys_ind == LINUX_RAID_PARTITION)
+ 			state->parts[slot].flags = ADDPART_FLAG_RAID;
+-		if (SYS_IND(p) == DM6_PARTITION)
++		if (p->sys_ind == DM6_PARTITION)
+ 			strlcat(state->pp_buf, "[DM]", PAGE_SIZE);
+-		if (SYS_IND(p) == EZD_PARTITION)
++		if (p->sys_ind == EZD_PARTITION)
+ 			strlcat(state->pp_buf, "[EZD]", PAGE_SIZE);
+ 	}
+ 
+@@ -698,7 +696,7 @@ int msdos_partition(struct parsed_partitions *state)
+ 	/* second pass - output for each on a separate line */
+ 	p = (struct msdos_partition *) (0x1be + data);
+ 	for (slot = 1 ; slot <= 4 ; slot++, p++) {
+-		unsigned char id = SYS_IND(p);
++		unsigned char id = p->sys_ind;
+ 		int n;
+ 
+ 		if (!nr_sects(p))
 -- 
-2.17.1
-
+2.30.2
 
 
 
