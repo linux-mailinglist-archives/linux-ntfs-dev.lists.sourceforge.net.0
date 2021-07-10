@@ -2,26 +2,26 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B3B33C364C
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F75D3C364D
 	for <lists+linux-ntfs-dev@lfdr.de>; Sat, 10 Jul 2021 21:12:50 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1m2IP7-0000Rb-Ao; Sat, 10 Jul 2021 19:12:45 +0000
+	id 1m2IP7-0000Rl-Ck; Sat, 10 Jul 2021 19:12:45 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <sashal@kernel.org>) id 1m22dV-00078Y-Cf
- for linux-ntfs-dev@lists.sourceforge.net; Sat, 10 Jul 2021 02:22:33 +0000
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
+ (envelope-from <sashal@kernel.org>) id 1m22fu-0005b0-Il
+ for linux-ntfs-dev@lists.sourceforge.net; Sat, 10 Jul 2021 02:25:02 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
  In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=zkw6U0Y6xh/YBmFJleYaxO9Y4gpi+6ZWIv3Xh/JVFqM=; b=N1KwYRZw/EmqFb6tkShaKyUyWC
- 5EQnMSpaE+iPIdgfv38sUHisHtWYsLBjyM9CNCZrn05DvE7E2dXIFxamZtr7/7gpCCGJOIevgYtA1
- Kc4jtibqvAtU0VvwubUwAaVDKazIIMZn9l63/5D6s51xu5d4VTN40wKB1qgTcRl0KYOc=;
+ bh=zkw6U0Y6xh/YBmFJleYaxO9Y4gpi+6ZWIv3Xh/JVFqM=; b=BRbISzEdJ9pgWDBRp29dzHvtDV
+ DunRIyzbXIXo5B9uPcAbrF+TMCG+S1xS/PyxmFdi3eVQrNC44nayaKbdtYB5j6Fb3Hgr6aJ+oEL1x
+ d+dW6C7aYQ32M4XXrBXSZFEX+W93KEXwn0ouvjopV/i1ONclq1a+AAp/hQB4YN6Jdh78=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -29,34 +29,34 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=zkw6U0Y6xh/YBmFJleYaxO9Y4gpi+6ZWIv3Xh/JVFqM=; b=KaoKKAg85bqNCXgetelfTiZsdX
- 0df8e37kVyqts4RNqYePjBc6HF6VKCy16oGqZP4bRE1neOP7nPSE7vtW6FJpzD1wk2cGCLbO7uw4g
- D1ITlZvCB1KfRTpX8lDZxhFFZeE3hsh+8yU4m7otkMtCNBsBUkIWfm9ZCq0bBAQcXf8w=;
+ bh=zkw6U0Y6xh/YBmFJleYaxO9Y4gpi+6ZWIv3Xh/JVFqM=; b=YsKjp/5tmCUZ2rNy49B1YVO3qs
+ rrgJJorihzi5AcaSeVpzi5SrX6TL1ajXi/kNj8WsdaZSvdeMT/W+HV39XzAJQz8YgOE4E8Y33rHiX
+ BKDN/ua6shfL49UR+y/G9tEJDrs8CtRthyGywYmt9+kR6AQkZ0/1RzrkwlZ/Gtmdae6E=;
 Received: from mail.kernel.org ([198.145.29.99])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1m22dM-0004Rm-6l
- for linux-ntfs-dev@lists.sourceforge.net; Sat, 10 Jul 2021 02:22:33 +0000
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 8D593613CC;
- Sat, 10 Jul 2021 02:22:15 +0000 (UTC)
+ id 1m22fl-0004eD-95
+ for linux-ntfs-dev@lists.sourceforge.net; Sat, 10 Jul 2021 02:25:02 +0000
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 63B0E61435;
+ Sat, 10 Jul 2021 02:24:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1625883736;
+ s=k20201202; t=1625883887;
  bh=NIOvFFYGolkiUWHbQp1PRNxwIQ3ks2cXnYip0cqAkgI=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=iNzm+lyfQeBBGh3A15D1PA/6UF0rhOq0+7oK+Ux2d5pROnBhwQDLd0bM8PBiq4LS9
- U0ELVrBqMHrK2GzL0Y2XxuAFchi93kRmfOozCzJ+2gy/xH5PU/T604WbyabI32Ur0h
- YOSIFIZXAE5FBNed+up1aSYQDdhbN4vPX7EfsnzN1af6+QEb7Eg18LCB33b92ukSW1
- XmdDtayhY15XuqE8W7jM66NC4oJSAtdN6KORMVS1Sq042PBJIOyqg9Zwt2RqZeBL5s
- w0wq3qe7waC4FLr5LpzsDEuHWeu2Vlrn/Tt6sHJZNTJkKBtCOM5wtcW7PUx/+29vDI
- HC17rgN0kTSLA==
+ b=A98+6luNEsTlY+uwEL6epNkXqKPyf6nMCqAhcuyGVxAlJVUUZxlW9wJcjoDcR/f25
+ HbV+mWhDHhvihb+nOETXUsV0eT7UVhloeLd0M4S0SUVXkwwB3l326n/1tO9+S9C6Jv
+ Ot0XE8GEe6YDwykWtVnuu+Y2XhysQpD5dfbLKfltJeS/alAEdcJYUMRxiA0PqKy2UR
+ 4w/SD4dZsHaD3oa5SY3WXmOLm9PJGm9jX/BzUtT8NaVIwQF8HyLxxe0oGCczBn2wIE
+ pPvwr2v7kh19tS/b2DfzXqH7OfHDT5S/JHeauS+/lSMlg4KOf214iZxL/3vfQ76vG/
+ UrJmuMlgyeegg==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Date: Fri,  9 Jul 2021 22:20:27 -0400
-Message-Id: <20210710022156.3168825-15-sashal@kernel.org>
+Date: Fri,  9 Jul 2021 22:23:08 -0400
+Message-Id: <20210710022428.3169839-14-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210710022156.3168825-1-sashal@kernel.org>
-References: <20210710022156.3168825-1-sashal@kernel.org>
+In-Reply-To: <20210710022428.3169839-1-sashal@kernel.org>
+References: <20210710022428.3169839-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -75,10 +75,10 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
  -0.5 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1m22dM-0004Rm-6l
-X-Mailman-Approved-At: Sat, 10 Jul 2021 19:12:43 +0000
-Subject: [Linux-NTFS-Dev] [PATCH AUTOSEL 5.12 015/104] partitions: msdos:
- fix one-byte get_unaligned()
+X-Headers-End: 1m22fl-0004eD-95
+X-Mailman-Approved-At: Sat, 10 Jul 2021 19:12:44 +0000
+Subject: [Linux-NTFS-Dev] [PATCH AUTOSEL 5.10 14/93] partitions: msdos: fix
+ one-byte get_unaligned()
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
