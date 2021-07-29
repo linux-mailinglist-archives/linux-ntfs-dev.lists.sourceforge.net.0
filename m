@@ -2,106 +2,66 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AD5E3D9B30
-	for <lists+linux-ntfs-dev@lfdr.de>; Thu, 29 Jul 2021 03:45:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E22523DA2E9
+	for <lists+linux-ntfs-dev@lfdr.de>; Thu, 29 Jul 2021 14:16:10 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1m8v6m-00056b-LJ; Thu, 29 Jul 2021 01:45:12 +0000
+	id 1m94xL-0000lu-QG; Thu, 29 Jul 2021 12:16:07 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <mohammad.rasim96@gmail.com>) id 1m8mLa-00029Z-6Y
- for linux-ntfs-dev@lists.sourceforge.net; Wed, 28 Jul 2021 16:23:54 +0000
+ (envelope-from <eb@emlix.com>) id 1m91km-0004aH-Mk
+ for linux-ntfs-dev@lists.sourceforge.net; Thu, 29 Jul 2021 08:50:56 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :Date:Message-ID:Cc:Subject:From:Reply-To:To:Sender:Content-ID:
+ d=sourceforge.net; s=x; h=Content-Type:MIME-Version:In-Reply-To:Message-ID:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ :Resent-Message-ID:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=og7+V4BOs6plr/YGVQnX+404P8F5uFz/ISDuajxswv0=; b=IjiVdJVcgo8hZBkbD2OZsifbEQ
- 4ED9al435aXdyTRi+4I3RINsJcJ7RzXCnerBp8seQsXo9cIQKQoI1FmGTtAOyKr03kS9iBbKsndae
- rya0LwFBMPPUyK5AFyeySEUyyt7/KtuPvPQlnGdGyiyFMb4NfbCx4p7obcw3tdDuO39A=;
+ bh=BcsSXBMhqa+Huf7lfLT07r6lBcHdt1CclbTPVsyeW48=; b=mPOGAehgV14BMmVZwCdZaO6/ih
+ CP+5RjgoIcruexJRfFzeSxLL/LsBa2R4TvGR7WjLQh8hgSTQ0/bH9LBFEA9tSyOt9Dm1aPXFjSgLj
+ +ougA6Nvi/UHp8qYjRYGJEw3o2oJOCOuyzDbFduwMKho79HkelJbfc5DxHBJ8GIXaPe8=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Date:Message-ID:Cc:
- Subject:From:Reply-To:To:Sender:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ h=Content-Type:MIME-Version:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+ Sender:Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=og7+V4BOs6plr/YGVQnX+404P8F5uFz/ISDuajxswv0=; b=A
- c2O4/dWbL96C6FIpO2HmM55U2tT1ombdOqPARdC9eSPu4CTh37VhHGIJg6IYplqFxuDjRhFBkkaba
- 4t7EQIUyPjhk8vCJ6jXFN0EHU2gXhrHVKY4aW3XnwXRO17YUvT572dQmKO3GlYhm7ZMggCqB+f8Am
- WAFkhNxcOW1fc7tI=;
-Received: from mail-ej1-f42.google.com ([209.85.218.42])
+ List-Owner:List-Archive; bh=BcsSXBMhqa+Huf7lfLT07r6lBcHdt1CclbTPVsyeW48=; b=Q
+ 26/mMr6UjVbESZl4NZ9X/R1n+M5hI6f7/CIMA4oMsXZRKRNSFOnoX7JGQ9CALbLE8ZRX0f0EnhKGC
+ PT6NAtEACyTfuvzzurLDkEN3cv499i2XIzWA0in5Pw041jCIDqZVWzGKru9is/pF0NqREEPt97BL1
+ lZkczW2HnCnN494U=;
+Received: from mx1.emlix.com ([136.243.223.33])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.3)
- id 1m8mLT-0004U0-Bk
- for linux-ntfs-dev@lists.sourceforge.net; Wed, 28 Jul 2021 16:23:54 +0000
-Received: by mail-ej1-f42.google.com with SMTP id nd39so5535823ejc.5
- for <linux-ntfs-dev@lists.sourceforge.net>;
- Wed, 28 Jul 2021 09:23:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=to:reply-to:from:subject:cc:message-id:date:user-agent:mime-version
- :content-transfer-encoding:content-language;
- bh=og7+V4BOs6plr/YGVQnX+404P8F5uFz/ISDuajxswv0=;
- b=SC0VdSX/F/sOPmI3Q7YmCzFCdl4xqt7oa+7hod2kYnKT61yxCqweHv52cjGPgqMYEG
- RcPLe47wvzr7VYoKT0BGePbN79leHnWxbtRqQ7SKjcaTKl9BuAZx6RsKhqc99DIh3vuI
- l2/CRbRa3VMSZkHa2tgDqgSMSbMkjIt57ZAJuHIgeQwo9HNbQ3S6fqblouQ4te9ygmjJ
- 3scrhJkQFszM3oHw43uBp3Qye3qkEYtDqX7rGW5YbiSXNMVz7Flq1mNtL79NkljqGdwb
- 8VAeU8fx0K61LtprexwTE1B2wj7TdRm905zA3cETTZR2GVdr1VcfcQYr81iI2gk3bdqW
- X11g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:to:reply-to:from:subject:cc:message-id:date
- :user-agent:mime-version:content-transfer-encoding:content-language;
- bh=og7+V4BOs6plr/YGVQnX+404P8F5uFz/ISDuajxswv0=;
- b=N2IhStyxI6rt0LncHhMFsW1SbGe7YdhRW2W6apAjTo2KiVWeya01fYCVdEs1CkIr+y
- GOLm5107ETz+dkTf1geDfOxJytAeL84UvBYTeQtn3wqdTyjOJQfPLTErmnzxFW1IDrz/
- YOe51wfbewd7hhF62kx0YqPixYOMBb/oAapyOJfvcy0CIj8Wy+u6Ixv3MAmDYqABqYpk
- nTKh9XOuv2rlR2kgYf93LOa0MXXkYzt1fmPcTV359ttYgJAeLPBpCUbkBeh/k6R0moDy
- cFa9FwCSASOB2/mVd0lKJCm5HWUmxvBJuqfjeoBXYlhey9P+ZZzuhb143NnVYnxrR5xs
- QUcQ==
-X-Gm-Message-State: AOAM532O47uoGiVS5tOClCCpwv2GTP03HHkoroMd+RBiuy96jyIbEHsh
- akUXJR0wEyKa6lMnLU7rTC0=
-X-Google-Smtp-Source: ABdhPJwN0gRL2jyJMYaqSosjMJgABzLSD6PtiDIEUqOq98x3mvzvPq+nXwfkMdfkmV81p3SfW/Xj7g==
-X-Received: by 2002:a17:906:43c9:: with SMTP id j9mr280384ejn.57.1627489420927; 
- Wed, 28 Jul 2021 09:23:40 -0700 (PDT)
-Received: from [192.168.0.114] ([37.239.218.3])
- by smtp.gmail.com with ESMTPSA id n13sm69223ejk.97.2021.07.28.09.23.36
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 28 Jul 2021 09:23:40 -0700 (PDT)
-To: yanp.bugz@gmail.com
-From: Mohammad Rasim <mohammad.rasim96@gmail.com>
-Message-ID: <2f310e28-49fe-3206-40d9-0c8a729f9227@gmail.com>
-Date: Wed, 28 Jul 2021 19:23:34 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
+ id 1m91kk-0003IZ-87
+ for linux-ntfs-dev@lists.sourceforge.net; Thu, 29 Jul 2021 08:50:56 +0000
+Received: from mailer.emlix.com (p5098be52.dip0.t-ipconnect.de [80.152.190.82])
+ (using TLSv1.2 with cipher ADH-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mx1.emlix.com (Postfix) with ESMTPS id 58CCD5F93A;
+ Thu, 29 Jul 2021 10:31:50 +0200 (CEST)
+From: Rolf Eike Beer <eb@emlix.com>
+To: desmondcheongzx@gmail.com
+Date: Thu, 29 Jul 2021 10:31:45 +0200
+Message-ID: <2424055.QlFIqzKPrH@devpool47>
+Organization: emlix GmbH
+In-Reply-To: <20210614050540.289494-1-desmondcheongzx@gmail.com>
 MIME-Version: 1.0
-Content-Language: en-US
-X-Spam-Score: 3.8 (+++)
+X-Spam-Score: 0.0 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
- (mohammad.rasim96[at]gmail.com)
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [209.85.218.42 listed in wl.mailspike.net]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [209.85.218.42 listed in list.dnswl.org]
+ 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
+ See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [URIs: emlix.com]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends in
- digit (mohammad.rasim96[at]gmail.com)
- -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
- domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
- not necessarily valid
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
- 3.6 FAKE_REPLY_A1          No description available.
-X-Headers-End: 1m8mLT-0004U0-Bk
-X-Mailman-Approved-At: Thu, 29 Jul 2021 01:45:10 +0000
-Subject: Re: [Linux-NTFS-Dev] [PATCH v26 00/10] NTFS read-write driver GPL
- implementation by Paragon Software
+X-Headers-End: 1m91kk-0003IZ-87
+X-Mailman-Approved-At: Thu, 29 Jul 2021 12:16:06 +0000
+Subject: Re: [Linux-NTFS-Dev] [PATCH] ntfs: Fix validity check for file name
+ attribute
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -114,35 +74,106 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Reply-To: cc64ac69-f4e5-3fc4-1362-ced7cf68119a@gmail.com
-Cc: ebiggers@kernel.org, nborisov@suse.com,
- linux-ntfs-dev@lists.sourceforge.net, linux-kernel@vger.kernel.org,
- oleksandr@natalenko.name, rdunlap@infradead.org, aaptel@suse.com,
- willy@infradead.org, dsterba@suse.cz, almaz.alexandrovich@paragon-software.com,
- kari.argillander@gmail.com, anton@tuxera.com, joe@perches.com,
- linux-fsdevel@vger.kernel.org, mark@harmstone.com, andy.lavr@gmail.com,
- pali@kernel.org, hch@lst.de, dan.carpenter@oracle.com, viro@zeniv.linux.org.uk
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: linux-ntfs-dev@lists.sourceforge.net, gregkh@linuxfoundation.org,
+ linux-kernel@vger.kernel.org,
+ syzbot+213ac8bb98f7f4420840@syzkaller.appspotmail.com,
+ skhan@linuxfoundation.org, linux-kernel-mentees@lists.linuxfoundation.org,
+ anton@tuxera.com
+Content-Type: multipart/mixed; boundary="===============6628796728220235209=="
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-SGksCgpJJ3ZlIGJlZW4gdXNpbmcgeW91ciBudGZzIGRyaXZlciBmb3Igc29tZXRpbWUgbm93IGFu
-ZCBpdCdzIGdyZWF0IHRvIApmaW5hbGx5IGhhdmUgYSBnb29kIGRyaXZlciBmb3IgdGhpcyBGUywg
-aG93ZXZlciBpIGhhdmUgcHJvYmxlbSB3aGVyZSBpZiAKdGhlIHBvd2VyIGN1dHMgb2ZmIGZyb20g
-bXkgc3lzdGVtIHdoaWxlIHdyaXRpbmcgdG8gdGhlIHZvbHVtZSB0aGUgCnBhcnRpdGlvbiBnZXRz
-IGNvcnJ1cHRlZCwgdGhpcyBpcyBleHBlY3RlZCBvZiBjb3Vyc2UgYnV0IHRoZSBwcm9ibGVtIGlz
-IAp0aGF0IGBudGZzZml4YCB0b29sIGNhbid0IGZpeCB0aGUgcGFydGl0aW9uIGFuZCBubyBtYXR0
-ZXIgaG93IG1hbnkgdGltZXMgCmkgcnVuIGl0IHRoZSBzeXN0ZW0gd2lsbCBhbHdheXMgc3BpdHMg
-dGhpcyBpbiB0aGUga2VybmVsIGxvZyB3aGVuIHRyeWluZyAKdG8gbW91bnQgdGhlIHBhcnRpdGlv
-bjoKCiDCoMKgwqAgbnRmczM6IHNkYjE6IHZvbHVtZSBpcyBkaXJ0eSBhbmQgImZvcmNlIiBmbGFn
-IGlzIG5vdCBzZXQhCgppZiBpIGJvb3QgdG8gYSB3aW5kb3dzIDEwIE9TIHRoZW4gdGhlIHN5c3Rl
-bSBpcyBhYmxlIHRvIG1vdW50IHRoZSB2b2x1bWUgCndpdGggbm8gcHJvYmxlbShldmVuIGJlZm9y
-ZSBydW5uaW5nIGNoa2RzayBvbiBpdCksIHdpbmRvd3MgYGNoa2Rza2AgCnV0aWxpdHkgY2FuIGZp
-bmQgdGhlIGVycm9ycyBhbmQgZml4IHRoZW0sIGFuZCBpIGNhbiByZWJvb3QgdG8gbGludXggdG8g
-CnVzZSBteSBwYXJ0aXRpb24gYWdhaW4gd2l0aCBubyBwcm9ibGVtLgoKaXQgd291bGQgYmUgbmlj
-ZSB0byBoYXZlIHlvdXIgZmlsZXN5c3RlbSB1dGlsaXRlcyBwdWJsaXNoZWQgb24gZ2l0aHViIHNv
-IAp3ZSBjYW4gdXNlIHRoZW0gd2l0aCB0aGUgY3VycmVudCBvdXQgb2YgdGhlIHRyZWUgZHJpdmVy
-CgoKUmVnYXJkcwoKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwpMaW51eC1OVEZTLURldiBtYWlsaW5nIGxpc3QKTGludXgtTlRGUy1EZXZAbGlzdHMuc291
-cmNlZm9yZ2UubmV0Cmh0dHBzOi8vbGlzdHMuc291cmNlZm9yZ2UubmV0L2xpc3RzL2xpc3RpbmZv
-L2xpbnV4LW50ZnMtZGV2Cg==
+--===============6628796728220235209==
+Content-Type: multipart/signed; boundary="nextPart2416868.LEy6h3IvCX"; micalg="pgp-sha256"; protocol="application/pgp-signature"
+
+--nextPart2416868.LEy6h3IvCX
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"; protected-headers="v1"
+From: Rolf Eike Beer <eb@emlix.com>
+To: desmondcheongzx@gmail.com
+Cc: anton@tuxera.com, gregkh@linuxfoundation.org, linux-kernel-mentees@lists.linuxfoundation.org, linux-kernel@vger.kernel.org, linux-ntfs-dev@lists.sourceforge.net, skhan@linuxfoundation.org, syzbot+213ac8bb98f7f4420840@syzkaller.appspotmail.com
+Subject: Re: [PATCH] ntfs: Fix validity check for file name attribute
+Date: Thu, 29 Jul 2021 10:31:45 +0200
+Message-ID: <2424055.QlFIqzKPrH@devpool47>
+Organization: emlix GmbH
+In-Reply-To: <20210614050540.289494-1-desmondcheongzx@gmail.com>
+
+Hi,
+
+I was just scanning through some older vulnerabilities and came across=20
+CVE-2018-12929, CVE-2018-12930, and CVE-2018-12931, which are all still ope=
+n=20
+according to linuxkernelcves.com (originally reported against 4.15 [1]). I=
+=20
+looked into the commits in fs/ntfs/ from 4.15 onwards to see if they were j=
+ust=20
+missed, but I can't spot anything there. RedHat claims to have them fixed i=
+n=20
+one of their kernels [2].
+
+Which makes me wonder if the issue fixed here is a duplicate of the any of =
+the=20
+above. Is there a reason I can't find any patches for the original issue in=
+=20
+tree, like the issue only introduced in a custom patchset that Ubuntu/RedHa=
+t=20
+were using? Is this thing worth it's own CVE if it's no duplicate?
+
+Greetings,
+
+Eike
+
+1) https://marc.info/?t=3D152407734400002&r=3D1&w=3D2
+2) https://access.redhat.com/errata/RHSA-2019:0641
+=2D-=20
+Rolf Eike Beer, emlix GmbH, http://www.emlix.com
+=46on +49 551 30664-0, Fax +49 551 30664-11
+Gothaer Platz 3, 37083 G=C3=B6ttingen, Germany
+Sitz der Gesellschaft: G=C3=B6ttingen, Amtsgericht G=C3=B6ttingen HR B 3160
+Gesch=C3=A4ftsf=C3=BChrung: Heike Jordan, Dr. Uwe Kracke =E2=80=93 Ust-IdNr=
+=2E: DE 205 198 055
+
+emlix - smart embedded open source
+
+--nextPart2416868.LEy6h3IvCX
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iLMEAAEIAB0WIQQ/Uctzh31xzAxFCLur5FH7Xu2t/AUCYQJncQAKCRCr5FH7Xu2t
+/EknBACWisFFpJAxn+isaQff639lnnAPEn8ABLf1II4r/EFgnqoBuSrAMvVfJvjC
+IxOI3aCtR9XtK6GjB5q4FI4YoE+jd7K+bwR//lInCvwnZdaPZvBGM0DFCzJ62kWl
+P6HYTgnZvbNoThgf0S2GB0e/KoU7BH5hVvFSpIHBQoqSkRHRJQ==
+=+ScD
+-----END PGP SIGNATURE-----
+
+--nextPart2416868.LEy6h3IvCX--
+
+
+
+
+
+--===============6628796728220235209==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+
+--===============6628796728220235209==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Linux-NTFS-Dev mailing list
+Linux-NTFS-Dev@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev
+
+--===============6628796728220235209==--
+
+
+
+
