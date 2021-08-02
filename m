@@ -2,26 +2,26 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AD1F3DD19F
-	for <lists+linux-ntfs-dev@lfdr.de>; Mon,  2 Aug 2021 10:02:45 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
-	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 600223DE346
+	for <lists+linux-ntfs-dev@lfdr.de>; Tue,  3 Aug 2021 01:54:51 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.92.3)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1mASuF-0002bM-MK; Mon, 02 Aug 2021 08:02:39 +0000
+	id 1mAhld-00040G-VB; Mon, 02 Aug 2021 23:54:45 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <tytso@mit.edu>) id 1mAOYQ-0001Cj-7p
- for linux-ntfs-dev@lists.sourceforge.net; Mon, 02 Aug 2021 03:23:50 +0000
+ (envelope-from <tytso@mit.edu>) id 1mAZVm-0006tM-4l
+ for linux-ntfs-dev@lists.sourceforge.net; Mon, 02 Aug 2021 15:05:50 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
  Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=sODQ+O7zDywNox9/wTLulBptxltIX3zKxBiZqQ/naCU=; b=el/aWMPldpXlW4fNBW2eMZZAzY
- BbeN96RK3FjzrHLgu6OYZe/C5xQk4B0Ic0N2tLnk0KcxYkupU5oj00QQYQchBXgccUwZJYB9caxLp
- J3ePHfpWlUYEiq89zcs58QXIC55jY6JNxKFGcvteQAqoG3jsF6uvkicGCec5TA+jzSK4=;
+ bh=gFYFCl2P3YgcCH/+daUPDkYnyciHZOs+EH7fyhwbg8Q=; b=ay+PQ5EafkQX+Jl8urptqvBZwH
+ HbiHsZJCY+VHn058O0P/bdYQZqnWG3PCXDygGHUaqM2kjjWroLSgLaoZH11UgpoMo3mQqhmi+3E22
+ 2f6Tm0wK9a58zpyORjszKv0i1EuWmRpiP2Zd3QDrfr250kDuwi9D2tMego4bPd19CvT0=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
@@ -29,38 +29,38 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=sODQ+O7zDywNox9/wTLulBptxltIX3zKxBiZqQ/naCU=; b=YN1Xek1gCfHrY3q0ngQHVx1IPw
- D7idNu6Zl3utAsTe6WVzam9EUjI7bJu6NHWouVwAS9nGRffuOrEukjTRVMMyyOSzmgdlzniiS8D+/
- kgqzGe91uuE5oZtlclQt9E3JATZRc3fBi0fIhmS9XbDYAv314LZV9NSymDaMJ88uC8v0=;
+ bh=gFYFCl2P3YgcCH/+daUPDkYnyciHZOs+EH7fyhwbg8Q=; b=Yn4cE5DiZs06A1O6NUjpgGN849
+ QClZF8ta9mWVpMawwZEZx4QIWec/v1VD1v8GeSOCSQt4/C/JWya1XGVa1RN29qrEOqcZWiANrHmdL
+ xBLPI7qPGS9BiZIarpgvJBjYTMf8BosmGAHpjznr5staP7NlplnAOHGVcvwSJo7RTtvs=;
 Received: from outgoing-auth-1.mit.edu ([18.9.28.11] helo=outgoing.mit.edu)
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mAOYO-009sOs-6A
- for linux-ntfs-dev@lists.sourceforge.net; Mon, 02 Aug 2021 03:23:50 +0000
+ id 1mAZVh-0004NX-7s
+ for linux-ntfs-dev@lists.sourceforge.net; Mon, 02 Aug 2021 15:05:50 +0000
 Received: from cwcc.thunk.org (pool-72-74-133-215.bstnma.fios.verizon.net
  [72.74.133.215]) (authenticated bits=0)
  (User authenticated as tytso@ATHENA.MIT.EDU)
- by outgoing.mit.edu (8.14.7/8.12.4) with ESMTP id 1723NGEr019269
+ by outgoing.mit.edu (8.14.7/8.12.4) with ESMTP id 172F5HMY027185
  (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Sun, 1 Aug 2021 23:23:17 -0400
+ Mon, 2 Aug 2021 11:05:18 -0400
 Received: by cwcc.thunk.org (Postfix, from userid 15806)
- id 4BEDF15C3DD2; Sun,  1 Aug 2021 23:23:16 -0400 (EDT)
-Date: Sun, 1 Aug 2021 23:23:16 -0400
+ id 7350D15C3DD2; Mon,  2 Aug 2021 11:05:17 -0400 (EDT)
+Date: Mon, 2 Aug 2021 11:05:17 -0400
 From: "Theodore Ts'o" <tytso@mit.edu>
-To: "Darrick J. Wong" <djwong@kernel.org>
-Message-ID: <YQdlJM6ngxPoeq4U@mit.edu>
+To: Konstantin Komarov <almaz.alexandrovich@paragon-software.com>
+Message-ID: <YQgJrYPphDC4W4Q3@mit.edu>
 References: <20210729134943.778917-1-almaz.alexandrovich@paragon-software.com>
- <20210729162459.GA3601405@magnolia>
+ <20210729162459.GA3601405@magnolia> <YQdlJM6ngxPoeq4U@mit.edu>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210729162459.GA3601405@magnolia>
+In-Reply-To: <YQdlJM6ngxPoeq4U@mit.edu>
 X-Spam-Score: 0.0 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  0.0 SPF_NONE               SPF: sender does not publish an SPF Record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
-X-Headers-End: 1mAOYO-009sOs-6A
-X-Mailman-Approved-At: Mon, 02 Aug 2021 08:02:36 +0000
+X-Headers-End: 1mAZVh-0004NX-7s
+X-Mailman-Approved-At: Mon, 02 Aug 2021 23:54:44 +0000
 Subject: Re: [Linux-NTFS-Dev] [PATCH v27 00/10] NTFS read-write driver GPL
  implementation by Paragon Software
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
@@ -75,11 +75,11 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Cc: ebiggers@kernel.org, andy.lavr@gmail.com, kari.argillander@gmail.com,
- nborisov@suse.com, oleksandr@natalenko.name, rdunlap@infradead.org,
- dsterba@suse.cz, willy@infradead.org, linux-kernel@vger.kernel.org,
- Konstantin Komarov <almaz.alexandrovich@paragon-software.com>, joe@perches.com,
- hch@lst.de, viro@zeniv.linux.org.uk, linux-fsdevel@vger.kernel.org,
+Cc: andy.lavr@gmail.com, kari.argillander@gmail.com, nborisov@suse.com,
+ "Darrick J. Wong" <djwong@kernel.org>, oleksandr@natalenko.name,
+ rdunlap@infradead.org, dsterba@suse.cz, willy@infradead.org,
+ linux-kernel@vger.kernel.org, ebiggers@kernel.org, joe@perches.com, hch@lst.de,
+ viro@zeniv.linux.org.uk, linux-fsdevel@vger.kernel.org,
  linux-ntfs-dev@lists.sourceforge.net, aaptel@suse.com,
  dan.carpenter@oracle.com, pali@kernel.org, mark@harmstone.com,
  anton@tuxera.com
@@ -87,334 +87,35 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-On Thu, Jul 29, 2021 at 09:24:59AM -0700, Darrick J. Wong wrote:
-> 
-> I have the same (still unanswered) questions as last time:
-> 
-> 1. What happens when you run ntfs3 through fstests with '-g all'?  I get
-> that the pass rate isn't going to be as high with ntfs3 as it is with
-> ext4/xfs/btrfs, but fstests can be adapted (see the recent attempts to
-> get exfat under test).
+It should also noted that apparently ntfs3 does not properly support
+user namespaces, such that generic/317 fails:
 
-Indeed, it's not that hard at all.  I've included a patch to
-xfstests-bld[1] so that you can just run "kvm-xfstests -c ntfs3 -g
-auto".
-
-Konstantin, I would *strongly* encourage you to try running fstests,
-about 60 seconds into a run, we discover that generic/013 will trigger
-locking problems that could lead to deadlocks.
-
-The test generic/091 will also trigger kernel NULL dereference BUG:
-
-BUG: kernel NULL pointer dereference, address: 0000000000000008
-#PF: supervisor read access in kernel mode
-#PF: error_code(0x0000) - not-present page
-PGD 0 P4D 0 
-Oops: 0000 [#1] SMP NOPTI
-CPU: 0 PID: 23029 Comm: fsx Not tainted 5.14.0-rc2-xfstests-00010-gdf9570
-Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.14.0-2 04/4
-RIP: 0010:__bio_add_page+0x46/0x80
-Code: 39 47 5a 76 3d 41 89 d0 41 f7 d0 44 39 47 28 77 31 48 89 30 89 48 5
-RSP: 0018:ffffa3fa05e13900 EFLAGS: 00010246
-RAX: 0000000000000000 RBX: 0000000000001000 RCX: 0000000000000000
-RDX: 0000000000001000 RSI: 0000000000000000 RDI: ffff908b8f930b40
-RBP: ffff908b8f930b40 R08: 00000000ffffefff R09: 0000000000000000
-R10: ffffffffa4973270 R11: 0000000000000002 R12: 0000000000000000
-R13: 0000000000000000 R14: 0000000000000000 R15: 0000000000000000
-FS:  00007f04a8ba2740(0000) GS:ffff908bfda00000(0000) knlGS:0000000000000
-CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-CR2: 0000000000000008 CR3: 0000000010984005 CR4: 0000000000770ef0
-PKRU: 55555554
-Call Trace:
- bio_add_page+0x62/0x90
- submit_bh_wbc+0xe3/0x190
- ll_rw_block+0xaa/0xb0
- ntfs_get_block_vbo+0x305/0x430
- do_direct_IO+0x3af/0xa20
- do_blockdev_direct_IO+0x2b7/0x960
- ? ntfs_get_block_write_begin+0x20/0x20
- ? ntfs_get_block_write_begin+0x20/0x20
- ? end_buffer_read_nobh+0x30/0x30
- ntfs_direct_IO+0xe5/0x1f0
- ? touch_atime+0x36/0x250
- generic_file_read_iter+0x8c/0x170
- generic_file_splice_read+0xfc/0x1b0
- splice_direct_to_actor+0xc3/0x230
- ? do_splice_to+0xc0/0xc0
- do_splice_direct+0x91/0xd0
- vfs_copy_file_range+0x144/0x450
- __do_sys_copy_file_range+0xc1/0x200
- do_syscall_64+0x38/0x90
- entry_SYSCALL_64_after_hwframe+0x44/0xae
-RIP: 0033:0x7f04a8c98f59
-Code: 00 c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 48 89 f8 48 89 8
-RSP: 002b:00007ffc8a2202b8 EFLAGS: 00000246 ORIG_RAX: 0000000000000146
-RAX: ffffffffffffffda RBX: 000000000000d000 RCX: 00007f04a8c98f59
-RDX: 0000000000000003 RSI: 00007ffc8a220300 RDI: 0000000000000003
-RBP: 0000000000000000 R08: 000000000000d000 R09: 0000000000000000
-R10: 00007ffc8a220308 R11: 0000000000000246 R12: 00007ffc8a220300
-R13: 00007ffc8a220308 R14: 000000000000d000 R15: 000000000004c000
-CR2: 0000000000000008
----[ end trace 1412a19831693976 ]---
-
-It should also be noted that there doesn't appear to be an fsck for
-ntfs --- there is ntfsfix in the ntfs-3g package but it's a full
-replacement for chkdsk, and it will often throw up its hands, and tell
-you to boot into Windows and run CHKDSK.  To be fair, this is also
-true for the fuse-based ntfs implementation --- but at least the
-fuse-based ntfs implementation won't deadlock your kernel or OOPS the
-kernel with null pointer dereferences....  :-)
-
-> 
-> In case you're wondering why I ask these questions, my motivation is
-> in figuring out how easy it will be to extend QA coverage to the
-> community supported QA suite (fstests) so that people making treewide
-> and vfs level changes can check that their changes don't bitrot your
-> driver, and vice-versa.  My primary interest leans towards convincing
-> everyone to value QA and practice it regularly (aka sharing the load so
-> it's not entirely up to the maintainer to catch all problems) vs.
-> finding every coding error as a gate condition for merging.
-
-There are some changes that I've identified to make fstests support
-fstests more cleanly.  But the real problem is the very weak level of
-userspace tools available for NTFS today.  Is this something that
-Paragon Software is planning on remedying?
-
-						- Ted
-
-Note: this isn't ready for prime-time yet, since the way I've hacked
-up /sbin/mkfs.ntfs3 causes gce-xfstests to fail.  So this isn't going
-to be going to xfsteests-bld upstream just yet.  But it's good enough
-to make kvm-xfstests work....
-
-Support for the fuse-based ntfs is also not complete for kvm-xfstests,
-although the config files for ntfs didn't take that much time to do at
-the same time.  Support for the fuse-based ntfs will require some
-changes to _fs_type in common/rc so that fstests won't barf because
-when you mount -t ntfs, /proc/mounts and df -T show a file system type
-of "fuseblk".  What I've done so far was just a quick hack, because I
-was curious how ready for prime-time ntfs3 might currently be.  :-)
-But it does demonstrate how easy it is to run fstests on ntfs3.  The
-hard part will be fixing all of the bugs that it uncovers --- but
-better that you discover them now, rather than your customers (not to
-mention the customers for all of us who work for various Linux
-distributions and hyperscale cloud companies!).
+generic/317		[10:37:19][    7.024574] run fstests generic/317 at 2021-08-02 10:37:19
+ [10:37:19]- output mismatch (see /results/ntfs3/results-default/generic/317.out.bad)
+    --- tests/generic/317.out	2021-08-01 20:47:35.000000000 -0400
+    +++ /results/ntfs3/results-default/generic/317.out.bad	2021-08-02 10:37:19.930687003 -0400
+    @@ -13,8 +13,8 @@
+     From init_user_ns
+       File: "$SCRATCH_MNT/file1"
+       Size: 0            Filetype: Regular File
+    -  Mode: (0644/-rw-r--r--)         Uid: (qa_user)  Gid: (qa_user)
+    +  Mode: (0755/-rwxr-xr-x)         Uid: (0)  Gid: (0)
+     From user_ns
+       File: "$SCRATCH_MNT/file1"
+    ...
+    (Run 'diff -u /root/xfstests/tests/generic/317.out /results/ntfs3/results-default/generic/317.out.bad'  to see the entire diff)
+Ran: generic/317
+Failures: generic/317
 
 
-commit c2899d9c0251078d9088b44cc7c583c192edd8a4
-Author: Theodore Ts'o <tytso@mit.edu>
-Date:   Sun Aug 1 20:47:35 2021 -0400
+Is Paragon Software willing to commit to fixing these and other bugs?
+Better yet, it would be nice if Paragon Software could improve its
+testing and other QA processes.
 
-    test-appliance: add support for ntfs and ntfs3 file systems
-    
-    Signed-off-by: Theodore Ts'o <tytso@mit.edu>
+Furthermore, container developers should note that ntfs3 is not
+currently safe for use with containers.
 
-diff --git a/kvm-xfstests/test-appliance/files/root/fs/ntfs/cfg/all.list b/kvm-xfstests/test-appliance/files/root/fs/ntfs/cfg/all.list
-new file mode 100644
-index 0000000..4ad96d5
---- /dev/null
-+++ b/kvm-xfstests/test-appliance/files/root/fs/ntfs/cfg/all.list
-@@ -0,0 +1 @@
-+default
-diff --git a/kvm-xfstests/test-appliance/files/root/fs/ntfs/cfg/default b/kvm-xfstests/test-appliance/files/root/fs/ntfs/cfg/default
-new file mode 100644
-index 0000000..8280c69
---- /dev/null
-+++ b/kvm-xfstests/test-appliance/files/root/fs/ntfs/cfg/default
-@@ -0,0 +1,4 @@
-+SIZE=small
-+export MKFS_OPTIONS=""
-+export NTFS_MOUNT_OPTIONS=""
-+TESTNAME="ntfs"
-diff --git a/kvm-xfstests/test-appliance/files/root/fs/ntfs/config b/kvm-xfstests/test-appliance/files/root/fs/ntfs/config
-new file mode 100644
-index 0000000..bee23a5
---- /dev/null
-+++ b/kvm-xfstests/test-appliance/files/root/fs/ntfs/config
-@@ -0,0 +1,64 @@
-+#
-+# Configuration file for ntfs
-+#
-+
-+DEFAULT_MKFS_OPTIONS=""
-+
-+function check_filesystem()
-+{
-+    local dev="$1"
-+    local ret
-+
-+    /bin/ntfsfix "$dev"
-+    ret="$?"
-+    echo ntfsfix exited with status "$ret"
-+    return "$ret"
-+}
-+
-+function format_filesystem()
-+{
-+    local dev="$1"
-+    local opts="$2"
-+    local ret
-+
-+    /sbin/mkfs.ntfs -f $opts "$dev"
-+    ret="$?"
-+    return "$ret"
-+}
-+
-+function setup_mount_opts()
-+{
-+    if test -n "$MNTOPTS" ; then
-+	if test -n "$NTFS_MOUNT_OPTIONS" ; then
-+            export NTFS_MOUNT_OPTIONS="$MOUNT_OPTIONS,$MNTOPTS"
-+	else
-+	    export NTFS_MOUNT_OPTIONS="-o $MNTOPTS"
-+	fi
-+    fi
-+}
-+
-+function get_mkfs_opts()
-+{
-+    echo "$NTFS_MKFS_OPTIONS"
-+}
-+
-+function show_mkfs_opts()
-+{
-+    echo NTFS_MKFS_OPTIONS: "$NTFS_MKFS_OPTIONS"
-+}
-+
-+function show_mount_opts()
-+{
-+    echo NTFS_MOUNT_OPTIONS: "NTFS_MOUNT_OPTIONS"
-+}
-+
-+function test_name_alias()
-+{
-+    echo "$1"
-+}
-+
-+function reset_vars()
-+{
-+    unset NTFS_MOUNT_OPTIONS
-+    unset MKFS_OPTIONS
-+}
-diff --git a/kvm-xfstests/test-appliance/files/root/fs/ntfs3/cfg/all.list b/kvm-xfstests/test-appliance/files/root/fs/ntfs3/cfg/all.list
-new file mode 100644
-index 0000000..4ad96d5
---- /dev/null
-+++ b/kvm-xfstests/test-appliance/files/root/fs/ntfs3/cfg/all.list
-@@ -0,0 +1 @@
-+default
-diff --git a/kvm-xfstests/test-appliance/files/root/fs/ntfs3/cfg/default b/kvm-xfstests/test-appliance/files/root/fs/ntfs3/cfg/default
-new file mode 100644
-index 0000000..8ba5d07
---- /dev/null
-+++ b/kvm-xfstests/test-appliance/files/root/fs/ntfs3/cfg/default
-@@ -0,0 +1,4 @@
-+SIZE=small
-+export MKFS_OPTIONS=""
-+export NTFS3_MOUNT_OPTIONS=""
-+TESTNAME="ntfs3"
-diff --git a/kvm-xfstests/test-appliance/files/root/fs/ntfs3/config b/kvm-xfstests/test-appliance/files/root/fs/ntfs3/config
-new file mode 100644
-index 0000000..6f67e12
---- /dev/null
-+++ b/kvm-xfstests/test-appliance/files/root/fs/ntfs3/config
-@@ -0,0 +1,64 @@
-+#
-+# Configuration file for ntfs3
-+#
-+
-+DEFAULT_MKFS_OPTIONS=""
-+
-+function check_filesystem()
-+{
-+    local dev="$1"
-+    local ret
-+
-+    /bin/ntfsfix "$dev"
-+    ret="$?"
-+    echo ntfsfix exited with status "$ret"
-+    return "$ret"
-+}
-+
-+function format_filesystem()
-+{
-+    local dev="$1"
-+    local opts="$2"
-+    local ret
-+
-+    /sbin/mkfs.ntfs -f $opts "$dev"
-+    ret="$?"
-+    return "$ret"
-+}
-+
-+function setup_mount_opts()
-+{
-+    if test -n "$MNTOPTS" ; then
-+	if test -n "$NTFS3_MOUNT_OPTIONS" ; then
-+            export NTFS3_MOUNT_OPTIONS="$MOUNT_OPTIONS,$MNTOPTS"
-+	else
-+	    export NTFS3_MOUNT_OPTIONS="-o $MNTOPTS"
-+	fi
-+    fi
-+}
-+
-+function get_mkfs_opts()
-+{
-+    echo "$NTFS3_MKFS_OPTIONS"
-+}
-+
-+function show_mkfs_opts()
-+{
-+    echo NTFS3_MKFS_OPTIONS: "$NTFS3_MKFS_OPTIONS"
-+}
-+
-+function show_mount_opts()
-+{
-+    echo NTFS3_MOUNT_OPTIONS: "NTFS3_MOUNT_OPTIONS"
-+}
-+
-+function test_name_alias()
-+{
-+    echo "$1"
-+}
-+
-+function reset_vars()
-+{
-+    unset NTFS3_MOUNT_OPTIONS
-+    unset MKFS_OPTIONS
-+}
-diff --git a/kvm-xfstests/test-appliance/files/sbin/mkfs.ntfs3 b/kvm-xfstests/test-appliance/files/sbin/mkfs.ntfs3
-new file mode 100755
-index 0000000..f6657a6
---- /dev/null
-+++ b/kvm-xfstests/test-appliance/files/sbin/mkfs.ntfs3
-@@ -0,0 +1,2 @@
-+#!/bin/sh
-+/sbin/mkfs.ntfs -f $*
-diff --git a/kvm-xfstests/test-appliance/gce-xfstests-bld.sh b/kvm-xfstests/test-appliance/gce-xfstests-bld.sh
-index befb105..48ce713 100644
---- a/kvm-xfstests/test-appliance/gce-xfstests-bld.sh
-+++ b/kvm-xfstests/test-appliance/gce-xfstests-bld.sh
-@@ -73,6 +73,7 @@ PACKAGES="bash-completion \
- 	nbd-server \
- 	nfs-common \
- 	nfs-kernel-server \
-+	ntfs-3g \
- 	nvme-cli \
- 	openssl \
- 	pciutils \
-diff --git a/kvm-xfstests/test-appliance/xfstests-packages b/kvm-xfstests/test-appliance/xfstests-packages
-index 85ca6a6..6bb8432 100644
---- a/kvm-xfstests/test-appliance/xfstests-packages
-+++ b/kvm-xfstests/test-appliance/xfstests-packages
-@@ -33,6 +33,7 @@ mtd-utils
- multipath-tools
- nbd-client
- nbd-server
-+ntfs-3g
- nvme-cli
- parted
- perl
+   	   	    	       	      - Ted
 
 
 _______________________________________________
