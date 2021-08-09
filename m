@@ -2,84 +2,101 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44ED33E5DEC
+	by mail.lfdr.de (Postfix) with ESMTPS id 60BD83E5DEE
 	for <lists+linux-ntfs-dev@lfdr.de>; Tue, 10 Aug 2021 16:31:02 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1mDSmQ-0007cO-FX; Tue, 10 Aug 2021 14:30:58 +0000
+	id 1mDSmQ-0007dL-Ts; Tue, 10 Aug 2021 14:30:58 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <rdunlap@infradead.org>) id 1mD8an-0007Vx-VZ
- for linux-ntfs-dev@lists.sourceforge.net; Mon, 09 Aug 2021 16:57:37 +0000
+ (envelope-from <slava@dubeyko.com>) id 1mD9YG-0000Lv-E1
+ for linux-ntfs-dev@lists.sourceforge.net; Mon, 09 Aug 2021 17:59:04 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=To:References:Message-Id:Content-Transfer-Encoding:
+ Cc:Date:In-Reply-To:From:Subject:Mime-Version:Content-Type:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=XJTL30sAj9E9k7u4K2CujkBqTC4qltRCjV1W7d4ixI0=; b=N9NSW1L/+xxaX0bEPF5OzWcPx4
- 6WhX4FKUihSqybkK8UfyzdvbX0fauiSLDv6HuF7/iXy5TkR+aIGOYwgEDP6ZLTzIDX9luAsYa85GH
- JVCo4YUCGLB2umRNEDPKYl7LwFuC+uqtKpO0+vqo1ca4/0JyMGweuRLro7P6Y+OQe1ZQ=;
+ bh=7Vd5SsqyCkC/WgUABGMpKlM3a+dx8fPcAdSDlrr7kY0=; b=LDqpLL4Prtoq+pMpxsB7fplJ+L
+ rhB+bsmPy6xy+XqSC1OMkTRkLPX9Cpx74O1WoIMRiSZXd5Td7TnVAgft6AgbgAPepEDYKCN9li6BI
+ qXQpfql6Qn1CnInbdUpEo/z1SGTDtCg8OAKCDrUz9ByadnZ9Nruu0aKSI6FhwWKj1P9I=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:Date:
- Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:Content-ID:
+ h=To:References:Message-Id:Content-Transfer-Encoding:Cc:Date:In-Reply-To:
+ From:Subject:Mime-Version:Content-Type:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=XJTL30sAj9E9k7u4K2CujkBqTC4qltRCjV1W7d4ixI0=; b=m2dUTDau0AuSKqg7ZoRzMb+u8U
- j2Zyn55mHby7g29nA6LYoOITcTMVPf5WSYFRzWf+4exqzh1Fxj1qKXjjWW4vC8VeztfIDIn0GpskL
- /DW6UggS3T6fEiOwjuvJe5RcTzvl3tXXSTi4H5Y4UWSqr5obtKariK5kHBnOQtVvENQY=;
-Received: from casper.infradead.org ([90.155.50.34])
+ bh=7Vd5SsqyCkC/WgUABGMpKlM3a+dx8fPcAdSDlrr7kY0=; b=ar7esIFLDuIt5RkpSikc7XH4o6
+ AeLR8K1AiG+fZ1cVRFLSWqIc3xYc0rY4hHoCi6iBqjpQaSGdSb5l0b9LWl9ZGkga+aShpUHmYbCQl
+ GOr2L9Qd55IXeIn/zSops5BHJf4QCimqE5AKzouXM1B0gp+JTK0eedwd0ySSl6+9lIdg=;
+Received: from mail-qk1-f173.google.com ([209.85.222.173])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mD8aj-000o0b-To
- for linux-ntfs-dev@lists.sourceforge.net; Mon, 09 Aug 2021 16:57:37 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
- In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
- :Reply-To:Content-ID:Content-Description;
- bh=XJTL30sAj9E9k7u4K2CujkBqTC4qltRCjV1W7d4ixI0=; b=VNa7eunhb8FFYA2M0yUs99Wmts
- Jdzws2x/kGUFZW0jbjJGB7qUlfxVYWjh8INtddLdfl8vz2QcvaYmq2XTqogGBk7JCD/w3EfyYNNN6
- uUjLi9YkKlD4SiPSAf7DsZmpGEfzJJ++oaxKQYRyGb1mvHgXDtrQBd1MejkXO0rjBjFLXeXJxq2Z9
- u3zscfdQyuiQPv1TrM3XVJXcvdY55qXXaADELqmUPEI+mRv8qRsOHyV6SekSc81Taqy1I2c54meMM
- pfiKrouH3NLFWTK5TacbWUoaxIr8CCIUSeUp3QsZdN6FXQV2nN1XQ7IKDZEpWxXmv+MaAjOMlSMhJ
- 1q1Q/Etg==;
-Received: from [2601:1c0:6280:3f0::aa0b]
- by casper.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mD8Xh-00BCbx-6t; Mon, 09 Aug 2021 16:54:55 +0000
-To: Kari Argillander <kari.argillander@gmail.com>,
- Konstantin Komarov <almaz.alexandrovich@paragon-software.com>
-References: <20210729134943.778917-1-almaz.alexandrovich@paragon-software.com>
- <20210729134943.778917-11-almaz.alexandrovich@paragon-software.com>
- <20210809105652.GK5047@twin.jikos.cz>
- <918ff89414fa49f8bcb2dfd00a7b0f0b@paragon-software.com>
- <20210809164425.rcxtftvb2dq644k5@kari-VirtualBox>
-From: Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <305bdb56-d40f-2774-12fe-5113f15df5c6@infradead.org>
-Date: Mon, 9 Aug 2021 09:54:16 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
-MIME-Version: 1.0
-In-Reply-To: <20210809164425.rcxtftvb2dq644k5@kari-VirtualBox>
-Content-Language: en-US
-X-Spam-Score: -0.3 (/)
+ (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.3)
+ id 1mD9Y9-000s3Q-43
+ for linux-ntfs-dev@lists.sourceforge.net; Mon, 09 Aug 2021 17:59:04 +0000
+Received: by mail-qk1-f173.google.com with SMTP id f23so3034773qkk.13
+ for <linux-ntfs-dev@lists.sourceforge.net>;
+ Mon, 09 Aug 2021 10:58:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=dubeyko-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:subject:from:in-reply-to:date:cc
+ :content-transfer-encoding:message-id:references:to;
+ bh=7Vd5SsqyCkC/WgUABGMpKlM3a+dx8fPcAdSDlrr7kY0=;
+ b=seUpAt0yXvIirfnAYoUqFGjwoZC+rgyLhRUXlyHk3nDPCzLGfb78L05dlREknR+/XH
+ iO69QBKFLuPFL9UszB05RDwabdo0TMVtwRm0dHaqAGTiCJsivHKb2IEQr6zGJAWNkHzT
+ OymplCtr3L4tWqzFprpeRpm7lUfzEi4mAKMYbTSTeun3UgJxEtf9LyiJ2EKDWirNC0Bl
+ O8QDSpv2LBkMbEgJrr84bAO/JRCYDNIgEV65WmX6Ci9knvEWvmy8Su/1GHvbJO+aynvE
+ qMAbzsWh+CdaYqzxlIN4W2esY+q5bXjvs3YHho+kD1ATwChA7LooxcjoKjQBj6h58ZaB
+ 6TAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+ :content-transfer-encoding:message-id:references:to;
+ bh=7Vd5SsqyCkC/WgUABGMpKlM3a+dx8fPcAdSDlrr7kY0=;
+ b=to0ywu1POnAfTjcthdqe0QJ5BPXUACl8BbQafMK2nWxH8Wn+e7o4yPEo3b2FrCUA3d
+ qRh74t6MHv2RjrKDWfODTumLaxnLY0Xpk+qY7JF9ERofLlk8k8+U1fmqCpTelt3nLOmF
+ NjEfo8XGTuM/0MsXnSWnxLNWXpBhxlRYfz6lE59/zwkZ+3+4Oklo5t6wRQ0O9+/OAmA7
+ fadirUzHlLURd9RNto2J4wRB1CuBXtVBIf/L1arkz2xv8aosF+lUWWzlKGoAjH7qfTMu
+ CUdXZGsJ2l0rhvLgUg+DMW1Z82jBSsD1njba/bEQy5+qyiZRmZ2SAeB5vYLoEqZQAjqr
+ wbrQ==
+X-Gm-Message-State: AOAM532zpNrt8dpl8/hbMlZcVLo8UgG2kCFrndn9UZ+ymbPExf/jUaP2
+ I9sVteQcFE1Maw3yg7ChSwawrCTt1mhPdrygRx4=
+X-Google-Smtp-Source: ABdhPJxDxb8Z+GtvraOrw4meO7gw2JzU3WYo0bH8LeIk4lSkmYbk6azkakGXV9z7D9hJ8zUXrToayw==
+X-Received: by 2002:a05:620a:1193:: with SMTP id
+ b19mr23546498qkk.439.1628530321096; 
+ Mon, 09 Aug 2021 10:32:01 -0700 (PDT)
+Received: from smtpclient.apple ([2600:1700:42f0:6600:615b:6e84:29a:3bc6])
+ by smtp.gmail.com with ESMTPSA id t14sm9006401qkm.7.2021.08.09.10.31.58
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Mon, 09 Aug 2021 10:32:00 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.120.0.1.13\))
+From: Viacheslav Dubeyko <slava@dubeyko.com>
+In-Reply-To: <20210808162453.1653-12-pali@kernel.org>
+Date: Mon, 9 Aug 2021 10:31:55 -0700
+Message-Id: <D0302F93-BAE5-48F0-87D0-B68B10D7757B@dubeyko.com>
+References: <20210808162453.1653-1-pali@kernel.org>
+ <20210808162453.1653-12-pali@kernel.org>
+To: =?utf-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>
+X-Mailer: Apple Mail (2.3654.120.0.1.13)
+X-Spam-Score: -0.0 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [209.85.222.173 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.222.173 listed in wl.mailspike.net]
+ -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
- domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- -0.0 NICE_REPLY_A           Looks like a legit reply (A)
- -0.2 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1mD8aj-000o0b-To
-X-Mailman-Approved-At: Tue, 10 Aug 2021 14:30:55 +0000
-Subject: Re: [Linux-NTFS-Dev] [PATCH v27 10/10] fs/ntfs3: Add MAINTAINERS
+X-Headers-End: 1mD9Y9-000s3Q-43
+X-Mailman-Approved-At: Tue, 10 Aug 2021 14:30:56 +0000
+Subject: Re: [Linux-NTFS-Dev] [RFC PATCH 11/20] hfs: Explicitly set
+ hsb->nls_disk when hsb->nls_io is set
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -92,84 +109,105 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Cc: "andy.lavr@gmail.com" <andy.lavr@gmail.com>,
- "nborisov@suse.com" <nborisov@suse.com>,
- "oleksandr@natalenko.name" <oleksandr@natalenko.name>,
- "dsterba@suse.cz" <dsterba@suse.cz>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "willy@infradead.org" <willy@infradead.org>,
- "aaptel@suse.com" <aaptel@suse.com>,
- "ebiggers@kernel.org" <ebiggers@kernel.org>,
- "joe@perches.com" <joe@perches.com>, "hch@lst.de" <hch@lst.de>,
- "viro@zeniv.linux.org.uk" <viro@zeniv.linux.org.uk>,
- "linux-fsdevel@vger.kernel.org" <linux-fsdevel@vger.kernel.org>,
- "linux-ntfs-dev@lists.sourceforge.net" <linux-ntfs-dev@lists.sourceforge.net>,
- "dan.carpenter@oracle.com" <dan.carpenter@oracle.com>,
- "pali@kernel.org" <pali@kernel.org>, "mark@harmstone.com" <mark@harmstone.com>,
- "anton@tuxera.com" <anton@tuxera.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: linux-cifs@vger.kernel.org, jfs-discussion@lists.sourceforge.net,
+ Jan Kara <jack@suse.cz>, Luis de Bethencourt <luisbg@kernel.org>,
+ Dave Kleikamp <shaggy@kernel.org>, linux-ntfs-dev@lists.sourceforge.net,
+ LKML <linux-kernel@vger.kernel.org>, Anton Altaparmakov <anton@tuxera.com>,
+ Christoph Hellwig <hch@infradead.org>,
+ Alexander Viro <viro@zeniv.linux.org.uk>, Pavel Machek <pavel@ucw.cz>,
+ Linux FS Devel <linux-fsdevel@vger.kernel.org>,
+ "Theodore Y . Ts'o" <tytso@mit.edu>, Andrew Morton <akpm@linux-foundation.org>,
+ =?utf-8?Q?Marek_Beh=C3=BAn?= <marek.behun@nic.cz>,
+ Salah Triki <salah.triki@gmail.com>,
+ OGAWA Hirofumi <hirofumi@mail.parknet.co.jp>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-On 8/9/21 9:44 AM, Kari Argillander wrote:
-> On Mon, Aug 09, 2021 at 04:16:32PM +0000, Konstantin Komarov wrote:
->> From: David Sterba <dsterba@suse.cz>
->> Sent: Monday, August 9, 2021 1:57 PM
->>> On Thu, Jul 29, 2021 at 04:49:43PM +0300, Konstantin Komarov wrote:
->>>> This adds MAINTAINERS
->>>>
->>>> Signed-off-by: Konstantin Komarov <almaz.alexandrovich@paragon-software.com>
->>>> ---
->>>>   MAINTAINERS | 7 +++++++
->>>>   1 file changed, 7 insertions(+)
->>>>
->>>> diff --git a/MAINTAINERS b/MAINTAINERS
->>>> index 9c3428380..3b6b48537 100644
->>>> --- a/MAINTAINERS
->>>> +++ b/MAINTAINERS
->>>> @@ -13279,6 +13279,13 @@ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/aia21/ntfs.git
->>>>   F:	Documentation/filesystems/ntfs.rst
->>>>   F:	fs/ntfs/
->>>>
->>>> +NTFS3 FILESYSTEM
->>>> +M:	Konstantin Komarov <almaz.alexandrovich@paragon-software.com>
->>>> +S:	Supported
->>>> +W:	http://www.paragon-software.com/
->>>> +F:	Documentation/filesystems/ntfs3.rst
->>>> +F:	fs/ntfs3/
->>>
->>> Can you please add a git tree and mailing list entries?
-> 
->> Hi David, I'll add the git tree link for the sources to MAINTAINERS in the next patch. As for the mailing list,
->> apologies for the newbie question here, but will it possible to have the @vger.kernel.org list for the ntfs3,
->> or it must be external for our case?
->> Thanks!
-> 
-> Good question and I also do not have absolute truth about it but I try
-> to help. It should be possible. I think you can request new list from
-> postmaster@vger.kernel.org
-> 
-> If you need public git tree then kernel.org can maybe provide that. They
-> also host ntfs so I think no problem with ntfs3. This way you self
-> do not have to worry public list. But I'm not sure how strict is now
-> days get account. But if you say that it would be nice that you need
-> kernel git then maybe someone can help with that.
-> See more info https://www.kernel.org/faq.html
-
-If postmaster@vger.kernel.org isn't helpful or you just want to use
-kernel.org (note that vger.kernel.org isn't part of kernel.org),
-you can contact: helpdesk@kernel.org  for git tree or mailing list
-requests.  Wherever you have a mailing list, you probably should
-have it archived at lore.kernel.org (see next URL for that).
-
-Also you may want to read  https://korg.wiki.kernel.org
-
--- 
-~Randy
-
-
-
-_______________________________________________
-Linux-NTFS-Dev mailing list
-Linux-NTFS-Dev@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev
+Cgo+IE9uIEF1ZyA4LCAyMDIxLCBhdCA5OjI0IEFNLCBQYWxpIFJvaMOhciA8cGFsaUBrZXJuZWwu
+b3JnPiB3cm90ZToKPiAKPiBJdCBkb2VzIG5vdCBtYWtlIGFueSBzZW5zZSB0byBzZXQgaHNiLT5u
+bHNfaW8gKE5MUyBpb2NoYXJzZXQgdXNlZCBiZXR3ZWVuCj4gVkZTIGFuZCBoZnMgZHJpdmVyKSB3
+aGVuIGhzYi0+bmxzX2Rpc2sgKE5MUyBjb2RlcGFnZSB1c2VkIGJldHdlZW4gaGZzCj4gZHJpdmVy
+IGFuZCBkaXNrKSBpcyBub3Qgc2V0Lgo+IAo+IFJldmVyc2UgZW5naW5lZXJpbmcgZHJpdmVyIGNv
+ZGUgc2hvd24gd2hhdCBpcyBkb2luZyBpbiB0aGlzIHNwZWNpYWwgY2FzZToKPiAKPiAgICBXaGVu
+IGNvZGVwYWdlIHdhcyBub3QgZGVmaW5lZCBidXQgaW9jaGFyc2V0IHdhcyB0aGVuCj4gICAgaGZz
+IGRyaXZlciBjb3BpZWQgOGJpdCBjaGFyYWN0ZXIgZnJvbSBkaXNrIGRpcmVjdGx5IHRvCj4gICAg
+MTZiaXQgdW5pY29kZSB3Y2hhcl90IHR5cGUuIFdoaWNoIG1lYW5zIGl0IGRpZCBjb252ZXJzaW9u
+Cj4gICAgZnJvbSBMYXRpbjEgKElTTy04ODU5LTEpIHRvIFVuaWNvZGUgYmVjYXVzZSBmaXJzdCAy
+NTYKPiAgICBVbmljb2RlIGNvZGUgcG9pbnRzIG1hdGNoZXMgOGJpdCBJU08tODg1OS0xIGNvZGVw
+YWdlIHRhYmxlLgo+ICAgIFNvIHdoZW4gaW9jaGFyc2V0IHdhcyBzcGVjaWZpZWQgYW5kIGNvZGVw
+YWdlIG5vdCwgdGhlbgo+ICAgIGNvZGVwYWdlIHVzZWQgaW1wbGljaXQgdmFsdWUgImlzbzg4NTkt
+MSIuCj4gCj4gU28gd2hlbiBoc2ItPm5sc19kaXNrIGlzIG5vdCBzZXQgYW5kIGhzYi0+bmxzX2lv
+IGlzIHRoZW4gZXhwbGljaXRseSBzZXQKPiBoc2ItPm5sc19kaXNrIHRvICJpc284ODU5LTEiLgo+
+IAo+IFN1Y2ggc2V0dXAgaXMgb2J2aW91c2x5IGluY29tcGF0aWJsZSB3aXRoIE1hYyBPUyBzeXN0
+ZW1zIGFzIHRoZXkgZG8gbm90Cj4gc3VwcG9ydCBpc284ODU5LTEgZW5jb2RpbmcgZm9yIGhmcy4g
+U28gcHJpbnQgd2FybmluZyBpbnRvIGRtZXNnIGFib3V0IHRoaXMKPiBmYWN0Lgo+IAo+IEFmdGVy
+IHRoaXMgY2hhbmdlIGhzYi0+bmxzX2Rpc2sgaXMgYWx3YXlzIHNldCwgc28gcmVtb3ZlIGNvZGUg
+cGF0aHMgZm9yCj4gY2FzZSB3aGVuIGhzYi0+bmxzX2Rpc2sgd2FzIG5vdCBzZXQgYXMgdGhleSBh
+cmUgbm90IG5lZWRlZCBhbnltb3JlLgo+IAoKClNvdW5kcyByZWFzb25hYmxlLiBCdXQgaXQgd2ls
+bCBiZSBncmVhdCB0byBrbm93IHRoYXQgdGhlIGNoYW5nZSBoYXMgYmVlbiB0ZXN0ZWQgcmVhc29u
+YWJseSB3ZWxsLgoKVGhhbmtzLApTbGF2YS4KCgo+IFNpZ25lZC1vZmYtYnk6IFBhbGkgUm9ow6Fy
+IDxwYWxpQGtlcm5lbC5vcmc+Cj4gLS0tCj4gZnMvaGZzL3N1cGVyLmMgfCAzMSArKysrKysrKysr
+KysrKysrKysrKysrKysrKysrKysrCj4gZnMvaGZzL3RyYW5zLmMgfCAzOCArKysrKysrKysrKysr
+Ky0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQo+IDIgZmlsZXMgY2hhbmdlZCwgNDUgaW5zZXJ0aW9u
+cygrKSwgMjQgZGVsZXRpb25zKC0pCj4gCj4gZGlmZiAtLWdpdCBhL2ZzL2hmcy9zdXBlci5jIGIv
+ZnMvaGZzL3N1cGVyLmMKPiBpbmRleCAxMmQ5YmFlMzkzNjMuLjg2YmM0Njc0NmM3ZiAxMDA2NDQK
+PiAtLS0gYS9mcy9oZnMvc3VwZXIuYwo+ICsrKyBiL2ZzL2hmcy9zdXBlci5jCj4gQEAgLTM1MSw2
+ICszNTEsMzcgQEAgc3RhdGljIGludCBwYXJzZV9vcHRpb25zKGNoYXIgKm9wdGlvbnMsIHN0cnVj
+dCBoZnNfc2JfaW5mbyAqaHNiKQo+IAkJfQo+IAl9Cj4gCj4gKwlpZiAoaHNiLT5ubHNfaW8gJiYg
+IWhzYi0+bmxzX2Rpc2spIHsKPiArCQkvKgo+ICsJCSAqIFByZXZpb3VzIHZlcnNpb24gb2YgaGZz
+IGRyaXZlciBkaWQgc29tZXRoaW5nIHVuZXhwZWN0ZWQ6Cj4gKwkJICogV2hlbiBjb2RlcGFnZSB3
+YXMgbm90IGRlZmluZWQgYnV0IGlvY2hhcnNldCB3YXMgdGhlbgo+ICsJCSAqIGhmcyBkcml2ZXIg
+Y29waWVkIDhiaXQgY2hhcmFjdGVyIGZyb20gZGlzayBkaXJlY3RseSB0bwo+ICsJCSAqIDE2Yml0
+IHVuaWNvZGUgd2NoYXJfdCB0eXBlLiBXaGljaCBtZWFucyBpdCBkaWQgY29udmVyc2lvbgo+ICsJ
+CSAqIGZyb20gTGF0aW4xIChJU08tODg1OS0xKSB0byBVbmljb2RlIGJlY2F1c2UgZmlyc3QgMjU2
+Cj4gKwkJICogVW5pY29kZSBjb2RlIHBvaW50cyBtYXRjaGVzIDhiaXQgSVNPLTg4NTktMSBjb2Rl
+cGFnZSB0YWJsZS4KPiArCQkgKiBTbyB3aGVuIGlvY2hhcnNldCB3YXMgc3BlY2lmaWVkIGFuZCBj
+b2RlcGFnZSBub3QsIHRoZW4KPiArCQkgKiBjb2RlcGFnZSB1c2VkIGltcGxpY2l0IHZhbHVlICJp
+c284ODU5LTEiLgo+ICsJCSAqCj4gKwkJICogVG8gbm90IGNoYW5nZSB0aGlzIHByZXZpb3VzIGRl
+ZmF1bHQgYmVoYXZpb3IgYXMgc29tZSB1c2Vycwo+ICsJCSAqIG1heSBkZXBlbmQgb24gaXQsIHdl
+IGxvYWQgaXNvODg1OS0xIE5MUyB0YWJsZSBleHBsaWNpdGx5Cj4gKwkJICogdG8gc2ltcGxpZnkg
+Y29kZSBhbmQgbWFrZSBpdCBtb3JlIHJlYWJsZSB3aGF0IGhhcHBlbnMuCj4gKwkJICoKPiArCQkg
+KiBJbiBjb250ZXh0IG9mIGhmcyBkcml2ZXIgaXQgaXMgcmVhbGx5IHN0cmFuZ2UgdG8gdXNlCj4g
+KwkJICogSVNPLTg4NTktMSBjb2RlcGFnZSB0YWJsZSBmb3Igc3RvcmluZyBkYXRhIHRvIGRpc2ss
+IGJ1dAo+ICsJCSAqIG5vdGhpbmcgZm9yYmlkcyBpdC4gSnVzdCBpdCBpcyBoaWdobHkgaW5jb21w
+YXRpYmxlIHdpdGgKPiArCQkgKiBNYWMgT1Mgc3lzdGVtcy4gU28gdmlhIHByX3dhcm4oKSBpbmZv
+cm0gdXNlciB0aGF0IHRoaXMKPiArCQkgKiBpcyBub3QgcHJvYmFibHkgd2hhdCBoZSB3YW50cy4K
+PiArCQkgKi8KPiArCQlwcl93YXJuKCJpb2NoYXJzZXQgd2FzIHNwZWNpZmllZCBidXQgY29kZXBh
+Z2Ugbm90LCAiCj4gKwkJCSJ1c2luZyBkZWZhdWx0IGNvZGVwYWdlPWlzbzg4NTktMVxuIik7Cj4g
+KwkJcHJfd2FybigidGhpcyBkZWZhdWx0IGNvZGVwYWdlPWlzbzg4NTktMSBpcyBpbmNvbXBhdGli
+bGUgd2l0aCAiCj4gKwkJCSJNYWMgT1Mgc3lzdGVtcyBhbmQgbWF5IGJlIGNoYW5nZWQgaW4gdGhl
+IGZ1dHVyZSIpOwo+ICsJCWhzYi0+bmxzX2Rpc2sgPSBsb2FkX25scygiaXNvODg1OS0xIik7Cj4g
+KwkJaWYgKCFoc2ItPm5sc19kaXNrKSB7Cj4gKwkJCXByX2VycigidW5hYmxlIHRvIGxvYWQgaXNv
+ODg1OS0xIGNvZGVwYWdlXG4iKTsKPiArCQkJcmV0dXJuIDA7Cj4gKwkJfQo+ICsJfQo+IAlpZiAo
+aHNiLT5ubHNfZGlzayAmJiAhaHNiLT5ubHNfaW8pIHsKPiAJCWhzYi0+bmxzX2lvID0gbG9hZF9u
+bHNfZGVmYXVsdCgpOwo+IAkJaWYgKCFoc2ItPm5sc19pbykgewo+IGRpZmYgLS1naXQgYS9mcy9o
+ZnMvdHJhbnMuYyBiL2ZzL2hmcy90cmFucy5jCj4gaW5kZXggMzlmNWUzNDNiZjRkLi5jNzU2ODJj
+NjFiMDYgMTAwNjQ0Cj4gLS0tIGEvZnMvaGZzL3RyYW5zLmMKPiArKysgYi9mcy9oZnMvdHJhbnMu
+Ywo+IEBAIC00OCwxOCArNDgsMTMgQEAgaW50IGhmc19tYWMyYXNjKHN0cnVjdCBzdXBlcl9ibG9j
+ayAqc2IsIGNoYXIgKm91dCwgY29uc3Qgc3RydWN0IGhmc19uYW1lICppbikKPiAJCXdjaGFyX3Qg
+Y2g7Cj4gCj4gCQl3aGlsZSAoc3JjbGVuID4gMCkgewo+IC0JCQlpZiAobmxzX2Rpc2spIHsKPiAt
+CQkJCXNpemUgPSBubHNfZGlzay0+Y2hhcjJ1bmkoc3JjLCBzcmNsZW4sICZjaCk7Cj4gLQkJCQlp
+ZiAoc2l6ZSA8PSAwKSB7Cj4gLQkJCQkJY2ggPSAnPyc7Cj4gLQkJCQkJc2l6ZSA9IDE7Cj4gLQkJ
+CQl9Cj4gLQkJCQlzcmMgKz0gc2l6ZTsKPiAtCQkJCXNyY2xlbiAtPSBzaXplOwo+IC0JCQl9IGVs
+c2Ugewo+IC0JCQkJY2ggPSAqc3JjKys7Cj4gLQkJCQlzcmNsZW4tLTsKPiArCQkJc2l6ZSA9IG5s
+c19kaXNrLT5jaGFyMnVuaShzcmMsIHNyY2xlbiwgJmNoKTsKPiArCQkJaWYgKHNpemUgPD0gMCkg
+ewo+ICsJCQkJY2ggPSAnPyc7Cj4gKwkJCQlzaXplID0gMTsKPiAJCQl9Cj4gKwkJCXNyYyArPSBz
+aXplOwo+ICsJCQlzcmNsZW4gLT0gc2l6ZTsKPiAJCQlpZiAoY2ggPT0gJy8nKQo+IAkJCQljaCA9
+ICc6JzsKPiAJCQlzaXplID0gbmxzX2lvLT51bmkyY2hhcihjaCwgZHN0LCBkc3RsZW4pOwo+IEBA
+IC0xMTksMjAgKzExNCwxNSBAQCB2b2lkIGhmc19hc2MybWFjKHN0cnVjdCBzdXBlcl9ibG9jayAq
+c2IsIHN0cnVjdCBoZnNfbmFtZSAqb3V0LCBjb25zdCBzdHJ1Y3QgcXN0cgo+IAkJCXNyY2xlbiAt
+PSBzaXplOwo+IAkJCWlmIChjaCA9PSAnOicpCj4gCQkJCWNoID0gJy8nOwo+IC0JCQlpZiAobmxz
+X2Rpc2spIHsKPiAtCQkJCXNpemUgPSBubHNfZGlzay0+dW5pMmNoYXIoY2gsIGRzdCwgZHN0bGVu
+KTsKPiAtCQkJCWlmIChzaXplIDwgMCkgewo+IC0JCQkJCWlmIChzaXplID09IC1FTkFNRVRPT0xP
+TkcpCj4gLQkJCQkJCWdvdG8gb3V0Owo+IC0JCQkJCSpkc3QgPSAnPyc7Cj4gLQkJCQkJc2l6ZSA9
+IDE7Cj4gLQkJCQl9Cj4gLQkJCQlkc3QgKz0gc2l6ZTsKPiAtCQkJCWRzdGxlbiAtPSBzaXplOwo+
+IC0JCQl9IGVsc2Ugewo+IC0JCQkJKmRzdCsrID0gY2ggPiAweGZmID8gJz8nIDogY2g7Cj4gLQkJ
+CQlkc3RsZW4tLTsKPiArCQkJc2l6ZSA9IG5sc19kaXNrLT51bmkyY2hhcihjaCwgZHN0LCBkc3Rs
+ZW4pOwo+ICsJCQlpZiAoc2l6ZSA8IDApIHsKPiArCQkJCWlmIChzaXplID09IC1FTkFNRVRPT0xP
+TkcpCj4gKwkJCQkJZ290byBvdXQ7Cj4gKwkJCQkqZHN0ID0gJz8nOwo+ICsJCQkJc2l6ZSA9IDE7
+Cj4gCQkJfQo+ICsJCQlkc3QgKz0gc2l6ZTsKPiArCQkJZHN0bGVuIC09IHNpemU7Cj4gCQl9Cj4g
+CX0gZWxzZSB7Cj4gCQljaGFyIGNoOwo+IC0tIAo+IDIuMjAuMQo+IAoKCgpfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpMaW51eC1OVEZTLURldiBtYWlsaW5n
+IGxpc3QKTGludXgtTlRGUy1EZXZAbGlzdHMuc291cmNlZm9yZ2UubmV0Cmh0dHBzOi8vbGlzdHMu
+c291cmNlZm9yZ2UubmV0L2xpc3RzL2xpc3RpbmZvL2xpbnV4LW50ZnMtZGV2Cg==
