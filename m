@@ -2,122 +2,85 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 930E83EA68F
-	for <lists+linux-ntfs-dev@lfdr.de>; Thu, 12 Aug 2021 16:28:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 371403EAD20
+	for <lists+linux-ntfs-dev@lfdr.de>; Fri, 13 Aug 2021 00:27:57 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1mEBhM-0004Wi-3U; Thu, 12 Aug 2021 14:28:44 +0000
+	id 1mEJB2-0004gj-Ej; Thu, 12 Aug 2021 22:27:52 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- (envelope-from <sth@linux.ibm.com>) id 1mEBaK-0005MS-Kc
- for linux-ntfs-dev@lists.sourceforge.net; Thu, 12 Aug 2021 14:21:28 +0000
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
+ (envelope-from <pali@kernel.org>)
+ id 1mECzq-0008EY-NR; Thu, 12 Aug 2021 15:51:54 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:
+ MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=4rFKLwpJOQMMqGRC+zW+jrbs8nb5tBinDGArMD5AuCw=; b=GS4a/7gPdHqL3AX9p6quhJrCPa
- bIfYRmuD9iHk7jayLehriuEZv88ABPbhF+6Cg0apnJOc5tFLgTTw6/gDwHgbjnv5zCXJIUlGHok1V
- p8/NzVV4HK3iRZCuvqXyPKKlrin8pyw1PuIg9A2YbXpr6jGA7TJS2DSQXjx5j7xbiX8A=;
+ bh=48aSJt2HhoG81msyvgDBhLaPsUpEnlOwNoBTQN2TXoc=; b=MZtsOoLq3eVTXUMMGjLsM6EPmO
+ XRGhm+9GAtyPRp86Z5MPvmJ8z42fEfZo+W4/AkY4AWZWO4TEoXU+2tAtldYQAVUDx1Mxy7wzWFjyC
+ s8qUu6GuZ34eIlmLQ9IA8JGNrRRoVlW3qR2Zuea1bxW43DOCZ2/uJALy5RWeoxILliKE=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:Date:
- Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:Content-ID:
+ h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=4rFKLwpJOQMMqGRC+zW+jrbs8nb5tBinDGArMD5AuCw=; b=CtIS5KDLIXPtqiVvYD80xp09gx
- hyIAdIFmoHKexjEoAe0e8jnuGQtkk4PCufGw6M8Tkh7wFdNIjRNI3Jps8jC5Y88lZG8PWsNnybq9v
- 5WqRhihOCGb4JwYtaSx3YtTdjQZxODUeVJrPgvR3bbr1m/h7Tfr2VA7VP/tVb1qBZ3u4=;
-Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1])
+ bh=48aSJt2HhoG81msyvgDBhLaPsUpEnlOwNoBTQN2TXoc=; b=NvvdLPnZOFxtHuLDj071pkB0/E
+ kdw4LqRobgcurWV4ddGUHNrIDkPVWwmjbe7x5xcHd2boGkS/jW2gSKc18s+M3ptHC9XprfK89WNef
+ wlKxvbbd/SRtUWBqv3XQNHu6H9rfbzemNCINQRhAMF1NYMIhUFSkr2wFuEZFSPNsnU8A=;
+Received: from mail.kernel.org ([198.145.29.99])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mEBaI-0002HV-HT
- for linux-ntfs-dev@lists.sourceforge.net; Thu, 12 Aug 2021 14:21:28 +0000
-Received: from pps.filterd (m0098409.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id
- 17CE4fYR035638; Thu, 12 Aug 2021 10:21:18 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com;
- h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=pp1;
- bh=4rFKLwpJOQMMqGRC+zW+jrbs8nb5tBinDGArMD5AuCw=;
- b=DDXo3ijmM5GI1auEmnXHEpeqylNP3bObxI7sALFa3XRH2C+ofdrsIcEI2plk0LSc8crG
- RCN0wNGobu+OFiMBCnkmKfOMpwjYNXALaPuD2zgMt71o5UtG4i1lD89Mrly7kUdZDM2Y
- sF2xhej/iyVpAmxn7AKQMOff5orbqP+ZJcTATeF0xILVyFhoeMSHt0mLm9IuO6n41wly
- FU0GtQr60AJ94fNDU5c+UJrQKFlbNp5HoEmJGf/BD7NGSQZmcZqQ/ZA6dVJ3MRQO8pkz
- SI0w/TrAC7BdCZON7Mn16bzunmWcZ0MS1wfy4JE/59avd8rs+O2HnR80XlkiyaMjFy8L 4Q== 
-Received: from ppma06ams.nl.ibm.com (66.31.33a9.ip4.static.sl-reverse.com
- [169.51.49.102])
- by mx0a-001b2d01.pphosted.com with ESMTP id 3ad0qy1vjt-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Thu, 12 Aug 2021 10:21:17 -0400
-Received: from pps.filterd (ppma06ams.nl.ibm.com [127.0.0.1])
- by ppma06ams.nl.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 17CEIsOw014713;
- Thu, 12 Aug 2021 14:21:15 GMT
-Received: from b06avi18626390.portsmouth.uk.ibm.com
- (b06avi18626390.portsmouth.uk.ibm.com [9.149.26.192])
- by ppma06ams.nl.ibm.com with ESMTP id 3acf0ktjyh-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Thu, 12 Aug 2021 14:21:15 +0000
-Received: from d06av21.portsmouth.uk.ibm.com (d06av21.portsmouth.uk.ibm.com
- [9.149.105.232])
- by b06avi18626390.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP
- id 17CEHxxE30540192
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Thu, 12 Aug 2021 14:17:59 GMT
-Received: from d06av21.portsmouth.uk.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id AAC4D52057;
- Thu, 12 Aug 2021 14:21:12 +0000 (GMT)
-Received: from localhost.localdomain (unknown [9.145.92.71])
- by d06av21.portsmouth.uk.ibm.com (Postfix) with ESMTP id 5803052069;
- Thu, 12 Aug 2021 14:21:12 +0000 (GMT)
-To: Christoph Hellwig <hch@lst.de>, Jens Axboe <axboe@kernel.dk>
-References: <20210810154512.1809898-1-hch@lst.de>
- <20210810154512.1809898-2-hch@lst.de>
-From: Stefan Haberland <sth@linux.ibm.com>
-Message-ID: <15ddb7b3-8b43-2e36-652c-c6ccb06c7f88@linux.ibm.com>
-Date: Thu, 12 Aug 2021 16:21:12 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+ id 1mECzl-0007dG-RG; Thu, 12 Aug 2021 15:51:54 +0000
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C483160E93;
+ Thu, 12 Aug 2021 15:51:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1628783497;
+ bh=uXlwixVhz3r12PQwZ371Hh89I7lhiqCjmhBVz7o2Ak4=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=Cic9I+DISQwO/7rbHdOuiwhmdY0BtVKNXk4NBm2OtzaBHSzR4+x5sKzH7VkDpBbEQ
+ jObXE6oeSrJYmxR+Mn6HwvOD3dXHD7v2PFU+FQpw0w0FtlfZxm3O9qeEuYKSa5OeM+
+ mKzLVDIs3Lxx5JU2Alodr8Eg86SsQoRNQdryiH5OJzwmQPqkxMNWE7SBa+g0+pQyBg
+ BDpfvr/1lL1Rfccd+hk+7wBAoP06aokxoGmsIxfYoqs05btBmbrkbwGv41oidLMCuw
+ YkPC1ZsxTxjZ0pTqO+1S2V3prENsgAi0OqPoIG2PU2oVYAvkegeZo2aLOYU2u3vzwP
+ AJpTaH+M94ccg==
+Received: by pali.im (Postfix)
+ id 6086572F; Thu, 12 Aug 2021 17:51:34 +0200 (CEST)
+Date: Thu, 12 Aug 2021 17:51:34 +0200
+From: Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To: Jan Kara <jack@suse.cz>
+Message-ID: <20210812155134.g67ncugjvruos3cy@pali>
+References: <20210808162453.1653-1-pali@kernel.org>
+ <20210808162453.1653-4-pali@kernel.org>
+ <20210812141736.GE14675@quack2.suse.cz>
 MIME-Version: 1.0
-In-Reply-To: <20210810154512.1809898-2-hch@lst.de>
-Content-Language: en-US
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: GZUZdAv0WiWL02u5O1Ht1A2vEmREStlc
-X-Proofpoint-ORIG-GUID: GZUZdAv0WiWL02u5O1Ht1A2vEmREStlc
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391, 18.0.790
- definitions=2021-08-12_04:2021-08-12,
- 2021-08-12 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501
- spamscore=0 mlxlogscore=999 lowpriorityscore=0 suspectscore=0
- clxscore=1011 phishscore=0 impostorscore=0 mlxscore=0 bulkscore=0
- adultscore=0 malwarescore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2107140000 definitions=main-2108120087
-X-Spam-Score: 0.0 (/)
+Content-Disposition: inline
+In-Reply-To: <20210812141736.GE14675@quack2.suse.cz>
+User-Agent: NeoMutt/20180716
+X-Spam-Score: -0.8 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: lst.de]
- 0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
- [148.163.156.1 listed in wl.mailspike.net]
+ for more information. [URIs: suse.com]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
- -0.0 NICE_REPLY_A           Looks like a legit reply (A)
-X-Headers-End: 1mEBaI-0002HV-HT
-X-Mailman-Approved-At: Thu, 12 Aug 2021 14:28:42 +0000
-Subject: Re: [Linux-NTFS-Dev] [PATCH 1/4] block: store a gendisk in struct
- parsed_partitions
+ -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+ -0.0 AWL AWL: Adjusted score from AWL reputation of From: address
+X-Headers-End: 1mECzl-0007dG-RG
+X-Mailman-Approved-At: Thu, 12 Aug 2021 22:27:51 +0000
+Subject: Re: [Linux-NTFS-Dev] [RFC PATCH 03/20] udf: Fix iocharset=utf8
+ mount option
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -130,42 +93,122 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-s390@vger.kernel.org, Jan Hoeppner <hoeppner@linux.ibm.com>,
- Davidlohr Bueso <dave@stgolabs.net>, linux-ntfs-dev@lists.sourceforge.net,
- "Richard Russon \(FlatCap\)" <ldm@flatcap.org>, linux-block@vger.kernel.org,
- linux-efi@vger.kernel.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-cifs@vger.kernel.org, jfs-discussion@lists.sourceforge.net,
+ "Theodore Y . Ts'o" <tytso@mit.edu>, Luis de Bethencourt <luisbg@kernel.org>,
+ Dave Kleikamp <shaggy@kernel.org>, linux-ntfs-dev@lists.sourceforge.net,
+ linux-kernel@vger.kernel.org, Anton Altaparmakov <anton@tuxera.com>,
+ Christoph Hellwig <hch@infradead.org>,
+ Alexander Viro <viro@zeniv.linux.org.uk>, Pavel Machek <pavel@ucw.cz>,
+ linux-fsdevel@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>,
+ Marek =?utf-8?B?QmVow7pu?= <marek.behun@nic.cz>,
+ Salah Triki <salah.triki@gmail.com>,
+ OGAWA Hirofumi <hirofumi@mail.parknet.co.jp>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-Am 10.08.21 um 17:45 schrieb Christoph Hellwig:
-> Partition scanning only happens on the whole device, so pass a
-> struct gendisk instead of the whole device block_device to the scanners.
-> This allows to simplify printing the device name in various places as the
-> disk name is available in disk->name.
->
-> Signed-off-by: Christoph Hellwig <hch@lst.de>
-> ---
->  block/partitions/acorn.c   |  4 ++--
->  block/partitions/aix.c     | 20 ++------------------
->  block/partitions/amiga.c   |  7 +++----
->  block/partitions/atari.c   |  4 ++--
->  block/partitions/check.h   |  2 +-
->  block/partitions/cmdline.c |  6 ++----
->  block/partitions/core.c    |  6 +++---
->  block/partitions/efi.c     | 36 +++++++++++++++++-------------------
->  block/partitions/ibm.c     |  4 ++--
-
-for the DASD part:
-
-Looks good.
-
-Reviewed-by: Stefan Haberland <sth@linux.ibm.com>
-
-
-
-
-_______________________________________________
-Linux-NTFS-Dev mailing list
-Linux-NTFS-Dev@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev
+T24gVGh1cnNkYXkgMTIgQXVndXN0IDIwMjEgMTY6MTc6MzYgSmFuIEthcmEgd3JvdGU6Cj4gT24g
+U3VuIDA4LTA4LTIxIDE4OjI0OjM2LCBQYWxpIFJvaMOhciB3cm90ZToKPiA+IEN1cnJlbnRseSBp
+b2NoYXJzZXQ9dXRmOCBtb3VudCBvcHRpb24gaXMgYnJva2VuLiBUbyB1c2UgVVRGLTggYXMgaW9j
+aGFyc2V0LAo+ID4gaXQgaXMgcmVxdWlyZWQgdG8gdXNlIHV0ZjggbW91bnQgb3B0aW9uLgo+ID4g
+Cj4gPiBGaXggaW9jaGFyc2V0PXV0ZjggbW91bnQgb3B0aW9uIHRvIHVzZSBiZSBlcXVpdmFsZW50
+IHRvIHRoZSB1dGY4IG1vdW50Cj4gPiBvcHRpb24uCj4gPiAKPiA+IElmIFVURi04IGFzIGlvY2hh
+cnNldCBpcyB1c2VkIHRoZW4gc19ubHNfbWFwIGlzIHNldCB0byBOVUxMLiBTbyBzaW1wbGlmeQo+
+ID4gY29kZSBhcm91bmQsIHJlbW92ZSBVREZfRkxBR19OTFNfTUFQIGFuZCBVREZfRkxBR19VVEY4
+IGZsYWdzIGFzIHRvCj4gPiBkaXN0aW5ndWlzaCBiZXR3ZWVuIFVURi04IGFuZCBub24tVVRGLTgg
+aXQgaXMgbmVlZGVkIGp1c3QgdG8gY2hlY2sgaWYKPiA+IHNfbmxzX21hcCBzZXQgdG8gTlVMTCBv
+ciBub3QuCj4gPiAKPiA+IFNpZ25lZC1vZmYtYnk6IFBhbGkgUm9ow6FyIDxwYWxpQGtlcm5lbC5v
+cmc+Cj4gCj4gVGhhbmtzIGZvciB0aGUgY2xlYW51cC4gSXQgbG9va3MgZ29vZC4gRmVlbCBmcmVl
+IHRvIGFkZDoKPiAKPiBSZXZpZXdlZC1ieTogSmFuIEthcmEgPGphY2tAc3VzZS5jej4KPiAKPiBP
+ciBzaG91bGQgSSB0YWtlIHRoaXMgcGF0Y2ggdGhyb3VnaCBteSB0cmVlPwoKSGVsbG8hIFBhdGNo
+ZXMgYXJlIGp1c3QgUkZDLCBtb3N0bHkgdW50ZXN0ZWQgYW5kIG5vdCByZWFkeSBmb3IgbWVyZ2lu
+Zy4KSSB3aWxsIHdhaXQgZm9yIGZlZWRiYWNrIGFuZCB0aGVuIEkgZG8gbW9yZSB0ZXN0aW5nIG5h
+ZCBwcmVwYXJlIG5ldwpwYXRjaCBzZXJpZXMuCgo+IAo+IAkJCQkJCQkJSG9uemEKPiAKPiAKPiA+
+IC0tLQo+ID4gIGZzL3VkZi9zdXBlci5jICAgfCA1MCArKysrKysrKysrKysrKysrKystLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KPiA+ICBmcy91ZGYvdWRmX3NiLmggIHwgIDIgLS0KPiA+
+ICBmcy91ZGYvdW5pY29kZS5jIHwgIDQgKystLQo+ID4gIDMgZmlsZXMgY2hhbmdlZCwgMjEgaW5z
+ZXJ0aW9ucygrKSwgMzUgZGVsZXRpb25zKC0pCj4gPiAKPiA+IGRpZmYgLS1naXQgYS9mcy91ZGYv
+c3VwZXIuYyBiL2ZzL3VkZi9zdXBlci5jCj4gPiBpbmRleCAyZjgzYzEyMDRlMjAuLjZlOGMyOTEw
+N2IwNCAxMDA2NDQKPiA+IC0tLSBhL2ZzL3VkZi9zdXBlci5jCj4gPiArKysgYi9mcy91ZGYvc3Vw
+ZXIuYwo+ID4gQEAgLTM0OSwxMCArMzQ5LDEwIEBAIHN0YXRpYyBpbnQgdWRmX3Nob3dfb3B0aW9u
+cyhzdHJ1Y3Qgc2VxX2ZpbGUgKnNlcSwgc3RydWN0IGRlbnRyeSAqcm9vdCkKPiA+ICAJCXNlcV9w
+cmludGYoc2VxLCAiLGxhc3RibG9jaz0ldSIsIHNiaS0+c19sYXN0X2Jsb2NrKTsKPiA+ICAJaWYg
+KHNiaS0+c19hbmNob3IgIT0gMCkKPiA+ICAJCXNlcV9wcmludGYoc2VxLCAiLGFuY2hvcj0ldSIs
+IHNiaS0+c19hbmNob3IpOwo+ID4gLQlpZiAoVURGX1FVRVJZX0ZMQUcoc2IsIFVERl9GTEFHX1VU
+RjgpKQo+ID4gLQkJc2VxX3B1dHMoc2VxLCAiLHV0ZjgiKTsKPiA+IC0JaWYgKFVERl9RVUVSWV9G
+TEFHKHNiLCBVREZfRkxBR19OTFNfTUFQKSAmJiBzYmktPnNfbmxzX21hcCkKPiA+ICsJaWYgKHNi
+aS0+c19ubHNfbWFwKQo+ID4gIAkJc2VxX3ByaW50ZihzZXEsICIsaW9jaGFyc2V0PSVzIiwgc2Jp
+LT5zX25sc19tYXAtPmNoYXJzZXQpOwo+ID4gKwllbHNlCj4gPiArCQlzZXFfcHV0cyhzZXEsICIs
+aW9jaGFyc2V0PXV0ZjgiKTsKPiA+ICAKPiA+ICAJcmV0dXJuIDA7Cj4gPiAgfQo+ID4gQEAgLTU1
+OCwxOSArNTU4LDI0IEBAIHN0YXRpYyBpbnQgdWRmX3BhcnNlX29wdGlvbnMoY2hhciAqb3B0aW9u
+cywgc3RydWN0IHVkZl9vcHRpb25zICp1b3B0LAo+ID4gIAkJCS8qIElnbm9yZWQgKG5ldmVyIGlt
+cGxlbWVudGVkIHByb3Blcmx5KSAqLwo+ID4gIAkJCWJyZWFrOwo+ID4gIAkJY2FzZSBPcHRfdXRm
+ODoKPiA+IC0JCQl1b3B0LT5mbGFncyB8PSAoMSA8PCBVREZfRkxBR19VVEY4KTsKPiA+ICsJCQlp
+ZiAoIXJlbW91bnQpIHsKPiA+ICsJCQkJdW5sb2FkX25scyh1b3B0LT5ubHNfbWFwKTsKPiA+ICsJ
+CQkJdW9wdC0+bmxzX21hcCA9IE5VTEw7Cj4gPiArCQkJfQo+ID4gIAkJCWJyZWFrOwo+ID4gIAkJ
+Y2FzZSBPcHRfaW9jaGFyc2V0Ogo+ID4gIAkJCWlmICghcmVtb3VudCkgewo+ID4gLQkJCQlpZiAo
+dW9wdC0+bmxzX21hcCkKPiA+IC0JCQkJCXVubG9hZF9ubHModW9wdC0+bmxzX21hcCk7Cj4gPiAt
+CQkJCS8qCj4gPiAtCQkJCSAqIGxvYWRfbmxzKCkgZmFpbHVyZSBpcyBoYW5kbGVkIGxhdGVyIGlu
+Cj4gPiAtCQkJCSAqIHVkZl9maWxsX3N1cGVyKCkgYWZ0ZXIgYWxsIG9wdGlvbnMgYXJlCj4gPiAt
+CQkJCSAqIHBhcnNlZC4KPiA+IC0JCQkJICovCj4gPiArCQkJCXVubG9hZF9ubHModW9wdC0+bmxz
+X21hcCk7Cj4gPiArCQkJCXVvcHQtPm5sc19tYXAgPSBOVUxMOwo+ID4gKwkJCX0KPiA+ICsJCQkv
+KiBXaGVuIG5sc19tYXAgaXMgbm90IGxvYWRlZCB0aGVuIFVURi04IGlzIHVzZWQgKi8KPiA+ICsJ
+CQlpZiAoIXJlbW91bnQgJiYgc3RyY21wKGFyZ3NbMF0uZnJvbSwgInV0ZjgiKSAhPSAwKSB7Cj4g
+PiAgCQkJCXVvcHQtPm5sc19tYXAgPSBsb2FkX25scyhhcmdzWzBdLmZyb20pOwo+ID4gLQkJCQl1
+b3B0LT5mbGFncyB8PSAoMSA8PCBVREZfRkxBR19OTFNfTUFQKTsKPiA+ICsJCQkJaWYgKCF1b3B0
+LT5ubHNfbWFwKSB7Cj4gPiArCQkJCQlwcl9lcnIoImlvY2hhcnNldCAlcyBub3QgZm91bmRcbiIs
+Cj4gPiArCQkJCQkJYXJnc1swXS5mcm9tKTsKPiA+ICsJCQkJCXJldHVybiAwOwo+ID4gKwkJCQl9
+Cj4gPiAgCQkJfQo+ID4gIAkJCWJyZWFrOwo+ID4gIAkJY2FzZSBPcHRfdWZvcmdldDoKPiA+IEBA
+IC0yMTM5LDIxICsyMTQ0LDYgQEAgc3RhdGljIGludCB1ZGZfZmlsbF9zdXBlcihzdHJ1Y3Qgc3Vw
+ZXJfYmxvY2sgKnNiLCB2b2lkICpvcHRpb25zLCBpbnQgc2lsZW50KQo+ID4gIAlpZiAoIXVkZl9w
+YXJzZV9vcHRpb25zKChjaGFyICopb3B0aW9ucywgJnVvcHQsIGZhbHNlKSkKPiA+ICAJCWdvdG8g
+cGFyc2Vfb3B0aW9uc19mYWlsdXJlOwo+ID4gIAo+ID4gLQlpZiAodW9wdC5mbGFncyAmICgxIDw8
+IFVERl9GTEFHX1VURjgpICYmCj4gPiAtCSAgICB1b3B0LmZsYWdzICYgKDEgPDwgVURGX0ZMQUdf
+TkxTX01BUCkpIHsKPiA+IC0JCXVkZl9lcnIoc2IsICJ1dGY4IGNhbm5vdCBiZSBjb21iaW5lZCB3
+aXRoIGlvY2hhcnNldFxuIik7Cj4gPiAtCQlnb3RvIHBhcnNlX29wdGlvbnNfZmFpbHVyZTsKPiA+
+IC0JfQo+ID4gLQlpZiAoKHVvcHQuZmxhZ3MgJiAoMSA8PCBVREZfRkxBR19OTFNfTUFQKSkgJiYg
+IXVvcHQubmxzX21hcCkgewo+ID4gLQkJdW9wdC5ubHNfbWFwID0gbG9hZF9ubHNfZGVmYXVsdCgp
+Owo+ID4gLQkJaWYgKCF1b3B0Lm5sc19tYXApCj4gPiAtCQkJdW9wdC5mbGFncyAmPSB+KDEgPDwg
+VURGX0ZMQUdfTkxTX01BUCk7Cj4gPiAtCQllbHNlCj4gPiAtCQkJdWRmX2RlYnVnKCJVc2luZyBk
+ZWZhdWx0IE5MUyBtYXBcbiIpOwo+ID4gLQl9Cj4gPiAtCWlmICghKHVvcHQuZmxhZ3MgJiAoMSA8
+PCBVREZfRkxBR19OTFNfTUFQKSkpCj4gPiAtCQl1b3B0LmZsYWdzIHw9ICgxIDw8IFVERl9GTEFH
+X1VURjgpOwo+ID4gLQo+ID4gIAlmaWxlc2V0LmxvZ2ljYWxCbG9ja051bSA9IDB4RkZGRkZGRkY7
+Cj4gPiAgCWZpbGVzZXQucGFydGl0aW9uUmVmZXJlbmNlTnVtID0gMHhGRkZGOwo+ID4gIAo+ID4g
+QEAgLTIzMDgsOCArMjI5OCw3IEBAIHN0YXRpYyBpbnQgdWRmX2ZpbGxfc3VwZXIoc3RydWN0IHN1
+cGVyX2Jsb2NrICpzYiwgdm9pZCAqb3B0aW9ucywgaW50IHNpbGVudCkKPiA+ICBlcnJvcl9vdXQ6
+Cj4gPiAgCWlwdXQoc2JpLT5zX3ZhdF9pbm9kZSk7Cj4gPiAgcGFyc2Vfb3B0aW9uc19mYWlsdXJl
+Ogo+ID4gLQlpZiAodW9wdC5ubHNfbWFwKQo+ID4gLQkJdW5sb2FkX25scyh1b3B0Lm5sc19tYXAp
+Owo+ID4gKwl1bmxvYWRfbmxzKHVvcHQubmxzX21hcCk7Cj4gPiAgCWlmIChsdmlkX29wZW4pCj4g
+PiAgCQl1ZGZfY2xvc2VfbHZpZChzYik7Cj4gPiAgCWJyZWxzZShzYmktPnNfbHZpZF9iaCk7Cj4g
+PiBAQCAtMjM1OSw4ICsyMzQ4LDcgQEAgc3RhdGljIHZvaWQgdWRmX3B1dF9zdXBlcihzdHJ1Y3Qg
+c3VwZXJfYmxvY2sgKnNiKQo+ID4gIAlzYmkgPSBVREZfU0Ioc2IpOwo+ID4gIAo+ID4gIAlpcHV0
+KHNiaS0+c192YXRfaW5vZGUpOwo+ID4gLQlpZiAoVURGX1FVRVJZX0ZMQUcoc2IsIFVERl9GTEFH
+X05MU19NQVApKQo+ID4gLQkJdW5sb2FkX25scyhzYmktPnNfbmxzX21hcCk7Cj4gPiArCXVubG9h
+ZF9ubHMoc2JpLT5zX25sc19tYXApOwo+ID4gIAlpZiAoIXNiX3Jkb25seShzYikpCj4gPiAgCQl1
+ZGZfY2xvc2VfbHZpZChzYik7Cj4gPiAgCWJyZWxzZShzYmktPnNfbHZpZF9iaCk7Cj4gPiBkaWZm
+IC0tZ2l0IGEvZnMvdWRmL3VkZl9zYi5oIGIvZnMvdWRmL3VkZl9zYi5oCj4gPiBpbmRleCA3NThl
+ZmU1NTdhMTkuLjRmYTYyMDU0M2QzMCAxMDA2NDQKPiA+IC0tLSBhL2ZzL3VkZi91ZGZfc2IuaAo+
+ID4gKysrIGIvZnMvdWRmL3VkZl9zYi5oCj4gPiBAQCAtMjAsOCArMjAsNiBAQAo+ID4gICNkZWZp
+bmUgVURGX0ZMQUdfVU5ERUxFVEUJCTYKPiA+ICAjZGVmaW5lIFVERl9GTEFHX1VOSElERQkJCTcK
+PiA+ICAjZGVmaW5lIFVERl9GTEFHX1ZBUkNPTlYJCTgKPiA+IC0jZGVmaW5lIFVERl9GTEFHX05M
+U19NQVAJCTkKPiA+IC0jZGVmaW5lIFVERl9GTEFHX1VURjgJCQkxMAo+ID4gICNkZWZpbmUgVURG
+X0ZMQUdfVUlEX0ZPUkdFVCAgICAgMTEgICAgLyogc2F2ZSAtMSBmb3IgdWlkIHRvIGRpc2sgKi8K
+PiA+ICAjZGVmaW5lIFVERl9GTEFHX0dJRF9GT1JHRVQgICAgIDEyCj4gPiAgI2RlZmluZSBVREZf
+RkxBR19VSURfU0VUCTEzCj4gPiBkaWZmIC0tZ2l0IGEvZnMvdWRmL3VuaWNvZGUuYyBiL2ZzL3Vk
+Zi91bmljb2RlLmMKPiA+IGluZGV4IDVmY2ZhOTY0NjNlYi4uNjIyNTY5MDA3YjUzIDEwMDY0NAo+
+ID4gLS0tIGEvZnMvdWRmL3VuaWNvZGUuYwo+ID4gKysrIGIvZnMvdWRmL3VuaWNvZGUuYwo+ID4g
+QEAgLTE3Nyw3ICsxNzcsNyBAQCBzdGF0aWMgaW50IHVkZl9uYW1lX2Zyb21fQ1MwKHN0cnVjdCBz
+dXBlcl9ibG9jayAqc2IsCj4gPiAgCQlyZXR1cm4gMDsKPiA+ICAJfQo+ID4gIAo+ID4gLQlpZiAo
+VURGX1FVRVJZX0ZMQUcoc2IsIFVERl9GTEFHX05MU19NQVApKQo+ID4gKwlpZiAoVURGX1NCKHNi
+KS0+c19ubHNfbWFwKQo+ID4gIAkJY29udl9mID0gVURGX1NCKHNiKS0+c19ubHNfbWFwLT51bmky
+Y2hhcjsKPiA+ICAJZWxzZQo+ID4gIAkJY29udl9mID0gTlVMTDsKPiA+IEBAIC0yODUsNyArMjg1
+LDcgQEAgc3RhdGljIGludCB1ZGZfbmFtZV90b19DUzAoc3RydWN0IHN1cGVyX2Jsb2NrICpzYiwK
+PiA+ICAJaWYgKG9jdV9tYXhfbGVuIDw9IDApCj4gPiAgCQlyZXR1cm4gMDsKPiA+ICAKPiA+IC0J
+aWYgKFVERl9RVUVSWV9GTEFHKHNiLCBVREZfRkxBR19OTFNfTUFQKSkKPiA+ICsJaWYgKFVERl9T
+QihzYiktPnNfbmxzX21hcCkKPiA+ICAJCWNvbnZfZiA9IFVERl9TQihzYiktPnNfbmxzX21hcC0+
+Y2hhcjJ1bmk7Cj4gPiAgCWVsc2UKPiA+ICAJCWNvbnZfZiA9IE5VTEw7Cj4gPiAtLSAKPiA+IDIu
+MjAuMQo+ID4gCj4gLS0gCj4gSmFuIEthcmEgPGphY2tAc3VzZS5jb20+Cj4gU1VTRSBMYWJzLCBD
+UgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkxpbnV4
+LU5URlMtRGV2IG1haWxpbmcgbGlzdApMaW51eC1OVEZTLURldkBsaXN0cy5zb3VyY2Vmb3JnZS5u
+ZXQKaHR0cHM6Ly9saXN0cy5zb3VyY2Vmb3JnZS5uZXQvbGlzdHMvbGlzdGluZm8vbGludXgtbnRm
+cy1kZXYK
