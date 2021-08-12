@@ -2,80 +2,94 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 037EB3E7CD7
-	for <lists+linux-ntfs-dev@lfdr.de>; Tue, 10 Aug 2021 17:52:03 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D3603EA691
+	for <lists+linux-ntfs-dev@lfdr.de>; Thu, 12 Aug 2021 16:28:48 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1mDU2q-0000x8-5J; Tue, 10 Aug 2021 15:52:00 +0000
+	id 1mEBhL-0004WP-Um; Thu, 12 Aug 2021 14:28:43 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from
- <BATV+52179d7ae0ad25a87438+6561+infradead.org+hch@casper.srs.infradead.org>)
- id 1mDU2Z-0000wn-RF
- for linux-ntfs-dev@lists.sourceforge.net; Tue, 10 Aug 2021 15:51:43 +0000
+ (envelope-from <jack@suse.cz>)
+ id 1mEBWo-0001Gy-S0; Thu, 12 Aug 2021 14:17:50 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
- In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:
+ MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=QlWw4HkDy5SAmkfrpc0mwZV7UjMebgqtnRR8/HWQxmk=; b=bWYSeEfeq8BNmwbHjIbzDePOqk
- Gxo9e0r9OA4QYkyeGeahSjQ08VB48Ljt25LaDVTrT2JCL6NqvZESZ5q5ttqCcblYNMKNPcbcPkDK4
- AaSHxLHcleXX5dBNIDCmEuHPsi5aQJ/G4AE7woQhMOZjUz/+ap5VDufXuuXmwnq2p7UM=;
+ bh=1LOq+1RQ1bTZ6xSCL5P+LUHz6PeiGtFp6lwo2Lqqi7Q=; b=Bp1XoqJgrbpbGSkqePpr42fSmt
+ DWCzWl8emzjz76LIIwvsFcftIlOGQQb/ceHWqd6FbWBcZbkP9a/K2wGMlr9jaKE1iBIw1zIT6MWW2
+ +3H0ohxxQhSIIYJYx7oW0elf074crEVXrqScBhe0xuRf4qaE/E1geDHHgf3eBE/Unq2U=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=QlWw4HkDy5SAmkfrpc0mwZV7UjMebgqtnRR8/HWQxmk=; b=QuhNnuDy3sbo5OxF91PEcd+ah4
- 4n2a0pocVtFGiUJF51vO3jnkUtAxXwdYWtr2cUEk49qmP2tjdtSOHvk+2c0cRlQYkAsTqwCqRBkr5
- /uf7rMX65P2KHQwtpkU1mo8VbLiwzOTtizHdkKdF91DX1G0V1PxFpJla3ZAFRBL1HWm0=;
-Received: from casper.infradead.org ([90.155.50.34])
+ bh=1LOq+1RQ1bTZ6xSCL5P+LUHz6PeiGtFp6lwo2Lqqi7Q=; b=YWz49rfukgNxHRiM+mnY4rK3eZ
+ rv3GDuvv/Wt6bFdKEwb2gJA0QJqPbexu2Mm6n8Akm9R+w62F0HNVcJ3ajMoAie9c67Ud5z/KWTbNK
+ +kXJKtTGcWHfVd2KnvQACS5ESgytPTtyUQWpgr90DJ27IJewNDRyLEod9IP+VnANzmS4=;
+Received: from smtp-out2.suse.de ([195.135.220.29])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1mDU2R-0021Hi-No
- for linux-ntfs-dev@lists.sourceforge.net; Tue, 10 Aug 2021 15:51:39 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
- References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
- Content-Type:Content-ID:Content-Description;
- bh=QlWw4HkDy5SAmkfrpc0mwZV7UjMebgqtnRR8/HWQxmk=; b=PVGigAGcwUI+QHwHRB0vYyQH1Q
- KklGjuGhGSV4919sBOMK3Fr4Y0/z0yzMkSEKR+9mYZDDvA2EniwedJONHYQ6jxPO2a9wuWnDmfLXa
- 0HOwTrF7vJPZCMNBtWJG/YOl9FeY0rTfIxoXAWKgQNSLhGjz6ubkMRrw1heI/XX4SR7RBV23bby1x
- V+o3dpzzSA4Va/TLTT1WNotu2qOW/UIc44m/LH3aMfRIefnjDzecl6Un621VMMF7eWh/25MD8dqlK
- JKmmEQ5HpdI7Q/htOkTku6Qi3n848uiVuLJSTuqpz0S/aflwdA05oLWPdYtaCYOM0hkETUkz8k5QG
- oqezCzzw==;
-Received: from 089144200071.atnat0009.highway.a1.net ([89.144.200.71]
- helo=localhost)
- by casper.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mDU0g-00CInx-TV; Tue, 10 Aug 2021 15:49:58 +0000
-From: Christoph Hellwig <hch@lst.de>
-To: Jens Axboe <axboe@kernel.dk>
-Date: Tue, 10 Aug 2021 17:45:12 +0200
-Message-Id: <20210810154512.1809898-5-hch@lst.de>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210810154512.1809898-1-hch@lst.de>
-References: <20210810154512.1809898-1-hch@lst.de>
+ (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.3)
+ id 1mEBWk-004BBd-Qa; Thu, 12 Aug 2021 14:17:50 +0000
+Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
+ by smtp-out2.suse.de (Postfix) with ESMTP id 4F2141FF47;
+ Thu, 12 Aug 2021 14:17:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
+ t=1628777857; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=1LOq+1RQ1bTZ6xSCL5P+LUHz6PeiGtFp6lwo2Lqqi7Q=;
+ b=SyRasx6BYceomp5A+vWd4xR0dle1B5guJeUWfAt8MXCICkXDRM4Oz3QToHB6VB0i3wuklT
+ rD1ODhLj1qp3Gxa/cBNEn2uynbbVSk3bEWm1MvgSMO1+bSW5Vz10g7cH5ayULBga1nLnI0
+ F5UXM0ya2H7/DIFqNTn5zZVy+6MCS1k=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
+ s=susede2_ed25519; t=1628777857;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=1LOq+1RQ1bTZ6xSCL5P+LUHz6PeiGtFp6lwo2Lqqi7Q=;
+ b=GnzDUaCqYiTEgMmiYEgvAadtT34kHXqFeZpKyBC6BK2GN55zyPQnlN7MyWkUiuOme/CnH1
+ ZhReSiomtDrRUaDw==
+Received: from quack2.suse.cz (unknown [10.100.224.230])
+ by relay2.suse.de (Postfix) with ESMTP id 6B05DA3F4E;
+ Thu, 12 Aug 2021 14:17:36 +0000 (UTC)
+Received: by quack2.suse.cz (Postfix, from userid 1000)
+ id 46CF11F2BA7; Thu, 12 Aug 2021 16:17:36 +0200 (CEST)
+Date: Thu, 12 Aug 2021 16:17:36 +0200
+From: Jan Kara <jack@suse.cz>
+To: Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
+Message-ID: <20210812141736.GE14675@quack2.suse.cz>
+References: <20210808162453.1653-1-pali@kernel.org>
+ <20210808162453.1653-4-pali@kernel.org>
 MIME-Version: 1.0
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
- casper.infradead.org. See http://www.infradead.org/rpr.html
-X-Spam-Score: 0.3 (/)
+Content-Disposition: inline
+In-Reply-To: <20210808162453.1653-4-pali@kernel.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
- domains are different
- 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
+ 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
+ See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [URIs: suse.com]
+ -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
-X-Headers-End: 1mDU2R-0021Hi-No
-Subject: [Linux-NTFS-Dev] [PATCH 4/4] block: pass a gendisk to
- bdev_resize_partition
+X-Headers-End: 1mEBWk-004BBd-Qa
+X-Mailman-Approved-At: Thu, 12 Aug 2021 14:28:42 +0000
+Subject: Re: [Linux-NTFS-Dev] [RFC PATCH 03/20] udf: Fix iocharset=utf8
+ mount option
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -88,95 +102,203 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-s390@vger.kernel.org, Jan Hoeppner <hoeppner@linux.ibm.com>,
- Davidlohr Bueso <dave@stgolabs.net>, linux-ntfs-dev@lists.sourceforge.net,
- "Richard Russon \(FlatCap\)" <ldm@flatcap.org>, linux-block@vger.kernel.org,
- linux-efi@vger.kernel.org, Stefan Haberland <sth@linux.ibm.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-cifs@vger.kernel.org, jfs-discussion@lists.sourceforge.net,
+ Jan Kara <jack@suse.cz>, Luis de Bethencourt <luisbg@kernel.org>,
+ Dave Kleikamp <shaggy@kernel.org>, linux-ntfs-dev@lists.sourceforge.net,
+ linux-kernel@vger.kernel.org, Anton Altaparmakov <anton@tuxera.com>,
+ Christoph Hellwig <hch@infradead.org>,
+ Alexander Viro <viro@zeniv.linux.org.uk>, Pavel Machek <pavel@ucw.cz>,
+ linux-fsdevel@vger.kernel.org, "Theodore Y . Ts'o" <tytso@mit.edu>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Marek =?iso-8859-1?Q?Beh=FAn?= <marek.behun@nic.cz>,
+ Salah Triki <salah.triki@gmail.com>,
+ OGAWA Hirofumi <hirofumi@mail.parknet.co.jp>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-bdev_resize_partition can only operate on the whole device.  Make that clear
-by passing a gendisk instead of a block_device.
+On Sun 08-08-21 18:24:36, Pali Roh=E1r wrote:
+> Currently iocharset=3Dutf8 mount option is broken. To use UTF-8 as iochar=
+set,
+> it is required to use utf8 mount option.
+> =
 
-Signed-off-by: Christoph Hellwig <hch@lst.de>
----
- block/blk.h             |  4 ++--
- block/ioctl.c           |  2 +-
- block/partitions/core.c | 12 ++++++------
- 3 files changed, 9 insertions(+), 9 deletions(-)
+> Fix iocharset=3Dutf8 mount option to use be equivalent to the utf8 mount
+> option.
+> =
 
-diff --git a/block/blk.h b/block/blk.h
-index 21c441eb6773..db6f82bbb683 100644
---- a/block/blk.h
-+++ b/block/blk.h
-@@ -350,8 +350,8 @@ void blk_free_ext_minor(unsigned int minor);
- int bdev_add_partition(struct gendisk *disk, int partno, sector_t start,
- 		sector_t length);
- int bdev_del_partition(struct gendisk *disk, int partno);
--int bdev_resize_partition(struct block_device *bdev, int partno,
--		sector_t start, sector_t length);
-+int bdev_resize_partition(struct gendisk *disk, int partno, sector_t start,
-+		sector_t length);
- 
- int bio_add_hw_page(struct request_queue *q, struct bio *bio,
- 		struct page *page, unsigned int len, unsigned int offset,
-diff --git a/block/ioctl.c b/block/ioctl.c
-index 8f57b276b2f1..eb0491e90b9a 100644
---- a/block/ioctl.c
-+++ b/block/ioctl.c
-@@ -43,7 +43,7 @@ static int blkpg_do_ioctl(struct block_device *bdev,
- 			return -EINVAL;
- 		return bdev_add_partition(disk, p.pno, start, length);
- 	case BLKPG_RESIZE_PARTITION:
--		return bdev_resize_partition(bdev, p.pno, start, length);
-+		return bdev_resize_partition(disk, p.pno, start, length);
- 	default:
- 		return -EINVAL;
- 	}
-diff --git a/block/partitions/core.c b/block/partitions/core.c
-index 679bbe82a227..6462d983cb3a 100644
---- a/block/partitions/core.c
-+++ b/block/partitions/core.c
-@@ -497,14 +497,14 @@ int bdev_del_partition(struct gendisk *disk, int partno)
- 	return ret;
- }
- 
--int bdev_resize_partition(struct block_device *bdev, int partno,
--		sector_t start, sector_t length)
-+int bdev_resize_partition(struct gendisk *disk, int partno, sector_t start,
-+		sector_t length)
- {
- 	struct block_device *part = NULL;
- 	int ret = -ENXIO;
- 
--	mutex_lock(&bdev->bd_disk->open_mutex);
--	part = xa_load(&bdev->bd_disk->part_tbl, partno);
-+	mutex_lock(&disk->open_mutex);
-+	part = xa_load(&disk->part_tbl, partno);
- 	if (!part)
- 		goto out_unlock;
- 
-@@ -513,14 +513,14 @@ int bdev_resize_partition(struct block_device *bdev, int partno,
- 		goto out_unlock;
- 
- 	ret = -EBUSY;
--	if (partition_overlaps(bdev->bd_disk, start, length, partno))
-+	if (partition_overlaps(disk, start, length, partno))
- 		goto out_unlock;
- 
- 	bdev_set_nr_sectors(part, length);
- 
- 	ret = 0;
- out_unlock:
--	mutex_unlock(&bdev->bd_disk->open_mutex);
-+	mutex_unlock(&disk->open_mutex);
- 	return ret;
- }
- 
--- 
-2.30.2
+> If UTF-8 as iocharset is used then s_nls_map is set to NULL. So simplify
+> code around, remove UDF_FLAG_NLS_MAP and UDF_FLAG_UTF8 flags as to
+> distinguish between UTF-8 and non-UTF-8 it is needed just to check if
+> s_nls_map set to NULL or not.
+> =
 
+> Signed-off-by: Pali Roh=E1r <pali@kernel.org>
+
+Thanks for the cleanup. It looks good. Feel free to add:
+
+Reviewed-by: Jan Kara <jack@suse.cz>
+
+Or should I take this patch through my tree?
+
+								Honza
+
+
+> ---
+>  fs/udf/super.c   | 50 ++++++++++++++++++------------------------------
+>  fs/udf/udf_sb.h  |  2 --
+>  fs/udf/unicode.c |  4 ++--
+>  3 files changed, 21 insertions(+), 35 deletions(-)
+> =
+
+> diff --git a/fs/udf/super.c b/fs/udf/super.c
+> index 2f83c1204e20..6e8c29107b04 100644
+> --- a/fs/udf/super.c
+> +++ b/fs/udf/super.c
+> @@ -349,10 +349,10 @@ static int udf_show_options(struct seq_file *seq, s=
+truct dentry *root)
+>  		seq_printf(seq, ",lastblock=3D%u", sbi->s_last_block);
+>  	if (sbi->s_anchor !=3D 0)
+>  		seq_printf(seq, ",anchor=3D%u", sbi->s_anchor);
+> -	if (UDF_QUERY_FLAG(sb, UDF_FLAG_UTF8))
+> -		seq_puts(seq, ",utf8");
+> -	if (UDF_QUERY_FLAG(sb, UDF_FLAG_NLS_MAP) && sbi->s_nls_map)
+> +	if (sbi->s_nls_map)
+>  		seq_printf(seq, ",iocharset=3D%s", sbi->s_nls_map->charset);
+> +	else
+> +		seq_puts(seq, ",iocharset=3Dutf8");
+>  =
+
+>  	return 0;
+>  }
+> @@ -558,19 +558,24 @@ static int udf_parse_options(char *options, struct =
+udf_options *uopt,
+>  			/* Ignored (never implemented properly) */
+>  			break;
+>  		case Opt_utf8:
+> -			uopt->flags |=3D (1 << UDF_FLAG_UTF8);
+> +			if (!remount) {
+> +				unload_nls(uopt->nls_map);
+> +				uopt->nls_map =3D NULL;
+> +			}
+>  			break;
+>  		case Opt_iocharset:
+>  			if (!remount) {
+> -				if (uopt->nls_map)
+> -					unload_nls(uopt->nls_map);
+> -				/*
+> -				 * load_nls() failure is handled later in
+> -				 * udf_fill_super() after all options are
+> -				 * parsed.
+> -				 */
+> +				unload_nls(uopt->nls_map);
+> +				uopt->nls_map =3D NULL;
+> +			}
+> +			/* When nls_map is not loaded then UTF-8 is used */
+> +			if (!remount && strcmp(args[0].from, "utf8") !=3D 0) {
+>  				uopt->nls_map =3D load_nls(args[0].from);
+> -				uopt->flags |=3D (1 << UDF_FLAG_NLS_MAP);
+> +				if (!uopt->nls_map) {
+> +					pr_err("iocharset %s not found\n",
+> +						args[0].from);
+> +					return 0;
+> +				}
+>  			}
+>  			break;
+>  		case Opt_uforget:
+> @@ -2139,21 +2144,6 @@ static int udf_fill_super(struct super_block *sb, =
+void *options, int silent)
+>  	if (!udf_parse_options((char *)options, &uopt, false))
+>  		goto parse_options_failure;
+>  =
+
+> -	if (uopt.flags & (1 << UDF_FLAG_UTF8) &&
+> -	    uopt.flags & (1 << UDF_FLAG_NLS_MAP)) {
+> -		udf_err(sb, "utf8 cannot be combined with iocharset\n");
+> -		goto parse_options_failure;
+> -	}
+> -	if ((uopt.flags & (1 << UDF_FLAG_NLS_MAP)) && !uopt.nls_map) {
+> -		uopt.nls_map =3D load_nls_default();
+> -		if (!uopt.nls_map)
+> -			uopt.flags &=3D ~(1 << UDF_FLAG_NLS_MAP);
+> -		else
+> -			udf_debug("Using default NLS map\n");
+> -	}
+> -	if (!(uopt.flags & (1 << UDF_FLAG_NLS_MAP)))
+> -		uopt.flags |=3D (1 << UDF_FLAG_UTF8);
+> -
+>  	fileset.logicalBlockNum =3D 0xFFFFFFFF;
+>  	fileset.partitionReferenceNum =3D 0xFFFF;
+>  =
+
+> @@ -2308,8 +2298,7 @@ static int udf_fill_super(struct super_block *sb, v=
+oid *options, int silent)
+>  error_out:
+>  	iput(sbi->s_vat_inode);
+>  parse_options_failure:
+> -	if (uopt.nls_map)
+> -		unload_nls(uopt.nls_map);
+> +	unload_nls(uopt.nls_map);
+>  	if (lvid_open)
+>  		udf_close_lvid(sb);
+>  	brelse(sbi->s_lvid_bh);
+> @@ -2359,8 +2348,7 @@ static void udf_put_super(struct super_block *sb)
+>  	sbi =3D UDF_SB(sb);
+>  =
+
+>  	iput(sbi->s_vat_inode);
+> -	if (UDF_QUERY_FLAG(sb, UDF_FLAG_NLS_MAP))
+> -		unload_nls(sbi->s_nls_map);
+> +	unload_nls(sbi->s_nls_map);
+>  	if (!sb_rdonly(sb))
+>  		udf_close_lvid(sb);
+>  	brelse(sbi->s_lvid_bh);
+> diff --git a/fs/udf/udf_sb.h b/fs/udf/udf_sb.h
+> index 758efe557a19..4fa620543d30 100644
+> --- a/fs/udf/udf_sb.h
+> +++ b/fs/udf/udf_sb.h
+> @@ -20,8 +20,6 @@
+>  #define UDF_FLAG_UNDELETE		6
+>  #define UDF_FLAG_UNHIDE			7
+>  #define UDF_FLAG_VARCONV		8
+> -#define UDF_FLAG_NLS_MAP		9
+> -#define UDF_FLAG_UTF8			10
+>  #define UDF_FLAG_UID_FORGET     11    /* save -1 for uid to disk */
+>  #define UDF_FLAG_GID_FORGET     12
+>  #define UDF_FLAG_UID_SET	13
+> diff --git a/fs/udf/unicode.c b/fs/udf/unicode.c
+> index 5fcfa96463eb..622569007b53 100644
+> --- a/fs/udf/unicode.c
+> +++ b/fs/udf/unicode.c
+> @@ -177,7 +177,7 @@ static int udf_name_from_CS0(struct super_block *sb,
+>  		return 0;
+>  	}
+>  =
+
+> -	if (UDF_QUERY_FLAG(sb, UDF_FLAG_NLS_MAP))
+> +	if (UDF_SB(sb)->s_nls_map)
+>  		conv_f =3D UDF_SB(sb)->s_nls_map->uni2char;
+>  	else
+>  		conv_f =3D NULL;
+> @@ -285,7 +285,7 @@ static int udf_name_to_CS0(struct super_block *sb,
+>  	if (ocu_max_len <=3D 0)
+>  		return 0;
+>  =
+
+> -	if (UDF_QUERY_FLAG(sb, UDF_FLAG_NLS_MAP))
+> +	if (UDF_SB(sb)->s_nls_map)
+>  		conv_f =3D UDF_SB(sb)->s_nls_map->char2uni;
+>  	else
+>  		conv_f =3D NULL;
+> -- =
+
+> 2.20.1
+> =
+
+-- =
+
+Jan Kara <jack@suse.com>
+SUSE Labs, CR
 
 
 _______________________________________________
