@@ -2,85 +2,94 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C7203EBE1A
+	by mail.lfdr.de (Postfix) with ESMTPS id 3718C3EBE19
 	for <lists+linux-ntfs-dev@lfdr.de>; Sat, 14 Aug 2021 00:00:45 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
 	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1mEfEG-0007yN-A7; Fri, 13 Aug 2021 22:00:39 +0000
+	id 1mEfEG-0007yS-Fk; Fri, 13 Aug 2021 22:00:39 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <jack@suse.cz>)
- id 1mEXY2-0003Nr-Fp; Fri, 13 Aug 2021 13:48:34 +0000
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
+ (envelope-from <kari.argillander@gmail.com>) id 1mEZVT-0006n6-MM
+ for linux-ntfs-dev@lists.sourceforge.net; Fri, 13 Aug 2021 15:54:03 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:
- MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=iKfxhwub3oLTOa/l2On4u32rCTa2b379k/9DNB6qAU0=; b=dI0ebQExAqzsmlrlePOu9n3OCb
- TdmK3kXrlJY7BslJoJFUt+LKOhnvzC1PPSgnqQG8nOqcEqqXoddE322z8mdenl1xCwA9i/AQ9ylzz
- R7Icv26hDWZxvALD1SI1yTCbjtt0AYRU1ElORE86ZltM+nUmRej/c9l83LyAP75a/YMw=;
+ bh=aMX+a6wP1iCii8UfZRNRB0ftn/+EsmPtpxrSR4YPCHE=; b=GlJavfn8Dlh2ELSkrHdkUWlQNW
+ E9EPW7UiD3OsqKDJmDspSnAxh6HPA9RI3sSt7VMj5F+ajj86bxV/YyooHVrWdcunU78iP4eCvtpVW
+ joFzgpqHmuQUKY9kZFwdMdPN6WMuOcfiLYoDFQfvpnJlmIbay0wawCoX9oVVktVWErFA=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=iKfxhwub3oLTOa/l2On4u32rCTa2b379k/9DNB6qAU0=; b=E2GszlOsMwDSHHGHDdZnQJGeqH
- WG/qVvlNEFhSPdd0BkstztMMIKepIky3Q0y86ITjmE1/664UPdZsG8AQuaDxMpAIBbRihtuQ3fRt8
- HpgvRdZQRD8d95+S16dxYiC1dIBZXe596PLY9o6QmxyMWvr1k5X+SiEBL1FNj/+SEHsk=;
-Received: from smtp-out2.suse.de ([195.135.220.29])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ bh=aMX+a6wP1iCii8UfZRNRB0ftn/+EsmPtpxrSR4YPCHE=; b=SGRpTc88xQ5HUHPcw8636zSBuM
+ ++X41mRl+GO/ZLEfE5bi/9QtnVZ/qrbE/ppwh2YUNirAG0xzaO3dM7MnuJrU9DGX6/6zuP2UvwqkN
+ xOl3k/UMXih0VRv5e1n1PS5HdjWmM6WM4z0pKz0TRbjyN5GP0/hafh5bql9ZApenw6Hk=;
+Received: from mail-lj1-f177.google.com ([209.85.208.177])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.3)
- id 1mEXY0-00058C-F8; Fri, 13 Aug 2021 13:48:34 +0000
-Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
- by smtp-out2.suse.de (Postfix) with ESMTP id D61AE1FFC4;
- Fri, 13 Aug 2021 13:48:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
- t=1628862502; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=iKfxhwub3oLTOa/l2On4u32rCTa2b379k/9DNB6qAU0=;
- b=Z8uS515S7zGDIuGZKjdGQnOGi1B1NMkvn5EMA+l5RfMfD16SG+wM9Mm19p+1gipU7UNAHX
- 0E1CJ40H6H/zsQSY2HDwFUHjF2rqaZ5HB9V3rjis6qJb/e0Pz6SehsbBqLGTKBNap1mO4r
- qDyFX3gpOxFN0s2mLPgjWuzgZ7EINj0=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
- s=susede2_ed25519; t=1628862502;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=iKfxhwub3oLTOa/l2On4u32rCTa2b379k/9DNB6qAU0=;
- b=zyI2xYTl44lkAN35E0504dtH/sg3z277p6lXJScR58eQIKfhnvpgRsIr1Y6nFxZ5yCYNkB
- DAkXUUrU1WgUfMAg==
-Received: from quack2.suse.cz (jack.udp.ovpn1.prg.suse.de [10.100.224.230])
- by relay2.suse.de (Postfix) with ESMTP id 6A489A3B87;
- Fri, 13 Aug 2021 13:48:22 +0000 (UTC)
-Received: by quack2.suse.cz (Postfix, from userid 1000)
- id 4587E1E423D; Fri, 13 Aug 2021 15:48:22 +0200 (CEST)
-Date: Fri, 13 Aug 2021 15:48:22 +0200
-From: Jan Kara <jack@suse.cz>
-To: Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
-Message-ID: <20210813134822.GF11955@quack2.suse.cz>
-References: <20210808162453.1653-1-pali@kernel.org>
- <20210808162453.1653-4-pali@kernel.org>
- <20210812141736.GE14675@quack2.suse.cz>
- <20210812155134.g67ncugjvruos3cy@pali>
+ id 1mEZVQ-005J8Z-4O
+ for linux-ntfs-dev@lists.sourceforge.net; Fri, 13 Aug 2021 15:54:03 +0000
+Received: by mail-lj1-f177.google.com with SMTP id n7so16347383ljq.0
+ for <linux-ntfs-dev@lists.sourceforge.net>;
+ Fri, 13 Aug 2021 08:54:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=aMX+a6wP1iCii8UfZRNRB0ftn/+EsmPtpxrSR4YPCHE=;
+ b=W9cMdo1w90Diw8YIJIySfXDhuAHRZl6bLlzMy7C/GZlgThteZ87DT6k5EUWIuabAlB
+ tWt1TPSHNg3bXs7ax5kd/61lL5jmXO/MLvYPb/JLvZnqyVDQZvQm94gmr5qyThFmP+x2
+ 3wFXB4sG8RpIOCrplGiQkG2WJsXqOmzRET/iPhQQH1yHgWiMADGibwzGgVEWl1uYAQ+B
+ /HwQ76FVke+ne4Mmafgmbgmr+J8vqnZEL0lKzCdukKFOBNU0Qd9MdJ7/63EqDtGva0p2
+ JU6fQTQUTqfWd30QLLNwANN+cLyFzyiDrKcdkpiSyMawhwpxOvkLnaT+l0oVLfVA9wa5
+ rkLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=aMX+a6wP1iCii8UfZRNRB0ftn/+EsmPtpxrSR4YPCHE=;
+ b=KiGS9SIRMvfpL3am/BA3k5xo5Ls5s4mFLfQlRD7pNsCJU+ejzRkfDPcgDw3zbhElVf
+ rbF1m1gr8QfNS4UIourMEnwjwbbjGh7XPcIePFq14gQ5i4rJD4DRFoK7GoEXc3UuVekJ
+ k3GOtBglByH5b4CswS15VZTV2adV81VlidmgJSiW+ZjDuwcdkmeVzBcnOgZjCHch8y0r
+ g7YVo96sT8O+rdUEdt3R597lZc+OT039258rpVPvRd6pBfStwOYQJslo5aoTT9Tywmwo
+ QfyUEUbkmoNFZGqMrG+NKnkuze4K8qcMI8wZVubEqzrgg9IGsFDbx0ALojURgEK1O5xQ
+ s7/Q==
+X-Gm-Message-State: AOAM533NZOo4+QNH984TkQDfS0pHtzqI/51xYO4UF3siFZL6E4RZD7PD
+ zvCJtZAiT0qhrVyLkGhqJNE=
+X-Google-Smtp-Source: ABdhPJxY3aZpHjI5xq9CX1t4DztTg0tQ+aaWxIsVh57v1CyenE1WGSs5BEGkZhD5t5ELqtbCF6HAsw==
+X-Received: by 2002:a2e:8688:: with SMTP id l8mr2308140lji.157.1628870033611; 
+ Fri, 13 Aug 2021 08:53:53 -0700 (PDT)
+Received: from kari-VirtualBox (85-23-89-224.bb.dnainternet.fi. [85.23.89.224])
+ by smtp.gmail.com with ESMTPSA id i23sm188939lfo.76.2021.08.13.08.53.51
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 13 Aug 2021 08:53:52 -0700 (PDT)
+Date: Fri, 13 Aug 2021 18:53:50 +0300
+From: Kari Argillander <kari.argillander@gmail.com>
+To: Theodore Ts'o <tytso@mit.edu>,
+ Konstantin Komarov <almaz.alexandrovich@paragon-software.com>
+Message-ID: <20210813155350.vcoxqtox2ezvybgb@kari-VirtualBox>
+References: <20210729134943.778917-1-almaz.alexandrovich@paragon-software.com>
+ <20210729162459.GA3601405@magnolia> <YQdlJM6ngxPoeq4U@mit.edu>
+ <20210812170326.6szm7us5kfdte52u@kari-VirtualBox>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210812155134.g67ncugjvruos3cy@pali>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20210812170326.6szm7us5kfdte52u@kari-VirtualBox>
 X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
- See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: suse.cz]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.208.177 listed in wl.mailspike.net]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [209.85.208.177 listed in list.dnswl.org]
+ 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+ (kari.argillander[at]gmail.com)
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
@@ -88,10 +97,11 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
-X-Headers-End: 1mEXY0-00058C-F8
+ 0.0 AWL AWL: Adjusted score from AWL reputation of From: address
+X-Headers-End: 1mEZVQ-005J8Z-4O
 X-Mailman-Approved-At: Fri, 13 Aug 2021 22:00:38 +0000
-Subject: Re: [Linux-NTFS-Dev] [RFC PATCH 03/20] udf: Fix iocharset=utf8
- mount option
+Subject: Re: [Linux-NTFS-Dev] [PATCH v27 00/10] NTFS read-write driver GPL
+ implementation by Paragon Software
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -104,65 +114,53 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-cifs@vger.kernel.org, jfs-discussion@lists.sourceforge.net,
- Jan Kara <jack@suse.cz>, Luis de Bethencourt <luisbg@kernel.org>,
- Dave Kleikamp <shaggy@kernel.org>, linux-ntfs-dev@lists.sourceforge.net,
- linux-kernel@vger.kernel.org, Anton Altaparmakov <anton@tuxera.com>,
- Christoph Hellwig <hch@infradead.org>,
- Alexander Viro <viro@zeniv.linux.org.uk>, Pavel Machek <pavel@ucw.cz>,
- linux-fsdevel@vger.kernel.org, "Theodore Y . Ts'o" <tytso@mit.edu>,
- Andrew Morton <akpm@linux-foundation.org>,
- Marek =?iso-8859-1?Q?Beh=FAn?= <marek.behun@nic.cz>,
- Salah Triki <salah.triki@gmail.com>,
- OGAWA Hirofumi <hirofumi@mail.parknet.co.jp>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: dan.carpenter@oracle.com, andy.lavr@gmail.com, nborisov@suse.com,
+ "Darrick J. Wong" <djwong@kernel.org>, oleksandr@natalenko.name,
+ rdunlap@infradead.org, linux-kernel@vger.kernel.org, willy@infradead.org,
+ dsterba@suse.cz, ebiggers@kernel.org, joe@perches.com, hch@lst.de,
+ viro@zeniv.linux.org.uk, linux-fsdevel@vger.kernel.org,
+ linux-ntfs-dev@lists.sourceforge.net, aaptel@suse.com, ntfs3@lists.linux.dev,
+ pali@kernel.org, mark@harmstone.com, anton@tuxera.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-On Thu 12-08-21 17:51:34, Pali Roh=E1r wrote:
-> On Thursday 12 August 2021 16:17:36 Jan Kara wrote:
-> > On Sun 08-08-21 18:24:36, Pali Roh=E1r wrote:
-> > > Currently iocharset=3Dutf8 mount option is broken. To use UTF-8 as io=
-charset,
-> > > it is required to use utf8 mount option.
-> > > =
+On Thu, Aug 12, 2021 at 08:03:26PM +0300, Kari Argillander wrote:
+> On Sun, Aug 01, 2021 at 11:23:16PM -0400, Theodore Ts'o wrote:
+> > On Thu, Jul 29, 2021 at 09:24:59AM -0700, Darrick J. Wong wrote:
+> > > 
+> > > I have the same (still unanswered) questions as last time:
+> > > 
+> > > 1. What happens when you run ntfs3 through fstests with '-g all'?  I get
+> > > that the pass rate isn't going to be as high with ntfs3 as it is with
+> > > ext4/xfs/btrfs, but fstests can be adapted (see the recent attempts to
+> > > get exfat under test).
+> > 
+> > Indeed, it's not that hard at all.  I've included a patch to
+> > xfstests-bld[1] so that you can just run "kvm-xfstests -c ntfs3 -g
+> > auto".
+> > 
+> > Konstantin, I would *strongly* encourage you to try running fstests,
+> > about 60 seconds into a run, we discover that generic/013 will trigger
+> > locking problems that could lead to deadlocks.
+> 
+> It seems at least at my testing that if acl option is used then
+> generic/013 will pass. I have tested this with old linux-next commit
+> 5a4cee98ea757e1a2a1354b497afdf8fafc30a20 I have still some of my own
+> code in it but I will test this tomorrow so I can be sure.
+> 
+> It also seems that acl support is broken. I also suspect ntfs-3g mkfs in
+> some failure cases. So maybe ntfs-3g mkfs will give different result than
+> Paragons mkfs. It would be nice to test with Paragons mkfs software or
+> that Paragon will test with ntfs-3g.
 
-> > > Fix iocharset=3Dutf8 mount option to use be equivalent to the utf8 mo=
-unt
-> > > option.
-> > > =
+I have made more testing and it was actually my code which cause 013 not
+fail. It is still pretty strange. I have made code for new mount api (fs
+context) and 013 still get deadlock but still test will pass. This only
+happends if acl is on. Though this is intresting why this happends. I
+will not use more time for this now. I will try to focus fs context
+mount api for now.
 
-> > > If UTF-8 as iocharset is used then s_nls_map is set to NULL. So simpl=
-ify
-> > > code around, remove UDF_FLAG_NLS_MAP and UDF_FLAG_UTF8 flags as to
-> > > distinguish between UTF-8 and non-UTF-8 it is needed just to check if
-> > > s_nls_map set to NULL or not.
-> > > =
-
-> > > Signed-off-by: Pali Roh=E1r <pali@kernel.org>
-> > =
-
-> > Thanks for the cleanup. It looks good. Feel free to add:
-> > =
-
-> > Reviewed-by: Jan Kara <jack@suse.cz>
-> > =
-
-> > Or should I take this patch through my tree?
-> =
-
-> Hello! Patches are just RFC, mostly untested and not ready for merging.
-> I will wait for feedback and then I do more testing nad prepare new
-> patch series.
-
-OK, FWIW I've also tested the UDF and isofs patches.
-
-								Honza
-
--- =
-
-Jan Kara <jack@suse.com>
-SUSE Labs, CR
 
 
 _______________________________________________
