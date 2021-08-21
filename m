@@ -2,96 +2,96 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D6EF4038F1
+	by mail.lfdr.de (Postfix) with ESMTPS id 138144038F4
 	for <lists+linux-ntfs-dev@lfdr.de>; Wed,  8 Sep 2021 13:40:00 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1mNvvn-0002rs-UJ; Wed, 08 Sep 2021 11:39:55 +0000
+	id 1mNvvo-0002s3-0E; Wed, 08 Sep 2021 11:39:56 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <kari.argillander@gmail.com>)
- id 1mGrJ9-0007Uh-Bc; Thu, 19 Aug 2021 23:18:47 +0000
+ (envelope-from <yanp.bugz@gmail.com>) id 1mHQGm-00013E-ME
+ for linux-ntfs-dev@lists.sourceforge.net; Sat, 21 Aug 2021 12:38:40 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:
- MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+ MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Ry+uQ2ze+f23BW9wmso3e2NcNF5MK0mmAGV5/hmmOmo=; b=ZObxK7dh6c3uzJGqD51J0pCCCx
- GU30wCUhSCeuFBdUL4Qi6RI6lpOgbq6SfFzU5YT8bEfl8KyHR7IHwl9N1/wFCeFpr9Nf9IFLYDV4U
- LnZsV9Ppkizd5jw4YJyRwO8J7wcQQ8PtnqeUpiMyAcDQPxhw/+Td+OIVKloKptju7bMY=;
+ bh=CsiDXQX5CqxTRDjYxjqIP5WMHOM40KiYSXEpLVVFU1A=; b=ChDWktSjWs2ZOQtDP4g0bHZK+R
+ gvnM3rsFHvPpUpxs4SQc5uhAMvIYSrwiaENTjOKZxhwYmhQNe1xwSOqx0YUD2UFkTrUI83D2F+INf
+ z/wK/cGZFYUZlRMeXCroqo2GlsycrNz5ar+q9rRjtbg3/EAKlR3efVYaSUOl9NooP8Uc=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:Date:
+ Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=Ry+uQ2ze+f23BW9wmso3e2NcNF5MK0mmAGV5/hmmOmo=; b=DbW0zBVFNg/EHXS+jrqdP/IXL7
- QRioUkfnCgLTpSPpm8+/p5lTK/B7iqMRLZV6aWlBhAItmbWBlFyqlIoOaSlDMFlM+6m7vSZ2e5lWb
- ZwwbARPDQPOvWjxNU2pCUYJjFnyOyXWWtEK2mG/27ARt7awlkP1kIy0ipZ53UR9qCwBc=;
-Received: from mail-lf1-f47.google.com ([209.85.167.47])
+ bh=CsiDXQX5CqxTRDjYxjqIP5WMHOM40KiYSXEpLVVFU1A=; b=WB3l9pL40w671L7DLqiVzPyVrx
+ aUkk8yViqrXQLDsmJwBEgKM+f1Pq0RwLn3upATgPAXumB0Hh0H2ggyJ5rkv2EIl6Ov64puKGHhwM5
+ 2/FK/e5mlePyyRqnv0/v9wJHI09seDtJg23KjHiovSvzlisPM1xybeWnsXZeZQxjgLSw=;
+Received: from mail-lf1-f48.google.com ([209.85.167.48])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.3)
- id 1mGrJ4-0008BX-Ta; Thu, 19 Aug 2021 23:18:47 +0000
-Received: by mail-lf1-f47.google.com with SMTP id i28so16411179lfl.2;
- Thu, 19 Aug 2021 16:18:42 -0700 (PDT)
+ id 1mHQGk-0007Eu-Tz
+ for linux-ntfs-dev@lists.sourceforge.net; Sat, 21 Aug 2021 12:38:40 +0000
+Received: by mail-lf1-f48.google.com with SMTP id r9so26647417lfn.3
+ for <linux-ntfs-dev@lists.sourceforge.net>;
+ Sat, 21 Aug 2021 05:38:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=Ry+uQ2ze+f23BW9wmso3e2NcNF5MK0mmAGV5/hmmOmo=;
- b=uJ7HeHQontttqIGqQ2NX/14IN/xSl7wiyEI0b6WFZ9B4Dk2KIpd5De3gqj/D4hSwx0
- gRNXb/wxBl6wkYTzjm+KZtVK0roxZgPm8z4Pq1aBHFPH6AjN/buNZ107mIV240blAWzH
- xnfTFqB2fCWp2CG+8vtFP+AeTHM5XXl/CoU91GXHQZ6NWaP7lUV1kIsNh4ck8DBB0o3h
- /FK+6lBKeWsGqNhpFP5rDtQcdaGZbOsPYjsHL9y50TqOaFd9YT6rv0eLFkf0yRt3VKDP
- MBLtq/DxFcyYpau9CLyyDhmfF2txevvNvUwOPdmv5/Ml0CqAmPLH3vycy/XY2IjiQFs0
- MK/A==
+ h=subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-language:content-transfer-encoding;
+ bh=CsiDXQX5CqxTRDjYxjqIP5WMHOM40KiYSXEpLVVFU1A=;
+ b=WWMwGIi/b21LZpvv/cS/fjlWSHCpJw3bHeWU/+5/AT4GwzvHKlW9cMNl7Np3tmk0h9
+ uXcKGAJ6rv/rdECycldq5oDMpnrwWB3y5l4vmbnRX43QUImMvKZGEl7p7f5TjHOsHPfY
+ pNhmKczJsLLlShgDh9wkKsTt2U0w+sKezf9S/jdTEhm4N1mNrC2bse+C4oGKS3mFryg+
+ LSHfs6o8utKohNPh6ARmlNv22bq+MEEBgjMBu5qaS99LVEnQ3kIYrIuaLNOtpq4Y8D2R
+ GC6aJ9FnqIB9uDSCWRySMymLhVEEOCHKthAxmvXG+Z42dRKUhNud9moEbdZvJZTuGAAP
+ QcCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=Ry+uQ2ze+f23BW9wmso3e2NcNF5MK0mmAGV5/hmmOmo=;
- b=jD5NBJFgPUDBctrEtcP+8sIqdiDj5I5UEDcJw7bHWW1tkO7a8f5Mu2keMTLrNpPajs
- 0N+kBxe5eAy9+S032982FPJco6yi4g4p4uu4v+ngeZAXmtqcH0fiNVojj7WlEMsc3VYi
- SjiG7en/EzIU3930PToHekHzj5tKWNTl1H7h5LFMcmij3Xl7DrWQ4lM/35cEigKm43uj
- uxo9bN9GIsms/Ac47miws1H+vtmPk5+jf/hZ8UPy3rsZCVZtoKW6dZeITD/rorMV60bo
- mqGBwOR41AizYTpyxtWx0TnZ0tEvOt+iYw+ZdSRlu0hti9GRuZYqL3mnyGfwUmNMvaef
- Mcsg==
-X-Gm-Message-State: AOAM533Fb7cUmlvm46pEVVMsSyvN+8sbHVomDrJPwC7cdIBAKKiBi4Dp
- o5Z1D1OdzJj6VMiuEDPTPPk=
-X-Google-Smtp-Source: ABdhPJx87x0dZUPkISoJL4ME1bzX8W9BQeT50/qxq+el9HtXrx76quTuHsUMVVORkAiJcCURiF15WQ==
-X-Received: by 2002:a05:6512:22cd:: with SMTP id
- g13mr12755777lfu.440.1629415116388; 
- Thu, 19 Aug 2021 16:18:36 -0700 (PDT)
-Received: from kari-VirtualBox (85-23-89-224.bb.dnainternet.fi. [85.23.89.224])
- by smtp.gmail.com with ESMTPSA id 3sm381713ljq.136.2021.08.19.16.18.35
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 19 Aug 2021 16:18:35 -0700 (PDT)
-Date: Fri, 20 Aug 2021 02:18:33 +0300
-From: Kari Argillander <kari.argillander@gmail.com>
-To: Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-Message-ID: <20210819231833.deyfwq73tbslkizc@kari-VirtualBox>
-References: <20210808162453.1653-1-pali@kernel.org>
- <20210808162453.1653-6-pali@kernel.org>
- <20210819012108.3isqi4t6rmd5fd5x@kari-VirtualBox>
- <20210819081222.vnvxfrtqctfev6xu@pali>
- <20210819102342.6ps7lowpuomyqcdk@kari-VirtualBox>
- <20210819220412.jicwnrevzi6s25ee@pali>
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=CsiDXQX5CqxTRDjYxjqIP5WMHOM40KiYSXEpLVVFU1A=;
+ b=T6HAlDV+UII16kd3s6TVEMYDIajZlZBqfdAiZL0sHppAk/D24Mvgcd6cB9B5FEXw09
+ HRmg6i7PYRLq/gunHarEriwKMb+N7zAYMctBJ4ac+0bEKB+mAO9GVRsWDbWGyEneBWfY
+ fibmZ3ufT8rSAbqWyMK/8Xci36gu4eMU2RaqDohUthj2IVLT4YpcpXhXimZUfiZkJWiT
+ peyUGGrvdOtPMNIbjw1MtyRjo/5QqLfUYy8V+YgkUvcs0tYHoKMKI1imYHdjDMJsGMjm
+ CaDKKSm62FDRN8owji19d7Kq8uo0McqrRgoPGfl75irqWlHPhv8eRAupx9IIZKCvqxTL
+ sQgg==
+X-Gm-Message-State: AOAM533dvdRWYjWitW0OTCBGZmWiqZKb3LhQo9nNbI6XzwJiVy3qIS0h
+ NK15+eKS+UBJkd6XwOOeELs=
+X-Google-Smtp-Source: ABdhPJwfEJRPHfXO35VkKUGcyuY5s+ZbtM60QpaKjjPY1rjUCUUDGMYVNAqYSvsDxlhraOX3EFF1SQ==
+X-Received: by 2002:ac2:484a:: with SMTP id 10mr1648015lfy.21.1629549512342;
+ Sat, 21 Aug 2021 05:38:32 -0700 (PDT)
+Received: from [192.168.0.13] (broadband-46-242-116-145.ip.moscow.rt.ru.
+ [46.242.116.145])
+ by smtp.gmail.com with ESMTPSA id w6sm908269lfk.163.2021.08.21.05.38.31
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sat, 21 Aug 2021 05:38:31 -0700 (PDT)
+To: Theodore Ts'o <tytso@mit.edu>, "Darrick J. Wong" <djwong@kernel.org>
+References: <20210729134943.778917-1-almaz.alexandrovich@paragon-software.com>
+ <20210729162459.GA3601405@magnolia> <YQdlJM6ngxPoeq4U@mit.edu>
+From: Yan Pashkovsky <yanp.bugz@gmail.com>
+Message-ID: <2399771e-8222-267d-1655-c84a1401f2cd@gmail.com>
+Date: Sat, 21 Aug 2021 15:38:30 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210819220412.jicwnrevzi6s25ee@pali>
-X-Spam-Score: -0.1 (/)
+In-Reply-To: <YQdlJM6ngxPoeq4U@mit.edu>
+Content-Language: en-US
+X-Spam-Score: -1.6 (-)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
- (kari.argillander[at]gmail.com)
+ (yanp.bugz[at]gmail.com)
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [209.85.167.47 listed in list.dnswl.org]
+ trust [209.85.167.48 listed in list.dnswl.org]
  -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.167.47 listed in wl.mailspike.net]
+ [209.85.167.48 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
@@ -99,10 +99,11 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
-X-Headers-End: 1mGrJ4-0008BX-Ta
+ -1.5 NICE_REPLY_A           Looks like a legit reply (A)
+X-Headers-End: 1mHQGk-0007Eu-Tz
 X-Mailman-Approved-At: Wed, 08 Sep 2021 11:39:38 +0000
-Subject: Re: [Linux-NTFS-Dev] [RFC PATCH 05/20] ntfs: Undeprecate iocharset=
- mount option
+Subject: Re: [Linux-NTFS-Dev] [PATCH v27 00/10] NTFS read-write driver GPL
+ implementation by Paragon Software
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -115,74 +116,102 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-cifs@vger.kernel.org, jfs-discussion@lists.sourceforge.net,
- Jan Kara <jack@suse.cz>, Luis de Bethencourt <luisbg@kernel.org>,
- Dave Kleikamp <shaggy@kernel.org>, linux-ntfs-dev@lists.sourceforge.net,
- linux-kernel@vger.kernel.org, Anton Altaparmakov <anton@tuxera.com>,
- Christoph Hellwig <hch@infradead.org>,
- Alexander Viro <viro@zeniv.linux.org.uk>, Pavel Machek <pavel@ucw.cz>,
- linux-fsdevel@vger.kernel.org, "Theodore Y . Ts'o" <tytso@mit.edu>,
- Andrew Morton <akpm@linux-foundation.org>,
- Marek =?utf-8?B?QmVow7pu?= <marek.behun@nic.cz>,
- Salah Triki <salah.triki@gmail.com>,
- OGAWA Hirofumi <hirofumi@mail.parknet.co.jp>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: ebiggers@kernel.org, andy.lavr@gmail.com, kari.argillander@gmail.com,
+ nborisov@suse.com, oleksandr@natalenko.name, rdunlap@infradead.org,
+ dsterba@suse.cz, willy@infradead.org, linux-kernel@vger.kernel.org,
+ Konstantin Komarov <almaz.alexandrovich@paragon-software.com>, joe@perches.com,
+ hch@lst.de, viro@zeniv.linux.org.uk, linux-fsdevel@vger.kernel.org,
+ linux-ntfs-dev@lists.sourceforge.net, aaptel@suse.com,
+ dan.carpenter@oracle.com, pali@kernel.org, mark@harmstone.com,
+ anton@tuxera.com
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-On Fri, Aug 20, 2021 at 12:04:12AM +0200, Pali Roh=E1r wrote:
-> On Thursday 19 August 2021 13:23:42 Kari Argillander wrote:
-> > On Thu, Aug 19, 2021 at 10:12:22AM +0200, Pali Roh=E1r wrote:
-> > > On Thursday 19 August 2021 04:21:08 Kari Argillander wrote:
-> > > > On Sun, Aug 08, 2021 at 06:24:38PM +0200, Pali Roh=E1r wrote:
-> > > > > Other fs drivers are using iocharset=3D mount option for specifyi=
-ng charset.
-> > > > > So mark iocharset=3D mount option as preferred and deprecate nls=
-=3D mount
-> > > > > option.
-> > > >  =
+> Konstantin, I would *strongly* encourage you to try running fstests,
+> about 60 seconds into a run, we discover that generic/013 will trigger
+> locking problems that could lead to deadlocks.
 
-> > > > One idea is also make this change to fs/fc_parser.c and then when we
-> > > > want we can drop support from all filesystem same time. This way we
-> > > > can get more deprecated code off the fs drivers. Draw back is that
-> > > > then every filesstem has this deprecated nls=3D option if it support
-> > > > iocharsets option. But that should imo be ok.
-> > > =
+Seems like it's a real issue. I was using new HDD and ntfs3-dkms (v26) 
+in Arch and faced locking while was doing rsync:
 
-> > > Beware that iocharset=3D is required only for fs which store filename=
-s in
-> > > some specific encoding (in this case extension to UTF-16). For fs whi=
-ch
-> > > store filenames in raw bytes this option should not be parsed at all.
-> > =
+[ 5529.507567] INFO: task kworker/0:1:18 blocked for more than 1105 seconds.
+[ 5529.507580]       Tainted: P           OE     5.13.4-arch1-1 #1
+[ 5529.507584] "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" 
+disables this message.
+[ 5529.507586] task:kworker/0:1     state:D stack:    0 pid:   18 ppid: 
+     2 flags:0x00004000
+[ 5529.507598] Workqueue: usb_hub_wq hub_event
+[ 5529.507612] Call Trace:
+[ 5529.507615]  ? out_of_line_wait_on_bit_lock+0xb0/0xb0
+[ 5529.507631]  __schedule+0x310/0x930
+[ 5529.507641]  ? out_of_line_wait_on_bit_lock+0xb0/0xb0
+[ 5529.507648]  schedule+0x5b/0xc0
+[ 5529.507654]  bit_wait+0xd/0x60
+[ 5529.507661]  __wait_on_bit+0x2a/0x90
+[ 5529.507669]  __inode_wait_for_writeback+0xb0/0xe0
+[ 5529.507680]  ? var_wake_function+0x20/0x20
+[ 5529.507689]  writeback_single_inode+0x64/0x140
+[ 5529.507699]  sync_inode_metadata+0x3d/0x60
+[ 5529.507712]  ntfs_set_state+0x126/0x1a0 [ntfs3]
+[ 5529.507738]  ni_write_inode+0x244/0xef0 [ntfs3]
+[ 5529.507764]  ? pagevec_lookup_range_tag+0x24/0x30
+[ 5529.507772]  ? __filemap_fdatawait_range+0x6f/0xf0
+[ 5529.507785]  __writeback_single_inode+0x260/0x310
+[ 5529.507795]  writeback_single_inode+0xa7/0x140
+[ 5529.507803]  sync_inode_metadata+0x3d/0x60
+[ 5529.507814]  ntfs_set_state+0x126/0x1a0 [ntfs3]
+[ 5529.507834]  ntfs_sync_fs+0xf9/0x100 [ntfs3]
+[ 5529.507857]  sync_filesystem+0x40/0x90
+[ 5529.507868]  fsync_bdev+0x21/0x60
+[ 5529.507874]  delete_partition+0x13/0x80
+[ 5529.507882]  blk_drop_partitions+0x5b/0xa0
+[ 5529.507889]  del_gendisk+0xa5/0x220
+[ 5529.507895]  sd_remove+0x3d/0x80
+[ 5529.507907]  __device_release_driver+0x17a/0x230
+[ 5529.507918]  device_release_driver+0x24/0x30
+[ 5529.507927]  bus_remove_device+0xdb/0x140
+[ 5529.507937]  device_del+0x18b/0x400
+[ 5529.507943]  ? ata_tlink_match+0x30/0x30
+[ 5529.507949]  ? attribute_container_device_trigger+0xc5/0x100
+[ 5529.507959]  __scsi_remove_device+0x118/0x150
+[ 5529.507967]  scsi_forget_host+0x54/0x60
+[ 5529.507978]  scsi_remove_host+0x72/0x110
+[ 5529.507988]  usb_stor_disconnect+0x46/0xb0 [usb_storage]
+[ 5529.508003]  usb_unbind_interface+0x8a/0x270
+[ 5529.508010]  ? kernfs_find_ns+0x35/0xd0
+[ 5529.508017]  __device_release_driver+0x17a/0x230
+[ 5529.508027]  device_release_driver+0x24/0x30
+[ 5529.508036]  bus_remove_device+0xdb/0x140
+[ 5529.508044]  device_del+0x18b/0x400
+[ 5529.508050]  ? kobject_put+0x98/0x1d0
+[ 5529.508062]  usb_disable_device+0xc6/0x1f0
+[ 5529.508073]  usb_disconnect.cold+0x7e/0x250
+[ 5529.508085]  hub_event+0xc7b/0x17f0
+[ 5529.508099]  process_one_work+0x1e3/0x3b0
+[ 5529.508109]  worker_thread+0x50/0x3b0
+[ 5529.508115]  ? process_one_work+0x3b0/0x3b0
+[ 5529.508122]  kthread+0x133/0x160
+[ 5529.508127]  ? set_kthread_struct+0x40/0x40
+[ 5529.508133]  ret_from_fork+0x22/0x30
 
-> > Yeah of course. I was thinking that what we do is that if key is nls=3D
-> > we change key to iocharset, print deprecated and then send it to driver
-> > parser as usual. This way driver parser will never know that user
-> > specifie nls=3D because it just get iocharset. But this is probebly too
-> > fancy way to think simple problem. Just idea. =
-
-> =
-
-> This has an issue that when you use nls=3D option for e.g. ext4 fs then
-> kernel starts reporting that nls=3D for ext4 is deprecated. But there is
-> no nls=3D option and neither iocharset=3D option for ext4. So kernel shou=
-ld
-> not start reporting such warnings for ext4.
-
-It gets kinda messy. I was also thinking that but if that was
-implemented then we could first send iocharset to driver and after that
-we print deprecated if it succeeded. If it not succeed then we print
-error messages same as always.
-
-I have not look how easily this is can be done in parser.
-
-> =
-
-> > > Therefore I'm not sure if this parsing should be in global
-> > > fs/fc_parser.c file...
-> > =
-
+[ 8440.627659] blk_update_request: I/O error, dev sdd, sector 256017240 
+op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+[ 8440.627667] ntfs3: 165 callbacks suppressed
+[ 8440.627667] ntfs3: sdd1: failed to read volume at offset 0x1e84f6b000
+[ 8440.627673] blk_update_request: I/O error, dev sdd, sector 256017240 
+op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+[ 8440.627676] ntfs3: sdd1: failed to read volume at offset 0x1e84f6b000
+[ 8440.778355] blk_update_request: I/O error, dev sdd, sector 6293496 op 
+0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+[ 8440.778384] ntfs3: sdd1: failed to read volume at offset 0xbffff000
+[ 8440.778412] blk_update_request: I/O error, dev sdd, sector 6353096 op 
+0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+[ 8440.778428] ntfs3: sdd1: failed to read volume at offset 0xc1d19000
+[ 8440.778441] blk_update_request: I/O error, dev sdd, sector 6353096 op 
+0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+[ 8440.778452] ntfs3: sdd1: failed to read volume at offset 0xc1d19000
+[ 8440.778459] ntfs3: sdd1: ntfs_evict_inode r=0 failed, -22.
 
 
 _______________________________________________
