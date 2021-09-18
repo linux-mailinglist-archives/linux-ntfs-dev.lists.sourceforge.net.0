@@ -2,104 +2,105 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB5134038FD
-	for <lists+linux-ntfs-dev@lfdr.de>; Wed,  8 Sep 2021 13:40:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 370CB410731
+	for <lists+linux-ntfs-dev@lfdr.de>; Sat, 18 Sep 2021 16:56:50 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=lists.sourceforge.net; s=beta; h=Cc:Reply-To:From:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Subject:Content-Type:
+	MIME-Version:Message-ID:To:Date:Sender:Content-Transfer-Encoding:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=p9xpUN2X2DgOkosSJA8UKtuSzU/uiZ0j2vQZvfjWY3A=; b=hY6U+3cb9lOhNodUv5gvcqwRAW
+	XHMJvbaS+8tKSA2a/0S8OAKNFvkojgJCzGq3XCDLjxJihyXsFhHmM4nE+HMUAQvw8qKFzQWKUvOj+
+	pFo3BhtVhW+j4TCQopoTzYO91/tBQVIiqnN9f90G5newv1k8natfF5bikU16o/VyqeFk=;
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1mNvvr-0002wx-VR; Wed, 08 Sep 2021 11:39:59 +0000
+	id 1mRbll-0005SB-5y; Sat, 18 Sep 2021 14:56:45 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <kari.argillander@gmail.com>)
- id 1mMHL5-00035U-A3; Fri, 03 Sep 2021 22:07:11 +0000
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
+ (envelope-from <vladlich@protonmail.com>) id 1mROAi-0001lo-0J
+ for linux-ntfs-dev@lists.sourceforge.net; Sat, 18 Sep 2021 00:25:36 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:
- MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Message-ID:Subject:
+ Reply-To:Cc:From:To:Date:Sender:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=n3+SAT+wUh+y12YwwSXLSGu91HRrwMiAwD6Udu242w4=; b=R6o7dks3GFXWcG8lp2kPPc0rt8
- QEuZhjMb9erd4ovZYFYQFVWQMbTAyjBofiOUuEZYx/4wb0LSzPJaZR6I35EPeZHweGCTb+d1DRPZy
- VRabwxexZxNJ1KPYo0P51pg3sOcNfmVUptt6aJfoPrFGDkHxTbRHMqMa0NFBWIFVLv/M=;
+ bh=bUrj8ipKarLjtH2LKHNpsvbn5yR6kZu1pLEdLb4a3n0=; b=YaMtzSRuhymMlegVRwQvy/IrlB
+ FB2RsGC/omvYKO00zLnK0NHs0L0HmRtOGg4yDDLYVX6mvj/gY1Y0sa6CwciZFcE4fj+v1IMj/Sjbr
+ BRi3yeiVMspUQ5bV/LkdpqaeqiORhdLbejSoH6kK2AGPaVLCXqfHwqSpw0RMXuvgcPlA=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=n3+SAT+wUh+y12YwwSXLSGu91HRrwMiAwD6Udu242w4=; b=irWidiQ35HGXt/pUxdazD3etl2
- bYHCHoMNGlLOeqjZwZjpQFxiiK3Jggm1tcUYmB6kYWKfz8mJKEYXXPRZFYoFee7SchtiX8Lsny7QQ
- VHlsI9bF02XY+byW0/tcl+Da+24ClxzZnZWnKw4ZAmi30YE/SaIs7CXZEhSTz7WwZqBs=;
-Received: from mail-lj1-f177.google.com ([209.85.208.177])
+ h=Content-Type:MIME-Version:Message-ID:Subject:Reply-To:Cc:From:To:Date:
+ Sender:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=bUrj8ipKarLjtH2LKHNpsvbn5yR6kZu1pLEdLb4a3n0=; b=H
+ yrs19ume78hg64Zy7xZwEP1DpgxprpUCK5JurYXdycdxUGXGwKsEyT48ygfVExSLcEFJb7SmCRw2H
+ yVlh0f125e/uLn9e6Fy9TDvBNOayRfbNzn5IXGiET6bwtVvRl3BNpRy7XA0ekwD04igP+wPZGyPYh
+ h4wntG3ZDj1uojA8=;
+Received: from mail2.protonmail.ch ([185.70.40.22])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.3)
- id 1mMHKz-0006xA-Un; Fri, 03 Sep 2021 22:07:11 +0000
-Received: by mail-lj1-f177.google.com with SMTP id w4so917569ljh.13;
- Fri, 03 Sep 2021 15:07:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=n3+SAT+wUh+y12YwwSXLSGu91HRrwMiAwD6Udu242w4=;
- b=gnrPJAMYQJs2kE0+sucg41Ur7PZsuL+E2NG/axKrXloJKX3d7HdqkqwWcjpBPMi5IP
- 0d3DIKyoVeHfpBuWx4v0JJh8watQU+jszTZjJOQsUqoWzWlJjCc4l/rRv8z6gJdgZtvV
- raC/VkiSW4QAaoEKlTryivsJcysBW7mqsf+cupT7ypHUuNAK52Fdkdz+FpNvcgvjOmMJ
- q4OLzqJIUKy33DFBQh6zuo/kbf+JUbB8zJd8zF2sdA/N+v5KhmaB/tG5RyaBgMepwJ6M
- VCSMRa2MCjGzy/+RJgOc1/p27uvH+hweLEAqfNt5FmWcIDl7lvBBkIP6EXIgzHxdWUyE
- 0QIg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=n3+SAT+wUh+y12YwwSXLSGu91HRrwMiAwD6Udu242w4=;
- b=e0BFJw2gtdo2mLa26bcMLcCQdUWAJj40lQDPQeKIZJ9Gkuf/Q6KKvlqD/F6GcgnLJA
- 7y6HClkqxkVBEpfUjoYG9XGz3YhBM2FYUzhxI+XwY1n2WX7sjXPlLKbiGroAsXySv+s0
- rcNrlotrhYDgmoDHbyt+8XZZk58Iubk3WSg0Zoa4XHquQklM0iphiHeAPjGIf23spYoB
- wsZqrQZ9/SKe7w+XTNvjnRHcIEySVXWefvh3P2C18QJtHmqXpTY/y6ehU0fIyIuunN5B
- 2KgTUHaiFAup7iUNiH4Qcqabzn7mDcl86NmuSuNCZoxUhocIfibw4n1FJ0OofHr0olIi
- yBZQ==
-X-Gm-Message-State: AOAM530LzcXZcCun2J7F0HdZIhZW9m3z2v/TCQF1LEmiVuOzd3gLqy19
- 1SBHBVt3Clk2xR/Qul4tUkcB3RVh9BjBlQ==
-X-Google-Smtp-Source: ABdhPJxrlnDahomjgjCeNeYPGaX5uaNHim/FoQcXEF7HvuWmzlWePT8brF8QIvetravlYRoje6IDCw==
-X-Received: by 2002:a2e:7d17:: with SMTP id y23mr806578ljc.392.1630706819322; 
- Fri, 03 Sep 2021 15:06:59 -0700 (PDT)
-Received: from kari-VirtualBox (85-23-89-224.bb.dnainternet.fi. [85.23.89.224])
- by smtp.gmail.com with ESMTPSA id y23sm61666lfg.277.2021.09.03.15.06.57
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 03 Sep 2021 15:06:58 -0700 (PDT)
-Date: Sat, 4 Sep 2021 01:06:56 +0300
-From: Kari Argillander <kari.argillander@gmail.com>
-To: Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-Message-ID: <20210903220656.f4mmp6mdyzryui4f@kari-VirtualBox>
-References: <20210808162453.1653-1-pali@kernel.org>
- <20210903212616.xbi5tz5ier5xcpas@kari-VirtualBox>
- <20210903213703.s5y5iobmdrlmzfek@pali>
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
+ id 1mROAg-0003sI-Vw
+ for linux-ntfs-dev@lists.sourceforge.net; Sat, 18 Sep 2021 00:25:35 +0000
+Date: Sat, 18 Sep 2021 00:25:26 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+ s=protonmail; t=1631924728;
+ bh=bUrj8ipKarLjtH2LKHNpsvbn5yR6kZu1pLEdLb4a3n0=;
+ h=Date:To:From:Cc:Reply-To:Subject:From;
+ b=XZR8KPQ6+sH2Mb7RGDw6IDXcpSaGltX0RLk9B/Attkg3R6gQkZLl79hurSuv1NoW8
+ P31d1H606EK177zXLun0tYO1t83x/2hPzqwhMoPIAO0zDiU9ZG9qVuqicdLnnsB+tn
+ 4ji8a70akErZKROGfMWNH9U6xqlDoIW44ZjpIETw=
+To: "linux-ntfs-dev@lists.sourceforge.net"
+ <linux-ntfs-dev@lists.sourceforge.net>
+Message-ID: <p4vwypI8AjpmSt5yma1qabbjnPTSdXvEQm97YhEWcgSvbocS55lroxhvZSFHOkQ8JUNE59j995HkkhRZGAfmKJMmqz4bv7nwOWIm4FR6rPA=@protonmail.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210903213703.s5y5iobmdrlmzfek@pali>
-X-Spam-Score: 0.4 (/)
-X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
- See http://spamassassin.org/tag/ for more details.
- 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
- (kari.argillander[at]gmail.com)
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.208.177 listed in wl.mailspike.net]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [209.85.208.177 listed in list.dnswl.org]
+Content-Type: multipart/mixed;
+ boundary="b1_H2khkIbjDp6Qa3H6tgsEYJKfGI4DOHZL0y8HTxY5M"
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+ DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,HTML_MESSAGE
+ shortcircuit=no autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+ mailout.protonmail.ch
+X-Spam-Score: -0.2 (/)
+X-Spam-Report: Spam detection software,
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ has NOT identified this incoming email as spam.  The original
+ message has been attached to this so you can view it or label
+ similar future email.  If you have any questions, see
+ the administrator of that system for details.
+ Content preview:  Hi, I've encountered unexpected behavior that I suspect is
+ a bug with the fstat system call on Linux on NTFS filesystem. If you create
+ a pipe with mkfifo, open this pipe in a process, unlink its filename, and
+ then call fstat, it fails with the error ENOENT: No such file or directory.
+ This shouldn't be the case, as the f [...] 
+ Content analysis details:   (-0.2 points, 6.0 required)
+ pts rule name              description
+ ---- ---------------------- --------------------------------------------------
+ 0.0 URIBL_BLOCKED          ADMINISTRATOR NOTICE: The query to URIBL was
+ blocked.  See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [URIs: protonmail.com]
+ 0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
+ [185.70.40.22 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
- domain
+ 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
+ provider [vladlich[at]protonmail.com]
+ -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
+ 0.0 HTML_MESSAGE           BODY: HTML included in message
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
- not necessarily valid
- 0.5 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1mMHKz-0006xA-Un
-X-Mailman-Approved-At: Wed, 08 Sep 2021 11:39:38 +0000
-Subject: Re: [Linux-NTFS-Dev] [RFC PATCH 00/20] fs: Remove usage of broken
- nls_utf8 and drop it
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+X-Headers-End: 1mROAg-0003sI-Vw
+X-Mailman-Approved-At: Sat, 18 Sep 2021 14:56:34 +0000
+Subject: [Linux-NTFS-Dev] Unexpected behavior with fstat on NTFS FIFO pipes
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -112,219 +113,100 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-cifs@vger.kernel.org, jfs-discussion@lists.sourceforge.net,
- Jan Kara <jack@suse.cz>, Luis de Bethencourt <luisbg@kernel.org>,
- Dave Kleikamp <shaggy@kernel.org>, linux-ntfs-dev@lists.sourceforge.net,
- linux-kernel@vger.kernel.org, Anton Altaparmakov <anton@tuxera.com>,
- Christoph Hellwig <hch@infradead.org>,
- Alexander Viro <viro@zeniv.linux.org.uk>, Pavel Machek <pavel@ucw.cz>,
- linux-fsdevel@vger.kernel.org, "Theodore Y . Ts'o" <tytso@mit.edu>,
- Andrew Morton <akpm@linux-foundation.org>,
- Marek =?utf-8?B?QmVow7pu?= <marek.behun@nic.cz>,
- Salah Triki <salah.triki@gmail.com>,
- OGAWA Hirofumi <hirofumi@mail.parknet.co.jp>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+From: Vladimir via Linux-NTFS-Dev <linux-ntfs-dev@lists.sourceforge.net>
+Reply-To: Vladimir <vladlich@protonmail.com>
+Cc: "rleanderschroeder@gmail.com" <rleanderschroeder@gmail.com>
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-On Fri, Sep 03, 2021 at 11:37:03PM +0200, Pali Roh=E1r wrote:
-> On Saturday 04 September 2021 00:26:16 Kari Argillander wrote:
-> > On Sun, Aug 08, 2021 at 06:24:33PM +0200, Pali Roh=E1r wrote:
-> > > Module nls_utf8 is broken in several ways. It does not support (full)
-> > > UTF-8, despite its name. It cannot handle 4-byte UTF-8 sequences and
-> > > tolower/toupper table is not implemented at all. Which means that it =
-is
-> > > not suitable for usage in case-insensitive filesystems or UTF-16
-> > > filesystems (because of e.g. missing UTF-16 surrogate pairs processin=
-g).
-> > > =
+This is a multi-part message in MIME format.
 
-> > > This is RFC patch series which unify and fix iocharset=3Dutf8 mount
-> > > option in all fs drivers and converts all remaining fs drivers to use
-> > > utf8s_to_utf16s(), utf16s_to_utf8s(), utf8_to_utf32(), utf32_to_utf8
-> > > functions for implementing UTF-8 support instead of nls_utf8.
-> > > =
+--b1_H2khkIbjDp6Qa3H6tgsEYJKfGI4DOHZL0y8HTxY5M
+Content-Type: multipart/alternative;
+ boundary="b2_H2khkIbjDp6Qa3H6tgsEYJKfGI4DOHZL0y8HTxY5M"
 
-> > > So at the end it allows to completely drop this broken nls_utf8 modul=
-e.
-> > =
+--b2_H2khkIbjDp6Qa3H6tgsEYJKfGI4DOHZL0y8HTxY5M
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
 
-> > Now that every filesystem will support nls=3DNULL. Is it possible to ju=
-st
-> > drop default_table completly? Then default has to be utf8, but is it a
-> > problem?
-> =
+SGksCgpJJ3ZlIGVuY291bnRlcmVkIHVuZXhwZWN0ZWQgYmVoYXZpb3IgdGhhdCBJIHN1c3BlY3Qg
+aXMgYSBidWcgd2l0aCB0aGUgZnN0YXQgc3lzdGVtIGNhbGwgb24gTGludXggb24gTlRGUyBmaWxl
+c3lzdGVtLgoKSWYgeW91IGNyZWF0ZSBhIHBpcGUgd2l0aCBta2ZpZm8sIG9wZW4gdGhpcyBwaXBl
+IGluIGEgcHJvY2VzcywgdW5saW5rIGl0cyBmaWxlbmFtZSwgYW5kIHRoZW4gY2FsbCBmc3RhdCwg
+aXQgZmFpbHMgd2l0aCB0aGUgZXJyb3IgRU5PRU5UOiBObyBzdWNoIGZpbGUgb3IgZGlyZWN0b3J5
+LiBUaGlzIHNob3VsZG4ndCBiZSB0aGUgY2FzZSwgYXMgdGhlIGZpbGUgZGVzY3JpcHRvciBpcyBz
+dGlsbCB2YWxpZCBhbmQgeW91IHNob3VsZCBiZSBhYmxlIHRvIHF1ZXJ5IGl0cyBzdGF0dXMuIFRo
+aXMgcHJvYmxlbSBkb2Vzbid0IG9jY3VyIG9uIGV4dDQgb3IgbnRmcyByZWd1bGFyIGZpbGVzLgoK
+SSd2ZSBhdHRhY2hlZCB0byB0aGlzIGVtYWlsIGEgc2ltcGxlIHByb2dyYW0gdGhhdCByZXByb2R1
+Y2VzIHRoZSBpc3N1ZS4gUGxlYXNlIGxldCBtZSBrbm93IGlmIHRoaXMgaXMgYSBidWcgb3IgZXhw
+ZWN0ZWQgYmVoYXZpb3IuCgpDaGVlcnMsClZsYWRpbWly
 
-> Currently (default) fallback nls table is iso8859-1. I was planning to
-> merge fallback nls table and external iso8859-1 table into one, to
-> decrease code duplication.
-> =
+--b2_H2khkIbjDp6Qa3H6tgsEYJKfGI4DOHZL0y8HTxY5M
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
 
-> There is also config option for default table. I do not think it is a
-> good idea to drop config option for default table as more people are
-> using some iso8859-X as default encoding.
-
-I'm not suggesting that we drop default config option. I just suggest we
-make fallback default to utf8. So load_nls_default() will just return
-NULL and it will be ok because every fs can handle that situation after
-some tweaks at least. This way we can drop default_table (iso8859-1 as
-you said) from nls_base. =
-
-
-> > Then I was also thinking that every nls "codepage module" can have in
-> > Kconfig
-> > 	select HAVE_NLS
-> > =
-
-> > HAVE_NLS will tell if we can get anything other than nls=3DNULL. This w=
-ay
-> > fs can drop some functions if they wanted to.  It would be nice to also
-> > make nls module as small as possible because also acpi, pci and usb
-> > selects it. Also many other driver seems to depend on it and they do not
-> > even seem to select it. All other than filesystems seems to just need
-> > utf conversions. At least for quick eye.  Other option is to seperate
-> > nls and utf, but I'm not fan this idea just yet at least.
-> =
-
-> nls tables can be already compiled as modules. There are also
-> inefficient implementations of some nls tables (e.g. ascii or
-> iso8859-1). So there are already places for decreasing size of nls
-> code without loosing any functionality.
-
-There will still be default_table in and many times we won't need it as
-we only be using utf conversion.
-
-> =
-
-> > Whole point is to help little bit small Linux and embedded devices. I'm
-> > happy to do this, but all really depens on if utf8 can be default and
-> > that we sure can think before hand. =
-
-> =
-
-> I agree that on modern embedded systems there is no reason to use
-> non-utf8 encoding if you are not targeting some legacy userspace.
-> =
-
-> So allowing to compile filesystems also without nls code (in which case
-> they would use only utf-8) makes sense.
-
-Now I have looked code little more and it kinda makes sense to even just
-seperate nls and utf. Only filesystems will need nls and rest can do
-with just utf so kinda makes sense here. Also utf stuff probably has no
-need to be module because usually when something selects it (pci, acpi,
-usb) they cannot be modules. But I'm not expert in what the drawbacks
-are here.
-
-> =
-
-> >   Argillander
-> > =
-
-> > > For more details look at email thread where was discussed fs unificat=
-ion:
-> > > https://lore.kernel.org/linux-fsdevel/20200102211855.gg62r7jshp742d6i=
-@pali/t/#u
-> > > =
-
-> > > This patch series is mostly untested and presented as RFC. Please let=
- me
-> > > know what do you think about it and if is the correct way how to fix
-> > > broken UTF-8 support in fs drivers. As explained in above email threa=
-d I
-> > > think it does not make sense to try fixing whole NLS framework and it=
- is
-> > > easier to just drop this nls_utf8 module.
-> > > =
-
-> > > Note: this patch series does not address UTF-8 fat case-sensitivity i=
-ssue:
-> > > https://lore.kernel.org/linux-fsdevel/20200119221455.bac7dc55g56q2l4r=
-@pali/
-> > > =
-
-> > > Pali Roh=E1r (20):
-> > >   fat: Fix iocharset=3Dutf8 mount option
-> > >   hfsplus: Add iocharset=3D mount option as alias for nls=3D
-> > >   udf: Fix iocharset=3Dutf8 mount option
-> > >   isofs: joliet: Fix iocharset=3Dutf8 mount option
-> > >   ntfs: Undeprecate iocharset=3D mount option
-> > >   ntfs: Fix error processing when load_nls() fails
-> > >   befs: Fix printing iocharset=3D mount option
-> > >   befs: Rename enum value Opt_charset to Opt_iocharset to match mount
-> > >     option
-> > >   befs: Fix error processing when load_nls() fails
-> > >   befs: Allow to use native UTF-8 mode
-> > >   hfs: Explicitly set hsb->nls_disk when hsb->nls_io is set
-> > >   hfs: Do not use broken utf8 NLS table for iocharset=3Dutf8 mount op=
-tion
-> > >   hfsplus: Do not use broken utf8 NLS table for iocharset=3Dutf8 mount
-> > >     option
-> > >   jfs: Remove custom iso8859-1 implementation
-> > >   jfs: Fix buffer overflow in jfs_strfromUCS_le() function
-> > >   jfs: Do not use broken utf8 NLS table for iocharset=3Dutf8 mount op=
-tion
-> > >   ntfs: Do not use broken utf8 NLS table for iocharset=3Dutf8 mount o=
-ption
-> > >   cifs: Do not use broken utf8 NLS table for iocharset=3Dutf8 mount o=
-ption
-> > >   cifs: Remove usage of load_nls_default() calls
-> > >   nls: Drop broken nls_utf8 module
-> > > =
-
-> > >  fs/befs/linuxvfs.c          |  22 ++++---
-> > >  fs/cifs/cifs_unicode.c      | 128 +++++++++++++++++++++++-----------=
---
-> > >  fs/cifs/cifs_unicode.h      |   2 +-
-> > >  fs/cifs/cifsfs.c            |   2 +
-> > >  fs/cifs/cifssmb.c           |   8 +--
-> > >  fs/cifs/connect.c           |   8 ++-
-> > >  fs/cifs/dfs_cache.c         |  24 +++----
-> > >  fs/cifs/dir.c               |  28 ++++++--
-> > >  fs/cifs/smb2pdu.c           |  17 ++---
-> > >  fs/cifs/winucase.c          |  14 ++--
-> > >  fs/fat/Kconfig              |  15 -----
-> > >  fs/fat/dir.c                |  17 ++---
-> > >  fs/fat/fat.h                |  22 +++++++
-> > >  fs/fat/inode.c              |  28 ++++----
-> > >  fs/fat/namei_vfat.c         |  26 ++++++--
-> > >  fs/hfs/super.c              |  62 ++++++++++++++---
-> > >  fs/hfs/trans.c              |  62 +++++++++--------
-> > >  fs/hfsplus/dir.c            |   6 +-
-> > >  fs/hfsplus/options.c        |  39 ++++++-----
-> > >  fs/hfsplus/super.c          |   7 +-
-> > >  fs/hfsplus/unicode.c        |  31 ++++++++-
-> > >  fs/hfsplus/xattr.c          |  14 ++--
-> > >  fs/hfsplus/xattr_security.c |   3 +-
-> > >  fs/isofs/inode.c            |  27 ++++----
-> > >  fs/isofs/isofs.h            |   1 -
-> > >  fs/isofs/joliet.c           |   4 +-
-> > >  fs/jfs/jfs_dtree.c          |  13 +++-
-> > >  fs/jfs/jfs_unicode.c        |  35 +++++-----
-> > >  fs/jfs/jfs_unicode.h        |   2 +-
-> > >  fs/jfs/super.c              |  29 ++++++--
-> > >  fs/nls/Kconfig              |   9 ---
-> > >  fs/nls/Makefile             |   1 -
-> > >  fs/nls/nls_utf8.c           |  67 -------------------
-> > >  fs/ntfs/dir.c               |   6 +-
-> > >  fs/ntfs/inode.c             |   5 +-
-> > >  fs/ntfs/super.c             |  60 ++++++++---------
-> > >  fs/ntfs/unistr.c            |  28 +++++++-
-> > >  fs/udf/super.c              |  50 ++++++--------
-> > >  fs/udf/udf_sb.h             |   2 -
-> > >  fs/udf/unicode.c            |   4 +-
-> > >  40 files changed, 510 insertions(+), 418 deletions(-)
-> > >  delete mode 100644 fs/nls/nls_utf8.c
-> > > =
-
-> > > -- =
-
-> > > 2.20.1
-> > > =
+PGRpdj5IaSw8YnI+PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj5JJ3ZlIGVuY291bnRlcmVkIHVu
+ZXhwZWN0ZWQgYmVoYXZpb3IgdGhhdCBJIHN1c3BlY3QgaXMgYSBidWcgd2l0aCB0aGUgPGI+ZnN0
+YXQgPC9iPnN5c3RlbSBjYWxsIG9uIExpbnV4IG9uIE5URlMgZmlsZXN5c3RlbS48YnI+PC9kaXY+
+PGRpdj48YnI+PC9kaXY+PGRpdj5JZiB5b3UgY3JlYXRlIGEgcGlwZSB3aXRoIDxiPm1rZmlmbzwv
+Yj4sIDxiPm9wZW48L2I+IHRoaXMgcGlwZSBpbiBhIHByb2Nlc3MsIDxiPnVubGluazwvYj4gaXRz
+IGZpbGVuYW1lLCBhbmQgdGhlbiBjYWxsIDxiPmZzdGF0PC9iPiwgaXQgZmFpbHMgd2l0aCB0aGUg
+ZXJyb3IgPGI+RU5PRU5UPC9iPjogTm8gc3VjaCBmaWxlIG9yIGRpcmVjdG9yeS4gVGhpcyBzaG91
+bGRuJ3QgYmUgdGhlIGNhc2UsIGFzIHRoZSBmaWxlIGRlc2NyaXB0b3IgaXMgc3RpbGwgdmFsaWQg
+YW5kIHlvdSBzaG91bGQgYmUgYWJsZSB0byBxdWVyeSBpdHMgc3RhdHVzLiBUaGlzIHByb2JsZW0g
+ZG9lc24ndCBvY2N1ciBvbiBleHQ0IG9yIG50ZnMgcmVndWxhciBmaWxlcy48L2Rpdj48ZGl2Pjxi
+cj48L2Rpdj48ZGl2PkkndmUgYXR0YWNoZWQgdG8gdGhpcyBlbWFpbCBhIHNpbXBsZSBwcm9ncmFt
+IHRoYXQgcmVwcm9kdWNlcyB0aGUgaXNzdWUuIFBsZWFzZSBsZXQgbWUga25vdyBpZiB0aGlzIGlz
+IGEgYnVnIG9yIGV4cGVjdGVkIGJlaGF2aW9yLjxicj48L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2
+PkNoZWVycyw8YnI+PC9kaXY+PGRpdj5WbGFkaW1pcjxicj48L2Rpdj48ZGl2Pjxicj48L2Rpdj48
+ZGl2Pjxicj48L2Rpdj4=
 
 
+--b2_H2khkIbjDp6Qa3H6tgsEYJKfGI4DOHZL0y8HTxY5M--
+
+--b1_H2khkIbjDp6Qa3H6tgsEYJKfGI4DOHZL0y8HTxY5M
+Content-Type: text/x-c++src; name=pipetest.cpp
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename=pipetest.cpp
+
+I2luY2x1ZGUgPGlvc3RyZWFtPgoKI2luY2x1ZGUgPHN0ZGlvLmg+CiNpbmNsdWRlIDx1bmlzdGQu
+aD4KI2luY2x1ZGUgPHN5cy90eXBlcy5oPgojaW5jbHVkZSA8c3lzL3N0YXQuaD4KI2luY2x1ZGUg
+PGZjbnRsLmg+CiNpbmNsdWRlIDxzdHJpbmcuaD4KCmludCBtYWluKCkgewogIGNvbnN0IGNoYXIq
+IGZpbGVuYW1lID0gIm15cGlwZSI7CgogIC8vIFRoZSBwcm9ibGVtIG9ubHkgaGFwcGVucyB3aXRo
+IGZpZm8gcGlwZXMsIGlmIHlvdSByZW1vdmUKICAvLyBta2ZpZm8gYW5kIGB0b3VjaCBteXBpcGVg
+IGluc3RlYWQgaW4gdGVybWluYWwsIG5vIGVycm9yCiAgLy8gaGFwcGVucy4KICBta2ZpZm8oZmls
+ZW5hbWUsIDA2NjYpOwoKICAvLyBPcGVuIGluIG5vbi1ibG9ja2luZyBtb2RlIHNvIHRoYXQgdGhl
+IHByb2Nlc3MgY2FuIGNvbnRpbnVlLgogIC8vIFRoZSBzYW1lIGlzc3VlIGhhcHBlbnMgaW4gYmxv
+Y2tpbmcgbW9kZSwgaWYgeW91IG9wZW4gdGhlCiAgLy8gcGlwZSBpbiBhbm90aGVyIHByb2Nlc3Mu
+CiAgY29uc3QgaW50IGZkID0gb3BlbihmaWxlbmFtZSwgT19SRE9OTFkgfCBPX05PTkJMT0NLKTsK
+CiAgY2hhciBidWZbMTAyNF07CiAgc3RydWN0IHN0YXQgc3RhdGJ1ZjsKCiAgc3RkOjpjZXJyIDw8
+ICJmc3RhdCAxXG4iOwogIGF1dG8gcmV0ID0gZnN0YXQoZmQsICZzdGF0YnVmKTsKICBpZiAocmV0
+ID09IC0xKSB7CiAgICAvLyBQcmludCBFTk9FTlQgY29kZSB0byBjb21wYXJlIHdpdGggZXJybm8u
+CiAgICBzdGQ6OmNlcnIgPDwgRU5PRU5UPDwgIiwgIiA8PCBlcnJubyA8PCAnXG4nCiAgICAgICAg
+ICAgICAgPDwgc3RyZXJyb3JfcihlcnJubywgYnVmLCAxMDI0KSA8PCAnXG4nOwogIH0KCiAgdW5s
+aW5rKGZpbGVuYW1lKTsKCiAgc3RkOjpjZXJyIDw8ICJmc3RhdCAyXG4iOwogIHJldCA9IGZzdGF0
+KGZkLCAmc3RhdGJ1Zik7CiAgaWYgKHJldCA9PSAtMSkgewogICAgLy8gUHJpbnQgRU5PRU5UIGNv
+ZGUgdG8gY29tcGFyZSB3aXRoIGVycm5vLgogICAgc3RkOjpjZXJyIDw8IEVOT0VOVDw8ICIsICIg
+PDwgZXJybm8gPDwgJ1xuJwogICAgICAgICAgICAgIDw8IHN0cmVycm9yX3IoZXJybm8sIGJ1Ziwg
+MTAyNCkgPDwgJ1xuJzsKICB9CgogIHJldHVybiAwOwp9Cg==
+
+--b1_H2khkIbjDp6Qa3H6tgsEYJKfGI4DOHZL0y8HTxY5M
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+
+--b1_H2khkIbjDp6Qa3H6tgsEYJKfGI4DOHZL0y8HTxY5M
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Linux-NTFS-Dev mailing list
 Linux-NTFS-Dev@lists.sourceforge.net
 https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev
+
+--b1_H2khkIbjDp6Qa3H6tgsEYJKfGI4DOHZL0y8HTxY5M--
+
+
