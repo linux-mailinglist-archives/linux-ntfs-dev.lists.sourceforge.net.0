@@ -2,26 +2,26 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FA6F42F9B8
+	by mail.lfdr.de (Postfix) with ESMTPS id 47E5C42F9B5
 	for <lists+linux-ntfs-dev@lfdr.de>; Fri, 15 Oct 2021 19:09:34 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.92.3)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1mbQi2-0002IN-OW; Fri, 15 Oct 2021 17:09:30 +0000
+	id 1mbQi2-0002Ia-Ts; Fri, 15 Oct 2021 17:09:30 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <keescook@chromium.org>) id 1mbQTA-0002Sj-Ab
- for linux-ntfs-dev@lists.sourceforge.net; Fri, 15 Oct 2021 16:54:08 +0000
+ (envelope-from <keescook@chromium.org>) id 1mbQTi-0003u8-9R
+ for linux-ntfs-dev@lists.sourceforge.net; Fri, 15 Oct 2021 16:54:42 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
  Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=+MbYp/9I6HwSPkAmORgtqKp7aAXKpROAHsI0KkahVSk=; b=WLdFPOwhcKv8kGpSAYeOsYLsBO
- dGaQQf9UjRV9DcfRfwWGMdLJ2Q+ZhXfqNzA8BMboiLyhvWjngfrzwuxNPoKl7IE5PxJSh8TTgD3fB
- sn5CUAPzVRFHnlNUSkruHaF6WzbLyvep5G99yfFRyRYHWFyQuVBcV9uWpPccFMfIoI+c=;
+ bh=++j3EKFYagTjYpVDRmVtpilprtSSGPZNL/U6+y1BFYU=; b=O3/oUeul4Id5bJS0957KolXpN9
+ FSl5Ta1DFBpQSIqS/IZc0IZpSnAwHXUJUQjGV66wHggXFUUuf4V+8xZB/FZ7+gtWwd1aY0ISARF4C
+ 0pql5SSUZOpRFg5AcuBDNv4GLjNtfoeP7SGmDLqPT38GE/kLnHxBwz09vr0TXmvFtiKw=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
@@ -29,53 +29,54 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=+MbYp/9I6HwSPkAmORgtqKp7aAXKpROAHsI0KkahVSk=; b=A3FuZ8z+40iS0enZn7AMUDWrIT
- Z+i+U5XXfQBVQUgBFk336FC0FJFd19b4vPMUohnHSCdv01q7NOB9nqt/hcRxb1vSJn+RaQHqlIjVd
- 7x+VKesGk4YYJs4dhIy8Rg1+a/7Jo5oYgx2/sWiZFSs/reTR4lzHqJrWaMHc0lW/G8Jo=;
-Received: from mail-pf1-f180.google.com ([209.85.210.180])
+ bh=++j3EKFYagTjYpVDRmVtpilprtSSGPZNL/U6+y1BFYU=; b=lTc56Sd4U4BOOEzg7HI12ElSj3
+ yd7uCcvqAWlycDEIIYx71tBwnvSX+czSxmtcyjnWZ3GQknvFiY31la2UfNujSogSBeAIAFBaluxiR
+ PFAMnTXLrJG0E4eQoEkScbCJhlMUErfKoDtcdqKxZbrZzGncqxeSMQHZPUCdiW6G51bA=;
+Received: from mail-pl1-f171.google.com ([209.85.214.171])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.3)
- id 1mbQT9-00EvuO-NF
- for linux-ntfs-dev@lists.sourceforge.net; Fri, 15 Oct 2021 16:54:08 +0000
-Received: by mail-pf1-f180.google.com with SMTP id c29so8881438pfp.2
+ id 1mbQTh-00EvyI-NN
+ for linux-ntfs-dev@lists.sourceforge.net; Fri, 15 Oct 2021 16:54:42 +0000
+Received: by mail-pl1-f171.google.com with SMTP id i5so520070pla.5
  for <linux-ntfs-dev@lists.sourceforge.net>;
- Fri, 15 Oct 2021 09:54:07 -0700 (PDT)
+ Fri, 15 Oct 2021 09:54:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
  h=date:from:to:cc:subject:message-id:references:mime-version
  :content-disposition:in-reply-to;
- bh=+MbYp/9I6HwSPkAmORgtqKp7aAXKpROAHsI0KkahVSk=;
- b=ikEdVtNf9eRQss1RELdYd+gQGtRkJJNUyxABmsyhavxmXS/GWW1GmjaIFqcZC+V7d0
- jxPVuirO3PDa+xeNqLrVJO8s8KcCPrKVcuz5mnU+QJTWjswUytrClmIjf52ECv87VZwj
- IWYURypnyInULxZ6QO8cmc8sNxz7IQsLEMu78=
+ bh=++j3EKFYagTjYpVDRmVtpilprtSSGPZNL/U6+y1BFYU=;
+ b=PGVMrxoIP54zTy3fYRiGwM3tLAZD1Sg5qwTZ/1sUpFUKPeoK4gaEUh4gDn9vmINL5R
+ K6Diz6OFYGVqe3eH+J4BPfR7/r8fI1+hdPS73Dcjh+YNC+lZ5T7DwLWnu9B82X3frAPd
+ N9HCX5/hrMJFRwzEMhEqi5qndMOp+CdKnJFuY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to;
- bh=+MbYp/9I6HwSPkAmORgtqKp7aAXKpROAHsI0KkahVSk=;
- b=zQSXXhTQPMg2rvXI79pawvZMKTgkaxfGAGly6etW3eO2ACfKl9+HOhO/Ghq/+fPOiq
- 3y5eT/OsMTDG/Aij1ZeZqr21IfzqL+wZcyBGXW11s4fcxyiWv+5uslJ7bP3SYVBo7w9a
- IUe9A+0YiMbcMFdCWaDHXS5SkoYzhpEoCNeEvRxVcZyVbEamJte9rUCoJ9tKwug9QkIN
- ytsMkxFUvzh1Pp1sVExa6UdIPQYe3zpA4sSgSv2PgXW0AMFSgz3+7Cf9ewBTVs5+cbon
- o768h1kWoStnbjpyOuUafGmrLnCzP/XdauSrBicXw4CdO21jdZZUrwoJxkPNsorfR866
- 2OMA==
-X-Gm-Message-State: AOAM531DFewqXbK4+M7ReAfp4DEDDliyp1Iccm//t4MB7C1Xv7YHsTHh
- Ygbxoy9FciB1hk4b65vl/X4evw==
-X-Google-Smtp-Source: ABdhPJxRzD0WBfqSsRnsWWctoiC4ZL/68Vbzs2wYW5pL6AgqTKpTz7zCXFAYZWzBRrc637AgBAl43A==
-X-Received: by 2002:a63:7f0e:: with SMTP id a14mr3656783pgd.390.1634316842164; 
- Fri, 15 Oct 2021 09:54:02 -0700 (PDT)
+ bh=++j3EKFYagTjYpVDRmVtpilprtSSGPZNL/U6+y1BFYU=;
+ b=skf25nSMbVC6fP1qzcVX+o+7ym5A0PccKGkFQbwEqchsYJvx/D7mzYPC6m3c7Hy0i0
+ zxFVm1w96G30LVw8OY6+GcAfyS2yLjDbRrf/a85D3UuHEduD3GsboPeJgRE4TitKbBxb
+ MyOn1mJZM1EOl5J/n200bMO2lEElC7qqP8M+KTqwE5fOu87XFQIN+vgGo/J969Y8ZhQq
+ 2HAlixKCfRl8xnaORzfTZ1eYSZecJuAuXgie6LCi43sP5mlS+sFniF8mehZq0hEO7C2A
+ w3Gb13eXg9kuRLCs/vIJ4sTnfScN8bYl2Yw3pV9WkfACt7z+D6mTSTjqvnlmNhxWeM2Z
+ rvZw==
+X-Gm-Message-State: AOAM5312f0p36Uqhg7smFWxpC3I4nmHvn20jnkRvGyuaLnBov5TrBsV/
+ FNjSHpdgZRskkoM6ApiouVzt+Q==
+X-Google-Smtp-Source: ABdhPJxiUcnkoooEgdTHhZSK5QlfnfikulhFK8mfbnmCN2PXzxc7k6fawv/6LA10hComZoogNKw4PQ==
+X-Received: by 2002:a17:903:3092:b0:13f:663d:f008 with SMTP id
+ u18-20020a170903309200b0013f663df008mr11973339plc.13.1634316876253; 
+ Fri, 15 Oct 2021 09:54:36 -0700 (PDT)
 Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
- by smtp.gmail.com with ESMTPSA id b8sm5387267pfi.103.2021.10.15.09.54.01
+ by smtp.gmail.com with ESMTPSA id t126sm5505715pfc.80.2021.10.15.09.54.35
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 15 Oct 2021 09:54:01 -0700 (PDT)
-Date: Fri, 15 Oct 2021 09:54:01 -0700
+ Fri, 15 Oct 2021 09:54:35 -0700 (PDT)
+Date: Fri, 15 Oct 2021 09:54:35 -0700
 From: Kees Cook <keescook@chromium.org>
 To: Christoph Hellwig <hch@lst.de>
-Message-ID: <202110150953.4A7CC49DC@keescook>
+Message-ID: <202110150954.45A4DFA79@keescook>
 References: <20211015132643.1621913-1-hch@lst.de>
- <20211015132643.1621913-19-hch@lst.de>
+ <20211015132643.1621913-20-hch@lst.de>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20211015132643.1621913-19-hch@lst.de>
+In-Reply-To: <20211015132643.1621913-20-hch@lst.de>
 X-Spam-Score: -0.9 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
@@ -83,7 +84,7 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Fri, Oct 15, 2021 at 03:26:31PM +0200, Christoph Hellwig
+ Content preview:  On Fri, Oct 15, 2021 at 03:26:32PM +0200, Christoph Hellwig
  wrote: > Use the proper helper to read the block device size. > >
  Signed-off-by:
  Christoph Hellwig <hch@lst.de> Reviewed-by: Kees Cook <keescook@chromium.org>
@@ -94,6 +95,8 @@ X-Spam-Report: Spam detection software,
  blocked.  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
  for more information. [URIs: chromium.org]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.214.171 listed in list.dnswl.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
@@ -102,17 +105,13 @@ X-Spam-Report: Spam detection software,
  envelope-from domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.210.180 listed in list.dnswl.org]
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [209.85.210.180 listed in wl.mailspike.net]
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+ valid -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.214.171 listed in wl.mailspike.net]
  -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1mbQT9-00EvuO-NF
+X-Headers-End: 1mbQTh-00EvyI-NN
 X-Mailman-Approved-At: Fri, 15 Oct 2021 17:09:28 +0000
-Subject: Re: [Linux-NTFS-Dev] [PATCH 18/30] nfs/blocklayout: use
- bdev_nr_bytes instead of open coding it
+Subject: Re: [Linux-NTFS-Dev] [PATCH 19/30] nilfs2: use bdev_nr_bytes
+ instead of open coding it
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -145,7 +144,7 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-On Fri, Oct 15, 2021 at 03:26:31PM +0200, Christoph Hellwig wrote:
+On Fri, Oct 15, 2021 at 03:26:32PM +0200, Christoph Hellwig wrote:
 > Use the proper helper to read the block device size.
 > 
 > Signed-off-by: Christoph Hellwig <hch@lst.de>
