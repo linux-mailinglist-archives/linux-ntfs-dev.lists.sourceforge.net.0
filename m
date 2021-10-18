@@ -2,112 +2,107 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id C61784325C0
+	by mail.lfdr.de (Postfix) with ESMTPS id D38F64325C1
 	for <lists+linux-ntfs-dev@lfdr.de>; Mon, 18 Oct 2021 19:58:09 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1mcWtj-0008JJ-Po; Mon, 18 Oct 2021 17:58:07 +0000
+	id 1mcWtj-0008JU-S0; Mon, 18 Oct 2021 17:58:07 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <axboe@kernel.dk>) id 1mcWdC-0007lS-Sx
- for linux-ntfs-dev@lists.sourceforge.net; Mon, 18 Oct 2021 17:41:02 +0000
+ (envelope-from <axboe@kernel.dk>) id 1mcWdg-0000ih-Ad
+ for linux-ntfs-dev@lists.sourceforge.net; Mon, 18 Oct 2021 17:41:32 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
+ :References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=8eHyIh60ZUzo3JWH2PHiHe4cTmG/UJai+TUUoRo1bPo=; b=l/waIEGsToBPry5qdNJtLUaIot
- U/+EgZKDnncgQDuJC6C5W7LiYCv1yqc59H4Q1m35Se+LdqsmUobLVVjxgDeQb81xhCoWQwca007mX
- +tQ7Db8q7/ViWjXdOTuzOqdKsVYGB2WJu8nfmClWkS0t5sWB9ABGftf17XnqBluvyr+I=;
+ bh=+qLOjd0XBTgNB6PyT/azLzYqk1pAiNcBYGjkEFHfKgY=; b=DRfsv32WUl2qKCvJPxTGcviwFV
+ 1ke+6jR9+LywGFkaei/K+XdBR0AG8gdwE4wFFJS9ypz8/JEtgHQkVYHQPVRVG8VzCQdmdC1i7rMAG
+ UJAurCFX3acv1m/XO7S9EzeGQBX6cc16z0bclYbdkxIZ2Q+ISyemv0sjuTCl7Y4cfiwA=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:Date:
- Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
+ In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=8eHyIh60ZUzo3JWH2PHiHe4cTmG/UJai+TUUoRo1bPo=; b=F2kFnZ76ug9f/p5jl7gLeOwNVP
- hvEdhLpwi6+N+4l1kF04wTMD0FYOpzPimQ+Bn2xXebScyTKrj2kT7myAFyQbFC0grtkdWXgoRlQvq
- lJneidOn3v+I0P1Q36+sBXZ6OTNORIKx5SdGxJ4T1WPQpdxEgo4dA2hOYoQo6xFA4i7I=;
+ bh=+qLOjd0XBTgNB6PyT/azLzYqk1pAiNcBYGjkEFHfKgY=; b=mPy3pBEEUerNAWNoddOYlgHtX2
+ qAb2SBWInYHIqLb6AfYGqtbuPZ/MOuERVmGtOOE+AJb/zdMSZnEI2k2iKNoyCuYyxps9JVqDXc9V/
+ s87uSAEo+LT959WmnDJ4SU99M5hi/Bx+NfSNavnyO6wdEcKxVbrNgpk/gZ4vFlofVM4g=;
 Received: from mail-il1-f178.google.com ([209.85.166.178])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.3)
- id 1mcWd9-004e65-45
- for linux-ntfs-dev@lists.sourceforge.net; Mon, 18 Oct 2021 17:41:02 +0000
-Received: by mail-il1-f178.google.com with SMTP id g2so15765312ild.1
+ id 1mcWdf-004e7j-Ai
+ for linux-ntfs-dev@lists.sourceforge.net; Mon, 18 Oct 2021 17:41:31 +0000
+Received: by mail-il1-f178.google.com with SMTP id h27so9986924ila.5
  for <linux-ntfs-dev@lists.sourceforge.net>;
- Mon, 18 Oct 2021 10:40:59 -0700 (PDT)
+ Mon, 18 Oct 2021 10:41:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=kernel-dk.20210112.gappssmtp.com; s=20210112;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=8eHyIh60ZUzo3JWH2PHiHe4cTmG/UJai+TUUoRo1bPo=;
- b=FxDre2hjyoHZ64BANF3MmORptiQUy9H6AZXx6LsuyaBb3BcaZC0U/QrU21BtTujGBo
- 8pKXev+INoMpwpLRfH86fYXpprj4xYaVKSen9V7xFxUy/Adi3YagOWpZv1TCL1fYRKF4
- KJjdISFmhkQQ0L4EmrQXCfcR5w3Zzj3aqn6DzOl13eefz8vxGa1vYg1bewxzJ9VB28da
- 3UiILqBGRheOtvSI5gJ9xtk7xHUS/Gucotz2TgqyyRfnlasGRztSAeszEgY1u2mV13ER
- EMsST0UXfQiH71wz4IGsonA4VDgwXa5gnJGRFiHsgHIEksPy/aZTeVCzAUrIhmXl9xQs
- p/ag==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=+qLOjd0XBTgNB6PyT/azLzYqk1pAiNcBYGjkEFHfKgY=;
+ b=ZE5P9Htq137UIuHXfQNwUAIKhDIMd9qrsf2igHVAQuchPEiM5CYAiYWAoanrP3BRK5
+ +/zJf8ePrK0Jj6aFsn7k0tzQbJ4NIDDMS4qGg/dQVgP7xeIzNbMsehSUes1emc0Oq6i/
+ b6ICW3jovK3RTwBeONavI1LGEeT5qNNyH2iVw4n2pIKcaseVQByWqsfKNZFTjpPf5UvA
+ tpNrRtk1mQcQRK3VxXa7JqUP3X1jxKk0Yj8Qmo4sy3Salsx557cd92uesoLNkG+Oovkp
+ 2TGEAb9D58ouYeCPhAyavPDnIjaxSOtdxSB7Ig/cShPev5FkLkYvoHlXTljZivC8+XlA
+ UOcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=8eHyIh60ZUzo3JWH2PHiHe4cTmG/UJai+TUUoRo1bPo=;
- b=7SLIOS3C6S6xmZU6A7qzgB0axacIW6MVdkoLRw87ecVXqHGJdsVTj+O6sWI7YVU2I4
- 4vceM5E+zMtUzARqhNs9tCKNrF3b1CNCO0X29FgcVJQlC2hKUdCocU5raz6SBTdkhoZE
- 1UBwRMbTlGnxe2ORLgLI66chWfoh7LDEm6MGT6aEZSfSc/iAErpjB3n1tb/4JWAWLVp2
- 9VVi9DuJGN/y9gjNbgh838xXYUFB2uXvqTIErtBSNjZnofMngwaIPopIYuQoVlR9c3pc
- GAV+Ge7KnFK7R3Hj44cV/cquvC0Xo+LIJmkvRWfcOrGxK3Swf0DxEgbt8WHdAUg1ML8N
- RGiA==
-X-Gm-Message-State: AOAM530UktgzdvccLtRXbwN+Pi9+4Bo2HJkgFeKpTa5SPeyHjh/JhKPb
- FyhCBaf0U9eaEFl0+aL7uOS8LQ==
-X-Google-Smtp-Source: ABdhPJwRrr1OSerCMeedIq2RIL4WChs1nkzMA+HxEg+LQORSp5DecggK+ro0hO8CL+NowqI2hdNiZw==
-X-Received: by 2002:a05:6e02:14d3:: with SMTP id
- o19mr15105521ilk.257.1634578853304; 
- Mon, 18 Oct 2021 10:40:53 -0700 (PDT)
-Received: from [192.168.1.30] ([207.135.234.126])
- by smtp.gmail.com with ESMTPSA id s6sm3131684ilv.18.2021.10.18.10.40.51
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 18 Oct 2021 10:40:52 -0700 (PDT)
-To: Christoph Hellwig <hch@lst.de>
-References: <20211018101130.1838532-1-hch@lst.de>
- <4a8c3a39-9cd3-5b2f-6d0f-a16e689755e6@kernel.dk>
- <20211018171843.GA3338@lst.de>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=+qLOjd0XBTgNB6PyT/azLzYqk1pAiNcBYGjkEFHfKgY=;
+ b=psfAM7PRn5y/UuelIREZW5RoFWQ+BHZHcERO/hqm8GMRQsoz6MoL55UWBhBZb2HoBF
+ yj+KuKpoCSXxzgbMlWVi6BnmPb0J313fU5RK5OuSaM+D77Y4w8mqMo1SyhbvB67Y246Y
+ wv168uKRPKK/pb5d71yE0m0oHxog4i7hFen1rFK1/zcDOrRZXYu27lP2bT/ewKsksL9X
+ 73ffDoaTaf3/Q3tVrnTcjGBrbVV8srllqiOCMEQZOQGKMFtvwK77ueYdxLP2OH7HmDDO
+ HgRVDq5c895C/CxixGGF6FGTKjw9YC36PJLMdqCYB0DlWZ9dce/HJDenF6oUWbUeN9c9
+ psjw==
+X-Gm-Message-State: AOAM5322hg/UPHHqbCP1l+LSpdfK1RCwZm2J9VLPRqUVELb4Ov6uRTXD
+ p9YNrshWRJtcpubyDlREF35f6A==
+X-Google-Smtp-Source: ABdhPJwUV70oibJYf8iw/UP9RU8rrzgiQ8l+cK/EH1A19nZcoh+uCtduaCjXDIwHeCteveuemeWXlw==
+X-Received: by 2002:a05:6e02:bf4:: with SMTP id
+ d20mr15751146ilu.146.1634578885728; 
+ Mon, 18 Oct 2021 10:41:25 -0700 (PDT)
+Received: from p1.localdomain ([207.135.234.126])
+ by smtp.gmail.com with ESMTPSA id b4sm7342594iot.45.2021.10.18.10.41.24
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 18 Oct 2021 10:41:25 -0700 (PDT)
 From: Jens Axboe <axboe@kernel.dk>
-Message-ID: <2f5dcf79-8419-45ff-c27c-68d43242ccfe@kernel.dk>
-Date: Mon, 18 Oct 2021 11:40:51 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+To: Christoph Hellwig <hch@lst.de>
+Date: Mon, 18 Oct 2021 11:41:22 -0600
+Message-Id: <163457887855.397824.18265513445295974558.b4-ty@kernel.dk>
+X-Mailer: git-send-email 2.33.1
+In-Reply-To: <20211018101130.1838532-1-hch@lst.de>
+References: <20211018101130.1838532-1-hch@lst.de>
 MIME-Version: 1.0
-In-Reply-To: <20211018171843.GA3338@lst.de>
-Content-Language: en-US
-X-Spam-Score: -2.0 (--)
+X-Spam-Score: -0.0 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On 10/18/21 11:18 AM, Christoph Hellwig wrote: > On Mon, Oct
- 18, 2021 at 11:16:08AM -0600, Jens Axboe wrote: >> This looks good to me.
- Followup question, as it's related - I've got a >> hacky patch th [...] 
- Content analysis details:   (-2.0 points, 6.0 required)
+ Content preview:  On Mon, 18 Oct 2021 12:11:00 +0200, Christoph Hellwig wrote:
+ > various drivers currently poke directy at the block device inode, which
+ > is a bit of a mess. This series cleans up the places that read [...] 
+ Content analysis details:   (-0.0 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.166.178 listed in list.dnswl.org]
  -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
  [209.85.166.178 listed in wl.mailspike.net]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.166.178 listed in list.dnswl.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid -2.0 NICE_REPLY_A           Looks like a legit reply (A)
-X-Headers-End: 1mcWd9-004e65-45
+ valid
+X-Headers-End: 1mcWdf-004e7j-Ai
 X-Mailman-Approved-At: Mon, 18 Oct 2021 17:58:06 +0000
 Subject: Re: [Linux-NTFS-Dev] don't use ->bd_inode to access the block
  device size v3
@@ -134,99 +129,97 @@ Cc: Dave Kleikamp <shaggy@kernel.org>, jfs-discussion@lists.sourceforge.net,
  Coly Li <colyli@suse.de>, linux-raid@vger.kernel.org,
  linux-bcache@vger.kernel.org, David Sterba <dsterba@suse.com>,
  Ryusuke Konishi <konishi.ryusuke@gmail.com>,
- Anton Altaparmakov <anton@tuxera.com>, linux-block@vger.kernel.org,
- linux-nfs@vger.kernel.org, Theodore Ts'o <tytso@mit.edu>,
- linux-ntfs-dev@lists.sourceforge.net, Jan Kara <jack@suse.com>,
- linux-fsdevel@vger.kernel.org, Phillip Lougher <phillip@squashfs.org.uk>,
- ntfs3@lists.linux.dev, linux-btrfs@vger.kernel.org
+ Anton Altaparmakov <anton@tuxera.com>, Jens Axboe <axboe@kernel.dk>,
+ linux-block@vger.kernel.org, linux-nfs@vger.kernel.org,
+ Theodore Ts'o <tytso@mit.edu>, linux-ntfs-dev@lists.sourceforge.net,
+ Jan Kara <jack@suse.com>, linux-fsdevel@vger.kernel.org,
+ Phillip Lougher <phillip@squashfs.org.uk>, ntfs3@lists.linux.dev,
+ linux-btrfs@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-On 10/18/21 11:18 AM, Christoph Hellwig wrote:
-> On Mon, Oct 18, 2021 at 11:16:08AM -0600, Jens Axboe wrote:
->> This looks good to me. Followup question, as it's related - I've got a
->> hacky patch that caches the inode size in the bdev:
->>
->> https://git.kernel.dk/cgit/linux-block/commit/?h=perf-wip&id=c754951eb7193258c35a574bd1ccccb7c4946ee4
->>
->> so we don't have to dip into the inode itself for the fast path. While
->> it's obviously not something being proposed for inclusion right now, is
->> there a world in which we can make something like that work?
+On Mon, 18 Oct 2021 12:11:00 +0200, Christoph Hellwig wrote:
+> various drivers currently poke directy at the block device inode, which
+> is a bit of a mess.  This series cleans up the places that read the
+> block device size to use the proper helpers.  I have separate patches
+> for many of the other bd_inode uses, but this series is already big
+> enough as-is,
 > 
-> There's just two places that update i_size for block devices:
-> set_capacity and bdev_set_nr_sectors.  So you just need to update
-> bd_nr_sectors there and you're done.
+> Changes since v2:
+>  - bdev_nr_bytes should return loff_t
+>  - fix a commit message typo
+>  - drop a redundant note in a commit message
+> 
+> [...]
 
-This on top of your patches should do the trick, then.
+Applied, thanks!
 
+[01/30] block: move the SECTOR_SIZE related definitions to blk_types.h
+        commit: ac076a376d4c1fa7f01bedad76bab96a981b7464
+[02/30] block: add a bdev_nr_bytes helper
+        commit: 449c780f68d9adbab2373c996d4341e61c088685
+[03/30] bcache: remove bdev_sectors
+        commit: 519070e1b8411c93b483fb50511c9d5d7932f62a
+[04/30] drbd: use bdev_nr_sectors instead of open coding it
+        commit: eee1958b9a7b912fff33319e5737d861703c3a47
+[05/30] dm: use bdev_nr_sectors and bdev_nr_bytes instead of open coding them
+        commit: 34d7526093779e26c1a281992c7e91662f3afa85
+[06/30] md: use bdev_nr_sectors instead of open coding it
+        commit: 1a70a0364bbbf29eab22c9fa4b3d71087df940a5
+[07/30] nvmet: use bdev_nr_bytes instead of open coding it
+        commit: d61ec9eeaa161c6e385f4adebc5d671bc5290687
+[08/30] target/iblock: use bdev_nr_bytes instead of open coding it
+        commit: 30de91d3df67291093736890b7496620d5025df9
+[09/30] fs: use bdev_nr_bytes instead of open coding it in blkdev_max_block
+        commit: 011bb9476ef8f9867330e2bce22cf124d034cd33
+[10/30] fs: simplify init_page_buffers
+        commit: 957c50dd8af9945fde3a3fb6c8baf5d638ef3177
+[11/30] affs: use bdev_nr_sectors instead of open coding it
+        commit: ec003894a9db3858165dd61fb4cabf9a402aabe0
+[12/30] btrfs: use bdev_nr_bytes instead of open coding it
+        commit: 167a1c754eae512e45de682e2cb4ea05f080fda5
+[13/30] cramfs: use bdev_nr_bytes instead of open coding it
+        commit: cdf881e14aa127c7602110d208b3412b1412c1ab
+[14/30] fat: use bdev_nr_sectors instead of open coding it
+        commit: 4513b8c903782c4f3963172d81414e08f48a0317
+[15/30] hfs: use bdev_nr_sectors instead of open coding it
+        commit: 311b610de54a52c199e2a129da2c26ad5953edb3
+[16/30] hfsplus: use bdev_nr_sectors instead of open coding it
+        commit: 03b67c1de5d3b085360f3d6dcf37560f44e8cb4b
+[17/30] jfs: use bdev_nr_bytes instead of open coding it
+        commit: c1e80b87c3acd52817bea278310900ad2825686c
+[18/30] nfs/blocklayout: use bdev_nr_bytes instead of open coding it
+        commit: 6b1b53cf606d70dc6dd375aaaab42558cfe7e945
+[19/30] nilfs2: use bdev_nr_bytes instead of open coding it
+        commit: a24d8bcfd590de5dc4a9e806c9e76558676c2eef
+[20/30] ntfs3: use bdev_nr_bytes instead of open coding it
+        commit: 9242c8b0b4432b6929b030c729a1edd9d9116d4c
+[21/30] pstore/blk: use bdev_nr_bytes instead of open coding it
+        commit: 989ab34bd83f075efdae2cf6026cec0507374696
+[22/30] reiserfs: use bdev_nr_bytes instead of open coding it
+        commit: 8d147b3353c7fd853313521c4f66430d38d66391
+[23/30] squashfs: use bdev_nr_bytes instead of open coding it
+        commit: 8538360bb42955166d0073ffb6dff6a4b0caa4ec
+[24/30] block: use bdev_nr_bytes instead of open coding it in blkdev_fallocate
+        commit: 7ad94c3008a3f5e0ff8af1e3ff1c7061955ccec4
+[25/30] block: add a sb_bdev_nr_blocks helper
+        commit: 5793a4ebc76566fd24d7afdbcefb3311355fd077
+[26/30] ext4: use sb_bdev_nr_blocks
+        commit: 3a10af74c8f1d390857cf87648573bc4f157e4ca
+[27/30] jfs: use sb_bdev_nr_blocks
+        commit: cd8ac55f93923c65e18204c99b08a8c4cba3d187
+[28/30] ntfs: use sb_bdev_nr_blocks
+        commit: 8e2c901e6d1c97bf862514901beaae3e248655d8
+[29/30] reiserfs: use sb_bdev_nr_blocks
+        commit: 93361ef44a8931d281583ea9c608247fe8127528
+[30/30] udf: use sb_bdev_nr_blocks
+        commit: ea8befeb35c47cf95012032850fe3f0ec80e5cde
 
-commit eebb7c5048163985fb21d6cb740ebac78cb46051
-Author: Jens Axboe <axboe@kernel.dk>
-Date:   Mon Oct 18 11:39:45 2021 -0600
-
-    block: cache inode size in bdev
-    
-    Reading the inode size brings in a new cacheline for IO submit, and
-    it's in the hot path being checked for every single IO. When doing
-    millions of IOs per core per second, this is noticeable overhead.
-    
-    Cache the nr_sectors in the bdev itself.
-    
-    Signed-off-by: Jens Axboe <axboe@kernel.dk>
-
-diff --git a/block/genhd.c b/block/genhd.c
-index 759bc06810f8..53495e3391e3 100644
---- a/block/genhd.c
-+++ b/block/genhd.c
-@@ -58,6 +58,7 @@ void set_capacity(struct gendisk *disk, sector_t sectors)
- 
- 	spin_lock(&bdev->bd_size_lock);
- 	i_size_write(bdev->bd_inode, (loff_t)sectors << SECTOR_SHIFT);
-+	bdev->bd_nr_sectors = sectors;
- 	spin_unlock(&bdev->bd_size_lock);
- }
- EXPORT_SYMBOL(set_capacity);
-diff --git a/block/partitions/core.c b/block/partitions/core.c
-index 9dbddc355b40..66ef9bc6d6a1 100644
---- a/block/partitions/core.c
-+++ b/block/partitions/core.c
-@@ -91,6 +91,7 @@ static void bdev_set_nr_sectors(struct block_device *bdev, sector_t sectors)
- {
- 	spin_lock(&bdev->bd_size_lock);
- 	i_size_write(bdev->bd_inode, (loff_t)sectors << SECTOR_SHIFT);
-+	bdev->bd_nr_sectors = sectors;
- 	spin_unlock(&bdev->bd_size_lock);
- }
- 
-diff --git a/include/linux/blk_types.h b/include/linux/blk_types.h
-index 472e55e0e94f..fe065c394fff 100644
---- a/include/linux/blk_types.h
-+++ b/include/linux/blk_types.h
-@@ -39,6 +39,7 @@ struct bio_crypt_ctx;
- 
- struct block_device {
- 	sector_t		bd_start_sect;
-+	sector_t		bd_nr_sectors;
- 	struct disk_stats __percpu *bd_stats;
- 	unsigned long		bd_stamp;
- 	bool			bd_read_only;	/* read-only policy */
-diff --git a/include/linux/genhd.h b/include/linux/genhd.h
-index 7b0326661a1e..001f617f82da 100644
---- a/include/linux/genhd.h
-+++ b/include/linux/genhd.h
-@@ -238,7 +238,7 @@ static inline sector_t get_start_sect(struct block_device *bdev)
- 
- static inline loff_t bdev_nr_bytes(struct block_device *bdev)
- {
--	return i_size_read(bdev->bd_inode);
-+	return bdev->bd_nr_sectors;
- }
- 
- static inline sector_t bdev_nr_sectors(struct block_device *bdev)
-
+Best regards,
 -- 
 Jens Axboe
+
 
 
 
