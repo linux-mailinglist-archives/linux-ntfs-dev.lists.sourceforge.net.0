@@ -2,88 +2,82 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD5EE45960A
-	for <lists+linux-ntfs-dev@lfdr.de>; Mon, 22 Nov 2021 21:24:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C7EB4599B1
+	for <lists+linux-ntfs-dev@lfdr.de>; Tue, 23 Nov 2021 02:29:27 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1mpFrK-0003yM-Mz; Mon, 22 Nov 2021 20:24:14 +0000
+	id 1mpKce-0005Bk-Io; Tue, 23 Nov 2021 01:29:24 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <torvalds@linuxfoundation.org>) id 1mpFrK-0003yG-8o
- for linux-ntfs-dev@lists.sourceforge.net; Mon, 22 Nov 2021 20:24:14 +0000
+ (envelope-from <geert.uytterhoeven@gmail.com>) id 1mp9J7-0003j5-72
+ for linux-ntfs-dev@lists.sourceforge.net; Mon, 22 Nov 2021 13:24:30 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
- In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
- :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=h3WZ0Qj4q+RYV0nm2GyZtHQb4u72VKp4+ZBrVzMs47Q=; b=AZWgC1qQm8Us3GnzXDCw9J4QBr
- BbGqL0SzhzNE6OFnu/KJyT5aZ8/dYQuB4LjLpqRG5XFupc1cUxWLD7WsNLnDpEArPFwJjhnltE8nw
- 8F7U71CJKaqC3wqAG440fV3WFi2BpoBRHhSlQcVtFTzsPK9/8lWAdO/9Jpmq4Jlog8Ck=;
+ d=sourceforge.net; s=x; h=Content-Type:To:Subject:Message-ID:Date:From:
+ In-Reply-To:References:MIME-Version:Sender:Reply-To:Cc:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=xarPnle33Vd1NAVNINArZXI9fdyD3SNGNTfacLEzKQo=; b=AeHWJBXw5N67ownpAIn8a3RXq
+ VhqVpDa51NZOmKyANXdrhpzDQ9O5GfayMTOwK6KklJQTvrJbx/qieDfnkS7fQqHHIK/Scrn05RZIu
+ I2oADtNJEW0r2hRPznMJF9Pz//aWp18HCM9W1w3FS669Mu23Aj0WmpHMZozY4QXga+lWM=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
- MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Type:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+ MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=h3WZ0Qj4q+RYV0nm2GyZtHQb4u72VKp4+ZBrVzMs47Q=; b=fpq8OVgYtI2lUSEoSF+dqv2jC1
- bo5NFeWSxaV7GHYUvZ0dF9fY3In8fjuJSjeHJ47k7LA707Z5rndvXGhHVas3dzsCBtTgL7p3Rp+co
- YqyV/kfmR5W3mHo6vzHqYNfmsUbUsYJcqFyqXA30yn8qX5Q9DXXUh8VzIBns2VLikJW8=;
-Received: from mail-ed1-f44.google.com ([209.85.208.44])
+ bh=xarPnle33Vd1NAVNINArZXI9fdyD3SNGNTfacLEzKQo=; b=CJNgB0ybv5pZX7Z+x9QByXNF/E
+ UgxOKm+SQmM1My1+msiproxuVlBG7CM8i/xO2xsN+cljccq0xC0EFiIUsbZjX+EXveKleZVu6RmQI
+ 6gF69D0tri05n/pBP4TZZ0OyimIZ4nY5UNF8EAOPVfeS4XwAeQI18+RnuAA+0hIZHpfY=;
+Received: from mail-ua1-f49.google.com ([209.85.222.49])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.3)
- id 1mpFrC-005ABX-R1
- for linux-ntfs-dev@lists.sourceforge.net; Mon, 22 Nov 2021 20:24:13 +0000
-Received: by mail-ed1-f44.google.com with SMTP id y12so82211214eda.12
+ id 1mp9J7-004oCE-AM
+ for linux-ntfs-dev@lists.sourceforge.net; Mon, 22 Nov 2021 13:24:30 +0000
+Received: by mail-ua1-f49.google.com with SMTP id p37so36402790uae.8
  for <linux-ntfs-dev@lists.sourceforge.net>;
- Mon, 22 Nov 2021 12:24:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=h3WZ0Qj4q+RYV0nm2GyZtHQb4u72VKp4+ZBrVzMs47Q=;
- b=bNtnNf5V/e3L2dzeLYd8um1MXrTQnV63nZbog5PSPcyE6+uY/BANjAOWc8poUDfw/R
- ofBZRMCQZUEPew6xeUDbpnofq9JUfeWxK3ZFn3FE3rXFb7JCL8TGP20V8V0LGIIb3CVH
- LZJcwaCeLSK/yVZpOCTnpyILgs6mXTic+bev4=
+ Mon, 22 Nov 2021 05:24:29 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=h3WZ0Qj4q+RYV0nm2GyZtHQb4u72VKp4+ZBrVzMs47Q=;
- b=UAU9mWuApUqfKGbW/a8IbJ6lIBnE9azW5NSt/7TN9X3NAz+JTOZlHwkeSTvEHN8YMj
- OskTvoK7zG3hL+cNfQW7+VKuSPDzMkSBmQOt3Pb9+cfVEfLOzBipHcBfJN8EYc5e3c2M
- IU2gQSyIvYwwuBt0XTezNvPZL0t9hY8zeSZ8ySvlEL9+BBTlEyhdxltMqeNUGtTINN1d
- p1JtDCQPzicNyJClWzmAZxk1KqkhLvxn4yN1hDVqmGxe5Ol+N4vLNKPQnp3Wgi7xaxoA
- M7O/1j1VjEgRdOjZQqA0WcZst/QLjzNJeJfpO/PDT1mH8V1vdxnevXnFmtW6drXWw4yD
- mY5g==
-X-Gm-Message-State: AOAM530Fo2MXEzUTDiebGxfu7fkZ4p61hWJF+kW+cAGIxV/4bt/BNQ6A
- TY18QJG7k1YIh9hs3WA+zmrmytB7jIDsQvjM
-X-Google-Smtp-Source: ABdhPJxo6T415P/E/N1zJWqC81Fp6xMkkLkKcTnnNhG4308344bUyHqQqWwWiMsjeQTuzr2FHhEPNA==
-X-Received: by 2002:a17:906:6a0a:: with SMTP id
- qw10mr43620314ejc.547.1637612639003; 
- Mon, 22 Nov 2021 12:23:59 -0800 (PST)
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com.
- [209.85.221.44])
- by smtp.gmail.com with ESMTPSA id jg32sm4538260ejc.43.2021.11.22.12.23.58
+ :message-id:subject:to;
+ bh=xarPnle33Vd1NAVNINArZXI9fdyD3SNGNTfacLEzKQo=;
+ b=2z6Dcd0d83SA7WEO9lfD++AfFlwDkjjdJa2D7Ii129BU125WedVpjKBBt38wAL4Bou
+ 667s19jfBkU+Zkyg2r7lOtv6rb6xT+EhDCHLf7Aix5l1XH9v1G99orf9xOWaHb+qfg6l
+ NITrp19e/3Cj1GYvq9IHOsG01MkGq4p0mETBSxn1H/bPqrmZ6F0kYVhUM7jqonxNNuxt
+ nay/IqTJMBTvPfMGbZdMB93MywqKlc83eSL6n2NkzFvHppgEmxBzqrwrXhz995yBfQPv
+ 5Sb0Db56DmizuqnJ1dWcBoYUGXx3t3qFD60fCwmCCLgWgOj9xfiQrFWDYIibgsE8qLrx
+ Rc2g==
+X-Gm-Message-State: AOAM5303/Dxs1VOT5HNiW1nx4BCw9qmI3jk+M5VIJbS6bv7gudMSgw5M
+ NA8uGh8DU6R+JMe0mn7nYmFnqi1g/l7S6g==
+X-Google-Smtp-Source: ABdhPJyAMr2nr/r/0aFI63YzQRtYd776btMD/OeAjH2B/X0hrLOfrELRWfSX7L0NJPKX2ofWUnraHw==
+X-Received: by 2002:a67:b807:: with SMTP id i7mr5118643vsf.52.1637587463372;
+ Mon, 22 Nov 2021 05:24:23 -0800 (PST)
+Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com.
+ [209.85.222.53])
+ by smtp.gmail.com with ESMTPSA id g28sm4349139vkl.16.2021.11.22.05.24.22
  for <linux-ntfs-dev@lists.sourceforge.net>
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 22 Nov 2021 12:23:58 -0800 (PST)
-Received: by mail-wr1-f44.google.com with SMTP id u18so34954187wrg.5
+ Mon, 22 Nov 2021 05:24:23 -0800 (PST)
+Received: by mail-ua1-f53.google.com with SMTP id p2so36372301uad.11
  for <linux-ntfs-dev@lists.sourceforge.net>;
- Mon, 22 Nov 2021 12:23:58 -0800 (PST)
-X-Received: by 2002:adf:d082:: with SMTP id y2mr41030841wrh.214.1637612638214; 
- Mon, 22 Nov 2021 12:23:58 -0800 (PST)
+ Mon, 22 Nov 2021 05:24:22 -0800 (PST)
+X-Received: by 2002:a9f:248b:: with SMTP id 11mr85736008uar.14.1637587462423; 
+ Mon, 22 Nov 2021 05:24:22 -0800 (PST)
 MIME-Version: 1.0
-References: <20211122201352.1754061-1-linux@roeck-us.net>
-In-Reply-To: <20211122201352.1754061-1-linux@roeck-us.net>
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Mon, 22 Nov 2021 12:23:42 -0800
-X-Gmail-Original-Message-ID: <CAHk-=wjUajzA9rDmxGzH209bQ_VGz3RfOgb85BYkBDSEM1HpPg@mail.gmail.com>
-Message-ID: <CAHk-=wjUajzA9rDmxGzH209bQ_VGz3RfOgb85BYkBDSEM1HpPg@mail.gmail.com>
-To: Guenter Roeck <linux@roeck-us.net>
-X-Spam-Score: 0.1 (/)
+References: <20211122111214.3801534-1-geert@linux-m68k.org>
+In-Reply-To: <20211122111214.3801534-1-geert@linux-m68k.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 22 Nov 2021 14:24:11 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdW7jcoNHyBomcbkkHU-m32uAureeHYj_PhaMC=O2b4wLA@mail.gmail.com>
+Message-ID: <CAMuHMdW7jcoNHyBomcbkkHU-m32uAureeHYj_PhaMC=O2b4wLA@mail.gmail.com>
+To: linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org, 
+ linux-um@lists.infradead.org, sparclinux@vger.kernel.org, 
+ linux-ntfs-dev@lists.sourceforge.net, linuxppc-dev@lists.ozlabs.org
+X-Spam-Score: 3.0 (+++)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
@@ -91,30 +85,28 @@ X-Spam-Report: Spam detection software,
  similar future email.  If you have any questions, see
  the administrator of that system for details.
  Content preview:  On Mon, Nov 22,
- 2021 at 12:13 PM Guenter Roeck <linux@roeck-us.net>
- wrote: > > The Kconfig language does not support "depends on XXX if YYY",
- > so this is the next best choice. Ugh. This is hard to read, and it will
- get much worse if we then end up making the conditional more complicated
- if we actually want to introduce some page size logic.. 
- Content analysis details:   (0.1 points, 6.0 required)
+ 2021 at 12:28 PM Geert Uytterhoeven <geert@linux-m68k.org>
+ wrote: > Below is the list of build error/warning regressions/improvements
+ in > v5.16-rc2[1] compared to v5.15[2]. > > Summar [...] 
+ Content analysis details:   (3.0 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.208.44 listed in list.dnswl.org]
  -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.208.44 listed in wl.mailspike.net]
+ [209.85.222.49 listed in wl.mailspike.net]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.222.49 listed in list.dnswl.org]
+ 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
+ provider [geert.uytterhoeven[at]gmail.com]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 2.5 SUSPICIOUS_RECIPS      Similar addresses in recipient list
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
  mail domains are different
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
-X-Headers-End: 1mpFrC-005ABX-R1
-Subject: Re: [Linux-NTFS-Dev] [PATCH] fs: ntfs: Mark NTFS_RW as BROKEN for
- PPC
+ 0.2 FREEMAIL_FORGED_FROMDOMAIN 2nd level domains in From and
+ EnvelopeFrom freemail headers are different
+X-Headers-End: 1mp9J7-004oCE-AM
+X-Mailman-Approved-At: Tue, 23 Nov 2021 01:29:23 +0000
+Subject: Re: [Linux-NTFS-Dev] Build regressions/improvements in v5.16-rc2
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -127,43 +119,68 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-ntfs-dev@lists.sourceforge.net, Michael Ellerman <mpe@ellerman.id.au>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Anton Altaparmakov <anton@tuxera.com>, Stephen Rothwell <sfr@canb.auug.org.au>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-On Mon, Nov 22, 2021 at 12:13 PM Guenter Roeck <linux@roeck-us.net> wrote:
+On Mon, Nov 22, 2021 at 12:28 PM Geert Uytterhoeven
+<geert@linux-m68k.org> wrote:
+> Below is the list of build error/warning regressions/improvements in
+> v5.16-rc2[1] compared to v5.15[2].
 >
-> The Kconfig language does not support "depends on XXX if YYY",
-> so this is the next best choice.
+> Summarized:
+>   - build errors: +13/-12
+>   - build warnings: +3/-26
+>
+> JFYI, when comparing v5.16-rc2[1] to v5.16-rc1[3], the summaries are:
+>   - build errors: +6/-12
 
-Ugh. This is hard to read, and it will get much worse if we then end
-up making the conditional more complicated if we actually want to
-introduce some page size logic..
+  + /kisskb/src/drivers/mtd/nand/raw/mpc5121_nfc.c: error: unused
+variable 'mtd' [-Werror=unused-variable]:  => 294:19
 
->  config NTFS_RW
->         bool "NTFS write support"
-> +       depends on BROKEN || !PPC
->         depends on NTFS_FS
->         help
->           This enables the partial, but safe, write support in the NTFS driver.
+ppc32_allmodconfig (patch sent)
 
-How about we do a
+  + /kisskb/src/drivers/video/fbdev/nvidia/nvidia.c: error: passing
+argument 1 of 'iounmap' discards 'volatile' qualifier from pointer
+target type [-Werror=discarded-qualifiers]:  => 1439:10, 1414:10
+  + /kisskb/src/drivers/video/fbdev/riva/fbdev.c: error: passing
+argument 1 of 'iounmap' discards 'volatile' qualifier from pointer
+target type [-Werror=discarded-qualifiers]:  => 2095:11, 2062:11
 
-  config DISABLE_NTFS_RW
-        bool
-        default y if PPC
+um-all{mod,yes}config
 
-and then in NTFS_RW we just do
+  + /kisskb/src/fs/netfs/read_helper.c: error: implicit declaration of
+function 'flush_dcache_folio' [-Werror=implicit-function-declaration]:
+ => 435:4
 
-        depends on !DISABLE_NTFS_RW
+sparc-allmodconfig
+sparc64-allmodconfig
 
-which at least makes each case easy, and makes it much clearer if we
-extend that DISABLE_NTFS_RW condition later.
+  + /kisskb/src/fs/ntfs/aops.c: error: the frame size of 2192 bytes is
+larger than 2048 bytes [-Werror=frame-larger-than=]:  => 1311:1
 
-                 Linus
+ppc64le_allmodconfig
+
+  + /kisskb/src/fs/ntfs/aops.c: error: the frame size of 2256 bytes is
+larger than 2048 bytes [-Werror=frame-larger-than=]:  => 1311:1
+
+powerpc-allyesconfig
+
+> Thanks to the linux-next team for providing the build service.
+>
+> [1] http://kisskb.ellerman.id.au/kisskb/branch/linus/head/136057256686de39cc3a07c2e39ef6bc43003ff6/ (all 90 configs)
+> [3] http://kisskb.ellerman.id.au/kisskb/branch/linus/head/fa55b7dcdc43c1aa1ba12bca9d2dd4318c2a0dbf/ (all 90 configs)
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
 
 _______________________________________________
