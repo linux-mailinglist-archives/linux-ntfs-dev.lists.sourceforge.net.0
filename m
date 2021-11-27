@@ -2,26 +2,26 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A8BA4601E9
+	by mail.lfdr.de (Postfix) with ESMTPS id 95EBA4601E7
 	for <lists+linux-ntfs-dev@lfdr.de>; Sat, 27 Nov 2021 23:20:27 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
 	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1mr63V-0005Km-6B; Sat, 27 Nov 2021 22:20:25 +0000
+	id 1mr63V-0005Kf-26; Sat, 27 Nov 2021 22:20:25 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <groeck7@gmail.com>) id 1mqzsq-0005Lj-7F
- for linux-ntfs-dev@lists.sourceforge.net; Sat, 27 Nov 2021 15:45:00 +0000
+ (envelope-from <groeck7@gmail.com>) id 1mqzsn-0002op-Ey
+ for linux-ntfs-dev@lists.sourceforge.net; Sat, 27 Nov 2021 15:44:58 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
  In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Lv/Kp6ESRC+AN4NQxCwaPZ0reLg9vm5QGJqQKdUOXVg=; b=cz+ucYjKVCwtG1sDMjs7EE38vQ
- rPXtet6m31Q0dfK4ywOXepy5Jm/uSNgOI1eWcvOOPq6OrInRTe+5vRH6P7mCRiL/+IbOv0pfbCuLY
- 9A0FP7/eHZDWZGlYsAG5LDWzQHGJzF9jozr5HfL6GJVinIkcwDAMk6Wh0JoqvC77e4wI=;
+ bh=1FCj0eg3qCaMYcJXsF4imAvHr1mf3lurCF+mcbDbEBs=; b=llRMiQu8Q7IvFhMlIB9hVeQVxa
+ KJZTWH9wVkYOhxHomOOF/Vq1gC0MeKSa3QQmDkQmI2nQMFRvVBPVrWuO4J90j5MlpETpOUJOjxHet
+ 5NS0NHTDy9REEv11whMieMnscs1ufmA2EL5xR9b9hqzUplw//e01mcPZ3w3yzKrmyDuI=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -29,53 +29,53 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=Lv/Kp6ESRC+AN4NQxCwaPZ0reLg9vm5QGJqQKdUOXVg=; b=SiBLloPY9IKhINjh27RI9qfjyT
- KJb0f6Xy386GF62qejr6ir3+jS78/BjGWpLMvkG8B8rBqwv7pAUr58Wci0g1gMwD9IvolBNR3zPw9
- +X5rwkxnL9EJHNLZGm+XPNj2CBVLMF8oXGKFTVJeRZ4axqvLd74JRUOpq3ROkiAT1E+Y=;
-Received: from mail-ot1-f45.google.com ([209.85.210.45])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ bh=1FCj0eg3qCaMYcJXsF4imAvHr1mf3lurCF+mcbDbEBs=; b=fZ6+mTro9WXUtfuV7rTP3/b74p
+ CCt2G9NLz8yF1lrbveEtjU2hy6xC7/VeFMInYI/uYKB8EzCkJMNubDCV96BVokLbJeSjFHY8Cesi4
+ IuVIfLIW/IxYGD+tSUZt3MNkkkuorrOeNOfFgFn3F2DUkvqFtKKMVzNUwqMxpFSvSCBU=;
+Received: from mail-ot1-f42.google.com ([209.85.210.42])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.3)
- id 1mqzsl-00BXih-Vh
- for linux-ntfs-dev@lists.sourceforge.net; Sat, 27 Nov 2021 15:45:00 +0000
-Received: by mail-ot1-f45.google.com with SMTP id
- r10-20020a056830080a00b0055c8fd2cebdso18471175ots.6
+ id 1mqzsn-0002mW-Qr
+ for linux-ntfs-dev@lists.sourceforge.net; Sat, 27 Nov 2021 15:44:58 +0000
+Received: by mail-ot1-f42.google.com with SMTP id
+ 47-20020a9d0332000000b005798ac20d72so18471409otv.9
  for <linux-ntfs-dev@lists.sourceforge.net>;
- Sat, 27 Nov 2021 07:44:55 -0800 (PST)
+ Sat, 27 Nov 2021 07:44:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=Lv/Kp6ESRC+AN4NQxCwaPZ0reLg9vm5QGJqQKdUOXVg=;
- b=d1d/8dbPRcDmnVpofqbwE5RzKqtuRjnKloIhHdZsx99LppSQdVXasmpMJASCqsxbRT
- B3K6GfXJnaZrUK+o+2E5IkLnKK35WR4CowCi4rxx/i3J81gijaVO1Y4SaHkyyP8kxfa4
- lDPkKUCtjO+vyWAl3Lwd9cFhtgDK7eqzYYeNngiUhpmYExX2Z1E3GyTcj5tsb7f1KCVL
- JQXtYICmtI81GSy7R7AMY/6QQs4NBqUwnrga9X48KwKIN9j0T8VuwJkrsWCf1PjJrq0r
- BVcN25uE9ymi625sKwJOSc5Mv/vtCf4BIekVhnrfSBHGeG51iBllPCslQEiZnp9N/RZ0
- kInQ==
+ bh=1FCj0eg3qCaMYcJXsF4imAvHr1mf3lurCF+mcbDbEBs=;
+ b=Qf45wa8fLOp9BUn1Le2czW7jAmqgqTrZRN9J9PA+lNZ43PIPd9HEnbEOK2QWpcoiJy
+ Gf9XBTlMSjTcS3HrQ1lGOdYs54yKVe+DnoqLn+plOlSZb4by51wV70StOG158AeVSx+P
+ RmTa5wgoICakylcnD7UEMPwRE/E/f5oJPeZPumOr4YVb+QHICSZeXCppW0qIH7jK0KsD
+ 3H038dH7vGaK3U6s/NXvp4eMeQyNVUprfaHzD/4mfCHM5lD4wfrYpBDg9mXQ2vzG/sFy
+ qDu29dR3UPWDfjvdUUMqMMF7qm/NCgK9rqPQgTLM3qtWGAYkKDmDrVKlBW4BeaauJfNx
+ 3U8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
  :in-reply-to:references:mime-version:content-transfer-encoding;
- bh=Lv/Kp6ESRC+AN4NQxCwaPZ0reLg9vm5QGJqQKdUOXVg=;
- b=XfTkltF1KbZ69A1M6806p/t7o+RS/47UL6jL44C5WxvhVPb2OmtEl7ko9Rnq1a5k/Z
- 1aZ5wJ0zaOupCOfjHdX7OMSB60oHR7o2cYZOg4x53Rh6SEjUZhZIPp3THMbrClTupILD
- hua4iUTBNG29rZxwe0qYMzLRBEkILsX7auwJ7xgQj/4eOcLIBa8XqfCPu5AYcTQIl+Xa
- G3CLVLpUO5LCaQ4TA/Njm2RMxAW7ezeyWz+gJTe8gkgq1mV2ceD1lee34+YSd23D8R9u
- QX7tvUFLZLukayHy6BFToJh/VPl7Qd7bSlcIaR80mWw3J7L9dlRpYQyrpX+gAJN9BcpZ
- xOkA==
-X-Gm-Message-State: AOAM532pln8ObLhpjpZFYAShw89GDQ/GmankTVomJO4R1pYri0s5CBGo
- gu08M/bmU8s09r+iJayo2M8=
-X-Google-Smtp-Source: ABdhPJz9alk4Sxe468wNHlmX+qYIK5Ar0oCeG8YckZefgGjtGwwcCC+vU/s+XoYduarsU12us77tnQ==
-X-Received: by 2002:a9d:1b0f:: with SMTP id l15mr33791138otl.38.1638027890450; 
- Sat, 27 Nov 2021 07:44:50 -0800 (PST)
+ bh=1FCj0eg3qCaMYcJXsF4imAvHr1mf3lurCF+mcbDbEBs=;
+ b=T1CRk3Y/6wMlRctkZgZzq0VaFWvqtKCmSPs8R2tv654IfIu0LyTeIRTHemCsQQVPjN
+ VoCrErGFB5Pjf31dMr2laYA6ua5mS0o04MQ7PruhP/lokNSfd/mmZNa4sNsGaSn7qyX0
+ 7d7GUgTQLJTR0e9oDD3A8ZzfJuZGVukRt7SHhz9R02uGezq6Rmt6tWb6F42QCPZE+a+N
+ HITOtHjZxCZNxYr41+5ozmJm6DzVwQGTpanoRhyCVwVX48rd5ZFr8fabX6tX8jNsoYRd
+ VDp+nnQl5gMm+8nQ5SE6ofHJ3ENOT0wqIVLrK4dS2PLjYmLo7VxgtqTgDjHWJIIEJrGw
+ Kczw==
+X-Gm-Message-State: AOAM532qSWPaGmo/JA7L8bKmLPDo4ku1BFF8NcAeMySY6cFAS+AdBEuk
+ CCHkawp7w0jYuFBz4PSRVus=
+X-Google-Smtp-Source: ABdhPJzRYuRmQj7vEqYGDPE43oGeBHCDNNMnrWWDZ4u66bbB/oYUTmJrWR/gReCZUw/i+mq4YDbrgw==
+X-Received: by 2002:a9d:12a6:: with SMTP id g35mr35177546otg.61.1638027892296; 
+ Sat, 27 Nov 2021 07:44:52 -0800 (PST)
 Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
  by smtp.gmail.com with ESMTPSA id
- r37sm1637094otv.54.2021.11.27.07.44.49
+ n26sm1510723ooq.36.2021.11.27.07.44.51
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 27 Nov 2021 07:44:49 -0800 (PST)
+ Sat, 27 Nov 2021 07:44:51 -0800 (PST)
 From: Guenter Roeck <linux@roeck-us.net>
 To: Anton Altaparmakov <anton@tuxera.com>
-Date: Sat, 27 Nov 2021 07:44:41 -0800
-Message-Id: <20211127154442.3676290-3-linux@roeck-us.net>
+Date: Sat, 27 Nov 2021 07:44:42 -0800
+Message-Id: <20211127154442.3676290-4-linux@roeck-us.net>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20211127154442.3676290-1-linux@roeck-us.net>
 References: <20211127154442.3676290-1-linux@roeck-us.net>
@@ -87,17 +87,15 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: NTFS_RW code allocates page size dependent arrays on the
- stack.
- This results in build failures if the page size is 64k or larger.
- fs/ntfs/aops.c:
- In function 'ntfs_write_mst_block': fs/ntfs/aops.c:1311:1: error: the frame
- size of 2240 bytes is larger than 2048 bytes 
+ Content preview: Use the architecture independent Kconfig option
+ PAGE_SIZE_LESS_THAN_64KB
+ to indicate that VMXNET3 requires a page size smaller than 64kB.
+ Signed-off-by:
+ Guenter Roeck <linux@roeck-us.net> --- v3: Added patch to make VMXNET3 page
+ size dependency architecture independent 
  Content analysis details:   (0.7 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.210.45 listed in list.dnswl.org]
  0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
  provider [groeck7[at]gmail.com]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
@@ -112,14 +110,16 @@ X-Spam-Report: Spam detection software,
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
  0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [209.85.210.45 listed in wl.mailspike.net]
+ [209.85.210.42 listed in wl.mailspike.net]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.210.42 listed in list.dnswl.org]
  0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
  0.2 FREEMAIL_FORGED_FROMDOMAIN 2nd level domains in From and
  EnvelopeFrom freemail headers are different
-X-Headers-End: 1mqzsl-00BXih-Vh
+X-Headers-End: 1mqzsn-0002mW-Qr
 X-Mailman-Approved-At: Sat, 27 Nov 2021 22:20:23 +0000
-Subject: [Linux-NTFS-Dev] [PATCH v3 2/3] fs: ntfs: Limit NTFS_RW to page
- sizes smaller than 64k
+Subject: [Linux-NTFS-Dev] [PATCH v3 3/3] vmxnet3: Use generic Kconfig option
+ for page size limit
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -142,44 +142,32 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-NTFS_RW code allocates page size dependent arrays on the stack. This
-results in build failures if the page size is 64k or larger.
-
-fs/ntfs/aops.c: In function 'ntfs_write_mst_block':
-fs/ntfs/aops.c:1311:1: error:
-	the frame size of 2240 bytes is larger than 2048 bytes
-
-Since commit f22969a66041 ("powerpc/64s: Default to 64K pages for 64 bit
-book3s") this affects ppc:allmodconfig builds, but other architectures
-supporting page sizes of 64k or larger are also affected.
-
-Increasing the maximum frame size for affected architectures just to
-silence this error does not really help. The frame size would have to be
-set to a really large value for 256k pages. Also, a large frame size could
-potentially result in stack overruns in this code and elsewhere and is
-therefore not desirable. Make NTFS_RW dependent on page sizes smaller than
-64k instead.
+Use the architecture independent Kconfig option PAGE_SIZE_LESS_THAN_64KB
+to indicate that VMXNET3 requires a page size smaller than 64kB.
 
 Signed-off-by: Guenter Roeck <linux@roeck-us.net>
 ---
-v3: Use generic configuration flag
-v2: More comprehensive dependencies
+v3: Added patch to make VMXNET3 page size dependency architecture
+    independent
 
- fs/ntfs/Kconfig | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/net/Kconfig | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/fs/ntfs/Kconfig b/fs/ntfs/Kconfig
-index 1667a7e590d8..f93e69a61283 100644
---- a/fs/ntfs/Kconfig
-+++ b/fs/ntfs/Kconfig
-@@ -52,6 +52,7 @@ config NTFS_DEBUG
- config NTFS_RW
- 	bool "NTFS write support"
- 	depends on NTFS_FS
+diff --git a/drivers/net/Kconfig b/drivers/net/Kconfig
+index 10506a4b66ef..6cccc3dc00bc 100644
+--- a/drivers/net/Kconfig
++++ b/drivers/net/Kconfig
+@@ -567,9 +567,7 @@ config XEN_NETDEV_BACKEND
+ config VMXNET3
+ 	tristate "VMware VMXNET3 ethernet driver"
+ 	depends on PCI && INET
+-	depends on !(PAGE_SIZE_64KB || ARM64_64K_PAGES || \
+-		     IA64_PAGE_SIZE_64KB || PARISC_PAGE_SIZE_64KB || \
+-		     PPC_64K_PAGES)
 +	depends on PAGE_SIZE_LESS_THAN_64KB
  	help
- 	  This enables the partial, but safe, write support in the NTFS driver.
- 
+ 	  This driver supports VMware's vmxnet3 virtual ethernet NIC.
+ 	  To compile this driver as a module, choose M here: the
 -- 
 2.33.0
 
