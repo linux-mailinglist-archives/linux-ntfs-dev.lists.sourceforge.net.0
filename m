@@ -2,26 +2,26 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E4CE46394A
+	by mail.lfdr.de (Postfix) with ESMTPS id BF01346394B
 	for <lists+linux-ntfs-dev@lfdr.de>; Tue, 30 Nov 2021 16:07:10 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1ms4io-0002Fo-Gr; Tue, 30 Nov 2021 15:07:06 +0000
+	id 1ms4ip-0002I4-Vk; Tue, 30 Nov 2021 15:07:08 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <sashal@kernel.org>) id 1ms4Vb-0002r4-G3
- for linux-ntfs-dev@lists.sourceforge.net; Tue, 30 Nov 2021 14:53:27 +0000
+ (envelope-from <sashal@kernel.org>) id 1ms4e8-0003D8-IC
+ for linux-ntfs-dev@lists.sourceforge.net; Tue, 30 Nov 2021 15:02:16 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
  In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=n0eQFeplb6e/w81WK9BEJ7HH0foayOqgEtTqmWGdyfo=; b=mA4Yq8+1UE0inx0Fp/X0r7Gk0b
- nYBUEMOw5R1hgHhd6vaBJyk+DGsHgF3w6SNRGTcZd9BAqObiWtUKLyjRkqau23ZoYyqVQHUkOiE80
- k01rdLt8LkjNu/nrF911qWhbeJQitJoO5Zgv4G54plznQS2TFeKx8Vxk5PmINMd5Y1jU=;
+ bh=n0eQFeplb6e/w81WK9BEJ7HH0foayOqgEtTqmWGdyfo=; b=L+O2QVoNVFV2jpNDOk2KCY6xxV
+ GFRBLn+xvQeVm10S/W+bAADZWKKq8rE4B/565HBKZZdFlkWnsyq7BqXufRrMeNDjjv6n7CMaB18HP
+ CAC5CW8LMCgFkJ6Vr2QtI4PxmN9PYLLRMkT6Ez1qQ5OVgx9p7o6B7VJmugPGg9rjN52s=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -29,39 +29,39 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=n0eQFeplb6e/w81WK9BEJ7HH0foayOqgEtTqmWGdyfo=; b=SDCLRJJMKxweizaLz9Ku5MK6CV
- bAXayx4nZYFYIKdc34agGcqVCZ+UOSABs90zgJyE3hc4RV0kvSkcJOI7kgJzbyklbpL7O/2DOBEbk
- iT6vGdIlojK6aT7pXvX+T8aL7QLlfMJxqm8nd4b5ecJTdbKxa2SqgNlHIQgfexgNFgJs=;
+ bh=n0eQFeplb6e/w81WK9BEJ7HH0foayOqgEtTqmWGdyfo=; b=drFfhOBlVqFuc9qt2Cum/7MnJN
+ XdS8aT6YW/z6E5ogp0fSWZ3tH5Yv4UyxlRi+mmnkAuqT6SgMVMGCreVZrSQ8ZisgkgsUgMKJALBs9
+ eVVClpcaA5GtP5vq9LY6QmKuLpcG2C3ypZkOtLzScjhlLKkqAtxj34Ea/HkI5oCEZem4=;
 Received: from ams.source.kernel.org ([145.40.68.75])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1ms4VV-00GAOe-Lw
- for linux-ntfs-dev@lists.sourceforge.net; Tue, 30 Nov 2021 14:53:27 +0000
+ id 1ms4e2-0003Jz-53
+ for linux-ntfs-dev@lists.sourceforge.net; Tue, 30 Nov 2021 15:02:16 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 7372AB81A53;
- Tue, 30 Nov 2021 14:53:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2837C53FC7;
- Tue, 30 Nov 2021 14:53:13 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id D2205B81A68;
+ Tue, 30 Nov 2021 14:53:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D595AC53FCF;
+ Tue, 30 Nov 2021 14:53:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1638283994;
+ s=k20201202; t=1638284019;
  bh=sv6SHN8BiLPKNf1x5CfhepLuwQcvghPgfP6OXk2juBA=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=oHZxRmAVkmlTedR4+L4lO01LiwmGe9FnKT4XucP350tjFOvCSq5damahbTExcgkRd
- tqRDvWqm1f0Lb/mG+wB/s0nwfdfF4PbmUG8sZUky0rVAYWakU1H00yJ6mCUcjKOHSB
- LobuWo/GCNO8BKY3lWByW79uPFUN64zWYd/SojCCJapJc3PbmKNPfQqrVJ7/IonaWC
- mNPiF/XiekjeJkjh7WblaZkwmL10M2DHFaXuI3ZiPUsgVMioQKDgqdThx44m0PQzoM
- elwIpvNPxmO60HaDXhZgD823MGIN1Sdrmjr5pfJIt+UP8JrkvP80P9Y+QDa1xQ+YdC
- hGZ6lqQL9pUfA==
+ b=pwTTsdB8nSxOaERr10r7cHKNLMzFP7PEKJY2/rJW3GQ6ZOQhvVab6RkKGD0ePyQdd
+ PHGobzslbY6v8SNg1DKmKAxinG+MxOl3foBlU4uBKYYQYQK20LJTFfYLmw22aImLH7
+ pGiYbwuJT2nRUQ1L7be13tKY+8VJIK1Y49U1ASrhCuB1VMmQxlPpYs3ZcCj82eXva/
+ KwwDSkHWox2UKBKT0Ha1LnQPdWT6h/4e9tPaHQ9xXZ68UBf4CjCe7p1C9FsWmU2/4h
+ 2A84BaaM/Gg6F8jrTQPemeeOdt3b0YsMDNA/aMkVqZB8geAObGt6NB0cca9m0IPe3Q
+ rpJiCm6DbIeBQ==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Date: Tue, 30 Nov 2021 09:52:41 -0500
-Message-Id: <20211130145243.946407-17-sashal@kernel.org>
+Date: Tue, 30 Nov 2021 09:53:15 -0500
+Message-Id: <20211130145317.946676-14-sashal@kernel.org>
 X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211130145243.946407-1-sashal@kernel.org>
-References: <20211130145243.946407-1-sashal@kernel.org>
+In-Reply-To: <20211130145317.946676-1-sashal@kernel.org>
+References: <20211130145317.946676-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -89,9 +89,9 @@ X-Spam-Report: Spam detection software,
  envelope-from domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1ms4VV-00GAOe-Lw
+X-Headers-End: 1ms4e2-0003Jz-53
 X-Mailman-Approved-At: Tue, 30 Nov 2021 15:07:04 +0000
-Subject: [Linux-NTFS-Dev] [PATCH AUTOSEL 4.19 17/17] fs: ntfs: Limit NTFS_RW
+Subject: [Linux-NTFS-Dev] [PATCH AUTOSEL 4.14 14/14] fs: ntfs: Limit NTFS_RW
  to page sizes smaller than 64k
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
