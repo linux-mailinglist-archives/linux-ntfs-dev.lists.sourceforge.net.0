@@ -2,17 +2,17 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16D5546394E
+	by mail.lfdr.de (Postfix) with ESMTPS id 49E9F46394F
 	for <lists+linux-ntfs-dev@lfdr.de>; Tue, 30 Nov 2021 16:07:11 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1ms4iq-0002IQ-Cl; Tue, 30 Nov 2021 15:07:08 +0000
+	id 1ms4iq-0002J6-I2; Tue, 30 Nov 2021 15:07:08 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <sashal@kernel.org>) id 1ms4gC-0006ys-44
- for linux-ntfs-dev@lists.sourceforge.net; Tue, 30 Nov 2021 15:04:25 +0000
+ (envelope-from <sashal@kernel.org>) id 1ms4h5-00074x-W8
+ for linux-ntfs-dev@lists.sourceforge.net; Tue, 30 Nov 2021 15:05:21 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
  In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
@@ -33,10 +33,9 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  fxTUV6Cm1alEAiJRa64XB+UTpdaihmjbBgWLojUL22n2q6FlGrK877hTfhMELhM3hFSKJ2Z9nbFCM
  1kkp938bWufYT6P18EG0eYly8V99pGBFIe18z0LqsOJE7AXnsURW4C1qr3XHTCWOPrdo=;
 Received: from sin.source.kernel.org ([145.40.73.55])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1ms4eB-0003KY-E3
- for linux-ntfs-dev@lists.sourceforge.net; Tue, 30 Nov 2021 15:04:25 +0000
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtp (Exim 4.92.3)
+ id 1ms4f5-0003OZ-9h
+ for linux-ntfs-dev@lists.sourceforge.net; Tue, 30 Nov 2021 15:05:21 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
@@ -65,7 +64,7 @@ References: <20211130145341.946891-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-Headers-End: 1ms4eB-0003KY-E3
+X-Headers-End: 1ms4f5-0003OZ-9h
 X-Mailman-Approved-At: Tue, 30 Nov 2021 15:07:04 +0000
 Subject: [Linux-NTFS-Dev] [PATCH AUTOSEL 4.9 12/12] fs: ntfs: Limit NTFS_RW
  to page sizes smaller than 64k
