@@ -2,26 +2,26 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 805F8463947
-	for <lists+linux-ntfs-dev@lfdr.de>; Tue, 30 Nov 2021 16:07:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A362463950
+	for <lists+linux-ntfs-dev@lfdr.de>; Tue, 30 Nov 2021 16:07:16 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1ms4io-0002FR-1z; Tue, 30 Nov 2021 15:07:06 +0000
+	id 1ms4io-0002Ff-Ao; Tue, 30 Nov 2021 15:07:06 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <sashal@kernel.org>) id 1ms4UQ-0005Fa-DU
- for linux-ntfs-dev@lists.sourceforge.net; Tue, 30 Nov 2021 14:52:15 +0000
+ (envelope-from <sashal@kernel.org>) id 1ms4V5-0001eM-E9
+ for linux-ntfs-dev@lists.sourceforge.net; Tue, 30 Nov 2021 14:52:55 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
  In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=6ninkgVtzPg5bF99J7IcO6Y1oN2d5Sxlp5WMmvgUKZo=; b=c2qEkJr3YLHFyXTPu+ybRAnFbt
- fGucRlUZ5GrL3aTlhVJ/2ILVVaqjzT1XPQbQgTQsL0pp+VSQpupeMqCiLKHY64K1Yq0EgyaW+UTf6
- ZvVCzIuUzMgN3xSQu8vhM7+aytGvBrCbJnFY1my4Bw+C5Q3G3R8hPM31ePo6yPYHCLuY=;
+ bh=/nUzORSTK4ntKRHSQxfFJE9w0F7ztZuPoIYqFml1yEM=; b=bzzzk6I9EppHOQ2VTeAHN213Vh
+ kra2PP/b1qLBKgIgTpTVWPIAdOkbXIMeL3x0MQ7bhoMjM1MumFfEkpmAC3lR6jiew32ZYadCogLkI
+ g0Vd03ANpQMK/bWoSo4MvLQPOud+WMUAPOQa4vXbYDGvA2UFDCYWsFUYl0Fc5e9OuYvs=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -29,39 +29,39 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=6ninkgVtzPg5bF99J7IcO6Y1oN2d5Sxlp5WMmvgUKZo=; b=UeCRF5/1a4ATjIjR7LESvzedrc
- FS4cvv+JuSXKIjCx4Zcl29Khv6lKDBrUZivLD+1shPHIM1+nUDACRflKrMkDZAOtBUZ1Kmn61JOQe
- UngxZ2IC3va+7LeYhylDuHwr78hQMDw6JtTfDijdrny38sEYCwg22om0NCKR829sS6vI=;
-Received: from ams.source.kernel.org ([145.40.68.75])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ bh=/nUzORSTK4ntKRHSQxfFJE9w0F7ztZuPoIYqFml1yEM=; b=LCSCrypzBmK9/TT7hwASx1ODXF
+ RES1PzF5SJcWsC6Jkc6EAE0Fse736eRj/i1bMeuRsWJpjkn/6oG6EL0cdS7D/EAEMLVnsTL0OmhXa
+ ypiF0m6PfK3LosBtHA9bidliZ9Yx3SDGgB+tGhuv33VyWKH/QC5hS2cv7hbv+yfENZE4=;
+Received: from sin.source.kernel.org ([145.40.73.55])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1ms4UK-0002UM-MB
- for linux-ntfs-dev@lists.sourceforge.net; Tue, 30 Nov 2021 14:52:15 +0000
+ id 1ms4Uy-00GALJ-K7
+ for linux-ntfs-dev@lists.sourceforge.net; Tue, 30 Nov 2021 14:52:55 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id 39DC5B81A53;
- Tue, 30 Nov 2021 14:51:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3BF84C53FD2;
- Tue, 30 Nov 2021 14:51:53 +0000 (UTC)
+ by sin.source.kernel.org (Postfix) with ESMTPS id F25ACCE1A75;
+ Tue, 30 Nov 2021 14:52:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D877BC53FC1;
+ Tue, 30 Nov 2021 14:52:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1638283913;
- bh=XlNCV1YNk01FQp+JfDUNxrw5K+G6jZaKB4BxER64LQM=;
+ s=k20201202; t=1638283960;
+ bh=6v6WUlXGJPa6LCVzsAASNEQSn56gC63rDAlFYk+SRN0=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=RzF8RBsGCiCVIR6fb9NTsDQMN0o38ObHzmOrHlN1xDqmofyXFojoGFadltV+jO0qn
- 4/EHI8GY9W8Kf2fj0T9/yIyV/6o/1Y1ZDgzGSdRFGvejOcvvI3vigRYLoKytnmkOB6
- 2BmEp3BgCSBW0AE/zmzjzog9/YO4hAjgns4d9sFN2TC91gVPA/rGtn+dJO0R7ty2wO
- PoYB+bLccEZhHLqG/6pmYQqTDi36vdkTKhyaNRktRLO9M56Y0qPmZplr9sqMatRH0P
- aGmbeTASTAnuJ13wJeiyfVts+ykU6vswuR7QayfUZQIIS31Vz83Qc+xeiQiBpNqady
- qYeTBKEvsKW2Q==
+ b=q+BicvMyXMktd6w5cHAp57Qh+VazDdwCNN8kllt1qzFrc3+GK466KAxsGOUmrUk8S
+ 6thgMl8GXpuwrpGTGYhT8Nd6zdXgWkVrQfJR++Ki2TDOzovSAtKD+nOq9kGV6MCzlZ
+ fhIEE9+eC4VPr6f1gnGduFFxpXsAsDTUnaCG4NR76j7upTOXL0dtvWavjzxWXkzrwE
+ GDKuS2LmqSnvdbt4FkTcrVkT6xfEFO5ToFkcgEurYEJBzSH30iLhsEfYl8vk9J547u
+ /ZKDnLWEsfhDxNP2VOGznfUgUucuCL0kpA7pvt+AoYszPsVQY2QRGRy7pNdUIVuwhG
+ UtlFYmHdqw5Aw==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Date: Tue, 30 Nov 2021 09:50:20 -0500
-Message-Id: <20211130145022.945517-43-sashal@kernel.org>
+Date: Tue, 30 Nov 2021 09:51:55 -0500
+Message-Id: <20211130145156.946083-25-sashal@kernel.org>
 X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211130145022.945517-1-sashal@kernel.org>
-References: <20211130145022.945517-1-sashal@kernel.org>
+In-Reply-To: <20211130145156.946083-1-sashal@kernel.org>
+References: <20211130145156.946083-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -89,9 +89,9 @@ X-Spam-Report: Spam detection software,
  envelope-from domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1ms4UK-0002UM-MB
+X-Headers-End: 1ms4Uy-00GALJ-K7
 X-Mailman-Approved-At: Tue, 30 Nov 2021 15:07:04 +0000
-Subject: [Linux-NTFS-Dev] [PATCH AUTOSEL 5.10 43/43] fs: ntfs: Limit NTFS_RW
+Subject: [Linux-NTFS-Dev] [PATCH AUTOSEL 5.4 25/25] fs: ntfs: Limit NTFS_RW
  to page sizes smaller than 64k
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -143,7 +143,7 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 1 insertion(+)
 
 diff --git a/fs/ntfs/Kconfig b/fs/ntfs/Kconfig
-index 1667a7e590d86..f93e69a612833 100644
+index de9fb5cff2269..026ec41418049 100644
 --- a/fs/ntfs/Kconfig
 +++ b/fs/ntfs/Kconfig
 @@ -52,6 +52,7 @@ config NTFS_DEBUG
