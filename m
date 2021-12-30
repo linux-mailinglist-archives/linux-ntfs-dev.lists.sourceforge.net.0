@@ -2,79 +2,112 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 533A647916C
-	for <lists+linux-ntfs-dev@lfdr.de>; Fri, 17 Dec 2021 17:26:24 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DFB248204E
+	for <lists+linux-ntfs-dev@lfdr.de>; Thu, 30 Dec 2021 21:42:57 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1myG3o-0007BN-G1; Fri, 17 Dec 2021 16:26:21 +0000
+	id 1n32GE-0001w2-9W; Thu, 30 Dec 2021 20:42:54 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <segher@kernel.crashing.org>) id 1myDbE-00016i-OF
- for linux-ntfs-dev@lists.sourceforge.net; Fri, 17 Dec 2021 13:48:40 +0000
+ (envelope-from <colin.i.king@gmail.com>) id 1n2xcx-0008Nr-DB
+ for linux-ntfs-dev@lists.sourceforge.net; Thu, 30 Dec 2021 15:46:03 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:Mime-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
+ :Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=WUVcjJGCabDGLxQobtnnJ6Re2Bsynf6dlCnu/xDrwGc=; b=OOLV2QcEswcfWdk90hdE3rB739
- NBSSqwXz2ijXxmrQ3NTnfqbvp+XyZ2pym2wmLwZZTjAcy3vZqRTO1CPn924kFpR6nmo9nrhqRx4TY
- j9l+KcD8J0ALrry8CFA+ltO1HZYB3BhZ2Gor10o0MvBBxS2j+zWGCb4bZLc6bVEngXNQ=;
+ bh=Q0dNHTxLQtU5lBJjjHwy0CnTQzm5dF8G6GDH+GbnJMw=; b=LumH8f5OdUBu8mpmxVXkOEYDQM
+ vuy+MWI2pnRmjRIHzUTW2hXNR6ZFKDhdhmKnWO0G5KyMgzwTg3RJ7psNgH5+xSj722bpBVB42w2ty
+ lvLIh0pA39g5fjWn21KMXSBeegeXU9B8Wcdr8kHip2nUhFXP6hC58oJVLWwwPGM+xwKA=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:Mime-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=WUVcjJGCabDGLxQobtnnJ6Re2Bsynf6dlCnu/xDrwGc=; b=BIC1SRSd9K3JelaN04CJ0TiCw4
- 9cI+QPBFPq8lw/lNS3FAZXmKwTfURoeE0cGkEBKR2CiFPF8+fOZQUKpswYTo6xCR2fihbZAb0SVBH
- M3SzStWcbtHbVi63Jq4svBv4+jEIpHPKUNxKVbrvwHMVwKwP2njRoq357hhAqelBYKiw=;
-Received: from gate.crashing.org ([63.228.1.57])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtp (Exim 4.92.3)
- id 1myDbC-000yfe-DZ
- for linux-ntfs-dev@lists.sourceforge.net; Fri, 17 Dec 2021 13:48:40 +0000
-Received: from gate.crashing.org (localhost.localdomain [127.0.0.1])
- by gate.crashing.org (8.14.1/8.14.1) with ESMTP id 1BHDZQmf021580;
- Fri, 17 Dec 2021 07:35:26 -0600
-Received: (from segher@localhost)
- by gate.crashing.org (8.14.1/8.14.1/Submit) id 1BHDZJZQ021573;
- Fri, 17 Dec 2021 07:35:19 -0600
-X-Authentication-Warning: gate.crashing.org: segher set sender to
- segher@kernel.crashing.org using -f
-Date: Fri, 17 Dec 2021 07:35:18 -0600
-From: Segher Boessenkool <segher@kernel.crashing.org>
-To: David Laight <David.Laight@aculab.com>
-Message-ID: <20211217133518.GR614@gate.crashing.org>
-References: <20210514100106.3404011-1-arnd@kernel.org>
- <CAMj1kXG0CNomZ0aXxh_4094fT+g4bVWFCkrd7QwgTQgiqoxMWA@mail.gmail.com>
- <20211216185620.GP614@gate.crashing.org>
- <698cfc52a0d441f7b9f29424be82b2e8@AcuMS.aculab.com>
-Mime-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <698cfc52a0d441f7b9f29424be82b2e8@AcuMS.aculab.com>
-User-Agent: Mutt/1.4.2.3i
-X-Spam-Score: -0.0 (/)
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:
+ Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:Resent-Date
+ :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=Q0dNHTxLQtU5lBJjjHwy0CnTQzm5dF8G6GDH+GbnJMw=; b=j
+ OOvLwRX4KijX6r/4cUAdQr3hZNfwUJ2eWhR7Ie+yrQWp7bY9sVFoG89HN2108lmvWf2OZqr8mHFWC
+ FQZTc3numVVwb3n9QOMZc5/YNq39lyWGFa8Z3W935TFoG+yyQJI+p6nXTqsSHS6Cm7iOicDu5g5d8
+ ZNzv7sxlnxExKqSk=;
+Received: from mail-wr1-f51.google.com ([209.85.221.51])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.3)
+ id 1n2xcv-00060x-Ct
+ for linux-ntfs-dev@lists.sourceforge.net; Thu, 30 Dec 2021 15:46:03 +0000
+Received: by mail-wr1-f51.google.com with SMTP id v11so51202768wrw.10
+ for <linux-ntfs-dev@lists.sourceforge.net>;
+ Thu, 30 Dec 2021 07:46:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Q0dNHTxLQtU5lBJjjHwy0CnTQzm5dF8G6GDH+GbnJMw=;
+ b=pCAG6Adm4zyNQlY20t5Rnjz0DjXwALfZxQQFq2JZCAOZxowBGsu/7FPaY9Upf/juAg
+ MrIhZ7fAKnLbJUzKbNiW8qhtbP8/Ef7+dVhVbK/4wJU03MRFSewFXh/kRKUxu//8hvnn
+ F1Rgm/KxajpMpxtM4O4+PwEMxgDvyc1LYeMua/Be7L1KF9UHRgZw0bn0utPT3l+lQN2M
+ CeEcqWzGt0DRImtnVfoFEqPG0gWe4dpoUDC35qeFUAEMPmS1SZqU3wh0oZLP0BQUopJ2
+ cQ1xtfQlFLBdUK/+QMUtWtKuIFyIw7nYcP3CCs7OcHpXXNV+SCPPvoY6DgU8iWDDb/Si
+ OJQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Q0dNHTxLQtU5lBJjjHwy0CnTQzm5dF8G6GDH+GbnJMw=;
+ b=QIfnEJ6EwUVV/bC4k77LSkJMWTyrXqKoBlaACympvxfTQPJMtnKFzj/6/67z0m6I5m
+ hKNylWAszSmDGnMYNNc4vL3Senbmen+IO+Twi6BDQFL5yaL2ZRem9c9N8ZmUoGqLyL3r
+ KsBP6q+lmRBKZEK0GkykrsvjJTkZ/G93zRk/ad5H+NTFfJm1Hjy5bBt5UOjONqQRZANQ
+ eld+Ixb3nZVPe1IoaVSleXTGgRHzGZmt97OSQZvoUcMZLg6Wn1RuPhKZJkJBra2YKlET
+ MTSu7cGIB14ybbeTuFH5Bbngsuo9GldAYTVriKa4U63192nPG0Kkynewq0/zExTEMpiv
+ wYlw==
+X-Gm-Message-State: AOAM531/gt0Ik9kS9yyd00rkmhKqR1RReyjqMm5txH+GTWfVt0MS1el8
+ Rjqo5tZNZvZTD79OzO+x4L1+sbajCuPBDhWr
+X-Google-Smtp-Source: ABdhPJxUcI0g7ZFDdWU+UXr/NItl1c+Ge4Ae193V0wZhWvZ13Cg/JyASMRDgQ7M3FsHlbBV2BSbJ3w==
+X-Received: by 2002:adf:da4a:: with SMTP id r10mr24957924wrl.553.1640879155114; 
+ Thu, 30 Dec 2021 07:45:55 -0800 (PST)
+Received: from localhost (cpc154979-craw9-2-0-cust193.16-3.cable.virginm.net.
+ [80.193.200.194])
+ by smtp.gmail.com with ESMTPSA id m6sm28366820wrp.34.2021.12.30.07.45.54
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 30 Dec 2021 07:45:54 -0800 (PST)
+From: Colin Ian King <colin.i.king@gmail.com>
+To: Anton Altaparmakov <anton@tuxera.com>, linux-ntfs-dev@lists.sourceforge.net
+Date: Thu, 30 Dec 2021 15:45:54 +0000
+Message-Id: <20211230154554.307121-1-colin.i.king@gmail.com>
+X-Mailer: git-send-email 2.33.1
+MIME-Version: 1.0
+X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Fri, Dec 17, 2021 at 12:34:53PM +0000, David Laight wrote:
- > From: Segher Boessenkool > > Sent: 16 December 2021 18:56 > ... > > > The
- only remaining problem here is reinterpreting a char* pointer [...] 
- Content analysis details:   (-0.0 points, 6.0 required)
+ Content preview: Variable idx is being assigned a value but it is never read.
+ The variable is redundant and can be removed. Signed-off-by: Colin Ian King
+ --- fs/ntfs/file.c | 4 ++-- 1 file changed, 2 insertions(+), 2 deletions(-)
+ Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
-X-Headers-End: 1myDbC-000yfe-DZ
-X-Mailman-Approved-At: Fri, 17 Dec 2021 16:26:19 +0000
-Subject: Re: [Linux-NTFS-Dev] [PATCH v2 00/13] Unify asm/unaligned.h around
- struct helper
+ 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
+ provider [colin.i.king[at]gmail.com]
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.221.51 listed in wl.mailspike.net]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.221.51 listed in list.dnswl.org]
+X-Headers-End: 1n2xcv-00060x-Ct
+X-Mailman-Approved-At: Thu, 30 Dec 2021 20:42:53 +0000
+Subject: [Linux-NTFS-Dev] [PATCH] ntfs: remove redundant variable idx
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -87,116 +120,40 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Cc: "Jason A. Donenfeld" <Jason@zx2c4.com>, Rich Felker <dalias@libc.org>,
- "linux-sh@vger.kernel.org" <linux-sh@vger.kernel.org>,
- "Richard Russon \(FlatCap\)" <ldm@flatcap.org>,
- linux-m68k <linux-m68k@vger.kernel.org>,
- Amitkumar Karwar <amitkarwar@gmail.com>, Russell King <linux@armlinux.org.uk>,
- Eric Dumazet <edumazet@google.com>,
- "open list:BPF JIT for MIPS \(32-BIT AND 64-BIT\)" <netdev@vger.kernel.org>,
- Paul Mackerras <paulus@samba.org>, "H. Peter Anvin" <hpa@zytor.com>,
- "open list:SPARC + UltraSPARC \(sparc/sparc64\)" <sparclinux@vger.kernel.org>,
- Ard Biesheuvel <ardb@kernel.org>, linux-arch <linux-arch@vger.kernel.org>,
- Nick Desaulniers <ndesaulniers@google.com>,
- Florian Fainelli <f.fainelli@gmail.com>, X86 ML <x86@kernel.org>,
- James Morris <jmorris@namei.org>, Ingo Molnar <mingo@redhat.com>,
- Geert Uytterhoeven <geert@linux-m68k.org>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- Vladimir Oltean <vladimir.oltean@nxp.com>, Jakub Kicinski <kuba@kernel.org>,
- "Serge E. Hallyn" <serge@hallyn.com>, Jonas Bonn <jonas@southpole.se>,
- Kees Cook <keescook@chromium.org>, Arnd Bergmann <arnd@arndb.de>,
- Ganapathi Bhat <ganapathi017@gmail.com>,
- "open list:LINUX FOR POWERPC \(32-BIT AND 64-BIT\)"
- <linuxppc-dev@lists.ozlabs.org>,
- Stefan Kristiansson <stefan.kristiansson@saunalahti.fi>,
- "linux-block@vger.kernel.org" <linux-block@vger.kernel.org>,
- "openrisc@lists.librecores.org" <openrisc@lists.librecores.org>,
- Borislav Petkov <bp@alien8.de>, Stafford Horne <shorne@gmail.com>,
- Kalle Valo <kvalo@codeaurora.org>, Jens Axboe <axboe@kernel.dk>,
- Arnd Bergmann <arnd@kernel.org>, John Johansen <john.johansen@canonical.com>,
- Xinming Hu <huxinming820@gmail.com>, Yoshinori Sato <ysato@users.osdn.me>,
- "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- "linux-ntfs-dev@lists.sourceforge.net" <linux-ntfs-dev@lists.sourceforge.net>,
- "linux-security-module@vger.kernel.org"
- <linux-security-module@vger.kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
- Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
- Vineet Gupta <vgupta@synopsys.com>,
- "johannes@sipsolutions.net" <johannes@sipsolutions.net>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- Sharvari Harisangam <sharvari.harisangam@nxp.com>
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-On Fri, Dec 17, 2021 at 12:34:53PM +0000, David Laight wrote:
-> From: Segher Boessenkool
-> > Sent: 16 December 2021 18:56
-> ...
-> > > The only remaining problem here is reinterpreting a char* pointer to a
-> > > u32*, e.g., for accessing the IP address in an Ethernet frame when
-> > > NET_IP_ALIGN == 2, which could suffer from the same UB problem again,
-> > > as I understand it.
-> > 
-> > The problem is never casting a pointer to pointer to character type, and
-> > then later back to an appriopriate pointer type.
-> > These things are both required to work.
-> 
-> I think that is true of 'void *', not 'char *'.
+Variable idx is being assigned a value but it is never read. The
+variable is redundant and can be removed.
 
-No, see 6.3.2.3/7.  Both are allowed (and behave the same in fact).
+Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
+---
+ fs/ntfs/file.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-> 'char' is special in that 'strict aliasing' doesn't apply to it.
-> (Which is actually a pain sometimes.)
+diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
+index 2ae25e48a41a..329fca1fa619 100644
+--- a/fs/ntfs/file.c
++++ b/fs/ntfs/file.c
+@@ -1772,11 +1772,11 @@ static ssize_t ntfs_perform_write(struct file *file, struct iov_iter *i,
+ 	last_vcn = -1;
+ 	do {
+ 		VCN vcn;
+-		pgoff_t idx, start_idx;
++		pgoff_t start_idx;
+ 		unsigned ofs, do_pages, u;
+ 		size_t copied;
+ 
+-		start_idx = idx = pos >> PAGE_SHIFT;
++		start_idx = pos >> PAGE_SHIFT;
+ 		ofs = pos & ~PAGE_MASK;
+ 		bytes = PAGE_SIZE - ofs;
+ 		do_pages = 1;
+-- 
+2.33.1
 
-That has nothing to do with it.  Yes, you can validly access any memory
-as a character type, but that has nothing to do with what pointer casts
-are allowed and which are not.
-
-> > The problem always is accessing something as if it
-> > was something of another type, which is not valid C.  This however is
-> > exactly what -fno-strict-aliasing allows, so that works as well.
-> 
-> IIRC the C language only allows you to have pointers to valid data items.
-> (Since they can only be generated by the & operator on a valid item.)
-
-Not so.  For example you are explicitly allowed to have pointers one
-past the last element of an array (and do arithmetic on that!), and of
-course null pointers are a thing.
-
-C allows you to make up pointers from integers as well.  This is
-perfectly fine to do.  Accessing anything via such pointers might well
-be not standard C, of course.
-
-> Indirecting any other pointer is probably UB!
-
-If a pointer points to an object, indirecting it gives an lvalue of that
-object.  It does not matter how you got that pointer, all that matters
-is that it points at a valid object.
-
-> This (sort of) allows the compiler to 'look through' casts to find
-> what the actual type is (or might be).
-> It can then use that information to make optimisation choices.
-> This has caused grief with memcpy() calls that are trying to copy
-> a structure that the coder knows is misaligned to an aligned buffer.
-
-This is 6.5/7.
-
-Alignment is 6.2.8 but it doesn't actually come into play at all here.
-
-> So while *(unaligned_ptr *)char_ptr probably has to work.
-
-Only if the original pointer points to an object that is correct
-(including correctly aligned) for such an lvalue.
-
-> If the compiler can see *(unaligned_ptr *)(char *)int_ptr it can
-> assume the alignment of the 'int_ptr' and do a single aligned access.
-
-It is undefined behaviour to have an address in int_ptr that is not
-correctly aligned for whatever type it points to.
-
-
-Segher
 
 
 _______________________________________________
