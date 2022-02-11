@@ -2,101 +2,82 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8C234956FF
-	for <lists+linux-ntfs-dev@lfdr.de>; Fri, 21 Jan 2022 00:33:18 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 848F64B384B
+	for <lists+linux-ntfs-dev@lfdr.de>; Sat, 12 Feb 2022 23:01:34 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1nAgvd-000553-BD; Thu, 20 Jan 2022 23:33:15 +0000
+	id 1nJ0SS-0005rm-II; Sat, 12 Feb 2022 22:01:31 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <anton@tuxera.com>) id 1nAgvb-00054w-OL
- for linux-ntfs-dev@lists.sourceforge.net; Thu, 20 Jan 2022 23:33:14 +0000
+ (envelope-from <hongnan.li@linux.alibaba.com>) id 1nIMtf-0001gM-Ul
+ for linux-ntfs-dev@lists.sourceforge.net; Fri, 11 Feb 2022 03:46:58 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=MIME-Version:Content-Type:In-Reply-To:References:
- Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Message-Id:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=sPCasuXJUbfX6O0q4gsVEnPoi0RIgmXDCq0/mn35rt0=; b=RzqzKXbUSqvsG54jLRRUb21TSH
- yBv/6kqTlIJtkNx5Mh9lBYlXOcZIdPAY+Lfnxsb2hNFF5e2M1ZBQyWeZTI2ixmDwl2fh6NaDuIPao
- sCKWCr4fNmRM8pqjKJYouEbXJTddg7jiL9K8HVDwcuNb5TMJuM1+NohdmdCJxYU3TfIQ=;
+ bh=zR2AlpCQJQXHW0bQKxJ1GHa2RktjAokqqsPuyOURXGQ=; b=dbpek3pf1t50gqBEnJfwqrHoud
+ HblxplQH7tNKf7qu2qxS7jSU7bf+uieIarqm/tkinH15PZZJ+ezFO6NOdEqbFotS6Vus8kGWcDCO7
+ zY2HvVB7EwdVFU12pvEW/FWY0hjVSyEowif0/aMc2YUy9HVD+2HxGUAz+PmG/C94vgEE=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=MIME-Version:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:
- CC:To:From:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=sPCasuXJUbfX6O0q4gsVEnPoi0RIgmXDCq0/mn35rt0=; b=TjcZNC8B/sh/76U1dAtiX3m1XI
- vR9rHBHHjN84Kb162gyteJm9QAn5dAlJ/h3IWAgx8dAiIugtz5B3R9R10NRfD6hd8Ta4V1PPyRWNc
- ZFDTP+c50dPUuLo+fFFZ8CaZKE1dXrKeCJapmkd/p4f6KkaOg5LmepAYYbEcOLOty9Rg=;
-Received: from mgw-01.mpynet.fi ([82.197.21.90])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1nAgvX-0006ay-O2
- for linux-ntfs-dev@lists.sourceforge.net; Thu, 20 Jan 2022 23:33:13 +0000
-Received: from pps.filterd (mgw-01.mpynet.fi [127.0.0.1])
- by mgw-01.mpynet.fi (8.16.0.43/8.16.0.43) with SMTP id 20KNIEsX129783;
- Fri, 21 Jan 2022 01:19:31 +0200
-Received: from ex13.tuxera.com (ex13.tuxera.com [178.16.184.72])
- by mgw-01.mpynet.fi with ESMTP id 3dq8m4g6ua-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
- Fri, 21 Jan 2022 01:19:31 +0200
-Received: from tuxera-exch.ad.tuxera.com (10.20.48.11) by
- tuxera-exch.ad.tuxera.com (10.20.48.11) with Microsoft SMTP Server (TLS) id
- 15.0.1497.26; Fri, 21 Jan 2022 01:19:30 +0200
-Received: from tuxera-exch.ad.tuxera.com ([fe80::552a:f9f0:68c3:d789]) by
- tuxera-exch.ad.tuxera.com ([fe80::552a:f9f0:68c3:d789%12]) with mapi id
- 15.00.1497.026; Fri, 21 Jan 2022 01:19:30 +0200
-From: Anton Altaparmakov <anton@tuxera.com>
-To: Andrew Morton <akpm@linux-foundation.org>
-Thread-Topic: [PATCH] ntfs: add sanity check on allocation size
-Thread-Index: AQHYDeMxXM40tbgvckafVktBQwfMraxsawwA
-Date: Thu, 20 Jan 2022 23:19:30 +0000
-Message-ID: <8C2E63FA-6DB4-44E2-A8E5-1C22ADED2178@tuxera.com>
-References: <20220120094914.47736-1-dzm91@hust.edu.cn>
-In-Reply-To: <20220120094914.47736-1-dzm91@hust.edu.cn>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [86.166.43.168]
+ h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From
+ :Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=zR2AlpCQJQXHW0bQKxJ1GHa2RktjAokqqsPuyOURXGQ=; b=X
+ 5xnb0Wsb+djgQ6g9S+tnAVaOt6aKx++SxdKStwP3uYlongrlH68u7SL15Uc/TCbRQDHtB/N9yEwSF
+ 4jkGht6v/c1wSZXX5Khk2/3fZC3sdtOH8wtxotrCuXo3VU/5bW/KkgFGFLsWjGF6IVTnhwffojC/r
+ f2BKBGK65tNfPOqM=;
+Received: from out30-132.freemail.mail.aliyun.com ([115.124.30.132])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
+ id 1nIMta-00EkOX-SH
+ for linux-ntfs-dev@lists.sourceforge.net; Fri, 11 Feb 2022 03:46:58 +0000
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R651e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=e01e04400; MF=hongnan.li@linux.alibaba.com;
+ NM=1; PH=DS; RN=2; SR=0; TI=SMTPD_---0V46vhdZ_1644548776; 
+Received: from localhost(mailfrom:hongnan.li@linux.alibaba.com
+ fp:SMTPD_---0V46vhdZ_1644548776) by smtp.aliyun-inc.com(127.0.0.1);
+ Fri, 11 Feb 2022 11:06:16 +0800
+From: Hongnan Li <hongnan.li@linux.alibaba.com>
+To: linux-ntfs-dev@lists.sourceforge.net
+Date: Fri, 11 Feb 2022 11:06:16 +0800
+Message-Id: <20220211030616.100521-1-hongnan.li@linux.alibaba.com>
+X-Mailer: git-send-email 2.19.1.6.gb485710b
 MIME-Version: 1.0
-X-Proofpoint-GUID: EsB2RyDJPkl4R7oQIcFmc7zBUjmn6MBu
-X-Proofpoint-ORIG-GUID: EsB2RyDJPkl4R7oQIcFmc7zBUjmn6MBu
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.425, 18.0.816
- definitions=2022-01-20_10:2022-01-20,
- 2022-01-20 signatures=0
-X-Proofpoint-Spam-Details: rule=mpy_notspam policy=mpy score=0 mlxlogscore=999
- spamscore=0
- malwarescore=0 bulkscore=0 phishscore=0 adultscore=0 suspectscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2110150000 definitions=main-2201200118
-X-Spam-Score: -2.3 (--)
+X-Spam-Score: -8.0 (--------)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hi Andrew,
- Please could you merge this? Thanks a lot in advance!
- Dongliang, that looks good, thanks! 
- Content analysis details:   (-2.3 points, 6.0 required)
+ Content preview: From: hongnanli <hongnan.li@linux.alibaba.com> inode->i_mutex
+ has been replaced with inode->i_rwsem long ago. Fix comments still mentioning
+ i_mutex. Signed-off-by: hongnanli <hongnan.li@linux.alibaba.com> ---
+ fs/ntfs/attrib.c
+ | 4 ++-- fs/ntfs/dir.c | 8 ++++---- fs/ntfs/file.c | 10 +++++-----
+ fs/ntfs/index.c | 6 +++--- fs/ntfs/inode.c | 4 ++-- fs/n [...] 
+ Content analysis details:   (-8.0 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -2.3 RCVD_IN_DNSWL_MED      RBL: Sender listed at https://www.dnswl.org/,
- medium trust [82.197.21.90 listed in list.dnswl.org]
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [115.124.30.132 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 HTML_MESSAGE           BODY: HTML included in message
-X-Headers-End: 1nAgvX-0006ay-O2
-Subject: Re: [Linux-NTFS-Dev] [PATCH] ntfs: add sanity check on allocation
- size
+ -7.5 USER_IN_DEF_SPF_WL     From: address is in the default SPF
+ white-list
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.0 UNPARSEABLE_RELAY      Informational: message has unparseable relay
+ lines -0.0 T_SCC_BODY_TEXT_LINE   No description available.
+ -0.5 ENV_AND_HDR_SPF_MATCH  Env and Hdr From used in default SPF WL
+ Match
+X-Headers-End: 1nIMta-00EkOX-SH
+X-Mailman-Approved-At: Sat, 12 Feb 2022 22:01:28 +0000
+Subject: [Linux-NTFS-Dev] [PATCH] fs/ntfs: fix comments mentioning i_mutex
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -109,234 +90,214 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Cc: "linux-ntfs-dev@lists.sourceforge.net"
- <linux-ntfs-dev@lists.sourceforge.net>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Dongliang Mu <dzm91@hust.edu.cn>, Dongliang Mu <mudongliangabcd@gmail.com>,
- "syzbot+3c765c5248797356edaa@syzkaller.appspotmail.com"
- <syzbot+3c765c5248797356edaa@syzkaller.appspotmail.com>
-Content-Type: multipart/mixed; boundary="===============1347330107938130043=="
+Cc: anton@tuxera.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
---===============1347330107938130043==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_8C2E63FA6DB444E2A8E51C22ADED2178tuxeracom_"
+From: hongnanli <hongnan.li@linux.alibaba.com>
 
---_000_8C2E63FA6DB444E2A8E51C22ADED2178tuxeracom_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+inode->i_mutex has been replaced with inode->i_rwsem long ago. Fix
+comments still mentioning i_mutex.
 
-Hi Andrew,
-
-Please could you merge this?  Thanks a lot in advance!
-
-Dongliang, that looks good, thanks!
-
-Best regards,
-
-Anton
-
-On 20 Jan 2022, at 09:49, Dongliang Mu <dzm91@hust.edu.cn<mailto:dzm91@hust=
-.edu.cn>> wrote:
-
-From: Dongliang Mu <mudongliangabcd@gmail.com<mailto:mudongliangabcd@gmail.=
-com>>
-
-ntfs_read_inode_mount invokes ntfs_malloc_nofs with zero allocation size. I=
-t triggers one BUG in the __ntfs_malloc function.
-
-Fix this by adding sanity check on ni->attr_list_size.
-
-Reported-by: syzbot+3c765c5248797356edaa@syzkaller.appspotmail.com<mailto:s=
-yzbot+3c765c5248797356edaa@syzkaller.appspotmail.com>
-Signed-off-by: Dongliang Mu <mudongliangabcd@gmail.com<mailto:mudongliangab=
-cd@gmail.com>>
-Acked-by: Anton Altaparmakov <anton@tuxera.com<mailto:anton@tuxera.com>>
+Signed-off-by: hongnanli <hongnan.li@linux.alibaba.com>
 ---
-fs/ntfs/inode.c | 4 ++++
-1 file changed, 4 insertions(+)
+ fs/ntfs/attrib.c |  4 ++--
+ fs/ntfs/dir.c    |  8 ++++----
+ fs/ntfs/file.c   | 10 +++++-----
+ fs/ntfs/index.c  |  6 +++---
+ fs/ntfs/inode.c  |  4 ++--
+ fs/ntfs/namei.c  |  4 ++--
+ 6 files changed, 18 insertions(+), 18 deletions(-)
 
+diff --git a/fs/ntfs/attrib.c b/fs/ntfs/attrib.c
+index 2911c04a33e0..fc2cb551265b 100644
+--- a/fs/ntfs/attrib.c
++++ b/fs/ntfs/attrib.c
+@@ -1516,7 +1516,7 @@ int ntfs_resident_attr_value_resize(MFT_RECORD *m, ATTR_RECORD *a,
+  * NOTE to self: No changes in the attribute list are required to move from
+  *		 a resident to a non-resident attribute.
+  *
+- * Locking: - The caller must hold i_mutex on the inode.
++ * Locking: - The caller must hold i_rwsem on the inode.
+  */
+ int ntfs_attr_make_non_resident(ntfs_inode *ni, const u32 data_size)
+ {
+@@ -1721,7 +1721,7 @@ int ntfs_attr_make_non_resident(ntfs_inode *ni, const u32 data_size)
+ 	/*
+ 	 * This needs to be last since the address space operations ->readpage
+ 	 * and ->writepage can run concurrently with us as they are not
+-	 * serialized on i_mutex.  Note, we are not allowed to fail once we flip
++	 * serialized on i_rwsem.  Note, we are not allowed to fail once we flip
+ 	 * this switch, which is another reason to do this last.
+ 	 */
+ 	NInoSetNonResident(ni);
+diff --git a/fs/ntfs/dir.c b/fs/ntfs/dir.c
+index cd96083a12c8..26ac22528bd8 100644
+--- a/fs/ntfs/dir.c
++++ b/fs/ntfs/dir.c
+@@ -56,7 +56,7 @@ ntfschar I30[5] = { cpu_to_le16('$'), cpu_to_le16('I'),
+  * work but we don't care for how quickly one can access them. This also fixes
+  * the dcache aliasing issues.
+  *
+- * Locking:  - Caller must hold i_mutex on the directory.
++ * Locking:  - Caller must hold i_rwsem on the directory.
+  *	     - Each page cache page in the index allocation mapping must be
+  *	       locked whilst being accessed otherwise we may find a corrupt
+  *	       page due to it being under ->writepage at the moment which
+@@ -1071,11 +1071,11 @@ static inline int ntfs_filldir(ntfs_volume *vol,
+  * While this will return the names in random order this doesn't matter for
+  * ->readdir but OTOH results in a faster ->readdir.
+  *
+- * VFS calls ->readdir without BKL but with i_mutex held. This protects the VFS
++ * VFS calls ->readdir without BKL but with i_rwsem held. This protects the VFS
+  * parts (e.g. ->f_pos and ->i_size, and it also protects against directory
+  * modifications).
+  *
+- * Locking:  - Caller must hold i_mutex on the directory.
++ * Locking:  - Caller must hold i_rwsem on the directory.
+  *	     - Each page cache page in the index allocation mapping must be
+  *	       locked whilst being accessed otherwise we may find a corrupt
+  *	       page due to it being under ->writepage at the moment which
+@@ -1477,7 +1477,7 @@ static int ntfs_dir_open(struct inode *vi, struct file *filp)
+  * Note: In the past @filp could be NULL so we ignore it as we don't need it
+  * anyway.
+  *
+- * Locking: Caller must hold i_mutex on the inode.
++ * Locking: Caller must hold i_rwsem on the inode.
+  *
+  * TODO: We should probably also write all attribute/index inodes associated
+  * with this inode but since we have no simple way of getting to them we ignore
+diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
+index 2ae25e48a41a..82cba5c967fe 100644
+--- a/fs/ntfs/file.c
++++ b/fs/ntfs/file.c
+@@ -90,7 +90,7 @@ static int ntfs_file_open(struct inode *vi, struct file *filp)
+  * this is the case, the necessary zeroing will also have happened and that all
+  * metadata is self-consistent.
+  *
+- * Locking: i_mutex on the vfs inode corrseponsind to the ntfs inode @ni must be
++ * Locking: i_rwsem on the vfs inode corrseponsind to the ntfs inode @ni must be
+  *	    held by the caller.
+  */
+ static int ntfs_attr_extend_initialized(ntfs_inode *ni, const s64 new_init_size)
+@@ -458,7 +458,7 @@ static ssize_t ntfs_prepare_file_for_write(struct kiocb *iocb,
+ 	if (pos > ll) {
+ 		/*
+ 		 * Wait for ongoing direct i/o to complete before proceeding.
+-		 * New direct i/o cannot start as we hold i_mutex.
++		 * New direct i/o cannot start as we hold i_rwsem.
+ 		 */
+ 		inode_dio_wait(vi);
+ 		err = ntfs_attr_extend_initialized(ni, pos);
+@@ -548,7 +548,7 @@ static inline int ntfs_submit_bh_for_read(struct buffer_head *bh)
+  * @bytes:	number of bytes to be written
+  *
+  * This is called for non-resident attributes from ntfs_file_buffered_write()
+- * with i_mutex held on the inode (@pages[0]->mapping->host).  There are
++ * with i_rwsem held on the inode (@pages[0]->mapping->host).  There are
+  * @nr_pages pages in @pages which are locked but not kmap()ped.  The source
+  * data has not yet been copied into the @pages.
+  * 
+@@ -1505,7 +1505,7 @@ static inline int ntfs_commit_pages_after_non_resident_write(
+  * @pos:	byte position in file at which the write begins
+  * @bytes:	number of bytes to be written
+  *
+- * This is called from ntfs_file_buffered_write() with i_mutex held on the inode
++ * This is called from ntfs_file_buffered_write() with i_rwsem held on the inode
+  * (@pages[0]->mapping->host).  There are @nr_pages pages in @pages which are
+  * locked but not kmap()ped.  The source data has already been copied into the
+  * @page.  ntfs_prepare_pages_for_non_resident_write() has been called before
+@@ -1946,7 +1946,7 @@ static ssize_t ntfs_file_write_iter(struct kiocb *iocb, struct iov_iter *from)
+  * Also, if @datasync is true, we do not wait on the inode to be written out
+  * but we always wait on the page cache pages to be written out.
+  *
+- * Locking: Caller must hold i_mutex on the inode.
++ * Locking: Caller must hold i_rwsem on the inode.
+  *
+  * TODO: We should probably also write all attribute/index inodes associated
+  * with this inode but since we have no simple way of getting to them we ignore
+diff --git a/fs/ntfs/index.c b/fs/ntfs/index.c
+index d46c2c03a032..170eec12d83e 100644
+--- a/fs/ntfs/index.c
++++ b/fs/ntfs/index.c
+@@ -20,7 +20,7 @@
+  * Allocate a new index context, initialize it with @idx_ni and return it.
+  * Return NULL if allocation failed.
+  *
+- * Locking:  Caller must hold i_mutex on the index inode.
++ * Locking:  Caller must hold i_rwsem on the index inode.
+  */
+ ntfs_index_context *ntfs_index_ctx_get(ntfs_inode *idx_ni)
+ {
+@@ -38,7 +38,7 @@ ntfs_index_context *ntfs_index_ctx_get(ntfs_inode *idx_ni)
+  *
+  * Release the index context @ictx, releasing all associated resources.
+  *
+- * Locking:  Caller must hold i_mutex on the index inode.
++ * Locking:  Caller must hold i_rwsem on the index inode.
+  */
+ void ntfs_index_ctx_put(ntfs_index_context *ictx)
+ {
+@@ -94,7 +94,7 @@ void ntfs_index_ctx_put(ntfs_index_context *ictx)
+  * or ntfs_index_entry_write() before the call to ntfs_index_ctx_put() to
+  * ensure that the changes are written to disk.
+  *
+- * Locking:  - Caller must hold i_mutex on the index inode.
++ * Locking:  - Caller must hold i_rwsem on the index inode.
+  *	     - Each page cache page in the index allocation mapping must be
+  *	       locked whilst being accessed otherwise we may find a corrupt
+  *	       page due to it being under ->writepage at the moment which
 diff --git a/fs/ntfs/inode.c b/fs/ntfs/inode.c
-index 4474adb393ca..517b71c73aa9 100644
+index 4474adb393ca..f1f76c7f2984 100644
 --- a/fs/ntfs/inode.c
 +++ b/fs/ntfs/inode.c
-@@ -1881,6 +1881,10 @@ int ntfs_read_inode_mount(struct inode *vi)
-}
-/* Now allocate memory for the attribute list. */
-ni->attr_list_size =3D (u32)ntfs_attr_size(a);
-+ if (!ni->attr_list_size) {
-+ ntfs_error(sb, "Attr_list_size is zero");
-+ goto put_err_out;
-+ }
-ni->attr_list =3D ntfs_malloc_nofs(ni->attr_list_size);
-if (!ni->attr_list) {
-ntfs_error(sb, "Not enough memory to allocate buffer "
---
-2.25.1
+@@ -2339,7 +2339,7 @@ static const char *es = "  Leaving inconsistent metadata.  Unmount and run "
+  *
+  * Returns 0 on success or -errno on error.
+  *
+- * Called with ->i_mutex held.
++ * Called with ->i_rwsem held.
+  */
+ int ntfs_truncate(struct inode *vi)
+ {
+@@ -2865,7 +2865,7 @@ void ntfs_truncate_vfs(struct inode *vi) {
+  * We also abort all changes of user, group, and mode as we do not implement
+  * the NTFS ACLs yet.
+  *
+- * Called with ->i_mutex held.
++ * Called with ->i_rwsem held.
+  */
+ int ntfs_setattr(struct user_namespace *mnt_userns, struct dentry *dentry,
+ 		 struct iattr *attr)
+diff --git a/fs/ntfs/namei.c b/fs/ntfs/namei.c
+index 4e6a44bc654c..9e66805f3640 100644
+--- a/fs/ntfs/namei.c
++++ b/fs/ntfs/namei.c
+@@ -84,7 +84,7 @@
+  *    name. We then convert the name to the current NLS code page, and proceed
+  *    searching for a dentry with this name, etc, as in case 2), above.
+  *
+- * Locking: Caller must hold i_mutex on the directory.
++ * Locking: Caller must hold i_rwsem on the directory.
+  */
+ static struct dentry *ntfs_lookup(struct inode *dir_ino, struct dentry *dent,
+ 		unsigned int flags)
+@@ -278,7 +278,7 @@ const struct inode_operations ntfs_dir_inode_ops = {
+  * The code is based on the ext3 ->get_parent() implementation found in
+  * fs/ext3/namei.c::ext3_get_parent().
+  *
+- * Note: ntfs_get_parent() is called with @d_inode(child_dent)->i_mutex down.
++ * Note: ntfs_get_parent() is called with @d_inode(child_dent)->i_rwsem down.
+  *
+  * Return the dentry of the parent directory on success or the error code on
+  * error (IS_ERR() is true).
+-- 
+2.19.1.6.gb485710b
 
 
---
-Anton Altaparmakov <anton at tuxera.com<http://tuxera.com>> (replace at wit=
-h @)
-Lead in File System Development, Tuxera Inc., http://www.tuxera.com/
-Linux NTFS maintainer
-
-
---_000_8C2E63FA6DB444E2A8E51C22ADED2178tuxeracom_
-Content-Type: text/html; charset="us-ascii"
-Content-ID: <53A4D209185FFF4CBAC91766A468C4AD@ex13.tuxera.com>
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-</head>
-<body style=3D"word-wrap: break-word; -webkit-nbsp-mode: space; line-break:=
- after-white-space;" class=3D"">
-Hi Andrew,
-<div class=3D""><br class=3D"">
-</div>
-<div class=3D"">Please could you merge this? &nbsp;Thanks a lot in advance!=
-</div>
-<div class=3D""><br class=3D"">
-</div>
-<div class=3D"">Dongliang, that looks good, thanks!
-<div class=3D""><br class=3D"">
-</div>
-<div class=3D"">Best regards,</div>
-<div class=3D""><br class=3D"">
-</div>
-<div class=3D""><span class=3D"Apple-tab-span" style=3D"white-space:pre"></=
-span>Anton<br class=3D"">
-<div><br class=3D"">
-<blockquote type=3D"cite" class=3D"">
-<div class=3D"">On 20 Jan 2022, at 09:49, Dongliang Mu &lt;<a href=3D"mailt=
-o:dzm91@hust.edu.cn" class=3D"">dzm91@hust.edu.cn</a>&gt; wrote:</div>
-<br class=3D"Apple-interchange-newline">
-<div class=3D"">
-<div class=3D"">From: Dongliang Mu &lt;<a href=3D"mailto:mudongliangabcd@gm=
-ail.com" class=3D"">mudongliangabcd@gmail.com</a>&gt;<br class=3D"">
-<br class=3D"">
-ntfs_read_inode_mount invokes ntfs_malloc_nofs with zero allocation size. I=
-t triggers one BUG in the __ntfs_malloc function.<br class=3D"">
-<br class=3D"">
-Fix this by adding sanity check on ni-&gt;attr_list_size.<br class=3D"">
-<br class=3D"">
-Reported-by: <a href=3D"mailto:syzbot&#43;3c765c5248797356edaa@syzkaller.ap=
-pspotmail.com" class=3D"">
-syzbot&#43;3c765c5248797356edaa@syzkaller.appspotmail.com</a><br class=3D""=
->
-Signed-off-by: Dongliang Mu &lt;<a href=3D"mailto:mudongliangabcd@gmail.com=
-" class=3D"">mudongliangabcd@gmail.com</a>&gt;<br class=3D"">
-</div>
-</div>
-</blockquote>
-Acked-by: Anton Altaparmakov &lt;<a href=3D"mailto:anton@tuxera.com" class=
-=3D"">anton@tuxera.com</a>&gt;<br class=3D"">
-<blockquote type=3D"cite" class=3D"">
-<div class=3D"">
-<div class=3D"">---<br class=3D"">
-fs/ntfs/inode.c | 4 &#43;&#43;&#43;&#43;<br class=3D"">
-1 file changed, 4 insertions(&#43;)<br class=3D"">
-<br class=3D"">
-diff --git a/fs/ntfs/inode.c b/fs/ntfs/inode.c<br class=3D"">
-index 4474adb393ca..517b71c73aa9 100644<br class=3D"">
---- a/fs/ntfs/inode.c<br class=3D"">
-&#43;&#43;&#43; b/fs/ntfs/inode.c<br class=3D"">
-@@ -1881,6 &#43;1881,10 @@ int ntfs_read_inode_mount(struct inode *vi)<br c=
-lass=3D"">
-<span class=3D"Apple-tab-span" style=3D"white-space:pre"></span><span class=
-=3D"Apple-tab-span" style=3D"white-space:pre"></span>}<br class=3D"">
-<span class=3D"Apple-tab-span" style=3D"white-space:pre"></span><span class=
-=3D"Apple-tab-span" style=3D"white-space:pre"></span>/* Now allocate memory=
- for the attribute list. */<br class=3D"">
-<span class=3D"Apple-tab-span" style=3D"white-space:pre"></span><span class=
-=3D"Apple-tab-span" style=3D"white-space:pre"></span>ni-&gt;attr_list_size =
-=3D (u32)ntfs_attr_size(a);<br class=3D"">
-&#43;<span class=3D"Apple-tab-span" style=3D"white-space:pre"> </span><span=
- class=3D"Apple-tab-span" style=3D"white-space:pre"></span>if (!ni-&gt;attr=
-_list_size) {<br class=3D"">
-&#43;<span class=3D"Apple-tab-span" style=3D"white-space:pre"> </span><span=
- class=3D"Apple-tab-span" style=3D"white-space:pre"></span><span class=3D"A=
-pple-tab-span" style=3D"white-space:pre"></span>ntfs_error(sb, &quot;Attr_l=
-ist_size is zero&quot;);<br class=3D"">
-&#43;<span class=3D"Apple-tab-span" style=3D"white-space:pre"> </span><span=
- class=3D"Apple-tab-span" style=3D"white-space:pre"></span><span class=3D"A=
-pple-tab-span" style=3D"white-space:pre"></span>goto put_err_out;<br class=
-=3D"">
-&#43;<span class=3D"Apple-tab-span" style=3D"white-space:pre"> </span><span=
- class=3D"Apple-tab-span" style=3D"white-space:pre"></span>}<br class=3D"">
-<span class=3D"Apple-tab-span" style=3D"white-space:pre"></span><span class=
-=3D"Apple-tab-span" style=3D"white-space:pre"></span>ni-&gt;attr_list =3D n=
-tfs_malloc_nofs(ni-&gt;attr_list_size);<br class=3D"">
-<span class=3D"Apple-tab-span" style=3D"white-space:pre"></span><span class=
-=3D"Apple-tab-span" style=3D"white-space:pre"></span>if (!ni-&gt;attr_list)=
- {<br class=3D"">
-<span class=3D"Apple-tab-span" style=3D"white-space:pre"></span><span class=
-=3D"Apple-tab-span" style=3D"white-space:pre"></span><span class=3D"Apple-t=
-ab-span" style=3D"white-space:pre"></span>ntfs_error(sb, &quot;Not enough m=
-emory to allocate buffer &quot;<br class=3D"">
--- <br class=3D"">
-2.25.1<br class=3D"">
-<br class=3D"">
-</div>
-</div>
-</blockquote>
-</div>
-<br class=3D"">
-<div class=3D"">
-<div style=3D"color: rgb(0, 0, 0); letter-spacing: normal; orphans: auto; t=
-ext-align: start; text-indent: 0px; text-transform: none; white-space: norm=
-al; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; word-w=
-rap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-=
-space;" class=3D"">
-<div style=3D"color: rgb(0, 0, 0); letter-spacing: normal; orphans: auto; t=
-ext-align: start; text-indent: 0px; text-transform: none; white-space: norm=
-al; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; word-w=
-rap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-=
-space;" class=3D"">
-<div style=3D"color: rgb(0, 0, 0); letter-spacing: normal; orphans: auto; t=
-ext-align: start; text-indent: 0px; text-transform: none; white-space: norm=
-al; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; word-w=
-rap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-=
-space;" class=3D"">
---&nbsp;<br class=3D"">
-Anton Altaparmakov &lt;anton at <a href=3D"http://tuxera.com" class=3D"">tu=
-xera.com</a>&gt; (replace at with @)<br class=3D"">
-Lead in File System Development, Tuxera Inc.,&nbsp;<a href=3D"http://www.tu=
-xera.com/" class=3D"">http://www.tuxera.com/</a><br class=3D"">
-Linux NTFS maintainer</div>
-</div>
-</div>
-</div>
-<br class=3D"">
-</div>
-</div>
-</body>
-</html>
-
---_000_8C2E63FA6DB444E2A8E51C22ADED2178tuxeracom_--
-
-
---===============1347330107938130043==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-
---===============1347330107938130043==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 Linux-NTFS-Dev mailing list
 Linux-NTFS-Dev@lists.sourceforge.net
 https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev
-
---===============1347330107938130043==--
-
