@@ -2,26 +2,26 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 772E14FA799
+	by mail.lfdr.de (Postfix) with ESMTPS id 88B0E4FA79A
 	for <lists+linux-ntfs-dev@lfdr.de>; Sat,  9 Apr 2022 14:21:20 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
 	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1ndA5e-0001JG-Tj; Sat, 09 Apr 2022 12:21:18 +0000
+	id 1ndA5f-0001Jp-1y; Sat, 09 Apr 2022 12:21:18 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <sashal@kernel.org>) id 1nYvHR-0002qv-7v
- for linux-ntfs-dev@lists.sourceforge.net; Mon, 28 Mar 2022 19:43:56 +0000
+ (envelope-from <sashal@kernel.org>) id 1nYv9Y-0004rR-S3
+ for linux-ntfs-dev@lists.sourceforge.net; Mon, 28 Mar 2022 19:44:00 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
  In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=MvexgkXKU4iAnrnVpFSK0y7PWvfl/2+Yu1E83Oh6AQI=; b=kasMXiKBHdELRFeCqkNqR0M/Dp
- WvV5ZdrHJqSdRHMq1hFaDrTs2yDoJWTaFVBM56BCBYlvJvfUtRHVyYg1oHeK5tLnlrgqOJqdr948x
- iO/I+HpIBh+kgruLEzkD6c/jcm6l6+cdBVDXgsulh2zwaBVGZsjeag3cg6WYiB2VNAsw=;
+ bh=MvexgkXKU4iAnrnVpFSK0y7PWvfl/2+Yu1E83Oh6AQI=; b=mjo7HhyR73LhWlWjEKS28PWzev
+ Xl0Mz1HVCMHd0l6dDLtevbCcNv2vC8U0KCJJ7kLyqIdw+cn/SdaQSwh7E+02MFxqbFH7CzveOL918
+ B888lvqFdGDEZZpXLmKppsbrrqDpSASdsH8ok09SuMOMxqEX7NbLPcN83TWykKne+ems=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -29,39 +29,39 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=MvexgkXKU4iAnrnVpFSK0y7PWvfl/2+Yu1E83Oh6AQI=; b=RJGBMzdDp/T24UrW3SMLw+s+9A
- n+fdyb+EZcd/cbx0V7KnyMu8wNEv4Cb2hvLnjUHt25n/6Q/CZbsrXrODaabqhJlLu2yANhOnzblRN
- TWwDKRpxOu4WzpFIM1d/9ybnlE9K0yxBwqjKHz0xxbEEuFx0Eq/t+uFGTSoM8AzC+yAw=;
-Received: from dfw.source.kernel.org ([139.178.84.217])
+ bh=MvexgkXKU4iAnrnVpFSK0y7PWvfl/2+Yu1E83Oh6AQI=; b=LUZpIpVrVGIhVwSWag6ljFqj4C
+ rjiXBCJeUHj2s/dO8GT0yY/hUpudMmo9jm1MTb7IY/UcHnCKtZj+NVMNoa5vNsgu0eWJAF8UD6rQy
+ kWB1/dkY2DFNjtF6KICoZnXhgH0m5GgXZ9CZLFQ4J7Zn0paHDdO2KM6/cWO1MFlzh3t8=;
+Received: from ams.source.kernel.org ([145.40.68.75])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1nYvHM-0006wr-Mq
- for linux-ntfs-dev@lists.sourceforge.net; Mon, 28 Mar 2022 19:43:55 +0000
+ id 1nYvHT-0006xH-KE
+ for linux-ntfs-dev@lists.sourceforge.net; Mon, 28 Mar 2022 19:44:00 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 4DE9C612BE;
- Mon, 28 Mar 2022 19:43:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38CD8C3410F;
- Mon, 28 Mar 2022 19:43:46 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 52D7CB8120F;
+ Mon, 28 Mar 2022 19:43:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F099CC3410F;
+ Mon, 28 Mar 2022 19:43:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1648496627;
+ s=k20201202; t=1648496632;
  bh=ingGZxMaEc9r5alfLYbLed9tPRonczPlahQ4UPFgo+s=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=Uj2udP9xv6uTDYJPEi68+kRBALKcKW+hWXGTEw2tdvp3YOBBrlk4qXtGaatsKVFjE
- vcPm68q+rrPDN7vgMmoQRMJeXknUCUam56FYJk/mFu7Mjfg9nSBTigjbRcp4NZTTV3
- yXVZoF5OSfdeq2K3C03B/YQ/tUiQvvg/lNQOtsHkI7ud/6VmBjf4wNx/ELAk5P8UmL
- PXZFSiSWyDIpAI97j4n/IxwulDnGcIdTZYftt1TyNFYwjGinpvJ7kfkXY2h7xaLunK
- +gfVLCdvPc/hh7YD3gNRP7JwDQqvVkbKAgdiKZjfVmRSnkoB+t3P6csIEEIoRAsFxh
- I11AmU0xlUycQ==
+ b=pZV3WP2VKPTjmjJFBcO+8pWbwtEftxB0eDC2nhK4MFXNVEu2XBn81igEkLohJJMXz
+ Of9A1dW6slpGSAgcCDzsZWMLoCJkeS6uLSubFSx3eiCHxOeyhwgnMSBcFyV7XaL2mA
+ 7ijCgnwx7JtV/BDYGMdRGrbFcA4mMFOoswjtaCPuOqIinjDrMYg9tLMcmoG1iGhSVh
+ jIC5HxjyMMtl+tjtiZZDYqSvkYL2EkRYl9V+Kk5TRwzpwMuMjc5dRu8Dx41SeUybIm
+ B//ufYlmQ45yZcCwFNdR8jABnKa4cjJK4YhEt6bccnLFhi4Dc7PZ+0E3qlURe+e3py
+ bwD6+MPuANu9g==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Date: Mon, 28 Mar 2022 15:43:43 -0400
-Message-Id: <20220328194343.1586624-2-sashal@kernel.org>
+Date: Mon, 28 Mar 2022 15:43:47 -0400
+Message-Id: <20220328194347.1586667-2-sashal@kernel.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220328194343.1586624-1-sashal@kernel.org>
-References: <20220328194343.1586624-1-sashal@kernel.org>
+In-Reply-To: <20220328194347.1586667-1-sashal@kernel.org>
+References: <20220328194347.1586667-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -81,7 +81,7 @@ X-Spam-Report: Spam detection software,
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
- high trust [139.178.84.217 listed in list.dnswl.org]
+ high trust [145.40.68.75 listed in list.dnswl.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
@@ -93,9 +93,9 @@ X-Spam-Report: Spam detection software,
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  -0.0 T_SCC_BODY_TEXT_LINE   No description available.
  -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1nYvHM-0006wr-Mq
+X-Headers-End: 1nYvHT-0006xH-KE
 X-Mailman-Approved-At: Sat, 09 Apr 2022 12:21:14 +0000
-Subject: [Linux-NTFS-Dev] [PATCH AUTOSEL 4.14 2/2] ntfs: add sanity check on
+Subject: [Linux-NTFS-Dev] [PATCH AUTOSEL 4.9 2/2] ntfs: add sanity check on
  allocation size
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
