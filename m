@@ -2,26 +2,26 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EE924FA798
+	by mail.lfdr.de (Postfix) with ESMTPS id 772E14FA799
 	for <lists+linux-ntfs-dev@lfdr.de>; Sat,  9 Apr 2022 14:21:20 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
 	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1ndA5e-0001J7-OS; Sat, 09 Apr 2022 12:21:18 +0000
+	id 1ndA5e-0001JG-Tj; Sat, 09 Apr 2022 12:21:18 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <sashal@kernel.org>) id 1nYvHP-0000rK-9i
- for linux-ntfs-dev@lists.sourceforge.net; Mon, 28 Mar 2022 19:43:53 +0000
+ (envelope-from <sashal@kernel.org>) id 1nYvHR-0002qv-7v
+ for linux-ntfs-dev@lists.sourceforge.net; Mon, 28 Mar 2022 19:43:56 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
  In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=e6SD9I6ArYQiLHpk6iCJQyDo+1CGFn3ZwU7+r9OQUVI=; b=TxPybuE4FviKkJZp4t+kjUKBqp
- gW9di+vvgPM81Shx+NDTpHwgV3aEQneI5TXxZ75rRqRFakKROZeW4vZFvINPRMn6BCoo1UMh9zw0P
- k7SZS1PyD4NCvymNhlBOunb2gFf1O6uJTkteG8/ds2EPchJegfzPQFEZY+8NDhpXVd94=;
+ bh=MvexgkXKU4iAnrnVpFSK0y7PWvfl/2+Yu1E83Oh6AQI=; b=kasMXiKBHdELRFeCqkNqR0M/Dp
+ WvV5ZdrHJqSdRHMq1hFaDrTs2yDoJWTaFVBM56BCBYlvJvfUtRHVyYg1oHeK5tLnlrgqOJqdr948x
+ iO/I+HpIBh+kgruLEzkD6c/jcm6l6+cdBVDXgsulh2zwaBVGZsjeag3cg6WYiB2VNAsw=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -29,39 +29,39 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=e6SD9I6ArYQiLHpk6iCJQyDo+1CGFn3ZwU7+r9OQUVI=; b=aEvGpyrA8qS6Ac5s48pH6qW+jb
- XaK9X6JPO4WhMvRLuDSMRol0D/T5xjlogEBEQIhFp7pR6hiUFcczeHrr/W1tuP5JlJGBud1cj/X7n
- Nh/HBiV/dxctlhzXp1RlEkCDQVMifToEp3vIzl86x5L2zNcfBfZ2n0FcVIP1v80w9GGk=;
+ bh=MvexgkXKU4iAnrnVpFSK0y7PWvfl/2+Yu1E83Oh6AQI=; b=RJGBMzdDp/T24UrW3SMLw+s+9A
+ n+fdyb+EZcd/cbx0V7KnyMu8wNEv4Cb2hvLnjUHt25n/6Q/CZbsrXrODaabqhJlLu2yANhOnzblRN
+ TWwDKRpxOu4WzpFIM1d/9ybnlE9K0yxBwqjKHz0xxbEEuFx0Eq/t+uFGTSoM8AzC+yAw=;
 Received: from dfw.source.kernel.org ([139.178.84.217])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1nYvHJ-00Ewr4-CM
- for linux-ntfs-dev@lists.sourceforge.net; Mon, 28 Mar 2022 19:43:53 +0000
+ id 1nYvHM-0006wr-Mq
+ for linux-ntfs-dev@lists.sourceforge.net; Mon, 28 Mar 2022 19:43:55 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 687526131C;
- Mon, 28 Mar 2022 19:43:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E85D0C34100;
- Mon, 28 Mar 2022 19:43:41 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 4DE9C612BE;
+ Mon, 28 Mar 2022 19:43:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38CD8C3410F;
+ Mon, 28 Mar 2022 19:43:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1648496622;
- bh=XQomRRf5KXr6nqUdmC6zMldedcQ+i/ySkJX5ypQsNo0=;
+ s=k20201202; t=1648496627;
+ bh=ingGZxMaEc9r5alfLYbLed9tPRonczPlahQ4UPFgo+s=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=Co8Pfq0lvnR6qN78UYLtYOsSU4Gx0tNhFLzlie28RIuE1/yRFwzofvQfVwTFkEyT/
- pgc2E4iL6tA6vPHCnxu/DqS0BeoDGXwNSQMZnOtnpJiK2DN0/QKiF6e28k60DI6w+x
- EGBm3ROK18zj34tPZLizFymgzbr6bOuhNG+zZWqERXoizc1Nj9CEAzZjM0XarXr7av
- xJOSvRNRCbBZ3TiuuFg3fdPlOSPUeYcWC6ZN+7VMQ9ev+tlV0N824FOqyk1hH5MKE9
- NgUXGw95L6cJ0ciTCS/G8aXhH6qGwvEYVxSVoVTEbay65VQIFD6DJs+TktyUsh9j/2
- fUHFxxlQeXl5A==
+ b=Uj2udP9xv6uTDYJPEi68+kRBALKcKW+hWXGTEw2tdvp3YOBBrlk4qXtGaatsKVFjE
+ vcPm68q+rrPDN7vgMmoQRMJeXknUCUam56FYJk/mFu7Mjfg9nSBTigjbRcp4NZTTV3
+ yXVZoF5OSfdeq2K3C03B/YQ/tUiQvvg/lNQOtsHkI7ud/6VmBjf4wNx/ELAk5P8UmL
+ PXZFSiSWyDIpAI97j4n/IxwulDnGcIdTZYftt1TyNFYwjGinpvJ7kfkXY2h7xaLunK
+ +gfVLCdvPc/hh7YD3gNRP7JwDQqvVkbKAgdiKZjfVmRSnkoB+t3P6csIEEIoRAsFxh
+ I11AmU0xlUycQ==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Date: Mon, 28 Mar 2022 15:43:38 -0400
-Message-Id: <20220328194338.1586587-2-sashal@kernel.org>
+Date: Mon, 28 Mar 2022 15:43:43 -0400
+Message-Id: <20220328194343.1586624-2-sashal@kernel.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220328194338.1586587-1-sashal@kernel.org>
-References: <20220328194338.1586587-1-sashal@kernel.org>
+In-Reply-To: <20220328194343.1586624-1-sashal@kernel.org>
+References: <20220328194343.1586624-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -93,9 +93,9 @@ X-Spam-Report: Spam detection software,
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  -0.0 T_SCC_BODY_TEXT_LINE   No description available.
  -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1nYvHJ-00Ewr4-CM
+X-Headers-End: 1nYvHM-0006wr-Mq
 X-Mailman-Approved-At: Sat, 09 Apr 2022 12:21:14 +0000
-Subject: [Linux-NTFS-Dev] [PATCH AUTOSEL 4.19 2/2] ntfs: add sanity check on
+Subject: [Linux-NTFS-Dev] [PATCH AUTOSEL 4.14 2/2] ntfs: add sanity check on
  allocation size
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -140,10 +140,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 4 insertions(+)
 
 diff --git a/fs/ntfs/inode.c b/fs/ntfs/inode.c
-index e844b43f2eac..0acd1f02b146 100644
+index 8cd134750ebb..4150b3633f77 100644
 --- a/fs/ntfs/inode.c
 +++ b/fs/ntfs/inode.c
-@@ -1906,6 +1906,10 @@ int ntfs_read_inode_mount(struct inode *vi)
+@@ -1915,6 +1915,10 @@ int ntfs_read_inode_mount(struct inode *vi)
  		}
  		/* Now allocate memory for the attribute list. */
  		ni->attr_list_size = (u32)ntfs_attr_size(a);
