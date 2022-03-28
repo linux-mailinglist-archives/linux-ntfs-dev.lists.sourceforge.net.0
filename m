@@ -2,26 +2,26 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 260574FA793
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D7F84FA795
 	for <lists+linux-ntfs-dev@lfdr.de>; Sat,  9 Apr 2022 14:21:20 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
 	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1ndA5e-0001Il-Es; Sat, 09 Apr 2022 12:21:17 +0000
+	id 1ndA5e-0001Is-Jd; Sat, 09 Apr 2022 12:21:17 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <sashal@kernel.org>) id 1nYvHD-0002pB-EK
- for linux-ntfs-dev@lists.sourceforge.net; Mon, 28 Mar 2022 19:43:42 +0000
+ (envelope-from <sashal@kernel.org>) id 1nYvHI-0002q3-6q
+ for linux-ntfs-dev@lists.sourceforge.net; Mon, 28 Mar 2022 19:43:47 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
  In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=RnFQBQZaY9z9oeml4EVopD4uo7CHrmI/otJoxe3LfoA=; b=U8MhVzPUFa99ByHZH0+zykvdF/
- ZEcqB5EV4FgeiREz2bojopmQQrq9KGhRq+LkjQaB8HU3bS3ugdpBB6QE8m2fUmSZrfzYnK+SJmwLh
- dBFOWLbHWkHY46GEiv6Cgukej3E+KZ/krehBRS/1xES9cHM9RCPxrLFZYX6we/uP+T0Y=;
+ bh=RnFQBQZaY9z9oeml4EVopD4uo7CHrmI/otJoxe3LfoA=; b=nVgu5iZ5yUvK1E5tUs+DuGa+Q+
+ 4V17xR+oI10QhDTLt2EMqSb0sJOM9MnVhatvn9JOgMjT5PqtNnk0grnkMF5Oh/RLg/wRMhAL+XxyO
+ ATPfANmSlGHSr5NY8ikmm4TRVT+gNUYdgzArHYm34oCy+SD0WAqoATaBiNfM2snptICo=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -29,39 +29,39 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=RnFQBQZaY9z9oeml4EVopD4uo7CHrmI/otJoxe3LfoA=; b=Ffohc5R3rLXsJ6V8NxyeqPWote
- 6+uLNC5IPyd8ph7VskJCcrLKxJULwOqtasrU3bwOMU9KJYgpI9ORwmHwOdnH8fzKqIsOuZUm+HLrz
- cWANW9NAsTTDdZQ5+qjOHad05/tMgZYZnY41+rixNqQGQ+Ki/lpFgkfCZ0bN6H6tOd2U=;
+ bh=RnFQBQZaY9z9oeml4EVopD4uo7CHrmI/otJoxe3LfoA=; b=YjrTO+b/lNnaBsedeEYpa2T+NU
+ V5Q1vOQQO5CeOEr5OLpoZsnJLDJ0YdaFLxLjxVqDY/7mX6LgUBc69VTa910Ft0HGfzUHFiw7/Jvk5
+ n0qphPmdRdRo6HuZt+kVG8U4NVYuvKChclJ5ABhFF/5/G4Avu6ou9jL+oBtMcOqv7uZE=;
 Received: from ams.source.kernel.org ([145.40.68.75])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1nYvHB-0006w1-66
- for linux-ntfs-dev@lists.sourceforge.net; Mon, 28 Mar 2022 19:43:41 +0000
+ id 1nYvHG-0006wK-5w
+ for linux-ntfs-dev@lists.sourceforge.net; Mon, 28 Mar 2022 19:43:46 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id E4C19B81219;
- Mon, 28 Mar 2022 19:43:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5161C34112;
- Mon, 28 Mar 2022 19:43:32 +0000 (UTC)
+ by ams.source.kernel.org (Postfix) with ESMTPS id D7CC7B81211;
+ Mon, 28 Mar 2022 19:43:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61E19C3410F;
+ Mon, 28 Mar 2022 19:43:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1648496613;
+ s=k20201202; t=1648496618;
  bh=JDgnhN3MSlCM+3tBS3nKBXEXX80jRKTZVSXwNmSC/NM=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=SU+Po519ejzLwzJu1YguvXUtPO7OHxOmjLPpUeZn93OiCAa+3SSf+FNyQT/El2Yw0
- cAkCbKpQg6ZjEdge8bDPUp9FyTIIIP9w4juB2FxA/Fhbua5M5jO5wLQuhIKtZ00Obd
- UM1E3nxjjgZC8J5Eh46lLrLH3HhiPWY+6DY7dJ5Z666n3utNz4wVyEhBocRGQAs9hu
- 09WQwaa1pb/jN3D9AchgM+TqHXsk1+GcKl1ULrBe92BMliJdoEwRYVlB7iFgZQwYfq
- zfY9SjHGCbycpP3t8I8z3+HZTjDv6YdtvBVlXzomwH1UzyZFNB5KJQZ5W2Pp7tVAUG
- PheHjS+HEOqiw==
+ b=esJcMItHETTRiJzns4eLzvRTSMUURLZCx3Rp0Vk3yGt5ISePtb8MYrTDhXYkfJYP8
+ XGUNwH+TS6LtFJQG8NWp89t06iLVRO8VIH0T7/K6klJPDPZEUT+L3zFaZJOGRCeQqX
+ r/ANWe57VKhr0QEWC3wRoLCPhbDSPD5HgFbjQwbx74cYG/6PttgmFptKKTQzLINWjM
+ QpdnU+S1FPTGBqDoAq5OGlBo7AVFa8v5eOlA/g2rrmgTeomUQO07P5Jd2RTIebJ3rQ
+ To0LpkKtqnREwYYwbJh+YTi1GIexk1h1k1QWdrUSEtBMI5egJ7vAlikkSP1KxCtC2l
+ jxijX3fj6r27Q==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Date: Mon, 28 Mar 2022 15:43:22 -0400
-Message-Id: <20220328194322.1586401-8-sashal@kernel.org>
+Date: Mon, 28 Mar 2022 15:43:33 -0400
+Message-Id: <20220328194334.1586542-2-sashal@kernel.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220328194322.1586401-1-sashal@kernel.org>
-References: <20220328194322.1586401-1-sashal@kernel.org>
+In-Reply-To: <20220328194334.1586542-1-sashal@kernel.org>
+References: <20220328194334.1586542-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -93,9 +93,9 @@ X-Spam-Report: Spam detection software,
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  -0.0 T_SCC_BODY_TEXT_LINE   No description available.
  -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1nYvHB-0006w1-66
+X-Headers-End: 1nYvHG-0006wK-5w
 X-Mailman-Approved-At: Sat, 09 Apr 2022 12:21:14 +0000
-Subject: [Linux-NTFS-Dev] [PATCH AUTOSEL 5.10 8/8] ntfs: add sanity check on
+Subject: [Linux-NTFS-Dev] [PATCH AUTOSEL 5.4 2/2] ntfs: add sanity check on
  allocation size
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
