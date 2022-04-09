@@ -2,110 +2,126 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA8224FAB03
+	by mail.lfdr.de (Postfix) with ESMTPS id BD2D34FAB04
 	for <lists+linux-ntfs-dev@lfdr.de>; Sat,  9 Apr 2022 23:52:06 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
 	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1ndJ00-0005OB-UC; Sat, 09 Apr 2022 21:52:04 +0000
+	id 1ndJ01-0005OG-2i; Sat, 09 Apr 2022 21:52:04 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <michalorzel.eng@gmail.com>) id 1ndB1A-0000cu-OS
- for linux-ntfs-dev@lists.sourceforge.net; Sat, 09 Apr 2022 13:20:43 +0000
+ (envelope-from <trix@redhat.com>) id 1ndDZC-000194-9F
+ for linux-ntfs-dev@lists.sourceforge.net; Sat, 09 Apr 2022 16:04:01 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=2IYDe10dmsGy8DJcaB3vGWy7J8LhPKTO6Cy2zoRK/ho=; b=PBsOS7yGI9F66mcBbTEQcyz054
- I2E3OftkGc13OgcLvlCji/somaFKzbCnFDXWT7Uyqh7vOhhgcSJGgdKAyzyGNMBE95+3Owv+Softm
- A7mZehjhtSzWtiL28cmiWZ2wkt4WCRlC23XlpwpKTNWE0W2IvaJlVuYrdVfOIL5OFVkc=;
+ bh=qtkyBcEIcgGitzE6/jMR0BHvrVCs5FpvV9wdXJQk7lw=; b=kZNHQ5L7EN21FCpIqelMf80VHm
+ gx0MamzgpYxqpG4yG281+JMe5TfnBSvWAt1FFclJdayTVW2TB+1mLDC452eA7bZUwisBHGvFFbSWQ
+ uiTW3ruKIM8XmX0bYAuCYhwyzWWDSI/iswfhc05k9uXCe+FCkSzPdSQoeG4kyosl0hRQ=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
- Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:Date:
+ Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=2IYDe10dmsGy8DJcaB3vGWy7J8LhPKTO6Cy2zoRK/ho=; b=JPixwipgqPrTEkg7WM7byrD30j
- tnSNNBkEn0AJo/cm5fiNmMpKMvd5HZTvG9TmX7Q/48N3Jc0hObDF3yVlbX74XErASRvGjX+8wBkYV
- Kc9acZY0W5zugS9CUQhauKhoh2OjU3LmLH3rikToSNQulpa49G2YSGat2IQLo5jhz9FQ=;
-Received: from mail-lj1-f173.google.com ([209.85.208.173])
+ bh=qtkyBcEIcgGitzE6/jMR0BHvrVCs5FpvV9wdXJQk7lw=; b=AlVvBtM5etFziLyNMt9RGYEZo/
+ YAELkM6eNS6DhtbhDM8xAzQCuk87Kz3wDpUio9RPthOzFN2t0d6ouDfFrvZCDpi1/eUPQQ+bxuoBP
+ zY1jtxkArq6u1MAkBOuXmIKgFPNcNK/OXgB+Kmwc5a7RrRISgu+3ZIaACC1XgiovPP+0=;
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.94.2)
- id 1ndB15-00Aqa3-9E
- for linux-ntfs-dev@lists.sourceforge.net; Sat, 09 Apr 2022 13:20:43 +0000
-Received: by mail-lj1-f173.google.com with SMTP id b43so14651653ljr.10
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
+ id 1ndDZ5-00AxGR-9Z
+ for linux-ntfs-dev@lists.sourceforge.net; Sat, 09 Apr 2022 16:04:01 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1649520227;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=qtkyBcEIcgGitzE6/jMR0BHvrVCs5FpvV9wdXJQk7lw=;
+ b=So9ZYsvUUYFv0+tFpjXOlo0NjZ5sovPm3l8uLkZ+YqXt+U6SBPd1XiLb5v9GdlTFWdWDj/
+ y0n25AHTzYXzpt8IBISMDnPHY1xM6otzEL6yCINzraP6hYamPGiqL7D2/QHuz7shCnI0tx
+ ib0n7SpHLhmjNPPJuyzlhqkrQ0IOel8=
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com
+ [209.85.160.200]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-626-qzvH8ZoZMZWWpRdIyiqA-A-1; Sat, 09 Apr 2022 12:03:44 -0400
+X-MC-Unique: qzvH8ZoZMZWWpRdIyiqA-A-1
+Received: by mail-qt1-f200.google.com with SMTP id
+ cb16-20020a05622a1f9000b002ebce74a888so5952131qtb.15
  for <linux-ntfs-dev@lists.sourceforge.net>;
- Sat, 09 Apr 2022 06:20:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=message-id:date:mime-version:user-agent:subject:content-language:to
- :cc:references:from:in-reply-to:content-transfer-encoding;
- bh=2IYDe10dmsGy8DJcaB3vGWy7J8LhPKTO6Cy2zoRK/ho=;
- b=mt++UCES/exeXjRVb7JPbS3ZpWcOYQXe3eKjgYEAFS5DUVNUDSulsQ5FgaDVplCXiC
- KZcGfJH8V52LSkVPb7LCbOF+vWcVODy6iXS4T1iRTkcVs8DvdHD2pDqDBBweVW9W3MZ/
- cdJYn+WovG1sDY+XNVYyhIAuXjzpP+9bc4k5fggvVY20NxVdZiQ2/9iolFmCx7rZiMtH
- b5MNtWORQFQuM/yFkRa6cgthe7iCHumWCc6XUDX5wG9D4pAW6K6W20NH2NnIkfLIN3sW
- 2b4GZgPyjT+lZKGB4giCgOnBv5rBp4QHkSaf4y0AAP0lHffRiFg/ofy1R5BBq5Ys7cC0
- wNQQ==
+ Sat, 09 Apr 2022 09:03:44 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:in-reply-to
- :content-transfer-encoding;
- bh=2IYDe10dmsGy8DJcaB3vGWy7J8LhPKTO6Cy2zoRK/ho=;
- b=UO6uhtVzG9e1AJxdcdidqWKWD1Q82+LDcYmuzpLHKz4WlFaZppNExQzhZnFbcG0qXs
- SeskJE4HKdrtJglneulBOgfatait+kefaq+yokT0u6wXf/KbGDeHEe69OpfkiyX3YBXj
- uhNw4wRZZiQtBYl6Gb4w6vZo9NLq2AlM2A6MxJ0SuF1PapQLHq/Wv8Om1+tvXpXbLWCE
- hSBRQfMRaDTWNdCqBC0Q1eJVJDNN6xPdI6GC2ByoSs9iNjIkPEj1gSreX+bWf6m5x5f/
- CJtC9tJbdvEDBa05xoV4TiFOBksheRj7NtrxV418e7y+yC379qrRgtX68VxufUxVyz33
- vDIQ==
-X-Gm-Message-State: AOAM532/M+YtFeC1Kph7QKybJzpTSKxmKzuFHZqdixOIhc1WUyI7iNj6
- 8Cs754c0rrSCjngAG5kA2TU=
-X-Google-Smtp-Source: ABdhPJyJy8HuDMh8C0fCMF8KqYpun+F3VqSjI45xB1lID679uOi5hdADtkguk2UcWKQritzJA7ggGA==
-X-Received: by 2002:a2e:81da:0:b0:24b:4e65:e3e0 with SMTP id
- s26-20020a2e81da000000b0024b4e65e3e0mr4934755ljg.483.1649510432658; 
- Sat, 09 Apr 2022 06:20:32 -0700 (PDT)
-Received: from [192.168.31.104] (static-91-225-135-18.devs.futuro.pl.
- [91.225.135.18]) by smtp.gmail.com with ESMTPSA id
- s11-20020a2e9c0b000000b0024ace83744asm2527195lji.116.2022.04.09.06.20.31
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-transfer-encoding
+ :content-language;
+ bh=qtkyBcEIcgGitzE6/jMR0BHvrVCs5FpvV9wdXJQk7lw=;
+ b=uX7em6nvZ4W6y+G7Jx9qlVHFkAZ7k+GgmH82vSm5EEQXl1+5kEUkx7mk/4B2qlmvbw
+ dG2eIsC30XdLyZ7VzPeCE8LCtQ8w5kfPI3O/ONvV/lyaHltxD3PCA5HhsDzJDpUz8ijt
+ 0uL0IiG6Xqo6UtkotL4DSd7gb8nvMeUylvQ6IL3H3hTth/6LQeLqdeC0OFN3CIf7x2HU
+ knuZ4qmnGhyUEucPU3q3sj0eTvCf4D3peYfj+m/ytA8cW9m6s0+bpj7Jl4Jic/+Qui+U
+ gAoxeTzL1IRNwCRdk12NssbPmL4fK+s6/dpHhEKs/w4ZiYo3yuhkzz+Ky7WPn4aLY+Hy
+ pRlA==
+X-Gm-Message-State: AOAM531htq0J3bpkqV3u1Nggj8kjW2klu7DtbchYJmsuA0a3aYucnidX
+ 7oDurOQjaUPulMGDIzpnZi9IY5F8JWTVYTg+xpVlnh5fVn08PQsKjsm44sSgHsM/pnMf30/dUZx
+ Pc1w9GAHJSwTHiYQnJYok5UkdI/2anuK9gg0=
+X-Received: by 2002:a05:620a:4694:b0:67e:ca07:4d46 with SMTP id
+ bq20-20020a05620a469400b0067eca074d46mr16310330qkb.624.1649520223782; 
+ Sat, 09 Apr 2022 09:03:43 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJy9gLy9N+EtbprXxWppsB8/pZMfaSy4i+GT0eKsrmpJpPW6wWHSwAV/TaLkqZlqoRiGySXFDw==
+X-Received: by 2002:a05:620a:4694:b0:67e:ca07:4d46 with SMTP id
+ bq20-20020a05620a469400b0067eca074d46mr16310304qkb.624.1649520223470; 
+ Sat, 09 Apr 2022 09:03:43 -0700 (PDT)
+Received: from localhost.localdomain (024-205-208-113.res.spectrum.com.
+ [24.205.208.113]) by smtp.gmail.com with ESMTPSA id
+ o6-20020a05620a22c600b0067d247816eesm15150840qki.85.2022.04.09.09.03.41
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sat, 09 Apr 2022 06:20:32 -0700 (PDT)
-Message-ID: <446a3e88-4c14-300d-862a-1279274c3760@gmail.com>
-Date: Sat, 9 Apr 2022 15:20:29 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Content-Language: en-US
-To: Tom Rix <trix@redhat.com>, Jens Axboe <axboe@kernel.dk>,
+ Sat, 09 Apr 2022 09:03:43 -0700 (PDT)
+To: Michal Orzel <michalorzel.eng@gmail.com>, Jens Axboe <axboe@kernel.dk>,
  "Richard Russon (FlatCap)" <ldm@flatcap.org>,
  Nathan Chancellor <nathan@kernel.org>,
  Nick Desaulniers <ndesaulniers@google.com>
 References: <20220409101933.207157-1-michalorzel.eng@gmail.com>
  <20220409101933.207157-2-michalorzel.eng@gmail.com>
  <a56d1184-d399-d5f8-765f-5a4f35dacd5e@redhat.com>
-From: Michal Orzel <michalorzel.eng@gmail.com>
-In-Reply-To: <a56d1184-d399-d5f8-765f-5a4f35dacd5e@redhat.com>
-X-Spam-Score: -2.2 (--)
+ <446a3e88-4c14-300d-862a-1279274c3760@gmail.com>
+From: Tom Rix <trix@redhat.com>
+Message-ID: <c2c40f00-777c-f19a-eb5f-6e978ddd6bcf@redhat.com>
+Date: Sat, 9 Apr 2022 09:03:40 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
+MIME-Version: 1.0
+In-Reply-To: <446a3e88-4c14-300d-862a-1279274c3760@gmail.com>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=trix@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+X-Spam-Score: -3.6 (---)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hi Tom, > > On 4/9/22 3:19 AM, Michal Orzel wrote: >> Get
- rid of redundant assignments which end up in values not being >> read either
- because they are overwritten or the function ends. > > This log is the sa
- [...] Content analysis details:   (-2.2 points, 6.0 required)
+ Content preview:  On 4/9/22 6:20 AM, Michal Orzel wrote: > Hi Tom,
+ > >> On 4/9/22
+ 3:19 AM, Michal Orzel wrote: >>> Get rid of redundant assignments which end
+ up in values not being >>> read either because they are over [...] 
+ Content analysis details:   (-3.6 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.208.173 listed in list.dnswl.org]
+ 0.0 RCVD_IN_MSPIKE_H5      RBL: Excellent reputation (+5)
+ [170.10.133.124 listed in wl.mailspike.net]
+ -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
+ low trust [170.10.133.124 listed in list.dnswl.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
- provider [michalorzel.eng[at]gmail.com]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
@@ -114,10 +130,10 @@ X-Spam-Report: Spam detection software,
  valid
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.208.173 listed in wl.mailspike.net]
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
  -2.0 NICE_REPLY_A           Looks like a legit reply (A)
-X-Headers-End: 1ndB15-00Aqa3-9E
+ -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1ndDZ5-00AxGR-9Z
 X-Mailman-Approved-At: Sat, 09 Apr 2022 21:52:03 +0000
 Subject: Re: [Linux-NTFS-Dev] [PATCH] block: Remove redundant assignments
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
@@ -134,39 +150,32 @@ List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>,
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
 Cc: linux-block@vger.kernel.org, linux-ntfs-dev@lists.sourceforge.net,
  llvm@lists.linux.dev, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-Hi Tom,
-
-> 
-> On 4/9/22 3:19 AM, Michal Orzel wrote:
->> Get rid of redundant assignments which end up in values not being
->> read either because they are overwritten or the function ends.
-> 
-> This log is the same as your last patch.
-> 
-> Instead of a general statement on deadstores, a more specific
-> 
-> analysis of the setting being removed would be helpful.
-> 
-> This will mean splitting the patch to match the analysis.
-> 
-> Tom
-> 
-
-I think that this explanation in a commit is enough for such a trivial patch.
-It informs that we are fixing clang-tidy findings related to deadstores
-in a block subsystem. What analysis would you want to see?
-Something like "Remove deadstore assignment ret = -EINVAL  in a function bio_map_user_iov" ?
-I think that it will create too much of not needed overhead.
-
-Cheers,
-Michal
-
-
-_______________________________________________
-Linux-NTFS-Dev mailing list
-Linux-NTFS-Dev@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev
+Ck9uIDQvOS8yMiA2OjIwIEFNLCBNaWNoYWwgT3J6ZWwgd3JvdGU6Cj4gSGkgVG9tLAo+Cj4+IE9u
+IDQvOS8yMiAzOjE5IEFNLCBNaWNoYWwgT3J6ZWwgd3JvdGU6Cj4+PiBHZXQgcmlkIG9mIHJlZHVu
+ZGFudCBhc3NpZ25tZW50cyB3aGljaCBlbmQgdXAgaW4gdmFsdWVzIG5vdCBiZWluZwo+Pj4gcmVh
+ZCBlaXRoZXIgYmVjYXVzZSB0aGV5IGFyZSBvdmVyd3JpdHRlbiBvciB0aGUgZnVuY3Rpb24gZW5k
+cy4KPj4gVGhpcyBsb2cgaXMgdGhlIHNhbWUgYXMgeW91ciBsYXN0IHBhdGNoLgo+Pgo+PiBJbnN0
+ZWFkIG9mIGEgZ2VuZXJhbCBzdGF0ZW1lbnQgb24gZGVhZHN0b3JlcywgYSBtb3JlIHNwZWNpZmlj
+Cj4+Cj4+IGFuYWx5c2lzIG9mIHRoZSBzZXR0aW5nIGJlaW5nIHJlbW92ZWQgd291bGQgYmUgaGVs
+cGZ1bC4KPj4KPj4gVGhpcyB3aWxsIG1lYW4gc3BsaXR0aW5nIHRoZSBwYXRjaCB0byBtYXRjaCB0
+aGUgYW5hbHlzaXMuCj4+Cj4+IFRvbQo+Pgo+IEkgdGhpbmsgdGhhdCB0aGlzIGV4cGxhbmF0aW9u
+IGluIGEgY29tbWl0IGlzIGVub3VnaCBmb3Igc3VjaCBhIHRyaXZpYWwgcGF0Y2guCj4gSXQgaW5m
+b3JtcyB0aGF0IHdlIGFyZSBmaXhpbmcgY2xhbmctdGlkeSBmaW5kaW5ncyByZWxhdGVkIHRvIGRl
+YWRzdG9yZXMKPiBpbiBhIGJsb2NrIHN1YnN5c3RlbS4gV2hhdCBhbmFseXNpcyB3b3VsZCB5b3Ug
+d2FudCB0byBzZWU/Cj4gU29tZXRoaW5nIGxpa2UgIlJlbW92ZSBkZWFkc3RvcmUgYXNzaWdubWVu
+dCByZXQgPSAtRUlOVkFMICBpbiBhIGZ1bmN0aW9uIGJpb19tYXBfdXNlcl9pb3YiID8KPiBJIHRo
+aW5rIHRoYXQgaXQgd2lsbCBjcmVhdGUgdG9vIG11Y2ggb2Ygbm90IG5lZWRlZCBvdmVyaGVhZC4K
+ClRoZSBjb21waWxlciBzaG91bGQgcmVtb3ZlIHRoZXNlIGFscmVhZHkuwqAgQWxsIG9mIHRoZSBz
+dGF0aWMgYW5hbHl6ZXJzIApwcm9kdWNlIGZhbHNlIHBvc2l0aXZlcywgaWYgeW91IGRvIG5vdCBw
+cm92aWRlIGFuYWx5c2lzIHRoZSByZXZpZXdlciBoYXMgCnRvIGFzc3VtZSB5b3UgaGF2ZSBub3Qg
+ZG9uZSBhbnkgYW5kIGhhcyB0byBkbyB0aGUgZmFsc2UgcG9zaXRpdmUgCmFuYWx5c2lzIHRoZW1z
+ZWx2ZXMuIFRoaXMgYnVyZGVucyB0aGUgcmV2aWV3ZXIgZm9yIHNvbWV0aGluZyBvZiBzbWFsbCAK
+dmFsdWUgdGhhdCBjYW4gYmUgZGlzbWlzc2VkIGFzIGNodXJuLgoKVG9tCgo+Cj4gQ2hlZXJzLAo+
+IE1pY2hhbAo+CgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCkxpbnV4LU5URlMtRGV2IG1haWxpbmcgbGlzdApMaW51eC1OVEZTLURldkBsaXN0cy5zb3Vy
+Y2Vmb3JnZS5uZXQKaHR0cHM6Ly9saXN0cy5zb3VyY2Vmb3JnZS5uZXQvbGlzdHMvbGlzdGluZm8v
+bGludXgtbnRmcy1kZXYK
