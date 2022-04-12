@@ -2,88 +2,84 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD2D34FAB04
-	for <lists+linux-ntfs-dev@lfdr.de>; Sat,  9 Apr 2022 23:52:06 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
-	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 826714FF2EE
+	for <lists+linux-ntfs-dev@lfdr.de>; Wed, 13 Apr 2022 11:07:18 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1ndJ01-0005OG-2i; Sat, 09 Apr 2022 21:52:04 +0000
+	id 1neYy5-0002al-8b; Wed, 13 Apr 2022 09:07:15 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <trix@redhat.com>) id 1ndDZC-000194-9F
- for linux-ntfs-dev@lists.sourceforge.net; Sat, 09 Apr 2022 16:04:01 +0000
+ (envelope-from <michalorzel.eng@gmail.com>) id 1neINF-0007Lt-Tw
+ for linux-ntfs-dev@lists.sourceforge.net; Tue, 12 Apr 2022 15:24:10 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
+ From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=qtkyBcEIcgGitzE6/jMR0BHvrVCs5FpvV9wdXJQk7lw=; b=kZNHQ5L7EN21FCpIqelMf80VHm
- gx0MamzgpYxqpG4yG281+JMe5TfnBSvWAt1FFclJdayTVW2TB+1mLDC452eA7bZUwisBHGvFFbSWQ
- uiTW3ruKIM8XmX0bYAuCYhwyzWWDSI/iswfhc05k9uXCe+FCkSzPdSQoeG4kyosl0hRQ=;
+ bh=VStffjPSoNuLVmgDL/ileLhw4nppALw1IFNpnjw+ytU=; b=mivUfGcv1Uyn50nQxwXNjaLUXs
+ hQj4zCqZyrOogrSt1MQkad1aL3fkKzQB4Ai6+BaRAXVLMzJFLIg6g4eJ9Krp4OO61KWtXgWOyS6Bi
+ MdP0CZ8OlY199tbq1iYN9Bv5MYOhS1fiXwdtguvxdpVoO9+mtOF2kLLih+zrhYSwS/Qo=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:Date:
- Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+ Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=qtkyBcEIcgGitzE6/jMR0BHvrVCs5FpvV9wdXJQk7lw=; b=AlVvBtM5etFziLyNMt9RGYEZo/
- YAELkM6eNS6DhtbhDM8xAzQCuk87Kz3wDpUio9RPthOzFN2t0d6ouDfFrvZCDpi1/eUPQQ+bxuoBP
- zY1jtxkArq6u1MAkBOuXmIKgFPNcNK/OXgB+Kmwc5a7RrRISgu+3ZIaACC1XgiovPP+0=;
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+ bh=VStffjPSoNuLVmgDL/ileLhw4nppALw1IFNpnjw+ytU=; b=B8Zr5mQYvIM26D6gVd85JVLv4a
+ QjBZhzVs820FYHQGmnE9Fj295N00OXaxPmQ4t0CkCFqOAVyfMixYbJLg5jh1YSx/8KqYjl80JBPLK
+ UBQF4hx2uroNfc3rGwuLgNHc7Xj3wGmp/3aCMn9K1VW1N6m1MvgrR4xQz5dlSGaH5Q6c=;
+Received: from mail-lj1-f174.google.com ([209.85.208.174])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1ndDZ5-00AxGR-9Z
- for linux-ntfs-dev@lists.sourceforge.net; Sat, 09 Apr 2022 16:04:01 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1649520227;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=qtkyBcEIcgGitzE6/jMR0BHvrVCs5FpvV9wdXJQk7lw=;
- b=So9ZYsvUUYFv0+tFpjXOlo0NjZ5sovPm3l8uLkZ+YqXt+U6SBPd1XiLb5v9GdlTFWdWDj/
- y0n25AHTzYXzpt8IBISMDnPHY1xM6otzEL6yCINzraP6hYamPGiqL7D2/QHuz7shCnI0tx
- ib0n7SpHLhmjNPPJuyzlhqkrQ0IOel8=
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com
- [209.85.160.200]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-626-qzvH8ZoZMZWWpRdIyiqA-A-1; Sat, 09 Apr 2022 12:03:44 -0400
-X-MC-Unique: qzvH8ZoZMZWWpRdIyiqA-A-1
-Received: by mail-qt1-f200.google.com with SMTP id
- cb16-20020a05622a1f9000b002ebce74a888so5952131qtb.15
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.94.2)
+ id 1neINC-00EE6f-CI
+ for linux-ntfs-dev@lists.sourceforge.net; Tue, 12 Apr 2022 15:24:10 +0000
+Received: by mail-lj1-f174.google.com with SMTP id s13so24529022ljd.5
  for <linux-ntfs-dev@lists.sourceforge.net>;
- Sat, 09 Apr 2022 09:03:44 -0700 (PDT)
+ Tue, 12 Apr 2022 08:24:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=message-id:date:mime-version:user-agent:subject:content-language:to
+ :cc:references:from:in-reply-to:content-transfer-encoding;
+ bh=VStffjPSoNuLVmgDL/ileLhw4nppALw1IFNpnjw+ytU=;
+ b=BSrsVveb2Ov8wixMuMVEF0afp0t9GItWPOTZos5ZRGOn853uCe9L80l6HaT2uoI+PZ
+ dnHRW8B+/F0Sd7bg/sTthP04nX1KwcfAOL56k2+KMbjyeYLsg73rBvNISTLBaGgRHsCj
+ qXLus9ixicO3LD1Jqd+lgKZrsqX7YMX3jKZQM2Qbv67Vx2nvzT93b8R2oq8FJrmt+Qzk
+ bLEwY6oHS8k4dWdTg/DZ6gNtfD+p4KTG4hfq/f7cG0GJOS0abEpiu7NF/roFpvTzDH5k
+ yMuJZ29VRGw4x8NAGwc+lBpY0x+47fLIRfyAbG3+Ert2383Es+T7wYv83OScKUWw8sMy
+ qgVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=qtkyBcEIcgGitzE6/jMR0BHvrVCs5FpvV9wdXJQk7lw=;
- b=uX7em6nvZ4W6y+G7Jx9qlVHFkAZ7k+GgmH82vSm5EEQXl1+5kEUkx7mk/4B2qlmvbw
- dG2eIsC30XdLyZ7VzPeCE8LCtQ8w5kfPI3O/ONvV/lyaHltxD3PCA5HhsDzJDpUz8ijt
- 0uL0IiG6Xqo6UtkotL4DSd7gb8nvMeUylvQ6IL3H3hTth/6LQeLqdeC0OFN3CIf7x2HU
- knuZ4qmnGhyUEucPU3q3sj0eTvCf4D3peYfj+m/ytA8cW9m6s0+bpj7Jl4Jic/+Qui+U
- gAoxeTzL1IRNwCRdk12NssbPmL4fK+s6/dpHhEKs/w4ZiYo3yuhkzz+Ky7WPn4aLY+Hy
- pRlA==
-X-Gm-Message-State: AOAM531htq0J3bpkqV3u1Nggj8kjW2klu7DtbchYJmsuA0a3aYucnidX
- 7oDurOQjaUPulMGDIzpnZi9IY5F8JWTVYTg+xpVlnh5fVn08PQsKjsm44sSgHsM/pnMf30/dUZx
- Pc1w9GAHJSwTHiYQnJYok5UkdI/2anuK9gg0=
-X-Received: by 2002:a05:620a:4694:b0:67e:ca07:4d46 with SMTP id
- bq20-20020a05620a469400b0067eca074d46mr16310330qkb.624.1649520223782; 
- Sat, 09 Apr 2022 09:03:43 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJy9gLy9N+EtbprXxWppsB8/pZMfaSy4i+GT0eKsrmpJpPW6wWHSwAV/TaLkqZlqoRiGySXFDw==
-X-Received: by 2002:a05:620a:4694:b0:67e:ca07:4d46 with SMTP id
- bq20-20020a05620a469400b0067eca074d46mr16310304qkb.624.1649520223470; 
- Sat, 09 Apr 2022 09:03:43 -0700 (PDT)
-Received: from localhost.localdomain (024-205-208-113.res.spectrum.com.
- [24.205.208.113]) by smtp.gmail.com with ESMTPSA id
- o6-20020a05620a22c600b0067d247816eesm15150840qki.85.2022.04.09.09.03.41
+ h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+ :content-language:to:cc:references:from:in-reply-to
+ :content-transfer-encoding;
+ bh=VStffjPSoNuLVmgDL/ileLhw4nppALw1IFNpnjw+ytU=;
+ b=J32zkBTtIYEg6Nwi3uuY2uDhEoIkRK02nH+skI7fwh0SxKidWYEh8nlLbJYcBodNK9
+ pbufB/bp8ANa7gFK3zlRMap09P5UFMinY2L0MUUiFW4c2YyiEwVxTtuEi1vSNRLk5F6k
+ sLTmVdC2m3E9NkrogBV1JvYhbO3BO/AI/U9RCRttb4d2s3AKuIezBmosYOE1Tcf+RDTr
+ Ztd0wsEuaa27vmdFhfnCB0Ntqburh5IQWu2pCpdPymW9P5/csqvAXp6d91v62fOKThhf
+ RXueugUEhAVZss6XBFphNJg7ctlj8T2x4yJQdV/GB//nU8XwE5Xo8GGBjtakyyPfCllG
+ Invg==
+X-Gm-Message-State: AOAM5311358mOeX4LDgs18+4iUr1bkuOZF0FsV7fKpbe/uqEqwP4tipR
+ vueyM8IQBSFtz2Qjm5eA6p8=
+X-Google-Smtp-Source: ABdhPJx8ntIZ64Ep+1//eaVIjzbkY6UpyEKqOwRsH3Vumux5OXak8LEcuT8NThTvX5bZM+fbF/uzDA==
+X-Received: by 2002:a2e:381a:0:b0:24b:68ae:4169 with SMTP id
+ f26-20020a2e381a000000b0024b68ae4169mr5020616lja.208.1649777039712; 
+ Tue, 12 Apr 2022 08:23:59 -0700 (PDT)
+Received: from [192.168.31.104] (static-91-225-135-18.devs.futuro.pl.
+ [91.225.135.18]) by smtp.gmail.com with ESMTPSA id
+ o26-20020a198c1a000000b0046bc20821f6sm126079lfd.115.2022.04.12.08.23.58
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sat, 09 Apr 2022 09:03:43 -0700 (PDT)
-To: Michal Orzel <michalorzel.eng@gmail.com>, Jens Axboe <axboe@kernel.dk>,
+ Tue, 12 Apr 2022 08:23:59 -0700 (PDT)
+Message-ID: <1c8fa321-d91e-c906-a7da-c252a112191b@gmail.com>
+Date: Tue, 12 Apr 2022 17:23:57 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Content-Language: en-US
+To: Tom Rix <trix@redhat.com>, Jens Axboe <axboe@kernel.dk>,
  "Richard Russon (FlatCap)" <ldm@flatcap.org>,
  Nathan Chancellor <nathan@kernel.org>,
  Nick Desaulniers <ndesaulniers@google.com>
@@ -91,50 +87,41 @@ References: <20220409101933.207157-1-michalorzel.eng@gmail.com>
  <20220409101933.207157-2-michalorzel.eng@gmail.com>
  <a56d1184-d399-d5f8-765f-5a4f35dacd5e@redhat.com>
  <446a3e88-4c14-300d-862a-1279274c3760@gmail.com>
-From: Tom Rix <trix@redhat.com>
-Message-ID: <c2c40f00-777c-f19a-eb5f-6e978ddd6bcf@redhat.com>
-Date: Sat, 9 Apr 2022 09:03:40 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
-MIME-Version: 1.0
-In-Reply-To: <446a3e88-4c14-300d-862a-1279274c3760@gmail.com>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=trix@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-X-Spam-Score: -3.6 (---)
+ <c2c40f00-777c-f19a-eb5f-6e978ddd6bcf@redhat.com>
+From: Michal Orzel <michalorzel.eng@gmail.com>
+In-Reply-To: <c2c40f00-777c-f19a-eb5f-6e978ddd6bcf@redhat.com>
+X-Spam-Score: -1.3 (-)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On 4/9/22 6:20 AM, Michal Orzel wrote: > Hi Tom,
- > >> On 4/9/22
- 3:19 AM, Michal Orzel wrote: >>> Get rid of redundant assignments which end
- up in values not being >>> read either because they are over [...] 
- Content analysis details:   (-3.6 points, 6.0 required)
+ Content preview:  Hi Tom, On 09.04.2022 18:03, Tom Rix wrote: > > On 4/9/22
+ 6:20 AM, Michal Orzel wrote: >> Hi Tom, >> >>> On 4/9/22 3:19 AM, Michal Orzel
+ wrote: >>>> Get rid of redundant assignments which end up in values not [...]
+ Content analysis details:   (-1.3 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 RCVD_IN_MSPIKE_H5      RBL: Excellent reputation (+5)
- [170.10.133.124 listed in wl.mailspike.net]
- -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
- low trust [170.10.133.124 listed in list.dnswl.org]
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.208.174 listed in list.dnswl.org]
+ 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
+ provider [michalorzel.eng[at]gmail.com]
  -0.0 SPF_PASS               SPF: sender matches SPF record
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
- -2.0 NICE_REPLY_A           Looks like a legit reply (A)
- -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1ndDZ5-00AxGR-9Z
-X-Mailman-Approved-At: Sat, 09 Apr 2022 21:52:03 +0000
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.208.174 listed in wl.mailspike.net]
+ -0.0 T_SCC_BODY_TEXT_LINE   No description available.
+ -1.1 NICE_REPLY_A           Looks like a legit reply (A)
+X-Headers-End: 1neINC-00EE6f-CI
+X-Mailman-Approved-At: Wed, 13 Apr 2022 09:07:14 +0000
 Subject: Re: [Linux-NTFS-Dev] [PATCH] block: Remove redundant assignments
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -150,32 +137,35 @@ List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>,
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
 Cc: linux-block@vger.kernel.org, linux-ntfs-dev@lists.sourceforge.net,
  llvm@lists.linux.dev, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-Ck9uIDQvOS8yMiA2OjIwIEFNLCBNaWNoYWwgT3J6ZWwgd3JvdGU6Cj4gSGkgVG9tLAo+Cj4+IE9u
-IDQvOS8yMiAzOjE5IEFNLCBNaWNoYWwgT3J6ZWwgd3JvdGU6Cj4+PiBHZXQgcmlkIG9mIHJlZHVu
-ZGFudCBhc3NpZ25tZW50cyB3aGljaCBlbmQgdXAgaW4gdmFsdWVzIG5vdCBiZWluZwo+Pj4gcmVh
-ZCBlaXRoZXIgYmVjYXVzZSB0aGV5IGFyZSBvdmVyd3JpdHRlbiBvciB0aGUgZnVuY3Rpb24gZW5k
-cy4KPj4gVGhpcyBsb2cgaXMgdGhlIHNhbWUgYXMgeW91ciBsYXN0IHBhdGNoLgo+Pgo+PiBJbnN0
+SGkgVG9tLAoKT24gMDkuMDQuMjAyMiAxODowMywgVG9tIFJpeCB3cm90ZToKPiAKPiBPbiA0Lzkv
+MjIgNjoyMCBBTSwgTWljaGFsIE9yemVsIHdyb3RlOgo+PiBIaSBUb20sCj4+Cj4+PiBPbiA0Lzkv
+MjIgMzoxOSBBTSwgTWljaGFsIE9yemVsIHdyb3RlOgo+Pj4+IEdldCByaWQgb2YgcmVkdW5kYW50
+IGFzc2lnbm1lbnRzIHdoaWNoIGVuZCB1cCBpbiB2YWx1ZXMgbm90IGJlaW5nCj4+Pj4gcmVhZCBl
+aXRoZXIgYmVjYXVzZSB0aGV5IGFyZSBvdmVyd3JpdHRlbiBvciB0aGUgZnVuY3Rpb24gZW5kcy4K
+Pj4+IFRoaXMgbG9nIGlzIHRoZSBzYW1lIGFzIHlvdXIgbGFzdCBwYXRjaC4KPj4+Cj4+PiBJbnN0
 ZWFkIG9mIGEgZ2VuZXJhbCBzdGF0ZW1lbnQgb24gZGVhZHN0b3JlcywgYSBtb3JlIHNwZWNpZmlj
-Cj4+Cj4+IGFuYWx5c2lzIG9mIHRoZSBzZXR0aW5nIGJlaW5nIHJlbW92ZWQgd291bGQgYmUgaGVs
-cGZ1bC4KPj4KPj4gVGhpcyB3aWxsIG1lYW4gc3BsaXR0aW5nIHRoZSBwYXRjaCB0byBtYXRjaCB0
-aGUgYW5hbHlzaXMuCj4+Cj4+IFRvbQo+Pgo+IEkgdGhpbmsgdGhhdCB0aGlzIGV4cGxhbmF0aW9u
-IGluIGEgY29tbWl0IGlzIGVub3VnaCBmb3Igc3VjaCBhIHRyaXZpYWwgcGF0Y2guCj4gSXQgaW5m
-b3JtcyB0aGF0IHdlIGFyZSBmaXhpbmcgY2xhbmctdGlkeSBmaW5kaW5ncyByZWxhdGVkIHRvIGRl
-YWRzdG9yZXMKPiBpbiBhIGJsb2NrIHN1YnN5c3RlbS4gV2hhdCBhbmFseXNpcyB3b3VsZCB5b3Ug
-d2FudCB0byBzZWU/Cj4gU29tZXRoaW5nIGxpa2UgIlJlbW92ZSBkZWFkc3RvcmUgYXNzaWdubWVu
-dCByZXQgPSAtRUlOVkFMICBpbiBhIGZ1bmN0aW9uIGJpb19tYXBfdXNlcl9pb3YiID8KPiBJIHRo
-aW5rIHRoYXQgaXQgd2lsbCBjcmVhdGUgdG9vIG11Y2ggb2Ygbm90IG5lZWRlZCBvdmVyaGVhZC4K
-ClRoZSBjb21waWxlciBzaG91bGQgcmVtb3ZlIHRoZXNlIGFscmVhZHkuwqAgQWxsIG9mIHRoZSBz
-dGF0aWMgYW5hbHl6ZXJzIApwcm9kdWNlIGZhbHNlIHBvc2l0aXZlcywgaWYgeW91IGRvIG5vdCBw
-cm92aWRlIGFuYWx5c2lzIHRoZSByZXZpZXdlciBoYXMgCnRvIGFzc3VtZSB5b3UgaGF2ZSBub3Qg
-ZG9uZSBhbnkgYW5kIGhhcyB0byBkbyB0aGUgZmFsc2UgcG9zaXRpdmUgCmFuYWx5c2lzIHRoZW1z
-ZWx2ZXMuIFRoaXMgYnVyZGVucyB0aGUgcmV2aWV3ZXIgZm9yIHNvbWV0aGluZyBvZiBzbWFsbCAK
-dmFsdWUgdGhhdCBjYW4gYmUgZGlzbWlzc2VkIGFzIGNodXJuLgoKVG9tCgo+Cj4gQ2hlZXJzLAo+
-IE1pY2hhbAo+CgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCkxpbnV4LU5URlMtRGV2IG1haWxpbmcgbGlzdApMaW51eC1OVEZTLURldkBsaXN0cy5zb3Vy
-Y2Vmb3JnZS5uZXQKaHR0cHM6Ly9saXN0cy5zb3VyY2Vmb3JnZS5uZXQvbGlzdHMvbGlzdGluZm8v
-bGludXgtbnRmcy1kZXYK
+Cj4+Pgo+Pj4gYW5hbHlzaXMgb2YgdGhlIHNldHRpbmcgYmVpbmcgcmVtb3ZlZCB3b3VsZCBiZSBo
+ZWxwZnVsLgo+Pj4KPj4+IFRoaXMgd2lsbCBtZWFuIHNwbGl0dGluZyB0aGUgcGF0Y2ggdG8gbWF0
+Y2ggdGhlIGFuYWx5c2lzLgo+Pj4KPj4+IFRvbQo+Pj4KPj4gSSB0aGluayB0aGF0IHRoaXMgZXhw
+bGFuYXRpb24gaW4gYSBjb21taXQgaXMgZW5vdWdoIGZvciBzdWNoIGEgdHJpdmlhbCBwYXRjaC4K
+Pj4gSXQgaW5mb3JtcyB0aGF0IHdlIGFyZSBmaXhpbmcgY2xhbmctdGlkeSBmaW5kaW5ncyByZWxh
+dGVkIHRvIGRlYWRzdG9yZXMKPj4gaW4gYSBibG9jayBzdWJzeXN0ZW0uIFdoYXQgYW5hbHlzaXMg
+d291bGQgeW91IHdhbnQgdG8gc2VlPwo+PiBTb21ldGhpbmcgbGlrZSAiUmVtb3ZlIGRlYWRzdG9y
+ZSBhc3NpZ25tZW50IHJldCA9IC1FSU5WQUzCoCBpbiBhIGZ1bmN0aW9uIGJpb19tYXBfdXNlcl9p
+b3YiID8KPj4gSSB0aGluayB0aGF0IGl0IHdpbGwgY3JlYXRlIHRvbyBtdWNoIG9mIG5vdCBuZWVk
+ZWQgb3ZlcmhlYWQuCj4gCj4gVGhlIGNvbXBpbGVyIHNob3VsZCByZW1vdmUgdGhlc2UgYWxyZWFk
+eS7CoCBBbGwgb2YgdGhlIHN0YXRpYyBhbmFseXplcnMgcHJvZHVjZSBmYWxzZSBwb3NpdGl2ZXMs
+IGlmIHlvdSBkbyBub3QgcHJvdmlkZSBhbmFseXNpcyB0aGUgcmV2aWV3ZXIgaGFzIHRvIGFzc3Vt
+ZSB5b3UgaGF2ZSBub3QgZG9uZSBhbnkgYW5kIGhhcyB0byBkbyB0aGUgZmFsc2UgcG9zaXRpdmUg
+YW5hbHlzaXMgdGhlbXNlbHZlcy4gVGhpcyBidXJkZW5zIHRoZSByZXZpZXdlciBmb3Igc29tZXRo
+aW5nIG9mIHNtYWxsIHZhbHVlIHRoYXQgY2FuIGJlIGRpc21pc3NlZCBhcyBjaHVybi4KPiAKPiBU
+b20KPiAKCk9rLCBJIHdpbGwgc3BsaXQgdGhlIHBhdGNoIGludG8gc2VyaWVzIGluIHYyIGFuZCBJ
+IHdpbGwgYWRkIHNvbWUgYW5hbHlzaXMgaW50byBjb21taXQgbXNnLgoKQ2hlZXJzLApNaWNoYWwK
+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpMaW51eC1O
+VEZTLURldiBtYWlsaW5nIGxpc3QKTGludXgtTlRGUy1EZXZAbGlzdHMuc291cmNlZm9yZ2UubmV0
+Cmh0dHBzOi8vbGlzdHMuc291cmNlZm9yZ2UubmV0L2xpc3RzL2xpc3RpbmZvL2xpbnV4LW50ZnMt
+ZGV2Cg==
