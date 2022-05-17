@@ -2,81 +2,83 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAAC85363D0
+	by mail.lfdr.de (Postfix) with ESMTPS id EC8F45363D1
 	for <lists+linux-ntfs-dev@lfdr.de>; Fri, 27 May 2022 16:13:05 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1nuai8-0001Iu-3Q; Fri, 27 May 2022 14:13:03 +0000
+	id 1nuai8-0001Iz-8r; Fri, 27 May 2022 14:13:03 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <colin.i.king@gmail.com>) id 1nqtdR-0001LT-IJ
+ (envelope-from <colin.i.king@gmail.com>) id 1nqtdT-0002yY-Qw
  for linux-ntfs-dev@lists.sourceforge.net; Tue, 17 May 2022 09:36:58 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ :References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=uvIkZ+SZSnuVFUBNtp24/kBbyO+aODjZMJiPGY46AQE=; b=Uf6AOejnQEfpD9OKG+EPUa2673
- K6gFvb5zxiD43mk7MnaZjklBqRWTAtlF0wpbBXDBHVL4IG+bPBidzDKuiFnrK89yMZlbFIjVIRo0N
- E5m0bB9TXlUchRi04AzSJwt75gMTa296TamiChyPYUaZstNvt+GgDJ63kpA+YAQ2xOSE=;
+ bh=uvIkZ+SZSnuVFUBNtp24/kBbyO+aODjZMJiPGY46AQE=; b=izPmTcd6pLnit2Rmf8JVA8gCEN
+ i9Zmb+ti0FReM6OxDKJHDuMhYzbtKCFlvf+2NmjfAepJp8K7ICdir1xjG8bWFF+JDfAuP91GjE/ss
+ N6TDsaSFqn0Wmm74fk9Nv+pv4b3FYH0ctvnbPrEIZpJZJrPuCCTI4q5yJNSuBljGFX1w=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:
- Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:Resent-Date
- :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=uvIkZ+SZSnuVFUBNtp24/kBbyO+aODjZMJiPGY46AQE=; b=G
- CiCWc/2WsIuZ4UY4AWm1RvTyvbNkRKlRMbtL+UCJ439VGegl54f7L0FHXi4EyRHb6YJoZgP5Ef9pW
- 5Ee1m16hsp9BX+czfyMigZntsPKjy68l62I3jG2ADqAlrzLv3VsE0xccez6K5hjRuiYp+C3+V0jm3
- 2eiZ2eaEKeEH+AXI=;
-Received: from mail-ej1-f42.google.com ([209.85.218.42])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
+ In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=uvIkZ+SZSnuVFUBNtp24/kBbyO+aODjZMJiPGY46AQE=; b=GOS/FMrkJzGOq+6dGx7TmZlJvL
+ xTDjkuIv9fylBwBBBeKCn83WzCnx1liAHeIEylfitc6KZ0dLy4MydB7G5mZ0x4hOuHAxXqJ9jwSrS
+ jBctOMpYneyOIReUjOJ5lR5AaVW02ULELrLPs4qAZpHoM8oqpczZSR0WI/6bfGdnstr8=;
+Received: from mail-ed1-f46.google.com ([209.85.208.46])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.94.2)
- id 1nqtdO-0005s2-Ev
+ id 1nqtdP-003IMb-Ei
  for linux-ntfs-dev@lists.sourceforge.net; Tue, 17 May 2022 09:36:57 +0000
-Received: by mail-ej1-f42.google.com with SMTP id ks9so33540488ejb.2
+Received: by mail-ed1-f46.google.com with SMTP id er5so8080695edb.12
  for <linux-ntfs-dev@lists.sourceforge.net>;
- Tue, 17 May 2022 02:36:54 -0700 (PDT)
+ Tue, 17 May 2022 02:36:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
  bh=uvIkZ+SZSnuVFUBNtp24/kBbyO+aODjZMJiPGY46AQE=;
- b=P7Zet47QTOLxAMMploN/gtFcpCsQahUrwANNEMf5srQdoy0K4SamF3yyncJKNsDWXM
- 5776p+7csXvkuXke9lFLjFr67J3ITueWrn9ZBI1jMeZ0KT0JCqDT/leSy0+IKMs4yfvq
- owpKAoUAxZYmrYSkBVhQC3/8/84uNYugqLZ34fco+r4rrHv2J1enCptzzABiESd8Rlvj
- 2nFwbEUpuAIMcw7yW3TxsCW2DZmJR2jMXEvk84rbspWa7yNNwsz1EwM7Zhlyq1dQXrrg
- 0xa6ObPg/2tq+56ZVl5ZmftEdpjxMJ57E5KffvLAAbhryi/tg6u9BULJzt0ZT5xf6vWg
- ViUA==
+ b=hZy9xMRoeMjucGbLNTRVbjQzweG34s/HHZiePWY8egY5hToreKw6isov44Nib2PTzO
+ FCx66HVsM8Oz2KQXRuHDxzOQXtqMH+LV3yMXZUv/N+96pChUkE6uBNLPmaDmaUY+kkk/
+ jC5Rw6dSJvrUNOwdSaFcRnOPNP/CUbBczzmurEOx/d8eSfbLgDBWZZ3Ycl1MhIDD8yUZ
+ aYz4hP2TyqCT/DHTDbpO2fLitzhtZbuSbfdkJh0nfeItaekFFZ62BodDTtCIHQr5h1pp
+ ooayMP5lqRWWLWDbiA4yjmjUx2XLFxUn1B+qxxZhKlZTrZC1/f4/9Z7uzQJwTlU0Sdp+
+ ZsyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
  bh=uvIkZ+SZSnuVFUBNtp24/kBbyO+aODjZMJiPGY46AQE=;
- b=O1vhOQuMvVMwRojEZxjGXTCMNIt1t69aFIB44tNLvbo5vtBVr3hKkqi4ZxuSv08mDD
- 5AVdkwo/j3jqxrb3TXF910B8RVQseN6gI2mwypikcUEvLXyBMwLWxmfBZZE4IU8sMFvS
- g8W7FKYjq2d67glDc/hatwiEzaBv58qqJxBKjwCEf4fYAt8ECpWa/poRC3EEhsKei5Lq
- kvRSzEfqIC4uQ734gROddq+HkdvYyE773irunJGlJp7b75xkOmEQXbTtGiMXljVLCr+m
- EleDUvjeyeHp5oXCG5NREHYgQsev01SAkNS6+3pGcQOfRaJ3OlGuWyJieqB8x35AYYM4
- 2kng==
-X-Gm-Message-State: AOAM5314bPaXxLUrTMUNPrBSnGTnNIQ9mBBYFAXivZa4SJYn0US8J+HN
- lETcbKhjX7B4fVfk1EdtbATYZ/iBgooMcg==
-X-Google-Smtp-Source: ABdhPJyudOovXBvAo9oOsyE0ZzGQys4UBYK3amp163if6al1uIl7HOLPapjy43U9xX6w/NLuhOESDQ==
-X-Received: by 2002:a17:907:2d8d:b0:6f8:5c3c:7217 with SMTP id
- gt13-20020a1709072d8d00b006f85c3c7217mr19004815ejc.1.1652780208030; 
- Tue, 17 May 2022 02:36:48 -0700 (PDT)
+ b=bhlGIC8dWq/OtDnYVQhagEfYfe15hGN2FVdWM1JFTww9Mf0qSXFf8f+D/BbgCXCkJS
+ 7pJPSO3nfNy1yuzMRUL2Lwm8NR9AFBZhGfInklA05TDUwVWnQP6WB/9Ya8mlcRrEzNEh
+ /14bOe14RHOmn8gD6ErumaDvR3PndDWHkSbySKAjWrZ+75fenitoeRsq3Mj2famPKA4E
+ NJ5euiScNI8zY24HlO7ZXMA42JRUnoQm7jDNAAD2f+O6bhRQuj1JGqW17Pzb0dqvrJiw
+ oj3nFAAbd9duSuDV+MC3NJAyafX7sNY/nBb4QmCzAESD86koJE6uiVaYihxIqqysCdB7
+ 3H+Q==
+X-Gm-Message-State: AOAM5339/UlxVQXL/fN71wQdb1P4Ii+HHaGmPQYb82UnZhb7kvM7yPwT
+ UMTNzZHa6UkbvpztinenKf8=
+X-Google-Smtp-Source: ABdhPJzkJ1+hct8RVYLZUQys4gtJGoLHdQdl+zoZJQX+sv/QCfHsqiv5nvS1l/4DtAk/g3zzoROvCA==
+X-Received: by 2002:a05:6402:26ca:b0:427:c181:b0ed with SMTP id
+ x10-20020a05640226ca00b00427c181b0edmr17810926edd.400.1652780209084; 
+ Tue, 17 May 2022 02:36:49 -0700 (PDT)
 Received: from localhost (cpc154979-craw9-2-0-cust193.16-3.cable.virginm.net.
  [80.193.200.194]) by smtp.gmail.com with ESMTPSA id
- 2-20020a508e02000000b0042617ba63a9sm6730603edw.51.2022.05.17.02.36.47
+ bx12-20020a170906a1cc00b006f3ef214db7sm827867ejb.29.2022.05.17.02.36.48
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 17 May 2022 02:36:47 -0700 (PDT)
+ Tue, 17 May 2022 02:36:48 -0700 (PDT)
 From: Colin Ian King <colin.i.king@gmail.com>
 To: Anton Altaparmakov <anton@tuxera.com>, linux-ntfs-dev@lists.sourceforge.net
-Date: Tue, 17 May 2022 10:36:45 +0100
-Message-Id: <20220517093646.93628-1-colin.i.king@gmail.com>
+Date: Tue, 17 May 2022 10:36:46 +0100
+Message-Id: <20220517093646.93628-2-colin.i.king@gmail.com>
 X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220517093646.93628-1-colin.i.king@gmail.com>
+References: <20220517093646.93628-1-colin.i.king@gmail.com>
 MIME-Version: 1.0
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
@@ -95,8 +97,6 @@ X-Spam-Report: Spam detection software,
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
  provider [colin.i.king[at]gmail.com]
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [209.85.218.42 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
@@ -105,10 +105,11 @@ X-Spam-Report: Spam detection software,
  valid
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.208.46 listed in wl.mailspike.net]
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.218.42 listed in list.dnswl.org]
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
-X-Headers-End: 1nqtdO-0005s2-Ev
+ no trust [209.85.208.46 listed in list.dnswl.org]
+X-Headers-End: 1nqtdP-003IMb-Ei
 X-Mailman-Approved-At: Fri, 27 May 2022 14:13:01 +0000
 Subject: [Linux-NTFS-Dev] [PATCH] fs/ntfs: remove redundant variable idx
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
