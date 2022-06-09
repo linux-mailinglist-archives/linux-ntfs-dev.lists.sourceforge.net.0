@@ -2,113 +2,135 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A32E544440
-	for <lists+linux-ntfs-dev@lfdr.de>; Thu,  9 Jun 2022 08:51:46 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
-	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BFD95460A4
+	for <lists+linux-ntfs-dev@lfdr.de>; Fri, 10 Jun 2022 10:59:50 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1nzC17-0003Bt-KR; Thu, 09 Jun 2022 06:51:41 +0000
+	id 1nzaUc-0003lN-LN; Fri, 10 Jun 2022 08:59:47 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <songmuchun@bytedance.com>) id 1nzAAe-0008Rh-0z
- for linux-ntfs-dev@lists.sourceforge.net; Thu, 09 Jun 2022 04:53:22 +0000
+ (envelope-from <david@redhat.com>) id 1nzFKq-00052I-RW
+ for linux-ntfs-dev@lists.sourceforge.net; Thu, 09 Jun 2022 10:24:17 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+ From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=2koJarmzmGedHyxAL/i+lFQdd0Q5ZAFYaE5poQNe8+A=; b=YWyKHt1rJzyrnL8RJt/gCDhoBX
- bOCtA1odmNLnQVCDzm15gocTmBIfChHwORmrCpFkr4mxnZlkcR6QGvdAjAKFUUd2wn6rNUGdrLdVg
- rNHpAXGA3m9LBQzWX1xpB3fLAntA2H9WeCMwl/nKa4vcKpJi2n3VtLAv4xlpc2Nmb3ec=;
+ bh=6a5SsgsnTuFo9sIZWQwmUlikCgiuGiGF/De3NllGDd0=; b=MuVaRryG29M4+pqHdklYfuM5CG
+ SYXwKq06uN+iZUalqMWJzSW2v0Gg9YhfjsEf/tGgewl3ilt+8Lx1d9BuuvrimQy+3njoSyqiBlgp4
+ b3dXndghBzRzeElV2/TBlvcyIuQKYb3ZuzlVu09J38LtWznZWqBT+4u+4M2YQeTdGt8w=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+ Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=2koJarmzmGedHyxAL/i+lFQdd0Q5ZAFYaE5poQNe8+A=; b=a1o38KmXf7tHeR9wl7DWcNMlYj
- XH+JUPRzzWu0XdSKQNHyfQq6MUXP4zEB5ovRIFEoBiVHD97WOzYmE/CCAamGL2y5GxV14R9vN7yto
- DRMYKMv36Z/KjyAIfAWUNK0/IVxzNEPyTjDE+uCN1PPqehP56++wmKXmpbw7W73HgVQU=;
-Received: from mail-pj1-f54.google.com ([209.85.216.54])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.94.2)
- id 1nzAAP-0000gv-1G
- for linux-ntfs-dev@lists.sourceforge.net; Thu, 09 Jun 2022 04:53:22 +0000
-Received: by mail-pj1-f54.google.com with SMTP id
- u12-20020a17090a1d4c00b001df78c7c209so25710921pju.1
+ bh=6a5SsgsnTuFo9sIZWQwmUlikCgiuGiGF/De3NllGDd0=; b=ccdHdrYuU8NNHK8VVSVQdH1ZOA
+ 9h6etW4QAra17wlRVndQ8kh5Zk/whmfuA9HmHuNcWe5y03m0i0gBQD8kZczqPakG1C8kJ/aSRrt8J
+ gWLdOsVP8Inj2DJUY5dzAY2lDbha7/+Gyzd0Pw30n7doS62op18gKATncwXBGBAmh0/M=;
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
+ id 1nzFKj-00C0s1-PW
+ for linux-ntfs-dev@lists.sourceforge.net; Thu, 09 Jun 2022 10:24:17 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1654770243;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=6a5SsgsnTuFo9sIZWQwmUlikCgiuGiGF/De3NllGDd0=;
+ b=O1xC9fxZOMxaqC6rSRf/wp7oRubAOdtuQF660ZO5XT5/cyF74PDWeE2QN9m27mc+BMztdJ
+ 4cTCEIEgzKecWwUfZ7+HFqcmlsf3bRPqSVsgzJFiymh+8vAQB/cUacDsI0Qr52taSElHs3
+ mqthmRsXI3hdg1HfHwjn9aCD07YEUwY=
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
+ [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-643-yLFh1pnMPyiBjQkz9nOjPA-1; Thu, 09 Jun 2022 06:24:02 -0400
+X-MC-Unique: yLFh1pnMPyiBjQkz9nOjPA-1
+Received: by mail-wr1-f72.google.com with SMTP id
+ w8-20020adfde88000000b00213b7fa3a37so4643713wrl.2
  for <linux-ntfs-dev@lists.sourceforge.net>;
- Wed, 08 Jun 2022 21:53:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=bytedance-com.20210112.gappssmtp.com; s=20210112;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=2koJarmzmGedHyxAL/i+lFQdd0Q5ZAFYaE5poQNe8+A=;
- b=RQ0R70N1jS16HKNC0Ol/Snkv+fFPQxMu+sR7KyTPcd0AtJQdfRDJChe//d33ePjW42
- NUwM+6AWLf4HFFg8nnACUzLphwGwod4E04VS00IvvGGhoglI/uAdn0OmVESO9k7YbA87
- WXoB0WPSZJwIZQYNTDVCrIBlg3nJFEaNR0URvRoZ6V+qEZfc2gJFc0HlrIL1W1WW+rDF
- 1/Yc7ng+dbkR+XlDUC9pFMzh9gCVKqODsRZejDoKKLodOa0wkJ1V/grBLEapqp/wFCIH
- /I5BMumfmT4H9nCNsQOMZJKoI5zjOM9KkgLVSCyM7AwYZxsmplXtAzqYRAkSkI1RVqcd
- 8nDw==
+ Thu, 09 Jun 2022 03:24:02 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=2koJarmzmGedHyxAL/i+lFQdd0Q5ZAFYaE5poQNe8+A=;
- b=GJtA9OopYMBigUkmLwkELeiBYs39zKgbPofsidg74QiIzi0MHf4S9LGEza2MWDcZUx
- +kjfhNJZsanaI++eV92klmxqJgYvnnG6Kpb0dNpSJl7TwD75JY5TMC7myux7JupmqVAw
- bJa9iEfJ5FF/uz6fDhumroii5+53CrmCfNp1xj7DstXT+eYibsb9fS3UlDCZU4AkyMrZ
- xpbTkrVzm7FzOb6WSVulqgyqY467T/FvO39IP0RNkzYka6ok/xLqVZ1VaJ5vqmssVL2K
- Ifay6ibEj0PAWNvW08EpqpAz3SWhbFmWK5wcx13Stul/UatDTtqTkgQapSz40pmTRR8V
- 7foQ==
-X-Gm-Message-State: AOAM5327zQ2HBxzxwQtocfW7a10EHrAuZxXDQf7aZr9gQ/Mm/G2L/pMq
- XQu+d4BjWIK5NEjHc2XNFs83Ie6Ta3Csd4nX
-X-Google-Smtp-Source: ABdhPJz3/PMx3RZgt3QHHTiA/K9+ZXI01CeV4NC4DLpNFuQQZTFyqHCu1obpFa9lx3Ct5QRSUsQXvQ==
-X-Received: by 2002:a17:902:e748:b0:164:1b1e:28fe with SMTP id
- p8-20020a170902e74800b001641b1e28femr38251973plf.116.1654746785210; 
- Wed, 08 Jun 2022 20:53:05 -0700 (PDT)
-Received: from localhost ([139.177.225.238]) by smtp.gmail.com with ESMTPSA id
- a20-20020a170902b59400b001664ce47e11sm12584649pls.210.2022.06.08.20.53.04
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 08 Jun 2022 20:53:04 -0700 (PDT)
-Date: Thu, 9 Jun 2022 11:53:00 +0800
-From: Muchun Song <songmuchun@bytedance.com>
-To: "Matthew Wilcox (Oracle)" <willy@infradead.org>
-Message-ID: <YqFunLBBKbZN9uD9@FVFYT0MHHV2J>
-References: <20220608150249.3033815-1-willy@infradead.org>
- <20220608150249.3033815-17-willy@infradead.org>
+ h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+ :content-language:to:cc:references:from:organization:in-reply-to
+ :content-transfer-encoding;
+ bh=6a5SsgsnTuFo9sIZWQwmUlikCgiuGiGF/De3NllGDd0=;
+ b=jZLfvbsH9D0Vp5zbISJY2/95mvisQWOvRtOD0Hdp/N9HgUINidSq+T+W4EUsdobd+v
+ PZtIpZYTdKgYfzjJ9eF63R0y9v1cDj6KfPF0sYzc7+EC3KyP0AXv9G6h/JLVSJOJWF4T
+ 5srAVkGyfqraNz6PrgI4V1SprUoUZyj1mBoYMJ06tuoqu+ziugrE7Rg6pgCFzsyWLQIx
+ X9a1PFem6F+hfj9lfMA7Q5CZGosUNzpd42iWyhXo67NGOR7nXH7yoOjUGt20oswPaDk/
+ yHG6Pk9RDiWIG1L+EsKBqHmqigMdxwcJEDKbFBZRx/OxolH2GgI7bDs5mNnYfoaCp0Lm
+ jrwg==
+X-Gm-Message-State: AOAM530+nSXFzOF2odoJndtAxa5iImG4xerc3ntZyjibcpFWkFujbz+I
+ +j+5N2A7CfOSDqeshTpSi10TzlerIO865K5xunZfklYqnfdmQEkEqCwjZLm9voHFCA8Dth4v1EH
+ EttSIWdOr6Bmj6azZP4mX2noVPLL+QD0bUYs=
+X-Received: by 2002:a1c:a301:0:b0:392:9bc5:203c with SMTP id
+ m1-20020a1ca301000000b003929bc5203cmr2594372wme.67.1654770241337; 
+ Thu, 09 Jun 2022 03:24:01 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJy58rh3fuuccVM2J0IS1QrE1vJ3CH41QyKYHa1IrWm/Rvain2xs2JDw35eE5SOSwtsykjkKLA==
+X-Received: by 2002:a1c:a301:0:b0:392:9bc5:203c with SMTP id
+ m1-20020a1ca301000000b003929bc5203cmr2594345wme.67.1654770240948; 
+ Thu, 09 Jun 2022 03:24:00 -0700 (PDT)
+Received: from ?IPV6:2a09:80c0:192:0:20af:34be:985b:b6c8?
+ ([2a09:80c0:192:0:20af:34be:985b:b6c8])
+ by smtp.gmail.com with ESMTPSA id
+ t10-20020a5d460a000000b0021552eebde6sm17782568wrq.32.2022.06.09.03.23.59
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 09 Jun 2022 03:23:59 -0700 (PDT)
+Message-ID: <a079ed41-1978-0551-2b5c-6d61aff7ddf2@redhat.com>
+Date: Thu, 9 Jun 2022 12:23:58 +0200
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20220608150249.3033815-17-willy@infradead.org>
-X-Spam-Score: 0.0 (/)
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+To: "Matthew Wilcox (Oracle)" <willy@infradead.org>,
+ linux-fsdevel@vger.kernel.org
+References: <20220608150249.3033815-1-willy@infradead.org>
+ <20220608150249.3033815-3-willy@infradead.org>
+From: David Hildenbrand <david@redhat.com>
+Organization: Red Hat
+In-Reply-To: <20220608150249.3033815-3-willy@infradead.org>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=david@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+X-Spam-Score: -2.9 (--)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Wed, Jun 08, 2022 at 04:02:46PM +0100,
- Matthew Wilcox (Oracle)
- wrote: > This involves converting migrate_huge_page_move_mapping(). We also
- need a > folio variant of hugetlb_set_page_subpool(), but [...] 
- Content analysis details:   (0.0 points, 6.0 required)
+ Content preview:  On 08.06.22 17:02, Matthew Wilcox (Oracle) wrote: > These
+ drivers are rather uncomfortably hammered into the > address_space_operations
+ hole. They aren't filesystems and don't behave > like filesystem [...] 
+ Content analysis details:   (-2.9 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [209.85.216.54 listed in wl.mailspike.net]
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.216.54 listed in list.dnswl.org]
+ no trust [170.10.129.124 listed in list.dnswl.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
-X-Headers-End: 1nzAAP-0000gv-1G
-X-Mailman-Approved-At: Thu, 09 Jun 2022 06:51:39 +0000
-Subject: Re: [Linux-NTFS-Dev] [PATCH v2 16/19] hugetlb: Convert to
- migrate_folio
+ valid
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ -2.0 NICE_REPLY_A           Looks like a legit reply (A)
+ -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1nzFKj-00C0s1-PW
+X-Mailman-Approved-At: Fri, 10 Jun 2022 08:59:46 +0000
+Subject: Re: [Linux-NTFS-Dev] [PATCH v2 02/19] mm: Convert all PageMovable
+ users to movable_operations
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -125,22 +147,47 @@ Cc: linux-aio@kvack.org, linux-nfs@vger.kernel.org, cluster-devel@redhat.com,
  linux-ntfs-dev@lists.sourceforge.net, linux-kernel@vger.kernel.org,
  linux-f2fs-devel@lists.sourceforge.net, linux-block@vger.kernel.org,
  linux-mm@kvack.org, linux-mtd@lists.infradead.org, ocfs2-devel@oss.oracle.com,
- linux-fsdevel@vger.kernel.org, linux-ext4@vger.kernel.org,
- virtualization@lists.linux-foundation.org, linux-xfs@vger.kernel.org,
- linux-btrfs@vger.kernel.org
+ linux-ext4@vger.kernel.org, virtualization@lists.linux-foundation.org,
+ linux-xfs@vger.kernel.org, linux-btrfs@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-On Wed, Jun 08, 2022 at 04:02:46PM +0100, Matthew Wilcox (Oracle) wrote:
-> This involves converting migrate_huge_page_move_mapping().  We also need a
-> folio variant of hugetlb_set_page_subpool(), but that's for a later patch.
+On 08.06.22 17:02, Matthew Wilcox (Oracle) wrote:
+> These drivers are rather uncomfortably hammered into the
+> address_space_operations hole.  They aren't filesystems and don't behave
+> like filesystems.  They just need their own movable_operations structure,
+> which we can point to directly from page->mapping.
 > 
 > Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org>
+> ---
+>  arch/powerpc/platforms/pseries/cmm.c |  60 +---------------
+>  drivers/misc/vmw_balloon.c           |  61 +---------------
+>  drivers/virtio/virtio_balloon.c      |  47 +-----------
+>  include/linux/balloon_compaction.h   |   6 +-
+>  include/linux/fs.h                   |   2 -
+>  include/linux/migrate.h              |  26 +++++--
+>  include/linux/page-flags.h           |   2 +-
+>  include/uapi/linux/magic.h           |   4 --
+>  mm/balloon_compaction.c              |  10 ++-
+>  mm/compaction.c                      |  29 ++++----
+>  mm/migrate.c                         |  24 +++----
+>  mm/util.c                            |   4 +-
+>  mm/z3fold.c                          |  82 +++------------------
+>  mm/zsmalloc.c                        | 102 ++++++---------------------
+>  14 files changed, 94 insertions(+), 365 deletions(-)
 
-Acked-by: Muchun Song <songmuchun@bytedance.com>
+You probably should have cc'ed the relevant maintainers (including me :P ).
 
-Thanks.
+For everything except z3fold.c and zsmalloc.c,
+
+Reviewed-by: David Hildenbrand <david@redhat.com>
+
+-- 
+Thanks,
+
+David / dhildenb
+
 
 
 _______________________________________________
