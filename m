@@ -2,82 +2,84 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD3F3551D71
-	for <lists+linux-ntfs-dev@lfdr.de>; Mon, 20 Jun 2022 16:06:52 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77EF65575A5
+	for <lists+linux-ntfs-dev@lfdr.de>; Thu, 23 Jun 2022 10:39:38 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1o3I3G-00085x-44; Mon, 20 Jun 2022 14:06:50 +0000
+	id 1o4INC-0003LU-R7; Thu, 23 Jun 2022 08:39:35 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <threeearcat@gmail.com>) id 1o3Hsr-0006lc-V2
- for linux-ntfs-dev@lists.sourceforge.net; Mon, 20 Jun 2022 13:56:06 +0000
+ (envelope-from <cgel.zte@gmail.com>) id 1o4DV5-0006O2-B1
+ for linux-ntfs-dev@lists.sourceforge.net; Thu, 23 Jun 2022 03:27:23 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Message-ID:Subject:To:
- From:Date:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Message-Id:
+ Date:Subject:To:From:Sender:Reply-To:Cc:Content-Type:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=K6FQC8omVUUJgdQeDjPAx04ITINqrAocGed+85leMdE=; b=iWQfseMKmQX7PYPt1IjhU8VgcN
- LoY1fIpDWGuDwJAYlriDpsSgIPZW6HIQZ0OOUu+ghMM0iSzde5wzf0ObLzTDR5TxTNFyQY/sZLuCG
- 7SUBs+eXW3pZYViwQaOSq55jIiN7pViY0tRnQJp+ZfcEcGiVdMcgbtwLOoA2pmh9u3HE=;
+ bh=BGxgiv11hvdw7wDli9ikUOZaW5PWrlx+R9Qfffj5nmA=; b=TJoLZhsPAyB79F4+neFsXbZViz
+ nHIXmqIAm+PoZyt5NpqPhvz6+mtJEYH1WevWxAngQ8PsDHybP0Vm51/58nDHDWFZOTD9Kht11GpRq
+ KNYevrxroxVIXrBx7YxkxNV8jqA15NzebtuScryAyVqLgkLHq/bhphprHIray/poSG2s=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:MIME-Version:Message-ID:Subject:To:From:Date:Sender:Reply-To
- :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:To:From:
+ Sender:Reply-To:Cc:Content-Type:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=K6FQC8omVUUJgdQeDjPAx04ITINqrAocGed+85leMdE=; b=G
- s9mZAcm+9JcKHHIX7RGeR5mCZ1Pszk7jsL3NcPb0bk8Jj1o+M4+2hsKewm6ATjk6B11ZGopTnJlx7
- 0c1CsmUnacf6yWerA61RfwkMQN9d6iNCj9bfX0CoMW4VYc9S0MPE1LmYo5e2fHlQeN35/Wx8dSFiZ
- i2G9PkLs2G9hDN0M=;
-Received: from mail-pf1-f169.google.com ([209.85.210.169])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ List-Owner:List-Archive; bh=BGxgiv11hvdw7wDli9ikUOZaW5PWrlx+R9Qfffj5nmA=; b=O
+ 2Ehu1phb3RsNYbr6yrX9BGk5j4MmsJxDAlT0YlotI/sJDx+34SdfdXpNexw2vEqDXeiBx99fHIXg0
+ bXoUZ7/KsK9mpqsIP31m0onz8YDqV1oRff3jAyCsqOBdpcn1mNEn3usGmuYJQ7QS61VJ7kGBDpY3g
+ uPYx+ONLK3lA13Zk=;
+Received: from mail-pl1-f173.google.com ([209.85.214.173])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.94.2)
- id 1o3Hsq-008Lhi-Eq
- for linux-ntfs-dev@lists.sourceforge.net; Mon, 20 Jun 2022 13:56:06 +0000
-Received: by mail-pf1-f169.google.com with SMTP id bo5so10296480pfb.4
+ id 1o4DV3-0002Vr-Ua
+ for linux-ntfs-dev@lists.sourceforge.net; Thu, 23 Jun 2022 03:27:23 +0000
+Received: by mail-pl1-f173.google.com with SMTP id o18so9978761plg.2
  for <linux-ntfs-dev@lists.sourceforge.net>;
- Mon, 20 Jun 2022 06:56:04 -0700 (PDT)
+ Wed, 22 Jun 2022 20:27:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=date:from:to:subject:message-id:mime-version:content-disposition;
- bh=K6FQC8omVUUJgdQeDjPAx04ITINqrAocGed+85leMdE=;
- b=lqPL75jjn+YjeGwg+BCnw3Ea5Cg43fPUnrf1wNFV2wKGKv0WcR+THD55wwwhDjh7Lv
- 0VLLQEt8jn3cEhVTqcpyKxTO/K8d3w3X4JYetk005X09AStsgXhNFja1899EOWx/5+FX
- BXiSQEtzUATaMEwjDp5C8EQ1ISFZgnhSNjes60EFkXdF4kOsB6qsVqR8+4j0eoy0B7UH
- g73B/McNr9qn+lTyC2km2cmA0SN1yZZDJyrid+pH5ZZqmf8pc79G5LPG1wWkgl9QL79Q
- PXwBxba+mPY2F9R3vq8csNAVrHtbqUjwwVEX9LFiy3bR1UxjnK8H6/pSsvDJu2KBhfYh
- noVQ==
+ h=from:to:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=BGxgiv11hvdw7wDli9ikUOZaW5PWrlx+R9Qfffj5nmA=;
+ b=e5TfjJjcVuJRt54CUHfLA3h6xetjYOMgr8K1O8qgnCmOhid3YJaBTgmNRlzll7kilw
+ j0m20G9sBsG0jm1/wPBfLSGn1tTwHv6rtpLn/z+v5kxn5imiBS4HL0UrsfoQkVamWglI
+ VE9Lq3dy+SUypO//dIDJoXboczVYqdD2evNWTSu/on9uiuIiVuGgD0JgEG+5wcu8FipD
+ ls2mocEgAk1ZPSKpd28rT9nw9kc4t8R6Qy5gTNJDeW/0K7IxVfqsmsqFEonpi1L4x9OG
+ BIInYqjVQZb2hQWWg58cyrSrD4lxH1Pgvicu8b28IVH4emrjk8xiLMyUaYCQiY1iIXyY
+ kr+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:subject:message-id:mime-version
- :content-disposition;
- bh=K6FQC8omVUUJgdQeDjPAx04ITINqrAocGed+85leMdE=;
- b=JlislNFtRB2YuYUIwSuPTu5dkgFIHods6eEsEfg2ORRxnmIIllQ0eT7rTHkzMJPzgg
- 2SPMO1SRIzBHlUydu1G9FtteviRvlLNZd2g3bhKGRa7ptdoJoQTg1jFC6gNV/gTlb5nz
- dgCYFoXPVPH714CvjQrPMx0Xnqu9skCN7T8PCV59cQnnWetN9HM7JX3i5yTd4rT51lOe
- QpAQkpwLFTNgXq+4gAwXa48o7gsMmG8IOwEMw0ZLqmd40vyrifyeqm0W0pLbx0EJAReD
- Q0EjhUmK/vzoiNIRN8zgzEJN5KQGPQSdS/ZSsJUFSuVHtI5iwQKNvW3qAa+2jq6jKKN9
- t16w==
-X-Gm-Message-State: AJIora8NrGwJlhOPkhPZrtBzI/cuD4WEf5IAkRqvJy+YCRFWL+Bg2fc4
- iaQ0wQ3bulLQdf81mz+08SA=
-X-Google-Smtp-Source: AGRyM1s3IVq9oe7+aWciFBLq4n0mmnwBVb5yTPk6iE5w2ojwapjCoWt+rsiKecxWlKsHk0X2mqCdoA==
-X-Received: by 2002:a63:28b:0:b0:401:b84d:780f with SMTP id
- 133-20020a63028b000000b00401b84d780fmr22016953pgc.187.1655733358689; 
- Mon, 20 Jun 2022 06:55:58 -0700 (PDT)
-Received: from archdragon (dragonet.kaist.ac.kr. [143.248.133.220])
+ h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=BGxgiv11hvdw7wDli9ikUOZaW5PWrlx+R9Qfffj5nmA=;
+ b=iXZyHtzkkhuSh8uXCDTZGwdypsL2426uRyec0Ilamaqwl09fBhyLskbAM5j2rwjRoo
+ DnlHLXbRy+1qrhIHXLFvHi1ChiiL9vxPKAaFhxt2pbkvPo3qyPG+NONcjuVduuBaWzm2
+ t/7Amd56WvM3217po6fe+OtcLWcrFPQI5uwBALpWhXQwOEj+FJ0yU1sNRSeXYB8FM1Gp
+ zBdZOPTC9Taax0vacaPqPDkuJuZ7ktHmhddaj5gb1+CFAiTGOTbBbiAWNqaB84Xf2KeN
+ LAGhe6k0b1N+3lSG4uMey25LdbCpXW/8g3LsAQXza3U8ltg0SkeX7zb+MBOh7ycULI0W
+ Zq6A==
+X-Gm-Message-State: AJIora+s4lFSir9qKVHSntIOWVyTiPB7j3lNHsej7EQbdlvPMDID3ce/
+ 5OuOm+KnXg/5T+60Jq2cVLU=
+X-Google-Smtp-Source: AGRyM1uWx+Cc0+kaxj2kJxoKLTWgDi+3PVCrFNsTUJdsuyUa4wi6zHZxW6ePZngHNiCMvjaETPBGoQ==
+X-Received: by 2002:a17:902:ec84:b0:16a:50f5:61c1 with SMTP id
+ x4-20020a170902ec8400b0016a50f561c1mr4114570plg.12.1655954836184; 
+ Wed, 22 Jun 2022 20:27:16 -0700 (PDT)
+Received: from localhost.localdomain ([193.203.214.57])
  by smtp.gmail.com with ESMTPSA id
- u23-20020a1709026e1700b001620960f1dfsm8761907plk.198.2022.06.20.06.55.56
+ iw2-20020a170903044200b00163f2f9f07csm9516193plb.48.2022.06.22.20.27.14
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 20 Jun 2022 06:55:57 -0700 (PDT)
-Date: Mon, 20 Jun 2022 22:55:53 +0900
-From: "Dae R. Jeong" <threeearcat@gmail.com>
+ Wed, 22 Jun 2022 20:27:15 -0700 (PDT)
+From: xu xin <cgel.zte@gmail.com>
+X-Google-Original-From: xu xin <xu.xin16@zte.com.cn>
 To: anton@tuxera.com, linux-ntfs-dev@lists.sourceforge.net,
- linux-kernel@vger.kernel.org
-Message-ID: <YrB8aSIPHUyapYw2@archdragon>
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Date: Thu, 23 Jun 2022 03:27:13 +0000
+Message-Id: <20220623032713.973803-1-xu.xin16@zte.com.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Disposition: inline
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
@@ -85,33 +87,32 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hi,
- We observed a crash "kernel BUG in ntfs_read_block" during
- fuzzing. Unfortunately, we have not found a reproducer for it yet. We will
- inform you if we have any update on this crash. 
+ Content preview:  From Zeal Robot Hi! Zeal Robot found a potential risky bug
+ about NTFS under the help of syzkaller. This will cause OS crash when
+ CONFIG_NTFS_FS
+ is set and panic_on_oops is on. We have a reproducer below and Debug log.
  Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
- provider [threeearcat[at]gmail.com]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.210.169 listed in list.dnswl.org]
+ provider [cgel.zte[at]gmail.com]
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [209.85.210.169 listed in wl.mailspike.net]
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
+ [209.85.214.173 listed in wl.mailspike.net]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.214.173 listed in list.dnswl.org]
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
  -0.0 T_SCC_BODY_TEXT_LINE   No description available.
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
-X-Headers-End: 1o3Hsq-008Lhi-Eq
-X-Mailman-Approved-At: Mon, 20 Jun 2022 14:06:49 +0000
-Subject: [Linux-NTFS-Dev] kernel BUG in ntfs_read_block
+X-Headers-End: 1o4DV3-0002Vr-Ua
+X-Mailman-Approved-At: Thu, 23 Jun 2022 08:39:33 +0000
+Subject: [Linux-NTFS-Dev] Bug report: ntfs_read_block may crash system
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -128,87 +129,499 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-Hi,
+From Zeal Robot <zealci@zte.com.cn>
 
-We observed a crash "kernel BUG in ntfs_read_block" during fuzzing.
+Hi! Zeal Robot found a potential risky bug about NTFS under the help of syzkaller.
+This will cause OS crash when CONFIG_NTFS_FS is set and panic_on_oops is on.
 
-Unfortunately, we have not found a reproducer for it yet.  We will
-inform you if we have any update on this crash.
+We have a reproducer below and Debug log.
 
-Detailed crash information is as follows:
------------------------------------------
+=============================================================================
+Debugging log:
+=============================================================================
+[  101.384038] kernel BUG at fs/ntfs/aops.c:186!
+[  101.386267] invalid opcode: 0000 [#1] PREEMPT SMP KASAN
+[  101.387099] PKRU: 55555554
+[  101.387099] Call Trace:
+[  101.387099]  <TASK>
+[  101.387099]  ? ntfs_end_buffer_async_read+0xb20/0xb20
+[  101.387099]  ? filemap_add_folio+0x115/0x180
+[  101.387099]  ? add_to_page_cache_locked+0x90/0x90
+[  101.387099]  do_read_cache_folio+0x4d4/0x950
+[  101.387099]  ? generic_file_read_iter+0x4f0/0x4f0
+[  101.387099]  ? _extract_crng.constprop.0+0xc1/0xf0
+[  101.387099]  ? ntfs_attr_find+0x649/0xa90
+[  101.387099]  ? __kasan_check_write+0x15/0x20
+[  101.387099]  read_cache_page+0x6c/0x150
+[  101.387099]  map_mft_record+0x1a5/0x960
+[  101.387099]  ntfs_read_locked_inode+0x1a7/0x58b0
+[  101.387099]  ? ntfs_mapping_pairs_decompress+0x79e/0x1030
+[  101.387099]  ? ntfs_attr_reinit_search_ctx+0x14e/0x430
+[  101.387099]  ntfs_read_inode_mount+0xb72/0x2170
+[  101.387099]  ntfs_fill_super+0x10f2/0x4420
+[  101.387099]  ? snprintf+0xa9/0xd0
+[  101.387099]  mount_bdev+0x305/0x3d0
+[  101.387099]  ? ntfs_remount+0xc0/0xc0
+[  101.387099]  ntfs_mount+0x3b/0x50
+[  101.387099]  entry_SYSCALL_64_after_hwframe+0x44/0xae
+===============================================================================
 
-- Kernel commit:
-b13baccc3850ca
+The C reproducer of this bug is as follows:
+===============================================================================
 
-- Crash report:
+#define _GNU_SOURCE
 
-loop0: detected capacity change from 0 to 67
-------------[ cut here ]------------
-kernel BUG at fs/ntfs/aops.c:186!
-invalid opcode: 0000 [#1] PREEMPT SMP KASAN
-CPU: 1 PID: 24003 Comm: syz-executor.0 Not tainted 5.19.0-rc2-31838-gef9c98f9637f #14
-Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.14.0-0-g155821a1990b-prebuilt.qemu.org 04/01/2014
-RIP: 0010:ntfs_read_block+0x23d2/0x2760 fs/ntfs/aops.c:186
-Code: 01 00 00 e8 30 60 59 fe e9 f8 02 00 00 e8 26 60 59 fe 48 8b 7c 24 08 48 c7 c6 00 c0 4e 8e e8 75 a3 9d fe 0f 0b e8 0e 60 59 fe <0f> 0b e8 07 60 59 fe 48 8b 5c 24 08 48 89 df be 08 00 00 00 e8 85
-RSP: 0018:ffffc90007787560 EFLAGS: 00010283
-RAX: ffffffff832c0142 RBX: 0000000000000000 RCX: 0000000000040000
-RDX: ffffc900033c1000 RSI: 00000000000024d9 RDI: 00000000000024da
-RBP: ffffc90007787708 R08: ffffffff832bdf85 R09: ffffed102bde463b
-R10: ffffed102bde463b R11: 0000000000000000 R12: dffffc0000000000
-R13: ffffffff953b7bf0 R14: ffff88815ef234a0 R15: ffff888145505000
-FS:  00007fbf10dd4700(0000) GS:ffff88823bc00000(0000) knlGS:0000000000000000
-CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-CR2: 00007f827b3b5000 CR3: 0000000020368000 CR4: 00000000003506e0
-DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-Call Trace:
- <TASK>
- do_read_cache_folio+0x420/0x8e0 mm/filemap.c:3515
- do_read_cache_page mm/filemap.c:3593 [inline]
- read_cache_page+0x6b/0x370 mm/filemap.c:3602
- read_mapping_page include/linux/pagemap.h:759 [inline]
- ntfs_map_page+0x24/0x460 fs/ntfs3/ntfs_fs.h:897
- map_mft_record_page fs/ntfs/mft.c:73 [inline]
- map_mft_record+0x230/0x8f0 fs/ntfs/mft.c:156
- ntfs_read_locked_inode+0x1f5/0x75b0 fs/ntfs/inode.c:550
- ntfs_read_inode_mount+0x133e/0x33d0 fs/ntfs/inode.c:2091
- ntfs_fill_super+0x2c59/0xc540 fs/ntfs/super.c:2854
- mount_bdev+0x32a/0x520 fs/super.c:1367
- legacy_get_tree+0x136/0x270 fs/fs_context.c:610
- vfs_get_tree+0xc2/0x430 fs/super.c:1497
- do_new_mount fs/namespace.c:3040 [inline]
- path_mount+0x2217/0x3e50 fs/namespace.c:3370
- do_mount fs/namespace.c:3383 [inline]
- __do_sys_mount fs/namespace.c:3591 [inline]
- __se_sys_mount+0x359/0x430 fs/namespace.c:3568
- do_syscall_x64 arch/x86/entry/common.c:51 [inline]
- do_syscall_64+0x4e/0xa0 arch/x86/entry/common.c:82
- entry_SYSCALL_64_after_hwframe+0x46/0xb0
-RIP: 0033:0x47a6da
-Code: 48 c7 c1 bc ff ff ff f7 d8 64 89 01 48 83 c8 ff c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 49 89 ca b8 a5 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 bc ff ff ff f7 d8 64 89 01 48
-RSP: 002b:00007fbf10dd3a08 EFLAGS: 00000202 ORIG_RAX: 00000000000000a5
-RAX: ffffffffffffffda RBX: 0000000020000200 RCX: 000000000047a6da
-RDX: 0000000020000000 RSI: 0000000020000100 RDI: 00007fbf10dd3a60
-RBP: 00007fbf10dd3aa0 R08: 00007fbf10dd3aa0 R09: 0000000020000000
-R10: 0000000000000000 R11: 0000000000000202 R12: 0000000020000000
-R13: 0000000020000100 R14: 00007fbf10dd3a60 R15: 0000000020000040
- </TASK>
-Modules linked in:
----[ end trace 0000000000000000 ]---
-RIP: 0010:ntfs_read_block+0x23d2/0x2760 fs/ntfs/aops.c:186
-Code: 01 00 00 e8 30 60 59 fe e9 f8 02 00 00 e8 26 60 59 fe 48 8b 7c 24 08 48 c7 c6 00 c0 4e 8e e8 75 a3 9d fe 0f 0b e8 0e 60 59 fe <0f> 0b e8 07 60 59 fe 48 8b 5c 24 08 48 89 df be 08 00 00 00 e8 85
-RSP: 0018:ffffc90007787560 EFLAGS: 00010283
-RAX: ffffffff832c0142 RBX: 0000000000000000 RCX: 0000000000040000
-RDX: ffffc900033c1000 RSI: 00000000000024d9 RDI: 00000000000024da
-RBP: ffffc90007787708 R08: ffffffff832bdf85 R09: ffffed102bde463b
-R10: ffffed102bde463b R11: 0000000000000000 R12: dffffc0000000000
-R13: ffffffff953b7bf0 R14: ffff88815ef234a0 R15: ffff888145505000
-FS:  00007fbf10dd4700(0000) GS:ffff88823bc00000(0000) knlGS:0000000000000000
-CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-CR2: 00007f827b3b5000 CR3: 0000000020368000 CR4: 00000000003506e0
-DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+#include <endian.h>
+#include <errno.h>
+#include <fcntl.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/ioctl.h>
+#include <sys/mount.h>
+#include <sys/stat.h>
+#include <sys/syscall.h>
+#include <sys/types.h>
+#include <unistd.h>
+
+#include <linux/loop.h>
+
+#ifndef __NR_memfd_create
+#define __NR_memfd_create 319
+#endif
+
+static unsigned long long procid;
+
+struct fs_image_segment {
+  void* data;
+  uintptr_t size;
+  uintptr_t offset;
+};
+
+#define IMAGE_MAX_SEGMENTS 4096
+#define IMAGE_MAX_SIZE (129 << 20)
+
+static unsigned long fs_image_segment_check(unsigned long size,
+                                            unsigned long nsegs,
+                                            struct fs_image_segment* segs)
+{
+  if (nsegs > IMAGE_MAX_SEGMENTS)
+    nsegs = IMAGE_MAX_SEGMENTS;
+  for (size_t i = 0; i < nsegs; i++) {
+    if (segs[i].size > IMAGE_MAX_SIZE)
+      segs[i].size = IMAGE_MAX_SIZE;
+    segs[i].offset %= IMAGE_MAX_SIZE;
+    if (segs[i].offset > IMAGE_MAX_SIZE - segs[i].size)
+      segs[i].offset = IMAGE_MAX_SIZE - segs[i].size;
+    if (size < segs[i].offset + segs[i].offset)
+      size = segs[i].offset + segs[i].offset;
+  }
+  if (size > IMAGE_MAX_SIZE)
+    size = IMAGE_MAX_SIZE;
+  return size;
+}
+static int setup_loop_device(long unsigned size, long unsigned nsegs,
+                             struct fs_image_segment* segs,
+                             const char* loopname, int* memfd_p, int* loopfd_p)
+{
+  int err = 0, loopfd = -1;
+  size = fs_image_segment_check(size, nsegs, segs);
+  int memfd = syscall(__NR_memfd_create, "syzkaller", 0);
+  if (memfd == -1) {
+    err = errno;
+    goto error;
+  }
+  if (ftruncate(memfd, size)) {
+    err = errno;
+    goto error_close_memfd;
+  }
+  for (size_t i = 0; i < nsegs; i++) {
+    if (pwrite(memfd, segs[i].data, segs[i].size, segs[i].offset) < 0) {
+    }
+  }
+  loopfd = open(loopname, O_RDWR);
+  if (loopfd == -1) {
+    err = errno;
+    goto error_close_memfd;
+  }
+  if (ioctl(loopfd, LOOP_SET_FD, memfd)) {
+    if (errno != EBUSY) {
+      err = errno;
+      goto error_close_loop;
+    }
+    ioctl(loopfd, LOOP_CLR_FD, 0);
+    usleep(1000);
+    if (ioctl(loopfd, LOOP_SET_FD, memfd)) {
+      err = errno;
+      goto error_close_loop;
+    }
+  }
+  *memfd_p = memfd;
+  *loopfd_p = loopfd;
+  return 0;
+
+error_close_loop:
+  close(loopfd);
+error_close_memfd:
+  close(memfd);
+error:
+  errno = err;
+  return -1;
+}
+
+static long syz_mount_image(volatile long fsarg, volatile long dir,
+                            volatile unsigned long size,
+                            volatile unsigned long nsegs,
+                            volatile long segments, volatile long flags,
+                            volatile long optsarg)
+{
+  struct fs_image_segment* segs = (struct fs_image_segment*)segments;
+  int res = -1, err = 0, loopfd = -1, memfd = -1, need_loop_device = !!segs;
+  char* mount_opts = (char*)optsarg;
+  char* target = (char*)dir;
+  char* fs = (char*)fsarg;
+  char* source = NULL;
+  char loopname[64];
+  if (need_loop_device) {
+    memset(loopname, 0, sizeof(loopname));
+    snprintf(loopname, sizeof(loopname), "/dev/loop%llu", procid);
+    if (setup_loop_device(size, nsegs, segs, loopname, &memfd, &loopfd) == -1) {
+	    printf("setup_loop_device failed\n");
+      	 return -1;
+    }
+    source = loopname;
+  }
+  mkdir(target, 0777);
+  char opts[256];
+  memset(opts, 0, sizeof(opts));
+  if (strlen(mount_opts) > (sizeof(opts) - 32)) {
+  }
+  strncpy(opts, mount_opts, sizeof(opts) - 32);
+  if (strcmp(fs, "iso9660") == 0) {
+    flags |= MS_RDONLY;
+  } else if (strncmp(fs, "ext", 3) == 0) {
+    if (strstr(opts, "errors=panic") || strstr(opts, "errors=remount-ro") == 0)
+      strcat(opts, ",errors=continue");
+  } else if (strcmp(fs, "xfs") == 0) {
+    strcat(opts, ",nouuid");
+  }
+  
+  printf("Start to mount...\n");
+  res = mount(source, target, fs, flags, opts);
+  if (res == -1) {
+	  printf("mount failed: %s\n", strerror(errno));
+    err = errno;
+    goto error_clear_loop;
+  }
+  res = open(target, O_RDONLY | O_DIRECTORY);
+  if (res == -1) {
+    err = errno;
+  }
+
+error_clear_loop:
+  if (need_loop_device) {
+    ioctl(loopfd, LOOP_CLR_FD, 0);
+    close(loopfd);
+    close(memfd);
+  }
+  errno = err;
+  return res;
+}
+
+int main(void)
+{
+  syscall(__NR_mmap, 0x1ffff000ul, 0x1000ul, 0ul, 0x32ul, -1, 0ul);
+  syscall(__NR_mmap, 0x20000000ul, 0x1000000ul, 7ul, 0x32ul, -1, 0ul);
+  syscall(__NR_mmap, 0x21000000ul, 0x1000ul, 0ul, 0x32ul, -1, 0ul);
+
+  memcpy((void*)0x20000000, "ntfs\000", 5);
+  memcpy((void*)0x20000100, "./file0\000", 8);
+  *(uint64_t*)0x20000200 = 0x20010000;
+  memcpy(
+      (void*)0x20010000,
+      "\xeb\x52\x90\x4e\x54\x46\x53\x20\x20\x20\x20\x00\x02\x08\x00\x00\x00\x00"
+      "\x00\x00\x00\xf8\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+      "\x80\x00\x80\x00\xff\x0f\x00\x00\x00\x00\x00\x00\x04\x00\x00\x00\x00\x00"
+      "\x00\x00\xff\x00\x00\x00\x00\x00\x00\x00\xf6\x00\x00\x00\x01\x00\x00\x00"
+      "\x3d\xaa\xf5\x5a\xf9\x83\x09\x09\x00\x00\x00\x00\x0e\x1f\xbe\x71\x7c\xac"
+      "\x22\xc0\x74\x0b\x56\xb4\x0e\xbb\x07\x00\xcd\x10\x5e\xeb\xf0\x32\xe4\xcd"
+      "\x16\xcd\x19\xeb\xfe\x54\x68\x69\x73\x20\x69\x73\x20\x6e\x6f\x74\x20\x61"
+      "\x20\x62\x6f\x6f\x74\x61\x62\x6c\x65\x20\x64\x69\x73\x6b\x2e\x20\x50\x6c"
+      "\x65\x61\x73\x65\x20\x69\x6e\x73\x65\x72\x74\x20\x61\x20\x62\x6f\x6f\x74"
+      "\x61\x62\x6c\x65\x20\x66\x6c\x6f\x70\x70\x79\x20\x61\x6e\x64\x0d\x0a\x70"
+      "\x72\x65\x73\x73\x20\x61\x6e\x79\x20\x6b\x65\x79\x20\x74\x6f\x20\x74\x72"
+      "\x79\x20\x61\x67\x61\x69\x6e\x20\x2e\x2e\x2e\x20\x0d\x0a\x00\x00\x00\x00"
+      "\x00\x00\x00\x00\x00\x00\x00\x00",
+      224);
+  *(uint64_t*)0x20000208 = 0xe0;
+  *(uint64_t*)0x20000210 = 0;
+  *(uint64_t*)0x20000218 = 0x20010100;
+  memcpy((void*)0x20010100,
+         "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+         "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x55\xaa",
+         32);
+  *(uint64_t*)0x20000220 = 0x20;
+  *(uint64_t*)0x20000228 = 0x1e0;
+  *(uint64_t*)0x20000230 = 0x20010200;
+  memcpy((void*)0x20010200,
+         "\xff\xff\x00\x07\x00\x00\x00\x00\x3f\x00\x00\x00\x00\x00\x00\x00\x00"
+         "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00",
+         32);
+  *(uint64_t*)0x20000238 = 0x20;
+  *(uint64_t*)0x20000240 = 0x2000;
+  *(uint64_t*)0x20000248 = 0x20010300;
+  memcpy(
+      (void*)0x20010300,
+      "\x46\x49\x4c\x45\x30\x00\x03\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00"
+      "\x01\x00\x38\x00\x01\x00\x98\x01\x00\x00\x00\x04\x00\x00\x00\x00\x00\x00"
+      "\x00\x00\x00\x00\x04\x00\x00\x00\x00\x00\x00\x00\x08\x00\x00\x00\x00\x00"
+      "\x00\x00\x10\x00\x00\x00\x60\x00\x00\x00\x00\x00\x18\x00\x00\x00\x00\x00"
+      "\x48\x00\x00\x00\x18\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+      "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+      "\x00\x00\x00\x00\x06\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+      "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+      "\x00\x00\x00\x00\x00\x00\x00\x00\x30\x00\x00\x00\x68\x00\x00\x00\x00\x00"
+      "\x18\x00\x00\x00\x02\x00\x4a\x00\x00\x00\x18\x00\x01\x00\x05\x00\x00\x00"
+      "\x00\x00\x05\x00\x00\x6f\x95\xff\xc7\x8d\xd6\x01\x00\x6f\x95\xff\xc7\x8d"
+      "\xd6\x01\x00\x6f\x95\xff\xc7\x8d\xd6\x01\x00\x6f\x95\xff\xc7\x8d\xd6\x01"
+      "\x00\x70\x00\x00\x00\x00\x00\x00\x00\x6c\x00\x00\x00\x00\x00\x00\x06\x00"
+      "\x00\x00\x00\x00\x00\x00\x04\x03\x24\x00\x4d\x00\x46\x00\x54\x00\x00\x00"
+      "\x00\x00\x00\x00\x80\x00\x00\x00\x48\x00\x00\x00\x01\x00\x40\x00\x00\x00"
+      "\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x12\x00\x00\x00\x00\x00\x00\x00"
+      "\x40\x00\x00\x00\x00\x00\x00\x00\x00\x30\x01\x00\x00\x00\x00\x00\x00\x18"
+      "\x01\x00\x00\x00\x00\x00",
+      312);
+  *(uint64_t*)0x20000250 = 0x138;
+  *(uint64_t*)0x20000258 = 0x4000;
+  *(uint64_t*)0x20000260 = 0x20010500;
+  memcpy((void*)0x20010500,
+         "\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000"
+         "\000\000\000\000\000\000\000\000\000\000\000\000\000\b",
+         31);
+  *(uint64_t*)0x20000268 = 0x1f;
+  *(uint64_t*)0x20000270 = 0x41e0;
+  *(uint64_t*)0x20000278 = 0x20010600;
+  memcpy((void*)0x20010600,
+         "\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000"
+         "\000\000\000\000\000\000\000\000\000\000\000\000\000\b",
+         31);
+  *(uint64_t*)0x20000280 = 0x1f;
+  *(uint64_t*)0x20000288 = 0x43e0;
+  *(uint64_t*)0x20000290 = 0x20010c00;
+  memcpy(
+      (void*)0x20010c00,
+      "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+      "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x46\x49\x4c\x45"
+      "\x30\x00\x03\x00\x00\x00\x00\x00\x00\x00\x00\x00\x03\x00\x01\x00\x38\x00"
+      "\x01\x00\xe0\x01\x00\x00\x00\x04\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+      "\x06\x00\x00\x00\x03\x00\x00\x00\x02\x00\x00\x00\x00\x00\x00\x00\x10\x00"
+      "\x00\x00\x48\x00\x00\x00\x00\x00\x18\x00\x00\x00\x00\x00\x30\x00\x00\x00"
+      "\x18\x00\x00\x00\x00\x6f\x95\xff\xc7\x8d\xd6\x01\x00\x6f\x95\xff\xc7\x8d"
+      "\xd6\x01\x00\x6f\x95\xff\xc7\x8d\xd6\x01\x00\x6f\x95\xff\xc7\x8d\xd6\x01"
+      "\x06\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x30\x00"
+      "\x00\x00\x68\x00\x00\x00\x00\x00\x18\x00\x00\x00\x01\x00\x50\x00\x00\x00"
+      "\x18\x00\x01\x00\x05\x00\x00\x00\x00\x00\x05\x00\x00\x6f\x95\xff\xc7\x8d"
+      "\xd6\x01\x00\x6f\x95\xff\xc7\x8d\xd6\x01\x00\x6f\x95\xff\xc7\x8d\xd6\x01"
+      "\x00\x6f\x95\xff\xc7\x8d\xd6\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+      "\x00\x00\x00\x00\x00\x00\x06\x00\x00\x00\x00\x00\x00\x00\x07\x03\x24\x00"
+      "\x56\x00\x6f\x00\x6c\x00\x75\x00\x6d\x00\x65\x00\x50\x00\x00\x00\x80\x00"
+      "\x00\x00\x00\x00\x18\x00\x00\x00\x02\x00\x64\x00\x00\x00\x18\x00\x00\x00"
+      "\x01\x00\x04\x80\x48\x00\x00\x00\x54\x00\x00\x00\x00\x00\x00\x00\x14\x00"
+      "\x00\x00\x02\x00\x34\x00\x02\x00\x00\x00\x00\x00\x14\x00\x9f\x01\x12\x00"
+      "\x01\x01\x00\x00\x00\x00\x00\x05\x12\x00\x00\x00\x00\x00\x18\x00\x9f\x01"
+      "\x12\x00\x01\x02\x00\x00\x00\x00\x00\x05\x20\x00\x00\x00\x20\x02\x00\x00"
+      "\x01\x01\x00\x00\x00\x00\x00\x05\x12\x00\x00\x00\x01\x02\x00\x00\x00\x00"
+      "\x00\x05\x20\x00\x00\x00\x20\x02\x00\x00\x00\x00\x00\x00\x60\x00\x00\x00"
+      "\x30\x00\x00\x00\x00\x00\x18\x00\x00\x00\x04\x00\x12\x00\x00\x00\x18\x00"
+      "\x00\x00\x73\x00\x79\x00\x7a\x00\x6b\x00\x61\x00\x6c\x00\x6c\x00\x65\x00"
+      "\x72\x00\x00\x00\x00\x00\x00\x00\x70\x00\x00\x00\x28\x00\x00\x00\x00\x00"
+      "\x18\x00\x00\x00\x05\x00\x0c\x00\x00\x00\x18\x00\x00\x00\x00\x00\x00\x00"
+      "\x00\x00\x00\x00\x03\x01\x00\x00\x00\x00\x00\x00\x80\x00\x00\x00\x18\x00"
+      "\x00\x00\x00\x00\x18\x00\x00\x00\x03\x00\x00\x00\x00\x00\x18\x00\x00\x00"
+      "\xff\xff\xff\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+      "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+      "\x00\x00\x02",
+      543);
+  *(uint64_t*)0x20000298 = 0x21f;
+  *(uint64_t*)0x200002a0 = 0x4be0;
+  *(uint64_t*)0x200002a8 = 0x20010f00;
+  memcpy((void*)0x20010f00,
+         "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+         "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02",
+         31);
+  *(uint64_t*)0x200002b0 = 0x1f;
+  *(uint64_t*)0x200002b8 = 0x4fe0;
+  *(uint64_t*)0x200002c0 = 0x20011200;
+  memcpy(
+      (void*)0x20011200,
+      "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+      "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x46\x49\x4c\x45"
+      "\x30\x00\x03\x00\x00\x00\x00\x00\x00\x00\x00\x00\x05\x00\x01\x00\x38\x00"
+      "\x03\x00\x00\x02\x00\x00\x00\x04\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+      "\x06\x00\x00\x00\x05\x00\x00\x00\x07\x00\x00\x00\x00\x00\x00\x00\x10\x00"
+      "\x00\x00\x48\x00\x00\x00\x00\x00\x18\x00\x00\x00\x00\x00\x30\x00\x00\x00"
+      "\x18\x00\x00\x00\x00\x6f\x95\xff\xc7\x8d\xd6\x01\xbb\xc8\x07\x00\xc8\x8d"
+      "\xd6\x01\xbb\xc8\x07\x00\xc8\x8d\xd6\x01\x00\x6f\x95\xff\xc7\x8d\xd6\x01"
+      "\x26\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x30\x00"
+      "\x00\x00\x60\x00\x00\x00\x00\x00\x18\x00\x00\x00\x01\x00\x44\x00\x00\x00"
+      "\x18\x00\x01\x00\x05\x00\x00\x00\x00\x00\x05\x00\x00\x6f\x95\xff\xc7\x8d"
+      "\xd6\x01\x00\x6f\x95\xff\xc7\x8d\xd6\x01\x00\x6f\x95\xff\xc7\x8d\xd6\x01"
+      "\x00\x6f\x95\xff\xc7\x8d\xd6\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+      "\x00\x00\x00\x00\x00\x00\x06\x00\x00\x10\x00\x00\x00\x00\x01\x03\x2e\x00"
+      "\x00\x00\x00\x00\x50\x00\x00\x00\x48\x00\x00\x00\x01\x00\x40\x00\x00\x00"
+      "\x02\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00"
+      "\x40\x00\x00\x00\x00\x00\x00\x00\x00\x20\x00\x00\x00\x00\x00\x00\x2c\x10"
+      "\x00\x00\x00\x00\x00\x00\x2c\x10\x00\x00\x00\x00\x00\x00\x11\x02\x43\x00"
+      "\x00\x00\x00\x00\x90\x00\x00\x00\x58\x00\x00\x00\x00\x04\x18\x00\x00\x00"
+      "\x03\x00\x38\x00\x00\x00\x20\x00\x00\x00\x24\x00\x49\x00\x33\x00\x30\x00"
+      "\x30\x00\x00\x00\x01\x00\x00\x00\x00\x10\x00\x00\x01\x00\x00\x00\x10\x00"
+      "\x00\x00\x28\x00\x00\x00\x28\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00"
+      "\x00\x00\x00\x00\x18\x00\x00\x00\x03\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+      "\x00\x00\xa0\x00\x00\x00\x50\x00\x00\x00\x01\x04\x40\x00\x00\x00\x05\x00"
+      "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x48\x00"
+      "\x00\x00\x00\x00\x00\x00\x00\x10\x00\x00\x00\x00\x00\x00\x00\x10\x00\x00"
+      "\x00\x00\x00\x00\x00\x10\x00\x00\x00\x00\x00\x00\x24\x00\x49\x00\x33\x00"
+      "\x30\x00\x11\x01\x45\x00\x00\x00\x00\x00\xb0\x00\x00\x00\x28\x00\x00\x00"
+      "\x00\x04\x18\x00\x00\x00\x04\x00\x08\x00\x00\x00\x20\x00\x00\x00\x24\x00"
+      "\x49\x00\x33\x00\x30\x00\x01\x00\x00\x00\x00\x00\x00\x00\xff\xff\xff\xff"
+      "\x00\x00\x07",
+      543);
+  *(uint64_t*)0x200002c8 = 0x21f;
+  *(uint64_t*)0x200002d0 = 0x53e0;
+  *(uint64_t*)0x200002d8 = 0x20011500;
+  memcpy(
+      (void*)0x20011500,
+      "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+      "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x07\x00\x46\x49\x4c\x45"
+      "\x30\x00\x03\x00\x00\x00\x00\x00\x00\x00\x00\x00\x06\x00\x01\x00\x38\x00"
+      "\x01\x00\x50\x01\x00\x00\x00\x04\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+      "\x03\x00\x00\x00\x06\x00\x00\x00\x02\x00\x00\x00\x00\x00\x00\x00\x10\x00"
+      "\x00\x00\x60\x00\x00\x00\x00\x00\x18\x00\x00\x00\x00\x00\x48\x00\x00\x00"
+      "\x18\x00\x00\x00\x00\x6f\x95\xff\xc7\x8d\xd6\x01\x00\x6f\x95\xff\xc7\x8d"
+      "\xd6\x01\x00\x6f\x95\xff\xc7\x8d\xd6\x01\x00\x6f\x95\xff\xc7\x8d\xd6\x01"
+      "\x06\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+      "\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+      "\x00\x00\x00\x00\x30\x00\x00\x00\x68\x00\x00\x00\x00\x00\x18\x00\x00\x00"
+      "\x02\x00\x50\x00\x00\x00\x18\x00\x01\x00\x05\x00\x00\x00\x00\x00\x05\x00"
+      "\x00\x6f\x95\xff\xc7\x8d\xd6\x01\x00\x6f\x95\xff\xc7\x8d\xd6\x01\x00\x6f"
+      "\x95\xff\xc7\x8d\xd6\x01\x00\x6f\x95\xff\xc7\x8d\xd6\x01\x00\x10\x00\x00"
+      "\x00\x00\x00\x00\x40\x00\x00\x00\x00\x00\x00\x00\x06\x00\x00\x00\x00\x00"
+      "\x00\x00\x07\x03\x24\x00\x42\x00\x69\x00\x74\x00\x6d\x00\x61\x00\x70\x00"
+      "\x80\x00\x00\x00\x48\x00\x00\x00\x01\x00\x40\x00\x00\x00\x01\x00\x00\x00"
+      "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x40\x00\x00\x00"
+      "\x00\x00\x00\x00\x00\x10\x00\x00\x00\x00\x00\x00\x40",
+      337);
+  *(uint64_t*)0x200002e0 = 0x151;
+  *(uint64_t*)0x200002e8 = 0x57e0;
+  *(uint64_t*)0x200002f0 = 0x20011700;
+  memcpy((void*)0x20011700,
+         "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+         "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02",
+         31);
+  *(uint64_t*)0x200002f8 = 0x1f;
+  *(uint64_t*)0x20000300 = 0x59e0;
+  *(uint64_t*)0x20000308 = 0x20011800;
+  memcpy((void*)0x20011800,
+         "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+         "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02",
+         31);
+  *(uint64_t*)0x20000310 = 0x1f;
+  *(uint64_t*)0x20000318 = 0x5be0;
+  *(uint64_t*)0x20000320 = 0x20011e00;
+  memcpy(
+      (void*)0x20011e00,
+      "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+      "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x46\x49\x4c\x45"
+      "\x30\x00\x03\x00\x00\x00\x00\x00\x00\x00\x00\x00\x09\x00\x01\x00\x38\x00"
+      "\x09\x00\xa8\x02\x00\x00\x00\x04\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+      "\x05\x00\x00\x00\x09\x00\x00\x00\x02\x00\x00\x00\x00\x00\x00\x00\x10\x00"
+      "\x00\x00\x60\x00\x00\x00\x00\x00\x18\x00\x00\x00\x00\x00\x48\x00\x00\x00"
+      "\x18\x00\x00\x00\x00\x6f\x95\xff\xc7\x8d\xd6\x01\x00\x6f\x95\xff\xc7\x8d"
+      "\xd6\x01\x00\x6f\x95\xff\xc7\x8d\xd6\x01\x00\x6f\x95\xff\xc7\x8d\xd6\x01"
+      "\x06\x00\x00\x20\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+      "\x00\x00\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+      "\x00\x00\x00\x00\x30\x00\x00\x00\x68\x00\x00\x00\x00\x00\x18\x00\x00\x00"
+      "\x01\x00\x50\x00\x00\x00\x18\x00\x01\x00\x05\x00\x00\x00\x00\x00\x05\x00"
+      "\x00\x6f\x95\xff\xc7\x8d\xd6\x01\x00\x6f\x95\xff\xc7\x8d\xd6\x01\x00\x6f"
+      "\x95\xff\xc7\x8d\xd6\x01\x00\x6f\x95\xff\xc7\x8d\xd6\x01\x00\x00\x00\x00"
+      "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x06\x00\x00\x20\x00\x00"
+      "\x00\x00\x07\x03\x24\x00\x53\x00\x65\x00\x63\x00\x75\x00\x72\x00\x65\x00"
+      "\x80\x00\x00\x00\x50\x00\x00\x00\x01\x04\x40\x00\x00\x00\x02\x00\x00\x00"
+      "\x00\x00\x00\x00\x00\x00\x40\x00\x00\x00\x00\x00\x00\x00\x48\x00\x00\x00"
+      "\x00\x00\x00\x00\x00\x10\x04\x00\x00\x00\x00\x00\xfc\x00\x04\x00\x00\x00"
+      "\x00\x00\xfc\x00\x04\x00\x00\x00\x00\x00\x24\x00\x53\x00\x44\x00\x53\x00"
+      "\x11\x41\x48\x00\x00\x00\x00\x00\x90\x00\x00\x00\xb0\x00\x00\x00\x00\x04"
+      "\x18\x00\x00\x00\x03\x00\x90\x00\x00\x00\x20\x00\x00\x00\x24\x00\x53\x00"
+      "\x44\x00\x48\x00\x00\x00\x00\x00\x12\x00\x00\x00\x00\x10\x00\x00\x01\x00"
+      "\x00\x00\x10\x00\x00\x00\x80\x00\x00\x00\x80\x00\x00\x00\x00\x00\x00\x00"
+      "\x18\x00\x14\x00\x00\x00\x00\x00\x30\x00\x08\x00\x00\x00\x00\x00\x51\x24"
+      "\xb3\x00\x01\x01\x00\x00\x51\x24\xb3\x00\x01\x01\x00\x00\x80\x00\x00\x00"
+      "\x00\x00\x00\x00\x7c\x00\x00\x00\x49\x00\x49\x00\x18\x00\x14\x00\x00\x00"
+      "\x00\x00\x30\x00\x08\x00\x00\x00\x00\x00\xf0\x12\x03\xf8\x00\x01\x00\x00"
+      "\xf0\x12\x03\xf8\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x7c\x00"
+      "\x00\x00\x49\x00\x49\x00\x00\x00\x00\x00\x00\x00\x00\x00\x10\x00\x00\x00"
+      "\x02\x00\x02",
+      543);
+  *(uint64_t*)0x20000328 = 0x21f;
+  *(uint64_t*)0x20000330 = 0x63e0;
+  *(uint64_t*)0x20000338 = 0x20012100;
+  memcpy((void*)0x20012100,
+         "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+         "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02",
+         31);
+  *(uint64_t*)0x20000340 = 0x1f;
+  *(uint64_t*)0x20000348 = 0x67e0;
+  *(uint64_t*)0x20000350 = 0x20012400;
+  memcpy(
+      (void*)0x20012400,
+      "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+      "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x46\x49\x4c\x45"
+      "\x30\x00\x03\x00\x00\x00\x00\x00\x00\x00\x00\x00\x0b\x00\x01\x00\x38\x00"
+      "\x03\x00\x80\x02\x00\x00\x00\x04\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+      "\x03\x00\x00\x00\x0b\x00\x00\x00\x02\x00\x00\x00\x00\x00\x00\x00\x10\x00"
+      "\x00\x00\x60\x00\x00\x00\x00\x00\x18\x00\x00\x00\x00\x00\x48\x00\x00\x00"
+      "\x18\x00\x00\x00\x00\x6f\x95\xff\xc7\x8d\xd6\x01\x00\x6f\x95\xff\xc7\x8d"
+      "\xd6\x01\x00\x6f\x95\xff\xc7\x8d\xd6\x01\x00\x6f\x95\xff\xc7\x8d\xd6\x01"
+      "\x06\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+      "\x00\x00\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+      "\x00\x00\x00\x00\x30\x00\x00\x00\x68\x00\x00\x00\x00\x00\x18\x00\x00\x00"
+      "\x01\x00\x50\x00\x00\x00\x18\x00\x01\x00\x05\x00\x00\x00\x00\x00\x05\x00"
+      "\x00\x6f\x95\xff\xc7\x8d\xd6\x01\x00\x6f\x95\xff\xc7\x8d\xd6\x01\x00\x6f"
+      "\x95\xff\xc7\x8d\xd6\x01\x00\x6f\x95\xff\xc7\x8d\xd6\x01\x00\x00\x00\x00"
+      "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x06\x00\x00\x10\x00\x00"
+      "\x00\x00\x07\x03\x24\x00\x45\x00\x78\x00\x74\x00\x65\x00\x6e\x00\x64\x00"
+      "\x90\x00\x00\x00\x78\x01\x00\x00\x00\x04\x18\x00\x00\x00\x02\x00\x58\x01"
+      "\x00\x00\x20\x00\x00\x00\x24\x00\x49\x00\x33\x00\x30\x00\x30\x00\x00\x00"
+      "\x01\x00\x00\x00\x00\x10\x00\x00\x01\x00\x00\x00\x10\x00\x00\x00\x48\x01"
+      "\x00\x00\x48\x01\x00\x00\x00\x00\x00\x00\x19\x00\x00\x00\x00\x00\x01\x00"
+      "\x60\x00\x4e\x00\x00\x00\x00\x00\x0b\x00\x00\x00\x00\x00\x0b\x00\x00\x6f"
+      "\x95\xff\xc7\x8d\xd6\x01\x00\x6f\x95\xff\xc7\x8d\xd6\x01\x00\x6f\x95\xff"
+      "\xc7\x8d\xd6\x01\x00\x6f\x95\xff\xc7\x8d\xd6\x01\x00\x00\x00\x00\x00\x00"
+      "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x26\x00\x00\x20\x00\x00\x00\x00"
+      "\x06\x03\x24\x00\x4f\x00\x62\x00\x6a\x00\x49\x00\x64\x00\x00\x00\x18\x00"
+      "\x00\x00\x00\x00\x01\x00\x60\x00\x4e\x00\x00\x00\x00\x00\x0b\x00\x00\x00"
+      "\x00\x00\x0b\x00\x00\x6f\x95\xff\xc7\x8d\xd6\x01\x00\x6f\x95\xff\xc7\x8d"
+      "\xd6\x01\x00\x6f\x95\xff\xc7\x8d\xd6\x01\x00\x6f\x95\xff\xc7\x8d\xd6\x01"
+      "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x26\x00"
+      "\x00\x20\x00\x00\x00\x00\x06\x03\x24\x00\x51\x00\x75\x00\x6f\x00\x74\x00"
+      "\x61\x00\x02",
+      543);
+  *(uint64_t*)0x20000358 = 0x21f;
+  *(uint64_t*)0x20000360 = 0x6be0;
+  *(uint64_t*)0x20000368 = 0x20012700;
+  memcpy((void*)0x20012700,
+         "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+         "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02",
+         31);
+  *(uint64_t*)0x20000370 = 0x1f;
+  *(uint64_t*)0x20000378 = 0x6fe0;
+  *(uint8_t*)0x2007dc00 = 0;
+  syz_mount_image(0x20000000, 0x20000100, 0, 0x10, 0x20000200, 0, 0x2007dc00);
+  return 0;
+}
+
 
 
 _______________________________________________
