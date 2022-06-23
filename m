@@ -2,87 +2,87 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77EF65575A5
+	by mail.lfdr.de (Postfix) with ESMTPS id 841265575A6
 	for <lists+linux-ntfs-dev@lfdr.de>; Thu, 23 Jun 2022 10:39:38 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1o4INC-0003LU-R7; Thu, 23 Jun 2022 08:39:35 +0000
+	id 1o4IND-0003LZ-08; Thu, 23 Jun 2022 08:39:35 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <cgel.zte@gmail.com>) id 1o4DV5-0006O2-B1
- for linux-ntfs-dev@lists.sourceforge.net; Thu, 23 Jun 2022 03:27:23 +0000
+ (envelope-from <cgel.zte@gmail.com>) id 1o4DWO-0002W3-54
+ for linux-ntfs-dev@lists.sourceforge.net; Thu, 23 Jun 2022 03:28:43 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Message-Id:
- Date:Subject:To:From:Sender:Reply-To:Cc:Content-Type:Content-ID:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=BGxgiv11hvdw7wDli9ikUOZaW5PWrlx+R9Qfffj5nmA=; b=TJoLZhsPAyB79F4+neFsXbZViz
- nHIXmqIAm+PoZyt5NpqPhvz6+mtJEYH1WevWxAngQ8PsDHybP0Vm51/58nDHDWFZOTD9Kht11GpRq
- KNYevrxroxVIXrBx7YxkxNV8jqA15NzebtuScryAyVqLgkLHq/bhphprHIray/poSG2s=;
+ bh=BGxgiv11hvdw7wDli9ikUOZaW5PWrlx+R9Qfffj5nmA=; b=lG0RTm4xWLVLFkxCGliOCGUKXk
+ 2ZgZV4W08LggMP+K8RnNsznpZBCwK7fRMC6VpazxtWh5HmLvERsJRdP0FF7uvWqwL0kz+fX9/ajKi
+ lrzWAWBG73MZrN8dP3ihUsNp6H0R9hO9nH/URJuaWKFqHnpDNMUW0vUDKJqaM+oIW3p8=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:To:From:
- Sender:Reply-To:Cc:Content-Type:Content-ID:Content-Description:Resent-Date:
+ h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From
+ :Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=BGxgiv11hvdw7wDli9ikUOZaW5PWrlx+R9Qfffj5nmA=; b=O
- 2Ehu1phb3RsNYbr6yrX9BGk5j4MmsJxDAlT0YlotI/sJDx+34SdfdXpNexw2vEqDXeiBx99fHIXg0
- bXoUZ7/KsK9mpqsIP31m0onz8YDqV1oRff3jAyCsqOBdpcn1mNEn3usGmuYJQ7QS61VJ7kGBDpY3g
- uPYx+ONLK3lA13Zk=;
-Received: from mail-pl1-f173.google.com ([209.85.214.173])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ List-Owner:List-Archive; bh=BGxgiv11hvdw7wDli9ikUOZaW5PWrlx+R9Qfffj5nmA=; b=i
+ p7H+5ejnwZ7QVjV2e+0kBpU/dIYWwcxBnN0F3d02VTm/57eyQti3SNU2EaYj8SiK3vYYspa67ThLy
+ u5qY0mGscnLIIIhQnUAOqYg7QBwYcbCBvyyALcU2J28x03eTgCLeuI2j76wNEJeE433wk6LBY2d3I
+ fIoNwbx4ci9NlBrQ=;
+Received: from mail-pf1-f178.google.com ([209.85.210.178])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.94.2)
- id 1o4DV3-0002Vr-Ua
- for linux-ntfs-dev@lists.sourceforge.net; Thu, 23 Jun 2022 03:27:23 +0000
-Received: by mail-pl1-f173.google.com with SMTP id o18so9978761plg.2
+ id 1o4DWJ-00AnvT-D2
+ for linux-ntfs-dev@lists.sourceforge.net; Thu, 23 Jun 2022 03:28:42 +0000
+Received: by mail-pf1-f178.google.com with SMTP id x4so11525480pfq.2
  for <linux-ntfs-dev@lists.sourceforge.net>;
- Wed, 22 Jun 2022 20:27:21 -0700 (PDT)
+ Wed, 22 Jun 2022 20:28:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:subject:date:message-id:mime-version
+ h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
  bh=BGxgiv11hvdw7wDli9ikUOZaW5PWrlx+R9Qfffj5nmA=;
- b=e5TfjJjcVuJRt54CUHfLA3h6xetjYOMgr8K1O8qgnCmOhid3YJaBTgmNRlzll7kilw
- j0m20G9sBsG0jm1/wPBfLSGn1tTwHv6rtpLn/z+v5kxn5imiBS4HL0UrsfoQkVamWglI
- VE9Lq3dy+SUypO//dIDJoXboczVYqdD2evNWTSu/on9uiuIiVuGgD0JgEG+5wcu8FipD
- ls2mocEgAk1ZPSKpd28rT9nw9kc4t8R6Qy5gTNJDeW/0K7IxVfqsmsqFEonpi1L4x9OG
- BIInYqjVQZb2hQWWg58cyrSrD4lxH1Pgvicu8b28IVH4emrjk8xiLMyUaYCQiY1iIXyY
- kr+Q==
+ b=e8XLIf6iBa727BjzTsJcOGDPyJ1dLCAA2oH9V48pK5XN9i7AcyafXmX5ILT4dTnObp
+ reSC+4+uLmvNRoydCzD04rcX5cdyMzKxrpGcTGsxtfX2yBECGP0+ufkhFOp77xO765pM
+ kg/IJYHtocB0Eneh8OFOudt1WlCX19tI93vwqKeolKbw0jrWfORehuXQE1GpPCNFE2AO
+ ZSDJeC11ST4OkdogNnXDQI0KzfuL+aTSadauuSN80dXT1rJ0nmtBbzRJVtMbnrb16OuX
+ 3iIG4LfYQXxNNfcUOdan0hIDAp6v7QbuXEivWRZ41uxNzC9GZOuW6z5SiH35uTfwSzl5
+ T/GQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
  bh=BGxgiv11hvdw7wDli9ikUOZaW5PWrlx+R9Qfffj5nmA=;
- b=iXZyHtzkkhuSh8uXCDTZGwdypsL2426uRyec0Ilamaqwl09fBhyLskbAM5j2rwjRoo
- DnlHLXbRy+1qrhIHXLFvHi1ChiiL9vxPKAaFhxt2pbkvPo3qyPG+NONcjuVduuBaWzm2
- t/7Amd56WvM3217po6fe+OtcLWcrFPQI5uwBALpWhXQwOEj+FJ0yU1sNRSeXYB8FM1Gp
- zBdZOPTC9Taax0vacaPqPDkuJuZ7ktHmhddaj5gb1+CFAiTGOTbBbiAWNqaB84Xf2KeN
- LAGhe6k0b1N+3lSG4uMey25LdbCpXW/8g3LsAQXza3U8ltg0SkeX7zb+MBOh7ycULI0W
- Zq6A==
-X-Gm-Message-State: AJIora+s4lFSir9qKVHSntIOWVyTiPB7j3lNHsej7EQbdlvPMDID3ce/
- 5OuOm+KnXg/5T+60Jq2cVLU=
-X-Google-Smtp-Source: AGRyM1uWx+Cc0+kaxj2kJxoKLTWgDi+3PVCrFNsTUJdsuyUa4wi6zHZxW6ePZngHNiCMvjaETPBGoQ==
-X-Received: by 2002:a17:902:ec84:b0:16a:50f5:61c1 with SMTP id
- x4-20020a170902ec8400b0016a50f561c1mr4114570plg.12.1655954836184; 
- Wed, 22 Jun 2022 20:27:16 -0700 (PDT)
+ b=MiNnsTUMAgZsI0G9llEifnXqQSxOdPrMUkX+U8QSg7jyQyqAciJuEipv/NY03i0R1S
+ lY5j04mK0x9f1ca2rYfPnD2iK5ys0Gx5OG1rzkvoP/WuMZ5iWGw4w580VfuziJwMeOMp
+ xerzuQocVjI8GypQFg5F7D/BN0SGz/mbB4uJBPAQaCiNF1Qc+tgU1C5RtXBei5DyEob+
+ 1tSAw/PTfLBAh5rlCBVCoYxsW6nhkZkHJ19tfToVfzRO2GlcEZafOim1tuQ+znRaJrlv
+ ZHFwhsWTlYnO5Edww8U8C189HGvJimSf/6ujhOfOi04sbHk610a5XycE8JDLHrOnxJpn
+ Hypg==
+X-Gm-Message-State: AJIora/PjJtHLeMqqf7S1rdItw79MNZqsLVMBHOB+xCp2Ps1s8DU1q9C
+ ZUl9WdfVweiXPd2Js7DZzTw=
+X-Google-Smtp-Source: AGRyM1vJlddVOTJX0mIWD804npdIFJme69cNDb4ye4mZY41UPKflFNnU9vY3pzIZGIOAfXSEVyB3bg==
+X-Received: by 2002:a63:784a:0:b0:408:c36e:db35 with SMTP id
+ t71-20020a63784a000000b00408c36edb35mr5634198pgc.484.1655954913686; 
+ Wed, 22 Jun 2022 20:28:33 -0700 (PDT)
 Received: from localhost.localdomain ([193.203.214.57])
  by smtp.gmail.com with ESMTPSA id
- iw2-20020a170903044200b00163f2f9f07csm9516193plb.48.2022.06.22.20.27.14
+ b193-20020a6334ca000000b0040c95aeae26sm8739173pga.12.2022.06.22.20.28.32
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 22 Jun 2022 20:27:15 -0700 (PDT)
+ Wed, 22 Jun 2022 20:28:33 -0700 (PDT)
 From: xu xin <cgel.zte@gmail.com>
 X-Google-Original-From: xu xin <xu.xin16@zte.com.cn>
 To: anton@tuxera.com, linux-ntfs-dev@lists.sourceforge.net,
  linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Date: Thu, 23 Jun 2022 03:27:13 +0000
-Message-Id: <20220623032713.973803-1-xu.xin16@zte.com.cn>
+Date: Thu, 23 Jun 2022 03:28:30 +0000
+Message-Id: <20220623032830.973860-1-xu.xin16@zte.com.cn>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
@@ -94,23 +94,23 @@ X-Spam-Report: Spam detection software,
  Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
  provider [cgel.zte[at]gmail.com]
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [209.85.214.173 listed in wl.mailspike.net]
+ [209.85.210.178 listed in wl.mailspike.net]
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.214.173 listed in list.dnswl.org]
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
+ no trust [209.85.210.178 listed in list.dnswl.org]
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
- -0.0 T_SCC_BODY_TEXT_LINE   No description available.
-X-Headers-End: 1o4DV3-0002Vr-Ua
+ valid
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+X-Headers-End: 1o4DWJ-00AnvT-D2
 X-Mailman-Approved-At: Thu, 23 Jun 2022 08:39:33 +0000
 Subject: [Linux-NTFS-Dev] Bug report: ntfs_read_block may crash system
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
@@ -125,6 +125,7 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
+Cc: xu.xin16@zte.com.cn
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
