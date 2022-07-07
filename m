@@ -2,64 +2,64 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63DAD56999D
-	for <lists+linux-ntfs-dev@lfdr.de>; Thu,  7 Jul 2022 06:59:48 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4219756A0C1
+	for <lists+linux-ntfs-dev@lfdr.de>; Thu,  7 Jul 2022 13:03:28 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
+	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1o9JcA-0006Kl-8Q; Thu, 07 Jul 2022 04:59:45 +0000
+	id 1o9PI4-0008DX-Ar; Thu, 07 Jul 2022 11:03:23 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <chenxiaosong2@huawei.com>) id 1o9HN8-000425-9j
- for linux-ntfs-dev@lists.sourceforge.net; Thu, 07 Jul 2022 02:36:07 +0000
+ (envelope-from <chenxiaosong2@huawei.com>) id 1o9Owk-0008QE-I8
+ for linux-ntfs-dev@lists.sourceforge.net; Thu, 07 Jul 2022 10:41:23 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
  :Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=/Ho0zwI/X8QzMVKXqEE51Hap973fFn94tGpyzeQ38Tc=; b=desVm5dlyaYkm/4v7KwaaHBP+7
- xQBNtpEBiwnzK/7W+2ph7GZSLydA0c5s529Vr85+4V6SQSN8KYaaXZwDvT0KkVMyY7FFRyHg1uGA0
- hAtiV4ZaLyiV2V9vuGGe2K/Y5tVkzCxx2O17gqwS4sKPwq6rkq9cnB1lPhRyTz3whPjQ=;
+ bh=FqQhAKTv5WxkkbLLgaGPbZxxqac9TBH+HEKLGJYIyFQ=; b=Q8a/sdR8hbWicdMDXmO5kNCGSF
+ QQWkiP+lI1/fR3ekNSVYDNXG/+hoPfmgVVSkgaa16uy3LQKRk/a8mC8ycvtHVdPK3sLSXv38hGCAo
+ joaJTzmomomDKhOTxlRyxLC+fcctAPLnQVaEsmLru4xfnShU+Jtn7J68D6Wr5oYogEDI=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:
  Subject:CC:To:From:Sender:Reply-To:Content-ID:Content-Description:Resent-Date
  :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=/Ho0zwI/X8QzMVKXqEE51Hap973fFn94tGpyzeQ38Tc=; b=f
- 7FQcVQZScSaVPeSHNrhJGNlWn2OdIVG4Cbu+cNIm7LkoNSSLFzXKpFtqBj+UlDfrzJvaP69iEodQZ
- MLHAWM77jSqK/tpaF/2dARMYuiUIgtIcKruhV2dtv+VvbuNKrwC7PPc6zqQbzWTaXoaT6Da5RSg+8
- Ji8udLb+kX40feX8=;
+ List-Owner:List-Archive; bh=FqQhAKTv5WxkkbLLgaGPbZxxqac9TBH+HEKLGJYIyFQ=; b=L
+ ksJvz4xm/M5r55Ltw8QWOs0EzQOlP352ckZBnIrxaZwoycI1rWA3ooiDtXaWFDJ06fYVanQyvHw/6
+ U/KlISHT2s3czJE6Wx2NrFEib60uXrsjrpexwyFdnjJ78YVPtkNuZq4GYg3XnDTf9Yer+UJzX6ldG
+ I7X+xf2Qk+Jb4l/E=;
 Received: from szxga01-in.huawei.com ([45.249.212.187])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1o9HN4-009PqU-Pq
- for linux-ntfs-dev@lists.sourceforge.net; Thu, 07 Jul 2022 02:36:06 +0000
-Received: from dggemv703-chm.china.huawei.com (unknown [172.30.72.56])
- by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4LdgSh1l1szhZ4j;
- Thu,  7 Jul 2022 10:33:24 +0800 (CST)
+ id 1o9Owh-009kG9-Mq
+ for linux-ntfs-dev@lists.sourceforge.net; Thu, 07 Jul 2022 10:41:23 +0000
+Received: from dggemv704-chm.china.huawei.com (unknown [172.30.72.57])
+ by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4LdtFn0QyMzkWvL;
+ Thu,  7 Jul 2022 18:39:41 +0800 (CST)
 Received: from kwepemm600015.china.huawei.com (7.193.23.52) by
- dggemv703-chm.china.huawei.com (10.3.19.46) with Microsoft SMTP Server
+ dggemv704-chm.china.huawei.com (10.3.19.47) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.24; Thu, 7 Jul 2022 10:35:50 +0800
+ 15.1.2375.24; Thu, 7 Jul 2022 18:41:09 +0800
 Received: from huawei.com (10.175.127.227) by kwepemm600015.china.huawei.com
  (7.193.23.52) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Thu, 7 Jul
- 2022 10:35:50 +0800
-To: <anton@tuxera.com>
-Date: Thu, 7 Jul 2022 10:48:01 +0800
-Message-ID: <20220707024801.2978141-1-chenxiaosong2@huawei.com>
+ 2022 18:41:08 +0800
+To: <anton@tuxera.com>, <akpm@linux-foundation.org>
+Date: Thu, 7 Jul 2022 18:53:29 +0800
+Message-ID: <20220707105329.4020708-1-chenxiaosong2@huawei.com>
 X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
 X-Originating-IP: [10.175.127.227]
-X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
+X-ClientProxiedBy: dggems701-chm.china.huawei.com (10.3.19.178) To
  kwepemm600015.china.huawei.com (7.193.23.52)
 X-CFilter-Loop: Reflected
 X-Spam-Score: -2.3 (--)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
@@ -75,9 +75,11 @@ X-Spam-Report: Spam detection software,
  medium trust [45.249.212.187 listed in list.dnswl.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
-X-Headers-End: 1o9HN4-009PqU-Pq
-X-Mailman-Approved-At: Thu, 07 Jul 2022 04:59:44 +0000
-Subject: [Linux-NTFS-Dev] [PATCH] ntfs: fix use-after-free in ntfs_ucsncmp()
+ -0.0 T_SCC_BODY_TEXT_LINE   No description available.
+X-Headers-End: 1o9Owh-009kG9-Mq
+X-Mailman-Approved-At: Thu, 07 Jul 2022 11:03:22 +0000
+Subject: [Linux-NTFS-Dev] [PATCH v2] ntfs: fix use-after-free in
+ ntfs_ucsncmp()
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -165,11 +167,13 @@ Fix this by adding sanity check on end address of attibute name string.
 
 Signed-off-by: ChenXiaoSong <chenxiaosong2@huawei.com>
 ---
+v1 -> v2: remove redundant statement
+
  fs/ntfs/attrib.c | 8 ++++++--
  1 file changed, 6 insertions(+), 2 deletions(-)
 
 diff --git a/fs/ntfs/attrib.c b/fs/ntfs/attrib.c
-index 4de597a83b88..4d1c3ca0c698 100644
+index 4de597a83b88..9ab8766872d2 100644
 --- a/fs/ntfs/attrib.c
 +++ b/fs/ntfs/attrib.c
 @@ -592,8 +592,12 @@ static int ntfs_attr_find(const ATTR_TYPE type, const ntfschar *name,
@@ -178,7 +182,7 @@ index 4de597a83b88..4d1c3ca0c698 100644
  	for (;;	a = (ATTR_RECORD*)((u8*)a + le32_to_cpu(a->length))) {
 -		if ((u8*)a < (u8*)ctx->mrec || (u8*)a > (u8*)ctx->mrec +
 -				le32_to_cpu(ctx->mrec->bytes_allocated))
-+		u8 *mrec_end = (u8 *)(u8*)ctx->mrec +
++		u8 *mrec_end = (u8 *)ctx->mrec +
 +		               le32_to_cpu(ctx->mrec->bytes_allocated);
 +		u8 *name_end = (u8 *)a + le16_to_cpu(a->name_offset) +
 +		               a->name_length;
