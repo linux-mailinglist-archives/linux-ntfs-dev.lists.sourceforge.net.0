@@ -2,125 +2,82 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id C063F566640
-	for <lists+linux-ntfs-dev@lfdr.de>; Tue,  5 Jul 2022 11:37:51 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 63DAD56999D
+	for <lists+linux-ntfs-dev@lfdr.de>; Thu,  7 Jul 2022 06:59:48 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1o8f08-0006bF-5F; Tue, 05 Jul 2022 09:37:49 +0000
+	id 1o9JcA-0006Kl-8Q; Thu, 07 Jul 2022 04:59:45 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <cgel.zte@gmail.com>) id 1o8dHQ-0005jX-CJ
- for linux-ntfs-dev@lists.sourceforge.net; Tue, 05 Jul 2022 07:47:31 +0000
+ (envelope-from <chenxiaosong2@huawei.com>) id 1o9HN8-000425-9j
+ for linux-ntfs-dev@lists.sourceforge.net; Thu, 07 Jul 2022 02:36:07 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:
- MIME-Version:References:Subject:Cc:To:From:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
+ :Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=rVfQWJaIQy/In2wBEW2mJJ8z3LRK3QoqQlDB/xYBsN4=; b=VyGh5nRuGwc2UwQPXiv6l5+D0P
- jL2o7XalcogIzrvT8X4fzp/8DeCic6SsfgGeYIuR9/AF5FH7WPkn0NmbsBgLJDAeawXKyskgJVaz0
- xLOyRCgKgSeW7RZU1S/pVp7CE1QsIpVHterr2x8TBE4xvlSDC+r6BCCTOZYoiTuzuBns=;
+ bh=/Ho0zwI/X8QzMVKXqEE51Hap973fFn94tGpyzeQ38Tc=; b=desVm5dlyaYkm/4v7KwaaHBP+7
+ xQBNtpEBiwnzK/7W+2ph7GZSLydA0c5s529Vr85+4V6SQSN8KYaaXZwDvT0KkVMyY7FFRyHg1uGA0
+ hAtiV4ZaLyiV2V9vuGGe2K/Y5tVkzCxx2O17gqwS4sKPwq6rkq9cnB1lPhRyTz3whPjQ=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version:
- References:Subject:Cc:To:From:Date:Message-ID:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=rVfQWJaIQy/In2wBEW2mJJ8z3LRK3QoqQlDB/xYBsN4=; b=He01uYEO7+Ly7wupZeGgVYOsic
- Al/H6Bv9kb5GlfSQH7bFzCCTJIZmqd7QNB8+BUAcymzZ4IKGD3EibflEZhCphdLzEsaLhLELyqfdJ
- Dayk/9dw1I0L+x0Qt2pTAIdxYuW/xQZ/VQitvpd4CWAoQsQzbjqHMYhbPfk/MGPREmJc=;
-Received: from mail-pj1-f41.google.com ([209.85.216.41])
+ h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:
+ Subject:CC:To:From:Sender:Reply-To:Content-ID:Content-Description:Resent-Date
+ :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=/Ho0zwI/X8QzMVKXqEE51Hap973fFn94tGpyzeQ38Tc=; b=f
+ 7FQcVQZScSaVPeSHNrhJGNlWn2OdIVG4Cbu+cNIm7LkoNSSLFzXKpFtqBj+UlDfrzJvaP69iEodQZ
+ MLHAWM77jSqK/tpaF/2dARMYuiUIgtIcKruhV2dtv+VvbuNKrwC7PPc6zqQbzWTaXoaT6Da5RSg+8
+ Ji8udLb+kX40feX8=;
+Received: from szxga01-in.huawei.com ([45.249.212.187])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.94.2)
- id 1o8dHJ-007gyo-WA
- for linux-ntfs-dev@lists.sourceforge.net; Tue, 05 Jul 2022 07:47:30 +0000
-Received: by mail-pj1-f41.google.com with SMTP id fz10so5288722pjb.2
- for <linux-ntfs-dev@lists.sourceforge.net>;
- Tue, 05 Jul 2022 00:47:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=message-id:date:from:to:cc:subject:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=rVfQWJaIQy/In2wBEW2mJJ8z3LRK3QoqQlDB/xYBsN4=;
- b=gn4eRcS7V35rzfDq02Cg2y9jtimd08xeNcAVPuWQ+eL7NnVI2OOY6WIx/BoaVQD4d+
- G0/qTv6JYBw84wmV46p+/sK1nbJAC7sA/2Z0ixPu0AVgD4oLdgagPSbJh5HodQLtl2rB
- M9jZYUVYPCxUm9MwH6i98IyVVWJnRVSak/IyiNkA/b7O0hxOjjnDkf9tvTxzVZyDCmbm
- 9B83Y9HKH0Xhx1YqUBq8JeRLYNegGcElThe+oaWVPFtlisziw3niq1eDeF7cWVbOxLMQ
- d0Nyc5i1wNhAnfAzD7rK97mVQSzcoq2ZPN7j9FPiwx11cgZqK2zJM+7OdU03dLE7vwx8
- GzwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:from:to:cc:subject:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=rVfQWJaIQy/In2wBEW2mJJ8z3LRK3QoqQlDB/xYBsN4=;
- b=H0c1fk7LyByZTdsgjUdFIbZ86ZrZmW6tQMgoaL6NBGyaoKPNurCADRIgnD3FMp/Nf8
- FmvugwUPAxO9rouNxae83feIvHVukiAm/f87XnZs+rtB+AI/uNfOBmuvxpK3bm3abY2b
- +UYsKtus5crFCPmAAJFyLehvqBGTjCD3MKUaHwrtxry8DbQRq7g4iVWv5YIcvjNJK/P3
- xS4FpEssoukF0WdQ1NFYwyThEeuT/k1CNgYrlSxOTld4DJCt75NK8lIx6DyJnD63necK
- jIVt7cvSDHpBvX9TnMVjjlUUHqB1B8r3WRhM6rqhFOLlQv+7CCppDfT4YgTI8qgF26MC
- tZzQ==
-X-Gm-Message-State: AJIora9S1wq9X00vOoH7lJd8CTlyNsUmh21IA4DxqKhTuiOUB1SITJwT
- KueB6eOtXQP9tsWdVigho5g=
-X-Google-Smtp-Source: AGRyM1tz4nq+HThPF+SdxAaxp5hFlo3JVLlTmTOkJFPA4U/z1++LLg+iZ23uqxe/TYlsl59IRUMZDw==
-X-Received: by 2002:a17:902:8f89:b0:168:d336:ddba with SMTP id
- z9-20020a1709028f8900b00168d336ddbamr38757829plo.1.1657007240452; 
- Tue, 05 Jul 2022 00:47:20 -0700 (PDT)
-Received: from localhost ([193.203.214.57]) by smtp.gmail.com with ESMTPSA id
- f4-20020a655504000000b0040de29f847asm17007894pgr.52.2022.07.05.00.47.19
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 05 Jul 2022 00:47:20 -0700 (PDT)
-Message-ID: <62c3ec88.1c69fb81.b5648.7f2b@mx.google.com>
-X-Google-Original-Message-ID: <20220705074718.GA1276177@cgel.zte@gmail.com>
-Date: Tue, 5 Jul 2022 07:47:18 +0000
-From: CGEL <cgel.zte@gmail.com>
-To: Anton Altaparmakov <anton@tuxera.com>
-References: <20220623033635.973929-1-xu.xin16@zte.com.cn>
- <20220623094956.977053-1-xu.xin16@zte.com.cn>
- <YrSeAGmk4GZndtdn@sol.localdomain>
- <CAKYAXd8qoLKbWGX7omYUfarSugRnose8X8o3Zhb1XctiUtamQg@mail.gmail.com>
- <7FBC6FD2-5D60-4EB8-96D5-A6014D271950@tuxera.com>
- <CAKYAXd-cg5rvXo-MYZ29+wiE3BYbg4vqDHrOHtu77ox-+7dPBw@mail.gmail.com>
- <790E333B-FFA5-4C8E-95D3-BCBA7679F9C4@tuxera.com>
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
+ id 1o9HN4-009PqU-Pq
+ for linux-ntfs-dev@lists.sourceforge.net; Thu, 07 Jul 2022 02:36:06 +0000
+Received: from dggemv703-chm.china.huawei.com (unknown [172.30.72.56])
+ by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4LdgSh1l1szhZ4j;
+ Thu,  7 Jul 2022 10:33:24 +0800 (CST)
+Received: from kwepemm600015.china.huawei.com (7.193.23.52) by
+ dggemv703-chm.china.huawei.com (10.3.19.46) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.24; Thu, 7 Jul 2022 10:35:50 +0800
+Received: from huawei.com (10.175.127.227) by kwepemm600015.china.huawei.com
+ (7.193.23.52) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Thu, 7 Jul
+ 2022 10:35:50 +0800
+To: <anton@tuxera.com>
+Date: Thu, 7 Jul 2022 10:48:01 +0800
+Message-ID: <20220707024801.2978141-1-chenxiaosong2@huawei.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <790E333B-FFA5-4C8E-95D3-BCBA7679F9C4@tuxera.com>
-X-Spam-Score: -0.2 (/)
+X-Originating-IP: [10.175.127.227]
+X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
+ kwepemm600015.china.huawei.com (7.193.23.52)
+X-CFilter-Loop: Reflected
+X-Spam-Score: -2.3 (--)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Fri, Jun 24, 2022 at 03:26:27PM +0000, Anton Altaparmakov
- wrote: > Hi, > > > On 24 Jun 2022, at 15:37, Namjae Jeon wrote: > > 2022-06-24
- 21:19 GMT+09:00, Anton Altaparmakov : > >> Hi, > >> > >> [...] 
- Content analysis details:   (-0.2 points, 6.0 required)
+ Content preview: Syzkaller reported use-after-free bug as follows:
+ ==================================================================
+ BUG: KASAN: use-after-free in ntfs_ucsncmp+0x123/0x130 Read of size 2 at
+ addr ffff8880751acee8 by task a.out/879 
+ Content analysis details:   (-2.3 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
+ -2.3 RCVD_IN_DNSWL_MED      RBL: Sender listed at https://www.dnswl.org/,
+ medium trust [45.249.212.187 listed in list.dnswl.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
- provider [cgel.zte[at]gmail.com]
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [209.85.216.41 listed in wl.mailspike.net]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.216.41 listed in list.dnswl.org]
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.0 T_SCC_BODY_TEXT_LINE   No description available.
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
-X-Headers-End: 1o8dHJ-007gyo-WA
-X-Mailman-Approved-At: Tue, 05 Jul 2022 09:37:48 +0000
-Subject: Re: [Linux-NTFS-Dev] [PATCH v2] fs/ntfs: fix BUG_ON of
- ntfs_read_block()
+X-Headers-End: 1o9HN4-009PqU-Pq
+X-Mailman-Approved-At: Thu, 07 Jul 2022 04:59:44 +0000
+Subject: [Linux-NTFS-Dev] [PATCH] ntfs: fix use-after-free in ntfs_ucsncmp()
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -133,111 +90,106 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Cc: Yang Yang <yang.yang29@zte.com.cn>, "linux-ntfs-dev@lists.sourceforge.net"
- <linux-ntfs-dev@lists.sourceforge.net>, Zeal Robot <zealci@zte.com.cn>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- "stable@vger.kernel.org" <stable@vger.kernel.org>,
- Eric Biggers <ebiggers@kernel.org>,
- "xu.xin16@zte.com.cn" <xu.xin16@zte.com.cn>,
- Jiang Xuexin <jiang.xuexin@zte.com.cn>,
- "syzbot+6a5a7672f663cce8b156@syzkaller.appspotmail.com"
- <syzbot+6a5a7672f663cce8b156@syzkaller.appspotmail.com>,
- "linux-fsdevel@vger.kernel.org" <linux-fsdevel@vger.kernel.org>,
- Zhang wenya <zhang.wenya1@zte.com.cn>, Namjae Jeon <linkinjeon@kernel.org>,
- Songyi Zhang <zhang.songyi@zte.com.cn>
+From: ChenXiaoSong via Linux-NTFS-Dev <linux-ntfs-dev@lists.sourceforge.net>
+Reply-To: ChenXiaoSong <chenxiaosong2@huawei.com>
+Cc: yi.zhang@huawei.com, linux-ntfs-dev@lists.sourceforge.net,
+ chenxiaosong2@huawei.com, linux-kernel@vger.kernel.org,
+ zhangxiaoxu5@huawei.com, liuyongqiang13@huawei.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-On Fri, Jun 24, 2022 at 03:26:27PM +0000, Anton Altaparmakov wrote:
-> Hi,
-> 
-> > On 24 Jun 2022, at 15:37, Namjae Jeon <linkinjeon@kernel.org> wrote:
-> > 2022-06-24 21:19 GMT+09:00, Anton Altaparmakov <anton@tuxera.com>:
-> >> Hi,
-> >> 
-> >> On 24 Jun 2022, at 03:33, Namjae Jeon
-> >> <linkinjeon@kernel.org<mailto:linkinjeon@kernel.org>> wrote:
-> >> 
-> >> 2022-06-24 2:08 GMT+09:00, Eric Biggers
-> >> <ebiggers@kernel.org<mailto:ebiggers@kernel.org>>:
-> >> On Thu, Jun 23, 2022 at 09:49:56AM +0000,
-> >> cgel.zte@gmail.com<mailto:cgel.zte@gmail.com> wrote:
-> >> From: xu xin <xu.xin16@zte.com.cn<mailto:xu.xin16@zte.com.cn>>
-> >> 
-> >> As the bug description at
-> >> https://lore.kernel.org/lkml/20220623033635.973929-1-xu.xin16@zte.com.cn/
-> >> attckers can use this bug to crash the system.
-> >> 
-> >> 
-> 
-> >> The correct solution is to use IS_ERR_OR_NULL() in places where an empty
-> >> attribute is not acceptable. Such a case is for example when mounting the
-> >> $MFT::$DATA::unnamed attribute cannot be empty which should then be
-> >> addressed inside in fs/ntfs/inode.c::ntfs_read_inode_mount(). There may be
-> >> more call sites to ntfs_mapping_pairs_decompress() which require similar
-> >> treatment. Need to go through the code to see...
-> > I think that it is needed everywhere that calls it. Am I missing something ?
-> 
-> It is not needed everywhere.  It is only needed in code paths that require there be a runlist afterwards because the code paths assume there must be one.  So for example for $MFT it by definition cannot have an empty runlist as we are already reading from the $MFT so it has an allocation so the runlist cannot be empty.  But the fuzzed image that is showing the problem that you are trying to fix has such a corrupt volume that the runlist is in fact empty - note it is NOT corrupt but it is valid but empty.  This then leads to the problem that we try to load the runlist for the $MFT and we do not check whether the result is empty because we assume it cannot be empty.  Clearly when you have a corrupted image that assumption can be wrong so we need to check for both error and for it being empty, hence IS_ERR_OR_NULL().  But if we are accessing an attribute elsewhere in the driver and that happens to be empty then we want a NULL runlist to be obtained so we can then operate with the attribute.  We do not want attempting to map the runlist to fail.  The code can try to map the runlist for all non-resident attributes before working with them and if the attribute is zero length then the runlist is NULL until we write something to the attribute at which point it becomes non-NULL describing the allocated clusters.
+Syzkaller reported use-after-free bug as follows:
 
+==================================================================
+BUG: KASAN: use-after-free in ntfs_ucsncmp+0x123/0x130
+Read of size 2 at addr ffff8880751acee8 by task a.out/879
 
-So to fix the current bug, how about this patch?
+CPU: 7 PID: 879 Comm: a.out Not tainted 5.19.0-rc4-next-20220630-00001-gcc5218c8bd2c-dirty #7
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ dump_stack_lvl+0x1c0/0x2b0
+ print_address_description.constprop.0.cold+0xd4/0x484
+ print_report.cold+0x55/0x232
+ kasan_report+0xbf/0xf0
+ ntfs_ucsncmp+0x123/0x130
+ ntfs_are_names_equal.cold+0x2b/0x41
+ ntfs_attr_find+0x43b/0xb90
+ ntfs_attr_lookup+0x16d/0x1e0
+ ntfs_read_locked_attr_inode+0x4aa/0x2360
+ ntfs_attr_iget+0x1af/0x220
+ ntfs_read_locked_inode+0x246c/0x5120
+ ntfs_iget+0x132/0x180
+ load_system_files+0x1cc6/0x3480
+ ntfs_fill_super+0xa66/0x1cf0
+ mount_bdev+0x38d/0x460
+ legacy_get_tree+0x10d/0x220
+ vfs_get_tree+0x93/0x300
+ do_new_mount+0x2da/0x6d0
+ path_mount+0x496/0x19d0
+ __x64_sys_mount+0x284/0x300
+ do_syscall_64+0x3b/0xc0
+ entry_SYSCALL_64_after_hwframe+0x46/0xb0
+RIP: 0033:0x7f3f2118d9ea
+Code: 48 8b 0d a9 f4 0b 00 f7 d8 64 89 01 48 83 c8 ff c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 49 89 ca b8 a5 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 76 f4 0b 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffc269deac8 EFLAGS: 00000202 ORIG_RAX: 00000000000000a5
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f3f2118d9ea
+RDX: 0000000020000000 RSI: 0000000020000100 RDI: 00007ffc269dec00
+RBP: 00007ffc269dec80 R08: 00007ffc269deb00 R09: 00007ffc269dec44
+R10: 0000000000000000 R11: 0000000000000202 R12: 000055f81ab1d220
+R13: 0000000000000000 R14: 0000000000000000 R15: 0000000000000000
+ </TASK>
 
---- a/fs/ntfs/aops.c
-+++ b/fs/ntfs/aops.c
-@@ -183,7 +183,14 @@ static int ntfs_read_block(struct page *page)
-     vol = ni->vol;
-      
-           /* $MFT/$DATA must have its complete runlist in memory at all
-	    * times. */
-	    -    BUG_ON(!ni->runlist.rl && !ni->mft_no &&
-		 !NInoAttr(ni));
-		 +    if (IS_ERR_OR_NULL(ni->runlist.rl) && !ni->mft_no
-		 && !NInoAttr(ni)) {
-		 +        ntfs_error(vol->sb, "Runlist of $MFT/$DATA is not cached. "
-		 +                    "$MFT is corrupt.");
-		 +        unlock_page(page);
-		 +        if (IS_ERR(ni->runlist.rl))
-		 +            return PTR_ERR(ni->runlist.rl);
-		 +        return -EFAULT;
-		 +    }
---
+The buggy address belongs to the physical page:
+page:0000000085430378 refcount:1 mapcount:1 mapping:0000000000000000 index:0x555c6a81d pfn:0x751ac
+memcg:ffff888101f7e180
+anon flags: 0xfffffc00a0014(uptodate|lru|mappedtodisk|swapbacked|node=0|zone=1|lastcpupid=0x1fffff)
+raw: 000fffffc00a0014 ffffea0001bf2988 ffffea0001de2448 ffff88801712e201
+raw: 0000000555c6a81d 0000000000000000 0000000100000000 ffff888101f7e180
+page dumped because: kasan: bad access detected
 
-Thanks
-xu xin
+Memory state around the buggy address:
+ ffff8880751acd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ ffff8880751ace00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>ffff8880751ace80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+                                                          ^
+ ffff8880751acf00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ ffff8880751acf80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+==================================================================
 
-> 
-> Your patch violates the design of the code which is that empty attribute inodes have a NULL runlist and your patch will cause perfectly good attributes to be rejected if their runlist is attempted to be mapped when they are empty.  You would then have to start checking everywhere in the code whether an attribute has zero allocated_size (or compressed_size if compressed and/or sparse) and if so you would need to then not attempt to map the runlist which would be ugly.  Much better to have the code path streamline so it just returns an empty runlist...
-> 
-> It may be possible that the current OSS ntfs driver can indeed function with your patch but it still violates how the code is designed to work which is why I am not happy to take your patch.
-> 
-> > I can not understand why the below code is needed in
-> > ntfs_mapping_pairs_decompress().
-> > 
-> > /* If the mapping pairs array is valid but empty, nothing to do. */
-> > if (!vcn && !*buf) {
-> > return old_rl;
-> > }
-> > 
-> >> +++ b/fs/ntfs/runlist.c
-> >> @@ -766,8 +766,11 @@ runlist_element
-> >> *ntfs_mapping_pairs_decompress(const ntfs_volume *vol,
-> >> return ERR_PTR(-EIO);
-> >> }
-> >> /* If the mapping pairs array is valid but empty, nothing to do. */
-> >> - if (!vcn && !*buf)
-> >> + if (!vcn && !*buf) {
-> >> + if (!old_rl)
-> >> + return ERR_PTR(-EIO);
-> >> return old_rl;
-> >> + }
-> >> /* Current position in runlist array. */
-> >> rlpos = 0;
-> >> /* Allocate first page and set current runlist size to one page. */
-> >> 
-> >> 
-> >> - Eric
+The reason is that struct ATTR_RECORD->name_offset is 6485, end address of
+name string is out of bounds.
+
+Fix this by adding sanity check on end address of attibute name string.
+
+Signed-off-by: ChenXiaoSong <chenxiaosong2@huawei.com>
+---
+ fs/ntfs/attrib.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/fs/ntfs/attrib.c b/fs/ntfs/attrib.c
+index 4de597a83b88..4d1c3ca0c698 100644
+--- a/fs/ntfs/attrib.c
++++ b/fs/ntfs/attrib.c
+@@ -592,8 +592,12 @@ static int ntfs_attr_find(const ATTR_TYPE type, const ntfschar *name,
+ 		a = (ATTR_RECORD*)((u8*)ctx->attr +
+ 				le32_to_cpu(ctx->attr->length));
+ 	for (;;	a = (ATTR_RECORD*)((u8*)a + le32_to_cpu(a->length))) {
+-		if ((u8*)a < (u8*)ctx->mrec || (u8*)a > (u8*)ctx->mrec +
+-				le32_to_cpu(ctx->mrec->bytes_allocated))
++		u8 *mrec_end = (u8 *)(u8*)ctx->mrec +
++		               le32_to_cpu(ctx->mrec->bytes_allocated);
++		u8 *name_end = (u8 *)a + le16_to_cpu(a->name_offset) +
++		               a->name_length;
++		if ((u8*)a < (u8*)ctx->mrec || (u8*)a > mrec_end ||
++		    name_end > mrec_end)
+ 			break;
+ 		ctx->attr = a;
+ 		if (unlikely(le32_to_cpu(a->type) > le32_to_cpu(type) ||
+-- 
+2.31.1
+
 
 
 _______________________________________________
