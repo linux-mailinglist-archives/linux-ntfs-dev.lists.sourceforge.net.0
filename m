@@ -2,84 +2,122 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4219756A0C1
-	for <lists+linux-ntfs-dev@lfdr.de>; Thu,  7 Jul 2022 13:03:28 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
-	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A00356B41A
+	for <lists+linux-ntfs-dev@lfdr.de>; Fri,  8 Jul 2022 10:12:03 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1o9PI4-0008DX-Ar; Thu, 07 Jul 2022 11:03:23 +0000
+	id 1o9j5j-0007Du-H9; Fri, 08 Jul 2022 08:11:58 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <chenxiaosong2@huawei.com>) id 1o9Owk-0008QE-I8
- for linux-ntfs-dev@lists.sourceforge.net; Thu, 07 Jul 2022 10:41:23 +0000
+ (envelope-from <hughd@google.com>) id 1o9e4p-0003HF-Fn
+ for linux-ntfs-dev@lists.sourceforge.net; Fri, 08 Jul 2022 02:50:43 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
- :Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:MIME-Version:References:Message-ID:
+ In-Reply-To:Subject:cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding
+ :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=FqQhAKTv5WxkkbLLgaGPbZxxqac9TBH+HEKLGJYIyFQ=; b=Q8a/sdR8hbWicdMDXmO5kNCGSF
- QQWkiP+lI1/fR3ekNSVYDNXG/+hoPfmgVVSkgaa16uy3LQKRk/a8mC8ycvtHVdPK3sLSXv38hGCAo
- joaJTzmomomDKhOTxlRyxLC+fcctAPLnQVaEsmLru4xfnShU+Jtn7J68D6Wr5oYogEDI=;
+ bh=Ad97sT16le5gjY7PgDU6gmeetvBzm9wlE8bQkILVjNc=; b=U0rsBiUfIo+rI6CeZoh/uIOn1Q
+ ++61x3cUSzsEvjftGXf3ObtZVh23UfMKC0gD83CFTsTjRGcnMdw9lcZp5REuiRpF2juFlQYcGYoyc
+ UKPPJNpHds693KYQXNu/tRWMNeG0PCtHcMemSmjr8ESgdjxP19vpd2I1Qjaw8KukjH8s=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:
- Subject:CC:To:From:Sender:Reply-To:Content-ID:Content-Description:Resent-Date
- :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=FqQhAKTv5WxkkbLLgaGPbZxxqac9TBH+HEKLGJYIyFQ=; b=L
- ksJvz4xm/M5r55Ltw8QWOs0EzQOlP352ckZBnIrxaZwoycI1rWA3ooiDtXaWFDJ06fYVanQyvHw/6
- U/KlISHT2s3czJE6Wx2NrFEib60uXrsjrpexwyFdnjJ78YVPtkNuZq4GYg3XnDTf9Yer+UJzX6ldG
- I7X+xf2Qk+Jb4l/E=;
-Received: from szxga01-in.huawei.com ([45.249.212.187])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1o9Owh-009kG9-Mq
- for linux-ntfs-dev@lists.sourceforge.net; Thu, 07 Jul 2022 10:41:23 +0000
-Received: from dggemv704-chm.china.huawei.com (unknown [172.30.72.57])
- by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4LdtFn0QyMzkWvL;
- Thu,  7 Jul 2022 18:39:41 +0800 (CST)
-Received: from kwepemm600015.china.huawei.com (7.193.23.52) by
- dggemv704-chm.china.huawei.com (10.3.19.47) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.24; Thu, 7 Jul 2022 18:41:09 +0800
-Received: from huawei.com (10.175.127.227) by kwepemm600015.china.huawei.com
- (7.193.23.52) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Thu, 7 Jul
- 2022 18:41:08 +0800
-To: <anton@tuxera.com>, <akpm@linux-foundation.org>
-Date: Thu, 7 Jul 2022 18:53:29 +0800
-Message-ID: <20220707105329.4020708-1-chenxiaosong2@huawei.com>
-X-Mailer: git-send-email 2.31.1
+ h=Content-Type:MIME-Version:References:Message-ID:In-Reply-To:Subject:cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=Ad97sT16le5gjY7PgDU6gmeetvBzm9wlE8bQkILVjNc=; b=OEVphSf6YJjDjxDi0+GxtBlr1P
+ KCgmdZy31+DsizFyr1m+EeFfnF219pAhsfJMZdU+315H472Ip27UN1I8EDQvDTaRXp7G73TepffUk
+ L6bm0AYyWOh78xcsJbsdZuzKltIzOii3CXD8kE8H+NzAsV4TDyGDOHVMhRxaq00KGbWM=;
+Received: from mail-qt1-f171.google.com ([209.85.160.171])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.94.2)
+ id 1o9e4k-0000Mt-In
+ for linux-ntfs-dev@lists.sourceforge.net; Fri, 08 Jul 2022 02:50:43 +0000
+Received: by mail-qt1-f171.google.com with SMTP id he28so25555143qtb.13
+ for <linux-ntfs-dev@lists.sourceforge.net>;
+ Thu, 07 Jul 2022 19:50:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
+ h=date:from:to:cc:subject:in-reply-to:message-id:references
+ :mime-version; bh=Ad97sT16le5gjY7PgDU6gmeetvBzm9wlE8bQkILVjNc=;
+ b=tCcxRqjITVsiKb1O2qN38oOtehuQYEQmQlnA5EmpLLTcqVHGWkBNn5r6VjhB95uftz
+ oBhwab0Wa2p2hfzUf6HitqoN4V8My4lx3Sr3LHdaGn7TrTI27nd6mE0wsQOIBv87ES7u
+ uwlTgHRa2iafBHAxVTfOiHdPWVETU8CJjwRGskRUwQecY/1YbABG8fpWqJ0i5forgO17
+ n0R7m15mcAmskoYtfNfHUvAotB5BgPlp6Llxsn+Fa0qYPR44yx2cfMCeEIswKRQZAgPI
+ NLOhCVeNcKdBjtuIw/nnF9iOSfGliNNxy/YqmZphg0HMl4dZzroFochhJCRrtxDrneBV
+ hZ4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
+ :references:mime-version;
+ bh=Ad97sT16le5gjY7PgDU6gmeetvBzm9wlE8bQkILVjNc=;
+ b=0CdEVZAQ1PsjBxrDv1eILbVDZ9Zqsg8famIv5ZtUdOrrNyx53TtNQuwxh4ZOAsShOI
+ IuVIEDoxbIH8CCiHfz5qUN3UefDXv0ejQVikOOIorK2cBaiyxGGI0RVmZe7p4JwroUQj
+ ZtRDvZvH3HWMh6C3ZN2HAqjCUAaRwOiOd5hOD6UHRwt4WqHWIjXbxQrJQ4hPjz7O+7rc
+ bKPlhzQJB70pZoz0KlZ5G5ayI4jEz58Qsm6u/vTqBxlqXKAzblvdtoFMiGyM48DqgFd4
+ Fa0nTJtZjB8P7aFDid40NXFxhVYVSziyDpDH2M8BQoXGx4p5axVTzworzWoEDhDX4PFo
+ VnBw==
+X-Gm-Message-State: AJIora/khK49MzCkx1stC7wkdEO4FRLHqbkbh8lA92wWIoReeTMgV8jG
+ GwmBA2WVUGN6sJpgN0kvNj04Ig==
+X-Google-Smtp-Source: AGRyM1tJqq+vsbrqVwAmw8UZQYXdEmN7Cq4ADeDpayYOUxqHMEno4PbopiKhNsYF91bJVygTm51HMQ==
+X-Received: by 2002:ac8:7d52:0:b0:319:51f0:e418 with SMTP id
+ h18-20020ac87d52000000b0031951f0e418mr1088284qtb.481.1657248632632; 
+ Thu, 07 Jul 2022 19:50:32 -0700 (PDT)
+Received: from ripple.attlocal.net
+ (172-10-233-147.lightspeed.sntcca.sbcglobal.net. [172.10.233.147])
+ by smtp.gmail.com with ESMTPSA id
+ s7-20020a05620a254700b006a65c58db99sm35676841qko.64.2022.07.07.19.50.30
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 07 Jul 2022 19:50:32 -0700 (PDT)
+Date: Thu, 7 Jul 2022 19:50:17 -0700 (PDT)
+X-X-Sender: hugh@ripple.anvils
+To: "Matthew Wilcox (Oracle)" <willy@infradead.org>
+In-Reply-To: <20220608150249.3033815-8-willy@infradead.org>
+Message-ID: <6e7599d1-8a5f-bf16-383c-febd753bd051@google.com>
+References: <20220608150249.3033815-1-willy@infradead.org>
+ <20220608150249.3033815-8-willy@infradead.org>
 MIME-Version: 1.0
-X-Originating-IP: [10.175.127.227]
-X-ClientProxiedBy: dggems701-chm.china.huawei.com (10.3.19.178) To
- kwepemm600015.china.huawei.com (7.193.23.52)
-X-CFilter-Loop: Reflected
-X-Spam-Score: -2.3 (--)
+X-Spam-Score: -15.7 (---------------)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: Syzkaller reported use-after-free bug as follows:
- ==================================================================
- BUG: KASAN: use-after-free in ntfs_ucsncmp+0x123/0x130 Read of size 2 at
- addr ffff8880751acee8 by task a.out/879 
- Content analysis details:   (-2.3 points, 6.0 required)
+ Content preview:  On Wed, 8 Jun 2022, Matthew Wilcox (Oracle) wrote: > Now that
+ both callers have a folio, convert this function to > take a folio & rename
+ it. > > Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org> >
+ Reviewed-by: Christoph Hellwig <hch@lst.de [...] 
+ Content analysis details:   (-15.7 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -2.3 RCVD_IN_DNSWL_MED      RBL: Sender listed at https://www.dnswl.org/,
- medium trust [45.249.212.187 listed in list.dnswl.org]
+ -7.5 USER_IN_DEF_DKIM_WL    From: address is in the default DKIM
+ welcome-list
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.160.171 listed in list.dnswl.org]
+ -7.5 USER_IN_DEF_SPF_WL     From: address is in the default SPF
+ white-list
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.0 T_SCC_BODY_TEXT_LINE   No description available.
-X-Headers-End: 1o9Owh-009kG9-Mq
-X-Mailman-Approved-At: Thu, 07 Jul 2022 11:03:22 +0000
-Subject: [Linux-NTFS-Dev] [PATCH v2] ntfs: fix use-after-free in
- ntfs_ucsncmp()
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.160.171 listed in wl.mailspike.net]
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ -0.5 ENV_AND_HDR_SPF_MATCH  Env and Hdr From used in default SPF WL
+ Match
+ -0.0 DKIMWL_WL_MED          DKIMwl.org - Medium trust sender
+X-Headers-End: 1o9e4k-0000Mt-In
+X-Mailman-Approved-At: Fri, 08 Jul 2022 08:11:57 +0000
+Subject: Re: [Linux-NTFS-Dev] [PATCH v2 07/19] mm/migrate: Convert
+ expected_page_refs() to folio_expected_refs()
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -92,108 +130,162 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-From: ChenXiaoSong via Linux-NTFS-Dev <linux-ntfs-dev@lists.sourceforge.net>
-Reply-To: ChenXiaoSong <chenxiaosong2@huawei.com>
-Cc: yi.zhang@huawei.com, linux-ntfs-dev@lists.sourceforge.net,
- chenxiaosong2@huawei.com, linux-kernel@vger.kernel.org,
- zhangxiaoxu5@huawei.com, liuyongqiang13@huawei.com
+From: Hugh Dickins via Linux-NTFS-Dev <linux-ntfs-dev@lists.sourceforge.net>
+Reply-To: Hugh Dickins <hughd@google.com>
+Cc: linux-aio@kvack.org, linux-nfs@vger.kernel.org, cluster-devel@redhat.com,
+ linux-ntfs-dev@lists.sourceforge.net, Christoph Hellwig <hch@lst.de>,
+ linux-kernel@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net,
+ linux-block@vger.kernel.org, linux-mm@kvack.org, linux-mtd@lists.infradead.org,
+ ocfs2-devel@oss.oracle.com, linux-fsdevel@vger.kernel.org,
+ Andrew Morton <akpm@linux-foundation.org>, linux-ext4@vger.kernel.org,
+ virtualization@lists.linux-foundation.org, linux-xfs@vger.kernel.org,
+ linux-btrfs@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-Syzkaller reported use-after-free bug as follows:
+On Wed, 8 Jun 2022, Matthew Wilcox (Oracle) wrote:
 
-==================================================================
-BUG: KASAN: use-after-free in ntfs_ucsncmp+0x123/0x130
-Read of size 2 at addr ffff8880751acee8 by task a.out/879
+> Now that both callers have a folio, convert this function to
+> take a folio & rename it.
+> 
+> Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org>
+> Reviewed-by: Christoph Hellwig <hch@lst.de>
+> ---
+>  mm/migrate.c | 19 ++++++++++++-------
+>  1 file changed, 12 insertions(+), 7 deletions(-)
+> 
+> diff --git a/mm/migrate.c b/mm/migrate.c
+> index 2975f0c4d7cf..2e2f41572066 100644
+> --- a/mm/migrate.c
+> +++ b/mm/migrate.c
+> @@ -336,13 +336,18 @@ void pmd_migration_entry_wait(struct mm_struct *mm, pmd_t *pmd)
+>  }
+>  #endif
+>  
+> -static int expected_page_refs(struct address_space *mapping, struct page *page)
+> +static int folio_expected_refs(struct address_space *mapping,
+> +		struct folio *folio)
+>  {
+> -	int expected_count = 1;
+> +	int refs = 1;
+> +	if (!mapping)
+> +		return refs;
+>  
+> -	if (mapping)
+> -		expected_count += compound_nr(page) + page_has_private(page);
+> -	return expected_count;
+> +	refs += folio_nr_pages(folio);
+> +	if (folio_get_private(folio))
+> +		refs++;
+> +
+> +	return refs;
+>  }
+>  
+>  /*
+> @@ -359,7 +364,7 @@ int folio_migrate_mapping(struct address_space *mapping,
+>  	XA_STATE(xas, &mapping->i_pages, folio_index(folio));
+>  	struct zone *oldzone, *newzone;
+>  	int dirty;
+> -	int expected_count = expected_page_refs(mapping, &folio->page) + extra_count;
+> +	int expected_count = folio_expected_refs(mapping, folio) + extra_count;
+>  	long nr = folio_nr_pages(folio);
+>  
+>  	if (!mapping) {
+> @@ -669,7 +674,7 @@ static int __buffer_migrate_folio(struct address_space *mapping,
+>  		return migrate_page(mapping, &dst->page, &src->page, mode);
+>  
+>  	/* Check whether page does not have extra refs before we do more work */
+> -	expected_count = expected_page_refs(mapping, &src->page);
+> +	expected_count = folio_expected_refs(mapping, src);
+>  	if (folio_ref_count(src) != expected_count)
+>  		return -EAGAIN;
+>  
+> -- 
+> 2.35.1
 
-CPU: 7 PID: 879 Comm: a.out Not tainted 5.19.0-rc4-next-20220630-00001-gcc5218c8bd2c-dirty #7
-Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.0-0-gd239552ce722-prebuilt.qemu.org 04/01/2014
-Call Trace:
- <TASK>
- dump_stack_lvl+0x1c0/0x2b0
- print_address_description.constprop.0.cold+0xd4/0x484
- print_report.cold+0x55/0x232
- kasan_report+0xbf/0xf0
- ntfs_ucsncmp+0x123/0x130
- ntfs_are_names_equal.cold+0x2b/0x41
- ntfs_attr_find+0x43b/0xb90
- ntfs_attr_lookup+0x16d/0x1e0
- ntfs_read_locked_attr_inode+0x4aa/0x2360
- ntfs_attr_iget+0x1af/0x220
- ntfs_read_locked_inode+0x246c/0x5120
- ntfs_iget+0x132/0x180
- load_system_files+0x1cc6/0x3480
- ntfs_fill_super+0xa66/0x1cf0
- mount_bdev+0x38d/0x460
- legacy_get_tree+0x10d/0x220
- vfs_get_tree+0x93/0x300
- do_new_mount+0x2da/0x6d0
- path_mount+0x496/0x19d0
- __x64_sys_mount+0x284/0x300
- do_syscall_64+0x3b/0xc0
- entry_SYSCALL_64_after_hwframe+0x46/0xb0
-RIP: 0033:0x7f3f2118d9ea
-Code: 48 8b 0d a9 f4 0b 00 f7 d8 64 89 01 48 83 c8 ff c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 49 89 ca b8 a5 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 76 f4 0b 00 f7 d8 64 89 01 48
-RSP: 002b:00007ffc269deac8 EFLAGS: 00000202 ORIG_RAX: 00000000000000a5
-RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f3f2118d9ea
-RDX: 0000000020000000 RSI: 0000000020000100 RDI: 00007ffc269dec00
-RBP: 00007ffc269dec80 R08: 00007ffc269deb00 R09: 00007ffc269dec44
-R10: 0000000000000000 R11: 0000000000000202 R12: 000055f81ab1d220
-R13: 0000000000000000 R14: 0000000000000000 R15: 0000000000000000
- </TASK>
+This commit (742e89c9e352d38df1a5825fe40c4de73a5d5f7a in pagecache.git
+folio/for-next and recent linux-next) is dangerously wrong, at least
+for swapcache, and probably for some others.
 
-The buggy address belongs to the physical page:
-page:0000000085430378 refcount:1 mapcount:1 mapping:0000000000000000 index:0x555c6a81d pfn:0x751ac
-memcg:ffff888101f7e180
-anon flags: 0xfffffc00a0014(uptodate|lru|mappedtodisk|swapbacked|node=0|zone=1|lastcpupid=0x1fffff)
-raw: 000fffffc00a0014 ffffea0001bf2988 ffffea0001de2448 ffff88801712e201
-raw: 0000000555c6a81d 0000000000000000 0000000100000000 ffff888101f7e180
-page dumped because: kasan: bad access detected
+I say "dangerously" because it tells page migration a swapcache page
+is safe for migration when it certainly is not.
 
-Memory state around the buggy address:
- ffff8880751acd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
- ffff8880751ace00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
->ffff8880751ace80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-                                                          ^
- ffff8880751acf00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
- ffff8880751acf80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-==================================================================
+The fun that typically ensues is kernel BUG at include/linux/mm.h:750!
+put_page_testzero() VM_BUG_ON_PAGE(page_ref_count(page) == 0, page),
+if CONFIG_DEBUG_VM=y (bisecting for that is what brought me to this).
+But I guess you might get silent data corruption too.
 
-The reason is that struct ATTR_RECORD->name_offset is 6485, end address of
-name string is out of bounds.
+I assumed at first that you'd changed the rules, and were now expecting
+any subsystem that puts a non-zero value into folio->private to raise
+its refcount - whereas the old convention (originating with buffer heads)
+is that setting PG_private says an extra refcount has been taken, please
+call try_to_release_page() to lower it, and maybe that will use data in
+page->private to do so; but page->private free for the subsystem owning
+the page to use as it wishes, no refcount implication.  But that you
+had missed updating swapcache.
 
-Fix this by adding sanity check on end address of attibute name string.
+So I got working okay with the patch below; but before turning it into
+a proper patch, noticed that there were still plenty of other places
+applying the test for PG_private: so now think that maybe you set out
+with intention as above, realized it wouldn't work, but got distracted
+before cleaning up some places you'd already changed.  And patch below
+now goes in the wrong direction.
 
-Signed-off-by: ChenXiaoSong <chenxiaosong2@huawei.com>
----
-v1 -> v2: remove redundant statement
+Or maybe you didn't intend any change, but the PG_private test just got
+missed in a few places.  I don't know, hope you remember, but current
+linux-next badly inconsistent.
+Over to you, thanks,
 
- fs/ntfs/attrib.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+Hugh
 
-diff --git a/fs/ntfs/attrib.c b/fs/ntfs/attrib.c
-index 4de597a83b88..9ab8766872d2 100644
---- a/fs/ntfs/attrib.c
-+++ b/fs/ntfs/attrib.c
-@@ -592,8 +592,12 @@ static int ntfs_attr_find(const ATTR_TYPE type, const ntfschar *name,
- 		a = (ATTR_RECORD*)((u8*)ctx->attr +
- 				le32_to_cpu(ctx->attr->length));
- 	for (;;	a = (ATTR_RECORD*)((u8*)a + le32_to_cpu(a->length))) {
--		if ((u8*)a < (u8*)ctx->mrec || (u8*)a > (u8*)ctx->mrec +
--				le32_to_cpu(ctx->mrec->bytes_allocated))
-+		u8 *mrec_end = (u8 *)ctx->mrec +
-+		               le32_to_cpu(ctx->mrec->bytes_allocated);
-+		u8 *name_end = (u8 *)a + le16_to_cpu(a->name_offset) +
-+		               a->name_length;
-+		if ((u8*)a < (u8*)ctx->mrec || (u8*)a > mrec_end ||
-+		    name_end > mrec_end)
- 			break;
- 		ctx->attr = a;
- 		if (unlikely(le32_to_cpu(a->type) > le32_to_cpu(type) ||
--- 
-2.31.1
-
+--- a/mm/migrate.c	2022-07-06 14:24:44.499941975 -0700
++++ b/mm/migrate.c	2022-07-06 15:49:25.000000000 -0700
+@@ -351,6 +351,10 @@ unlock:
+ }
+ #endif
+ 
++static inline bool folio_counted_private(struct folio *folio)
++{
++	return !folio_test_swapcache(folio) && folio_get_private(folio);
++}
+ static int folio_expected_refs(struct address_space *mapping,
+ 		struct folio *folio)
+ {
+@@ -359,7 +363,7 @@ static int folio_expected_refs(struct ad
+ 		return refs;
+ 
+ 	refs += folio_nr_pages(folio);
+-	if (folio_get_private(folio))
++	if (folio_counted_private(folio))
+ 		refs++;
+ 
+ 	return refs;
+--- a/mm/vmscan.c	2022-07-06 14:24:44.531942217 -0700
++++ b/mm/vmscan.c	2022-07-06 15:49:37.000000000 -0700
+@@ -2494,6 +2494,10 @@ shrink_inactive_list(unsigned long nr_to
+  * The downside is that we have to touch folio->_refcount against each folio.
+  * But we had to alter folio->flags anyway.
+  */
++static inline bool folio_counted_private(struct folio *folio)
++{
++	return !folio_test_swapcache(folio) && folio_get_private(folio);
++}
+ static void shrink_active_list(unsigned long nr_to_scan,
+ 			       struct lruvec *lruvec,
+ 			       struct scan_control *sc,
+@@ -2538,8 +2542,9 @@ static void shrink_active_list(unsigned
+ 		}
+ 
+ 		if (unlikely(buffer_heads_over_limit)) {
+-			if (folio_get_private(folio) && folio_trylock(folio)) {
+-				if (folio_get_private(folio))
++			if (folio_counted_private(folio) &&
++			    folio_trylock(folio)) {
++				if (folio_counted_private(folio))
+ 					filemap_release_folio(folio, 0);
+ 				folio_unlock(folio);
+ 			}
 
 
 _______________________________________________
