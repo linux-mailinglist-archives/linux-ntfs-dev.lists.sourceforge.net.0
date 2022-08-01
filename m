@@ -2,70 +2,70 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DF0158E1E1
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C16E58E1E0
 	for <lists+linux-ntfs-dev@lfdr.de>; Tue,  9 Aug 2022 23:39:30 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1oLWwi-0005HS-48; Tue, 09 Aug 2022 21:39:27 +0000
+	id 1oLWwi-0005Hf-6u; Tue, 09 Aug 2022 21:39:27 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <sashal@kernel.org>) id 1oIahQ-0004Ii-NL
- for linux-ntfs-dev@lists.sourceforge.net; Mon, 01 Aug 2022 19:03:31 +0000
+ (envelope-from <sashal@kernel.org>) id 1oIahs-0000mW-Mn
+ for linux-ntfs-dev@lists.sourceforge.net; Mon, 01 Aug 2022 19:04:00 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Message-Id:
  Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=W8o4PAjP0ktEKrFXumr7qOd8IVRnNKQE5bf9LNX3Nrk=; b=Qcl+bSsURoKtYjDGkH/vslGbz1
- 4Jnh3K3LGvZnb5vfJD5e9l0xWKO93COdS6ZpP6YtCFBBDzzVV4c+PIqNLsl/yi6XWMjPBc7RbI7Yw
- wqPbqRkqBXgRi/KSU4HbhudARIJjpPyfxQ4i1sypS2MLiqw66T/2tNqoK59S1RwN/zVE=;
+ bh=kf2KMtF65tQaeuVpCq3AJcNnXHPV5DECGALwWLZyrag=; b=ia5EEOtwpORwgGaegkrL1fkE3W
+ UddMylNK4sVr8iB+HgaykT57CNjS2BwiLkj6T4dr4kcqD6j8je53wt+xX9C2oMt9HEsqnhgtAFY3/
+ 7czNHyZAP2M972y6K9kiqwP1cW74Aipyc5ZhpkVRq2OJBV/Vw5tNDlubkSAVq7bpQPd8=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From
  :Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=W8o4PAjP0ktEKrFXumr7qOd8IVRnNKQE5bf9LNX3Nrk=; b=W
- yi44EiXGeCgZgkDmH+GR7wDYnJZFa3uBedkAzGHRJszC+MkZtRvn0sjORr/lsaXU0LOhJSDRdtort
- QuAAQ1Sjx9+QKPSvHI61ybjE5/wcN0JL7dZ2FMwzLV4iTSzZfo0fOFlBcyd30ocKTCRUlhxlHtG8m
- BfTw7cNyCYcjTWlk=;
-Received: from dfw.source.kernel.org ([139.178.84.217])
+ List-Owner:List-Archive; bh=kf2KMtF65tQaeuVpCq3AJcNnXHPV5DECGALwWLZyrag=; b=T
+ EB12RIGHIixq2+jEIrSQbtexVIZrbmh+1Auo0i8nDYwb82MbW560acQTkAYGXD/ltKkhcYut3xU1f
+ a5ZfoC8fHvDwWjZAh7a7zWC90ODoQMj1jeJVyQhOJbGwxKSR37J6eveAcBFrvfo4cfuovmsyJevy/
+ ldBhjyDYyznXdXEw=;
+Received: from sin.source.kernel.org ([145.40.73.55])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1oIahN-0000cn-Qy
- for linux-ntfs-dev@lists.sourceforge.net; Mon, 01 Aug 2022 19:03:31 +0000
+ id 1oIahe-0000eB-5T
+ for linux-ntfs-dev@lists.sourceforge.net; Mon, 01 Aug 2022 19:03:47 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 448C0611F3;
- Mon,  1 Aug 2022 19:03:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A66AC433D6;
- Mon,  1 Aug 2022 19:03:19 +0000 (UTC)
+ by sin.source.kernel.org (Postfix) with ESMTPS id 69D0BCE1795;
+ Mon,  1 Aug 2022 19:03:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8CC4C433D6;
+ Mon,  1 Aug 2022 19:03:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1659380600;
- bh=WO0Is6Ap7HPT+oMAFCBFYAkwz657lC7CvErEigQn9to=;
+ s=k20201202; t=1659380614;
+ bh=TPytx1N/dr1O0qa21LUkcsV1zrJah+fC1FTAhW/ruV0=;
  h=From:To:Cc:Subject:Date:From;
- b=HcM6yjNbxNIpULQ1Ko1vSEx0o2o/42zXGAO/vipKMbQHr78lyesCUPAgAdEbSKzxV
- lCXzXADMlxpv0soXbDSFIN0CdmjSRYi7iks1pvYj0KLf6hJKdPdwBThs+gB2VMd+Zr
- 7WlFAqEvzq5I1fwgzNzGQPRXyiNomBif8J0sLxvs7dQIm2XyE+6z8jk7D2J4gJp4DJ
- eAFUBgHCkrY21+kx+x/rHY41h8/63zcnaY8tWfSJijcUKoAKustZH7czueFGAO7kny
- gZ/nZ5vDV1+iURmFNPV98k/QZR/TISny9S+poaVGuIn4LjPPLG6jDMHw99qQ4PkOLi
- GHdQAv1mcytdg==
+ b=GaEehgfNr4AocBKuWz2jgGcKF8cOk0hDNFiBrAcsvjYnsmmDbRGdCqWUb68SzzklO
+ h8tveztXQmKZebQjF6+G/7EhJk9ICi2UN8y3CQk0+jAau5zAUf/dzpd9wceTiwtfyJ
+ s+fMm36nM6WDRXpBuMJzhy2rGIQlXxQxUOiyif0gEBwEt8XRd3u2qmIEQR6pnJ6bja
+ oZtdI52HLby1Ba3/hgFJJWqI0phWyWRMtwZ7NXgY/EXPX0JI85jqxgw47BmbyNA8GA
+ Vxqrbs8AVJuIZoQH6LiBp7pHx8BeRMwCW8oNCjelcv6gI6yMGU/agBx22Qo2vM+2HT
+ /QDJnzmc7eNNA==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Date: Mon,  1 Aug 2022 15:03:12 -0400
-Message-Id: <20220801190317.3819520-1-sashal@kernel.org>
+Date: Mon,  1 Aug 2022 15:03:28 -0400
+Message-Id: <20220801190331.3819791-1-sashal@kernel.org>
 X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-Spam-Score: -5.9 (-----)
+X-Spam-Score: -5.8 (-----)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
@@ -74,24 +74,23 @@ X-Spam-Report: Spam detection software,
  commit
  38c9c22a85aeed28d0831f230136e9cf6fa2ed44 ] Syzkaller reported use-after-free
  bug as follows: 
- Content analysis details:   (-5.9 points, 6.0 required)
+ Content analysis details:   (-5.8 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
- high trust [139.178.84.217 listed in list.dnswl.org]
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
+ high trust [145.40.73.55 listed in list.dnswl.org]
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
- -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1oIahN-0000cn-Qy
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid -0.6 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1oIahe-0000eB-5T
 X-Mailman-Approved-At: Tue, 09 Aug 2022 21:39:25 +0000
-Subject: [Linux-NTFS-Dev] [PATCH AUTOSEL 5.4 1/6] ntfs: fix use-after-free
+Subject: [Linux-NTFS-Dev] [PATCH AUTOSEL 4.19 1/4] ntfs: fix use-after-free
  in ntfs_ucsncmp()
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -201,10 +200,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 6 insertions(+), 2 deletions(-)
 
 diff --git a/fs/ntfs/attrib.c b/fs/ntfs/attrib.c
-index d563abc3e136..914e99173130 100644
+index 44a39a099b54..62b49197e5f6 100644
 --- a/fs/ntfs/attrib.c
 +++ b/fs/ntfs/attrib.c
-@@ -592,8 +592,12 @@ static int ntfs_attr_find(const ATTR_TYPE type, const ntfschar *name,
+@@ -606,8 +606,12 @@ static int ntfs_attr_find(const ATTR_TYPE type, const ntfschar *name,
  		a = (ATTR_RECORD*)((u8*)ctx->attr +
  				le32_to_cpu(ctx->attr->length));
  	for (;;	a = (ATTR_RECORD*)((u8*)a + le32_to_cpu(a->length))) {
