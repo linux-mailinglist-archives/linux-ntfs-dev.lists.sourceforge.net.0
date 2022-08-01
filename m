@@ -2,26 +2,26 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 991AC58E1E6
+	by mail.lfdr.de (Postfix) with ESMTPS id 89BE358E1E5
 	for <lists+linux-ntfs-dev@lfdr.de>; Tue,  9 Aug 2022 23:39:30 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1oLWwh-0005HD-UL; Tue, 09 Aug 2022 21:39:26 +0000
+	id 1oLWwh-0005HI-W2; Tue, 09 Aug 2022 21:39:26 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <sashal@kernel.org>) id 1oIagd-0000lL-LS
- for linux-ntfs-dev@lists.sourceforge.net; Mon, 01 Aug 2022 19:02:43 +0000
+ (envelope-from <sashal@kernel.org>) id 1oIago-00017m-Ss
+ for linux-ntfs-dev@lists.sourceforge.net; Mon, 01 Aug 2022 19:02:55 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
  In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=diXTnhtv7kIYQzhoCMk837E1GJlDl1xHu1N4dGofgYE=; b=eq1pRTXb/XAeNvcBPDoE4Olork
- pQsyEkxBzjSNfzYr3wNeEzeP0woXlpwu3ouVqpnInSKMPX2xT1Oqi5TxxcQ+lYnNXhOxQXOS67pHw
- qBLqpFkfVUhDM/RDRhwHL9VUMo6iepPA6VX+c1XQG6RRPYG0/jdH+Ktu7f+o5t3fSoWg=;
+ bh=W8o4PAjP0ktEKrFXumr7qOd8IVRnNKQE5bf9LNX3Nrk=; b=X/l7uGPX+7TkGMljfgp4k40wGv
+ 7D7wqyNZ+QZIRgdo2HNMdopxUZiv7Q9h7RlFY4vlQCRu0TKC98gYZX+vOjVe/iPlEAzhrLoy9BFHV
+ JplYGqKSjuOCyvCI3AwuvvPVwSVnQFXkBMZJcMlv/XPgky7UlZ+AL9bddSdiZCsLSHAc=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -29,45 +29,45 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=diXTnhtv7kIYQzhoCMk837E1GJlDl1xHu1N4dGofgYE=; b=Zmcv1i0Hf5s7Lp3YA9QAobkOpk
- 8xkkY6c6zcQyi2wa51HaECFrjoaD3HA9BZmq5r3MyoN2EOi896WbOr/rSgPQ/yjDcqhLmfkTtNfXl
- e1w7B0aGjh3ixnWxcBAosVgMRuWSElfXFojwpmIP/+AVmBWErrGz8wXMj+uCE/t3vUNk=;
-Received: from ams.source.kernel.org ([145.40.68.75])
+ bh=W8o4PAjP0ktEKrFXumr7qOd8IVRnNKQE5bf9LNX3Nrk=; b=YhvRLfrQC3p9kTXIWamF4Io/8k
+ dzpGujPZhZLvjPkwH37d8YrwSKblIW0ggwu3IQEWyrSLn0LY/GRWZUuM/Z/A8yVUpnUopEDFfgdNZ
+ f2ore5soeuJJk7Fx3iQkk9tk+6LyYfZ23qiaQht+MXn7EN9B/FQn1hd4AwG4sO3IujK8=;
+Received: from dfw.source.kernel.org ([139.178.84.217])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1oIagZ-0005Fs-Az
- for linux-ntfs-dev@lists.sourceforge.net; Mon, 01 Aug 2022 19:02:43 +0000
+ id 1oIagn-0005Gz-Py
+ for linux-ntfs-dev@lists.sourceforge.net; Mon, 01 Aug 2022 19:02:54 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id AD3FAB81626;
- Mon,  1 Aug 2022 19:02:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 473B6C433D7;
- Mon,  1 Aug 2022 19:02:27 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 6C877611FE;
+ Mon,  1 Aug 2022 19:02:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26679C43140;
+ Mon,  1 Aug 2022 19:02:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1659380548;
- bh=jAx86eRZefug5uzEX5ItvWoArIIrQLRAQIDYGuhfrqo=;
+ s=k20201202; t=1659380568;
+ bh=WO0Is6Ap7HPT+oMAFCBFYAkwz657lC7CvErEigQn9to=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=M6eqm8pIUAqAIxoXl96LRBmfsi43rz8zcCWmZFkQVpLYNZhizE9AuwDORncj6uhHr
- vZjYlB+y/LPT2zJ4R0/hO/c7NT0YZ7rbFAwMY+FKgGfR25ernXSWLuFNMootzMuBLU
- G6V6dEULymXEJ+NgKgb5rmlnc78znJm/oecyOzR1g8CB6AwYhSxIdCaijK95Ko+iRM
- zuqkMXx35rHFcapulPntciGr8iKj1JDKG1dA7/kpRVYicJp2mT5SeiMvB77eT0quvs
- Vt3SvzSo1a5S+W/tKSfWkFhO+nDxvW7/k63p0RQxVdOrawmzcvKLrXXzZLj4UXIeak
- 4szV93nA0XLgg==
+ b=G+l7CRTMpFdTLEFOv+VRHQbvCKZlQewxYqMi1QBZsmlzcxqNe3GhIdgYyc473QFdX
+ DxGhRoL7v+RLM7St+lx/kW1xorcJzG9lGr+hbEcgerw790VCyd3Xn4yp2mSSVdoELR
+ OExTLRQJfDU1lAck01et6FielvqXV8TATvsZprW50tdvXrT6HooG3scwKZFfICnhMR
+ MRbQGP3fMW7YbUHzM4C9uBjw73OnHny7mfcFxJydOo+CrDNV0j8x05k/9T7EowCupa
+ N79A0bv4Gl3TBHiQ/ptbvc4Gfp2mW50/XcyiVGzJhNcWtkbGHccR77S2z3lcmsrXRm
+ VtgTIPbXaPYlQ==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Date: Mon,  1 Aug 2022 15:02:15 -0400
-Message-Id: <20220801190222.3818378-3-sashal@kernel.org>
+Date: Mon,  1 Aug 2022 15:02:37 -0400
+Message-Id: <20220801190243.3818811-2-sashal@kernel.org>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220801190222.3818378-1-sashal@kernel.org>
-References: <20220801190222.3818378-1-sashal@kernel.org>
+In-Reply-To: <20220801190243.3818811-1-sashal@kernel.org>
+References: <20220801190243.3818811-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-Spam-Score: -5.9 (-----)
+X-Spam-Score: -5.8 (-----)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
@@ -76,25 +76,24 @@ X-Spam-Report: Spam detection software,
  commit
  38c9c22a85aeed28d0831f230136e9cf6fa2ed44 ] Syzkaller reported use-after-free
  bug as follows: 
- Content analysis details:   (-5.9 points, 6.0 required)
+ Content analysis details:   (-5.8 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
- high trust [145.40.68.75 listed in list.dnswl.org]
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ high trust [139.178.84.217 listed in list.dnswl.org]
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
- -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1oIagZ-0005Fs-Az
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid -0.6 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1oIagn-0005Gz-Py
 X-Mailman-Approved-At: Tue, 09 Aug 2022 21:39:25 +0000
-Subject: [Linux-NTFS-Dev] [PATCH AUTOSEL 5.18 03/10] ntfs: fix
- use-after-free in ntfs_ucsncmp()
+Subject: [Linux-NTFS-Dev] [PATCH AUTOSEL 5.15 2/8] ntfs: fix use-after-free
+ in ntfs_ucsncmp()
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -203,7 +202,7 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 6 insertions(+), 2 deletions(-)
 
 diff --git a/fs/ntfs/attrib.c b/fs/ntfs/attrib.c
-index 2911c04a33e0..080333bda45e 100644
+index d563abc3e136..914e99173130 100644
 --- a/fs/ntfs/attrib.c
 +++ b/fs/ntfs/attrib.c
 @@ -592,8 +592,12 @@ static int ntfs_attr_find(const ATTR_TYPE type, const ntfschar *name,
