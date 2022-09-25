@@ -2,119 +2,104 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B20C5AD173
-	for <lists+linux-ntfs-dev@lfdr.de>; Mon,  5 Sep 2022 13:23:16 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 216B05E9360
+	for <lists+linux-ntfs-dev@lfdr.de>; Sun, 25 Sep 2022 15:32:23 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1oVAC9-00068F-18;
-	Mon, 05 Sep 2022 11:23:13 +0000
+	id 1ocRk4-0000Of-OS;
+	Sun, 25 Sep 2022 13:32:20 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <clabbe.montjoie@gmail.com>) id 1oV72C-0003Wp-O4
- for linux-ntfs-dev@lists.sourceforge.net;
- Mon, 05 Sep 2022 08:00:44 +0000
+ (envelope-from <pali@kernel.org>) id 1ocQPc-0000yu-U8;
+ Sun, 25 Sep 2022 12:07:08 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Message-ID:Subject:Cc:To:
- From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:
+ MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=VaWJ/ARhAOBGNuUeehNxEZSalc/K693ceMetl/r8zM0=; b=iuD64CzpIhySC1WuT2FJqRVQhl
- vjrPD5n5GfXCSyi4Ks6pFSK/pgF7EaRihW3iIoCfOrteld4OeXPgcJ9UX5pgGQu6No9Tc7Z/PGju3
- 4bnMhc1XngHROwsOo6oX/dUSU5my7+z/aqo2OJNRnV3vbRC/x9oEEOXOGCIgLwit+C0A=;
+ bh=9ousKuphoz7vIFh7EoI7vYdKMuzVAbJvZWp9a8/bk84=; b=NzDfVrz1BqS2N6aFhEQitQEomx
+ MtqzmDdv7xxXZijkKRByOteXRheZh3QmEur3SacGScFiU7q+xRjVQ+nVHuS+qsPRHk5Gm1r+N2Qm/
+ esnc8CulAeaYzzc4osD+84gF4rh7ij0Xft/rqTKaZmXVhLZSe/jXFAYfcvWU7YfxuhtU=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:MIME-Version:Message-ID:Subject:Cc:To:From:Date:Sender:
- Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
- :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=VaWJ/ARhAOBGNuUeehNxEZSalc/K693ceMetl/r8zM0=; b=b
- HViQSQaDhGMCyrj9wBJIO0c6cf/Kpt/tw2i3pFAFdJ+eSHsxdanw4gpOguJYO1cAlqEUVADcNlEh+
- S+FZC+XPKxT/63fZGvTW1Bcqp6fjhBXCfX0DhBey4bFduxKTklxKGuuMgErsWZZp0k+0qrV7mbeRV
- z4zAIc6X9iUSbPzg=;
-Received: from mail-wr1-f50.google.com ([209.85.221.50])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1oV728-00FnvA-EE for linux-ntfs-dev@lists.sourceforge.net;
- Mon, 05 Sep 2022 08:00:44 +0000
-Received: by mail-wr1-f50.google.com with SMTP id b5so10194761wrr.5
- for <linux-ntfs-dev@lists.sourceforge.net>;
- Mon, 05 Sep 2022 01:00:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date;
- bh=VaWJ/ARhAOBGNuUeehNxEZSalc/K693ceMetl/r8zM0=;
- b=SnJhQQZLPDQoJOp4A6JgHJxbKXZb9XVqvdh2cpuymb/xL6glfU9k9AIRC1OC4q567m
- WeGvKxSbv3ypSaMKi2ZaAquvKuuxVYsCUzdP6BUR7FLo68gDZt6Pvk68EcBVWzCVJjwG
- 0iJ1ksTQhC9Peq8UKLS6K5Xdwrt22abbzta8YQBRVkHZg8DiJAUE7T4zjNj154crQmo2
- fVAwwe3YrMejDL4szCZfXaeRP49E3aqQT0fWguEpC05mSB07XUvtyyuVwRmxCsiU5Lr5
- keXZohZ4yQjL7FidpcZL5DrAGN+0vTOSZsCbo0y43Lq/WvLBGVPfvcn6Z2AtVOUBLyIc
- NoCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date;
- bh=VaWJ/ARhAOBGNuUeehNxEZSalc/K693ceMetl/r8zM0=;
- b=CAMNpiE9nR/fpHigFD8Xyll4qFyJ2BKP0iJUpifGjjQnVffHdmncbzbeocdgwWzMMI
- TXD5F2IET1OaDZyx9Om8bT4QnGaU/X3KIY5STbQ5YCxslW8azIqtDyFQ1yXvkORWOOY7
- SlbAUOm0Y3JGkGjDaAHlZILHEFPMkMVNAot546G4XbpiqT3XRoDogoz4mwlgW2JPC+k0
- vuMISlI0loNAXs/S+EwQ02Y1OyCNamwGe8TS4Kp0SFsOShW/cszFBKTnuTD5fWJv8B+d
- 20voQ50MxInD1822KBnRarhzp6b9hiQTWs3Pq+wWdhDRvXgaLp+Ih0RPgpap61qoiCTb
- FyYw==
-X-Gm-Message-State: ACgBeo3aKw+jSJJ4EvfZhxlBAYoI7TGzkuWlPMzbd0XvhhPIhfuXtpkX
- iNlqsYSegBaXZr5OcHu/3jE=
-X-Google-Smtp-Source: AA6agR60M9DbGesrt7BIBrBnQOq6chv1b4N5FjBbhGVwQjqOFSOuMcViNY3ntJmPvfXnH/oAQukyzg==
-X-Received: by 2002:a5d:64ab:0:b0:226:d997:ad5c with SMTP id
- m11-20020a5d64ab000000b00226d997ad5cmr20049042wrp.602.1662364833934; 
- Mon, 05 Sep 2022 01:00:33 -0700 (PDT)
-Received: from Red ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
- by smtp.googlemail.com with ESMTPSA id
- l20-20020a05600c089400b003a30fbde91dsm15646478wmp.20.2022.09.05.01.00.32
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 05 Sep 2022 01:00:33 -0700 (PDT)
-Date: Mon, 5 Sep 2022 10:00:29 +0200
-From: Corentin Labbe <clabbe.montjoie@gmail.com>
-To: anton@tuxera.com, linux-ntfs-dev@lists.sourceforge.net,
- akpm@linux-foundation.org
-Message-ID: <YxWsnc1JlNemcXfA@Red>
+ h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=9ousKuphoz7vIFh7EoI7vYdKMuzVAbJvZWp9a8/bk84=; b=VEztW5XQYirdmbEsJZVZmY+rAl
+ MOfEtKeeGHMs/oVQBV6/YlOPP3P4OlVEo/OHKVgDL3cHdXZGF2O1M8B44vq31zzfBLacOcw/a6fdO
+ rbVBIfZnVHx+pdvC4g7t2VoJ+vZsIr2ahwVblyalOQ4/xdgTre+nJvLmez1BWF4EOyfY=;
+Received: from ams.source.kernel.org ([145.40.68.75])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
+ id 1ocQPZ-0000WN-TY; Sun, 25 Sep 2022 12:07:08 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id 4AAB5B80953;
+ Sun, 25 Sep 2022 12:06:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F033C433C1;
+ Sun, 25 Sep 2022 12:06:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1664107610;
+ bh=BCVRBXCetpvd2YGmBGtkM+UvNAeY+VGeEDAT0/lc8fs=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=PU4HPuu6PfX16bgcSLQO2UdKyKi6k7hidu67KPybnHdBqUDMS2nEB0bskWnITbEI1
+ NiISQOj9XmDLK220C1XUdj2ECXol9pSIXpNbkClHluegVM1oYYycVNx99kVXgLukx9
+ EPU/1LXeHiI6+8eZAFXHudHaHWa288mSa9ZlipLUF0IJHUFEeaqsCrVF5rJI2V2ePq
+ k6UEXIz3RPnZLYdgnY9JssVFw+sQY5d4XVdYVey6CXQowDvO4T3RG/rpTDiF6CW6C/
+ ppMcYGtCVWe5d50KxhotzIEYWi4VS/pvfEz2ckZhNP6lcyEirgox4/ytck47LAc95A
+ OEvoEnYdqANEA==
+Received: by pali.im (Postfix)
+ id 6D0D1EE2; Sun, 25 Sep 2022 14:06:46 +0200 (CEST)
+Date: Sun, 25 Sep 2022 14:06:46 +0200
+From: Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To: Viacheslav Dubeyko <slava@dubeyko.com>
+Message-ID: <20220925120646.dfkofrka74blwrwb@pali>
+References: <20210808162453.1653-1-pali@kernel.org>
+ <20210808162453.1653-13-pali@kernel.org>
+ <4B1987C7-F6D9-4493-ACD0-846B92F86037@dubeyko.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-X-Spam-Score: -0.2 (/)
-X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+In-Reply-To: <4B1987C7-F6D9-4493-ACD0-846B92F86037@dubeyko.com>
+User-Agent: NeoMutt/20180716
+X-Spam-Score: -5.3 (-----)
+X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.lw.sourceforge.com",
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: Hello On a jetson-tk1 I got today: [ 39.582103]
- ================================
- [ 39.586361] WARNING: inconsistent lock state [ 39.590618]
- 6.0.0-rc3-next-20220901-00130-gb6b3fb681f34-dirty
- #8 Not tainted [ [...] 
- Content analysis details:   (-0.2 points, 6.0 required)
- pts rule name              description
+ 
+ Content preview:  Hello! Sorry for a longer delay. Below are comments. On Monday
+    09 August 2021 10:49:34 Viacheslav Dubeyko wrote: > > On Aug 8, 2021, at
+   9:24 AM, Pali Rohár <pali@kernel.org> wrote: > > > > NLS table for utf8 is
+    broken and cannot be fixed. > > > > So in [...] 
+ 
+ Content analysis details:   (-5.3 points, 6.0 required)
+ 
+  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
- provider [clabbe.montjoie[at]gmail.com]
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.221.50 listed in wl.mailspike.net]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.221.50 listed in list.dnswl.org]
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
+  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
+                             high trust
+                             [145.40.68.75 listed in list.dnswl.org]
+  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+                             valid
+ -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
+                             envelope-from domain
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Headers-End: 1oV728-00FnvA-EE
-X-Mailman-Approved-At: Mon, 05 Sep 2022 11:23:12 +0000
-Subject: [Linux-NTFS-Dev] WARNING: inconsistent lock state when doing fdisk
- -l
+                             author's domain
+ -0.1 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1ocQPZ-0000WN-TY
+X-Mailman-Approved-At: Sun, 25 Sep 2022 13:32:18 +0000
+Subject: Re: [Linux-NTFS-Dev] [RFC PATCH 12/20] hfs: Do not use broken utf8
+ NLS table for iocharset=utf8 mount option
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -127,263 +112,140 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org,
- viro@zeniv.linux.org.uk
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-cifs@vger.kernel.org, jfs-discussion@lists.sourceforge.net,
+ Jan Kara <jack@suse.cz>, Luis de Bethencourt <luisbg@kernel.org>,
+ Dave Kleikamp <shaggy@kernel.org>, linux-ntfs-dev@lists.sourceforge.net,
+ linux-kernel@vger.kernel.org, Anton Altaparmakov <anton@tuxera.com>,
+ Christoph Hellwig <hch@infradead.org>,
+ Alexander Viro <viro@zeniv.linux.org.uk>, Pavel Machek <pavel@ucw.cz>,
+ Linux FS Devel <linux-fsdevel@vger.kernel.org>,
+ "Theodore Y . Ts'o" <tytso@mit.edu>, Andrew Morton <akpm@linux-foundation.org>,
+ Marek =?utf-8?B?QmVow7pu?= <marek.behun@nic.cz>,
+ Salah Triki <salah.triki@gmail.com>,
+ OGAWA Hirofumi <hirofumi@mail.parknet.co.jp>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-Hello
-
-On a jetson-tk1 I got today:
-[   39.582103] ================================
-[   39.586361] WARNING: inconsistent lock state
-[   39.590618] 6.0.0-rc3-next-20220901-00130-gb6b3fb681f34-dirty #8 Not tainted
-[   39.597649] --------------------------------
-[   39.601907] inconsistent {SOFTIRQ-ON-W} -> {IN-SOFTIRQ-R} usage.
-[   39.607897] rngd/218 [HC0[0]:SC1[1]:HE0:SE0] takes:
-[   39.612763] c284dba4 (&inode->i_size_seqcount){+.+-}-{0:0}, at: end_bio_bh_io_sync+0x30/0x4c
-[   39.621198] {SOFTIRQ-ON-W} state was registered at:
-[   39.626061]   simple_write_end+0x1e8/0x2a4
-[   39.630154]   page_symlink+0xb0/0x158
-[   39.633808]   ramfs_symlink+0x50/0xcc
-[   39.637466]   vfs_symlink+0x80/0xf0
-[   39.640944]   init_symlink+0x54/0x88
-[   39.644512]   do_symlink+0x54/0x88
-[   39.647905]   write_buffer+0x28/0x3c
-[   39.651470]   flush_buffer+0x40/0x98
-[   39.655035]   __gunzip+0x2c4/0x35c
-[   39.658427]   gunzip+0x2c/0x34
-[   39.661470]   unpack_to_rootfs+0x18c/0x2b4
-[   39.665556]   do_populate_rootfs+0x78/0x1cc
-[   39.669728]   async_run_entry_fn+0x24/0xb0
-[   39.673817]   process_one_work+0x288/0x774
-[   39.677904]   worker_thread+0x54/0x51c
-[   39.681643]   kthread+0xf8/0x12c
-[   39.684862]   ret_from_fork+0x14/0x2c
-[   39.688513]   0x0
-[   39.690430] irq event stamp: 19119
-[   39.693820] hardirqs last  enabled at (19118): [<c010145c>] __do_softirq+0xdc/0x598
-[   39.701460] hardirqs last disabled at (19119): [<c0d0afb0>] _raw_read_lock_irqsave+0x84/0x88
-[   39.709883] softirqs last  enabled at (19108): [<c01016b4>] __do_softirq+0x334/0x598
-[   39.717609] softirqs last disabled at (19117): [<c012bdb0>] __irq_exit_rcu+0x124/0x1a8
-[   39.725511] 
-[   39.725511] other info that might help us debug this:
-[   39.732021]  Possible unsafe locking scenario:
-[   39.732021] 
-[   39.737924]        CPU0
-[   39.740360]        ----
-[   39.742796]   lock(&inode->i_size_seqcount);
-[   39.747056]   <Interrupt>
-[   39.749665]     lock(&inode->i_size_seqcount);
-[   39.754098] 
-[   39.754098]  *** DEADLOCK ***
-[   39.754098] 
-[   39.760001] 1 lock held by rngd/218:
-[   39.763566]  #0: c284d950 (&ni->size_lock){...-}-{2:2}, at: ntfs_end_buffer_async_read+0x68/0x458
-[   39.772432] 
-[   39.772432] stack backtrace:
-[   39.776777] CPU: 0 PID: 218 Comm: rngd Not tainted 6.0.0-rc3-next-20220901-00130-gb6b3fb681f34-dirty #8
-[   39.786149] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
-[   39.792401]  unwind_backtrace from show_stack+0x10/0x14
-[   39.797618]  show_stack from dump_stack_lvl+0x58/0x70
-[   39.802660]  dump_stack_lvl from mark_lock.part.0+0xb80/0x1298
-[   39.808482]  mark_lock.part.0 from __lock_acquire+0xa70/0x29fc
-[   39.814304]  __lock_acquire from lock_acquire+0x11c/0x3c8
-[   39.819691]  lock_acquire from ntfs_end_buffer_async_read+0xac/0x458
-[   39.826033]  ntfs_end_buffer_async_read from end_bio_bh_io_sync+0x30/0x4c
-[   39.832809]  end_bio_bh_io_sync from blk_update_request+0x158/0x57c
-[   39.839064]  blk_update_request from scsi_end_request+0x1c/0x3d4
-[   39.845059]  scsi_end_request from scsi_io_completion+0x38/0x688
-[   39.851053]  scsi_io_completion from blk_complete_reqs+0x54/0x60
-[   39.857047]  blk_complete_reqs from __do_softirq+0x134/0x598
-[   39.862694]  __do_softirq from __irq_exit_rcu+0x124/0x1a8
-[   39.868083]  __irq_exit_rcu from irq_exit+0x8/0x28
-[   39.872866]  irq_exit from call_with_stack+0x18/0x20
-[   39.877824]  call_with_stack from __irq_usr+0x7c/0xa0
-[   39.882868] Exception stack(0xf0c69fb0 to 0xf0c69ff8)
-[   39.887906] 9fa0:                                     553c47b7 41bd9715 553c47b7 b6b5e9d8
-[   39.896065] 9fc0: b6b5ea40 00000000 00000000 b62046a0 0000000a b635f000 beefcbf4 b6b5e924
-[   39.904223] 9fe0: 0000001d b6b5e910 b6f448ec b6f44900 80000010 ffffffff
-
-The command leading to this is a simple fdisk -l
-It is not clear to me if the problem came from NTFS or ramfs.
-
-The full output is:
-fdisk -l
-Disk /dev/ram0: 4 MiB, 4194304 bytes, 8192 sectors
-Units: sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 4096 bytes
-I/O size (minimum/optimal): 4096 bytes / 4096 bytes
-Disk /dev/ram1: 4 MiB, 4194304 bytes, 8192 sectors
-Units: sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 4096 bytes
-I/O size (minimum/optimal): 4096 bytes / 4096 bytes
-Disk /dev/ram2: 4 MiB, 4194304 bytes, 8192 sectors
-Units: sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 4096 bytes
-I/O size (minimum/optimal): 4096 bytes / 4096 bytes
-Disk /dev/ram3: 4 MiB, 4194304 bytes, 8192 sectors
-Units: sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 4096 bytes
-I/O size (minimum/optimal): 4096 bytes / 4096 bytes
-Disk /dev/ram4: 4 MiB, 4194304 bytes, 8192 sectors
-Units: sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 4096 bytes
-I/O size (minimum/optimal): 4096 bytes / 4096 bytes
-Disk /dev/ram5: 4 MiB, 4194304 bytes, 8192 sectors
-Units: sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 4096 bytes
-I/O size (minimum/optimal): 4096 bytes / 4096 bytes
-Disk /dev/ram6: 4 MiB, 4194304 bytes, 8192 sectors
-Units: sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 4096 bytes
-I/O size (minimum/optimal): 4096 bytes / 4096 bytes
-Disk /dev/ram7: 4 MiB, 4194304 bytes, 8192 sectors
-Units: sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 4096 bytes
-I/O size (minimum/optimal): 4096 bytes / 4096 bytes
-Disk /dev/ram8: 4 MiB, 4194304 bytes, 8192 sectors
-Units: sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 4096 bytes
-I/O size (minimum/optimal): 4096 bytes / 4096 bytes
-Disk /dev/ram9: 4 MiB, 4194304 bytes, 8192 sectors
-Units: sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 4096 bytes
-I/O size (minimum/optimal): 4096 bytes / 4096 bytes
-Disk /dev/ram10: 4 MiB, 4194304 bytes, 8192 sectors
-Units: sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 4096 bytes
-I/O size (minimum/optimal): 4096 bytes / 4096 bytes
-Disk /dev/ram11: 4 MiB, 4194304 bytes, 8192 sectors
-Units: sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 4096 bytes
-I/O size (minimum/optimal): 4096 bytes / 4096 bytes
-Disk /dev/ram12: 4 MiB, 4194304 bytes, 8192 sectors
-Units: sectors of 1 * 512[   39.577565] 
-[   39.582103] ================================
-[   39.586361] WARNING: inconsistent lock state
-[   39.590618] 6.0.0-rc3-next-20220901-00130-gb6b3fb681f34-dirty #8 Not tainted
-[   39.597649] --------------------------------
-[   39.601907] inconsistent {SOFTIRQ-ON-W} -> {IN-SOFTIRQ-R} usage.
-[   39.607897] rngd/218 [HC0[0]:SC1[1]:HE0:SE0] takes:
-[   39.612763] c284dba4 (&inode->i_size_seqcount){+.+-}-{0:0}, at: end_bio_bh_io_sync+0x30/0x4c
-[   39.621198] {SOFTIRQ-ON-W} state was registered at:
-[   39.626061]   simple_write_end+0x1e8/0x2a4
-[   39.630154]   page_symlink+0xb0/0x158
-[   39.633808]   ramfs_symlink+0x50/0xcc
-[   39.637466]   vfs_symlink+0x80/0xf0
-[   39.640944]   init_symlink+0x54/0x88
-[   39.644512]   do_symlink+0x54/0x88
-[   39.647905]   write_buffer+0x28/0x3c
-[   39.651470]   flush_buffer+0x40/0x98
-[   39.655035]   __gunzip+0x2c4/0x35c
-[   39.658427]   gunzip+0x2c/0x34
-[   39.661470]   unpack_to_rootfs+0x18c/0x2b4
-[   39.665556]   do_populate_rootfs+0x78/0x1cc
-[   39.669728]   async_run_entry_fn+0x24/0xb0
-[   39.673817]   process_one_work+0x288/0x774
-[   39.677904]   worker_thread+0x54/0x51c
-[   39.681643]   kthread+0xf8/0x12c
-[   39.684862]   ret_from_fork+0x14/0x2c
-[   39.688513]   0x0
-[   39.690430] irq event stamp: 19119
-[   39.693820] hardirqs last  enabled at (19118): [<c010145c>] __do_softirq+0xdc/0x598
-[   39.701460] hardirqs last disabled at (19119): [<c0d0afb0>] _raw_read_lock_irqsave+0x84/0x88
-[   39.709883] softirqs last  enabled at (19108): [<c01016b4>] __do_softirq+0x334/0x598
-[   39.717609] softirqs last disabled at (19117): [<c012bdb0>] __irq_exit_rcu+0x124/0x1a8
-[   39.725511] 
-[   39.725511] other info that might help us debug this:
-[   39.732021]  Possible unsafe locking scenario:
-[   39.732021] 
-[   39.737924]        CPU0
-[   39.740360]        ----
-[   39.742796]   lock(&inode->i_size_seqcount);
-[   39.747056]   <Interrupt>
-[   39.749665]     lock(&inode->i_size_seqcount);
-[   39.754098] 
-[   39.754098]  *** DEADLOCK ***
-[   39.754098] 
-[   39.760001] 1 lock held by rngd/218:
-[   39.763566]  #0: c284d950 (&ni->size_lock){...-}-{2:2}, at: ntfs_end_buffer_async_read+0x68/0x458
-[   39.772432] 
-[   39.772432] stack backtrace:
-[   39.776777] CPU: 0 PID: 218 Comm: rngd Not tainted 6.0.0-rc3-next-20220901-00130-gb6b3fb681f34-dirty #8
-[   39.786149] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
-[   39.792401]  unwind_backtrace from show_stack+0x10/0x14
-[   39.797618]  show_stack from dump_stack_lvl+0x58/0x70
-[   39.802660]  dump_stack_lvl from mark_lock.part.0+0xb80/0x1298
-[   39.808482]  mark_lock.part.0 from __lock_acquire+0xa70/0x29fc
-[   39.814304]  __lock_acquire from lock_acquire+0x11c/0x3c8
-[   39.819691]  lock_acquire from ntfs_end_buffer_async_read+0xac/0x458
-[   39.826033]  ntfs_end_buffer_async_read from end_bio_bh_io_sync+0x30/0x4c
-[   39.832809]  end_bio_bh_io_sync from blk_update_request+0x158/0x57c
-[   39.839064]  blk_update_request from scsi_end_request+0x1c/0x3d4
-[   39.845059]  scsi_end_request from scsi_io_completion+0x38/0x688
-[   39.851053]  scsi_io_completion from blk_complete_reqs+0x54/0x60
-[   39.857047]  blk_complete_reqs from __do_softirq+0x134/0x598
-[   39.862694]  __do_softirq from __irq_exit_rcu+0x124/0x1a8
-[   39.868083]  __irq_exit_rcu from irq_exit+0x8/0x28
-[   39.872866]  irq_exit from call_with_stack+0x18/0x20
-[   39.877824]  call_with_stack from __irq_usr+0x7c/0xa0
-[   39.882868] Exception stack(0xf0c69fb0 to 0xf0c69ff8)
-[   39.887906] 9fa0:                                     553c47b7 41bd9715 553c47b7 b6b5e9d8
-[   39.896065] 9fc0: b6b5ea40 00000000 00000000 b62046a0 0000000a b635f000 beefcbf4 b6b5e924
-[   39.904223] 9fe0: 0000001d b6b5e910 b6f448ec b6f44900 80000010 ffffffff
- = 512 bytes
-Sector size (logical/physical): 512 bytes / 4096 bytes
-I/O size (minimum/optimal): 4096 bytes / 4096 bytes
-Disk /dev/ram13: 4 MiB, 4194304 bytes, 8192 sectors
-Units: sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 4096 bytes
-I/O size (minimum/optimal): 4096 bytes / 4096 bytes
-Disk /dev/ram14: 4 MiB, 4194304 bytes, 8192 sectors
-Units: sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 4096 bytes
-I/O size (minimum/optima[   39.951621] ntfs: volume version 3.1.
-l): 4096 bytes / 4096 bytes
-Disk /dev/ram15: 4 MiB, 4194304 bytes, 8192 sectors
-Units: sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 4096 bytes
-I/O size (minimum/optimal): 4096 bytes / 4096 bytes
-Disk /dev/mmcblk1: 14.68 GiB, 15758000128 bytes, 30777344 sectors
-Units: sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 512 bytes
-I/O size (minimum/optimal): 512 bytes / 512 bytes
-Disklabel type: gpt
-Disk identifier: 00F7EF05-A1E9-E53A-CA0B-CBD0484764BD
-Device            Start      End  Sectors  Size Type
-/dev/mmcblk1p1    49152 29908991 29859840 14.2G Linux filesystem
-/dev/mmcblk1p2 29908992 29917183     8192    4M Microsoft basic data
-/dev/mmcblk1p3 29917184 30048255   131072   64M Microsoft basic data
-/dev/mmcblk1p4 30048256 30056447     8192    4M Microsoft basic data
-/dev/mmcblk1p5 30056448 30064639     8192    4M Microsoft basic data
-/dev/mmcblk1p6 30064640 30072831     8192    4M Microsoft basic data
-/dev/mmcblk1p7 30072832 30081023     8192    4M Microsoft basic data
-/dev/mmcblk1p8 30081024 30773247   692224  338M Microsoft basic data
-Disk /dev/mmcblk1boot0: 4 MiB, 4194304 bytes, 8192 sectors
-Units: sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 512 bytes
-I/O size (minimum/optimal): 512 bytes / 512 bytes
-Disk /dev/mmcblk1boot1: 4 MiB, 4194304 bytes, 8192 sectors
-Units: sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 512 bytes
-I/O size (minimum/optimal): 512 bytes / 512 bytes
-Disk /dev/sda: 149.05 GiB, 160041885696 bytes, 312581808 sectors
-Disk model: WDC WD1600BEVS-6
-Units: sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 512 bytes
-I/O size (minimum/optimal): 512 bytes / 512 bytes
-Disklabel type: dos
-Disk identifier: 0x40aa40aa
-Device     Boot     Start       End   Sectors   Size Id Type
-/dev/sda1  *           63 296929394 296929332 141.6G  7 HPFS/NTFS/exFAT
-/dev/sda2       296929395 312576704  15647310   7.5G  7 HPFS/NTFS/exFAT
-
-Regards
-
-
-_______________________________________________
-Linux-NTFS-Dev mailing list
-Linux-NTFS-Dev@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev
+SGVsbG8hIFNvcnJ5IGZvciBhIGxvbmdlciBkZWxheS4gQmVsb3cgYXJlIGNvbW1lbnRzLgoKT24g
+TW9uZGF5IDA5IEF1Z3VzdCAyMDIxIDEwOjQ5OjM0IFZpYWNoZXNsYXYgRHViZXlrbyB3cm90ZToK
+PiA+IE9uIEF1ZyA4LCAyMDIxLCBhdCA5OjI0IEFNLCBQYWxpIFJvaMOhciA8cGFsaUBrZXJuZWwu
+b3JnPiB3cm90ZToKPiA+IAo+ID4gTkxTIHRhYmxlIGZvciB1dGY4IGlzIGJyb2tlbiBhbmQgY2Fu
+bm90IGJlIGZpeGVkLgo+ID4gCj4gPiBTbyBpbnN0ZWFkIG9mIGJyb2tlbiB1dGY4IG5scyBmdW5j
+dGlvbnMgY2hhcjJ1bmkoKSBhbmQgdW5pMmNoYXIoKSB1c2UKPiA+IGZ1bmN0aW9ucyB1dGY4X3Rv
+X3V0ZjMyKCkgYW5kIHV0ZjMyX3RvX3V0ZjgoKSB3aGljaCBpbXBsZW1lbnRzIGNvcnJlY3QKPiA+
+IGVuY29kaW5nIGFuZCBkZWNvZGluZyBiZXR3ZWVuIFVuaWNvZGUgY29kZSBwb2ludHMgYW5kIFVU
+Ri04IHNlcXVlbmNlLgo+ID4gCj4gPiBXaGVuIGlvY2hhdHNldD11dGY4IGlzIHVzZWQgdGhlbiBz
+ZXQgaHNiLT5ubHNfaW8gdG8gTlVMTCBhbmQgdXNlIGl0IGZvcgo+ID4gZGlzdGluZ3Vpc2ggYmV0
+d2VlbiB0aGUgZmFjdCBpZiBOTFMgdGFibGUgb3IgbmF0aXZlIFVURi04IGZ1bmN0aW9ucyBzaG91
+bGQKPiA+IGJlIHVzZWQuCj4gPiAKPiA+IFNpZ25lZC1vZmYtYnk6IFBhbGkgUm9ow6FyIDxwYWxp
+QGtlcm5lbC5vcmc+Cj4gPiAtLS0KPiA+IGZzL2hmcy9zdXBlci5jIHwgMzMgKysrKysrKysrKysr
+KysrKysrKysrKy0tLS0tLS0tLS0tCj4gPiBmcy9oZnMvdHJhbnMuYyB8IDI0ICsrKysrKysrKysr
+KysrKysrKysrLS0tLQo+ID4gMiBmaWxlcyBjaGFuZ2VkLCA0MiBpbnNlcnRpb25zKCspLCAxNSBk
+ZWxldGlvbnMoLSkKPiA+IAo+ID4gZGlmZiAtLWdpdCBhL2ZzL2hmcy9zdXBlci5jIGIvZnMvaGZz
+L3N1cGVyLmMKPiA+IGluZGV4IDg2YmM0Njc0NmM3Zi4uMDc2MzA4ZGY0MWNmIDEwMDY0NAo+ID4g
+LS0tIGEvZnMvaGZzL3N1cGVyLmMKPiA+ICsrKyBiL2ZzL2hmcy9zdXBlci5jCj4gPiBAQCAtMTQ5
+LDEwICsxNDksMTMgQEAgc3RhdGljIGludCBoZnNfc2hvd19vcHRpb25zKHN0cnVjdCBzZXFfZmls
+ZSAqc2VxLCBzdHJ1Y3QgZGVudHJ5ICpyb290KQo+ID4gCQlzZXFfcHJpbnRmKHNlcSwgIixwYXJ0
+PSV1Iiwgc2JpLT5wYXJ0KTsKPiA+IAlpZiAoc2JpLT5zZXNzaW9uID49IDApCj4gPiAJCXNlcV9w
+cmludGYoc2VxLCAiLHNlc3Npb249JXUiLCBzYmktPnNlc3Npb24pOwo+ID4gLQlpZiAoc2JpLT5u
+bHNfZGlzaykKPiA+ICsJaWYgKHNiaS0+bmxzX2Rpc2spIHsKPiA+IAkJc2VxX3ByaW50ZihzZXEs
+ICIsY29kZXBhZ2U9JXMiLCBzYmktPm5sc19kaXNrLT5jaGFyc2V0KTsKPiAKPiBNYXliZSwgSSBh
+bSBtaXNzaW5nIHNvbWV0aGluZy4gQnV0IHdoZXJlIGlzIHRoZSBjbG9zaW5nIOKAnH3igJ0/CgpT
+ZWUgYmVsb3cuLi4KCj4gCj4gPiAtCWlmIChzYmktPm5sc19pbykKPiA+IC0JCXNlcV9wcmludGYo
+c2VxLCAiLGlvY2hhcnNldD0lcyIsIHNiaS0+bmxzX2lvLT5jaGFyc2V0KTsKPiA+ICsJCWlmIChz
+YmktPm5sc19pbykKPiA+ICsJCQlzZXFfcHJpbnRmKHNlcSwgIixpb2NoYXJzZXQ9JXMiLCBzYmkt
+Pm5sc19pby0+Y2hhcnNldCk7Cj4gPiArCQllbHNlCj4gPiArCQkJc2VxX3B1dHMoc2VxLCAiLGlv
+Y2hhcnNldD11dGY4Iik7Cj4gPiArCX0KCiAgICAgICAgXgouLi4gQ2xvc2luZyAifSIgaXMgbWFy
+a2VkIGFib3ZlLgoKPiA+IAlpZiAoc2JpLT5zX3F1aWV0KQo+ID4gCQlzZXFfcHJpbnRmKHNlcSwg
+IixxdWlldCIpOwo+ID4gCXJldHVybiAwOwo+ID4gQEAgLTIyNSw2ICsyMjgsNyBAQCBzdGF0aWMg
+aW50IHBhcnNlX29wdGlvbnMoY2hhciAqb3B0aW9ucywgc3RydWN0IGhmc19zYl9pbmZvICpoc2Ip
+Cj4gPiAJY2hhciAqcDsKPiA+IAlzdWJzdHJpbmdfdCBhcmdzW01BWF9PUFRfQVJHU107Cj4gPiAJ
+aW50IHRtcCwgdG9rZW47Cj4gPiArCWludCBoYXZlX2lvY2hhcnNldDsKPiAKPiBXaGF04oCZcyBh
+Ym91dCBib29sZWFuIHR5cGU/CgpPayEgTm8gcHJvYmxlbSwgSSBjYW4gdXNlICJib29sIiB0eXBl
+LiBKdXN0IEkgd2FzIGluIGltcHJlc3Npb24gdGhhdApjb2RlIHN0eWxlIG9mIHRoaXMgZHJpdmVy
+IGlzIHRvIHVzZSAiaW50IiB0eXBlIGFsc28gZm9yIGJvb2xlYW5zLgpTYW1lIGZvciAiZmFsc2Ui
+IGFuZCAidHJ1ZSIgYXMgeW91IG1lbnRpb25lZCBiZWxvdy4KCj4gPiAKPiA+IAkvKiBpbml0aWFs
+aXplIHRoZSBzYiB3aXRoIGRlZmF1bHRzICovCj4gPiAJaHNiLT5zX3VpZCA9IGN1cnJlbnRfdWlk
+KCk7Cj4gPiBAQCAtMjM5LDYgKzI0Myw4IEBAIHN0YXRpYyBpbnQgcGFyc2Vfb3B0aW9ucyhjaGFy
+ICpvcHRpb25zLCBzdHJ1Y3QgaGZzX3NiX2luZm8gKmhzYikKPiA+IAlpZiAoIW9wdGlvbnMpCj4g
+PiAJCXJldHVybiAxOwo+ID4gCj4gPiArCWhhdmVfaW9jaGFyc2V0ID0gMDsKPiAKPiBXaGF04oCZ
+cyBhYm91dCBmYWxzZSBoZXJlPwo+IAo+ID4gKwo+ID4gCXdoaWxlICgocCA9IHN0cnNlcCgmb3B0
+aW9ucywgIiwiKSkgIT0gTlVMTCkgewo+ID4gCQlpZiAoISpwKQo+ID4gCQkJY29udGludWU7Cj4g
+PiBAQCAtMzMyLDE4ICszMzgsMjIgQEAgc3RhdGljIGludCBwYXJzZV9vcHRpb25zKGNoYXIgKm9w
+dGlvbnMsIHN0cnVjdCBoZnNfc2JfaW5mbyAqaHNiKQo+ID4gCQkJa2ZyZWUocCk7Cj4gPiAJCQli
+cmVhazsKPiA+IAkJY2FzZSBvcHRfaW9jaGFyc2V0Ogo+ID4gLQkJCWlmIChoc2ItPm5sc19pbykg
+ewo+ID4gKwkJCWlmIChoYXZlX2lvY2hhcnNldCkgewo+ID4gCQkJCXByX2VycigidW5hYmxlIHRv
+IGNoYW5nZSBpb2NoYXJzZXRcbiIpOwo+ID4gCQkJCXJldHVybiAwOwo+ID4gCQkJfQo+ID4gCQkJ
+cCA9IG1hdGNoX3N0cmR1cCgmYXJnc1swXSk7Cj4gPiAtCQkJaWYgKHApCj4gPiAtCQkJCWhzYi0+
+bmxzX2lvID0gbG9hZF9ubHMocCk7Cj4gPiAtCQkJaWYgKCFoc2ItPm5sc19pbykgewo+ID4gLQkJ
+CQlwcl9lcnIoInVuYWJsZSB0byBsb2FkIGlvY2hhcnNldCBcIiVzXCJcbiIsIHApOwo+ID4gLQkJ
+CQlrZnJlZShwKTsKPiA+ICsJCQlpZiAoIXApCj4gPiAJCQkJcmV0dXJuIDA7Cj4gPiArCQkJaWYg
+KHN0cmNtcChwLCAidXRmOCIpICE9IDApIHsKPiA+ICsJCQkJaHNiLT5ubHNfaW8gPSBsb2FkX25s
+cyhwKTsKPiA+ICsJCQkJaWYgKCFoc2ItPm5sc19pbykgewo+ID4gKwkJCQkJcHJfZXJyKCJ1bmFi
+bGUgdG8gbG9hZCBpb2NoYXJzZXQgXCIlc1wiXG4iLCBwKTsKPiA+ICsJCQkJCWtmcmVlKHApOwo+
+ID4gKwkJCQkJcmV0dXJuIDA7Cj4gPiArCQkJCX0KPiA+IAkJCX0KPiA+ICsJCQloYXZlX2lvY2hh
+cnNldCA9IDE7Cj4gCj4gV2hhdOKAmXMgYWJvdXQgdHJ1ZSBoZXJlPwo+IAo+ID4gCQkJa2ZyZWUo
+cCk7Cj4gPiAJCQlicmVhazsKPiA+IAkJZGVmYXVsdDoKPiA+IEBAIC0zNTEsNyArMzYxLDcgQEAg
+c3RhdGljIGludCBwYXJzZV9vcHRpb25zKGNoYXIgKm9wdGlvbnMsIHN0cnVjdCBoZnNfc2JfaW5m
+byAqaHNiKQo+ID4gCQl9Cj4gPiAJfQo+ID4gCj4gPiAtCWlmIChoc2ItPm5sc19pbyAmJiAhaHNi
+LT5ubHNfZGlzaykgewo+ID4gKwlpZiAoaGF2ZV9pb2NoYXJzZXQgJiYgIWhzYi0+bmxzX2Rpc2sp
+IHsKPiA+IAkJLyoKPiA+IAkJICogUHJldmlvdXMgdmVyc2lvbiBvZiBoZnMgZHJpdmVyIGRpZCBz
+b21ldGhpbmcgdW5leHBlY3RlZDoKPiA+IAkJICogV2hlbiBjb2RlcGFnZSB3YXMgbm90IGRlZmlu
+ZWQgYnV0IGlvY2hhcnNldCB3YXMgdGhlbgo+ID4gQEAgLTM4Miw3ICszOTIsOCBAQCBzdGF0aWMg
+aW50IHBhcnNlX29wdGlvbnMoY2hhciAqb3B0aW9ucywgc3RydWN0IGhmc19zYl9pbmZvICpoc2Ip
+Cj4gPiAJCQlyZXR1cm4gMDsKPiA+IAkJfQo+ID4gCX0KPiA+IC0JaWYgKGhzYi0+bmxzX2Rpc2sg
+JiYgIWhzYi0+bmxzX2lvKSB7Cj4gPiArCWlmIChoc2ItPm5sc19kaXNrICYmCj4gPiArCSAgICAh
+aGF2ZV9pb2NoYXJzZXQgJiYgc3RyY21wKENPTkZJR19OTFNfREVGQVVMVCwgInV0ZjgiKSAhPSAw
+KSB7Cj4gCj4gTWF5YmUsIGludHJvZHVjZSB0aGUgdmFyaWFibGUgdG8gY2FsY3VsYXRlIHRoZSBi
+b29sZWFuIHZhbHVlIGhlcmU/IFRoZW4gaWYgc3RhdGVtZW50IHdpbGwgbG9vayBtdWNoIGNsZWFu
+ZXIuCgpJJ20gbm90IHN1cmUgaG93IHRvIGRvIGl0IHRvIG1ha2UgY29kZSBsb29rIGNsZWFuZXIu
+CgpDdXJyZW50bHkgdGhlcmUgaXM6CgppZiAoaHNiLT5ubHNfZGlzayAmJgogICAgIWhhdmVfaW9j
+aGFyc2V0ICYmIHN0cmNtcChDT05GSUdfTkxTX0RFRkFVTFQsICJ1dGY4IikgIT0gMCkgewogICAg
+aHNiLT5ubHNfaW8gPSBsb2FkX25sc19kZWZhdWx0KCk7CiAgICAuLi4KfQoKSSBjYW4gcmVwbGFj
+ZSBpdCBlLmcuIGJ5OgoKYm9vbCBuZWVkX3RvX2xvYWRfbmxzOwouLi4KaWYgKGhzYi0+bmxzX2Rp
+c2sgJiYKICAgICFoYXZlX2lvY2hhcnNldCAmJiBzdHJjbXAoQ09ORklHX05MU19ERUZBVUxULCAi
+dXRmOCIpICE9IDApCiAgICBuZWVkX3RvX2xvYWRfbmxzID0gdHJ1ZTsKZWxzZQogICAgbmVlZF90
+b19sb2FkX25scyA9IGZhbHNlOwoKaWYgKG5lZWRfdG9fbG9hZF9ubHMpIHsKICAgIGhzYi0+bmxz
+X2lvID0gbG9hZF9ubHNfZGVmYXVsdCgpOwogICAgLi4uCn0KCkJ1dCBpdCBpcyBqdXN0IGxvbmdl
+ciwgY29uZGl0aW9uIGlzIHN0aWxsIHRoZXJlIGFuZCBpdCByZXF1aXJlcyBvbmUKYWRkaXRpb25h
+bCB2YXJpYWJsZSB3aGljaCBtb3JlIG1lIGlzIGxlc3MgcmVhZGFibGUgYmVjYXVzZSBpdCBpcyBs
+b25nZXIuCgo+ID4gCQloc2ItPm5sc19pbyA9IGxvYWRfbmxzX2RlZmF1bHQoKTsKPiA+IAkJaWYg
+KCFoc2ItPm5sc19pbykgewo+ID4gCQkJcHJfZXJyKCJ1bmFibGUgdG8gbG9hZCBkZWZhdWx0IGlv
+Y2hhcnNldFxuIik7Cj4gPiBkaWZmIC0tZ2l0IGEvZnMvaGZzL3RyYW5zLmMgYi9mcy9oZnMvdHJh
+bnMuYwo+ID4gaW5kZXggYzc1NjgyYzYxYjA2Li5iZmY4ZTU0MDAzYWIgMTAwNjQ0Cj4gPiAtLS0g
+YS9mcy9oZnMvdHJhbnMuYwo+ID4gKysrIGIvZnMvaGZzL3RyYW5zLmMKPiA+IEBAIC00NCw3ICs0
+NCw3IEBAIGludCBoZnNfbWFjMmFzYyhzdHJ1Y3Qgc3VwZXJfYmxvY2sgKnNiLCBjaGFyICpvdXQs
+IGNvbnN0IHN0cnVjdCBoZnNfbmFtZSAqaW4pCj4gPiAJCXNyY2xlbiA9IEhGU19OQU1FTEVOOwo+
+ID4gCWRzdCA9IG91dDsKPiA+IAlkc3RsZW4gPSBIRlNfTUFYX05BTUVMRU47Cj4gPiAtCWlmIChu
+bHNfaW8pIHsKPiA+ICsJaWYgKG5sc19kaXNrKSB7Cj4gPiAJCXdjaGFyX3QgY2g7Cj4gPiAKPiAK
+PiBJIGNvdWxkIG1pc3Mgc29tZXRoaW5nIGhlcmUuIEJ1dCB3aGF04oCZcyBhYm91dCB0aGUgY2xv
+c2luZyDigJx94oCdPwoKQ2xvc2luZyAifSIgaXMgdGhlcmUgb24gdGhlIHNhbWUgbG9jYXRpb24g
+YXMgaXQgd2FzLiBCZWZvcmUgbXkgY2hhbmdlIG9uCiJpZiIgbGluZSB3YXMgb3BlbmluZyAieyIg
+YW5kIGFsc28gd2l0aCBteSBjaGFuZ2UgdGhlcmUgaXMgb3BlbmluZyAieyIuClNvIG9wZW5pbmcg
+InsiIGFuZCBjbG9zaW5nICJ9IiBhcmUgdGhlcmUgYW5kIG1hdGNoZXMuCgo+IFRoYW5rcywKPiBT
+bGF2YS4KPiAKPiA+IAkJd2hpbGUgKHNyY2xlbiA+IDApIHsKPiA+IEBAIC01Nyw3ICs1NywxMiBA
+QCBpbnQgaGZzX21hYzJhc2Moc3RydWN0IHN1cGVyX2Jsb2NrICpzYiwgY2hhciAqb3V0LCBjb25z
+dCBzdHJ1Y3QgaGZzX25hbWUgKmluKQo+ID4gCQkJc3JjbGVuIC09IHNpemU7Cj4gPiAJCQlpZiAo
+Y2ggPT0gJy8nKQo+ID4gCQkJCWNoID0gJzonOwo+ID4gLQkJCXNpemUgPSBubHNfaW8tPnVuaTJj
+aGFyKGNoLCBkc3QsIGRzdGxlbik7Cj4gPiArCQkJaWYgKG5sc19pbykKPiA+ICsJCQkJc2l6ZSA9
+IG5sc19pby0+dW5pMmNoYXIoY2gsIGRzdCwgZHN0bGVuKTsKPiA+ICsJCQllbHNlIGlmIChkc3Rs
+ZW4gPiAwKQo+ID4gKwkJCQlzaXplID0gdXRmMzJfdG9fdXRmOChjaCwgZHN0LCBkc3RsZW4pOwo+
+ID4gKwkJCWVsc2UKPiA+ICsJCQkJc2l6ZSA9IC1FTkFNRVRPT0xPTkc7Cj4gPiAJCQlpZiAoc2l6
+ZSA8IDApIHsKPiA+IAkJCQlpZiAoc2l6ZSA9PSAtRU5BTUVUT09MT05HKQo+ID4gCQkJCQlnb3Rv
+IG91dDsKPiA+IEBAIC0xMDEsMTEgKzEwNiwyMiBAQCB2b2lkIGhmc19hc2MybWFjKHN0cnVjdCBz
+dXBlcl9ibG9jayAqc2IsIHN0cnVjdCBoZnNfbmFtZSAqb3V0LCBjb25zdCBzdHJ1Y3QgcXN0cgo+
+ID4gCXNyY2xlbiA9IGluLT5sZW47Cj4gPiAJZHN0ID0gb3V0LT5uYW1lOwo+ID4gCWRzdGxlbiA9
+IEhGU19OQU1FTEVOOwo+ID4gLQlpZiAobmxzX2lvKSB7Cj4gPiArCWlmIChubHNfZGlzaykgewo+
+ID4gCQl3Y2hhcl90IGNoOwo+ID4gKwkJdW5pY29kZV90IHU7Cj4gPiAKPiA+IAkJd2hpbGUgKHNy
+Y2xlbiA+IDApIHsKPiA+IC0JCQlzaXplID0gbmxzX2lvLT5jaGFyMnVuaShzcmMsIHNyY2xlbiwg
+JmNoKTsKPiA+ICsJCQlpZiAobmxzX2lvKQo+ID4gKwkJCQlzaXplID0gbmxzX2lvLT5jaGFyMnVu
+aShzcmMsIHNyY2xlbiwgJmNoKTsKPiA+ICsJCQllbHNlIHsKPiA+ICsJCQkJc2l6ZSA9IHV0Zjhf
+dG9fdXRmMzIoc3RyLCBzdHJsZW4sICZ1KTsKPiA+ICsJCQkJaWYgKHNpemUgPj0gMCkgewo+ID4g
+KwkJCQkJaWYgKHUgPD0gTUFYX1dDSEFSX1QpCj4gPiArCQkJCQkJY2ggPSB1Owo+ID4gKwkJCQkJ
+ZWxzZQo+ID4gKwkJCQkJCXNpemUgPSAtRUlOVkFMOwo+ID4gKwkJCQl9Cj4gPiArCQkJfQo+ID4g
+CQkJaWYgKHNpemUgPCAwKSB7Cj4gPiAJCQkJY2ggPSAnPyc7Cj4gPiAJCQkJc2l6ZSA9IDE7Cj4g
+PiAtLSAKPiA+IDIuMjAuMQo+ID4gCj4gCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KTGludXgtTlRGUy1EZXYgbWFpbGluZyBsaXN0CkxpbnV4LU5URlMt
+RGV2QGxpc3RzLnNvdXJjZWZvcmdlLm5ldApodHRwczovL2xpc3RzLnNvdXJjZWZvcmdlLm5ldC9s
+aXN0cy9saXN0aW5mby9saW51eC1udGZzLWRldgo=
