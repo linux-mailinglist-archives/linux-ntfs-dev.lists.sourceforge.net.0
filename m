@@ -2,104 +2,118 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id D40975F1D35
-	for <lists+linux-ntfs-dev@lfdr.de>; Sat,  1 Oct 2022 17:29:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0873C5F4075
+	for <lists+linux-ntfs-dev@lfdr.de>; Tue,  4 Oct 2022 11:58:51 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1oeeQm-0006Jq-To;
-	Sat, 01 Oct 2022 15:29:32 +0000
+	id 1ofehH-0004Pp-TP;
+	Tue, 04 Oct 2022 09:58:43 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95) (envelope-from
- <3XE44YwkbAPktz0lbmmfsbqqje.hpphmfvtfsdpoufou.dpn@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
- id 1oedT3-0001Yr-Lf for linux-ntfs-dev@lists.sourceforge.net;
- Sat, 01 Oct 2022 14:27:49 +0000
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
+ (envelope-from <dvyukov@google.com>) id 1ofeeq-00049P-Py
+ for linux-ntfs-dev@lists.sourceforge.net;
+ Tue, 04 Oct 2022 09:56:12 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:To:From:Subject:Message-ID:Date:
- MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
+ In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
+ :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=ot8S7knVhE/ULqHSauVSXDrHW8LC+2Qa8wO45U/7T5A=; b=fzrLGg8Cvtnqy4wbE4G2j4fQ93
- 7YZ+uQUVyaKo/KjQc1q6Mejfa7DgdO1xD/XuzqP7TkawMC9E0ZXfQAjg2YJLeAzXO1pIQXkjSYpVy
- ac6SKGbYDNNclIcUfszeL1XoXkh6mA5716oq0vId3yixfFNBhC8z+Y57r8ACTzeSzkWo=;
+ bh=krlGjCfp7HZZw1h0+gpML/FA98qdNiim5xqLn/4dYqU=; b=TAC5BB54NaBf1qzNYhkuCfnSYj
+ yOXTiG4WFn/tAnl+GMEXfrGdYUjqfR1/zlmO06kACxft8ujC+c5AGnl/ED/c9M4j7FcHWQsorTGYI
+ 3FUK4p8XW7HQ7P69aJP7BxKJbfO4ieaU+25pvaYkL2ZQLON9cMMa/LWZt8QGhcGWr6Nk=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:To:From:Subject:Message-ID:Date:MIME-Version:Sender:Reply-To
- :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=ot8S7knVhE/ULqHSauVSXDrHW8LC+2Qa8wO45U/7T5A=; b=K
- xiG6a3vMrtJOe/edzm2Pijvke0uGmAUctGUM0Ke1h/vCiSHvwy7axA9l81iVoMKHdnV6BfyR3K1oJ
- 0GaLt8OCPYxOnC6LJa32BbiOVzN5fhd+M11m9zrbXTE5GUSKyc21mp4ipJ2SatFbz6UPm+rUAGrQx
- EuYVlJXpRLqpgERI=;
-Received: from mail-il1-f200.google.com ([209.85.166.200])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+ MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=krlGjCfp7HZZw1h0+gpML/FA98qdNiim5xqLn/4dYqU=; b=Lcf6A/CffXIAwbOmuqiKZHPkOt
+ FztNZybUHVUfDGPXkUH8FciBya5CzvLLg7/8irbeG/FdYt6FT2yF2eMGoTAHrmshw4RXE7jjnmilj
+ /Mt60YfGYxZJxR9bciZ/JDjYryeV2FiWc8s6PealDtAtDI7ONV8hcguLKHn0eXza2rWw=;
+Received: from mail-lf1-f44.google.com ([209.85.167.44])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1oedSz-008zd1-Or for linux-ntfs-dev@lists.sourceforge.net;
- Sat, 01 Oct 2022 14:27:49 +0000
-Received: by mail-il1-f200.google.com with SMTP id
- a8-20020a92c548000000b002f6440ff96bso5522857ilj.22
+ id 1ofeeo-0006ny-Jb for linux-ntfs-dev@lists.sourceforge.net;
+ Tue, 04 Oct 2022 09:56:12 +0000
+Received: by mail-lf1-f44.google.com with SMTP id 10so20393680lfy.5
  for <linux-ntfs-dev@lists.sourceforge.net>;
- Sat, 01 Oct 2022 07:27:45 -0700 (PDT)
+ Tue, 04 Oct 2022 02:56:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date;
+ bh=krlGjCfp7HZZw1h0+gpML/FA98qdNiim5xqLn/4dYqU=;
+ b=bTSRtzLl5mh6EfUzKd1KY2KaWl5oxVf4ivJk5Se/Yt341ThcHF9UpMTLJqjzmOOpNd
+ 2LcrkWJUQU8xtsPKwQk0BDX4linebANGDOuvW0MBNcedkKsga/Quc/FZAlHPWnI3ySY0
+ eiqRH0csdSz/71c3hQK3r7bDWsNUCULuE15mvSwqzi7oZzmwjbp7je0DW8nr8tvil/Hd
+ eMT8S5h8Dr8Qa2kesAR57H/gCwZmw1h8Z1iH4ZG44bfblFvwBK9ZJ8KNo4wzGu4YbHVx
+ sTlnYXK6bcPNpY4bLbqiMmpIBfiX7XlSOcSE+A11wH22rqE4vt3IoMGMZjDWq1A51YzT
+ I+1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=to:from:subject:message-id:date:mime-version:x-gm-message-state
- :from:to:cc:subject:date;
- bh=ot8S7knVhE/ULqHSauVSXDrHW8LC+2Qa8wO45U/7T5A=;
- b=Ggu6WUmqMxz90YAnaanzxRahsGroWmcIMirqbpY7HW+pQ8lONXdq1TFz3Z/7ogt31G
- bXvImyXyfK7NGJh77SkiLkM1f+C7nT6Jmgq956gY7LczZ04PTKdyow+rN7H2kEqmkj6z
- 5dGtGzihW8bSt99ZY94375yGF1mjegz1m3oXab9usSTngNEQb7DuzqKglQjGDvP3L9GS
- V0N39JfCG25AqsFfNM8QF3VuDI3vebh42OPVPtJzPepXKR+GHitBDu6JeLECoY/mosby
- OH0/EfkumVj1rmddl6eckW16DnMlSp33ipTJRtA/nd0Ux2zXmauS+6CHlAT3npPvCInZ
- 9ocA==
-X-Gm-Message-State: ACrzQf2PI3m3H55riFcNkriRK0VNhnebBxtsW4sEYUNWnWY8br4oveGD
- NIvNRg4aOwXi1eaF6aJZT7eX/BggNoQbQYGz0DjDpRncE6M/
-X-Google-Smtp-Source: AMsMyM44kzfSkPxbszkiAjOC0w2L4uGcFTs6UI4Ny+kb5nksORGHCUXx/pqTTQj6iQZqPiBHCtONoKIRlZwvnZpGSxJLYTIeXjDi
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date;
+ bh=krlGjCfp7HZZw1h0+gpML/FA98qdNiim5xqLn/4dYqU=;
+ b=u5AhQLKVBooRNAwtdYvV9Ll17NVTUWjyhSEBlqbRmciR1GxDuKG6CCse72+9D943/3
+ t52uT4NhYV4pd93pdRoESTukX0fj9/cDnwXVIb17dpJQvbWPe0NNT7Q7lmIIgPPnHdCS
+ SI3KXMlRZ/xOBSsxNSD47fBKADuF+hO8euYTbnO+rNSMSsD8iJwcsFs3RV5uJ7BBJBWB
+ KJNuuROb7gIv7jsSw9GaChEsPMlnppVUHdcfvLJnlPeWQDPVhuialgmDar5Xie4yZvzJ
+ TfKUqogKWYDoDLnJUCJBfuwUz1oqUthkoLM6pTLe6yNDydLxGQ21PxxiV7rySIGrUAfA
+ jD7Q==
+X-Gm-Message-State: ACrzQf3LnW1uVXA6a7H1LMjk3N4p6AtWAlXTuhqU+upk9reMKLx7+382
+ qqzGRiOhUwFkRHGtGSZOn2idHzs0ah10wwNp7JJ4qw==
+X-Google-Smtp-Source: AMsMyM7C47bHPESKTilrz72WvD2X3hhn4hY3ICaIArAruOxxGFlXnBeG584x5P1erCl7BInOUX6GLRuvr7V4RIS3Mtg=
+X-Received: by 2002:a19:8c5e:0:b0:4a2:2d7b:eef with SMTP id
+ i30-20020a198c5e000000b004a22d7b0eefmr3934578lfj.206.1664877363684; Tue, 04
+ Oct 2022 02:56:03 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 2002:a02:cb92:0:b0:358:3b30:7d44 with SMTP id
- u18-20020a02cb92000000b003583b307d44mr6572530jap.319.1664634460243; Sat, 01
- Oct 2022 07:27:40 -0700 (PDT)
-Date: Sat, 01 Oct 2022 07:27:40 -0700
-X-Google-Appengine-App-Id: s~syzkaller
-X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <000000000000af0c0105e9f9e966@google.com>
-From: syzbot <syzbot+bd6d0c83fe8442ad6ef5@syzkaller.appspotmail.com>
-To: anton@tuxera.com, linux-kernel@vger.kernel.org, 
- linux-ntfs-dev@lists.sourceforge.net, syzkaller-bugs@googlegroups.com
-X-Spam-Score: 0.6 (/)
+References: <0000000000006b624d05ea326f79@google.com>
+In-Reply-To: <0000000000006b624d05ea326f79@google.com>
+Date: Tue, 4 Oct 2022 11:55:52 +0200
+Message-ID: <CACT4Y+YHSvb1t0vdZSNi8HR4ar+fYyoXxoG67_XO-miqBOC8pg@mail.gmail.com>
+To: syzbot <syzbot+c3616973d9db2b0cff65@syzkaller.appspotmail.com>,
+ anton@tuxera.com, linux-ntfs-dev@lists.sourceforge.net
+X-Spam-Score: -15.7 (---------------)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hello,
- syzbot found the following issue on: HEAD commit: ffb4d94b4314
- Merge tag 'drm-fixes-2022-10-01' of git://ano.. git tree: upstream console
- output: https://syzkaller.appspot.com/x/log.txt?x=13212ee0880000 kernel
- config: https://syzkaller.a [...] 
- Content analysis details:   (0.6 points, 6.0 required)
+ Content preview:  On Tue, 4 Oct 2022 at 11:53,
+ syzbot <syzbot+c3616973d9db2b0cff65@syzkaller.appspotmail.com>
+ wrote: > > Hello, > > syzbot found the following issue on: > > HEAD commit:
+ bbed346d5a96 Merge branch 'for-n [...] 
+ Content analysis details:   (-15.7 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.3 FROM_LOCAL_HEX         From: localpart has long hexadecimal sequence
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
- mail domains are different
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
+ -7.5 USER_IN_DEF_DKIM_WL    From: address is in the default DKIM
+ welcome-list
+ -7.5 USER_IN_DEF_SPF_WL     From: address is in the default SPF
+ welcome-list
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.166.200 listed in list.dnswl.org]
+ no trust [209.85.167.44 listed in list.dnswl.org]
  -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.166.200 listed in wl.mailspike.net]
- 0.0 URIBL_BLOCKED          ADMINISTRATOR NOTICE: The query to URIBL was
- blocked.  See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: syzkaller.appspot.com]
-X-Headers-End: 1oedSz-008zd1-Or
-X-Mailman-Approved-At: Sat, 01 Oct 2022 15:29:29 +0000
-Subject: [Linux-NTFS-Dev] [syzbot] KASAN: slab-out-of-bounds Read in
- ntfs_fill_super
+ [209.85.167.44 listed in wl.mailspike.net]
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ -0.5 ENV_AND_HDR_SPF_MATCH  Env and Hdr From used in default SPF WL
+ Match
+ -0.0 DKIMWL_WL_MED          DKIMwl.org - Medium trust sender
+X-Headers-End: 1ofeeo-0006ny-Jb
+X-Mailman-Approved-At: Tue, 04 Oct 2022 09:58:43 +0000
+Subject: Re: [Linux-NTFS-Dev] [syzbot] BUG: unable to handle kernel NULL
+ pointer dereference in do_read_cache_folio
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -112,233 +126,113 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
+From: Dmitry Vyukov via Linux-NTFS-Dev <linux-ntfs-dev@lists.sourceforge.net>
+Reply-To: Dmitry Vyukov <dvyukov@google.com>
+Cc: syzkaller-bugs@googlegroups.com, linux-kernel@vger.kernel.org,
+ willy@infradead.org, linux-mm@kvack.org, linux-fsdevel@vger.kernel.org,
+ akpm@linux-foundation.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-Hello,
+On Tue, 4 Oct 2022 at 11:53, syzbot
+<syzbot+c3616973d9db2b0cff65@syzkaller.appspotmail.com> wrote:
+>
+> Hello,
+>
+> syzbot found the following issue on:
+>
+> HEAD commit:    bbed346d5a96 Merge branch 'for-next/core' into for-kernelci
+> git tree:       git://git.kernel.org/pub/scm/linux/kernel/git/arm64/linux.git for-kernelci
+> console output: https://syzkaller.appspot.com/x/log.txt?x=120e011f080000
+> kernel config:  https://syzkaller.appspot.com/x/.config?x=aae2d21e7dd80684
+> dashboard link: https://syzkaller.appspot.com/bug?extid=c3616973d9db2b0cff65
+> compiler:       Debian clang version 13.0.1-++20220126092033+75e33f71c2da-1~exp1~20220126212112.63, GNU ld (GNU Binutils for Debian) 2.35.2
+> userspace arch: arm64
+>
+> Unfortunately, I don't have any reproducer for this issue yet.
+>
+> Downloadable assets:
+> disk image: https://storage.googleapis.com/syzbot-assets/11078f50b80b/disk-bbed346d.raw.xz
+> vmlinux: https://storage.googleapis.com/syzbot-assets/398e5f1e6c84/vmlinux-bbed346d.xz
+>
+> IMPORTANT: if you fix the issue, please add the following tag to the commit:
+> Reported-by: syzbot+c3616973d9db2b0cff65@syzkaller.appspotmail.com
 
-syzbot found the following issue on:
++ntfs maintainers
 
-HEAD commit:    ffb4d94b4314 Merge tag 'drm-fixes-2022-10-01' of git://ano..
-git tree:       upstream
-console output: https://syzkaller.appspot.com/x/log.txt?x=13212ee0880000
-kernel config:  https://syzkaller.appspot.com/x/.config?x=755695d26ad09807
-dashboard link: https://syzkaller.appspot.com/bug?extid=bd6d0c83fe8442ad6ef5
-compiler:       gcc (Debian 10.2.1-6) 10.2.1 20210110, GNU ld (GNU Binutils for Debian) 2.35.2
-
-Unfortunately, I don't have any reproducer for this issue yet.
-
-Downloadable assets:
-disk image: https://storage.googleapis.com/syzbot-assets/f626c46d9422/disk-ffb4d94b.raw.xz
-vmlinux: https://storage.googleapis.com/syzbot-assets/9140d7085b55/vmlinux-ffb4d94b.xz
-
-IMPORTANT: if you fix the issue, please add the following tag to the commit:
-Reported-by: syzbot+bd6d0c83fe8442ad6ef5@syzkaller.appspotmail.com
-
-loop1: detected capacity change from 0 to 4096
-==================================================================
-BUG: KASAN: slab-out-of-bounds in load_system_files fs/ntfs/super.c:1833 [inline]
-BUG: KASAN: slab-out-of-bounds in ntfs_fill_super+0x7317/0x92d0 fs/ntfs/super.c:2892
-Read of size 1 at addr ffff88802baf332a by task syz-executor.1/14735
-
-CPU: 0 PID: 14735 Comm: syz-executor.1 Not tainted 6.0.0-rc7-syzkaller-00220-gffb4d94b4314 #0
-Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 09/22/2022
-Call Trace:
- <TASK>
- __dump_stack lib/dump_stack.c:88 [inline]
- dump_stack_lvl+0xcd/0x134 lib/dump_stack.c:106
- print_address_description mm/kasan/report.c:317 [inline]
- print_report.cold+0x2ba/0x719 mm/kasan/report.c:433
- kasan_report+0xb1/0x1e0 mm/kasan/report.c:495
- load_system_files fs/ntfs/super.c:1833 [inline]
- ntfs_fill_super+0x7317/0x92d0 fs/ntfs/super.c:2892
- mount_bdev+0x34d/0x410 fs/super.c:1400
- legacy_get_tree+0x105/0x220 fs/fs_context.c:610
- vfs_get_tree+0x89/0x2f0 fs/super.c:1530
- do_new_mount fs/namespace.c:3040 [inline]
- path_mount+0x1326/0x1e20 fs/namespace.c:3370
- do_mount fs/namespace.c:3383 [inline]
- __do_sys_mount fs/namespace.c:3591 [inline]
- __se_sys_mount fs/namespace.c:3568 [inline]
- __x64_sys_mount+0x27f/0x300 fs/namespace.c:3568
- do_syscall_x64 arch/x86/entry/common.c:50 [inline]
- do_syscall_64+0x35/0xb0 arch/x86/entry/common.c:80
- entry_SYSCALL_64_after_hwframe+0x63/0xcd
-RIP: 0033:0x7f7b1608bada
-Code: 48 c7 c2 b8 ff ff ff f7 d8 64 89 02 b8 ff ff ff ff eb d2 e8 b8 04 00 00 0f 1f 84 00 00 00 00 00 49 89 ca b8 a5 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 b8 ff ff ff f7 d8 64 89 01 48
-RSP: 002b:00007f7b17226f88 EFLAGS: 00000202 ORIG_RAX: 00000000000000a5
-RAX: ffffffffffffffda RBX: 0000000020000200 RCX: 00007f7b1608bada
-RDX: 0000000020000000 RSI: 0000000020000100 RDI: 00007f7b17226fe0
-RBP: 00007f7b17227020 R08: 00007f7b17227020 R09: 0000000020000000
-R10: 0000000000000000 R11: 0000000000000202 R12: 0000000020000000
-R13: 0000000020000100 R14: 00007f7b17226fe0 R15: 0000000020076700
- </TASK>
-
-Allocated by task 10867:
- kasan_save_stack+0x1e/0x40 mm/kasan/common.c:38
- kasan_set_track mm/kasan/common.c:45 [inline]
- set_alloc_info mm/kasan/common.c:437 [inline]
- __kasan_slab_alloc+0x90/0xc0 mm/kasan/common.c:470
- kasan_slab_alloc include/linux/kasan.h:224 [inline]
- slab_post_alloc_hook mm/slab.h:727 [inline]
- slab_alloc_node mm/slub.c:3248 [inline]
- slab_alloc mm/slub.c:3256 [inline]
- __kmem_cache_alloc_lru mm/slub.c:3263 [inline]
- kmem_cache_alloc_lru+0x255/0x720 mm/slub.c:3280
- alloc_inode_sb include/linux/fs.h:3103 [inline]
- nilfs_alloc_inode+0x24/0x150 fs/nilfs2/super.c:154
- alloc_inode+0x61/0x230 fs/inode.c:260
- iget5_locked fs/inode.c:1242 [inline]
- iget5_locked+0x1cb/0x2c0 fs/inode.c:1235
- nilfs_iget_locked+0xa0/0xd0 fs/nilfs2/inode.c:588
- nilfs_ifile_read+0x2c/0x1a0 fs/nilfs2/ifile.c:187
- nilfs_attach_checkpoint+0x258/0x4b0 fs/nilfs2/super.c:541
- nilfs_fill_super fs/nilfs2/super.c:1064 [inline]
- nilfs_mount+0xb12/0xfb0 fs/nilfs2/super.c:1317
- legacy_get_tree+0x105/0x220 fs/fs_context.c:610
- vfs_get_tree+0x89/0x2f0 fs/super.c:1530
- do_new_mount fs/namespace.c:3040 [inline]
- path_mount+0x1326/0x1e20 fs/namespace.c:3370
- do_mount fs/namespace.c:3383 [inline]
- __do_sys_mount fs/namespace.c:3591 [inline]
- __se_sys_mount fs/namespace.c:3568 [inline]
- __x64_sys_mount+0x27f/0x300 fs/namespace.c:3568
- do_syscall_x64 arch/x86/entry/common.c:50 [inline]
- do_syscall_64+0x35/0xb0 arch/x86/entry/common.c:80
- entry_SYSCALL_64_after_hwframe+0x63/0xcd
-
-Last potentially related work creation:
- kasan_save_stack+0x1e/0x40 mm/kasan/common.c:38
- __kasan_record_aux_stack+0xbe/0xd0 mm/kasan/generic.c:348
- call_rcu+0x99/0x790 kernel/rcu/tree.c:2793
- destroy_inode+0x129/0x1b0 fs/inode.c:315
- iput_final fs/inode.c:1748 [inline]
- iput.part.0+0x55d/0x810 fs/inode.c:1774
- iput+0x58/0x70 fs/inode.c:1764
- nilfs_put_super+0xac/0x1a0 fs/nilfs2/super.c:476
- generic_shutdown_super+0x14c/0x400 fs/super.c:491
- kill_block_super+0x97/0xf0 fs/super.c:1427
- deactivate_locked_super+0x94/0x160 fs/super.c:332
- deactivate_super+0xad/0xd0 fs/super.c:363
- cleanup_mnt+0x2ae/0x3d0 fs/namespace.c:1186
- task_work_run+0xdd/0x1a0 kernel/task_work.c:177
- resume_user_mode_work include/linux/resume_user_mode.h:49 [inline]
- exit_to_user_mode_loop kernel/entry/common.c:169 [inline]
- exit_to_user_mode_prepare+0x23c/0x250 kernel/entry/common.c:201
- __syscall_exit_to_user_mode_work kernel/entry/common.c:283 [inline]
- syscall_exit_to_user_mode+0x19/0x50 kernel/entry/common.c:294
- do_syscall_64+0x42/0xb0 arch/x86/entry/common.c:86
- entry_SYSCALL_64_after_hwframe+0x63/0xcd
-
-Second to last potentially related work creation:
- kasan_save_stack+0x1e/0x40 mm/kasan/common.c:38
- __kasan_record_aux_stack+0xbe/0xd0 mm/kasan/generic.c:348
- call_rcu+0x99/0x790 kernel/rcu/tree.c:2793
- destroy_inode+0x129/0x1b0 fs/inode.c:315
- iput_final fs/inode.c:1748 [inline]
- iput.part.0+0x55d/0x810 fs/inode.c:1774
- iput+0x58/0x70 fs/inode.c:1764
- nilfs_put_super+0xac/0x1a0 fs/nilfs2/super.c:476
- generic_shutdown_super+0x14c/0x400 fs/super.c:491
- kill_block_super+0x97/0xf0 fs/super.c:1427
- deactivate_locked_super+0x94/0x160 fs/super.c:332
- deactivate_super+0xad/0xd0 fs/super.c:363
- cleanup_mnt+0x2ae/0x3d0 fs/namespace.c:1186
- task_work_run+0xdd/0x1a0 kernel/task_work.c:177
- resume_user_mode_work include/linux/resume_user_mode.h:49 [inline]
- exit_to_user_mode_loop kernel/entry/common.c:169 [inline]
- exit_to_user_mode_prepare+0x23c/0x250 kernel/entry/common.c:201
- __syscall_exit_to_user_mode_work kernel/entry/common.c:283 [inline]
- syscall_exit_to_user_mode+0x19/0x50 kernel/entry/common.c:294
- do_syscall_64+0x42/0xb0 arch/x86/entry/common.c:86
- entry_SYSCALL_64_after_hwframe+0x63/0xcd
-
-The buggy address belongs to the object at ffff88802baf2cd8
- which belongs to the cache nilfs2_inode_cache of size 1512
-The buggy address is located 106 bytes to the right of
- 1512-byte region [ffff88802baf2cd8, ffff88802baf32c0)
-
-The buggy address belongs to the physical page:
-page:ffffea0000aebc00 refcount:1 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x2baf0
-head:ffffea0000aebc00 order:3 compound_mapcount:0 compound_pincount:0
-memcg:ffff8880493ca901
-flags: 0xfff00000010200(slab|head|node=0|zone=1|lastcpupid=0x7ff)
-raw: 00fff00000010200 dead000000000100 dead000000000122 ffff888018a8aa00
-raw: 0000000000000000 0000000000130013 00000001ffffffff ffff8880493ca901
-page dumped because: kasan: bad access detected
-page_owner tracks the page as allocated
-page last allocated via order 3, migratetype Reclaimable, gfp_mask 0x1d2050(__GFP_IO|__GFP_NOWARN|__GFP_NORETRY|__GFP_COMP|__GFP_NOMEMALLOC|__GFP_HARDWALL|__GFP_RECLAIMABLE), pid 644, tgid 643 (syz-executor.4), ts 2331907861767, free_ts 2317024789889
- prep_new_page mm/page_alloc.c:2532 [inline]
- get_page_from_freelist+0x109b/0x2ce0 mm/page_alloc.c:4283
- __alloc_pages+0x1c7/0x510 mm/page_alloc.c:5549
- alloc_pages+0x1a6/0x270 mm/mempolicy.c:2270
- alloc_slab_page mm/slub.c:1829 [inline]
- allocate_slab+0x27e/0x3d0 mm/slub.c:1974
- new_slab mm/slub.c:2034 [inline]
- ___slab_alloc+0x7f1/0xe10 mm/slub.c:3036
- __slab_alloc.constprop.0+0x4d/0xa0 mm/slub.c:3123
- slab_alloc_node mm/slub.c:3214 [inline]
- slab_alloc mm/slub.c:3256 [inline]
- __kmem_cache_alloc_lru mm/slub.c:3263 [inline]
- kmem_cache_alloc_lru+0x528/0x720 mm/slub.c:3280
- alloc_inode_sb include/linux/fs.h:3103 [inline]
- nilfs_alloc_inode+0x24/0x150 fs/nilfs2/super.c:154
- alloc_inode+0x61/0x230 fs/inode.c:260
- iget5_locked fs/inode.c:1242 [inline]
- iget5_locked+0x1cb/0x2c0 fs/inode.c:1235
- nilfs_iget_locked+0xa0/0xd0 fs/nilfs2/inode.c:588
- nilfs_cpfile_read+0x83/0x1f0 fs/nilfs2/cpfile.c:991
- nilfs_load_super_root fs/nilfs2/the_nilfs.c:125 [inline]
- load_nilfs+0x48b/0x1330 fs/nilfs2/the_nilfs.c:269
- nilfs_fill_super fs/nilfs2/super.c:1059 [inline]
- nilfs_mount+0xa9a/0xfb0 fs/nilfs2/super.c:1317
- legacy_get_tree+0x105/0x220 fs/fs_context.c:610
- vfs_get_tree+0x89/0x2f0 fs/super.c:1530
-page last free stack trace:
- reset_page_owner include/linux/page_owner.h:24 [inline]
- free_pages_prepare mm/page_alloc.c:1449 [inline]
- free_pcp_prepare+0x5e4/0xd20 mm/page_alloc.c:1499
- free_unref_page_prepare mm/page_alloc.c:3380 [inline]
- free_unref_page+0x19/0x4d0 mm/page_alloc.c:3476
- qlink_free mm/kasan/quarantine.c:168 [inline]
- qlist_free_all+0x6a/0x170 mm/kasan/quarantine.c:187
- kasan_quarantine_reduce+0x180/0x200 mm/kasan/quarantine.c:294
- __kasan_slab_alloc+0xa2/0xc0 mm/kasan/common.c:447
- kasan_slab_alloc include/linux/kasan.h:224 [inline]
- slab_post_alloc_hook mm/slab.h:727 [inline]
- slab_alloc_node mm/slub.c:3248 [inline]
- slab_alloc mm/slub.c:3256 [inline]
- __kmem_cache_alloc_lru mm/slub.c:3263 [inline]
- kmem_cache_alloc+0x267/0x3b0 mm/slub.c:3273
- getname_flags.part.0+0x50/0x4f0 fs/namei.c:139
- getname_flags+0x9a/0xe0 include/linux/audit.h:320
- user_path_at_empty+0x2b/0x60 fs/namei.c:2875
- user_path_at include/linux/namei.h:57 [inline]
- __do_sys_chdir fs/open.c:514 [inline]
- __se_sys_chdir fs/open.c:508 [inline]
- __x64_sys_chdir+0xb7/0x260 fs/open.c:508
- do_syscall_x64 arch/x86/entry/common.c:50 [inline]
- do_syscall_64+0x35/0xb0 arch/x86/entry/common.c:80
- entry_SYSCALL_64_after_hwframe+0x63/0xcd
-
-Memory state around the buggy address:
- ffff88802baf3200: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
- ffff88802baf3280: 00 00 00 00 00 00 00 00 fc fc fc fc fc fc fc fc
->ffff88802baf3300: fc fc fc fc fc fc fc fc 00 00 00 00 00 00 00 00
-                                  ^
- ffff88802baf3380: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
- ffff88802baf3400: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-==================================================================
-
-
----
-This report is generated by a bot. It may contain errors.
-See https://goo.gl/tpsmEJ for more information about syzbot.
-syzbot engineers can be reached at syzkaller@googlegroups.com.
-
-syzbot will keep track of this issue. See:
-https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
+> ntfs: volume version 3.1.
+> Unable to handle kernel NULL pointer dereference at virtual address 0000000000000000
+> Mem abort info:
+>   ESR = 0x0000000086000006
+>   EC = 0x21: IABT (current EL), IL = 32 bits
+>   SET = 0, FnV = 0
+>   EA = 0, S1PTW = 0
+>   FSC = 0x06: level 2 translation fault
+> user pgtable: 4k pages, 48-bit VAs, pgdp=00000001515fb000
+> [0000000000000000] pgd=080000015162c003, p4d=080000015162c003, pud=08000001511b5003, pmd=0000000000000000
+> Internal error: Oops: 0000000086000006 [#1] PREEMPT SMP
+> Modules linked in:
+> CPU: 0 PID: 4711 Comm: syz-executor.1 Not tainted 6.0.0-rc7-syzkaller-18095-gbbed346d5a96 #0
+> Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 08/26/2022
+> pstate: 80400005 (Nzcv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+> pc : 0x0
+> lr : filemap_read_folio+0x68/0x33c mm/filemap.c:2394
+> sp : ffff800015e03940
+> x29: ffff800015e03940 x28: 00000000ffffffff x27: 0000000000080001
+> x26: 0000000000001000 x25: 0000000000000000 x24: 0000000000000000
+> x23: fffffc00044d8580 x22: fffffc00044d8580 x21: 0000000000000000
+> x20: 0000000000000000 x19: fffffc00044d8580 x18: fffffffffffffff5
+> x17: ffff80000bffd6bc x16: 0000000000000068 x15: 000000000000000c
+> x14: 0000000000000000 x13: 0000000000000000 x12: 0000000000000004
+> x11: ff808000083d0b00 x10: 0000000000000000 x9 : ffff8000083d0b00
+> x8 : 0000000000000100 x7 : ffff80000818d174 x6 : ffff8000083ed3f0
+> x5 : 0000000000000000 x4 : 0000000000000001 x3 : 0000000000000000
+> x2 : fffffc00044d8580 x1 : fffffc00044d8580 x0 : 0000000000000000
+> Call trace:
+>  0x0
+>  do_read_cache_folio+0x1c8/0x588 mm/filemap.c:3519
+>  do_read_cache_page mm/filemap.c:3561 [inline]
+>  read_cache_page+0x40/0x178 mm/filemap.c:3570
+>  read_mapping_page include/linux/pagemap.h:756 [inline]
+>  ntfs_map_page fs/ntfs/aops.h:75 [inline]
+>  ntfs_check_logfile+0x2a4/0x8cc fs/ntfs/logfile.c:532
+>  load_and_check_logfile+0x5c/0xcc fs/ntfs/super.c:1215
+>  load_system_files+0x7d0/0x1220 fs/ntfs/super.c:1941
+>  ntfs_fill_super+0xbac/0x1030 fs/ntfs/super.c:2891
+>  mount_bdev+0x1b8/0x210 fs/super.c:1400
+>  ntfs_mount+0x44/0x58 fs/ntfs/super.c:3048
+>  legacy_get_tree+0x30/0x74 fs/fs_context.c:610
+>  vfs_get_tree+0x40/0x140 fs/super.c:1530
+>  do_new_mount+0x1dc/0x4e4 fs/namespace.c:3040
+>  path_mount+0x358/0x914 fs/namespace.c:3370
+>  do_mount fs/namespace.c:3383 [inline]
+>  __do_sys_mount fs/namespace.c:3591 [inline]
+>  __se_sys_mount fs/namespace.c:3568 [inline]
+>  __arm64_sys_mount+0x2c4/0x3c4 fs/namespace.c:3568
+>  __invoke_syscall arch/arm64/kernel/syscall.c:38 [inline]
+>  invoke_syscall arch/arm64/kernel/syscall.c:52 [inline]
+>  el0_svc_common+0x138/0x220 arch/arm64/kernel/syscall.c:142
+>  do_el0_svc+0x48/0x164 arch/arm64/kernel/syscall.c:206
+>  el0_svc+0x58/0x150 arch/arm64/kernel/entry-common.c:636
+>  el0t_64_sync_handler+0x84/0xf0 arch/arm64/kernel/entry-common.c:654
+>  el0t_64_sync+0x18c/0x190 arch/arm64/kernel/entry.S:581
+> Code: bad PC value
+> ---[ end trace 0000000000000000 ]---
+>
+>
+> ---
+> This report is generated by a bot. It may contain errors.
+> See https://goo.gl/tpsmEJ for more information about syzbot.
+> syzbot engineers can be reached at syzkaller@googlegroups.com.
+>
+> syzbot will keep track of this issue. See:
+> https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
+>
+> --
+> You received this message because you are subscribed to the Google Groups "syzkaller-bugs" group.
+> To unsubscribe from this group and stop receiving emails from it, send an email to syzkaller-bugs+unsubscribe@googlegroups.com.
+> To view this discussion on the web visit https://groups.google.com/d/msgid/syzkaller-bugs/0000000000006b624d05ea326f79%40google.com.
 
 
 _______________________________________________
