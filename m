@@ -2,120 +2,103 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id B43135F6561
-	for <lists+linux-ntfs-dev@lfdr.de>; Thu,  6 Oct 2022 13:47:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 398935FA2C8
+	for <lists+linux-ntfs-dev@lfdr.de>; Mon, 10 Oct 2022 19:38:39 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
 	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1ogPLb-0006ly-P0;
-	Thu, 06 Oct 2022 11:47:27 +0000
+	id 1ohwjb-0003wJ-Q8;
+	Mon, 10 Oct 2022 17:38:35 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <dvyukov@google.com>) id 1ogLM8-0004Ou-3G
- for linux-ntfs-dev@lists.sourceforge.net;
- Thu, 06 Oct 2022 07:31:44 +0000
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95) (envelope-from
+ <3iFJEYwkbAF8PVWH7IIBO7MMFA.DLLDIBRPBO9LKQBKQ.9LJ@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
+ id 1ohwKg-0000s3-EI for linux-ntfs-dev@lists.sourceforge.net;
+ Mon, 10 Oct 2022 17:12:50 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
- In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
- :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:To:From:Subject:Message-ID:In-Reply-To
+ :Date:MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Bzh5XPJ/JYJOsSs0b9iIyuJ7kyZ3RRFqiPXEWQtLdbg=; b=LSDFHl1eOt33lW6egwRmcZ5znc
- MmnSzOSYCMiFG9qZUkUP2qzWYluMdq8RBKLVSjEHytAAbzx04ovwFY/ne7+Ig6uo/uIdKCH/Dmko/
- aWI3SKzEvyA1Kg+Kr9kGrLKkfOHNjXxWXkOhfQAiOFh4qkY0mwXnB9TKAlotz5vEnrco=;
+ bh=u+cVvgKTc0S6iXvwi5+JFXP/G/CcmcMrkHxnoV/ojow=; b=VQDbesL9v8QU1XL/nbqI3fNXAu
+ SKSNhSK1oUuylbZcQiwLjsPNp4uYhUB+PTRMQCoQ8X0MBxt4h8L0vnWCRugLTbuubnhMYd2OzvClO
+ MM3/3lgVolzEQH149vxkqQdOExQcCm2HIxnQBH2O7FdBbdwDm66f5xQM7PWqi+lSUoS4=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
- MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=Bzh5XPJ/JYJOsSs0b9iIyuJ7kyZ3RRFqiPXEWQtLdbg=; b=k1hgvuXevVnbEP/N9xiCRBQGdT
- 2nBrbLaJBYw/xIXzb/9JpySgI4aY++a6h7bqAIqf5G2dQC4zwyeVc73nNS60ccW3vOXKmovZJSh0U
- GStM2GYOV5nOEuu5iwgjFbbAX13g0aXDSUVJW80XC39kSHzAE22wcBBzyp0+wGipiJk0=;
-Received: from mail-lf1-f46.google.com ([209.85.167.46])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ h=Content-Type:To:From:Subject:Message-ID:In-Reply-To:Date:MIME-Version:
+ Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=u+cVvgKTc0S6iXvwi5+JFXP/G/CcmcMrkHxnoV/ojow=; b=M
+ 5NH6l3VF8WBB7BQdlppEUULhDfClDScgOfQMBlhzROmF4gFky/1sLORTR7lP9BtNbj7mpWL2yIHke
+ ebeuidZpptjCJ4uD9N+vyYo9Ex7QX/V20HCLyQQaRxa6hGn70J1Sz5b3zj7KrSwXyKbzlQtvIatUR
+ zlk/f6TtYaSvGzAw=;
+Received: from mail-io1-f72.google.com ([209.85.166.72])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1ogLM6-00ERKk-C3 for linux-ntfs-dev@lists.sourceforge.net;
- Thu, 06 Oct 2022 07:31:44 +0000
-Received: by mail-lf1-f46.google.com with SMTP id a29so1466490lfo.1
+ id 1ohwKc-0001xu-9j for linux-ntfs-dev@lists.sourceforge.net;
+ Mon, 10 Oct 2022 17:12:50 +0000
+Received: by mail-io1-f72.google.com with SMTP id
+ a15-20020a6b660f000000b006a0d0794ad1so7590237ioc.6
  for <linux-ntfs-dev@lists.sourceforge.net>;
- Thu, 06 Oct 2022 00:31:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=Bzh5XPJ/JYJOsSs0b9iIyuJ7kyZ3RRFqiPXEWQtLdbg=;
- b=G8QJncrqWim5RGtwF8WoUP1eCvDLzpIiuhKxLpZv3x0bn9NUFqHTLZGgFYtcrDGa4K
- iqtqR7x08dHYndhi8UvVKV/rK28g+N4RWFJm8R3QZIMn551jhQklmouhLDifrPi19iOz
- 2T8qBvyW12Nxbk1lOVIfjs8MZ036wiCN7xH/zdoApAj6T2NjKjNZnGFaHNcKScBGhGR/
- F0yS5imyknmQjodGEHk/ARqaKksosSB6hCadP7yexx++mNJsL0BNp6jQXxZjojA7GChR
- SGiUu/NYoRBW+J/4Fs+3jb9bYuA98y27hSTBZQWYVP8lwW9+7W7xi2T1jOXTeDZqORhA
- OGRA==
+ Mon, 10 Oct 2022 10:12:46 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=Bzh5XPJ/JYJOsSs0b9iIyuJ7kyZ3RRFqiPXEWQtLdbg=;
- b=Scq4cgBvE1by8mTZdUxJfgAM5I0v8WzzkpzsCXjKa0H+7GEgIMphuMtZpjvLolGbdI
- yBk5zP4Xc2DwcOvjyv1VAkkx6KW6DHucB/GOi5MapDhM9pKQXrRv9etMmQ9GrMicaaE0
- CAEU+C+Ut6O/xYrGmPXEVkGhEn5prg/WjJkFr+Jmst/yk0baNaTCT2X9Dr3xMclrgiQk
- ZB70aph8e7Cg6lrTtrvTB0jqt+Zr44zlF0L/oid98Y2YdxfJ0zDDmH/2N21ZD/zHOVQI
- Ep8q+INFxO3UHKcH+S/TWJa1kINhf2v6ch9ZyhM/wMyxGRoaaUkbVnTyw6lno7kU3ByH
- 7QQw==
-X-Gm-Message-State: ACrzQf1lyZvLjsJ07AsXWV15xlv58BhlJdyon8F7sJWZknHRTESmrUx2
- egxFpVOidUlHJNJSRsnQkpP0fo8BjmqSE1m/kom87g==
-X-Google-Smtp-Source: AMsMyM7tSz9cV99zpsrfnendXF8gONzryDHdy2cpg8UZHmBzL7RXATWDfcteic79QbY7c8z3GXhFF96xvWixdPjkIhA=
-X-Received: by 2002:a05:6512:3297:b0:4a2:3f76:486a with SMTP id
- p23-20020a056512329700b004a23f76486amr1419642lfe.137.1665041495537; Thu, 06
- Oct 2022 00:31:35 -0700 (PDT)
+ h=to:from:subject:message-id:in-reply-to:date:mime-version
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=u+cVvgKTc0S6iXvwi5+JFXP/G/CcmcMrkHxnoV/ojow=;
+ b=IWLreti0WBXGNY24ab5LWADn4BjMctRFuF2Tr0EtexeElbv3VMmIGokx66lY8VIoBi
+ 5+l4bi2aR6Z4l1TOn+9BuaLCl6yrP+McA6jQFxrFgwJqmHCIg7F3XsvRGDfd3bEVQjJc
+ t6VTtfHRZwPVQUspF93AJ4hVD9VCqzqkhq4FwJljgGw1Rm395uFoHkmc9imOPzrN3+rz
+ pjGpJqrMHGAKKSbyYeeLXuks6aOsRLWxbskCtWHTRX2hewBMj2tcAygSQR3IIZGEj8bi
+ onRkCC/czo+J3NNDKHS7lUdn+vnZA8/yRG2kFAF+fWBR7bCIIHIDRVYHDm4NfNsJprTP
+ pn5g==
+X-Gm-Message-State: ACrzQf04WTiluqlWBNsUdENZMK9ipi+4QIpfPf2d0otfP8bXfQWOdJim
+ 4+C4ybXl2PfUTKbcDujHVFpChxhHnI8i99ebhjDlEPawpYCP
+X-Google-Smtp-Source: AMsMyM7y1XTVH+Xi0Uvy2FDpSLyOA7/Ca5WD5EW/eO2GaK1Jsxg1d2LVwcQZe6L/9dnCMXa5Z12NPae5iCKScs9rJl8RCBJJFxDZ
 MIME-Version: 1.0
-References: <00000000000065cf9305ea4596c5@google.com>
- <60256037-10ab-1861-3b52-91143e52925f@I-love.SAKURA.ne.jp>
- <CACT4Y+aqeSZZ9ZWZ8soccVPYn9EuEgAMCA+_erp3D0aD0zN-dw@mail.gmail.com>
-In-Reply-To: <CACT4Y+aqeSZZ9ZWZ8soccVPYn9EuEgAMCA+_erp3D0aD0zN-dw@mail.gmail.com>
-Date: Thu, 6 Oct 2022 09:31:19 +0200
-Message-ID: <CACT4Y+YGt62Q+FRSFg_NUvw0CXFiDeveeCsGwCR6qKuPywOsuw@mail.gmail.com>
-To: Tetsuo Handa <penguin-kernel@i-love.sakura.ne.jp>
-X-Spam-Score: -15.7 (---------------)
+X-Received: by 2002:a05:6602:2dd5:b0:6a2:38e6:eaad with SMTP id
+ l21-20020a0566022dd500b006a238e6eaadmr9154762iow.144.1665421960781; Mon, 10
+ Oct 2022 10:12:40 -0700 (PDT)
+Date: Mon, 10 Oct 2022 10:12:40 -0700
+In-Reply-To: <000000000000af0c0105e9f9e966@google.com>
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <0000000000005fa91605eab14476@google.com>
+From: syzbot <syzbot+bd6d0c83fe8442ad6ef5@syzkaller.appspotmail.com>
+To: almaz.alexandrovich@paragon-software.com, anton@tuxera.com, 
+ linux-kernel@vger.kernel.org, linux-ntfs-dev@lists.sourceforge.net, 
+ llvm@lists.linux.dev, nathan@kernel.org, ndesaulniers@google.com, 
+ ntfs3@lists.linux.dev, syzkaller-bugs@googlegroups.com, trix@redhat.com
+X-Spam-Score: 3.1 (+++)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Wed, 5 Oct 2022 at 17:57,
- Dmitry Vyukov <dvyukov@google.com>
- wrote: > > On Wed, 5 Oct 2022 at 16:01,
- Tetsuo Handa > <penguin-kernel@i-love.sakura.ne.jp>
- wrote: > > > > I suspect that there is a bug [...] 
- Content analysis details:   (-15.7 points, 6.0 required)
+ Content preview:  syzbot has found a reproducer for the following issue on:
+ HEAD commit: 493ffd6605b2 Merge tag 'ucount-rlimits-cleanups-for-v5.19'..
+ git tree: upstream console+strace:
+ https://syzkaller.appspot.com/x/log.txt?x=126d971c880000
+ kernel config: https://syzkaller.a [...] 
+ Content analysis details:   (3.1 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
+ 0.3 FROM_LOCAL_HEX         From: localpart has long hexadecimal sequence
+ 2.5 SORTED_RECIPS          Recipient list is sorted by address
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.167.46 listed in list.dnswl.org]
+ no trust [209.85.166.72 listed in list.dnswl.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -7.5 USER_IN_DEF_SPF_WL     From: address is in the default SPF
- white-list
+ 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
+ mail domains are different
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -7.5 USER_IN_DEF_DKIM_WL    From: address is in the default DKIM
- welcome-list
  -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.167.46 listed in wl.mailspike.net]
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.5 ENV_AND_HDR_SPF_MATCH  Env and Hdr From used in default SPF WL
- Match
- -0.0 DKIMWL_WL_MED          DKIMwl.org - Medium trust sender
-X-Headers-End: 1ogLM6-00ERKk-C3
-X-Mailman-Approved-At: Thu, 06 Oct 2022 11:47:25 +0000
-Subject: Re: [Linux-NTFS-Dev] [syzbot] WARNING: locking bug in
+ [209.85.166.72 listed in wl.mailspike.net]
+X-Headers-End: 1ohwKc-0001xu-9j
+X-Mailman-Approved-At: Mon, 10 Oct 2022 17:38:34 +0000
+Subject: Re: [Linux-NTFS-Dev] [syzbot] KASAN: slab-out-of-bounds Read in
  ntfs_fill_super
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -129,88 +112,104 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-From: Dmitry Vyukov via Linux-NTFS-Dev <linux-ntfs-dev@lists.sourceforge.net>
-Reply-To: Dmitry Vyukov <dvyukov@google.com>
-Cc: linux-ntfs-dev@lists.sourceforge.net, Aleksandr Nogikh <nogikh@google.com>,
- syzkaller-bugs@googlegroups.com,
- syzbot <syzbot+cf619565607c56656eac@syzkaller.appspotmail.com>,
- anton@tuxera.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-On Wed, 5 Oct 2022 at 17:57, Dmitry Vyukov <dvyukov@google.com> wrote:
->
-> On Wed, 5 Oct 2022 at 16:01, Tetsuo Handa
-> <penguin-kernel@i-love.sakura.ne.jp> wrote:
-> >
-> > I suspect that there is a bug in backtrace decoder for arm64.
-> >
-> > > _atomic_dec_and_lock+0xc8/0x130 lib/dec_and_lock.c:28
-> > > iput+0x50/0x324 fs/inode.c:1766
-> > > ntfs_fill_super+0x1254/0x14a4 fs/ntfs/super.c:188
-> >
-> > Both ntfs and ntfs3 provide ntfs_fill_super() and
-> >
-> > > get_tree_bdev+0x1e8/0x2a0 fs/super.c:1323
-> > > ntfs_fs_get_tree+0x28/0x38 fs/ntfs3/super.c:1358
-> >
-> > ntfs_fs_get_tree() in fs/ntfs3/super.c is passing
-> > ntfs_fill_super() defined in fs/ntfs3/super.c .
-> >
-> > Therefore, I believe that
-> >
-> >   ntfs_fill_super+0x1254/0x14a4
-> >
-> > should be somewhere in fs/ntfs3/super.c file.
-> >
-> > > vfs_get_tree+0x40/0x140 fs/super.c:1530
-> > > do_new_mount+0x1dc/0x4e4 fs/namespace.c:3040
-> >
-> > Similar problem "WARNING: nested lock was not taken in ntfs_fill_super"
-> > at https://syzkaller.appspot.com/bug?id=163e6da17e1a91995f563a2d5ee68a65468fb713
-> > looks reasonable.
->
-> Interesting.
->
-> We have logic to select the right symbols based on size:
-> https://github.com/google/syzkaller/blob/2c6543adc4c5a9108455d1e59b0df0d4afc05c99/pkg/report/linux.go#L427
->
-> However, in this case this piece does not work:
-> https://github.com/google/syzkaller/blob/2c6543adc4c5a9108455d1e59b0df0d4afc05c99/pkg/symbolizer/nm.go#L50-L56
->
-> It worked for x86, but not for arm64.
->
-> In this case the symbols are:
->
-> $ nm -nS ./vmlinux-bbed346d | grep -C 3 ntfs_fill_super
-> ffff800008bb6b80 t $x.94
-> ffff800008bb6b84 t $x.4
-> ffff800008bb6b84 0000000000000058 t ntfs_mount
-> ffff800008bb6bdc 0000000000001030 t ntfs_fill_super
-> ffff800008bb6ca0 t $x.6
-> ffff800008bb7c00 t $x.9
-> ffff800008bb7c08 t $x.11
-> --
-> ffff800008c03ae0 0000000000000038 t ntfs_fs_get_tree
-> ffff800008c03b18 00000000000001f4 t ntfs_fs_reconfigure
-> ffff800008c03d0c 000000000000013c t put_ntfs
-> ffff800008c03e48 00000000000014a4 t ntfs_fill_super
-> ffff800008c052e0 t $x.12
-> ffff800008c052e8 t $x.14
-> ffff800008c052ec 000000000000008c t ntfs_map_page
->
-> and these $x things break our calculations.
->
-> I see that the kernel indeed calculates the size based on the start of
-> the next symbol:
-> https://elixir.bootlin.com/linux/latest/source/kernel/kallsyms.c#L288
->
-> I think we need to do the same in pkg/nm to match the kernel logic.
->
-> P.s. the provided vmlinux was very useful in this case.
+syzbot has found a reproducer for the following issue on:
 
-Should be fixed by: https://github.com/google/syzkaller/pull/3424
+HEAD commit:    493ffd6605b2 Merge tag 'ucount-rlimits-cleanups-for-v5.19'..
+git tree:       upstream
+console+strace: https://syzkaller.appspot.com/x/log.txt?x=126d971c880000
+kernel config:  https://syzkaller.appspot.com/x/.config?x=d19f5d16783f901
+dashboard link: https://syzkaller.appspot.com/bug?extid=bd6d0c83fe8442ad6ef5
+compiler:       Debian clang version 13.0.1-++20220126092033+75e33f71c2da-1~exp1~20220126212112.63, GNU ld (GNU Binutils for Debian) 2.35.2
+syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=17be583a880000
+C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=1506f83a880000
+
+Downloadable assets:
+disk image: https://storage.googleapis.com/syzbot-assets/f1ff6481e26f/disk-493ffd66.raw.xz
+vmlinux: https://storage.googleapis.com/syzbot-assets/101bd3c7ae47/vmlinux-493ffd66.xz
+mounted in repro: https://storage.googleapis.com/syzbot-assets/8a813f4e8f0b/mount_3.gz
+
+IMPORTANT: if you fix the issue, please add the following tag to the commit:
+Reported-by: syzbot+bd6d0c83fe8442ad6ef5@syzkaller.appspotmail.com
+
+ntfs3: loop3: RAW NTFS volume: Filesystem size 0.00 Gb > volume size 0.00 Gb. Mount in read-only
+general protection fault, probably for non-canonical address 0xdffffc0000000002: 0000 [#1] PREEMPT SMP KASAN
+KASAN: null-ptr-deref in range [0x0000000000000010-0x0000000000000017]
+CPU: 1 PID: 3641 Comm: syz-executor420 Not tainted 6.0.0-syzkaller-09423-g493ffd6605b2 #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 09/22/2022
+RIP: 0010:ntfs_init_from_boot fs/ntfs3/super.c:844 [inline]
+RIP: 0010:ntfs_fill_super+0x15b5/0x42a0 fs/ntfs3/super.c:935
+Code: 00 00 00 00 00 fc ff df 80 3c 08 00 74 08 48 89 df e8 ff 14 11 ff 4c 89 2b 4c 89 e8 48 c1 e8 03 48 b9 00 00 00 00 00 fc ff df <8a> 04 08 84 c0 0f 85 96 16 00 00 41 c7 45 00 46 49 4c 45 4d 8d 7d
+RSP: 0018:ffffc90003fcfae0 EFLAGS: 00010202
+RAX: 0000000000000002 RBX: ffff888075460080 RCX: dffffc0000000000
+RDX: ffff8880203dd880 RSI: 0000000000000d40 RDI: 0000000000000000
+RBP: ffffc90003fcfcb0 R08: ffffffff82c8d6e5 R09: fffffbfff1c19fde
+R10: fffffbfff1c19fde R11: 1ffffffff1c19fdd R12: 00000000000001ff
+R13: 0000000000000010 R14: ffff888075460320 R15: 0000000000000000
+FS:  0000555555f93300(0000) GS:ffff8880b9b00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000555555f932c0 CR3: 0000000075ed4000 CR4: 00000000003506e0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ <TASK>
+ get_tree_bdev+0x400/0x620 fs/super.c:1323
+ vfs_get_tree+0x88/0x270 fs/super.c:1530
+ do_new_mount+0x289/0xad0 fs/namespace.c:3040
+ do_mount fs/namespace.c:3383 [inline]
+ __do_sys_mount fs/namespace.c:3591 [inline]
+ __se_sys_mount+0x2d3/0x3c0 fs/namespace.c:3568
+ do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x3d/0xb0 arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+RIP: 0033:0x7efc95f6311a
+Code: 48 c7 c2 c0 ff ff ff f7 d8 64 89 02 b8 ff ff ff ff eb d2 e8 a8 00 00 00 0f 1f 84 00 00 00 00 00 49 89 ca b8 a5 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 c0 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ffde97f1518 EFLAGS: 00000286 ORIG_RAX: 00000000000000a5
+RAX: ffffffffffffffda RBX: 0000000000000004 RCX: 00007efc95f6311a
+RDX: 0000000020000000 RSI: 0000000020000100 RDI: 00007ffde97f1530
+RBP: 00007ffde97f1530 R08: 00007ffde97f1570 R09: 0000555555f932c0
+R10: 0000000000000000 R11: 0000000000000286 R12: 0000000000000005
+R13: 00007ffde97f1570 R14: 0000000000000037 R15: 0000000020000728
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:ntfs_init_from_boot fs/ntfs3/super.c:844 [inline]
+RIP: 0010:ntfs_fill_super+0x15b5/0x42a0 fs/ntfs3/super.c:935
+Code: 00 00 00 00 00 fc ff df 80 3c 08 00 74 08 48 89 df e8 ff 14 11 ff 4c 89 2b 4c 89 e8 48 c1 e8 03 48 b9 00 00 00 00 00 fc ff df <8a> 04 08 84 c0 0f 85 96 16 00 00 41 c7 45 00 46 49 4c 45 4d 8d 7d
+RSP: 0018:ffffc90003fcfae0 EFLAGS: 00010202
+RAX: 0000000000000002 RBX: ffff888075460080 RCX: dffffc0000000000
+RDX: ffff8880203dd880 RSI: 0000000000000d40 RDI: 0000000000000000
+RBP: ffffc90003fcfcb0 R08: ffffffff82c8d6e5 R09: fffffbfff1c19fde
+R10: fffffbfff1c19fde R11: 1ffffffff1c19fdd R12: 00000000000001ff
+R13: 0000000000000010 R14: ffff888075460320 R15: 0000000000000000
+FS:  0000555555f93300(0000) GS:ffff8880b9b00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007efc95f1e668 CR3: 0000000075ed4000 CR4: 00000000003506e0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+----------------
+Code disassembly (best guess), 7 bytes skipped:
+   0:	df 80 3c 08 00 74    	filds  0x7400083c(%rax)
+   6:	08 48 89             	or     %cl,-0x77(%rax)
+   9:	df e8                	fucomip %st(0),%st
+   b:	ff 14 11             	callq  *(%rcx,%rdx,1)
+   e:	ff 4c 89 2b          	decl   0x2b(%rcx,%rcx,4)
+  12:	4c 89 e8             	mov    %r13,%rax
+  15:	48 c1 e8 03          	shr    $0x3,%rax
+  19:	48 b9 00 00 00 00 00 	movabs $0xdffffc0000000000,%rcx
+  20:	fc ff df
+* 23:	8a 04 08             	mov    (%rax,%rcx,1),%al <-- trapping instruction
+  26:	84 c0                	test   %al,%al
+  28:	0f 85 96 16 00 00    	jne    0x16c4
+  2e:	41 c7 45 00 46 49 4c 	movl   $0x454c4946,0x0(%r13)
+  35:	45
+  36:	4d                   	rex.WRB
+  37:	8d                   	.byte 0x8d
+  38:	7d                   	.byte 0x7d
+
 
 
 _______________________________________________
