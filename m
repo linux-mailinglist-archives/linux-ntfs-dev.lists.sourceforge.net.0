@@ -2,100 +2,117 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id C271D5FC13E
-	for <lists+linux-ntfs-dev@lfdr.de>; Wed, 12 Oct 2022 09:25:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D12F75FEB54
+	for <lists+linux-ntfs-dev@lfdr.de>; Fri, 14 Oct 2022 11:10:45 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1oiW79-0007PQ-KJ;
-	Wed, 12 Oct 2022 07:25:15 +0000
+	id 1ojGiJ-0005cy-69;
+	Fri, 14 Oct 2022 09:10:43 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95) (envelope-from
- <3V2JGYwkbAFYGMN8y992FyDD61.4CC492IG2F0CBH2BH.0CA@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
- id 1oiVU0-0005jV-TK for linux-ntfs-dev@lists.sourceforge.net;
- Wed, 12 Oct 2022 06:44:48 +0000
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
+ (envelope-from <hrkanabar@gmail.com>) id 1ojGO3-0006s6-UI;
+ Fri, 14 Oct 2022 08:49:47 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:To:From:Subject:Message-ID:Date:
- MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
+ :Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=i/cEeMnxUyYtlzGNdJb4eRNAIE0sJPI54U1V6FnSsoY=; b=A5ls0d+QJNgF9n1/hl3GPEpPoB
- ByRUkNwPPomW+jWkNrl9CdeXTPn7xr7uYm3/TL3EWIPsECbjpsnK0psZLjB8u/3RDh/awVutPk1Uh
- o1tMuFqR+op1kuAihEeLhGQ0Wt8akX0OYmxAUmm+N2paugBGes9Sjm8sOjsuZkk85HXg=;
+ bh=wHqdtxQx6Lod0jir/zBNpgI20jHW/S0hFQeJ5vK6PO4=; b=bi73zCtTuP6d0lhA5qa7lXrFHv
+ Og74XXJRSIeT9wA7EGDt5eC8i+Eq0PxQNzduw7EeEeBI9AtU1WvMbVBvftdYA2LciXKDARPl3PYZr
+ PpDVB4UuljrsJuf16cEiZYgfw47gv1ap+ST4mVYdNb4tmA3+EZJMdGd6GkCsfkcB03rU=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:To:From:Subject:Message-ID:Date:MIME-Version:Sender:Reply-To
- :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:
+ Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:Resent-Date
+ :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=i/cEeMnxUyYtlzGNdJb4eRNAIE0sJPI54U1V6FnSsoY=; b=S
- 8PL/7SatB3ItklElwWOlt0PqIl4dypDngDGPVBtbgEPSHLLc/va+fhl/0ddFxvoNRMStZPSXVJxS1
- w9z9WL4DEv7ft3iPBjWLUvAelOb95SmD1W1m+X0n/SYCmX9jfiV1hp+I4EM3SKKuBHny7WmuU/v3N
- nEC9YkonK8Vo40kI=;
-Received: from mail-il1-f198.google.com ([209.85.166.198])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ List-Owner:List-Archive; bh=wHqdtxQx6Lod0jir/zBNpgI20jHW/S0hFQeJ5vK6PO4=; b=l
+ NHK8IP42aTkmSeu0sD3Z+BXqfzdkvafzrYM2kb7JHFc5FODwKiOuoVMl4LKmUxs+TNzRjMi2OEmNP
+ 4zvDl9XHSeKaY9VAS5S1BQi8PdV/tLG7pcANk5jM9XEnhD+rueNZc8UTyYmJ467d1HWHgTablMPc1
+ IUe8QHERJYy2AQ9Y=;
+Received: from mail-wm1-f48.google.com ([209.85.128.48])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1oiVTw-0002Oi-MT for linux-ntfs-dev@lists.sourceforge.net;
- Wed, 12 Oct 2022 06:44:48 +0000
-Received: by mail-il1-f198.google.com with SMTP id
- h10-20020a056e021d8a00b002f99580de6cso12606345ila.5
- for <linux-ntfs-dev@lists.sourceforge.net>;
- Tue, 11 Oct 2022 23:44:45 -0700 (PDT)
+ id 1ojGO3-003OKx-9l; Fri, 14 Oct 2022 08:49:47 +0000
+Received: by mail-wm1-f48.google.com with SMTP id iv17so2670992wmb.4;
+ Fri, 14 Oct 2022 01:49:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=wHqdtxQx6Lod0jir/zBNpgI20jHW/S0hFQeJ5vK6PO4=;
+ b=N9gYQbXaDNOz60O1rGTwGAjGRkq26mCTJsSZ3Jl4CQJYVz6LnL3CEIbjWZXe/YyMjs
+ gtwg7xQGLuu25bH8Bj/nCImI1XEQqMT17gdEQdSE8inJ9hRursDVOO4SFDpS+j7vXzDp
+ l9Eyv8vq99kfP/PU6beqm5XC047H5YCmiZX7f2rYy+M+dj9XByokyFDl0TfAweEpLaMt
+ jsdjn9arPU57YQ4xvGsoTMVznDmE3IQJMkoVxedNqoNcxAJztCc76He+bvHxvG0KegSr
+ EpetSFUehs8I/SNoIWsmR5gk3XJ8CZ590VLkdE2nJzu7l5EBmxruFF9o54RIGIJrl3Di
+ iLZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=to:from:subject:message-id:date:mime-version:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=i/cEeMnxUyYtlzGNdJb4eRNAIE0sJPI54U1V6FnSsoY=;
- b=EFdXNnU3ZSnczQuDbhYwcq0psqGEiPnGqNwAFWg3BH8UJ8+rZFPBCo/2QgW1wy8GPN
- b1Mv1hT9E3yJqtyi4VJfNB7SVrr/4D+9R6uNIAonymciXk6ruEYaDlAJR+YXOubyBZSu
- j9BcM5cWrI1mhAFzIY4ZE2Bd8QvpORT55iYPPXJvhDBUHRB1jM36j3MqUz3XjIyAj3Vr
- EhfXZdtjp0Wl3NQL6/R8orF2qcaacduBsB/Gjij29hQPxmyp3YHa+PBkdTzHYpZ1Zknt
- isFaChQ5fin7HE5w02En/rP0a2LyfPMU1t7mcSBDSyh8bOXFWVvk/BGNynRlUwp0YCS4
- 84Yg==
-X-Gm-Message-State: ACrzQf1x2Ge2fLzcmKXR2hnKck/r3jy9TCg7ktEJ5swChKiJcM2vt/c0
- UDldCiis0pjj29clkY2VhKuXqDS+FA+tMbVqlQCISs1X10fU
-X-Google-Smtp-Source: AMsMyM5mQjiP8MqSAgNvpIhJgd0zb3FsAWqVQ5iaq8KGovxqDBZKVfQ9+qDM4JcqcW72D+ejNEgYfNVbV2zi8BqK/nNYulKAuEPy
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=wHqdtxQx6Lod0jir/zBNpgI20jHW/S0hFQeJ5vK6PO4=;
+ b=BpFFYebazwB8GI+3sC4vQ3QSQDrqPiZuLnt3SN9o48oTn5NAJeEf1eyga7ICQTlvLd
+ tFFbV9y2vWxry8JXmho4Dc1HBH0keXd5AlLdiaVtT0qtyfe2BC8uP0YfX69jM9T9IFs2
+ rVcBY7hT0IX2pWeMD8V3tQsSObTm1duvbQ9NZcDtFXZfoFjg0yxCOW37QqOZ9x2CndbC
+ Az8UmrI0EIN0n85v4huIX1VEVQHql9ym7wreMe9YZdqsjA6WdQRxh1wVxoJU8K/1U/eX
+ JFU/ftmn/4yrfiPm35v3bCJt5EZFwC91zRHm69hjG3BGw31oBBxoIZS/rkzQd6r1M773
+ zsHg==
+X-Gm-Message-State: ACrzQf3bLWkffR6V45Jb4vDYBn474yK3AbsELFlvuByCpCfTZ7E3C90g
+ S3aHg+r4HrYlgWrc7tzF7cI=
+X-Google-Smtp-Source: AMsMyM6mWW8W5+zs3haCkV7ucZ6ZM2NWaZWE4PI1Pq5xhk7qS5b4ull48XoOSMyebfkTABFFU7lq3A==
+X-Received: by 2002:a05:600c:19c9:b0:3c2:7fff:a689 with SMTP id
+ u9-20020a05600c19c900b003c27fffa689mr9647430wmq.85.1665737380822; 
+ Fri, 14 Oct 2022 01:49:40 -0700 (PDT)
+Received: from hrutvik.c.googlers.com.com
+ (120.142.205.35.bc.googleusercontent.com. [35.205.142.120])
+ by smtp.gmail.com with ESMTPSA id
+ 123-20020a1c1981000000b003c6c4639ac6sm1547372wmz.34.2022.10.14.01.49.40
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 14 Oct 2022 01:49:40 -0700 (PDT)
+From: Hrutvik Kanabar <hrkanabar@gmail.com>
+To: Hrutvik Kanabar <hrutvik@google.com>
+Date: Fri, 14 Oct 2022 08:48:30 +0000
+Message-Id: <20221014084837.1787196-1-hrkanabar@gmail.com>
+X-Mailer: git-send-email 2.38.0.413.g74048e4d9e-goog
 MIME-Version: 1.0
-X-Received: by 2002:a02:a510:0:b0:363:7345:2f5f with SMTP id
- e16-20020a02a510000000b0036373452f5fmr13720641jam.314.1665557079729; Tue, 11
- Oct 2022 23:44:39 -0700 (PDT)
-Date: Tue, 11 Oct 2022 23:44:39 -0700
-X-Google-Appengine-App-Id: s~syzkaller
-X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <000000000000172d9905ead0babe@google.com>
-From: syzbot <syzbot+64f73ab552d413b202e2@syzkaller.appspotmail.com>
-To: anton@tuxera.com, linux-kernel@vger.kernel.org, 
- linux-ntfs-dev@lists.sourceforge.net, syzkaller-bugs@googlegroups.com
-X-Spam-Score: 0.6 (/)
+X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hello,
- syzbot found the following issue on: HEAD commit: 493ffd6605b2
- Merge tag 'ucount-rlimits-cleanups-for-v5.19'.. git tree: upstream console
- output: https://syzkaller.appspot.com/x/log.txt?x=162a0194880000 kernel
- config: https://syzkaller.a [...] 
- Content analysis details:   (0.6 points, 6.0 required)
+ Content preview: From: Hrutvik Kanabar Fuzzing is a proven technique to
+ discover
+ exploitable bugs in the Linux kernel. But fuzzing filesystems is tricky:
+ highly structured disk images use redundant checksums to verify data
+ integrity. There [...] 
+ Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.3 FROM_LOCAL_HEX         From: localpart has long hexadecimal sequence
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
- mail domains are different
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.128.48 listed in list.dnswl.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
+ provider [hrkanabar[at]gmail.com]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.166.198 listed in wl.mailspike.net]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.166.198 listed in list.dnswl.org]
-X-Headers-End: 1oiVTw-0002Oi-MT
-X-Mailman-Approved-At: Wed, 12 Oct 2022 07:25:13 +0000
-Subject: [Linux-NTFS-Dev] [syzbot] kernel BUG in
- ntfs_prepare_pages_for_non_resident_write
+ [209.85.128.48 listed in wl.mailspike.net]
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
+X-Headers-End: 1ojGO3-003OKx-9l
+X-Mailman-Approved-At: Fri, 14 Oct 2022 09:09:59 +0000
+Subject: [Linux-NTFS-Dev] [PATCH RFC 0/7] fs: Debug config option to disable
+ filesystem checksum verification for fuzzing
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -108,94 +125,93 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "Darrick J . Wong" <djwong@kernel.org>, Chris Mason <clm@fb.com>,
+ Andreas Dilger <adilger.kernel@dilger.ca>, kasan-dev@googlegroups.com,
+ linux-ext4@vger.kernel.org, Namjae Jeon <linkinjeon@kernel.org>,
+ Marco Elver <elver@google.com>, Chao Yu <chao@kernel.org>,
+ Josef Bacik <josef@toxicpanda.com>, Alexander Viro <viro@zeniv.linux.org.uk>,
+ David Sterba <dsterba@suse.com>, Jaegeuk Kim <jaegeuk@kernel.org>,
+ Anton Altaparmakov <anton@tuxera.com>, Theodore Ts'o <tytso@mit.edu>,
+ linux-ntfs-dev@lists.sourceforge.net, linux-kernel@vger.kernel.org,
+ linux-f2fs-devel@lists.sourceforge.net, linux-xfs@vger.kernel.org,
+ Aleksandr Nogikh <nogikh@google.com>, linux-fsdevel@vger.kernel.org,
+ Sungjong Seo <sj1557.seo@samsung.com>, linux-btrfs@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-Hello,
-
-syzbot found the following issue on:
-
-HEAD commit:    493ffd6605b2 Merge tag 'ucount-rlimits-cleanups-for-v5.19'..
-git tree:       upstream
-console output: https://syzkaller.appspot.com/x/log.txt?x=162a0194880000
-kernel config:  https://syzkaller.appspot.com/x/.config?x=d19f5d16783f901
-dashboard link: https://syzkaller.appspot.com/bug?extid=64f73ab552d413b202e2
-compiler:       Debian clang version 13.0.1-++20220126092033+75e33f71c2da-1~exp1~20220126212112.63, GNU ld (GNU Binutils for Debian) 2.35.2
-
-Unfortunately, I don't have any reproducer for this issue yet.
-
-Downloadable assets:
-disk image: https://storage.googleapis.com/syzbot-assets/f1ff6481e26f/disk-493ffd66.raw.xz
-vmlinux: https://storage.googleapis.com/syzbot-assets/101bd3c7ae47/vmlinux-493ffd66.xz
-
-IMPORTANT: if you fix the issue, please add the following tag to the commit:
-Reported-by: syzbot+64f73ab552d413b202e2@syzkaller.appspotmail.com
-
-------------[ cut here ]------------
-kernel BUG at fs/ntfs/file.c:951!
-invalid opcode: 0000 [#1] PREEMPT SMP KASAN
-CPU: 1 PID: 26428 Comm: syz-executor.4 Not tainted 6.0.0-syzkaller-09423-g493ffd6605b2 #0
-Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 09/22/2022
-RIP: 0010:ntfs_prepare_pages_for_non_resident_write+0x72c1/0x7700 fs/ntfs/file.c:951
-Code: 8a e8 23 5b 08 ff 0f 0b e8 dc 44 cc fe 0f 0b e8 d5 44 cc fe 4c 89 f7 48 c7 c6 c0 66 c5 8a e8 06 5b 08 ff 0f 0b e8 bf 44 cc fe <0f> 0b e8 b8 44 cc fe 0f 0b 83 fb e4 0f 85 1f 04 00 00 e8 a8 44 cc
-RSP: 0018:ffffc900047ff680 EFLAGS: 00010293
-RAX: ffffffff82ba3c91 RBX: 0000000000001000 RCX: ffff888022639d80
-RDX: 0000000000000000 RSI: 0000000000001000 RDI: 0000000000001000
-RBP: ffffc900047ff970 R08: ffffffff82b9eb44 R09: ffffffff82b9eab1
-R10: 0000000000000002 R11: ffff888022639d80 R12: ffff88807cbcf830
-R13: 0000000000000000 R14: 1ffff1100f979f06 R15: ffff88807f537a28
-FS:  00007f829496f700(0000) GS:ffff8880b9b00000(0000) knlGS:0000000000000000
-CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-CR2: 00007f829492cfc0 CR3: 0000000072b4c000 CR4: 00000000003506e0
-DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-Call Trace:
- <TASK>
- ntfs_perform_write fs/ntfs/file.c:1844 [inline]
- ntfs_file_write_iter+0x1938/0x2d40 fs/ntfs/file.c:1917
- do_iter_write+0x6c2/0xc20 fs/read_write.c:861
- vfs_writev fs/read_write.c:934 [inline]
- do_pwritev+0x200/0x350 fs/read_write.c:1031
- do_syscall_x64 arch/x86/entry/common.c:50 [inline]
- do_syscall_64+0x3d/0xb0 arch/x86/entry/common.c:80
- entry_SYSCALL_64_after_hwframe+0x63/0xcd
-RIP: 0033:0x7f829388b5a9
-Code: ff ff c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 40 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 b8 ff ff ff f7 d8 64 89 01 48
-RSP: 002b:00007f829496f168 EFLAGS: 00000246 ORIG_RAX: 0000000000000148
-RAX: ffffffffffffffda RBX: 00007f82939ac050 RCX: 00007f829388b5a9
-RDX: 0000000000000001 RSI: 0000000020003380 RDI: 0000000000000003
-RBP: 00007f82938e6580 R08: 0000000000000000 R09: 0000000000000003
-R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
-R13: 00007ffc7b4af7cf R14: 00007f829496f300 R15: 0000000000022000
- </TASK>
-Modules linked in:
----[ end trace 0000000000000000 ]---
-RIP: 0010:ntfs_prepare_pages_for_non_resident_write+0x72c1/0x7700 fs/ntfs/file.c:951
-Code: 8a e8 23 5b 08 ff 0f 0b e8 dc 44 cc fe 0f 0b e8 d5 44 cc fe 4c 89 f7 48 c7 c6 c0 66 c5 8a e8 06 5b 08 ff 0f 0b e8 bf 44 cc fe <0f> 0b e8 b8 44 cc fe 0f 0b 83 fb e4 0f 85 1f 04 00 00 e8 a8 44 cc
-RSP: 0018:ffffc900047ff680 EFLAGS: 00010293
-RAX: ffffffff82ba3c91 RBX: 0000000000001000 RCX: ffff888022639d80
-RDX: 0000000000000000 RSI: 0000000000001000 RDI: 0000000000001000
-RBP: ffffc900047ff970 R08: ffffffff82b9eb44 R09: ffffffff82b9eab1
-R10: 0000000000000002 R11: ffff888022639d80 R12: ffff88807cbcf830
-R13: 0000000000000000 R14: 1ffff1100f979f06 R15: ffff88807f537a28
-FS:  00007f829496f700(0000) GS:ffff8880b9b00000(0000) knlGS:0000000000000000
-CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-CR2: 00007fbfa8981998 CR3: 0000000072b4c000 CR4: 00000000003506e0
-DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-
-
----
-This report is generated by a bot. It may contain errors.
-See https://goo.gl/tpsmEJ for more information about syzbot.
-syzbot engineers can be reached at syzkaller@googlegroups.com.
-
-syzbot will keep track of this issue. See:
-https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
-
-
-_______________________________________________
-Linux-NTFS-Dev mailing list
-Linux-NTFS-Dev@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev
+RnJvbTogSHJ1dHZpayBLYW5hYmFyIDxocnV0dmlrQGdvb2dsZS5jb20+CgpGdXp6aW5nIGlzIGEg
+cHJvdmVuIHRlY2huaXF1ZSB0byBkaXNjb3ZlciBleHBsb2l0YWJsZSBidWdzIGluIHRoZSBMaW51
+eAprZXJuZWwuIEJ1dCBmdXp6aW5nIGZpbGVzeXN0ZW1zIGlzIHRyaWNreTogaGlnaGx5IHN0cnVj
+dHVyZWQgZGlzayBpbWFnZXMKdXNlIHJlZHVuZGFudCBjaGVja3N1bXMgdG8gdmVyaWZ5IGRhdGEg
+aW50ZWdyaXR5LiBUaGVyZWZvcmUsCnJhbmRvbWx5LW11dGF0ZWQgaW1hZ2VzIGFyZSBxdWlja2x5
+IHJlamVjdGVkIGFzIGNvcnJ1cHQsIHRlc3Rpbmcgb25seQplcnJvci1oYW5kbGluZyBjb2RlIGVm
+ZmVjdGl2ZWx5LgoKVGhlIEphbnVzIFsxXSBhbmQgSHlkcmEgWzJdIHByb2plY3RzIHByb2JlIGZp
+bGVzeXN0ZW0gY29kZSBkZWVwbHkgYnkKY29ycmVjdGluZyBjaGVja3N1bXMgYWZ0ZXIgbXV0YXRp
+b24uIEJ1dCB0aGVpciBhZC1ob2MKY2hlY2tzdW0tY29ycmVjdGluZyBjb2RlIHN1cHBvcnRzIG9u
+bHkgYSBmZXcgZmlsZXN5c3RlbXMsIGFuZCBpdCBpcwpkaWZmaWN1bHQgdG8gc3VwcG9ydCBuZXcg
+b25lcyAtIHJlcXVpcmluZyBzaWduaWZpY2FudCBkdXBsaWNhdGlvbiBvZgpmaWxlc3lzdGVtIGxv
+Z2ljIHdoaWNoIG11c3QgYWxzbyBiZSBrZXB0IGluIHN5bmMgd2l0aCB1cHN0cmVhbSBjaGFuZ2Vz
+LgpDb3JyZWN0ZWQgY2hlY2tzdW1zIGNhbm5vdCBiZSBndWFyYW50ZWVkIHRvIGJlIHZhbGlkLCBh
+bmQgcmV1c2luZyB0aGlzCmNvZGUgYWNyb3NzIGRpZmZlcmVudCBmdXp6aW5nIGZyYW1ld29ya3Mg
+aXMgbm9uLXRyaXZpYWwuCgpJbnN0ZWFkLCB0aGlzIFJGQyBzdWdnZXN0cyBhIGNvbmZpZyBvcHRp
+b246CmBESVNBQkxFX0ZTX0NTVU1fVkVSSUZJQ0FUSU9OYC4gV2hlbiBpdCBpcyBlbmFibGVkLCBh
+bGwgZmlsZXN5c3RlbXMKc2hvdWxkIGJ5cGFzcyByZWR1bmRhbnQgY2hlY2tzdW0gdmVyaWZpY2F0
+aW9uLCBwcm9jZWVkaW5nIGFzIGlmCmNoZWNrc3VtcyBhcmUgdmFsaWQuIFNldHRpbmcgb2YgY2hl
+Y2tzdW1zIHNob3VsZCBiZSB1bmFmZmVjdGVkLiBNdXRhdGVkCmltYWdlcyB3aWxsIG5vIGxvbmdl
+ciBiZSByZWplY3RlZCBkdWUgdG8gaW52YWxpZCBjaGVja3N1bXMsIGFsbG93aW5nCnRlc3Rpbmcg
+b2YgZGVlcGVyIGNvZGUgcGF0aHMuIFRob3VnaCBzb21lIGZpbGVzeXN0ZW1zIGltcGxlbWVudCB0
+aGVpcgpvd24gZmxhZ3MgdG8gZGlzYWJsZSBzb21lIGNoZWNrc3VtcywgdGhpcyBvcHRpb24gc2hv
+dWxkIGluc3RlYWQgZGlzYWJsZQphbGwgY2hlY2tzdW1zIGZvciBhbGwgZmlsZXN5c3RlbXMgdW5p
+Zm9ybWx5LiBDcml0aWNhbGx5LCBhbnkgYnVncyBmb3VuZApyZW1haW4gcmVwcm9kdWNpYmxlIG9u
+IHByb2R1Y3Rpb24gc3lzdGVtczogcmVkdW5kYW50IGNoZWNrc3VtcyBpbgptdXRhdGVkIGltYWdl
+cyBjYW4gYmUgZml4ZWQgdXAgdG8gc2F0aXNmeSB2ZXJpZmljYXRpb24uCgpUaGUgcGF0Y2hlcyBi
+ZWxvdyBzdWdnZXN0IGEgcG90ZW50aWFsIGltcGxlbWVudGF0aW9uIGZvciBhIGZldwpmaWxlc3lz
+dGVtcywgdGhvdWdoIHdlIG1heSBoYXZlIG1pc3NlZCBzb21lIGNoZWNrc3Vtcy4gVGhlIG9wdGlv
+bgpyZXF1aXJlcyBgREVCVUdfS0VSTkVMYCBhbmQgaXMgbm90IGludGVuZGVkIGZvciBwcm9kdWN0
+aW9uIHN5c3RlbXMuCgpUaGUgZmlyc3QgdXNlciBvZiB0aGUgb3B0aW9uIHdvdWxkIGJlIHN5emJv
+dC4gV2UgcmFuIHByZWxpbWluYXJ5IGxvY2FsCnN5emthbGxlciB0ZXN0cyB0byBjb21wYXJlIGJl
+aGF2aW91ciB3aXRoIGFuZCB3aXRob3V0IHRoZXNlIHBhdGNoZXMuCldpdGggdGhlIHBhdGNoZXMs
+IHdlIGZvdW5kIGEgMTklIGluY3JlYXNlIGluIGNvdmVyYWdlLCBhcyB3ZWxsIGFzIG1hbnkKbmV3
+IGNyYXNoIHR5cGVzIGFuZCBpbmNyZWFzZXMgaW4gdGhlIHRvdGFsIG51bWJlciBvZiBjcmFzaGVz
+OgoKRmlsZXN5c3RlbSB8ICUgbmV3IGNyYXNoIHR5cGVzIHwgJSBpbmNyZWFzZSBpbiBjcmFzaGVz
+CuKAlC0tLS0tLS0tLS18LS0tLS0tLS0tLS0tLS0tLS0tLXwtLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+CiAgZXh0NCAgICAgfCAgICAgICAgNjAlICAgICAgICB8ICAgICAgICAgMTQwMCUKICBidHJmcyAg
+ICB8ICAgICAgICAyNSUgICAgICAgIHwgICAgICAgICAxODUlCiAgZjJmcyAgICAgfCAgICAgICAg
+NjMlICAgICAgICB8ICAgICAgICAgMTYlCgoKWzFdIEZ1enppbmcgZmlsZSBzeXN0ZW1zIHZpYSB0
+d28tZGltZW5zaW9uYWwgaW5wdXQgc3BhY2UgZXhwbG9yYXRpb24sCiAgICBYdSBldCBhbC4sIDIw
+MTksIElFRUUgU3ltcG9zaXVtIG9uIFNlY3VyaXR5IGFuZCBQcml2YWN5LAogICAgZG9pOiAxMC4x
+MTA5L1NQLjIwMTkuMDAwMzUKWzJdIEZpbmRpbmcgc2VtYW50aWMgYnVncyBpbiBmaWxlIHN5c3Rl
+bXMgd2l0aCBhbiBleHRlbnNpYmxlIGZ1enppbmcKICAgIGZyYW1ld29yaywgS2ltIGV0IGFsLiwg
+MjAxOSwgQUNNIFN5bXBvc2l1bSBvbiBPcGVyYXRpbmcgU3lzdGVtcwogICAgUHJpbmNpcGxlcywg
+ZG9pOiAxMC4xMTQ1LzMzNDEzMDEuMzM1OTY2MgoKCkhydXR2aWsgS2FuYWJhciAoNyk6CiAgZnM6
+IGNyZWF0ZSBgRElTQUJMRV9GU19DU1VNX1ZFUklGSUNBVElPTmAgY29uZmlnIG9wdGlvbgogIGZz
+L2V4dDQ6IHN1cHBvcnQgYERJU0FCTEVfRlNfQ1NVTV9WRVJJRklDQVRJT05gIGNvbmZpZyBvcHRp
+b24KICBmcy9idHJmczogc3VwcG9ydCBgRElTQUJMRV9GU19DU1VNX1ZFUklGSUNBVElPTmAgY29u
+ZmlnIG9wdGlvbgogIGZzL2V4ZmF0OiBzdXBwb3J0IGBESVNBQkxFX0ZTX0NTVU1fVkVSSUZJQ0FU
+SU9OYCBjb25maWcgb3B0aW9uCiAgZnMveGZzOiBzdXBwb3J0IGBESVNBQkxFX0ZTX0NTVU1fVkVS
+SUZJQ0FUSU9OYCBjb25maWcgb3B0aW9uCiAgZnMvbnRmczogc3VwcG9ydCBgRElTQUJMRV9GU19D
+U1VNX1ZFUklGSUNBVElPTmAgY29uZmlnIG9wdGlvbgogIGZzL2YyZnM6IHN1cHBvcnQgYERJU0FC
+TEVfRlNfQ1NVTV9WRVJJRklDQVRJT05gIGNvbmZpZyBvcHRpb24KCiBmcy9LY29uZmlnLmRlYnVn
+ICAgICAgICAgICAgfCAyMCArKysrKysrKysrKysrKysrKysrKwogZnMvYnRyZnMvY2hlY2staW50
+ZWdyaXR5LmMgIHwgIDMgKystCiBmcy9idHJmcy9kaXNrLWlvLmMgICAgICAgICAgfCAgNiArKysr
+LS0KIGZzL2J0cmZzL2ZyZWUtc3BhY2UtY2FjaGUuYyB8ICAzICsrLQogZnMvYnRyZnMvaW5vZGUu
+YyAgICAgICAgICAgIHwgIDMgKystCiBmcy9idHJmcy9zY3J1Yi5jICAgICAgICAgICAgfCAgOSAr
+KysrKystLS0KIGZzL2V4ZmF0L25scy5jICAgICAgICAgICAgICB8ICAzICsrLQogZnMvZXhmYXQv
+c3VwZXIuYyAgICAgICAgICAgIHwgIDMgKysrCiBmcy9leHQ0L2JpdG1hcC5jICAgICAgICAgICAg
+fCAgNiArKysrLS0KIGZzL2V4dDQvZXh0ZW50cy5jICAgICAgICAgICB8ICAzICsrLQogZnMvZXh0
+NC9pbm9kZS5jICAgICAgICAgICAgIHwgIDMgKystCiBmcy9leHQ0L2lvY3RsLmMgICAgICAgICAg
+ICAgfCAgMyArKy0KIGZzL2V4dDQvbW1wLmMgICAgICAgICAgICAgICB8ICAzICsrLQogZnMvZXh0
+NC9uYW1laS5jICAgICAgICAgICAgIHwgIDYgKysrKy0tCiBmcy9leHQ0L29ycGhhbi5jICAgICAg
+ICAgICAgfCAgMyArKy0KIGZzL2V4dDQvc3VwZXIuYyAgICAgICAgICAgICB8ICA2ICsrKystLQog
+ZnMvZXh0NC94YXR0ci5jICAgICAgICAgICAgIHwgIDMgKystCiBmcy9mMmZzL2NoZWNrcG9pbnQu
+YyAgICAgICAgfCAgMyArKy0KIGZzL2YyZnMvY29tcHJlc3MuYyAgICAgICAgICB8ICAzICsrLQog
+ZnMvZjJmcy9mMmZzLmggICAgICAgICAgICAgIHwgIDIgKysKIGZzL2YyZnMvaW5vZGUuYyAgICAg
+ICAgICAgICB8ICAzICsrKwogZnMvbnRmcy9zdXBlci5jICAgICAgICAgICAgIHwgIDMgKystCiBm
+cy94ZnMvbGlieGZzL3hmc19ja3N1bS5oICAgfCAgNSArKysrLQogbGliL0tjb25maWcuZGVidWcg
+ICAgICAgICAgIHwgIDYgKysrKysrCiAyNCBmaWxlcyBjaGFuZ2VkLCA4NiBpbnNlcnRpb25zKCsp
+LCAyNSBkZWxldGlvbnMoLSkKIGNyZWF0ZSBtb2RlIDEwMDY0NCBmcy9LY29uZmlnLmRlYnVnCgot
+LSAKMi4zOC4wLjQxMy5nNzQwNDhlNGQ5ZS1nb29nCgoKCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCkxpbnV4LU5URlMtRGV2IG1haWxpbmcgbGlzdApMaW51
+eC1OVEZTLURldkBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQKaHR0cHM6Ly9saXN0cy5zb3VyY2Vmb3Jn
+ZS5uZXQvbGlzdHMvbGlzdGluZm8vbGludXgtbnRmcy1kZXYK
