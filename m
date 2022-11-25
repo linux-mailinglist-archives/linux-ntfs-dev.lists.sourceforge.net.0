@@ -2,70 +2,70 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52B34637EE5
-	for <lists+linux-ntfs-dev@lfdr.de>; Thu, 24 Nov 2022 19:29:14 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BEDE638783
+	for <lists+linux-ntfs-dev@lfdr.de>; Fri, 25 Nov 2022 11:29:11 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1oyGyE-0007gm-Vk;
-	Thu, 24 Nov 2022 18:29:10 +0000
+	id 1oyVxC-00020o-GE;
+	Fri, 25 Nov 2022 10:29:06 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95) (envelope-from
- <34LZ_YwkbAG8flmXNYYReNccVQ.TbbTYRhfRePbagRag.PbZ@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
- id 1oyGtu-0007da-6p for linux-ntfs-dev@lists.sourceforge.net;
- Thu, 24 Nov 2022 18:24:42 +0000
+ <37JOAYwkbADkntufVggZmVkkdY.bjjbgZpnZmXjioZio.Xjh@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
+ id 1oyVcZ-0004Ag-Va for linux-ntfs-dev@lists.sourceforge.net;
+ Fri, 25 Nov 2022 10:07:47 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Type:To:From:Subject:Message-ID:Date:
  MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=GiCsR6Blub8dAnK/MXT4xUyqZm1ylQDNXvyvsjlRQMY=; b=blotRx4Hm4sSo6d5FMgy9Qc4Ls
- CxCHzHZ5zBu1uD9fWD4tLYvpe2A643VciFABjC40nSd1BsRzV9TmwkwXCl4RXrl2AKa9nWsfWk5lt
- 1TJm8zbkvhhtqK7tWAW/v8CCo9359D92N8pnBFmyMkNFsZaDycNy1Gs6m4JabK/nMZVU=;
+ bh=yVDM9OykGg+MjVKeNEf9T09jbHF3MGBctxmyAKcE39g=; b=BLnVaSfdpfr+N6SuibxcL32iMf
+ Ooyk9vb1FGXbW3OJUuZoNnhMgLiTwx+vMr0VPvZhrM7VJiSmUtDg62uX+reynO6YBWTLHy8cxDOMR
+ deliq2gFEZf62DdBLmZVVzYqWzu54N7eAM/cPqOAjomwIxexWlMDUxFr4ymC66RK1TeA=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Type:To:From:Subject:Message-ID:Date:MIME-Version:Sender:Reply-To
  :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=GiCsR6Blub8dAnK/MXT4xUyqZm1ylQDNXvyvsjlRQMY=; b=T
- u/RM6UgG7Y08v/NSjk+xpDOudixGSN5LHSrxmSjQT+jyNJaFEaWhzyLI4huNOsIYXcZqpK6FVJ+GZ
- mJwqColVZv1nj++/j9lQW11ezTjR+1qxGvTITz1dvF7t5UbHANVh3lR8f8HWHHa66eLmCKZFNA6eL
- o3AMSOLuOmuJhjxg=;
-Received: from mail-il1-f200.google.com ([209.85.166.200])
+ List-Owner:List-Archive; bh=yVDM9OykGg+MjVKeNEf9T09jbHF3MGBctxmyAKcE39g=; b=H
+ 0Lt2d8wDFg8+9gsrD9VcBz8Z5FSVjyx+nhbmjJ1nnS9kLgj+0ANAJMgwgX0XzDQTvGz11RYAeAHan
+ t2pZUKFmDGjReF6BWnTfI8bE9mXhYe5/XzsoaZRlEq7VoRk2KZZMMO+bcvXGoFNqRU2I49WvIf4/D
+ 9FiUhwYTD8hrXsDw=;
+Received: from mail-io1-f71.google.com ([209.85.166.71])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1oyGtq-0000oq-3G for linux-ntfs-dev@lists.sourceforge.net;
- Thu, 24 Nov 2022 18:24:42 +0000
-Received: by mail-il1-f200.google.com with SMTP id
- i8-20020a056e0212c800b00302578e6d78so1567592ilm.0
+ id 1oyVcY-0001Ej-DW for linux-ntfs-dev@lists.sourceforge.net;
+ Fri, 25 Nov 2022 10:07:47 +0000
+Received: by mail-io1-f71.google.com with SMTP id
+ p8-20020a5d9c88000000b006df09469de8so1875729iop.22
  for <linux-ntfs-dev@lists.sourceforge.net>;
- Thu, 24 Nov 2022 10:24:38 -0800 (PST)
+ Fri, 25 Nov 2022 02:07:46 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=to:from:subject:message-id:date:mime-version:x-gm-message-state
  :from:to:cc:subject:date:message-id:reply-to;
- bh=GiCsR6Blub8dAnK/MXT4xUyqZm1ylQDNXvyvsjlRQMY=;
- b=nXQIvkuzuX9HNjF7FafidPCQ2TtKyD3ICIH6kmsyzCHkaCfaTMKtm7uvpc7gwuu8Ht
- tjsAtAkXOCpPOTuu/J5HWR+up6Se73izVqsne1WvY3LJ4iMn7qYF7+JSvvfwVmmovcxz
- AMSpuFEyvMM0H6L+4ijQPIfJTqJ40gSftMvyoafZI+XMNOHA4yGdbKufZ5P0o3DrR44L
- UEwmcRO0RsAvd4nNVcG1HJ3eNZo4aC1aTHphVEmoNM3rxtzXf5/rIZYQ9hnOLh58geTt
- Xxb9uDAzH3L7tW4NYWA+xBwQ9ubElHZsCk+t0EsuxdHUZ8nuRlAYvOR3+hB1ws8Ee37I
- 6ADw==
-X-Gm-Message-State: ANoB5pnBdxIPIZtyRbALHrfkyFBXj1Wfvx3cY65kycRsyaLQ4isPggVV
- T5zYtsFpt7HoaoHG2cIgXsG8r6Y/lRWvYRnCaWekU+6oabfu
-X-Google-Smtp-Source: AA0mqf6Ufk8H/3k0OUmMHhiCgR+YJMyX0fmmw1TiC16M2O3qN8W0oCp49inyb/5cPqlaycZbXRs0fScyW5n/q2LwHvREHtPFxCTQ
+ bh=yVDM9OykGg+MjVKeNEf9T09jbHF3MGBctxmyAKcE39g=;
+ b=6nvflB5+aOX8l7FiESR4Zltg+0F5MMZ9sjhqV4F2pMKr6YOUd3Qil97KBbVeG6FnOg
+ 1IBkf+CP3ID3Y0rdMrERUwPfsHmsigwmYcl7z4JpukgAOHppNR2kTbV7RhK2yoLjM+F5
+ +hTLfOMgGDnOYDubFDQG8aqFYU3vy9WXRknhS03q+2f7yCUtYMv33LVqMQLDpjT5NAwp
+ esPzOyHUCXYS0bweFcA04TqRJRtY2ueK+Ns96asm/nHd47UJEim6xpDJL1ctuiL9wdhf
+ U0PUaUHXaRy9YBVrTzMYyqyRvfSBJLMuLmni/utuqtLcrIkK+RtCEm+oTsL5AKOYiR0V
+ g20A==
+X-Gm-Message-State: ANoB5plgE03NEwtJVd0MUtkjdyORbGJtLNnNJnea9otay3887eN00x8c
+ kDVydBbajEBuWbkLXTN1t9pZOn4gSh4HHj3cuaJO7XA+LMWS
+X-Google-Smtp-Source: AA0mqf48VtJk11ryjJpTQeLb8C1asT+VwVTQE71So97leD/poIZhUh4fW+R6guzVDx16bgcdDi6IsfxzcHMjXPQK70m/uZ2zgqmP
 MIME-Version: 1.0
-X-Received: by 2002:a05:6638:1b08:b0:358:1594:9eb6 with SMTP id
- cb8-20020a0566381b0800b0035815949eb6mr1892867jab.236.1669314272490; Thu, 24
- Nov 2022 10:24:32 -0800 (PST)
-Date: Thu, 24 Nov 2022 10:24:32 -0800
+X-Received: by 2002:a02:1909:0:b0:374:837e:cc17 with SMTP id
+ b9-20020a021909000000b00374837ecc17mr16377633jab.102.1669370860865; Fri, 25
+ Nov 2022 02:07:40 -0800 (PST)
+Date: Fri, 25 Nov 2022 02:07:40 -0800
 X-Google-Appengine-App-Id: s~syzkaller
 X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <0000000000003afb0305ee3b84f8@google.com>
-From: syzbot <syzbot+1a30e391e6703aa6a5a6@syzkaller.appspotmail.com>
+Message-ID: <000000000000290d7c05ee48b10a@google.com>
+From: syzbot <syzbot+5ebb8d0e9b8c47867596@syzkaller.appspotmail.com>
 To: anton@tuxera.com, linux-kernel@vger.kernel.org, 
  linux-ntfs-dev@lists.sourceforge.net, syzkaller-bugs@googlegroups.com
 X-Spam-Score: 0.6 (/)
@@ -76,25 +76,25 @@ X-Spam-Report: Spam detection software,
  similar future email.  If you have any questions, see
  the administrator of that system for details.
  Content preview:  Hello,
- syzbot found the following issue on: HEAD commit: 77c51ba552a1
- Merge tag 'scsi-fixes' of git://git.kernel.or.. git tree: upstream console
- output: https://syzkaller.appspot.com/x/log.txt?x=1737f0e5880000 kernel
+ syzbot found the following issue on: HEAD commit: 4312098baf37
+ Merge tag 'spi-fix-v6.1-rc6' of git://git.ker.. git tree: upstream console
+ output: https://syzkaller.appspot.com/x/log.txt?x=16498e3d880000 kernel
  config: https://syzkaller.a [...] 
  Content analysis details:   (0.6 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  0.3 FROM_LOCAL_HEX         From: localpart has long hexadecimal sequence
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.166.200 listed in list.dnswl.org]
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.166.200 listed in wl.mailspike.net]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
  mail domains are different
  -0.0 SPF_PASS               SPF: sender matches SPF record
-X-Headers-End: 1oyGtq-0000oq-3G
-X-Mailman-Approved-At: Thu, 24 Nov 2022 18:29:10 +0000
-Subject: [Linux-NTFS-Dev] [syzbot] WARNING in map_mft_record
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.166.71 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.166.71 listed in wl.mailspike.net]
+X-Headers-End: 1oyVcY-0001Ej-DW
+X-Mailman-Approved-At: Fri, 25 Nov 2022 10:29:05 +0000
+Subject: [Linux-NTFS-Dev] [syzbot] possible deadlock in __ntfs_clear_inode
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -115,67 +115,169 @@ Hello,
 
 syzbot found the following issue on:
 
-HEAD commit:    77c51ba552a1 Merge tag 'scsi-fixes' of git://git.kernel.or..
+HEAD commit:    4312098baf37 Merge tag 'spi-fix-v6.1-rc6' of git://git.ker..
 git tree:       upstream
-console output: https://syzkaller.appspot.com/x/log.txt?x=1737f0e5880000
-kernel config:  https://syzkaller.appspot.com/x/.config?x=6f9416d398342c83
-dashboard link: https://syzkaller.appspot.com/bug?extid=1a30e391e6703aa6a5a6
+console output: https://syzkaller.appspot.com/x/log.txt?x=16498e3d880000
+kernel config:  https://syzkaller.appspot.com/x/.config?x=8d01b6e3197974dd
+dashboard link: https://syzkaller.appspot.com/bug?extid=5ebb8d0e9b8c47867596
 compiler:       Debian clang version 13.0.1-++20220126092033+75e33f71c2da-1~exp1~20220126212112.63, GNU ld (GNU Binutils for Debian) 2.35.2
 
 Unfortunately, I don't have any reproducer for this issue yet.
 
 Downloadable assets:
-disk image: https://storage.googleapis.com/syzbot-assets/a27a7d1ec024/disk-77c51ba5.raw.xz
-vmlinux: https://storage.googleapis.com/syzbot-assets/e59c516a94e5/vmlinux-77c51ba5.xz
-kernel image: https://storage.googleapis.com/syzbot-assets/26c4aae28027/bzImage-77c51ba5.xz
+disk image: https://storage.googleapis.com/syzbot-assets/4b7073d20a37/disk-4312098b.raw.xz
+vmlinux: https://storage.googleapis.com/syzbot-assets/36a0367a5593/vmlinux-4312098b.xz
+kernel image: https://storage.googleapis.com/syzbot-assets/265bedb3086b/bzImage-4312098b.xz
 
 IMPORTANT: if you fix the issue, please add the following tag to the commit:
-Reported-by: syzbot+1a30e391e6703aa6a5a6@syzkaller.appspotmail.com
+Reported-by: syzbot+5ebb8d0e9b8c47867596@syzkaller.appspotmail.com
 
-------------[ cut here ]------------
-DEBUG_LOCKS_WARN_ON(lock->magic != lock)
-WARNING: CPU: 0 PID: 29635 at kernel/locking/mutex.c:582 __mutex_lock_common+0x1bb0/0x26e0 kernel/locking/mutex.c:582
-Modules linked in:
-CPU: 0 PID: 29635 Comm: syz-executor.4 Not tainted 6.1.0-rc5-syzkaller-00326-g77c51ba552a1 #0
+======================================================
+WARNING: possible circular locking dependency detected
+6.1.0-rc6-syzkaller-00012-g4312098baf37 #0 Not tainted
+------------------------------------------------------
+kswapd0/110 is trying to acquire lock:
+ffff888087920100 (&rl->lock){++++}-{3:3}, at: __ntfs_clear_inode+0x32/0x1f0 fs/ntfs/inode.c:2189
+
+but task is already holding lock:
+ffffffff8d1ff180 (fs_reclaim){+.+.}-{0:0}, at: arch_static_branch arch/x86/include/asm/jump_label.h:27 [inline]
+ffffffff8d1ff180 (fs_reclaim){+.+.}-{0:0}, at: freezing include/linux/freezer.h:36 [inline]
+ffffffff8d1ff180 (fs_reclaim){+.+.}-{0:0}, at: try_to_freeze include/linux/freezer.h:54 [inline]
+ffffffff8d1ff180 (fs_reclaim){+.+.}-{0:0}, at: balance_pgdat+0x109c/0x1c50 mm/vmscan.c:7098
+
+which lock already depends on the new lock.
+
+
+the existing dependency chain (in reverse order) is:
+
+-> #2 (fs_reclaim){+.+.}-{0:0}:
+       lock_acquire+0x182/0x3c0 kernel/locking/lockdep.c:5668
+       __fs_reclaim_acquire mm/page_alloc.c:4679 [inline]
+       fs_reclaim_acquire+0x82/0x120 mm/page_alloc.c:4693
+       might_alloc include/linux/sched/mm.h:271 [inline]
+       prepare_alloc_pages+0x145/0x5a0 mm/page_alloc.c:5325
+       __alloc_pages+0x161/0x560 mm/page_alloc.c:5544
+       folio_alloc+0x1a/0x50 mm/mempolicy.c:2295
+       filemap_alloc_folio+0x7e/0x1c0 mm/filemap.c:971
+       do_read_cache_folio+0x28a/0x790 mm/filemap.c:3498
+       do_read_cache_page mm/filemap.c:3576 [inline]
+       read_cache_page+0x56/0x270 mm/filemap.c:3585
+       read_mapping_page include/linux/pagemap.h:756 [inline]
+       ntfs_map_page fs/ntfs/aops.h:75 [inline]
+       map_mft_record_page fs/ntfs/mft.c:73 [inline]
+       map_mft_record+0x1dc/0x610 fs/ntfs/mft.c:156
+       ntfs_read_locked_inode+0x194/0x47c0 fs/ntfs/inode.c:550
+       ntfs_iget+0x10f/0x190 fs/ntfs/inode.c:177
+       ntfs_lookup+0x268/0xdb0 fs/ntfs/namei.c:117
+       __lookup_slow+0x266/0x3a0 fs/namei.c:1685
+       lookup_slow+0x53/0x70 fs/namei.c:1702
+       walk_component+0x2e1/0x410 fs/namei.c:1993
+       lookup_last fs/namei.c:2450 [inline]
+       path_lookupat+0x17d/0x450 fs/namei.c:2474
+       filename_lookup+0x274/0x650 fs/namei.c:2503
+       user_path_at_empty+0x40/0x1a0 fs/namei.c:2876
+       user_path_at include/linux/namei.h:57 [inline]
+       do_sys_truncate+0x94/0x180 fs/open.c:132
+       do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+       do_syscall_64+0x3d/0xb0 arch/x86/entry/common.c:80
+       entry_SYSCALL_64_after_hwframe+0x63/0xcd
+
+-> #1 (&ni->mrec_lock){+.+.}-{3:3}:
+       lock_acquire+0x182/0x3c0 kernel/locking/lockdep.c:5668
+       __mutex_lock_common+0x1bd/0x26e0 kernel/locking/mutex.c:603
+       __mutex_lock kernel/locking/mutex.c:747 [inline]
+       mutex_lock_nested+0x17/0x20 kernel/locking/mutex.c:799
+       map_mft_record+0x46/0x610 fs/ntfs/mft.c:154
+       ntfs_truncate+0x24e/0x2720 fs/ntfs/inode.c:2383
+       ntfs_truncate_vfs fs/ntfs/inode.c:2862 [inline]
+       ntfs_setattr+0x2b9/0x3a0 fs/ntfs/inode.c:2914
+       notify_change+0xe38/0x10f0 fs/attr.c:420
+       do_truncate+0x1fb/0x2e0 fs/open.c:65
+       vfs_truncate+0x2af/0x380 fs/open.c:111
+       do_sys_truncate+0xcb/0x180 fs/open.c:134
+       do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+       do_syscall_64+0x3d/0xb0 arch/x86/entry/common.c:80
+       entry_SYSCALL_64_after_hwframe+0x63/0xcd
+
+-> #0 (&rl->lock){++++}-{3:3}:
+       check_prev_add kernel/locking/lockdep.c:3097 [inline]
+       check_prevs_add kernel/locking/lockdep.c:3216 [inline]
+       validate_chain+0x1898/0x6ae0 kernel/locking/lockdep.c:3831
+       __lock_acquire+0x1292/0x1f60 kernel/locking/lockdep.c:5055
+       lock_acquire+0x182/0x3c0 kernel/locking/lockdep.c:5668
+       down_write+0x9c/0x270 kernel/locking/rwsem.c:1562
+       __ntfs_clear_inode+0x32/0x1f0 fs/ntfs/inode.c:2189
+       ntfs_evict_big_inode+0x2b6/0x470 fs/ntfs/inode.c:2278
+       evict+0x2a4/0x620 fs/inode.c:664
+       dispose_list fs/inode.c:697 [inline]
+       prune_icache_sb+0x268/0x320 fs/inode.c:896
+       super_cache_scan+0x362/0x470 fs/super.c:106
+       do_shrink_slab+0x4e1/0xa00 mm/vmscan.c:842
+       shrink_slab_memcg+0x2ec/0x630 mm/vmscan.c:911
+       shrink_slab+0xbe/0x340 mm/vmscan.c:990
+       shrink_node_memcgs+0x3c3/0x770 mm/vmscan.c:6076
+       shrink_node+0x299/0x1050 mm/vmscan.c:6105
+       kswapd_shrink_node mm/vmscan.c:6894 [inline]
+       balance_pgdat+0xec2/0x1c50 mm/vmscan.c:7084
+       kswapd+0x2d5/0x590 mm/vmscan.c:7344
+       kthread+0x266/0x300 kernel/kthread.c:376
+       ret_from_fork+0x1f/0x30 arch/x86/entry/entry_64.S:306
+
+other info that might help us debug this:
+
+Chain exists of:
+  &rl->lock --> &ni->mrec_lock --> fs_reclaim
+
+ Possible unsafe locking scenario:
+
+       CPU0                    CPU1
+       ----                    ----
+  lock(fs_reclaim);
+                               lock(&ni->mrec_lock);
+                               lock(fs_reclaim);
+  lock(&rl->lock);
+
+ *** DEADLOCK ***
+
+3 locks held by kswapd0/110:
+ #0: ffffffff8d1ff180 (fs_reclaim){+.+.}-{0:0}, at: arch_static_branch arch/x86/include/asm/jump_label.h:27 [inline]
+ #0: ffffffff8d1ff180 (fs_reclaim){+.+.}-{0:0}, at: freezing include/linux/freezer.h:36 [inline]
+ #0: ffffffff8d1ff180 (fs_reclaim){+.+.}-{0:0}, at: try_to_freeze include/linux/freezer.h:54 [inline]
+ #0: ffffffff8d1ff180 (fs_reclaim){+.+.}-{0:0}, at: balance_pgdat+0x109c/0x1c50 mm/vmscan.c:7098
+ #1: ffffffff8d1d6030 (shrinker_rwsem){++++}-{3:3}, at: shrink_slab_memcg+0xd9/0x630 mm/vmscan.c:884
+ #2: ffff8880289160e0 (&type->s_umount_key#71){++++}-{3:3}, at: trylock_super fs/super.c:415 [inline]
+ #2: ffff8880289160e0 (&type->s_umount_key#71){++++}-{3:3}, at: super_cache_scan+0x6a/0x470 fs/super.c:79
+
+stack backtrace:
+CPU: 0 PID: 110 Comm: kswapd0 Not tainted 6.1.0-rc6-syzkaller-00012-g4312098baf37 #0
 Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 10/26/2022
-RIP: 0010:__mutex_lock_common+0x1bb0/0x26e0 kernel/locking/mutex.c:582
-Code: 84 c0 0f 85 bd 08 00 00 83 3d 83 15 f9 03 00 0f 85 6f e5 ff ff 48 c7 c7 a0 98 ed 8a 48 c7 c6 20 99 ed 8a 31 c0 e8 40 81 b3 f6 <0f> 0b e9 53 e5 ff ff e8 a4 d5 61 f6 e9 5a fa ff ff 0f 0b e9 53 ef
-RSP: 0018:ffffc9000cf8f7c0 EFLAGS: 00010246
-RAX: de2c8b93a8915300 RBX: ffff888038b53b00 RCX: 0000000000040000
-RDX: ffffc90006142000 RSI: 000000000001511b RDI: 000000000001511c
-RBP: ffffc9000cf8f938 R08: ffffffff816e566d R09: ffffed1017304f1b
-R10: ffffed1017304f1b R11: 1ffff11017304f1a R12: dffffc0000000000
-R13: 1ffff920019f1f0c R14: 0000000000000000 R15: 0000000000000000
-FS:  00007fae85b72700(0000) GS:ffff8880b9900000(0000) knlGS:0000000000000000
-CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-CR2: 00007fa0b82d7000 CR3: 000000007c25d000 CR4: 00000000003506e0
-DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
 Call Trace:
  <TASK>
- __mutex_lock kernel/locking/mutex.c:747 [inline]
- mutex_lock_nested+0x17/0x20 kernel/locking/mutex.c:799
- map_mft_record+0x46/0x610 fs/ntfs/mft.c:154
- load_system_files+0x261b/0x4870 fs/ntfs/super.c:1855
- ntfs_fill_super+0x19a9/0x2bf0 fs/ntfs/super.c:2892
- mount_bdev+0x26c/0x3a0 fs/super.c:1401
- legacy_get_tree+0xea/0x180 fs/fs_context.c:610
- vfs_get_tree+0x88/0x270 fs/super.c:1531
- do_new_mount+0x289/0xad0 fs/namespace.c:3040
- do_mount fs/namespace.c:3383 [inline]
- __do_sys_mount fs/namespace.c:3591 [inline]
- __se_sys_mount+0x2d3/0x3c0 fs/namespace.c:3568
- do_syscall_x64 arch/x86/entry/common.c:50 [inline]
- do_syscall_64+0x3d/0xb0 arch/x86/entry/common.c:80
- entry_SYSCALL_64_after_hwframe+0x63/0xcd
-RIP: 0033:0x7fae84e8cb6a
-Code: 48 c7 c2 b8 ff ff ff f7 d8 64 89 02 b8 ff ff ff ff eb d2 e8 b8 04 00 00 0f 1f 84 00 00 00 00 00 49 89 ca b8 a5 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 b8 ff ff ff f7 d8 64 89 01 48
-RSP: 002b:00007fae85b71f88 EFLAGS: 00000202 ORIG_RAX: 00000000000000a5
-RAX: ffffffffffffffda RBX: 0000000020000200 RCX: 00007fae84e8cb6a
-RDX: 0000000020000000 RSI: 0000000020000100 RDI: 00007fae85b71fe0
-RBP: 00007fae85b72020 R08: 00007fae85b72020 R09: 0000000020000000
-R10: 0000000000000000 R11: 0000000000000202 R12: 0000000020000000
-R13: 0000000020000100 R14: 00007fae85b71fe0 R15: 0000000020077ea0
+ __dump_stack lib/dump_stack.c:88 [inline]
+ dump_stack_lvl+0x1b1/0x28e lib/dump_stack.c:106
+ check_noncircular+0x2cc/0x390 kernel/locking/lockdep.c:2177
+ check_prev_add kernel/locking/lockdep.c:3097 [inline]
+ check_prevs_add kernel/locking/lockdep.c:3216 [inline]
+ validate_chain+0x1898/0x6ae0 kernel/locking/lockdep.c:3831
+ __lock_acquire+0x1292/0x1f60 kernel/locking/lockdep.c:5055
+ lock_acquire+0x182/0x3c0 kernel/locking/lockdep.c:5668
+ down_write+0x9c/0x270 kernel/locking/rwsem.c:1562
+ __ntfs_clear_inode+0x32/0x1f0 fs/ntfs/inode.c:2189
+ ntfs_evict_big_inode+0x2b6/0x470 fs/ntfs/inode.c:2278
+ evict+0x2a4/0x620 fs/inode.c:664
+ dispose_list fs/inode.c:697 [inline]
+ prune_icache_sb+0x268/0x320 fs/inode.c:896
+ super_cache_scan+0x362/0x470 fs/super.c:106
+ do_shrink_slab+0x4e1/0xa00 mm/vmscan.c:842
+ shrink_slab_memcg+0x2ec/0x630 mm/vmscan.c:911
+ shrink_slab+0xbe/0x340 mm/vmscan.c:990
+ shrink_node_memcgs+0x3c3/0x770 mm/vmscan.c:6076
+ shrink_node+0x299/0x1050 mm/vmscan.c:6105
+ kswapd_shrink_node mm/vmscan.c:6894 [inline]
+ balance_pgdat+0xec2/0x1c50 mm/vmscan.c:7084
+ kswapd+0x2d5/0x590 mm/vmscan.c:7344
+ kthread+0x266/0x300 kernel/kthread.c:376
+ ret_from_fork+0x1f/0x30 arch/x86/entry/entry_64.S:306
  </TASK>
 
 
