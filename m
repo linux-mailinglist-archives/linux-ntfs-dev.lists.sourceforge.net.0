@@ -2,113 +2,101 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72D9E6564F9
-	for <lists+linux-ntfs-dev@lfdr.de>; Mon, 26 Dec 2022 21:37:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43C0865776D
+	for <lists+linux-ntfs-dev@lfdr.de>; Wed, 28 Dec 2022 14:55:25 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1p9uDb-0004w4-Ij;
-	Mon, 26 Dec 2022 20:37:07 +0000
+	id 1pAWtu-00087v-RT;
+	Wed, 28 Dec 2022 13:55:22 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <pali@kernel.org>) id 1p9oMv-0001yN-Sj;
- Mon, 26 Dec 2022 14:22:21 +0000
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95) (envelope-from
+ <3J-2rYwkbANQIOPA0BB4H0FF83.6EE6B4KI4H2EDJ4DJ.2EC@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
+ id 1pAQfS-0005Fk-9N for linux-ntfs-dev@lists.sourceforge.net;
+ Wed, 28 Dec 2022 07:16:02 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :References:In-Reply-To:Message-Id:Date:Subject:To:From:Sender:Reply-To:Cc:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:To:From:Subject:Message-ID:Date:
+ MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=pT1w13WRj/5/yfjG/wb5E2nqI1RS/1mqmtLQDjEc2vU=; b=VUspSdWnBsoHhaP9KBV4JglwoO
- fFMtH+TX0IwLATTmNAdh8hyy9pWGDqY67lOsPIeZ9r7eW9EHcHNn4HiFS3DANwTvxIOPp3PZwTduj
- 7y5kQC7yfAov3KljxguigErtqNjzvUY2Jv8JN1JcMzkPWLbAVm/41EGXpeWxKCabYr9w=;
+ bh=655N+tIzGER15hDg2+w2aVTOdEZ42xtdzbpTTh5jkcE=; b=FSnYK0B6O+9QER9KW63MkUAX/A
+ 4IIKYfYPWJkbedyH3Mxw925rtct9Q7rmkuDQXb8VoO703lprWgayNWzZw32fTbz7jFKa5jDm8ARqe
+ HLk50jcNNNyxycgilzKtT3vJdq7mQ5KSMeBsrzKfSJ3yTe9ybj1CaQFLVwGHWRCkpfp8=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-Id:Date:Subject:To:From:Sender:Reply-To:Cc:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=pT1w13WRj/5/yfjG/wb5E2nqI1RS/1mqmtLQDjEc2vU=; b=DmXINIiipyTV9rqLhZVDkSTv82
- 1HVuEe5O7AmjNDFAzAtNfWQw7vKUszO/U1DysiuH2LUNzNJlkbcwHnfk6GATPS2n5vTUOTd+Qp5PF
- Snm0YuPZwcUNGcFEsvHP7V7uMItUiZbs6GzJGvPDSZ3Ev3dH0M+joPnqMOHAMd0swQAU=;
-Received: from dfw.source.kernel.org ([139.178.84.217])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1p9oMv-0002CE-4w; Mon, 26 Dec 2022 14:22:21 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 064B960EDA;
- Mon, 26 Dec 2022 14:22:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72CF0C433F1;
- Mon, 26 Dec 2022 14:22:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1672064540;
- bh=5u2bH7VJtM/e+LvuxtpQp+PsRT4F9kDqvViUS/4AlLc=;
- h=From:To:Subject:Date:In-Reply-To:References:From;
- b=tYsbgvlgOJaF8H1SdFzVwT/R2HizKskvG/7ePvtZ1Zah8Nowv0dae2/QH1uUXQEqN
- tX4oe095AgKLScJipg2QqH6fNYTdZPSsTR0sYqL/rSidlPk6T0S7zfLoTVNYWh65nG
- zuZYflHj8oifrjrkkGFs9qvR7uvaXg0ZiRsEK+oaBK/3425Ow6YEgPrqkj3OvCty7+
- J0F/0Nw1OTfl5g4GFaxoQXERgnMDONqMT3jkeLy4zuNVil9TnTAV0R6SM7irCbfJ81
- kvQ/bXiol65QJi1ZruhYHP+0nhxUyS8O1Zdk72l1CUaWTszATm4fxQLZIxpCKc/1Vw
- rJiMOl47B5OIw==
-Received: by pali.im (Postfix)
- id 2D6729D7; Mon, 26 Dec 2022 15:22:20 +0100 (CET)
-From: =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>
-To: linux-fsdevel@vger.kernel.org, linux-ntfs-dev@lists.sourceforge.net,
- linux-cifs@vger.kernel.org, jfs-discussion@lists.sourceforge.net,
- linux-kernel@vger.kernel.org, Alexander Viro <viro@zeniv.linux.org.uk>,
- Jan Kara <jack@suse.cz>, "Theodore Y . Ts'o" <tytso@mit.edu>,
- Anton Altaparmakov <anton@tuxera.com>,
- OGAWA Hirofumi <hirofumi@mail.parknet.co.jp>,
- Luis de Bethencourt <luisbg@kernel.org>,
- Salah Triki <salah.triki@gmail.com>, Steve French <sfrench@samba.org>,
- Paulo Alcantara <pc@cjr.nz>, Ronnie Sahlberg <lsahlber@redhat.com>,
- Shyam Prasad N <sprasad@microsoft.com>, Tom Talpey <tom@talpey.com>,
- Dave Kleikamp <shaggy@kernel.org>,
- Andrew Morton <akpm@linux-foundation.org>, Pavel Machek <pavel@ucw.cz>,
- Christoph Hellwig <hch@infradead.org>,
- Kari Argillander <kari.argillander@gmail.com>,
- Viacheslav Dubeyko <slava@dubeyko.com>
-Date: Mon, 26 Dec 2022 15:21:50 +0100
-Message-Id: <20221226142150.13324-19-pali@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20221226142150.13324-1-pali@kernel.org>
-References: <20221226142150.13324-1-pali@kernel.org>
+ h=Content-Type:To:From:Subject:Message-ID:Date:MIME-Version:Sender:Reply-To
+ :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=655N+tIzGER15hDg2+w2aVTOdEZ42xtdzbpTTh5jkcE=; b=Y
+ Nt5q+e97X+DKna4EkV34gGt7SYVQKEpGvUg+281q5e+E97uy8IqjDPNvKyGuYanwk7iKR08gsQ1xJ
+ Vg1WYI8i5TtXNA6Wl98zbygFaMD/0HIsoSKb2jQE3G/iAYab6O85YvMDZe3oqKlpTTks/ccIlxNPo
+ mKZKuHqtfhRM6JR8=;
+Received: from mail-il1-f198.google.com ([209.85.166.198])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
+ id 1pAQfN-00Eudv-0y for linux-ntfs-dev@lists.sourceforge.net;
+ Wed, 28 Dec 2022 07:16:01 +0000
+Received: by mail-il1-f198.google.com with SMTP id
+ l3-20020a056e021aa300b00304be32e9e5so9860854ilv.12
+ for <linux-ntfs-dev@lists.sourceforge.net>;
+ Tue, 27 Dec 2022 23:15:56 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=to:from:subject:message-id:date:mime-version:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=655N+tIzGER15hDg2+w2aVTOdEZ42xtdzbpTTh5jkcE=;
+ b=tKU6cHtnp2DxHieDzIB7i1DNRQ8tZmsC36l3TjDPn9gD97AAtIRqINVBZxPDcfBE2a
+ 3qdio2ZHRssp4RSE89alnI7KVz6mGBbfoVRom63RJK1GT0eAybNMb3f9gluu5mbEDMkq
+ I/w4mYx/GOXB0lgiSXFVNKVzhDvqt8ofsPOMreO7YJRobGSP3zNH+F6pCWkE/uwcAjLM
+ KaaEZ1r6yLeJB4P4QiHwSifkL2fp5OrF6IpRv9xIij+ej/PmlKlnNEfmNtO0LvDN1hrM
+ WfdfHOaC/rnlR7Eo3viiZ4PatddenFN0KZ3As5ById+fKfwENThIHAsD6BQt2s/vCJ6M
+ KXxw==
+X-Gm-Message-State: AFqh2ko0FI6GK2IJ608vT2tS3k1mlWBI8ZFDXee7bNIPWTAslQZvyMYU
+ YW2+ljT5HQeJvnXaKkQ1hy7g60TqtNGTrxh49SdrnW59/Q9m
+X-Google-Smtp-Source: AMrXdXt/XIFTiF8NHEjlbJIuhp4GrxlvzWMi9TPOjn+Th6Ui0opRO+1plLWPxnHwXwg2RMzDcqCMGoewHPJzBcazwQVMnEJzVsVC
 MIME-Version: 1.0
-X-Spam-Score: -5.2 (-----)
+X-Received: by 2002:a05:6602:179e:b0:6e0:2859:d6a with SMTP id
+ y30-20020a056602179e00b006e028590d6amr1484604iox.51.1672211751490; Tue, 27
+ Dec 2022 23:15:51 -0800 (PST)
+Date: Tue, 27 Dec 2022 23:15:51 -0800
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <0000000000006fdad105f0de239e@google.com>
+From: syzbot <syzbot+d36761079ac1b585a6df@syzkaller.appspotmail.com>
+To: anton@tuxera.com, linux-kernel@vger.kernel.org, 
+ linux-ntfs-dev@lists.sourceforge.net, syzkaller-bugs@googlegroups.com
+X-Spam-Score: 0.6 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  NLS table for utf8 is broken and cannot be fixed. Now that
- all filesystems are using utf8s_to_utf16s()/utf16s_to_utf8s() functions for
- converting between UTF-8 and UTF-16,
- and functions utf8_to_utf32()/utf32_to_utf8()
- for converting between UTF-8 and [...] 
- Content analysis details:   (-5.2 points, 6.0 required)
+ Content preview:  Hello,
+ syzbot found the following issue on: HEAD commit: 51094a24b85e
+ Merge tag 'hardening-v6.2-rc1-fixes' of git:/.. git tree: upstream
+ console+strace:
+ https://syzkaller.appspot.com/x/log.txt?x=11bbdeac480000 kernel config:
+ https://syzkaller.a [...] 
+ Content analysis details:   (0.6 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
- high trust [139.178.84.217 listed in list.dnswl.org]
+ 0.3 FROM_LOCAL_HEX         From: localpart has long hexadecimal sequence
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.166.198 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.166.198 listed in wl.mailspike.net]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
+ mail domains are different
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1p9oMv-0002CE-4w
-X-Mailman-Approved-At: Mon, 26 Dec 2022 20:37:01 +0000
-Subject: [Linux-NTFS-Dev] [RFC PATCH v2 18/18] nls: Drop broken nls_utf8
- module
+X-Headers-End: 1pAQfN-00Eudv-0y
+X-Mailman-Approved-At: Wed, 28 Dec 2022 13:55:21 +0000
+Subject: [Linux-NTFS-Dev] [syzbot] [ntfs?] KASAN: slab-out-of-bounds Read in
+ ntfs_readdir
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -121,68 +109,146 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-TkxTIHRhYmxlIGZvciB1dGY4IGlzIGJyb2tlbiBhbmQgY2Fubm90IGJlIGZpeGVkLgoKTm93IHRo
-YXQgYWxsIGZpbGVzeXN0ZW1zIGFyZSB1c2luZyB1dGY4c190b191dGYxNnMoKS91dGYxNnNfdG9f
-dXRmOHMoKQpmdW5jdGlvbnMgZm9yIGNvbnZlcnRpbmcgYmV0d2VlbiBVVEYtOCBhbmQgVVRGLTE2
-LCBhbmQgZnVuY3Rpb25zCnV0ZjhfdG9fdXRmMzIoKS91dGYzMl90b191dGY4KCkgZm9yIGNvbnZl
-cnRpbmcgYmV0d2VlbiBVVEYtOCBhbmQgVW5pY29kZQpjb2RlIHBvaW50cywgdGhlcmUgaXMgbm8g
-bmVlZCB0byBoYXZlIHRoaXMgYnJva2VuIHV0ZjggTkxTIG1vZHVsZSBpbiBrZXJuZWwKdHJlZSBh
-bnltb3JlLgoKVGhlcmUgaXMgbm8gdXNlciBvZiB0aGlzIHV0ZjggTkxTIG1vZHVsZSwgc28gY29t
-cGxldGVseSBkcm9wIGl0LAoKU2lnbmVkLW9mZi1ieTogUGFsaSBSb2jDoXIgPHBhbGlAa2VybmVs
-Lm9yZz4KLS0tCiBmcy9ubHMvS2NvbmZpZyAgICB8ICA5IC0tLS0tLS0KIGZzL25scy9NYWtlZmls
-ZSAgIHwgIDEgLQogZnMvbmxzL25sc191dGY4LmMgfCA2NyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQogMyBmaWxlcyBjaGFuZ2VkLCA3NyBkZWxldGlvbnMo
-LSkKIGRlbGV0ZSBtb2RlIDEwMDY0NCBmcy9ubHMvbmxzX3V0ZjguYwoKZGlmZiAtLWdpdCBhL2Zz
-L25scy9LY29uZmlnIGIvZnMvbmxzL0tjb25maWcKaW5kZXggYzc4NTdlMzZhZGJiLi44ZjgyY2Yz
-MGE0OTMgMTAwNjQ0Ci0tLSBhL2ZzL25scy9LY29uZmlnCisrKyBiL2ZzL25scy9LY29uZmlnCkBA
-IC02MDgsMTMgKzYwOCw0IEBAIGNvbmZpZyBOTFNfTUFDX1RVUktJU0gKIAogCSAgSWYgdW5zdXJl
-LCBzYXkgWS4KIAotY29uZmlnIE5MU19VVEY4Ci0JdHJpc3RhdGUgIk5MUyBVVEYtOCIKLQloZWxw
-Ci0JICBJZiB5b3Ugd2FudCB0byBkaXNwbGF5IGZpbGVuYW1lcyB3aXRoIG5hdGl2ZSBsYW5ndWFn
-ZSBjaGFyYWN0ZXJzCi0JICBmcm9tIHRoZSBNaWNyb3NvZnQgRkFUIGZpbGUgc3lzdGVtIGZhbWls
-eSBvciBmcm9tIEpPTElFVCBDRC1ST01zCi0JICBjb3JyZWN0bHkgb24gdGhlIHNjcmVlbiwgeW91
-IG5lZWQgdG8gaW5jbHVkZSB0aGUgYXBwcm9wcmlhdGUKLQkgIGlucHV0L291dHB1dCBjaGFyYWN0
-ZXIgc2V0cy4gU2F5IFkgaGVyZSBmb3IgdGhlIFVURi04IGVuY29kaW5nIG9mCi0JICB0aGUgVW5p
-Y29kZS9JU085NjQ2IHVuaXZlcnNhbCBjaGFyYWN0ZXIgc2V0LgotCiBlbmRpZiAjIE5MUwpkaWZm
-IC0tZ2l0IGEvZnMvbmxzL01ha2VmaWxlIGIvZnMvbmxzL01ha2VmaWxlCmluZGV4IGFjNTRkYjI5
-NzEyOC4uZTU3M2RiN2ZjMTczIDEwMDY0NAotLS0gYS9mcy9ubHMvTWFrZWZpbGUKKysrIGIvZnMv
-bmxzL01ha2VmaWxlCkBAIC00Miw3ICs0Miw2IEBAIG9iai0kKENPTkZJR19OTFNfSVNPODg1OV8x
-NCkJKz0gbmxzX2lzbzg4NTktMTQubwogb2JqLSQoQ09ORklHX05MU19JU084ODU5XzE1KQkrPSBu
-bHNfaXNvODg1OS0xNS5vCiBvYmotJChDT05GSUdfTkxTX0tPSThfUikJKz0gbmxzX2tvaTgtci5v
-CiBvYmotJChDT05GSUdfTkxTX0tPSThfVSkJKz0gbmxzX2tvaTgtdS5vIG5sc19rb2k4LXJ1Lm8K
-LW9iai0kKENPTkZJR19OTFNfVVRGOCkJCSs9IG5sc191dGY4Lm8KIG9iai0kKENPTkZJR19OTFNf
-TUFDX0NFTFRJQykgICAgKz0gbWFjLWNlbHRpYy5vCiBvYmotJChDT05GSUdfTkxTX01BQ19DRU5U
-RVVSTykgICs9IG1hYy1jZW50ZXVyby5vCiBvYmotJChDT05GSUdfTkxTX01BQ19DUk9BVElBTikg
-ICs9IG1hYy1jcm9hdGlhbi5vCmRpZmYgLS1naXQgYS9mcy9ubHMvbmxzX3V0ZjguYyBiL2ZzL25s
-cy9ubHNfdXRmOC5jCmRlbGV0ZWQgZmlsZSBtb2RlIDEwMDY0NAppbmRleCBhZmNmYmM0YTE0ZGIu
-LjAwMDAwMDAwMDAwMAotLS0gYS9mcy9ubHMvbmxzX3V0ZjguYworKysgL2Rldi9udWxsCkBAIC0x
-LDY3ICswLDAgQEAKLS8qCi0gKiBNb2R1bGUgZm9yIGhhbmRsaW5nIHV0ZjgganVzdCBsaWtlIGFu
-eSBvdGhlciBjaGFyc2V0LgotICogQnkgVXJiYW4gV2lkbWFyayAyMDAwCi0gKi8KLQotI2luY2x1
-ZGUgPGxpbnV4L21vZHVsZS5oPgotI2luY2x1ZGUgPGxpbnV4L2tlcm5lbC5oPgotI2luY2x1ZGUg
-PGxpbnV4L3N0cmluZy5oPgotI2luY2x1ZGUgPGxpbnV4L25scy5oPgotI2luY2x1ZGUgPGxpbnV4
-L2Vycm5vLmg+Ci0KLXN0YXRpYyB1bnNpZ25lZCBjaGFyIGlkZW50aXR5WzI1Nl07Ci0KLXN0YXRp
-YyBpbnQgdW5pMmNoYXIod2NoYXJfdCB1bmksIHVuc2lnbmVkIGNoYXIgKm91dCwgaW50IGJvdW5k
-bGVuKQotewotCWludCBuOwotCi0JaWYgKGJvdW5kbGVuIDw9IDApCi0JCXJldHVybiAtRU5BTUVU
-T09MT05HOwotCi0JbiA9IHV0ZjMyX3RvX3V0ZjgodW5pLCBvdXQsIGJvdW5kbGVuKTsKLQlpZiAo
-biA8IDApIHsKLQkJKm91dCA9ICc/JzsKLQkJcmV0dXJuIC1FSU5WQUw7Ci0JfQotCXJldHVybiBu
-OwotfQotCi1zdGF0aWMgaW50IGNoYXIydW5pKGNvbnN0IHVuc2lnbmVkIGNoYXIgKnJhd3N0cmlu
-ZywgaW50IGJvdW5kbGVuLCB3Y2hhcl90ICp1bmkpCi17Ci0JaW50IG47Ci0JdW5pY29kZV90IHU7
-Ci0KLQluID0gdXRmOF90b191dGYzMihyYXdzdHJpbmcsIGJvdW5kbGVuLCAmdSk7Ci0JaWYgKG4g
-PCAwIHx8IHUgPiBNQVhfV0NIQVJfVCkgewotCQkqdW5pID0gMHgwMDNmOwkvKiA/ICovCi0JCXJl
-dHVybiAtRUlOVkFMOwotCX0KLQkqdW5pID0gKHdjaGFyX3QpIHU7Ci0JcmV0dXJuIG47Ci19Ci0K
-LXN0YXRpYyBzdHJ1Y3QgbmxzX3RhYmxlIHRhYmxlID0gewotCS5jaGFyc2V0CT0gInV0ZjgiLAot
-CS51bmkyY2hhcgk9IHVuaTJjaGFyLAotCS5jaGFyMnVuaQk9IGNoYXIydW5pLAotCS5jaGFyc2V0
-Mmxvd2VyCT0gaWRlbnRpdHksCS8qIG5vIGNvbnZlcnNpb24gKi8KLQkuY2hhcnNldDJ1cHBlcgk9
-IGlkZW50aXR5LAotfTsKLQotc3RhdGljIGludCBfX2luaXQgaW5pdF9ubHNfdXRmOCh2b2lkKQot
-ewotCWludCBpOwotCWZvciAoaT0wOyBpPDI1NjsgaSsrKQotCQlpZGVudGl0eVtpXSA9IGk7Ci0K
-LSAgICAgICAgcmV0dXJuIHJlZ2lzdGVyX25scygmdGFibGUpOwotfQotCi1zdGF0aWMgdm9pZCBf
-X2V4aXQgZXhpdF9ubHNfdXRmOCh2b2lkKQotewotICAgICAgICB1bnJlZ2lzdGVyX25scygmdGFi
-bGUpOwotfQotCi1tb2R1bGVfaW5pdChpbml0X25sc191dGY4KQotbW9kdWxlX2V4aXQoZXhpdF9u
-bHNfdXRmOCkKLU1PRFVMRV9MSUNFTlNFKCJEdWFsIEJTRC9HUEwiKTsKLS0gCjIuMjAuMQoKCgpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpMaW51eC1OVEZT
-LURldiBtYWlsaW5nIGxpc3QKTGludXgtTlRGUy1EZXZAbGlzdHMuc291cmNlZm9yZ2UubmV0Cmh0
-dHBzOi8vbGlzdHMuc291cmNlZm9yZ2UubmV0L2xpc3RzL2xpc3RpbmZvL2xpbnV4LW50ZnMtZGV2
-Cg==
+Hello,
+
+syzbot found the following issue on:
+
+HEAD commit:    51094a24b85e Merge tag 'hardening-v6.2-rc1-fixes' of git:/..
+git tree:       upstream
+console+strace: https://syzkaller.appspot.com/x/log.txt?x=11bbdeac480000
+kernel config:  https://syzkaller.appspot.com/x/.config?x=4e2d7bfa2d6d5a76
+dashboard link: https://syzkaller.appspot.com/bug?extid=d36761079ac1b585a6df
+compiler:       Debian clang version 13.0.1-++20220126092033+75e33f71c2da-1~exp1~20220126212112.63, GNU ld (GNU Binutils for Debian) 2.35.2
+syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=1052af90480000
+C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=10874164480000
+
+Downloadable assets:
+disk image: https://storage.googleapis.com/syzbot-assets/a26f3769fdfb/disk-51094a24.raw.xz
+vmlinux: https://storage.googleapis.com/syzbot-assets/5decc3ae71d7/vmlinux-51094a24.xz
+kernel image: https://storage.googleapis.com/syzbot-assets/dd2ac18a5b04/bzImage-51094a24.xz
+mounted in repro: https://storage.googleapis.com/syzbot-assets/b59d615881ab/mount_0.gz
+
+IMPORTANT: if you fix the issue, please add the following tag to the commit:
+Reported-by: syzbot+d36761079ac1b585a6df@syzkaller.appspotmail.com
+
+ntfs: (device loop0): map_mft_record_page(): Attempt to read mft record 0x10000, which is beyond the end of the mft.  This is probably a bug in the ntfs driver.
+ntfs: (device loop0): map_mft_record(): Failed with error code 2.
+==================================================================
+BUG: KASAN: slab-out-of-bounds in ntfs_filldir fs/ntfs/dir.c:1021 [inline]
+BUG: KASAN: slab-out-of-bounds in ntfs_readdir+0xebc/0x2bf0 fs/ntfs/dir.c:1200
+Read of size 1 at addr ffff8880246e58f1 by task syz-executor221/5075
+
+CPU: 1 PID: 5075 Comm: syz-executor221 Not tainted 6.1.0-syzkaller-14587-g51094a24b85e #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 10/26/2022
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:88 [inline]
+ dump_stack_lvl+0x1b1/0x290 lib/dump_stack.c:106
+ print_address_description+0x74/0x340 mm/kasan/report.c:306
+ print_report+0x107/0x1f0 mm/kasan/report.c:417
+ kasan_report+0xcd/0x100 mm/kasan/report.c:517
+ ntfs_filldir fs/ntfs/dir.c:1021 [inline]
+ ntfs_readdir+0xebc/0x2bf0 fs/ntfs/dir.c:1200
+ iterate_dir+0x257/0x5f0
+ __do_sys_getdents64 fs/readdir.c:369 [inline]
+ __se_sys_getdents64+0x1db/0x4c0 fs/readdir.c:354
+ do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x3d/0xb0 arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+RIP: 0033:0x7f883ddee779
+Code: 28 00 00 00 75 05 48 83 c4 28 c3 e8 51 14 00 00 90 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 c0 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ffc802e3ce8 EFLAGS: 00000246 ORIG_RAX: 00000000000000d9
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f883ddee779
+RDX: 0000000000000098 RSI: 0000000020000080 RDI: 0000000000000004
+RBP: 00007f883ddae010 R08: 0000000000000000 R09: 0000000000000000
+R10: 000000000001e706 R11: 0000000000000246 R12: 00007f883ddae0a0
+R13: 0000000000000000 R14: 0000000000000000 R15: 0000000000000000
+ </TASK>
+
+Allocated by task 5075:
+ kasan_save_stack mm/kasan/common.c:45 [inline]
+ kasan_set_track+0x3d/0x60 mm/kasan/common.c:52
+ ____kasan_kmalloc mm/kasan/common.c:371 [inline]
+ __kasan_kmalloc+0x97/0xb0 mm/kasan/common.c:380
+ kasan_kmalloc include/linux/kasan.h:211 [inline]
+ __do_kmalloc_node mm/slab_common.c:968 [inline]
+ __kmalloc+0xaf/0x190 mm/slab_common.c:981
+ kmalloc include/linux/slab.h:584 [inline]
+ ntfs_readdir+0x830/0x2bf0 fs/ntfs/dir.c:1162
+ iterate_dir+0x257/0x5f0
+ __do_sys_getdents64 fs/readdir.c:369 [inline]
+ __se_sys_getdents64+0x1db/0x4c0 fs/readdir.c:354
+ do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x3d/0xb0 arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+
+The buggy address belongs to the object at ffff8880246e5880
+ which belongs to the cache kmalloc-64 of size 64
+The buggy address is located 49 bytes to the right of
+ 64-byte region [ffff8880246e5880, ffff8880246e58c0)
+
+The buggy address belongs to the physical page:
+page:ffffea000091b940 refcount:1 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x246e5
+flags: 0xfff00000000200(slab|node=0|zone=1|lastcpupid=0x7ff)
+raw: 00fff00000000200 ffff888012841640 ffffea0000b00a80 dead000000000006
+raw: 0000000000000000 0000000080200020 00000001ffffffff 0000000000000000
+page dumped because: kasan: bad access detected
+page_owner tracks the page as allocated
+page last allocated via order 0, migratetype Unmovable, gfp_mask 0x12cc0(GFP_KERNEL|__GFP_NOWARN|__GFP_NORETRY), pid 1, tgid 1 (swapper/0), ts 8652158942, free_ts 0
+ prep_new_page mm/page_alloc.c:2531 [inline]
+ get_page_from_freelist+0x742/0x7c0 mm/page_alloc.c:4283
+ __alloc_pages+0x259/0x560 mm/page_alloc.c:5549
+ alloc_page_interleave+0x22/0x1c0 mm/mempolicy.c:2119
+ alloc_slab_page+0xbd/0x190 mm/slub.c:1851
+ allocate_slab+0x5e/0x3c0 mm/slub.c:1998
+ new_slab mm/slub.c:2051 [inline]
+ ___slab_alloc+0x782/0xe20 mm/slub.c:3193
+ __slab_alloc mm/slub.c:3292 [inline]
+ __slab_alloc_node mm/slub.c:3345 [inline]
+ slab_alloc_node mm/slub.c:3442 [inline]
+ __kmem_cache_alloc_node+0x25b/0x340 mm/slub.c:3491
+ __do_kmalloc_node mm/slab_common.c:967 [inline]
+ __kmalloc+0x9e/0x190 mm/slab_common.c:981
+ kmalloc_array include/linux/slab.h:636 [inline]
+ kobj_map+0x72/0x670 drivers/base/map.c:44
+ cdev_add fs/char_dev.c:491 [inline]
+ cdev_device_add+0x141/0x390 fs/char_dev.c:551
+ cec_devnode_register drivers/media/cec/core/cec-core.c:144 [inline]
+ cec_register_adapter+0x2e4/0x670 drivers/media/cec/core/cec-core.c:364
+ vivid_create_devnodes+0x55c/0x2f90 drivers/media/test-drivers/vivid/vivid-core.c:1448
+ vivid_create_instance drivers/media/test-drivers/vivid/vivid-core.c:1988 [inline]
+ vivid_probe+0x550c/0x6e10 drivers/media/test-drivers/vivid/vivid-core.c:2041
+ platform_probe+0x130/0x1b0 drivers/base/platform.c:1400
+ call_driver_probe+0x96/0x250
+ really_probe+0x24c/0x9f0 drivers/base/dd.c:639
+page_owner free stack trace missing
+
+Memory state around the buggy address:
+ ffff8880246e5780: 00 00 00 00 00 00 00 00 fc fc fc fc fc fc fc fc
+ ffff8880246e5800: 00 00 00 00 00 00 00 fc fc fc fc fc fc fc fc fc
+>ffff8880246e5880: 00 00 00 00 00 00 00 fc fc fc fc fc fc fc fc fc
+                                                             ^
+ ffff8880246e5900: 00 00 00 00 00 00 00 00 fc fc fc fc fc fc fc fc
+ ffff8880246e5980: 00 00 00 00 00 00 00 fc fc fc fc fc fc fc fc fc
+==================================================================
+
+
+---
+This report is generated by a bot. It may contain errors.
+See https://goo.gl/tpsmEJ for more information about syzbot.
+syzbot engineers can be reached at syzkaller@googlegroups.com.
+
+syzbot will keep track of this issue. See:
+https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
+syzbot can test patches for this issue, for details see:
+https://goo.gl/tpsmEJ#testing-patches
+
+
+_______________________________________________
+Linux-NTFS-Dev mailing list
+Linux-NTFS-Dev@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev
