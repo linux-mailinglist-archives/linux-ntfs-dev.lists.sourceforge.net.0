@@ -2,104 +2,100 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id B42F965ACB4
-	for <lists+linux-ntfs-dev@lfdr.de>; Mon,  2 Jan 2023 02:12:09 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 79F4565B60F
+	for <lists+linux-ntfs-dev@lfdr.de>; Mon,  2 Jan 2023 18:50:38 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1pC9N0-00081D-BC;
-	Mon, 02 Jan 2023 01:12:06 +0000
+	id 1pCOxI-0004H7-Eu;
+	Mon, 02 Jan 2023 17:50:36 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <pali@kernel.org>) id 1pC7M9-000567-64;
- Sun, 01 Jan 2023 23:03:05 +0000
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95) (envelope-from
+ <3Xc-yYwkbAOoeklWMXXQdMbbUP.SaaSXQgeQdOaZfQZf.OaY@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
+ id 1pCK1d-00074H-PN for linux-ntfs-dev@lists.sourceforge.net;
+ Mon, 02 Jan 2023 12:34:45 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:
- MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:To:From:Subject:Message-ID:Date:
+ MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=vTrasrqn+6GdWUHL5UhdqZwD/kayEwmTUKHGj0Sm+BE=; b=YT1TkgbbzFFND6Uv9wGNkuEMqy
- sqIkQSBG+dp0IoV2NKO58ujNoaQtcgIj0RCxF7kSoFuoNG55YlTgbd2dzlUCC+OX8nerBqYROCqLB
- PEoyCdRusbqRwBGxJMTUYVMagLc0N96M/uB2YcJ8LAy8K4W/ACRWS1ClIPKoeOZ0RWq4=;
+ bh=uSZIh3R9tmk2zXdNEc5WJ8qPxT/Kv5Jkd5qJTfpBQ3M=; b=J0x7KwKpuN9XgHBh/ivseF61yH
+ iXTnVq+7oYRfB0oNdP9o+cLR26zrbdgh/pRhGlpRNZDA+sbCObqsi/kMOzwydCae8w35TJupI13Bf
+ +gnYkNuCDw/Omxm0xUT9/HKWWJ89BQ9UqGLkwv12fev/0SgCci05UD9pVtoWC0XIn6Qw=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=vTrasrqn+6GdWUHL5UhdqZwD/kayEwmTUKHGj0Sm+BE=; b=IhA9FyGhDhpqCe+CYpqD2Sf9nq
- M/dTtENERhIuM33JvZIEGmyCthMO1srHJLwHYpE5NkyS9cwJcvCWlxxqc0KHCqZmO222j3C64hgzJ
- nOcYw7ZILiRGbNV2pANPRIrRRXkJg1q27fUE0KbNiZBFYi7/MI3AvEDZoV9Rjk7fTzyE=;
-Received: from ams.source.kernel.org ([145.40.68.75])
+ h=Content-Type:To:From:Subject:Message-ID:Date:MIME-Version:Sender:Reply-To
+ :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=uSZIh3R9tmk2zXdNEc5WJ8qPxT/Kv5Jkd5qJTfpBQ3M=; b=e
+ /zvplCDrUy89sWjMsvAN4CvD6UTe3H+p6U1wHhMFXlC3fEc24bJM7Fu//8syRJ/xPLSAga95GXOgK
+ xYXaTHwZHZIiJlNFZvGWXhPQvbYX2RkMfPtNE54Ly8zdHf+nbYINhvd5oXBUravgRuGeUo6YemMqO
+ SFKA8n3Ho7P+NzPA=;
+Received: from mail-il1-f198.google.com ([209.85.166.198])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1pC7M8-0008MS-8Z; Sun, 01 Jan 2023 23:03:05 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by ams.source.kernel.org (Postfix) with ESMTPS id EC4D5B80B52;
- Sun,  1 Jan 2023 23:02:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64FFDC433EF;
- Sun,  1 Jan 2023 23:02:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1672614176;
- bh=+APP+2lLo3YrbHdKAcC0k1slJXQMh+w4XYkOq5/C1X4=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=CWMwgUweTkeHMK8dctc9B+xEl3YOh4W7RtjJJmB2WK61ive8fBmz5b4hbLBCoOsyR
- abr0bR9SPGNsvphP3wElRI0rYsIwU25VzSXtdsli5N0hDzLYDH9zPAaqfaFvpSI9Nf
- RLPtSOc3eaYgaLnxh2fSquwoubmmrs8Z684b5M7pLCc9t4fiapsbDzmCyEyy9oLBNY
- 9Iv2gIVaH3dQa7g9X1MCHWyPRSB9uGHKmHhcrJVLwm8fCXUN9BUZ3AMDVCLjv1omXg
- eeIJ7gpPcuQ1FNvrmoooKY34E4GWir7PEegHAoU1vmzhfDONozwujueB1qE/+uXGdu
- wwDn88iFMnbFw==
-Received: by pali.im (Postfix)
- id 5B302884; Mon,  2 Jan 2023 00:02:53 +0100 (CET)
-Date: Mon, 2 Jan 2023 00:02:53 +0100
-From: Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To: Kari Argillander <kari.argillander@gmail.com>
-Message-ID: <20230101230253.qhhku7d42kyrbkst@pali>
-References: <20221226142150.13324-1-pali@kernel.org>
- <20221226142150.13324-4-pali@kernel.org>
- <CAC=eVgS7weRq7S16MpTyx9eZm=2s+OZhm6Ko75Z6bmjsHH-7Yw@mail.gmail.com>
- <20230101190605.s7jyf3umgubwrk3i@pali>
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
+ id 1pCK1c-000601-02 for linux-ntfs-dev@lists.sourceforge.net;
+ Mon, 02 Jan 2023 12:34:45 +0000
+Received: by mail-il1-f198.google.com with SMTP id
+ h24-20020a056e021d9800b0030be8a5dd68so16395159ila.13
+ for <linux-ntfs-dev@lists.sourceforge.net>;
+ Mon, 02 Jan 2023 04:34:43 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=to:from:subject:message-id:date:mime-version:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=uSZIh3R9tmk2zXdNEc5WJ8qPxT/Kv5Jkd5qJTfpBQ3M=;
+ b=rTxRosqV4YuK+6Mt7DW+y57s2S1Mc8JlpqYOz5hixvwJzYbLRm6wrV40H/PL8S29a8
+ XGaNSJggaBHcKbiuAQizuTzPIl0piCqnHnz4IT2px4dLKdF5oBqh6FIYKAvU55ZMcoT8
+ V8L+Iog29ZzO/4ZFsf/Q1R5ecTuCPaKWx4/ZKjHvBJ32RclC9hJd0wROpByS09GLk83B
+ 6C0ATPlxK6XTE4d1h2K7SmSmVmNZKs5F4/b2GnmN3BldMuQmDkD1i0MKKBjUdt1JLQ0u
+ v+849M6LkQpUgv6sDcCbVRG8kuPR4B2Vz3oTLARFNZ9z8E/QhDh3SjQ7Qc1y/grUhOmU
+ xpwA==
+X-Gm-Message-State: AFqh2kqHIQ5h4C4JYwP8CeaPD/+JMplf72sB1XtJIoEcLj8/J/OkWbQ4
+ 5KkPKQbdgtAgE3WUbKmew5UxhZDx9Jcptw6nauBIlMFl9NEh
+X-Google-Smtp-Source: AMrXdXuDpa/nG6agDjje8/9RdpHOTcthB9Rxa58bTNiHwVH/eLFag0GP4QKSjGRqMZ/6JP9CQT27ar9aujKTJU1EJ7yF4DFbnCFX
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20230101190605.s7jyf3umgubwrk3i@pali>
-User-Agent: NeoMutt/20180716
-X-Spam-Score: -5.2 (-----)
-X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.lw.sourceforge.com",
+X-Received: by 2002:a05:6638:36ed:b0:38a:9b1:d500 with SMTP id
+ t45-20020a05663836ed00b0038a09b1d500mr2749054jau.252.1672662877342; Mon, 02
+ Jan 2023 04:34:37 -0800 (PST)
+Date: Mon, 02 Jan 2023 04:34:37 -0800
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <000000000000a213d505f1472cbe@google.com>
+From: syzbot <syzbot+22e381af27f7921a2642@syzkaller.appspotmail.com>
+To: anton@tuxera.com, linux-kernel@vger.kernel.org, 
+ linux-ntfs-dev@lists.sourceforge.net, syzkaller-bugs@googlegroups.com
+X-Spam-Score: 0.6 (/)
+X-Spam-Report: Spam detection software,
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- 
- Content preview:  On Sunday 01 January 2023 20:06:05 Pali Rohár wrote: > On
-    Sunday 01 January 2023 21:02:46 Kari Argillander wrote: > > 26.12.2022 klo
-    16.22 Pali Rohár (pali@kernel.org) wrote: > > > > > > Other fs dr [...] 
- 
- Content analysis details:   (-5.2 points, 6.0 required)
- 
-  pts rule name              description
+ Content preview:  Hello,
+ syzbot found the following issue on: HEAD commit: bff687b3dad6
+ Merge tag 'block-6.2-2022-12-29' of git://git.. git tree: upstream
+ console+strace:
+ https://syzkaller.appspot.com/x/log.txt?x=127fe732480000 kernel config:
+ https://syzkaller.a [...] 
+ Content analysis details:   (0.6 points, 6.0 required)
+ pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
-                             high trust
-                             [145.40.68.75 listed in list.dnswl.org]
-  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.166.198 listed in list.dnswl.org]
+ 0.3 FROM_LOCAL_HEX         From: localpart has long hexadecimal sequence
+ 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
+ mail domains are different
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
-                             envelope-from domain
-  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
-                             valid
- -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
-                             author's domain
- -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1pC7M8-0008MS-8Z
-X-Mailman-Approved-At: Mon, 02 Jan 2023 01:12:04 +0000
-Subject: Re: [Linux-NTFS-Dev] [RFC PATCH v2 03/18] ntfs: Undeprecate
- iocharset= mount option
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.166.198 listed in wl.mailspike.net]
+X-Headers-End: 1pCK1c-000601-02
+X-Mailman-Approved-At: Mon, 02 Jan 2023 17:50:35 +0000
+Subject: [Linux-NTFS-Dev] [syzbot] [ntfs?] kernel BUG in ntfs_truncate
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -112,55 +108,101 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Cc: Dave Kleikamp <shaggy@kernel.org>, jfs-discussion@lists.sourceforge.net,
- Jan Kara <jack@suse.cz>, Pavel Machek <pavel@ucw.cz>,
- linux-cifs@vger.kernel.org, Christoph Hellwig <hch@infradead.org>,
- Viacheslav Dubeyko <slava@dubeyko.com>, Anton Altaparmakov <anton@tuxera.com>,
- Salah Triki <salah.triki@gmail.com>, Shyam Prasad N <sprasad@microsoft.com>,
- Tom Talpey <tom@talpey.com>, Alexander Viro <viro@zeniv.linux.org.uk>,
- OGAWA Hirofumi <hirofumi@mail.parknet.co.jp>,
- "Theodore Y . Ts'o" <tytso@mit.edu>, Luis de Bethencourt <luisbg@kernel.org>,
- linux-ntfs-dev@lists.sourceforge.net, Paulo Alcantara <pc@cjr.nz>,
- linux-kernel@vger.kernel.org, Ronnie Sahlberg <lsahlber@redhat.com>,
- Steve French <sfrench@samba.org>, linux-fsdevel@vger.kernel.org,
- Andrew Morton <akpm@linux-foundation.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-T24gU3VuZGF5IDAxIEphbnVhcnkgMjAyMyAyMDowNjowNSBQYWxpIFJvaMOhciB3cm90ZToKPiBP
-biBTdW5kYXkgMDEgSmFudWFyeSAyMDIzIDIxOjAyOjQ2IEthcmkgQXJnaWxsYW5kZXIgd3JvdGU6
-Cj4gPiAyNi4xMi4yMDIyIGtsbyAxNi4yMiBQYWxpIFJvaMOhciAocGFsaUBrZXJuZWwub3JnKSB3
-cm90ZToKPiA+ID4KPiA+ID4gT3RoZXIgZnMgZHJpdmVycyBhcmUgdXNpbmcgaW9jaGFyc2V0PSBt
-b3VudCBvcHRpb24gZm9yIHNwZWNpZnlpbmcgY2hhcnNldC4KPiA+ID4gU28gbWFyayBpb2NoYXJz
-ZXQ9IG1vdW50IG9wdGlvbiBhcyBwcmVmZXJyZWQgYW5kIGRlcHJlY2F0ZSBubHM9IG1vdW50Cj4g
-PiA+IG9wdGlvbi4KPiA+IAo+ID4gc25pcC4KPiA+IAo+ID4gPiBkaWZmIC0tZ2l0IGEvZnMvbnRm
-cy9zdXBlci5jIGIvZnMvbnRmcy9zdXBlci5jCj4gPiAKPiA+IHNuaXAuCj4gPiAKPiA+ID4gQEAg
-LTIxOCwxMCArMjEzLDEwIEBAIHN0YXRpYyBib29sIHBhcnNlX29wdGlvbnMobnRmc192b2x1bWUg
-KnZvbCwgY2hhciAqb3B0KQo+ID4gPiAgICAgICAgICAgICAgICAgfSBlbHNlIGlmICghc3RyY21w
-KHAsICJ1dGY4IikpIHsKPiA+ID4gICAgICAgICAgICAgICAgICAgICAgICAgYm9vbCB2YWwgPSBm
-YWxzZTsKPiA+ID4gICAgICAgICAgICAgICAgICAgICAgICAgbnRmc193YXJuaW5nKHZvbC0+c2Is
-ICJPcHRpb24gdXRmOCBpcyBubyBsb25nZXIgIgo+ID4gPiAtICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICJzdXBwb3J0ZWQsIHVzaW5nIG9wdGlvbiBubHM9dXRmOC4gUGxlYXNlICIK
-PiA+ID4gLSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAidXNlIG9wdGlvbiBubHM9
-dXRmOCBpbiB0aGUgZnV0dXJlIGFuZCAiCj4gPiA+IC0gICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgIm1ha2Ugc3VyZSB1dGY4IGlzIGNvbXBpbGVkIGVpdGhlciBhcyBhICIKPiA+ID4g
-LSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAibW9kdWxlIG9yIGludG8gdGhlIGtl
-cm5lbC4iKTsKPiA+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAic3VwcG9y
-dGVkLCB1c2luZyBvcHRpb24gaW9jaGFyc2V0PXV0ZjguICIKPiA+ID4gKyAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAiUGxlYXNlIHVzZSBvcHRpb24gaW9jaGFyc2V0PXV0ZjggaW4g
-dGhlICIKPiA+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAiZnV0dXJlIGFu
-ZCBtYWtlIHN1cmUgdXRmOCBpcyBjb21waWxlZCAiCj4gPiA+ICsgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgImVpdGhlciBhcyBhIG1vZHVsZSBvciBpbnRvIHRoZSBrZXJuZWwuIik7
-Cj4gPiAKPiA+IFdlIGRvIG5vdCBoYXZlIHRvIG1ha2Ugc3VyZSB1dGY4IGlzIGNvbXBpbGVkIGFu
-eW1vcmUgYXMgaXQgImFsd2F5cyBpcyIgcmlnaHQ/Cj4gCj4gWWVzLCByaWdodCwgd2UgaGF2ZSBh
-bHdheXMgdXRmOCBzdXBwb3J0IGNvbXBpbGVkLWluLgo+IFNlY29uZCBwYXJ0IG9mIHRoYXQgd2Fy
-bmluZyBtZXNzYWdlIHNob3VsZCBiZSBkcm9wcGVkLgoKT2ssIHRoaXMgaXMgdHJ1dGggYWZ0ZXIg
-cGF0Y2ggMTUvMTguIFNvIGluZm8gYWJvdXQgY29tcGlsZWQgbW9kdWxlCnNob3VsZCBiZSBkcm9w
-cGVkIGluIHBhdGNoIDE1LzE4LCBub3QgaW4gdGhpcyBvbmUuCgo+ID4gPiAgICAgICAgICAgICAg
-ICAgICAgICAgICBpZiAoIXYgfHwgISp2KQo+ID4gPiAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgIHZhbCA9IHRydWU7Cj4gPiA+ICAgICAgICAgICAgICAgICAgICAgICAgIGVsc2UgaWYg
-KCFzaW1wbGVfZ2V0Ym9vbCh2LCAmdmFsKSkKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpMaW51eC1OVEZTLURldiBtYWlsaW5nIGxpc3QKTGludXgtTlRG
-Uy1EZXZAbGlzdHMuc291cmNlZm9yZ2UubmV0Cmh0dHBzOi8vbGlzdHMuc291cmNlZm9yZ2UubmV0
-L2xpc3RzL2xpc3RpbmZvL2xpbnV4LW50ZnMtZGV2Cg==
+Hello,
+
+syzbot found the following issue on:
+
+HEAD commit:    bff687b3dad6 Merge tag 'block-6.2-2022-12-29' of git://git..
+git tree:       upstream
+console+strace: https://syzkaller.appspot.com/x/log.txt?x=127fe732480000
+kernel config:  https://syzkaller.appspot.com/x/.config?x=68e0be42c8ee4bb4
+dashboard link: https://syzkaller.appspot.com/bug?extid=22e381af27f7921a2642
+compiler:       Debian clang version 13.0.1-++20220126092033+75e33f71c2da-1~exp1~20220126212112.63, GNU ld (GNU Binutils for Debian) 2.35.2
+syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=175a9dbc480000
+C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=1542c884480000
+
+Downloadable assets:
+disk image: https://storage.googleapis.com/syzbot-assets/b1982d688f97/disk-bff687b3.raw.xz
+vmlinux: https://storage.googleapis.com/syzbot-assets/c7c5609f900d/vmlinux-bff687b3.xz
+kernel image: https://storage.googleapis.com/syzbot-assets/ee4e79832281/bzImage-bff687b3.xz
+mounted in repro: https://storage.googleapis.com/syzbot-assets/ab0785a427df/mount_0.gz
+
+IMPORTANT: if you fix the issue, please add the following tag to the commit:
+Reported-by: syzbot+22e381af27f7921a2642@syzkaller.appspotmail.com
+
+loop0: detected capacity change from 0 to 4096
+ntfs: volume version 3.1.
+------------[ cut here ]------------
+kernel BUG at fs/ntfs/inode.c:2536!
+invalid opcode: 0000 [#1] PREEMPT SMP KASAN
+CPU: 0 PID: 5076 Comm: syz-executor690 Not tainted 6.2.0-rc1-syzkaller-00068-gbff687b3dad6 #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 10/26/2022
+RIP: 0010:ntfs_truncate+0x269f/0x2720 fs/ntfs/inode.c:2536
+Code: 20 80 e1 07 80 c1 03 38 c1 0f 8c c8 f8 ff ff 48 8b 7c 24 20 e8 72 f3 1a ff e9 b9 f8 ff ff e8 98 4b c5 fe 0f 0b e8 91 4b c5 fe <0f> 0b e8 8a 4b c5 fe 0f 0b e8 83 4b c5 fe 0f 0b e8 7c 4b c5 fe 0f
+RSP: 0018:ffffc90003c8fae0 EFLAGS: 00010293
+RAX: ffffffff82c68fdf RBX: 00000000ffffffe4 RCX: ffff888029970000
+RDX: 0000000000000000 RSI: 00000000ffffffe4 RDI: 0000000000000000
+RBP: ffff8880786b7380 R08: ffffffff82c670dd R09: ffffed100f0d6e7b
+R10: ffffed100f0d6e7b R11: 1ffff1100f0d6e7a R12: dffffc0000000000
+R13: ffff8880786b7380 R14: ffff8880786b7380 R15: 0000000000000000
+FS:  0000555556955300(0000) GS:ffff8880b9800000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000020000040 CR3: 0000000028ee7000 CR4: 00000000003506f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ <TASK>
+ ntfs_truncate_vfs fs/ntfs/inode.c:2862 [inline]
+ ntfs_setattr+0x2b9/0x3a0 fs/ntfs/inode.c:2914
+ notify_change+0xe50/0x1100 fs/attr.c:482
+ do_truncate+0x200/0x2f0 fs/open.c:65
+ vfs_truncate+0x299/0x360 fs/open.c:111
+ do_sys_truncate+0xcb/0x180 fs/open.c:134
+ do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x3d/0xb0 arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+RIP: 0033:0x7f61c4db3769
+Code: 28 00 00 00 75 05 48 83 c4 28 c3 e8 51 14 00 00 90 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 c0 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ffc056b7c28 EFLAGS: 00000246 ORIG_RAX: 000000000000004c
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f61c4db3769
+RDX: 00007f61c4d71de3 RSI: 0000000000000000 RDI: 0000000020000040
+RBP: 00007f61c4d73000 R08: 000000000001f1cf R09: 0000000000000000
+R10: 00007ffc056b7af0 R11: 0000000000000246 R12: 00007f61c4d73090
+R13: 0000000000000000 R14: 0000000000000000 R15: 0000000000000000
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:ntfs_truncate+0x269f/0x2720 fs/ntfs/inode.c:2536
+Code: 20 80 e1 07 80 c1 03 38 c1 0f 8c c8 f8 ff ff 48 8b 7c 24 20 e8 72 f3 1a ff e9 b9 f8 ff ff e8 98 4b c5 fe 0f 0b e8 91 4b c5 fe <0f> 0b e8 8a 4b c5 fe 0f 0b e8 83 4b c5 fe 0f 0b e8 7c 4b c5 fe 0f
+RSP: 0018:ffffc90003c8fae0 EFLAGS: 00010293
+RAX: ffffffff82c68fdf RBX: 00000000ffffffe4 RCX: ffff888029970000
+RDX: 0000000000000000 RSI: 00000000ffffffe4 RDI: 0000000000000000
+RBP: ffff8880786b7380 R08: ffffffff82c670dd R09: ffffed100f0d6e7b
+R10: ffffed100f0d6e7b R11: 1ffff1100f0d6e7a R12: dffffc0000000000
+R13: ffff8880786b7380 R14: ffff8880786b7380 R15: 0000000000000000
+FS:  0000555556955300(0000) GS:ffff8880b9800000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000020000040 CR3: 0000000028ee7000 CR4: 00000000003506f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+
+
+---
+This report is generated by a bot. It may contain errors.
+See https://goo.gl/tpsmEJ for more information about syzbot.
+syzbot engineers can be reached at syzkaller@googlegroups.com.
+
+syzbot will keep track of this issue. See:
+https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
+syzbot can test patches for this issue, for details see:
+https://goo.gl/tpsmEJ#testing-patches
+
+
+_______________________________________________
+Linux-NTFS-Dev mailing list
+Linux-NTFS-Dev@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev
