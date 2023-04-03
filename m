@@ -2,100 +2,111 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C6426D23B4
-	for <lists+linux-ntfs-dev@lfdr.de>; Fri, 31 Mar 2023 17:12:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E1326D4F66
+	for <lists+linux-ntfs-dev@lfdr.de>; Mon,  3 Apr 2023 19:45:05 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1piGQu-00076l-11;
-	Fri, 31 Mar 2023 15:12:51 +0000
+	id 1pjOEp-0002zD-EP;
+	Mon, 03 Apr 2023 17:45:02 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-3.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95) (envelope-from
- <3nfUmZAkbAEw6CDyozzs5o33wr.u22uzs86s5q217s17.q20@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
- id 1piGFJ-0006ib-6w for linux-ntfs-dev@lists.sourceforge.net;
- Fri, 31 Mar 2023 15:00:52 +0000
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
+ (envelope-from <jack@suse.cz>) id 1pjL5E-0000GC-Ij
+ for linux-ntfs-dev@lists.sourceforge.net;
+ Mon, 03 Apr 2023 14:22:58 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:To:From:Subject:Message-ID:Date:
- MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=xXJeCN66PsTRTpcJxolDc689G/RLppmQwQj5w4uhgxs=; b=GhmX0125kpsNAjBsRUg4Z4ZYex
- WcajwIPcOe4d8SjUGLshBSIzYXQ7CMkyQNutHEDQGVRFmEsMuJNI8OKqbzzcJYb+85x4BP8AdN6E5
- ev7BIFy1JY9il8niqtr4CO8Fp7YHy/e/mTPcWkwpMtcoBcHncgPoQeXiTjCeAmKjWt7s=;
+ bh=R46s3dzmAWjax7iXZKikFYCLr1xSbo6uFhX0zzjg4pU=; b=MOc60z83xkoWMxm6X3jrn+a+Sj
+ UaH7rVU0N6z+uC56pvF7kGnX6WWwIBKWF/3r/C6EuysR+uzfPBjjxu3HcWKnyHkaG5UDE2C1FHWkI
+ g1OufGGkxVKzFlHYh4i41xj3n3i5piYKmXPa4RgGBInywlxVvWtn+fVyRRHNg8Uu4+OM=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:To:From:Subject:Message-ID:Date:MIME-Version:Sender:Reply-To
- :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=xXJeCN66PsTRTpcJxolDc689G/RLppmQwQj5w4uhgxs=; b=C
- lyIW9P9CVlCTCCoR7W5YJyBna4yVqdoyuBeoUqCPiSe97GmI5komtBFHa8Ft0//f5Gzd0DZ4yKxJN
- SfWGCom/OTzD0/N64CQ7hwiLHKpwdIHQXjj+rzoBBP0E5dmH6Pbn5elhYDR6GHO642jzo/lgjTBh7
- YPdPS9epFkNOP5Go=;
-Received: from mail-il1-f198.google.com ([209.85.166.198])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=R46s3dzmAWjax7iXZKikFYCLr1xSbo6uFhX0zzjg4pU=; b=SMrb5X6WC7yqObuYPiZTCQ3ifg
+ k8f6W+bgLFSvkvr0QrppbiFgGvYLI+kKPhAvV2UFxbprmzDu01ytuH2r+4Cx/MchhOlkM5OIA/IF2
+ 0JXl1G331IsDEDbDu9XmzWuDAEfZeGn5GrW2k5XwpJBbWIPBpSzQ+0OIBbHNKurZZ54Q=;
+Received: from smtp-out1.suse.de ([195.135.220.28])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1piGFG-00024E-NI for linux-ntfs-dev@lists.sourceforge.net;
- Fri, 31 Mar 2023 15:00:52 +0000
-Received: by mail-il1-f198.google.com with SMTP id
- c6-20020a056e020bc600b00325da077351so14363206ilu.11
- for <linux-ntfs-dev@lists.sourceforge.net>;
- Fri, 31 Mar 2023 08:00:50 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680274845; x=1682866845;
- h=to:from:subject:message-id:date:mime-version:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=xXJeCN66PsTRTpcJxolDc689G/RLppmQwQj5w4uhgxs=;
- b=4ITDq0OxTiOQdIf+vDAdJoJyvCRmGFgRevAT3W42QXtbQc7Qct17JdG38mPpAyG7cD
- vzxr41EMInta8tlWgB1JnsicAJeiXdwrTk8aOavkeSDE+LgqssndXPqikAL/mxU00FPn
- f/Mh0cn+wiKgQn4x3FXDBJuEv7cexpz0wth1Hy6kVmVtiEePVaS9LFjq6gycqAFxLwvr
- Hjj4sBdppyNlq5RLXM9BHE/K4xqOajqISXvsyXGslRVY24JvY4+vbDpsc63Nip3NP1Qw
- Rxe+tmjD65SYtIOkgJJQKr2HvMV/xwVPYWBgb+tGG1GY91ioIzwKatnr/Kpy0repIhsD
- IjMg==
-X-Gm-Message-State: AAQBX9drcUboNy5CNmJELBtp1Hb4LpYlfQd/led0ywMwOuFcdM0enwwd
- L8eSpHZ0IEc2UhDOdIGOdoZju/yLgrDODFMJNVaUrUtBm28+
-X-Google-Smtp-Source: AKy350ZX/pvMQTmLXUtbAKlExwmzb2czsedhAzyocEligNmGlu56sU1PUdvDN7qEP3HNKw6brs1mPomqbsL0ucNreL8RaX2VMmoG
+ id 1pjL5E-00DoY6-MB for linux-ntfs-dev@lists.sourceforge.net;
+ Mon, 03 Apr 2023 14:22:57 +0000
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 86BEC21DCA;
+ Mon,  3 Apr 2023 14:22:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
+ t=1680531761; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=R46s3dzmAWjax7iXZKikFYCLr1xSbo6uFhX0zzjg4pU=;
+ b=XViU3+ETjmX+Zv1i3Q4VVTn7Ny+KHI+pcGRnoPPT3r61aXIzJBxPYzNkNl9++TJ9aBjV6M
+ pj5xzmCEcljzJ3VrWr7zg8WDaJErfGUilAp+755lKhp6uAWpsjuSCcyiyy9snmSveJO8Pa
+ dYp4hCNxKq+rm1Sy8iI/zHvhEXqBk/Y=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
+ s=susede2_ed25519; t=1680531761;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=R46s3dzmAWjax7iXZKikFYCLr1xSbo6uFhX0zzjg4pU=;
+ b=U1FjLpLfehFJEz9putWhis2w9XqHu0U3h3oaiL98jCSHliu31HtoSv01Qgpvds/nc1S0hp
+ frS9z8ZPoJjwAoCw==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 773A813416;
+ Mon,  3 Apr 2023 14:22:41 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap2.suse-dmz.suse.de with ESMTPSA id nFUjHTHhKmRzFQAAMHmgww
+ (envelope-from <jack@suse.cz>); Mon, 03 Apr 2023 14:22:41 +0000
+Received: by quack3.suse.cz (Postfix, from userid 1000)
+ id EF44AA0723; Mon,  3 Apr 2023 16:22:40 +0200 (CEST)
+Date: Mon, 3 Apr 2023 16:22:40 +0200
+From: Jan Kara <jack@suse.cz>
+To: Matthew Wilcox <willy@infradead.org>
+Message-ID: <20230403142240.ftkywr3vn3r73yva@quack3>
+References: <ZBCJ11qT8AWGA9y8@casper.infradead.org>
 MIME-Version: 1.0
-X-Received: by 2002:a05:6e02:1c47:b0:326:2900:f494 with SMTP id
- d7-20020a056e021c4700b003262900f494mr5214354ilg.4.1680274845143; Fri, 31 Mar
- 2023 08:00:45 -0700 (PDT)
-Date: Fri, 31 Mar 2023 08:00:45 -0700
-X-Google-Appengine-App-Id: s~syzkaller
-X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <00000000000045192105f8337955@google.com>
-From: syzbot <syzbot+list699b83da9318c0cd04e4@syzkaller.appspotmail.com>
-To: anton@tuxera.com, linux-fsdevel@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-ntfs-dev@lists.sourceforge.net, 
- syzkaller-bugs@googlegroups.com
-X-Spam-Score: 0.6 (/)
+Content-Disposition: inline
+In-Reply-To: <ZBCJ11qT8AWGA9y8@casper.infradead.org>
+X-Spam-Score: -2.5 (--)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hello ntfs maintainers/developers, This is a 30-day syzbot
- report for the ntfs subsystem. All related reports/information can be found
- at: https://syzkaller.appspot.com/upstream/s/ntfs During the period, 4 new
- issues were detected and 0 were fixed. In total, 22 issues are still open
- and 6 have been fixed so far. 
- Content analysis details:   (0.6 points, 6.0 required)
+ Content preview:  On Tue 14-03-23 14:51:03, Matthew Wilcox wrote: > TLDR: I
+ think we should rip out support for fs metadata in highmem > > We want to
+ support filesystems on devices with LBA size > PAGE_SIZE. > That's s [...]
+ Content analysis details:   (-2.5 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.3 FROM_LOCAL_HEX         From: localpart has long hexadecimal sequence
- -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.166.198 listed in wl.mailspike.net]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.166.198 listed in list.dnswl.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
- mail domains are different
-X-Headers-End: 1piGFG-00024E-NI
-X-Mailman-Approved-At: Fri, 31 Mar 2023 15:12:50 +0000
-Subject: [Linux-ntfs-dev] [syzbot] Monthly ntfs report
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+ -2.3 RCVD_IN_DNSWL_MED      RBL: Sender listed at https://www.dnswl.org/,
+ medium trust [195.135.220.28 listed in list.dnswl.org]
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+X-Headers-End: 1pjL5E-00DoY6-MB
+X-Mailman-Approved-At: Mon, 03 Apr 2023 17:44:59 +0000
+Subject: Re: [Linux-ntfs-dev] RFC: Filesystem metadata in HIGHMEM
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -108,45 +119,61 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
+Cc: linux-nfs@vger.kernel.org, linux-nilfs@vger.kernel.org,
+ Evgeniy Dushistov <dushistov@mail.ru>, linux-ntfs-dev@lists.sourceforge.net,
+ ntfs3@lists.linux.dev, reiserfs-devel@vger.kernel.org, linux-mm@kvack.org,
+ devel@lists.orangefs.org, linux-fsdevel@vger.kernel.org,
+ ceph-devel@vger.kernel.org, linux-ext4@vger.kernel.org,
+ linux-afs@lists.infradead.org, ocfs2-devel@oss.oracle.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-Hello ntfs maintainers/developers,
+On Tue 14-03-23 14:51:03, Matthew Wilcox wrote:
+> TLDR: I think we should rip out support for fs metadata in highmem
+> 
+> We want to support filesystems on devices with LBA size > PAGE_SIZE.
+> That's subtly different and slightly harder than fsblk size > PAGE_SIZE.
+> We can use large folios to read the blocks into, but reading/writing
+> the data in those folios is harder if it's in highmem.  The kmap family
+> of functions can only map a single page at a time (and changing that
+> is hard).  We could vmap, but that's slow and can't be used from atomic
+> context.  Working a single page at a time can be tricky (eg consider an
+> ext2 directory entry that spans a page boundary).
+> 
+> Many filesystems do not support having their metadata in highmem.
+> ext4 doesn't.  xfs doesn't.  f2fs doesn't.  afs, ceph, ext2, hfs,
+> minix, nfs, nilfs2, ntfs, ntfs3, ocfs2, orangefs, qnx6, reiserfs, sysv
+> and ufs do.
+> 
+> Originally, ext2 directories in the page cache were done by Al Viro
+> in 2001.  At that time, the important use-case was machines with tens of
+> gigabytes of highmem and ~800MB of lowmem.  Since then, the x86 systems
+> have gone to 64-bit and the only real uses for highmem are cheap systems
+> with ~8GB of memory total and 2-4GB of lowmem.  These systems really
+> don't need to keep directories in highmem; using highmem for file &
+> anon memory is enough to keep the system in balance.
+> 
+> So let's just rip out the ability to keep directories (and other fs
+> metadata) in highmem.  Many filesystems already don't support this,
+> and it makes supporting LBA size > PAGE_SIZE hard.
+> 
+> I'll turn this into an LSFMM topic if we don't reach resolution on the
+> mailing list, but I'm optimistic that everybody will just agree with
+> me ;-)
 
-This is a 30-day syzbot report for the ntfs subsystem.
-All related reports/information can be found at:
-https://syzkaller.appspot.com/upstream/s/ntfs
+FWIW I won't object for the local filesystems I know about ;). But you
+mention some networking filesystems above like NFS, AFS, orangefs - how are
+they related to the LBA size problem you mention and what exactly you want
+to get rid of there? FWIW I can imagine some 32-bit system (possibly
+diskless) that uses NFS and that would benefit in caching stuff in
+highmem...
 
-During the period, 4 new issues were detected and 0 were fixed.
-In total, 22 issues are still open and 6 have been fixed so far.
+								Honza
 
-Some of the still happening issues:
-
-Crashes Repro Title
-935     Yes   possible deadlock in ntfs_read_folio
-              https://syzkaller.appspot.com/bug?extid=8ef76b0b1f86c382ad37
-581     Yes   kernel BUG in __ntfs_grab_cache_pages
-              https://syzkaller.appspot.com/bug?extid=01b3ade7c86f7dd584d7
-261     No    KASAN: use-after-free Read in ntfs_test_inode
-              https://syzkaller.appspot.com/bug?extid=2751da923b5eb8307b0b
-171     Yes   possible deadlock in map_mft_record
-              https://syzkaller.appspot.com/bug?extid=cb1fdea540b46f0ce394
-112     No    possible deadlock in __ntfs_clear_inode
-              https://syzkaller.appspot.com/bug?extid=5ebb8d0e9b8c47867596
-77      Yes   INFO: rcu detected stall in sys_mount (6)
-              https://syzkaller.appspot.com/bug?extid=ee7d095f44a683a195f8
-4       Yes   KASAN: use-after-free Read in ntfs_attr_find (2)
-              https://syzkaller.appspot.com/bug?extid=ef50f8eb00b54feb7ba2
-4       Yes   kernel BUG in ntfs_lookup_inode_by_name
-              https://syzkaller.appspot.com/bug?extid=d532380eef771ac0034b
-2       Yes   KASAN: use-after-free Read in ntfs_lookup_inode_by_name
-              https://syzkaller.appspot.com/bug?extid=3625b78845a725e80f61
-
----
-This report is generated by a bot. It may contain errors.
-See https://goo.gl/tpsmEJ for more information about syzbot.
-syzbot engineers can be reached at syzkaller@googlegroups.com.
+-- 
+Jan Kara <jack@suse.com>
+SUSE Labs, CR
 
 
 _______________________________________________
