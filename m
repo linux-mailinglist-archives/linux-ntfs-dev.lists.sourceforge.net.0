@@ -2,28 +2,28 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id B46A06F92C1
+	by mail.lfdr.de (Postfix) with ESMTPS id 90B2E6F92BF
 	for <lists+linux-ntfs-dev@lfdr.de>; Sat,  6 May 2023 17:35:15 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1pvJwH-0000gq-2s;
+	id 1pvJwH-0000gv-CY;
 	Sat, 06 May 2023 15:35:13 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <linkinjeon@kernel.org>) id 1pv6AU-00087h-5z
+ (envelope-from <linkinjeon@kernel.org>) id 1pv6FW-0008AU-VM
  for linux-ntfs-dev@lists.sourceforge.net;
- Sat, 06 May 2023 00:52:58 +0000
+ Sat, 06 May 2023 00:58:10 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
  References:In-Reply-To:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
  :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=rwvWc8bM20VepW3UZUy+d+lqyuBfG3OHMuPxc9bBDus=; b=WJBvIg4kxcJd/JjHc4QMZPkn8C
- niLxreHykoyTpRhI24r1jGbnJt76zXQwgi4m+K8NtIVknsKUgoblELwwP4/fyTZ9D/UmJtyKAq8QW
- l/vqALI0buTpW97oxJ1eU6USVF4xU/dG+rUocOoAYlVV3xyi9hLqOHzF2nmE0SsvQJxQ=;
+ bh=HtrajqP2JxNde5K79PykaYt1eyhpGlq2n0BHEF9Vpqg=; b=mFHWtCEYPyyqlh/OrZTYzMGLhE
+ 4hJd61qaDpMNMuqLjbBhfGo5g2HgCE17rD2jtGJdZvIJHO2CqBXyA+BUqIVKFkjXvvQoooKgPSs5j
+ xoHpn0Ids/vM7FSrKmWett/Sub0Oy+4M88bF8JzBKb6UDpCtR5l4DQ0Jjy2TiWcOrAK8=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Type:Cc:To:Subject:Message-ID:Date:From:References:In-Reply-To:
@@ -31,53 +31,53 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=rwvWc8bM20VepW3UZUy+d+lqyuBfG3OHMuPxc9bBDus=; b=MTvwfGnVMltFvuLpEyt8rA9Vbj
- 9sfgWH4YxIgAxnpPQqqquMbiDZr4HADo78kFtlF72fFan/tR/214E4g0onqkhv6RjoyA8BKECRAUK
- 1YlS5RQIXwwXIGZ/76AjsKEpbeR5tcHzreF5cBVR+1YCoCwak4AW58JwMjZtuv1BRjGU=;
+ bh=HtrajqP2JxNde5K79PykaYt1eyhpGlq2n0BHEF9Vpqg=; b=ehMG2OJPJQD8Jhn3ibspkHAm5t
+ C+eE5ZUnmoxBqMUxWEcPISCWL/myhDuazi//MaThEXUiedzr2Augaimuh5Uq/sXrxYDEUBIoqqDAz
+ yi3CdWLPhukpt3dnY6J3RmFz6XZxY9Uit5ubMtPGV1UoCT+uwHIIX0qN5DHv9EtVzOtw=;
 Received: from dfw.source.kernel.org ([139.178.84.217])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1pv6AP-00FsNY-Fc for linux-ntfs-dev@lists.sourceforge.net;
- Sat, 06 May 2023 00:52:58 +0000
+ id 1pv6FW-0004W8-CS for linux-ntfs-dev@lists.sourceforge.net;
+ Sat, 06 May 2023 00:58:10 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 493FA6144E
+ by dfw.source.kernel.org (Postfix) with ESMTPS id C4E4D641B9
  for <linux-ntfs-dev@lists.sourceforge.net>;
- Sat,  6 May 2023 00:52:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A104AC4339E
+ Sat,  6 May 2023 00:58:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33E0AC433EF
  for <linux-ntfs-dev@lists.sourceforge.net>;
- Sat,  6 May 2023 00:52:42 +0000 (UTC)
+ Sat,  6 May 2023 00:58:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1683334362;
- bh=1SS00KeWpuyIU/DKhcDX5dtOBMR10FYpGFsGPZXyfbw=;
+ s=k20201202; t=1683334681;
+ bh=wgggxoVbNtlVdcXO0Ax3pj4nhil23DvQ1A9wlVlVeQ4=;
  h=In-Reply-To:References:From:Date:Subject:To:Cc:From;
- b=k9sPCO/coikBd6vrwndjknAkCzl6x4f4gpvxrxDGfMmC/Tqf6FfjcvossntGZd91h
- 49YTwzwY/WhordJPUR6+SCNR444gF3N8Rpfmh/j83NOFBUEO2H5i3rbTv3qXzevBSJ
- ZcF1d/lylD4gjgTi6+HxJYM+E50XijPcCGHrCAH+tIBK74klmzLndinBH4DXwgQy/y
- +r/Me7GL0PIkALH1jb27Ep0gF17CMB1+J9/r5t1XrWUvI7uCx2V8ZaW2RkYOo7D6j/
- U3Xi2qfka4Y0uCeRlrWI6kyM8ANM2jx2D4A/x39YYCdc5P0EyoZ/S/YmuuqsShDNhD
- sWOnKfqtSpZNw==
-Received: by mail-oo1-f53.google.com with SMTP id
- 006d021491bc7-547303fccefso1627706eaf.3
+ b=lpLzTM8/JnMtWyQ9X4e0qXZgoErI42AtbzP27YDrsCupD0WnySjgS8JrtF/xxMPFb
+ UWYx5lUvg+SsYvs8e+U0dgutu7lQdyxYUr6ZbOzqr7d39KQkOgLdZ1xlKPNzfWvJSI
+ kwlTVNN56MlGRo3oYxlA4/AWgTRnKBWiItZXZOFr0NKbiACvTzzhGKbrmDS1Cyhfdg
+ vKGw6Eo6o7LfDC1LVJfPFNOxxvQX7OyjRug/Y1xdFTK0ERq1+HYFaVbRq/Pxps/HAb
+ VLE8PWjmrCUnnM2HimoY9IBfOg75B8QgF8C3wdavteFk8kUftu1B8427mJGSIWAmqD
+ zIKPWvPquKXTg==
+Received: by mail-oa1-f42.google.com with SMTP id
+ 586e51a60fabf-1928ec49077so2136457fac.0
  for <linux-ntfs-dev@lists.sourceforge.net>;
- Fri, 05 May 2023 17:52:42 -0700 (PDT)
-X-Gm-Message-State: AC+VfDz40Ku7AxB+1UM7zOMj1NMDD6rCA5RrVjsT0DfqmUqf72mGmKyX
- gxDe8tFFF0bvcB/jvYv/u/ftGBNEp051qDWppi4=
-X-Google-Smtp-Source: ACHHUZ65N71PhcWlfTQnr8plARJc8DTyW98HBWGYEvov+ompwC4lcan6sFdmtdY4n5o5e4LuKeEqIR0gUtSwsurrrG0=
-X-Received: by 2002:a4a:6f44:0:b0:542:5d35:12a0 with SMTP id
- i4-20020a4a6f44000000b005425d3512a0mr1226518oof.3.1683334361695; Fri, 05 May
- 2023 17:52:41 -0700 (PDT)
+ Fri, 05 May 2023 17:58:01 -0700 (PDT)
+X-Gm-Message-State: AC+VfDzmeRznsA4JjmbtXXubnwdYbNlMf3gjUj9gcgRb54nXCtQQYvkv
+ Q40AwyedFWGjG4KwORzKP38Cn7RF1fwcHKiRih8=
+X-Google-Smtp-Source: ACHHUZ7zsJxfjNhg/nJ43uSvbg6FNLpbTm6V3Ns4Npc9MAawrTvPErrJDgr1LyRZ60bFZ5Ap5M8YiLUIauICA8NtBxk=
+X-Received: by 2002:a05:6870:4293:b0:18b:15cd:9b45 with SMTP id
+ y19-20020a056870429300b0018b15cd9b45mr1693587oah.40.1683334680405; Fri, 05
+ May 2023 17:58:00 -0700 (PDT)
 MIME-Version: 1.0
 Received: by 2002:a8a:981:0:b0:4d3:d9bf:b562 with HTTP; Fri, 5 May 2023
- 17:52:41 -0700 (PDT)
-In-Reply-To: <20230407194433.25659-1-listdansp@mail.ru>
-References: <20230407194433.25659-1-listdansp@mail.ru>
+ 17:57:59 -0700 (PDT)
+In-Reply-To: <20230418153607.3125704-1-colin.i.king@gmail.com>
+References: <20230418153607.3125704-1-colin.i.king@gmail.com>
 From: Namjae Jeon <linkinjeon@kernel.org>
-Date: Sat, 6 May 2023 09:52:41 +0900
-X-Gmail-Original-Message-ID: <CAKYAXd8em5AxsA=m9oRqyCuzcnx6DzkOoxe_UAqkjB6zT5AiPQ@mail.gmail.com>
-Message-ID: <CAKYAXd8em5AxsA=m9oRqyCuzcnx6DzkOoxe_UAqkjB6zT5AiPQ@mail.gmail.com>
-To: Danila Chernetsov <listdansp@mail.ru>
+Date: Sat, 6 May 2023 09:57:59 +0900
+X-Gmail-Original-Message-ID: <CAKYAXd93MfgCxX8it9OmrTBU7yS3phsu4nv++J=pRAKYzqGEYg@mail.gmail.com>
+Message-ID: <CAKYAXd93MfgCxX8it9OmrTBU7yS3phsu4nv++J=pRAKYzqGEYg@mail.gmail.com>
+To: Colin Ian King <colin.i.king@gmail.com>
 X-Spam-Score: -5.4 (-----)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
@@ -85,10 +85,10 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  2023-04-08 4:44 GMT+09:00,
- Danila Chernetsov <listdansp@mail.ru>:
- > In ntfs_mft_data_extend_allocation_nolock(), if an error condition occurs
- > prior to 'ctx' being set to a non-NULL value, avoid dere [...] 
+ Content preview:  2023-04-19 0:36 GMT+09:00,
+ Colin Ian King <colin.i.king@gmail.com>:
+ > The pointer cb_sb_start is being initialized with a value that is never
+ > read, it is being re-assigned the same value later on wh [...] 
  Content analysis details:   (-5.4 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -104,10 +104,10 @@ X-Spam-Report: Spam detection software,
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid -0.0 T_SCC_BODY_TEXT_LINE   No description available.
  -0.2 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1pv6AP-00FsNY-Fc
+X-Headers-End: 1pv6FW-0004W8-CS
 X-Mailman-Approved-At: Sat, 06 May 2023 15:35:12 +0000
-Subject: Re: [Linux-ntfs-dev] [PATCH] ntfs: do not dereference a null ctx on
- error
+Subject: Re: [Linux-ntfs-dev] [PATCH] ntfs: remove redundant initialization
+ to pointer cb_sb_start
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -121,108 +121,25 @@ List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
 Cc: linux-ntfs-dev@lists.sourceforge.net,
- Christian Brauner <brauner@kernel.org>, linux-kernel@vger.kernel.org,
- Anton Altaparmakov <anton@tuxera.com>,
- lvc-project <lvc-project@linuxtesting.org>
+ Christian Brauner <brauner@kernel.org>, kernel-janitors@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Anton Altaparmakov <anton@tuxera.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-2023-04-08 4:44 GMT+09:00, Danila Chernetsov <listdansp@mail.ru>:
-> In ntfs_mft_data_extend_allocation_nolock(), if an error condition occurs
-> prior to 'ctx' being set to a non-NULL value, avoid dereferencing the NULL
-> 'ctx' pointer in error handling.
-Please check the warnings from checkpatch.pl.
-
-ERROR: trailing whitespace
-#107: FILE: fs/ntfs/mft.c:1958:
-+^I$
-
-ERROR: "(foo*)" should be "(foo *)"
-#118: FILE: fs/ntfs/mft.c:1967:
-+			if (ntfs_mapping_pairs_build(vol, (u8*)a + le16_to_cpu(
-
-ERROR: else should follow close brace '}'
-#146: FILE: fs/ntfs/mft.c:1984:
- 		}
-+		else if (IS_ERR(ctx->mrec)) {
-
+2023-04-19 0:36 GMT+09:00, Colin Ian King <colin.i.king@gmail.com>:
+> The pointer cb_sb_start is being initialized with a value that is never
+> read, it is being re-assigned the same value later on when it is first
+> being used. The initialization is redundant and can be removed.
 >
-> Found by Linux Verification Center (linuxtesting.org) with SVACE.
+> Cleans up clang scan build warning:
+> fs/ntfs/compress.c:164:6: warning: Value stored to 'cb_sb_start' during its
+> initialization is never read [deadcode.DeadStores]
+>         u8 *cb_sb_start = cb;   /* Beginning of the current sb in the cb.
+> */
 >
-> Fixes: 1da177e4c3f4 ("Linux-2.6.12-rc2")
-> Signed-off-by: Danila Chernetsov <listdansp@mail.ru>
-> ---
->  fs/ntfs/mft.c | 38 +++++++++++++++++++++-----------------
->  1 file changed, 21 insertions(+), 17 deletions(-)
->
-> diff --git a/fs/ntfs/mft.c b/fs/ntfs/mft.c
-> index 48030899dc6e..e1126ce6f8ec 100644
-> --- a/fs/ntfs/mft.c
-> +++ b/fs/ntfs/mft.c
-> @@ -1955,36 +1955,40 @@ static int
-> ntfs_mft_data_extend_allocation_nolock(ntfs_volume *vol)
->  				"attribute.%s", es);
->  		NVolSetErrors(vol);
->  	}
-> -	a = ctx->attr;
-> +	
->  	if (ntfs_rl_truncate_nolock(vol, &mft_ni->runlist, old_last_vcn)) {
->  		ntfs_error(vol->sb, "Failed to truncate mft data attribute "
->  				"runlist.%s", es);
->  		NVolSetErrors(vol);
->  	}
-> -	if (mp_rebuilt && !IS_ERR(ctx->mrec)) {
-> -		if (ntfs_mapping_pairs_build(vol, (u8*)a + le16_to_cpu(
-> +	if (ctx) {
-> +		a = ctx->attr;
-> +		if (mp_rebuilt && !IS_ERR(ctx->mrec)) {
-> +			if (ntfs_mapping_pairs_build(vol, (u8*)a + le16_to_cpu(
->  				a->data.non_resident.mapping_pairs_offset),
->  				old_alen - le16_to_cpu(
-> -				a->data.non_resident.mapping_pairs_offset),
-> +					a->data.non_resident.mapping_pairs_offset),
->  				rl2, ll, -1, NULL)) {
-> -			ntfs_error(vol->sb, "Failed to restore mapping pairs "
-> +				ntfs_error(vol->sb, "Failed to restore mapping pairs "
->  					"array.%s", es);
-> -			NVolSetErrors(vol);
-> -		}
-> -		if (ntfs_attr_record_resize(ctx->mrec, a, old_alen)) {
-> -			ntfs_error(vol->sb, "Failed to restore attribute "
-> +				NVolSetErrors(vol);
-> +			}
-> +			if (ntfs_attr_record_resize(ctx->mrec, a, old_alen)) {
-> +				ntfs_error(vol->sb, "Failed to restore attribute "
->  					"record.%s", es);
-> -			NVolSetErrors(vol);
-> +				NVolSetErrors(vol);
-> +			}
-> +			flush_dcache_mft_record_page(ctx->ntfs_ino);
-> +			mark_mft_record_dirty(ctx->ntfs_ino);
->  		}
-> -		flush_dcache_mft_record_page(ctx->ntfs_ino);
-> -		mark_mft_record_dirty(ctx->ntfs_ino);
-> -	} else if (IS_ERR(ctx->mrec)) {
-> -		ntfs_error(vol->sb, "Failed to restore attribute search "
-> +		else if (IS_ERR(ctx->mrec)) {
-> +			ntfs_error(vol->sb, "Failed to restore attribute search "
->  				"context.%s", es);
-> -		NVolSetErrors(vol);
-> +			NVolSetErrors(vol);
-> +		}
-> +		if (ctx)
-> +			ntfs_attr_put_search_ctx(ctx);
->  	}
-> -	if (ctx)
-> -		ntfs_attr_put_search_ctx(ctx);
->  	if (!IS_ERR(mrec))
->  		unmap_mft_record(mft_ni);
->  	up_write(&mft_ni->runlist.lock);
-> --
-> 2.25.1
->
->
+> Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
+Reviewed-by: Namjae Jeon <linkinjeon@kernel.org>
 
 
 _______________________________________________
