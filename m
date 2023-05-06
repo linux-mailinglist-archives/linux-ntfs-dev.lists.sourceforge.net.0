@@ -2,28 +2,28 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96BEA6F92C0
+	by mail.lfdr.de (Postfix) with ESMTPS id 005596F92C2
 	for <lists+linux-ntfs-dev@lfdr.de>; Sat,  6 May 2023 17:35:15 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1pvJwH-0000h4-Lt;
+	id 1pvJwH-0000hH-VH;
 	Sat, 06 May 2023 15:35:13 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <linkinjeon@kernel.org>) id 1pv6IT-0005gg-Po
+ (envelope-from <linkinjeon@kernel.org>) id 1pv6Nz-0003VC-Ju
  for linux-ntfs-dev@lists.sourceforge.net;
- Sat, 06 May 2023 01:01:14 +0000
+ Sat, 06 May 2023 01:06:55 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
  References:In-Reply-To:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
  :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Q3itPhUCs9C8rwLmk0xSA05Z3HnEQP/E/Xa+mK368uQ=; b=jSlIWd7P74rIRh9qb5OPo6lVpr
- /VT4CqZ7U+OZYEYa3znERxw+nVAKw7tVpAxrEaw6E+7J0etfS86bJeUvdoKVPg3FBNO1+6KDIE5dT
- HfymZfQsBBF2bxVj/6QC4NtHJzVq1S0p1KiVAq7YvjevWrWgTEUXA2urloS0ne8LATjA=;
+ bh=uxu7Oz+d6O0fnPNI2tcKUZVykO7ZGobmNnUvHnHihVE=; b=bzVjOpkTo7Ao32ybGeT9q2vaE4
+ QuRKjCWR7Rr3fTf7M5SjCI6m9/XFK2idCTrwA3POFBSk2RuhjjoigVfZuVi/e/luU2YjUk9p2W5gv
+ QZI8IPT4F816Nb3yYuq20t+/v+H1FkRQ7D0GSwXzfv+tBFFD6kgopOR18O75T8AKZD5k=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Type:Cc:To:Subject:Message-ID:Date:From:References:In-Reply-To:
@@ -31,53 +31,53 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=Q3itPhUCs9C8rwLmk0xSA05Z3HnEQP/E/Xa+mK368uQ=; b=WNc9jGAzvZOUqjG0MUnEsvJJm6
- nVq4PAGELTr2fDO4KgtsQ5FSObzw6hnDvsbQG9q/fxARG/OWkmejyDk7agJ++2YqfPAEC68O+l6ev
- 4nBUrWKnAoKqKvncirCHuzv8mGma9YkOFmbjRQMrN2kQKRlw8y0c2l/hINTIiAOlF5XU=;
+ bh=uxu7Oz+d6O0fnPNI2tcKUZVykO7ZGobmNnUvHnHihVE=; b=Ijyu9AOsJY+XIgFqCHAP5yBCOh
+ mnTzi5V/gU3ZMi8lRHFMLwhHEZvk/fvhCAA0Y2LYGIvJ9mLTBR//5P1U4Dl36O6HRFXlAVi16N4Tn
+ up5U+UNrCaLq2xiOOmJ3w1xLaFg8qqe+6X1YfGRXWI06Jp6g8eP3mqsGQtnH1bF9wR0E=;
 Received: from dfw.source.kernel.org ([139.178.84.217])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1pv6IT-00Fsgt-Ta for linux-ntfs-dev@lists.sourceforge.net;
- Sat, 06 May 2023 01:01:14 +0000
+ id 1pv6Ny-00Fso8-UB for linux-ntfs-dev@lists.sourceforge.net;
+ Sat, 06 May 2023 01:06:55 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 87323641BA
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 89EFC60B24
  for <linux-ntfs-dev@lists.sourceforge.net>;
- Sat,  6 May 2023 01:01:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD9B0C4339B
+ Sat,  6 May 2023 01:06:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED82AC4339C
  for <linux-ntfs-dev@lists.sourceforge.net>;
- Sat,  6 May 2023 01:01:07 +0000 (UTC)
+ Sat,  6 May 2023 01:06:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1683334867;
- bh=Q3itPhUCs9C8rwLmk0xSA05Z3HnEQP/E/Xa+mK368uQ=;
+ s=k20201202; t=1683335209;
+ bh=UEmzadnfn7+/6cZeDjikdevPjT9T7IYVnjcaT9lRak8=;
  h=In-Reply-To:References:From:Date:Subject:To:Cc:From;
- b=qohq5184waisTvURiKc/qTLZtuE10ShoVo0X5ASfso52UABo3CEt3xc9oZQit4Ct0
- dlcyW5MJgFEToEIUYIeHDD4H8ywU4yExgDSTNKGIyKYx5iZU527edWoh70EcQGBoDf
- KRoeX99HbB5qveNhwwNip0cWPuwln87tapnVamJmFNK6cwsohYw5jq/n4KB9esQcTQ
- BcX8ZBOkp8td9jN02aGkg2Etep0er9sDCHh+6KKzYq9R53NmnwV++6e9htY3g1J9Rn
- 73iMMeWGkHsSEIFmwWIIkHZS9DkYHKZ3Bx/W2lUenLbOMKIyNWC+1O8yL55Kp5fa2M
- hrFN5Wy1yROvQ==
-Received: by mail-oa1-f41.google.com with SMTP id
- 586e51a60fabf-192d5ab4962so1376643fac.3
+ b=eBR2693Lkf2GJv6J3m5AIrAU1926dHM8NkD6Apkpq/NY+XtfL4g7QFLybBAquY4W7
+ pDMjOg5t6C6lKyiEOI7nMWrFtkZKO3ApD26AcMg7AI35G4eYUPQpHWiKS2O9DJwPw7
+ EN3EQRlc6YZgudWLIINLj68B3JEbwo1QXfytX+J5U5zt94BJsS0N2EJFhEMZ/eXWAt
+ n++JEKoXvE9MlRmAQat9b196ulnToza02G72MBckZ8IgFwyjYtovAGqSx1dmhWUTfM
+ xk4QZmqYdZOQWMBMUrd2ptVdZ6A7GsSPfRQO5D5kFSrWyVxEdqmEel8d15tB0oqfAX
+ GLSjIHp2eiGBg==
+Received: by mail-oa1-f52.google.com with SMTP id
+ 586e51a60fabf-18ef8e9aa00so2138938fac.1
  for <linux-ntfs-dev@lists.sourceforge.net>;
- Fri, 05 May 2023 18:01:07 -0700 (PDT)
-X-Gm-Message-State: AC+VfDz/cAixSop4AqaN8KUzSaNhhe1yW3aNo7/gnqequ/lbdEqRi4Fe
- Rfk1IeM13cfO3mgx4NSP136gskBW683qc9iKPMk=
-X-Google-Smtp-Source: ACHHUZ4R3+T3mFgQcs1GyVO9GuU4qBBlPzOU6JLDANY67SB91DgOqdAGEej8ejI+9fvVhTUMYfHYw3CRPXix7+PfSmI=
-X-Received: by 2002:a05:6808:b11:b0:38e:e022:7a02 with SMTP id
- s17-20020a0568080b1100b0038ee0227a02mr1300383oij.10.1683334866989; Fri, 05
- May 2023 18:01:06 -0700 (PDT)
+ Fri, 05 May 2023 18:06:48 -0700 (PDT)
+X-Gm-Message-State: AC+VfDyr3gJvgAuDxzGRIjHMZ5Tnr06hLr7GALk6MRb2B483asn6369x
+ 8lKmRSfp3ANQtBT9/CFWeiPfPSmX2IxE2Yc8hOQ=
+X-Google-Smtp-Source: ACHHUZ60qg4+wWWnFhmcxT/U2Cqt34csJhDM3qhOq6rpVeCAaIFBJfLe0cRmTbVezoq81ynKjMd825k0hPycTmjtPYg=
+X-Received: by 2002:a05:6870:d895:b0:17e:a21c:8983 with SMTP id
+ dv21-20020a056870d89500b0017ea21c8983mr2109271oab.57.1683335208139; Fri, 05
+ May 2023 18:06:48 -0700 (PDT)
 MIME-Version: 1.0
 Received: by 2002:a8a:981:0:b0:4d3:d9bf:b562 with HTTP; Fri, 5 May 2023
- 18:01:06 -0700 (PDT)
-In-Reply-To: <20230206091815.1687-1-wangdeming@inspur.com>
-References: <20230206091815.1687-1-wangdeming@inspur.com>
+ 18:06:47 -0700 (PDT)
+In-Reply-To: <20221105153135.5975-1-dengshaomin@cdjrlc.com>
+References: <20221105153135.5975-1-dengshaomin@cdjrlc.com>
 From: Namjae Jeon <linkinjeon@kernel.org>
-Date: Sat, 6 May 2023 10:01:06 +0900
-X-Gmail-Original-Message-ID: <CAKYAXd_LnFMEEXWncTA=Y9xbHwh+GmZETM6WBQQ2hqPO6fZuZg@mail.gmail.com>
-Message-ID: <CAKYAXd_LnFMEEXWncTA=Y9xbHwh+GmZETM6WBQQ2hqPO6fZuZg@mail.gmail.com>
-To: Deming Wang <wangdeming@inspur.com>
+Date: Sat, 6 May 2023 10:06:47 +0900
+X-Gmail-Original-Message-ID: <CAKYAXd9zOgsdsRTLYRxw8B0O25LdsX-Yn6FM8u1LJdpH+tB3eA@mail.gmail.com>
+Message-ID: <CAKYAXd9zOgsdsRTLYRxw8B0O25LdsX-Yn6FM8u1LJdpH+tB3eA@mail.gmail.com>
+To: Shaomin Deng <dengshaomin@cdjrlc.com>
 X-Spam-Score: -5.9 (-----)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
@@ -85,16 +85,13 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  2023-02-06 18:18 GMT+09:00,
- Deming Wang <wangdeming@inspur.com>:
- > We should use this replace thie. > > Signed-off-by: Deming Wang
- <wangdeming@inspur.com>
- Reviewed-by: Namjae Jeon <linkinjeon@kernel.o [...] 
+ Content preview:  2022-11-06 0:31 GMT+09:00,
+ Shaomin Deng <dengshaomin@cdjrlc.com>:
+ > Remove the unneeded semicolon after curly braces. > > Signed-off-by: Shaomin
+ Deng <dengshaomin@cdjrlc.com> Reviewed-by: Namjae Jeon [...] 
  Content analysis details:   (-5.9 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
- high trust [139.178.84.217 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
@@ -104,10 +101,12 @@ X-Spam-Report: Spam detection software,
  valid
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
+ -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
+ high trust [139.178.84.217 listed in list.dnswl.org]
  -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1pv6IT-00Fsgt-Ta
+X-Headers-End: 1pv6Ny-00Fso8-UB
 X-Mailman-Approved-At: Sat, 06 May 2023 15:35:12 +0000
-Subject: Re: [Linux-ntfs-dev] [PATCH] ntfs: Correct spelling
+Subject: Re: [Linux-ntfs-dev] [PATCH] ntfs: Remove unneeded semicolon
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -121,17 +120,48 @@ List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
 Cc: linux-ntfs-dev@lists.sourceforge.net,
- Christian Brauner <brauner@kernel.org>, linux-kernel@vger.kernel.org,
- anton@tuxera.com
+ Christian Brauner <brauner@kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, anton@tuxera.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-2023-02-06 18:18 GMT+09:00, Deming Wang <wangdeming@inspur.com>:
-> We should use this replace thie.
+2022-11-06 0:31 GMT+09:00, Shaomin Deng <dengshaomin@cdjrlc.com>:
+> Remove the unneeded semicolon after curly braces.
 >
-> Signed-off-by: Deming Wang <wangdeming@inspur.com>
+> Signed-off-by: Shaomin Deng <dengshaomin@cdjrlc.com>
 Reviewed-by: Namjae Jeon <linkinjeon@kernel.org>
+
+> ---
+>  fs/ntfs/super.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/fs/ntfs/super.c b/fs/ntfs/super.c
+> index 001f4e053c85..6165fe7d0ac6 100644
+> --- a/fs/ntfs/super.c
+> +++ b/fs/ntfs/super.c
+> @@ -1612,7 +1612,7 @@ static bool load_and_init_attrdef(ntfs_volume *vol)
+>  		memcpy((u8*)vol->attrdef + (index++ << PAGE_SHIFT),
+>  				page_address(page), size);
+>  		ntfs_unmap_page(page);
+> -	};
+> +	}
+>  	if (size == PAGE_SIZE) {
+>  		size = i_size & ~PAGE_MASK;
+>  		if (size)
+> @@ -1681,7 +1681,7 @@ static bool load_and_init_upcase(ntfs_volume *vol)
+>  		memcpy((char*)vol->upcase + (index++ << PAGE_SHIFT),
+>  				page_address(page), size);
+>  		ntfs_unmap_page(page);
+> -	};
+> +	}
+>  	if (size == PAGE_SIZE) {
+>  		size = i_size & ~PAGE_MASK;
+>  		if (size)
+> --
+> 2.35.1
+>
+>
 
 
 _______________________________________________
