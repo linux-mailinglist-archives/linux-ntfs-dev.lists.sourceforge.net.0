@@ -2,108 +2,107 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0712708517
-	for <lists+linux-ntfs-dev@lfdr.de>; Thu, 18 May 2023 17:35:59 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 824C1709588
+	for <lists+linux-ntfs-dev@lfdr.de>; Fri, 19 May 2023 12:58:55 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
+	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1pzffZ-0002tZ-8T;
-	Thu, 18 May 2023 15:35:57 +0000
+	id 1pzxoy-0005wD-B1;
+	Fri, 19 May 2023 10:58:52 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <linkinjeon@gmail.com>) id 1pzfSL-0004Bo-LZ
+ (envelope-from <brauner@kernel.org>) id 1pzwtD-0008Dq-Gz
  for linux-ntfs-dev@lists.sourceforge.net;
- Thu, 18 May 2023 15:22:17 +0000
+ Fri, 19 May 2023 09:59:11 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Message-Id:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
+ :References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=FwbRp8Yvfp4lnlHmL0ThiQy8Gd4FV6zFush+GMaqHj4=; b=UugF/50y3qQyer5MoDb0kUMIUI
- 3ZGtUQveeXSHuTCCV2dESI0Tf1cLraY6VOOWs9Kbvb8rmwdF3H65tNrO/VuPqClTQ2V+FS4oNhsf/
- nD5HQqwJi0MOf/lk5nyXPVHSzw/GfXtYcdff+sOt3kmrcS/3bhkRgO/yHZVfHxNQCDaA=;
+ bh=pbQX3Or2p7nShXJ1Ro41xsC0TkMaZoY25xTof34cNKU=; b=Ffxcs2JPBf27Z3xlRdmUiSYdQp
+ KGSMpbhBPjcFFRl/Tc0ZLdDyYsF32Wu7owF0eAC5mL3Fpi60CHSgcHDQj8L5aBOdveepCf/DGgfIZ
+ iIjg1Bz6IpMT1QeUL1/wSaRBLx/Pknk8OVQd5OSWXUvwEdF/bWfxxZ6SncI1vPA1urUQ=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From
- :Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=FwbRp8Yvfp4lnlHmL0ThiQy8Gd4FV6zFush+GMaqHj4=; b=F
- LjUwLQVGJqpLmgMQoC3yqddF7Yt89/CiFQVRfz1jWLkNxM8UXH3zI4zehuslZy3zIrFNEAY2oz+Ng
- 93Ik57XrIp2Rlk6BdKNQNcOqENDf+Ka8SfsWmFgNlPTdK/gb5uHBpNunpQD1JYWrUVi2CYmB0424r
- /c5eKUodAWKKBeko=;
-Received: from mail-pj1-f43.google.com ([209.85.216.43])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1pzfSL-00CSzQ-0T for linux-ntfs-dev@lists.sourceforge.net;
- Thu, 18 May 2023 15:22:17 +0000
-Received: by mail-pj1-f43.google.com with SMTP id
- 98e67ed59e1d1-24dfc3c662eso1651079a91.3
- for <linux-ntfs-dev@lists.sourceforge.net>;
- Thu, 18 May 2023 08:22:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1684423331; x=1687015331;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=FwbRp8Yvfp4lnlHmL0ThiQy8Gd4FV6zFush+GMaqHj4=;
- b=CRb3Sns4dTUAqBRPMVqc4eK/Yp4OkJBtoMLBTIhxRbVQa/bXdZCi4MJnNgcuE4eTTi
- +1R+Fxwc5eE8lgWYLF0tvtamB6K8ILobG1PZNFGi7H7UWSyAJFYJsOZOsiXue5O2E3VB
- Q3jho4MvpAVccTDKTX4WnvtiTplWWFNWgkyQcnjYDIg99PYC4ZUZ1emb4ykbqkLgDqxj
- KswQuGQrSJQdmveE9yxYqPXc1kre24t4rLf8yZ9dPY57LTgl1nbmR84lFVNrxwa3Q8eS
- v7OhOiJMW483+/XCjRh2ybkRZUt1OFPC9hEXiDEVlOmeVksuDzPPdCv1Py73r7Vpa7zM
- 0wpQ==
-X-Gm-Message-State: AC+VfDwm1XR6H14J0LlFWoZTOairwiCOU58Gueue9wD/AwDy808zvXAj
- uBrYXrAZ0/D8Fc4Ob+VLMXAzSTcZm0o=
-X-Google-Smtp-Source: ACHHUZ4fdLcaF4Rp7IADIc/k4XFE7ybsnOmwDV2K8u+7KvwyTR+rFTgPDLt4CVhDKLz3ELuB9sGqmw==
-X-Received: by 2002:a17:90a:aa02:b0:250:40f5:6838 with SMTP id
- k2-20020a17090aaa0200b0025040f56838mr2705284pjq.30.1684423331117; 
- Thu, 18 May 2023 08:22:11 -0700 (PDT)
-Received: from localhost.localdomain ([211.49.23.9])
- by smtp.gmail.com with ESMTPSA id
- y13-20020a17090ad70d00b002500df72713sm1361793pju.7.2023.05.18.08.22.09
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 18 May 2023 08:22:10 -0700 (PDT)
-From: Namjae Jeon <linkinjeon@kernel.org>
-To: linux-ntfs-dev@lists.sourceforge.net
-Date: Fri, 19 May 2023 00:21:46 +0900
-Message-Id: <20230518152146.7375-1-linkinjeon@kernel.org>
-X-Mailer: git-send-email 2.25.1
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
+ In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=pbQX3Or2p7nShXJ1Ro41xsC0TkMaZoY25xTof34cNKU=; b=DCFJYAdLHwcEb5/gUufI7mEgl1
+ T1sh2WMfltzWUZ7btnV4Z6Dlv0R7hqgOKFTsala1X6acr0ePtPtzJOYip1UN9pVzuK1IghLvRX/Z4
+ vm03ZP8g78/Mz+KjyshHrobU5n9wfAwmqdxwVJVCgyo8a5nW0tENDWC5+j8rUQLGJeVs=;
+Received: from dfw.source.kernel.org ([139.178.84.217])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
+ id 1pzwt9-0000Ux-96 for linux-ntfs-dev@lists.sourceforge.net;
+ Fri, 19 May 2023 09:59:11 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id CCFCB64315;
+ Fri, 19 May 2023 09:59:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BB74C433EF;
+ Fri, 19 May 2023 09:58:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1684490341;
+ bh=taTIMr9jPK+Zd1lo1YW0K1V/3LreLJi90/XQv9VeWNg=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=dhipDJV3vV83zOz7U/RIXoYuXntR94cX5UeqHVLKlmLji3xn+RF9nTQjFTqCFIrDY
+ 8Ak3q+Orf96kdndVtUawZmT2HEGxAno4Tz7T6Yg5gPR4L5VU/A4n7vbFxy+qkIT6Dx
+ ibAqhY/1AU0VrfON4S2E85WYod4DGgsoWSnQifcnVk2vn9iqG1RdfU4CLSJ3vQMr5c
+ buDcyO99VhH6VFJ/Ttuj3HWB62sRJWiEXUEdSSYy5QMOiHIozXNVHWh6a5X8Ggtvu9
+ XJEHj18zLrIFF5EWgpaI2VmN7oWqpUIBlPSSc/bxBU5zb5/LldX21hz8xyXYwYfG89
+ m5qDzsiYZ80UQ==
+From: Christian Brauner <brauner@kernel.org>
+To: Anton Altaparmakov <anton@tuxera.com>,
+ linux-ntfs-dev@lists.sourceforge.net,
+ Colin Ian King <colin.i.king@gmail.com>
+Date: Fri, 19 May 2023 11:58:53 +0200
+Message-Id: <20230519-simulation-eingibt-65cd144d8b8d@brauner>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230418153607.3125704-1-colin.i.king@gmail.com>
+References: <20230418153607.3125704-1-colin.i.king@gmail.com>
 MIME-Version: 1.0
-X-Spam-Score: 0.5 (/)
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1160; i=brauner@kernel.org;
+ h=from:subject:message-id; bh=taTIMr9jPK+Zd1lo1YW0K1V/3LreLJi90/XQv9VeWNg=;
+ b=owGbwMvMwCU28Zj0gdSKO4sYT6slMaSkewRMkU171bn2EMNHm8ev/GWS9lx8+V9wyvKffFmqT5+4
+ P7a73VHKwiDGxSArpsji0G4SLrecp2KzUaYGzBxWJpAhDFycAjARywmMDC8nLfvsqisQmcisuH6rYk
+ GlrM9M+9M87udmtJzjem7//ybD/6SNq2Lt9v68EibBsrI/c7/45tjCqEsbTr1pO5T/PHbpWi4A
+X-Developer-Key: i=brauner@kernel.org; a=openpgp;
+ fpr=4880B8C9BD0E5106FC070F4F7B3C391EFEA93624
+X-Spam-Score: -5.2 (-----)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: From: Danila Chernetsov <listdansp@mail.ru> In
- ntfs_mft_data_extend_allocation_nolock(), 
- if an error condition occurs prior to 'ctx' being set to a non-NULL value,
- avoid dereferencing the NULL 'ctx' pointer in error handling. 
- Content analysis details:   (0.5 points, 6.0 required)
+ Content preview:  On Tue, 18 Apr 2023 16:36:07 +0100, Colin Ian King wrote:
+ > The pointer cb_sb_start is being initialized with a value that is never
+ > read, it is being re-assigned the same value later on when it is f [...]
+ Content analysis details:   (-5.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.216.43 listed in list.dnswl.org]
- 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
- provider [linkinjeon[at]gmail.com]
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
- mail domains are different
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [209.85.216.43 listed in wl.mailspike.net]
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
+ high trust [139.178.84.217 listed in list.dnswl.org]
  -0.0 T_SCC_BODY_TEXT_LINE   No description available.
- 0.2 FREEMAIL_FORGED_FROMDOMAIN 2nd level domains in From and
- EnvelopeFrom freemail headers are different
-X-Headers-End: 1pzfSL-00CSzQ-0T
-X-Mailman-Approved-At: Thu, 18 May 2023 15:35:56 +0000
-Subject: [Linux-ntfs-dev] [PATCH v2] ntfs: do not dereference a null ctx on
- error
+ -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1pzwt9-0000Ux-96
+X-Mailman-Approved-At: Fri, 19 May 2023 10:58:50 +0000
+Subject: Re: [Linux-ntfs-dev] [PATCH] ntfs: remove redundant initialization
+ to pointer cb_sb_start
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -116,91 +115,37 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Cc: brauner@kernel.org, anton@tuxera.com, Danila Chernetsov <listdansp@mail.ru>
+Cc: Christian Brauner <brauner@kernel.org>, kernel-janitors@vger.kernel.org,
+ linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-From: Danila Chernetsov <listdansp@mail.ru>
+On Tue, 18 Apr 2023 16:36:07 +0100, Colin Ian King wrote:
+> The pointer cb_sb_start is being initialized with a value that is never
+> read, it is being re-assigned the same value later on when it is first
+> being used. The initialization is redundant and can be removed.
+> 
+> Cleans up clang scan build warning:
+> fs/ntfs/compress.c:164:6: warning: Value stored to 'cb_sb_start' during its initialization is never read [deadcode.DeadStores]
+>         u8 *cb_sb_start = cb;   /* Beginning of the current sb in the cb. */
+> 
+> [...]
 
-In ntfs_mft_data_extend_allocation_nolock(), if an error condition occurs
-prior to 'ctx' being set to a non-NULL value, avoid dereferencing the NULL
-'ctx' pointer in error handling.
+Applied to the fs.ntfs branch of the vfs/vfs.git tree.
+Patches in the fs.ntfs branch should appear in linux-next soon.
 
-Found by Linux Verification Center (linuxtesting.org) with SVACE.
+Please report any outstanding bugs that were missed during review in a
+new review to the original patch series allowing us to drop it.
 
-Signed-off-by: Danila Chernetsov <listdansp@mail.ru>
-Reviewed-by: Namjae Jeon <linkinjeon@kernel.org>
----
- v2:
-  - Fix the warnings from checkpatch.pl.
-  - Remove unneed ctx null check.
- fs/ntfs/mft.c | 36 +++++++++++++++++++-----------------
- 1 file changed, 19 insertions(+), 17 deletions(-)
+It's encouraged to provide Acked-bys and Reviewed-bys even though the
+patch has now been applied. If possible patch trailers will be updated.
 
-diff --git a/fs/ntfs/mft.c b/fs/ntfs/mft.c
-index 48030899dc6e..0155f106ec34 100644
---- a/fs/ntfs/mft.c
-+++ b/fs/ntfs/mft.c
-@@ -1955,36 +1955,38 @@ static int ntfs_mft_data_extend_allocation_nolock(ntfs_volume *vol)
- 				"attribute.%s", es);
- 		NVolSetErrors(vol);
- 	}
--	a = ctx->attr;
-+
- 	if (ntfs_rl_truncate_nolock(vol, &mft_ni->runlist, old_last_vcn)) {
- 		ntfs_error(vol->sb, "Failed to truncate mft data attribute "
- 				"runlist.%s", es);
- 		NVolSetErrors(vol);
- 	}
--	if (mp_rebuilt && !IS_ERR(ctx->mrec)) {
--		if (ntfs_mapping_pairs_build(vol, (u8*)a + le16_to_cpu(
-+	if (ctx) {
-+		a = ctx->attr;
-+		if (mp_rebuilt && !IS_ERR(ctx->mrec)) {
-+			if (ntfs_mapping_pairs_build(vol, (u8 *)a + le16_to_cpu(
- 				a->data.non_resident.mapping_pairs_offset),
- 				old_alen - le16_to_cpu(
--				a->data.non_resident.mapping_pairs_offset),
-+					a->data.non_resident.mapping_pairs_offset),
- 				rl2, ll, -1, NULL)) {
--			ntfs_error(vol->sb, "Failed to restore mapping pairs "
-+				ntfs_error(vol->sb, "Failed to restore mapping pairs "
- 					"array.%s", es);
--			NVolSetErrors(vol);
--		}
--		if (ntfs_attr_record_resize(ctx->mrec, a, old_alen)) {
--			ntfs_error(vol->sb, "Failed to restore attribute "
-+				NVolSetErrors(vol);
-+			}
-+			if (ntfs_attr_record_resize(ctx->mrec, a, old_alen)) {
-+				ntfs_error(vol->sb, "Failed to restore attribute "
- 					"record.%s", es);
-+				NVolSetErrors(vol);
-+			}
-+			flush_dcache_mft_record_page(ctx->ntfs_ino);
-+			mark_mft_record_dirty(ctx->ntfs_ino);
-+		} else if (IS_ERR(ctx->mrec)) {
-+			ntfs_error(vol->sb, "Failed to restore attribute search "
-+				"context.%s", es);
- 			NVolSetErrors(vol);
- 		}
--		flush_dcache_mft_record_page(ctx->ntfs_ino);
--		mark_mft_record_dirty(ctx->ntfs_ino);
--	} else if (IS_ERR(ctx->mrec)) {
--		ntfs_error(vol->sb, "Failed to restore attribute search "
--				"context.%s", es);
--		NVolSetErrors(vol);
--	}
--	if (ctx)
- 		ntfs_attr_put_search_ctx(ctx);
-+	}
- 	if (!IS_ERR(mrec))
- 		unmap_mft_record(mft_ni);
- 	up_write(&mft_ni->runlist.lock);
--- 
-2.25.1
+tree:   https://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs.git
+branch: fs.ntfs
 
+[1/1] ntfs: remove redundant initialization to pointer cb_sb_start
+      https://git.kernel.org/vfs/vfs/c/04faa6cfd449
 
 
 _______________________________________________
