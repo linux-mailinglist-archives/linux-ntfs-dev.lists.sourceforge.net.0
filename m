@@ -2,76 +2,68 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 670AA709586
+	by mail.lfdr.de (Postfix) with ESMTPS id CEFBF709589
 	for <lists+linux-ntfs-dev@lfdr.de>; Fri, 19 May 2023 12:58:55 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
 	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1pzxoz-0005wS-3D;
+	id 1pzxoz-0005wf-Ek;
 	Fri, 19 May 2023 10:58:53 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-3.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <brauner@kernel.org>) id 1pzwvw-0000Id-8U
+ (envelope-from <brauner@kernel.org>) id 1pzxQD-0005kY-QE
  for linux-ntfs-dev@lists.sourceforge.net;
- Fri, 19 May 2023 10:02:00 +0000
+ Fri, 19 May 2023 10:33:18 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Oa170J19E2ZF5s/HNNafUH9cpF4L8nzHUTAKBP1KfM8=; b=jyW1cOcOw408K18SRUI0B5/Vaa
- rrdYsjaeZeQ35hr+2OhBtUFej6ODrKqhM3PDkMAkV7dZ3SyOru4yem6+SqgyKkssZKNKJby4Ca9IH
- o5KJEA2anBP878cWh6/1o0b3fK1Qgz4cyz0s92O1+hTpI4HvDDNhDg2i1tUTSkeMYGp0=;
+ bh=qMfJGgqacX0I3nrg+u8Kgt7kUSAYEp5XWv6czVR8kag=; b=moZRH+84jFu3Z2B/fv48Mg+oTX
+ aYY4urv75SLVh9efhhkokMKlS1bpP3d2QK9HnJ9wF84ASgcPvVP1f1iSz9HUOYVtMhQ6GcG7EARp8
+ hu1CirR1zvlU77PeBlE4vreP5XI2k7cu7mdTQUB4Z/gKuLCKE1Fy9KxK+lAfIaAiUuak=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=Oa170J19E2ZF5s/HNNafUH9cpF4L8nzHUTAKBP1KfM8=; b=YxreaCmgIwweuym4oTlbQlCE4G
- /ljFUduXPLW+Oo2y3ODE4r/m2kDwKFIrILdFVPRm1J/3T12KO+htUHL7XXZKPKauSzN6laDR7SpR8
- eYJyzFvorWh1NeU3dm1xWbrps2y0o26BOo730BTPrv8Nt8A0cQLP9ApuW+tFYvpCSwWY=;
+ bh=qMfJGgqacX0I3nrg+u8Kgt7kUSAYEp5XWv6czVR8kag=; b=ZrlVspVyp6JppBVZj7q+0Cmkhe
+ eqDLFFSmFjSnosmjOrYCw+Sgeg97KFHMcmtk8hW/J4+DuxFi8dmnWg1Y0ZrWabqtf5fUu7rOvtR6A
+ WXODaRy8gCGu0X41fHtdSbBVGtWot9szQjWYe6DoCExH4cDeSqE6FTspLqt0LQiq8UnI=;
 Received: from dfw.source.kernel.org ([139.178.84.217])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1pzwvv-00DFH3-Ls for linux-ntfs-dev@lists.sourceforge.net;
- Fri, 19 May 2023 10:02:00 +0000
+ id 1pzxQD-0001rG-Iy for linux-ntfs-dev@lists.sourceforge.net;
+ Fri, 19 May 2023 10:33:18 +0000
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id A8ADE655DD;
- Fri, 19 May 2023 10:01:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78BAFC433EF;
- Fri, 19 May 2023 10:01:46 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 3447C60EEE;
+ Fri, 19 May 2023 10:33:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63459C433D2;
+ Fri, 19 May 2023 10:33:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1684490508;
- bh=H8RMAZL7xHu9vWV/p6h3V7y8VIc6YcFhh9uGGULvGrc=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=KOMzZeTmosNPzqskREMLJdn09AQKqz/J2haccdORRUcpYfObqPXL/3SrGsph0/Bot
- vAVCPLJlALNeJtBLu+2EmjtPxF41flQW79LAzixck0ikdSeXNbUOXPmq5U2XQPiGDO
- a/9GlcSiYGNPkCkAoUKlLkmBLpX/lIW6fzmcXT1+UDZSmJnr1hXqBk5N8VJ/Oh+uU3
- F8EMl/cLmfiN69XqQzb/kSO4Lh68CrGaZjccpmaP4nzxk9tBoHLsfQwVKKE4pC2+TU
- gjK88t0317FuIVnPVaXtpkHVm+mUYcXPNSQ/wrFFi7+5tShApOoCsYhJGBVQyGRnHA
- hVwG75x5mhVyQ==
+ s=k20201202; t=1684492391;
+ bh=mOGjMZnCgSKGz4MwVknDBAXCKr0/pq8yWu58crLIgxs=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=BHag6tVfIs5x60uU+DMSoMIt8MeOFidOM7grO84p+8JWMOrUVZsM6yu4xr04Gc1QP
+ cTt6lJmqgm/fkb3QutKf3dhja7F9GO/OBwyxwYW7zDdm4yF8DzqeFbTwdZUTIGETfq
+ xsPTrkbrzZ9XxrvsydUJoGkUhcRZZ8SDWFJ5DqLhc8dkNa3oJyRgF1uqqVXr7ZE7VM
+ 9gF+cNAnOfh/WwOnMIds079D5nEIzo1hNhueYYDf+T+sLe/K0A4guE2DOHkf6PiMKU
+ VAbVqMovhHd7834CQNYeNNMnocb78CkK2WyujgR5TlGI11m1ZeCxJE9ajSdMmUyWqV
+ OfQTIzVFv9/7A==
+Date: Fri, 19 May 2023 12:33:07 +0200
 From: Christian Brauner <brauner@kernel.org>
-To: anton@tuxera.com, linux-ntfs-dev@lists.sourceforge.net,
- linux-kernel@vger.kernel.org, Shaomin Deng <dengshaomin@cdjrlc.com>
-Date: Fri, 19 May 2023 12:01:39 +0200
-Message-Id: <20230519-gebinde-piloten-ce29e4cdc4a8@brauner>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221105153135.5975-1-dengshaomin@cdjrlc.com>
-References: <20221105153135.5975-1-dengshaomin@cdjrlc.com>
+To: Namjae Jeon <linkinjeon@kernel.org>
+Message-ID: <20230519-badeanstalt-glitzer-2240f747059d@brauner>
+References: <20230518152146.7375-1-linkinjeon@kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=708; i=brauner@kernel.org;
- h=from:subject:message-id; bh=H8RMAZL7xHu9vWV/p6h3V7y8VIc6YcFhh9uGGULvGrc=;
- b=owGbwMvMwCU28Zj0gdSKO4sYT6slMaSke3z7fTNKOmHtQe8Vt7aYNHzkCUhRvsp1I61W2urgHJX7
- P58adJSyMIhxMciKKbI4tJuEyy3nqdhslKkBM4eVCWQIAxenAEzEoIqR4fy0v4/3l+3YWRu44ZP6Cv
- Hmn1k/lD5XTkyVrZ3yS2Nq2RtGhgnXOIVX6VvsnylaeFjK5Ff86gyDR3ef675fvodP/Ft5JSMA
-X-Developer-Key: i=brauner@kernel.org; a=openpgp;
- fpr=4880B8C9BD0E5106FC070F4F7B3C391EFEA93624
+Content-Disposition: inline
+In-Reply-To: <20230518152146.7375-1-linkinjeon@kernel.org>
 X-Spam-Score: -5.9 (-----)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
@@ -79,10 +71,10 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Sat, 05 Nov 2022 11:31:35 -0400, Shaomin Deng wrote: >
- Remove the unneeded semicolon after curly braces. > > Applied to the fs.ntfs
- branch of the vfs/vfs.git tree. Patches in the fs.ntfs branch should appear
- in linux-next soon. 
+ Content preview:  On Fri, May 19, 2023 at 12:21:46AM +0900, Namjae Jeon wrote:
+ > From: Danila Chernetsov <listdansp@mail.ru> > > In
+ ntfs_mft_data_extend_allocation_nolock(), 
+ if an error condition occurs > prior to 'ctx [...] 
  Content analysis details:   (-5.9 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -97,9 +89,10 @@ X-Spam-Report: Spam detection software,
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1pzwvv-00DFH3-Ls
+X-Headers-End: 1pzxQD-0001rG-Iy
 X-Mailman-Approved-At: Fri, 19 May 2023 10:58:50 +0000
-Subject: Re: [Linux-ntfs-dev] [PATCH] ntfs: Remove unneeded semicolon
+Subject: Re: [Linux-ntfs-dev] [PATCH v2] ntfs: do not dereference a null ctx
+ on error
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -112,30 +105,28 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Cc: Christian Brauner <brauner@kernel.org>
+Cc: linux-ntfs-dev@lists.sourceforge.net, anton@tuxera.com,
+ Danila Chernetsov <listdansp@mail.ru>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-On Sat, 05 Nov 2022 11:31:35 -0400, Shaomin Deng wrote:
-> Remove the unneeded semicolon after curly braces.
+On Fri, May 19, 2023 at 12:21:46AM +0900, Namjae Jeon wrote:
+> From: Danila Chernetsov <listdansp@mail.ru>
 > 
+> In ntfs_mft_data_extend_allocation_nolock(), if an error condition occurs
+> prior to 'ctx' being set to a non-NULL value, avoid dereferencing the NULL
+> 'ctx' pointer in error handling.
 > 
+> Found by Linux Verification Center (linuxtesting.org) with SVACE.
+> 
+> Signed-off-by: Danila Chernetsov <listdansp@mail.ru>
+> Reviewed-by: Namjae Jeon <linkinjeon@kernel.org>
+> ---
 
-Applied to the fs.ntfs branch of the vfs/vfs.git tree.
-Patches in the fs.ntfs branch should appear in linux-next soon.
-
-Please report any outstanding bugs that were missed during review in a
-new review to the original patch series allowing us to drop it.
-
-It's encouraged to provide Acked-bys and Reviewed-bys even though the
-patch has now been applied. If possible patch trailers will be updated.
-
-tree:   https://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs.git
-branch: fs.ntfs
-
-[1/1] ntfs: Remove unneeded semicolon
-      https://git.kernel.org/vfs/vfs/c/6405fee9b0d0
+I've picked this up. The ntfs list isn't integrated with lore so please
+always Cc linux-kernel so I can use standard development tooling to pick
+up patches. Thanks!
 
 
 _______________________________________________
