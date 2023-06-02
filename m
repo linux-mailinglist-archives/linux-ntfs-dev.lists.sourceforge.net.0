@@ -2,103 +2,100 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20CF5717B80
-	for <lists+linux-ntfs-dev@lfdr.de>; Wed, 31 May 2023 11:13:58 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 126D571FC6E
+	for <lists+linux-ntfs-dev@lfdr.de>; Fri,  2 Jun 2023 10:46:41 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1q4Htz-0003ba-KJ;
-	Wed, 31 May 2023 09:13:55 +0000
+	id 1q50Qe-0002E7-KL;
+	Fri, 02 Jun 2023 08:46:37 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-3.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95) (envelope-from
- <3-g13ZAkbAB0LRSD3EE7K3IIB6.9HH9E7NL7K5HGM7GM.5HF@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
- id 1q4HmX-00055Z-Kx for linux-ntfs-dev@lists.sourceforge.net;
- Wed, 31 May 2023 09:06:13 +0000
+ <3EKt5ZAkbAHcntufVggZmVkkdY.bjjbgZpnZmXjioZio.Xjh@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
+ id 1q50LA-0003gH-Ml for linux-ntfs-dev@lists.sourceforge.net;
+ Fri, 02 Jun 2023 08:41:00 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Type:To:From:Subject:Message-ID:Date:
  MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=T45iOmfHCb/6zwzKz2XNzeL9kK7kDd8L12clG6idG8k=; b=Bk25bxQ+qgFY5DWg7oVoMU+s8q
- nccFSk1bB2MFp36sHKZPfXvV6M+uRQ9zV5kAJfizuWz3lJlOKbpeHkFs+6+JxO2qfBAvFCOgRoYUx
- OUGvDzASukb1XXX9PxeIgMd5T8Y35cjO0W3hUzaJ3+/sRm3Dt7cjWj/Ef6VJtHbFbrgo=;
+ bh=R21t3yxIGLscTBQIenn82agFv8hkbnPzy8Ffbly2fQc=; b=WOXPk2vgB7XUTthO4sUTkYHmYt
+ I5tCGH8pDoKWDU9pOus9CfySvKs+01LNvENn+Qt/trSQZQFLsolh41PbHU3Y/knKd7ndBI4a/9wOt
+ lGaEHvuIuS5iBh7LYoXQZRvhnmD3sf4Ha1Gs1b8RPKcEy8LUYwzT3eMALpy2rirnh7ls=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Type:To:From:Subject:Message-ID:Date:MIME-Version:Sender:Reply-To
  :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=T45iOmfHCb/6zwzKz2XNzeL9kK7kDd8L12clG6idG8k=; b=M
- llnVwqUwKVb4njI+Yi5B5/GwhmrFicoaAqe61W/fZ6cnJjVfZed6ERZKLkq0CqUEmBJju7Pbq3BpY
- UDSVPwycrvggQ5/XRLeRUonGJa/Whec/elWzyMj/ldCdNYRYw3Kx+GhVuGR31kzusOB+BGfY5duLM
- 9WGexytNFcStVlBg=;
-Received: from mail-io1-f79.google.com ([209.85.166.79])
+ List-Owner:List-Archive; bh=R21t3yxIGLscTBQIenn82agFv8hkbnPzy8Ffbly2fQc=; b=H
+ ql8tIhJGtv7U9hcAbWPN3SOwl6hnC2jYdiBp5WhOOBEdROX6gVS94HvM1paZg+3D7ITOWFty3OCPj
+ of/it0YeDfwafii9DZt1Y3n7te9Dw2dlIdHmO4suS8x5FFqVByHq3FwN94Uo2JNTgB9FXOr404WsQ
+ JBwKuvTHsgTN6rq4=;
+Received: from mail-io1-f69.google.com ([209.85.166.69])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1q4HmU-0001Ka-7R for linux-ntfs-dev@lists.sourceforge.net;
- Wed, 31 May 2023 09:06:13 +0000
-Received: by mail-io1-f79.google.com with SMTP id
- ca18e2360f4ac-7749ceb342fso719730939f.2
+ id 1q50L8-0005qq-53 for linux-ntfs-dev@lists.sourceforge.net;
+ Fri, 02 Jun 2023 08:40:55 +0000
+Received: by mail-io1-f69.google.com with SMTP id
+ ca18e2360f4ac-777097126abso51683739f.0
  for <linux-ntfs-dev@lists.sourceforge.net>;
- Wed, 31 May 2023 02:06:07 -0700 (PDT)
+ Fri, 02 Jun 2023 01:40:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1685523962; x=1688115962;
+ d=1e100.net; s=20221208; t=1685695248; x=1688287248;
  h=to:from:subject:message-id:date:mime-version:x-gm-message-state
  :from:to:cc:subject:date:message-id:reply-to;
- bh=T45iOmfHCb/6zwzKz2XNzeL9kK7kDd8L12clG6idG8k=;
- b=Tq7MLK8z1kcV5s4DEPVSQ4iW5j8s59fAWMG9cTb0EW0GR8jcV6KcVL9z5KjSMl/LVI
- FRyK9YWfP3IosSVSR95LifGA6msfMx/OLYaQ021pECa8c8lz5JXhUjRIa3hhVNEBiSRa
- /+LS4SO9ePOZwaI3Fwzl81W9hfU0FiESR88rPOIrbKPU8jgIhuVDT6YXRIn61X8TnEzy
- amgShN06Jm2V7GzRaRpYDRYrIADRQI6P9yqmPTXr0uXnD0F6ki5b7McrJ9BlDE0Lu6Fs
- RNLR/o8jmUhC5OqcTGMVUQHR3I+bKMr1zQEulCsREdYZ78zrxXu5k91BKoYU+gPcWCrP
- i70g==
-X-Gm-Message-State: AC+VfDwlWDMjtVzNiIbUyPQ/OCLAw4o3WsQr2f99L97NgN8srM4Xdyzp
- 9W7ECle7LB/HW9UnLAJ+BOa7jmTCOJSjmcGA089UBrJQv5vA
-X-Google-Smtp-Source: ACHHUZ6WXd5dFW0aam0p1D4QQMkpELgQIiOkkaF2nPvXf8qnOrcWVYs41w2tGnB3oOrIXvg79B3kUZJdhE30tSdASdoL06/6gd+z
+ bh=R21t3yxIGLscTBQIenn82agFv8hkbnPzy8Ffbly2fQc=;
+ b=MWYJ3T9pNkGxqsCtgt8MzMkdFEub3RwEofNgx9J2roKRNqfSszCj4o45TlRqpy7wt4
+ YDiSO7Lj8n/zQp6fNjSZ0hdbDLAKvOl6Jw/40TRj9hKJvXuADla9Pq9GBwdkURIQFMu6
+ OPWcjUKCtiNihg46Ba02iWBIPyEuKNM8jLU9FqkvaIimLkftw0/KVR4qVie/1n+bED6o
+ 4b5nJl5GnTUblnV9QGGBJ4xaXTdWGHRUtJZiCBCSkHm1h4C5gFUj+HwHyWoY3tt+kv1K
+ I1Pci3RGSRtD9Cw9OGvGMoEbwOZxwjBO/f+7mFPLMA3LoTxGw0p9UGMKCphbdSLV9x/s
+ 9eHA==
+X-Gm-Message-State: AC+VfDy/g1c+Rjs6FVC89HeJUL0ZLXdD6b6x7X64PAdQO+V0MGq8RTCF
+ zXVvlMr31Zd/MxQoXY044C4V2BxrmLOUWPCO8MFJjpCkQ+h5
+X-Google-Smtp-Source: ACHHUZ7tm68wj2kCbhsNKE7zQLZeoOSQO31xd4HxX+TR4+/zTR6v1hDDvUFr/P0SZaxAsbGsTZpyloM/VJpeCl7MW/lUiHMeDEDG
 MIME-Version: 1.0
-X-Received: by 2002:a02:a1c6:0:b0:41a:c5e3:6bf4 with SMTP id
- o6-20020a02a1c6000000b0041ac5e36bf4mr2225787jah.6.1685523962002; Wed, 31 May
- 2023 02:06:02 -0700 (PDT)
-Date: Wed, 31 May 2023 02:06:01 -0700
+X-Received: by 2002:a5d:9ec5:0:b0:777:127e:6dd5 with SMTP id
+ a5-20020a5d9ec5000000b00777127e6dd5mr671109ioe.2.1685695248595; Fri, 02 Jun
+ 2023 01:40:48 -0700 (PDT)
+Date: Fri, 02 Jun 2023 01:40:48 -0700
 X-Google-Appengine-App-Id: s~syzkaller
 X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <0000000000000424f205fcf9a132@google.com>
-From: syzbot <syzbot+4768a8f039aa677897d0@syzkaller.appspotmail.com>
-To: anton@tuxera.com, linkinjeon@kernel.org, linux-fsdevel@vger.kernel.org, 
+Message-ID: <0000000000007e054605fd218210@google.com>
+From: syzbot <syzbot+list96ce3166ad941b6ae46b@syzkaller.appspotmail.com>
+To: anton@tuxera.com, linux-fsdevel@vger.kernel.org, 
  linux-kernel@vger.kernel.org, linux-ntfs-dev@lists.sourceforge.net, 
  syzkaller-bugs@googlegroups.com
 X-Spam-Score: 0.6 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hello,
- syzbot found the following issue on: HEAD commit: afead42fdfca
- Merge tag 'perf-tools-fixes-for-v6.4-2-2023-0.. git tree: upstream
- console+strace:
- https://syzkaller.appspot.com/x/log.txt?x=15f72e49280000 kernel config:
- https://syzkaller.a [...] 
+ Content preview:  Hello ntfs maintainers/developers, This is a 31-day syzbot
+ report for the ntfs subsystem. All related reports/information can be found
+ at: https://syzkaller.appspot.com/upstream/s/ntfs During the period, 1 new
+ issues were detected and 0 were fixed. In total, 25 issues are still open
+ and 7 have been fixed so far. 
  Content analysis details:   (0.6 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.166.79 listed in list.dnswl.org]
  0.3 FROM_LOCAL_HEX         From: localpart has long hexadecimal sequence
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.0 SPF_PASS               SPF: sender matches SPF record
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.166.69 listed in list.dnswl.org]
  0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
  mail domains are different
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.166.79 listed in wl.mailspike.net]
- -0.0 T_SCC_BODY_TEXT_LINE   No description available.
-X-Headers-End: 1q4HmU-0001Ka-7R
-X-Mailman-Approved-At: Wed, 31 May 2023 09:13:54 +0000
-Subject: [Linux-ntfs-dev] [syzbot] [ntfs?] UBSAN: shift-out-of-bounds in
- ntfs_iget
+ [209.85.166.69 listed in wl.mailspike.net]
+X-Headers-End: 1q50L8-0005qq-53
+X-Mailman-Approved-At: Fri, 02 Jun 2023 08:46:35 +0000
+Subject: [Linux-ntfs-dev] [syzbot] Monthly ntfs report (Jun 2023)
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -115,94 +112,51 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-Hello,
+Hello ntfs maintainers/developers,
 
-syzbot found the following issue on:
+This is a 31-day syzbot report for the ntfs subsystem.
+All related reports/information can be found at:
+https://syzkaller.appspot.com/upstream/s/ntfs
 
-HEAD commit:    afead42fdfca Merge tag 'perf-tools-fixes-for-v6.4-2-2023-0..
-git tree:       upstream
-console+strace: https://syzkaller.appspot.com/x/log.txt?x=15f72e49280000
-kernel config:  https://syzkaller.appspot.com/x/.config?x=162cf2103e4a7453
-dashboard link: https://syzkaller.appspot.com/bug?extid=4768a8f039aa677897d0
-compiler:       Debian clang version 15.0.7, GNU ld (GNU Binutils for Debian) 2.35.2
-syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=12da9bbd280000
-C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=174e8115280000
+During the period, 1 new issues were detected and 0 were fixed.
+In total, 25 issues are still open and 7 have been fixed so far.
 
-Downloadable assets:
-disk image: https://storage.googleapis.com/syzbot-assets/376b8e00429d/disk-afead42f.raw.xz
-vmlinux: https://storage.googleapis.com/syzbot-assets/ac81705ce028/vmlinux-afead42f.xz
-kernel image: https://storage.googleapis.com/syzbot-assets/70c52b82e56a/bzImage-afead42f.xz
-mounted in repro: https://storage.googleapis.com/syzbot-assets/248748d7ce8e/mount_0.gz
+Some of the still happening issues:
 
-IMPORTANT: if you fix the issue, please add the following tag to the commit:
-Reported-by: syzbot+4768a8f039aa677897d0@syzkaller.appspotmail.com
-
-ntfs: (device loop0): ntfs_attr_find(): Inode is corrupt.  Run chkdsk.
-ntfs: (device loop0): ntfs_read_locked_inode(): Failed to lookup $DATA attribute.
-ntfs: (device loop0): ntfs_read_locked_inode(): Failed with error code -5.  Marking corrupt inode 0x1 as bad.  Run chkdsk.
-ntfs: (device loop0): load_system_files(): Failed to load $MFTMirr.  Mounting read-only.  Run ntfsfix and/or chkdsk.
-================================================================================
-UBSAN: shift-out-of-bounds in fs/ntfs/inode.c:1080:43
-shift exponent 44 is too large for 32-bit type 'unsigned int'
-CPU: 0 PID: 5000 Comm: syz-executor185 Not tainted 6.4.0-rc4-syzkaller-00047-gafead42fdfca #0
-Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 05/25/2023
-Call Trace:
- <TASK>
- __dump_stack lib/dump_stack.c:88 [inline]
- dump_stack_lvl+0x1e7/0x2d0 lib/dump_stack.c:106
- ubsan_epilogue lib/ubsan.c:217 [inline]
- __ubsan_handle_shift_out_of_bounds+0x3c3/0x420 lib/ubsan.c:387
- ntfs_read_locked_inode+0x4665/0x49c0 fs/ntfs/inode.c:1080
- ntfs_iget+0x113/0x190 fs/ntfs/inode.c:177
- load_and_init_upcase fs/ntfs/super.c:1663 [inline]
- load_system_files+0x151c/0x4840 fs/ntfs/super.c:1818
- ntfs_fill_super+0x19b3/0x2bd0 fs/ntfs/super.c:2900
- mount_bdev+0x2d0/0x3f0 fs/super.c:1380
- legacy_get_tree+0xef/0x190 fs/fs_context.c:610
- vfs_get_tree+0x8c/0x270 fs/super.c:1510
- do_new_mount+0x28f/0xae0 fs/namespace.c:3039
- do_mount fs/namespace.c:3382 [inline]
- __do_sys_mount fs/namespace.c:3591 [inline]
- __se_sys_mount+0x2d9/0x3c0 fs/namespace.c:3568
- do_syscall_x64 arch/x86/entry/common.c:50 [inline]
- do_syscall_64+0x41/0xc0 arch/x86/entry/common.c:80
- entry_SYSCALL_64_after_hwframe+0x63/0xcd
-RIP: 0033:0x7f183b0f1afa
-Code: 83 c4 08 5b 5d c3 66 2e 0f 1f 84 00 00 00 00 00 c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 49 89 ca b8 a5 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 c0 ff ff ff f7 d8 64 89 01 48
-RSP: 002b:00007ffd7f357638 EFLAGS: 00000286 ORIG_RAX: 00000000000000a5
-RAX: ffffffffffffffda RBX: 0000000000000003 RCX: 00007f183b0f1afa
-RDX: 0000000020000000 RSI: 000000002001ee80 RDI: 00007ffd7f357650
-RBP: 00007ffd7f357650 R08: 00007ffd7f357690 R09: 000000000001ee62
-R10: 0000000000000010 R11: 0000000000000286 R12: 0000000000000004
-R13: 0000555555d422c0 R14: 0000000000000010 R15: 00007ffd7f357690
- </TASK>
-================================================================================
-
+Ref  Crashes Repro Title
+<1>  2429    Yes   possible deadlock in ntfs_read_folio
+                   https://syzkaller.appspot.com/bug?extid=8ef76b0b1f86c382ad37
+<2>  2284    Yes   kernel BUG at fs/ntfs/aops.c:LINE!
+                   https://syzkaller.appspot.com/bug?extid=6a5a7672f663cce8b156
+<3>  879     Yes   kernel BUG in __ntfs_grab_cache_pages
+                   https://syzkaller.appspot.com/bug?extid=01b3ade7c86f7dd584d7
+<4>  392     Yes   possible deadlock in map_mft_record
+                   https://syzkaller.appspot.com/bug?extid=cb1fdea540b46f0ce394
+<5>  285     No    KASAN: use-after-free Read in ntfs_test_inode
+                   https://syzkaller.appspot.com/bug?extid=2751da923b5eb8307b0b
+<6>  30      Yes   KASAN: slab-out-of-bounds Read in ntfs_readdir
+                   https://syzkaller.appspot.com/bug?extid=d36761079ac1b585a6df
+<7>  9       Yes   KASAN: use-after-free Read in ntfs_attr_find (2)
+                   https://syzkaller.appspot.com/bug?extid=ef50f8eb00b54feb7ba2
+<8>  9       Yes   kernel BUG in ntfs_iget
+                   https://syzkaller.appspot.com/bug?extid=d62e6bd2a2d05103d105
+<9>  6       No    possible deadlock in ntfs_sync_mft_mirror
+                   https://syzkaller.appspot.com/bug?extid=c9340661f4a0bb3e7e65
+<10> 3       Yes   KASAN: use-after-free Read in ntfs_read_folio
+                   https://syzkaller.appspot.com/bug?extid=d3cd38158cd7c8d1432c
 
 ---
 This report is generated by a bot. It may contain errors.
 See https://goo.gl/tpsmEJ for more information about syzbot.
 syzbot engineers can be reached at syzkaller@googlegroups.com.
 
-syzbot will keep track of this issue. See:
-https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
+To disable reminders for individual bugs, reply with the following command:
+#syz set <Ref> no-reminders
 
-If the bug is already fixed, let syzbot know by replying with:
-#syz fix: exact-commit-title
+To change bug's subsystems, reply with:
+#syz set <Ref> subsystems: new-subsystem
 
-If you want syzbot to run the reproducer, reply with:
-#syz test: git://repo/address.git branch-or-commit-hash
-If you attach or paste a git patch, syzbot will apply it before testing.
-
-If you want to change bug's subsystems, reply with:
-#syz set subsystems: new-subsystem
-(See the list of subsystem names on the web dashboard)
-
-If the bug is a duplicate of another bug, reply with:
-#syz dup: exact-subject-of-another-report
-
-If you want to undo deduplication, reply with:
-#syz undup
+You may send multiple commands in a single email message.
 
 
 _______________________________________________
