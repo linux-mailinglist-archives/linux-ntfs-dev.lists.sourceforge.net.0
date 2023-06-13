@@ -2,90 +2,131 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98B8772DC16
-	for <lists+linux-ntfs-dev@lfdr.de>; Tue, 13 Jun 2023 10:12:25 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0040672E4B9
+	for <lists+linux-ntfs-dev@lfdr.de>; Tue, 13 Jun 2023 15:59:23 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1q8z8Y-0001p1-SC;
-	Tue, 13 Jun 2023 08:12:22 +0000
+	id 1q94YK-0002ED-Pl;
+	Tue, 13 Jun 2023 13:59:21 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-3.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <islituo@gmail.com>) id 1q8vjs-0006BJ-24
+ (envelope-from <anton@tuxera.com>) id 1q94YJ-0002E7-Mf
  for linux-ntfs-dev@lists.sourceforge.net;
- Tue, 13 Jun 2023 04:34:40 +0000
+ Tue, 13 Jun 2023 13:59:20 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:Cc:To:
- Subject:From:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=MIME-Version:Content-Type:In-Reply-To:References:
+ Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=6qvka6//2uWaQtF0BTHBk1dA62rA7SJ2p/E0dmEtui4=; b=MKj8PouX69BWpKdonJjpk9k3yQ
- k/fFR3yMeFoVjO/QHP4GPQITt0sXgdLSdQbK1nyhYm3j26dFR8tr7PO+Eob9MFNMWSY7YJKO/iZ2r
- dUC2jmWjZY29qBfvQc0lvjD7qLQQgT0UrgZbQ++BX5EsQ5+E8FWexcMzDIxA/av7X4Hw=;
+ bh=UHwniRR27yVzLP/gq8rU0422EQprtY2eRyHqttSz1Qo=; b=KYi/t+zbtv5dkqwKZ/MJT8l15V
+ leRoWjGY85sb7IuTQtHXC84wquQel6xlH4b/UMX6tWmLGn5OtMCQ0aXSYhXQGreVPa01AGQ3CJ5sV
+ jj2qyCi8Anp4p5AsP8Heq0VAarwk7d2AGoLRXlciApXHvPXk3xED/2ilocA58z/sfxKQ=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:Cc:To:Subject:From:MIME-Version:
- Date:Message-ID:Sender:Reply-To:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=6qvka6//2uWaQtF0BTHBk1dA62rA7SJ2p/E0dmEtui4=; b=S
- czjuO7FaYt1Lm/OJ25ad9qdIn77hQOQBVcNpIRZYuDYNfM7h2Z8mAO/zOM6oVAR6134VqnArwzMma
- 9JLJF9AX9rGm9fhs2mRMV6epGLj5Q8WhEWBepTXxPEyr7etBmk0kl23jFoWum/ifTtQPv1IFBqqx8
- hRJyyXFKvJDoWpTg=;
-Received: from mail-pl1-f170.google.com ([209.85.214.170])
+ h=MIME-Version:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:
+ CC:To:From:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=UHwniRR27yVzLP/gq8rU0422EQprtY2eRyHqttSz1Qo=; b=YrNo5JOaJNOU83r2G/67Mk+9NY
+ BQt6hInqOYPAfOw1jLMmLL+4TKU2trRrUmiB0dT9nu0gYEpIY8/6oHKT/uKpg8spvpA7Rwq/V2At8
+ oaArE29NABTBcT4Vh20BXpsyHgZmuxa/JIU5gmJdMNyVhzobZptChb+OEVGOJ1DYHZks=;
+Received: from mail-he1eur04on2130.outbound.protection.outlook.com
+ ([40.107.7.130] helo=EUR04-HE1-obe.outbound.protection.outlook.com)
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1q8vjr-001NvX-F4 for linux-ntfs-dev@lists.sourceforge.net;
- Tue, 13 Jun 2023 04:34:39 +0000
-Received: by mail-pl1-f170.google.com with SMTP id
- d9443c01a7336-1b038064d97so29108015ad.0
- for <linux-ntfs-dev@lists.sourceforge.net>;
- Mon, 12 Jun 2023 21:34:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1686630874; x=1689222874;
- h=content-transfer-encoding:cc:to:subject:from:content-language
- :user-agent:mime-version:date:message-id:from:to:cc:subject:date
- :message-id:reply-to;
- bh=6qvka6//2uWaQtF0BTHBk1dA62rA7SJ2p/E0dmEtui4=;
- b=CuWsTUsbABTc5hOd8bT0WOWUbcCum4neovT/JXQjY4izeTMp1mmGNN578JJAJuThqr
- gRvb2OM+SGewUPIsHcvcHyOHCNektrCLkRET3vWkpg0bd8NXtKh13w4BxLSmgfgUs9m1
- 7G9mGWlRYhtjsDtUtlfj0UZ2lG5wjP93KbkjAw7lYrVpWBrOavnEyga+Lgq0EENLYnSw
- fEs/WdQrKMjwFIbjfH+b/kEMABI9kn2nbB8FbktVszcOfXGUpu2dnKKvj/2jIxLHXt0v
- 4/vJPJuIn7BymrDeXyvHEhd1sms3E+hwlWxYt1M86zT6LocMVPvnMgHlhCLv2dW8DDP4
- jQYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1686630874; x=1689222874;
- h=content-transfer-encoding:cc:to:subject:from:content-language
- :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
- :cc:subject:date:message-id:reply-to;
- bh=6qvka6//2uWaQtF0BTHBk1dA62rA7SJ2p/E0dmEtui4=;
- b=ixg45obs+TZZloHb58BuTK6nGarAEH8Iw1oj7KFm5bzyQBCXcUIpbnrY7tRRYc2QxK
- 4kChxw95PChcW9+LO6MKuLyZhsbdOGheDvWG3L+6NKUVtJvLoht82HGqI0Y7INne1z1c
- 3NgfYRA4UCrekhhBrqrskd3tpDX0OTleLMyec6ThvR0wnFMKzN4Qflpkqxk7Z8jRGqPq
- ztH3z4muSiEiIxO+LWVzt8jNOwU1UeYg5QS6Yaam3AUo36NzV3F+nT/mNyVRwhDqGrw1
- 1uIWZOzf8zRx+IcVhpOkWkd8EhFjae7JoY2APZQWoiAqqQ0IG1Qse8815tnTYRjSYInz
- Ia4Q==
-X-Gm-Message-State: AC+VfDxMa8VPLVIFcsAdS0uWya6KOYm3q0g4dr3ETnq1aOj4VK4jK8YF
- 9nyoiZGR+tZTCrrAMBMHcMqBNec8e8OmSw==
-X-Google-Smtp-Source: ACHHUZ6gZXx27tAfV3kMBiWPTFGugi2tredtGzduwgwFQ9144wq53mfjE7EBrnmgzWsxUghyAumcrA==
-X-Received: by 2002:a17:903:54:b0:1b2:421b:6f21 with SMTP id
- l20-20020a170903005400b001b2421b6f21mr7437782pla.9.1686630873753; 
- Mon, 12 Jun 2023 21:34:33 -0700 (PDT)
-Received: from [183.173.18.203] ([183.173.18.203])
- by smtp.gmail.com with ESMTPSA id
- jf6-20020a170903268600b001b3d8ac1b5csm2205865plb.219.2023.06.12.21.34.31
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 12 Jun 2023 21:34:32 -0700 (PDT)
-Message-ID: <0c336a41-54fb-2904-42e2-1d9ee3950b21@gmail.com>
-Date: Tue, 13 Jun 2023 12:34:30 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
+ id 1q94YD-001qND-E7 for linux-ntfs-dev@lists.sourceforge.net;
+ Tue, 13 Jun 2023 13:59:20 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YHiTMExcOtAEdhm7171DbwqQVjoxJUF8Y2kdQtoEQ4yrCH3WeUzHaOt/TZOhM4Mv90S8prkVHvLUlN4WleiM5SEzKQa/xuQdNDUWHKH/XjbHl7t3hO5+66suO0iBYBPX+PdRmOveWKJntcP4w7c0jV+eB657nZJyK+jxPCdYfWEZjj10OWUhkwWuUII86VvEeb9zqWd+9sP6tke6stnEQgtPwoUygKRqVzI5YZUVFHs3pZ2VY/4lGG4JkEeuJXLu1aPoYtj5NbqcGiFp4O1CUPfiNBpmgR1qN88kAdzdNTPPUC2j3fBbFGHpZ+oiM+uPvHuqHdafFgoekJ4aTonuXA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UHwniRR27yVzLP/gq8rU0422EQprtY2eRyHqttSz1Qo=;
+ b=jqzGsi7flcQbBm8cJDUGS69WryDRHB2T0ay4CXVKNXhBbPRLeFYgegv9QQFkmyCidWxlG1+WMzjoiDHAiGa/DjcxzMj8o10fNTh3BOG0Q/bcygXgbP0gOuxbfNaaX4+1+1ekmHVirNvC2i7rToMr4iy9g3Dt6keoeMDZUZiPTXkL+q4ZpHUMhoHFwtweTuuVFE7rBLHMIcX6js4Cj5I9Eq/juaYVLg/HvkPoNf8StCHG8uxP77qMuN0KK+BvjxArhLJFgrMH3H/25if2ueiQ0MvV82AJmmVz3ibPp3pBOTCvjRrl5TvZj4De0Vf+FV3CmrFVmyGtmy6B8BAUW6SmeQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=tuxera.com; dmarc=pass action=none header.from=tuxera.com;
+ dkim=pass header.d=tuxera.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tuxera.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UHwniRR27yVzLP/gq8rU0422EQprtY2eRyHqttSz1Qo=;
+ b=OTUJ6zOehVf23XaVhdtcl7fzOqz1tU1jPOdv/TRm06B1p78kYLNEf6SHECYS+tAg9ivZdRbb1UdxbEiFzP5pqUag3YUt6CGAxTV46CRnNzmYVaGVy8+jn+yHEE3sZMdrTT7ikqRrCpnMT8Ziu5y996KWDs+noa17ZDjoOgTiTsjzeuijGs06aL4l57gx8MFFlnlwX468rknLWsYVbugITr7TkXQb/FzZxc7TCPt3z4WIw4dQlziL0ZnK0JcPnNyDhpgtjlfIWGiu69fOI0gYsq5qqq1yWMhHL1YXe64TCOT5U837GxoY6Zc6RbEHTMaE15sBI0/LzfhuSoRoI+EWkA==
+Received: from AM0PR06MB5203.eurprd06.prod.outlook.com (2603:10a6:208:104::33)
+ by PAWPR06MB8884.eurprd06.prod.outlook.com (2603:10a6:102:38a::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6455.38; Tue, 13 Jun
+ 2023 08:24:19 +0000
+Received: from AM0PR06MB5203.eurprd06.prod.outlook.com
+ ([fe80::8a1b:cf75:a821:cccc]) by AM0PR06MB5203.eurprd06.prod.outlook.com
+ ([fe80::8a1b:cf75:a821:cccc%4]) with mapi id 15.20.6455.043; Tue, 13 Jun 2023
+ 08:24:19 +0000
+To: Tuo Li <islituo@gmail.com>
+Thread-Topic: [BUG] ntfs: possible data races in ntfs_clear_extent_inode()
+Thread-Index: AQHZnbBcskKTKtOEpEGWpA0pT3Z+aa+IZXcA
+Date: Tue, 13 Jun 2023 08:24:19 +0000
+Message-ID: <4A0F8558-72FC-49EA-9EDB-38BB3613E5B2@tuxera.com>
+References: <0c336a41-54fb-2904-42e2-1d9ee3950b21@gmail.com>
+In-Reply-To: <0c336a41-54fb-2904-42e2-1d9ee3950b21@gmail.com>
+Accept-Language: en-GB, en-US
 Content-Language: en-US
-From: Tuo Li <islituo@gmail.com>
-To: anton@tuxera.com, linkinjeon@kernel.org
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=tuxera.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AM0PR06MB5203:EE_|PAWPR06MB8884:EE_
+x-ms-office365-filtering-correlation-id: f8519ea4-18f0-41d9-07f7-08db6be79588
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: imko4pYvOrn4RWdCvb8+RIdgXxS5waXRGLaNvE38es5t7NbPXgfOHW/C6Vse8YxY1EAm2apROM4NhCX1wDI1Y7nDAEriHkxPfzD5g2zEHeP+oMBYQgN3U1vYQeLJ3qQYyCcuc3Y5Cpb71DpBLQrbNfKL5p14Qiny5WrmPIpPy07rUo1TYLd6PdIDmLJEKiGKtriTKnz/RVbI4AIXguUwc8b1rGqvlFmn2j5oZVm9nMFEVvPdtF5nzP92+CQ2C/5VtxxSgsarW/LLpLdW11+uY8q5Ay//euCIUfthOlMzZhM5V9S2tCnPjVkYAdjSyaZ0PToDxi77g7eUexv4tYSkPJLT1+mRHjMHetQ7aevjkIErpqXVKklqx3Ni0qBRBAocnDCy/jgYJa+UJlH6eMoPtZp4SNK1W4s3mca8CJF+F+U2XxQizvChUwnMSlgOMZvpwRXgwen9BlzEYCujWiso50pKlaOgFBDndGEaixSl2gETZlefKg5zyeGRCxb14to+CFIeFXRTPLmaxlsZDODriJ5F+x7YWMsPoSfs8gHRbqp+5gWSuGCuxsA35zFIsLc+XhGNBTQzItXa45xduaiiAiqlCHXkYClsqomnIFMuutumuR6VPCvN3UGlWgrNGRrXMFCcEoiRisX0hMdqOWK5ZA==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:AM0PR06MB5203.eurprd06.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(376002)(396003)(39840400004)(346002)(136003)(366004)(451199021)(2906002)(5660300002)(316002)(478600001)(41300700001)(54906003)(66446008)(71200400001)(64756008)(8936002)(4326008)(66556008)(66476007)(76116006)(91956017)(66946007)(6916009)(6486002)(8676002)(26005)(6512007)(6506007)(122000001)(966005)(53546011)(186003)(2616005)(83380400001)(38070700005)(36756003)(86362001)(33656002)(38100700002)(45980500001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?hNCiZ/YOuRNM5bmUnLsBOw0zRBqs47eoNfx62wyMhEy92lZQsgIXROO5cEBG?=
+ =?us-ascii?Q?eqi66TQcFRRkowPmWwzXzKA0KCX1Nt+FlB/xPRjlIwSuLmS96XrRvty1GIpR?=
+ =?us-ascii?Q?gvbbUetLpnDotYzSfYKNWDfqLxvUv0XiOg4sorQS08CTiBqVFGH4bXGNoNm4?=
+ =?us-ascii?Q?COL/ea4MSM2a1KKDozumLhFXsEdZkUx03le9M7iygdyQBFoh6vY1vwSghXij?=
+ =?us-ascii?Q?ox+ZVPu10bFMSl2fVTaNED4VdluEdjEzB7/tOsw/nFSvuCGT8H7ebFOA/tDG?=
+ =?us-ascii?Q?u8G7XY4fHx9cIpp/9uwGXs8yXS154CGdwpWWew/FTgLbHqJYz0LhID+8BZZ7?=
+ =?us-ascii?Q?v3D5RJ1ZM/0bTLNUZJTSSxuzmE7B5Dsl7xsVKrMF/7iB03APxsagSOMr9xHu?=
+ =?us-ascii?Q?IZsS/UJPMEXMu0f8CPkhD6zmkOtbeiNle71g3Mbj3qNOuOmk7C7H2w35BMhv?=
+ =?us-ascii?Q?M5wcf7zR87UoLZzhlB/7hCCml1NEPaNN/gYU3+dEVe7Q3j/DVmh4rwwmxkMz?=
+ =?us-ascii?Q?Z3xsUam2sD1e+dxEDSF4HkldqjunanyS99rIWJ2/YHQ5pS7hFKwBPZBUIqnP?=
+ =?us-ascii?Q?qyIXic5IeDY4M8OREANMNe7PfIL3OqCVm7bo/AZIQbOGQgcjxUnU7+cC+HyI?=
+ =?us-ascii?Q?GGaHmo5Z15MX4G+emxMIm5Aw97+x8NLsOuxu+fJ+FK7htp5LsKWj35r3Bt2c?=
+ =?us-ascii?Q?G8XCo7i6H69mqmHFj3ggjx35vCiWwjnOCwy2CTDaHO0ZqJbLfTJ3dcJNvQmX?=
+ =?us-ascii?Q?1nNai2nQOc1v6z4xitGrITcfsQ0DTWEh3ZpcoL440hAvmgabu33m1GNjNOio?=
+ =?us-ascii?Q?i2tkZZMLQ1wLlCv8gsYPYh0dilt5ItHjC8u4hIuAfJ+LvAHYaXamZ63WY4bu?=
+ =?us-ascii?Q?JuisxsY8l1b4N47/MndlEYHqrrbMJ70QZQBFx0F1zYgDmz1aoAS8C70hgNj6?=
+ =?us-ascii?Q?xCYrrY4a0PtJg7RwfJ+EgHoPKAOyCJhMRtG++zUzC0epPvf5u+lQ31mRfvFx?=
+ =?us-ascii?Q?x9RiVbWamy+CKpO3KyBhFcYSrSiAk/GCgMhhBOdZeVB4HEA1h39PtgVaJRhF?=
+ =?us-ascii?Q?mwdKT5ysFo4xy/l113jaug/XS2Vwkff1sp5vi24eBsLRbBZPUm/SVeL+sn7j?=
+ =?us-ascii?Q?zrtWXgkMUoH71RUjc+fwZS61tjLTd7pPJtP0fWdF47QHIUhptWyVWiz1MFXg?=
+ =?us-ascii?Q?NPsU48/5KC4LJ2EtoGI13R+lDg4tSmoyjUwpKgcyqgUukNZyDpcdySjXHOBQ?=
+ =?us-ascii?Q?LRrFL8O3eEofuuePuDr3vfPsLF5KS5PKGexww+7TqTVGgjcznxUxwgM4IuXd?=
+ =?us-ascii?Q?9fhJEf/hFKotlAmIIrloG5ls9kmvtxEXO0key9sxxA4vXyiQVpCAE0qF3kR1?=
+ =?us-ascii?Q?8KrcZKDXBdPEwzG8dcy8UGRJoTvfqRyE+c0+hRmyZmX0jyhcQCvYM8o9WG8l?=
+ =?us-ascii?Q?/rDRNoXWCNUllDY97M7yR62wmjcDHaO71ZTQzOutdIsiyByTsGFcmx4x9++0?=
+ =?us-ascii?Q?d9IUlI8OuBhIXpkNGMVG677AcYw2XUjaWlAgEzmdPyK9E10210J1riCEpN54?=
+ =?us-ascii?Q?yf6l43pv0vHxyHlMU3ZVpXn9c31L4tF6juPo22Ev?=
+MIME-Version: 1.0
+X-OriginatorOrg: tuxera.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR06MB5203.eurprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f8519ea4-18f0-41d9-07f7-08db6be79588
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Jun 2023 08:24:19.3123 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: e7fd1de3-6111-47e9-bf5d-4c1ca2ed0b84
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: E24ADhrojUaTpJRMx1lyVITnO2OuB2QLOGTfIlUYFlvsIxIRpD3xtuD9cX/hJL8UVlreInGpGSLdY1brRqwo7Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAWPR06MB8884
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
@@ -93,33 +134,30 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hello,
- Our static analysis tool finds some possible data races
- in the NTFS file system in Linux 6.4.0-rc6. In most calling contexts, the
- variable ni->ext.base_ntfs_ino is accessed with holding the lock
- ni->extent_lock. Here is an example: 
+ Content preview:  Hi,
+ These are all red herrings. You do not need to lock something
+ when there is no possibility of another process accessing the data structure.
+ All the functions you are quoting are inode destruction. By [...] 
  Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [40.107.7.130 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
- provider [islituo[at]gmail.com]
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [40.107.7.130 listed in wl.mailspike.net]
+ 0.0 HTML_MESSAGE           BODY: HTML included in message
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [209.85.214.170 listed in wl.mailspike.net]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.214.170 listed in list.dnswl.org]
  -0.0 T_SCC_BODY_TEXT_LINE   No description available.
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
-X-Headers-End: 1q8vjr-001NvX-F4
-X-Mailman-Approved-At: Tue, 13 Jun 2023 08:12:21 +0000
-Subject: [Linux-ntfs-dev] [BUG] ntfs: possible data races in
+X-Headers-End: 1q94YD-001qND-E7
+Subject: Re: [Linux-ntfs-dev] [BUG] ntfs: possible data races in
  ntfs_clear_extent_inode()
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -133,35 +171,203 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-ntfs-dev@lists.sourceforge.net, baijiaju1990@outlook.com,
+From: Anton Altaparmakov via Linux-ntfs-dev
+ <linux-ntfs-dev@lists.sourceforge.net>
+Reply-To: Anton Altaparmakov <anton@tuxera.com>
+Cc: "linux-ntfs-dev@lists.sourceforge.net"
+ <linux-ntfs-dev@lists.sourceforge.net>,
+ "baijiaju1990@outlook.com" <baijiaju1990@outlook.com>,
  Linux Kernel <linux-kernel@vger.kernel.org>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: multipart/mixed; boundary="===============5909642278670452228=="
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-SGVsbG8sCgpPdXIgc3RhdGljIGFuYWx5c2lzIHRvb2wgZmluZHMgc29tZSBwb3NzaWJsZSBkYXRh
-IHJhY2VzIGluIHRoZSBOVEZTIGZpbGUKc3lzdGVtIGluIExpbnV4IDYuNC4wLXJjNi4KCkluIG1v
-c3QgY2FsbGluZyBjb250ZXh0cywgdGhlIHZhcmlhYmxlIG5pLT5leHQuYmFzZV9udGZzX2lubyBp
-cyBhY2Nlc3NlZAp3aXRoIGhvbGRpbmcgdGhlIGxvY2sgbmktPmV4dGVudF9sb2NrLiBIZXJlIGlz
-IGFuIGV4YW1wbGU6CgogwqAgbnRmc19leHRlbnRfbWZ0X3JlY29yZF9mcmVlKCkgLS0+IExpbmUg
-Mjc3MyBpbiBmcy9udGZzL210Zi5jCiDCoMKgwqAgbXV0ZXhfbG9jaygmbmktPmV4dGVudF9sb2Nr
-KTsgLS0+IExpbmUgMjc4NiBpbiBmcy9udGZzL210Zi5jIChMb2NrIApuaS0+ZXh0ZW50X2xvY2sp
-CiDCoMKgwqAgYmFzZV9uaSA9IG5pLT5leHQuYmFzZV9udGZzX2lubzsgLS0+IExpbmUgMjc4NyBp
-biBmcy9udGZzL21mdC5jIAooQWNjZXNzIG5pLT5leHQuYmFzZV9udGZzX2lubykKCkhvd2V2ZXIs
-IGluIHRoZSBmb2xsb3dpbmcgY2FsbGluZyBjb250ZXh0czoKCiDCoCBudGZzX2V2aWN0X2JpZ19p
-bm9kZSgpIC0tPiBMaW5lIDIyNDcgaW4gZnMvbnRmcy9pbm9kZS5jCiDCoMKgwqDCoCBudGZzX2Ns
-ZWFyX2V4dGVudF9pbm9kZSgpIC0tPiBMaW5lIDIyNzQgaW4gZnMvbnRmcy9pbm9kZS5jCiDCoMKg
-wqDCoMKgwqDCoCBpZiAoIWlzX2JhZF9pbm9kZShWRlNfSShuaS0+ZXh0LmJhc2VfbnRmc19pbm8p
-KSkgLS0+IExpbmUgMjIyNCAKaW4gZnMvbnRmcy9pbm9kZS5jIChBY2Nlc3MgbmktPmV4dC5iYXNl
-X250ZnNfaW5vKQoKIMKgIG50ZnNfZXZpY3RfYmlnX2lub2RlKCkgLS0+IExpbmUgMjI0NyBpbiBm
-cy9udGZzL2lub2RlLmMKIMKgwqDCoCBuaS0+ZXh0LmJhc2VfbnRmc19pbm8gPSBOVUxMOyAtLT4g
-TGluZSAyMjg1IGluIGZzL250ZnMvaW5vZGUuYyAKKEFjY2VzcyBuaS0+ZXh0LmJhc2VfbnRmc19p
-bm8pCgp0aGUgdmFyaWFibGUgbmktPmV4dC5iYXNlX250ZnNfaW5vIGlzIGFjY2Vzc2VkIHdpdGhv
-dXQgaG9sZGluZyB0aGUgbG9jawpuaS0+ZXh0ZW50X2xvY2ssIGFuZCB0aHVzIGRhdGEgcmFjZXMg
-Y2FuIG9jY3VyLgoKSSBhbSBub3QgcXVpdGUgc3VyZSB3aGV0aGVyIHRoZXNlIHBvc3NpYmxlIGRh
-dGEgcmFjZXMgYXJlIHJlYWwgYW5kIGhvdyAKdG8gZml4IHRoZW0gaWYgdGhleSBhcmUgcmVhbC4K
-QW55IGZlZWRiYWNrIHdvdWxkIGJlIGFwcHJlY2lhdGVkLCB0aGFua3MhCgpSZXBvcnRlZC1ieTog
-QmFzc0NoZWNrIDxiYXNzQGJ1YWEuZWR1LmNuPgoKQmVzdCB3aXNoZXMsClR1byBMaQoKCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkxpbnV4LW50ZnMtZGV2
-IG1haWxpbmcgbGlzdApMaW51eC1udGZzLWRldkBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQKaHR0cHM6
-Ly9saXN0cy5zb3VyY2Vmb3JnZS5uZXQvbGlzdHMvbGlzdGluZm8vbGludXgtbnRmcy1kZXYK
+--===============5909642278670452228==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_4A0F855872FC49EA9EDB38BB3613E5B2tuxeracom_"
+
+--_000_4A0F855872FC49EA9EDB38BB3613E5B2tuxeracom_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+These are all red herrings.  You do not need to lock something when there i=
+s no possibility of another process accessing the data structure.  All the =
+functions you are quoting are inode destruction.  By very definition nothin=
+g can possibly have a reference on an inode which is in this code path as i=
+t only gets called when there are no references left.  The inode is about t=
+o be freed so any access to it would be accessing freed memory.
+
+Thus your static analysis tool is giving you false positive because it does=
+n't understand the context of what is going on.
+
+Best regards,
+
+Anton
+
+On 13 Jun 2023, at 05:34, Tuo Li <islituo@gmail.com> wrote:
+
+Hello,
+
+Our static analysis tool finds some possible data races in the NTFS file
+system in Linux 6.4.0-rc6.
+
+In most calling contexts, the variable ni->ext.base_ntfs_ino is accessed
+with holding the lock ni->extent_lock. Here is an example:
+
+  ntfs_extent_mft_record_free() --> Line 2773 in fs/ntfs/mtf.c
+    mutex_lock(&ni->extent_lock); --> Line 2786 in fs/ntfs/mtf.c (Lock ni->=
+extent_lock)
+    base_ni =3D ni->ext.base_ntfs_ino; --> Line 2787 in fs/ntfs/mft.c (Acce=
+ss ni->ext.base_ntfs_ino)
+
+However, in the following calling contexts:
+
+  ntfs_evict_big_inode() --> Line 2247 in fs/ntfs/inode.c
+     ntfs_clear_extent_inode() --> Line 2274 in fs/ntfs/inode.c
+        if (!is_bad_inode(VFS_I(ni->ext.base_ntfs_ino))) --> Line 2224 in f=
+s/ntfs/inode.c (Access ni->ext.base_ntfs_ino)
+
+  ntfs_evict_big_inode() --> Line 2247 in fs/ntfs/inode.c
+    ni->ext.base_ntfs_ino =3D NULL; --> Line 2285 in fs/ntfs/inode.c (Acces=
+s ni->ext.base_ntfs_ino)
+
+the variable ni->ext.base_ntfs_ino is accessed without holding the lock
+ni->extent_lock, and thus data races can occur.
+
+I am not quite sure whether these possible data races are real and how to f=
+ix them if they are real.
+Any feedback would be appreciated, thanks!
+
+Reported-by: BassCheck <bass@buaa.edu.cn>
+
+Best wishes,
+Tuo Li
+
+--
+Anton Altaparmakov <anton at tuxera.com> (replace at with @)
+Lead in File System Development, Tuxera Inc., http://www.tuxera.com/
+Linux NTFS maintainer
+
+
+--_000_4A0F855872FC49EA9EDB38BB3613E5B2tuxeracom_
+Content-Type: text/html; charset="us-ascii"
+Content-ID: <5A309D0A7C1D4642B8FB1F76C733ED44@eurprd06.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+</head>
+<body style=3D"overflow-wrap: break-word; -webkit-nbsp-mode: space; line-br=
+eak: after-white-space;">
+Hi,
+<div><br>
+</div>
+<div>These are all red herrings. &nbsp;You do not need to lock something wh=
+en there is no possibility of another process accessing the data structure.=
+ &nbsp;All the functions you are quoting are inode destruction. &nbsp;By ve=
+ry definition nothing can possibly have a reference
+ on an inode which is in this code path as it only gets called when there a=
+re no references left. &nbsp;The inode is about to be freed so any access t=
+o it would be accessing freed memory.</div>
+<div><br>
+</div>
+<div>Thus your static analysis tool is giving you false positive because it=
+ doesn't understand the context of what is going on.</div>
+<div><br>
+</div>
+<div>Best regards,</div>
+<div><br>
+</div>
+<div><span class=3D"Apple-tab-span" style=3D"white-space:pre"></span>Anton<=
+br>
+<div><br>
+<blockquote type=3D"cite">
+<div>On 13 Jun 2023, at 05:34, Tuo Li &lt;islituo@gmail.com&gt; wrote:</div=
+>
+<br class=3D"Apple-interchange-newline">
+<div>
+<div>Hello,<br>
+<br>
+Our static analysis tool finds some possible data races in the NTFS file<br=
+>
+system in Linux 6.4.0-rc6.<br>
+<br>
+In most calling contexts, the variable ni-&gt;ext.base_ntfs_ino is accessed=
+<br>
+with holding the lock ni-&gt;extent_lock. Here is an example:<br>
+<br>
+&nbsp; ntfs_extent_mft_record_free() --&gt; Line 2773 in fs/ntfs/mtf.c<br>
+&nbsp;&nbsp;&nbsp; mutex_lock(&amp;ni-&gt;extent_lock); --&gt; Line 2786 in=
+ fs/ntfs/mtf.c (Lock ni-&gt;extent_lock)<br>
+&nbsp;&nbsp;&nbsp; base_ni =3D ni-&gt;ext.base_ntfs_ino; --&gt; Line 2787 i=
+n fs/ntfs/mft.c (Access ni-&gt;ext.base_ntfs_ino)<br>
+<br>
+However, in the following calling contexts:<br>
+<br>
+&nbsp; ntfs_evict_big_inode() --&gt; Line 2247 in fs/ntfs/inode.c<br>
+&nbsp;&nbsp;&nbsp;&nbsp; ntfs_clear_extent_inode() --&gt; Line 2274 in fs/n=
+tfs/inode.c<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!is_bad_inode(VFS_I(ni-&gt;e=
+xt.base_ntfs_ino))) --&gt; Line 2224 in fs/ntfs/inode.c (Access ni-&gt;ext.=
+base_ntfs_ino)<br>
+<br>
+&nbsp; ntfs_evict_big_inode() --&gt; Line 2247 in fs/ntfs/inode.c<br>
+&nbsp;&nbsp;&nbsp; ni-&gt;ext.base_ntfs_ino =3D NULL; --&gt; Line 2285 in f=
+s/ntfs/inode.c (Access ni-&gt;ext.base_ntfs_ino)<br>
+<br>
+the variable ni-&gt;ext.base_ntfs_ino is accessed without holding the lock<=
+br>
+ni-&gt;extent_lock, and thus data races can occur.<br>
+<br>
+I am not quite sure whether these possible data races are real and how to f=
+ix them if they are real.<br>
+Any feedback would be appreciated, thanks!<br>
+<br>
+Reported-by: BassCheck &lt;bass@buaa.edu.cn&gt;<br>
+<br>
+Best wishes,<br>
+Tuo Li<br>
+</div>
+</div>
+</blockquote>
+</div>
+<br>
+<div>
+<div>--&nbsp;<br>
+Anton Altaparmakov &lt;anton at&nbsp;tuxera.com&gt; (replace at with @)<br>
+Lead in File System Development, Tuxera&nbsp;Inc., http://www.tuxera.com/<b=
+r>
+Linux NTFS maintainer</div>
+</div>
+<br>
+</div>
+</body>
+</html>
+
+--_000_4A0F855872FC49EA9EDB38BB3613E5B2tuxeracom_--
+
+
+--===============5909642278670452228==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+
+--===============5909642278670452228==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Linux-ntfs-dev mailing list
+Linux-ntfs-dev@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev
+
+--===============5909642278670452228==--
+
