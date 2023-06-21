@@ -2,163 +2,209 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 235F072DD20
-	for <lists+linux-ntfs-dev@lfdr.de>; Tue, 13 Jun 2023 10:58:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E6EB737FB6
+	for <lists+linux-ntfs-dev@lfdr.de>; Wed, 21 Jun 2023 12:50:34 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1q8zqu-0006fH-RJ;
-	Tue, 13 Jun 2023 08:58:13 +0000
+	id 1qBvPy-00070t-Tb;
+	Wed, 21 Jun 2023 10:50:31 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <anton@tuxera.com>) id 1q8zqt-0006fB-4k
- for linux-ntfs-dev@lists.sourceforge.net;
- Tue, 13 Jun 2023 08:58:12 +0000
+ (envelope-from <j.granados@samsung.com>) id 1qBtrS-0005SR-Mk;
+ Wed, 21 Jun 2023 09:10:47 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=MIME-Version:Content-Transfer-Encoding:Content-ID:
- Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From:Sender
- :Reply-To:Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To
- :Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=References:Content-Type:Content-Transfer-Encoding:
+ MIME-Version:In-Reply-To:Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=VTyE9g7iGNaQTF8TMQD8kODx8ca55M8mLWpzfi2pdEA=; b=OzGDF0ufcqlvahJWJzQNNe6eXn
- +KrNK4RhNFgCBGUz/omT0uDucsXSGGAgf2qJqOjFq+aiPDozgXcPPOy+Ep6dDyihFjABk4eQZPds2
- tPjFDA8TYpQx6nV7461XzMcp1ieRETI2HepN2lGw30EKOVNCB2HhnL62MrXEoRLlQTik=;
+ bh=A9vJqtefMweXRl5hA0piF7XKpY7+Y1RrvCTm+EtEXlQ=; b=QmDRXMGXKzJbHtD66lJb+ruiHQ
+ 5Zf7Z9ct6H5zzeCXBXvAgLjLCyrQ30ov+a5fHBRX5/M50b0tqLJixu4AAY3VLqC9o1cCa9NYa6pMO
+ bkK8geIiyiFQBurP9Y8WEaYOtKumzaab9rdZSv889MY9KBOx9DZbkPBAr5zuXA8P0zEg=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:
- In-Reply-To:References:Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:
+ h=References:Content-Type:Content-Transfer-Encoding:MIME-Version:
+ In-Reply-To:Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=VTyE9g7iGNaQTF8TMQD8kODx8ca55M8mLWpzfi2pdEA=; b=J60Ig8S1sqpcvhhU7BP8R3B6yj
- lkGU2s3WqzR5zl5xfu8BwaAFWMCbPmCFaQcaa6bYOdvWBzOCBzhU+MM4s6hU5AWXOFd1vracAT/D4
- MFarxLTMB7OX2R9Z6pARfHT0Shs2f6XeWJRaNOV6gid22/dgemXZBOO2h3qisxbCF/A4=;
-Received: from mail-am7eur03on2130.outbound.protection.outlook.com
- ([40.107.105.130] helo=EUR03-AM7-obe.outbound.protection.outlook.com)
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ bh=A9vJqtefMweXRl5hA0piF7XKpY7+Y1RrvCTm+EtEXlQ=; b=gjhujMxakFBrU9z6AVws63yREk
+ QWOW7rBAHPm00R4f0Uwoy2bQmkMlsnWYe1UAkf4LWblCZOxUCWRdzu0mqTqYwgIBoQksocoVepjFp
+ RcpvvQFzOJMpUqmDfdyDcpfh+y5O/uLEGXS1Vnk3LNwm9OIJA4pexK4ea/ZfNa+pKJ60=;
+Received: from mailout1.w1.samsung.com ([210.118.77.11])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1q8zqo-0001X7-EE for linux-ntfs-dev@lists.sourceforge.net;
- Tue, 13 Jun 2023 08:58:11 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=F9QnHRnDYD4N5pHmKkcBv4GM6oDn5Q4v8Y9x/9yVcR3f9Rhpxj2nQCFb1NZMyFvwwW4GdoyW3hWpjwnhx9QHuqg+/M8tOaBMwpOShCLVUEiL0LRCaOXuWTXOksZdLXBUUopUu6LGcr0i2GdSY/32VKE/pIDHLQJDNskJQPhltzhaDPJ45L9LkyXyPVJpm5JZh26kxSxlf4VYcji3jKr758TmHfTIqgn9X+PlVQ1ZzkkDPl8nVo9xIwLgL6nvV5X5Tub6LMURZUYD33GWc7vyWFG9UrlQsT11HpO7BJGlE6pfGJU4WDs1+lirbCaE8vibEvho+/FKYv1P69sOxX6aNg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VTyE9g7iGNaQTF8TMQD8kODx8ca55M8mLWpzfi2pdEA=;
- b=husFDmqEqLHdb/oji3i6Dj+OTZkjJA3qhrIFn6DHJv9Upur2Q5UlHAimKcZUS5p46AS/+teX3MbKOmCUySfObS8BEeYHVl6YjdO3ghmubwHv9v3x0K3Sje0FPCh+K4jiSr+lfqf9SxQnysuEFGH/26dv4OvYwlrdQfY7QpaDQ/n1ENdlQuJ8cWhWqCeKInbm69/WdVwwwtlfvsZHDtKUYX2L63Wx3lj5xIWUi+efvoMuU4ar3N7R7guSVtMb4Ijx8URGmt6+M/FAh6VTZq7feneEofW+Kswxv42/2FxSCYKt8xNxQVkn3hHSZKh99Ah6iro5xzBKzAe6RBU1pDdpjw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=tuxera.com; dmarc=pass action=none header.from=tuxera.com;
- dkim=pass header.d=tuxera.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tuxera.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VTyE9g7iGNaQTF8TMQD8kODx8ca55M8mLWpzfi2pdEA=;
- b=bK2lM/4656NIWzev1lxqASgMjRbXJLEcwCteSMwdaXkhpaMO8/23B4tr4L0cWGXk6WumqmAHbhSYaMd2TMrfdMy+63VEZm2Nvdty/qJFe1BuXxyODes+YyDi7WNOgULKxqkZJnWR0K3miIa59q70XlqCCh8LWqbtHQPOWHDgP3KFo+8G9Ip9QbhtTFHZGi33IKu6vZotd2T9GADWu1uCm6lkViYv4v0FMFg6PRG7UP56sABEmdhqLGe/87nJb8VPq2ED9UZXgGrAjkqxLLaa3m56GjHOr+w9X+3BIdMmrc7HOH386OStqtegfl7ZBkfqjHpa9pzNUJmqQyFcU7Bh0w==
-Received: from AM0PR06MB5203.eurprd06.prod.outlook.com (2603:10a6:208:104::33)
- by AM8PR06MB6962.eurprd06.prod.outlook.com (2603:10a6:20b:1d1::6)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6477.29; Tue, 13 Jun
- 2023 08:57:57 +0000
-Received: from AM0PR06MB5203.eurprd06.prod.outlook.com
- ([fe80::8a1b:cf75:a821:cccc]) by AM0PR06MB5203.eurprd06.prod.outlook.com
- ([fe80::8a1b:cf75:a821:cccc%4]) with mapi id 15.20.6455.043; Tue, 13 Jun 2023
- 08:57:57 +0000
-To: Tuo Li <islituo@gmail.com>
-Thread-Topic: [BUG] ntfs: possible data races in ntfs_clear_extent_inode()
-Thread-Index: AQHZnbBcskKTKtOEpEGWpA0pT3Z+aa+Ibt0A
-Date: Tue, 13 Jun 2023 08:57:57 +0000
-Message-ID: <5073179D-A781-40B4-8866-0288B29AE4D6@tuxera.com>
-References: <0c336a41-54fb-2904-42e2-1d9ee3950b21@gmail.com>
-In-Reply-To: <0c336a41-54fb-2904-42e2-1d9ee3950b21@gmail.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=tuxera.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AM0PR06MB5203:EE_|AM8PR06MB6962:EE_
-x-ms-office365-filtering-correlation-id: 652fc101-94e2-493e-8252-08db6bec486b
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 5kziteQW7vpPHy+uyGv2Qp8TgnIxPxeenvinFhznHpLbsIVLt5Ko8GfMdWBSULnoIk7/aL7JMv+4Gqt2w4N9MmiFI4elqj1A4686pjGk6ul/YhRVg4WRvZ+FovOTkzUFgf4bxUmQfIMIQPf5pEQQ6D5JahvSReHGrpSlIQbYiGq/2leMyV0oVeF8yCFLQ+D4H+a1JFxvJlLkIIMDuVyJhIaTGVGr5VoO6bZ18AH5M1fiqORBLMu8nCIct7786k7+xKey3D0xUqhm/nxDA+3Q4aaShW9cGQ4yeu+JjIWYyK/+rrBUThHtzQC2s4KkD0ZJaKf4YqQdMKKO7PZmHVFqWtcRXuYjF2xe3lpz9YoSs/YOVEWbVt5eGuSiyKqQTla0ApcBFVZSmwqAoCKGoRSY9C3GWxMJxcNqIQLrtDkm0MXZ1jTCe3h2c5CORcOMlI0jmw8KNgBkHOOTLJuSRfnZ4DEy85ctq/KaVbP+qPKqpsXdTLggu1aP2C0KSqVufkS/wONS7S074qK8UuMZmMHHI/N/rgvXeMuSJTl9CtEcounfj8rSVEwRBsLiG/DbAwnrNCvCVCEI3c49HDxtvMjRXzYuy1qKT28vdSjoacTQEABmbLc4Y98A8VVUI8g9Hz0YjJ/V9nG90p1g+K3H2EbfTQ==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:AM0PR06MB5203.eurprd06.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(346002)(396003)(376002)(366004)(39840400004)(136003)(451199021)(966005)(6486002)(316002)(41300700001)(2616005)(6506007)(186003)(2906002)(38070700005)(26005)(86362001)(53546011)(33656002)(6512007)(122000001)(38100700002)(83380400001)(8676002)(5660300002)(36756003)(8936002)(76116006)(66476007)(66946007)(66556008)(478600001)(91956017)(54906003)(4326008)(71200400001)(6916009)(66446008)(64756008)(45980500001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?hP71Jt08rPsNsz9nj/ecDnmz/qNsCavq3GHd7FqXEqqcSFxnZousFIpmClgX?=
- =?us-ascii?Q?JUu9VPUVwUIrsV94cnhH0Qvdpx/iAsQd5xoQr/3eecuIEpb3UKM7Bi7WxWnq?=
- =?us-ascii?Q?rFWm9KVclfwnAluGWX46m0mi6S51bID/FOjrh7AyqeN/DgDP/O5PHoA9v/2E?=
- =?us-ascii?Q?RJrAt5oMJopDELlzyqfhzoski7rT5z5usQh4FuSwuuBrxAqUx1Mn/CnPGzk9?=
- =?us-ascii?Q?3q3ing5XnTw7t4q72w8gOoG/BZYyNd/A6wl+PqbGP93yLiRo5txn1XbpwgWw?=
- =?us-ascii?Q?cE109yZuIXFvpZh2zhXMN0qnshq/kS+hh3jP6fFFFhfLyrxKO7L9Xliv/7Gj?=
- =?us-ascii?Q?HD/stfhtc3Ew0fiTLVb6HsfilSZ8fN7ADYxOr9GPgRVr7SQFUeuM4RUDG+3e?=
- =?us-ascii?Q?EdV5fhV3pE4nXDZomqeHi1twX1RDrghkDh7RX/NdSV5GfCvmyOouszNtj9XD?=
- =?us-ascii?Q?Ngpu4N+cuh6qBLn8S55d+WISkUepTR4Y2qctMzk+LWETZfLmamUHLf9aK5Pe?=
- =?us-ascii?Q?+xgiW0uTgut2ROevEcHzWykLWd6CRjznZEEiUbj+FgR9pMQQVNO+wmAXou9s?=
- =?us-ascii?Q?goJ27LJfwI4E5Yck14j13Q4eGKasOI4+Z0XGqzZnIOjKBMXBmoCkVBH1YRMw?=
- =?us-ascii?Q?zZV3CBQ/HUEN1r7lqVVwZiI/WdI14Fl9x0onTULXckNQKLc8kwlhKjE5gl/5?=
- =?us-ascii?Q?8eTd6bt/tgp7vBjMdZ+bwNRTw6EvCvgymJxngg6JLu7gdkQ24tYnGoLvs/ZM?=
- =?us-ascii?Q?H4+sX14D/Y/ct1lEVcwMJRpAPW2E94NLzNNWBPFmHjz9afi2NYCGmv0MG4Oi?=
- =?us-ascii?Q?unUObtjrVfPrnTv4qpIB5C/2VPADu/NYlIrjfKWYnjGW3UzLDcDK4tCjlHBF?=
- =?us-ascii?Q?kB5TgqV1kaiGaqA8v6rOX0Z0qbTXYE0Td0mpdhSlWhQPCEMWjPwbcuo1mme/?=
- =?us-ascii?Q?AmjVJ/z7v+eE3su3D1sEntoBvGE2VFHI8dnoAX0Dd3S5vaEYJ4fB8zCs340A?=
- =?us-ascii?Q?7TyBx3pjOK7Huc2jG0CqOysXDIEYIUpWvHffLtEdEaEbQPwb3yFnMaK75Np3?=
- =?us-ascii?Q?HUkrazLtv8IsH+Cmb9/fE0dbimbXGWMS8dV3Cizl54U9SkOL5ZBRKpZvNOA5?=
- =?us-ascii?Q?3c4iiIIQfKG9TyDsT6DRnc3MJTy4iLN6kBAuUiS3JvcyI5LHaDw5Fw4zxXkH?=
- =?us-ascii?Q?OLOak50wNw818U2B624vW8DwmsgXgf9pdBpGnLPI8twwy1RyWAS98/P9qV8v?=
- =?us-ascii?Q?05I3hmgcajJ3Mr51zp1ZgzTKzyYuWw0yro0+vtcJyIsx8Qk1m5XGtfb1BAsE?=
- =?us-ascii?Q?bdWx57RXu8pvlP5g0OBJl10901RwKwpBDFn76jyB9Eq5duB+vvr3a78R/S0k?=
- =?us-ascii?Q?5xepVJvLDZoBd2wlHSrC2ZeIzCWAWMaVCsfdiow+kUp7z0r60BNiIveLHeTN?=
- =?us-ascii?Q?VofJ8mJLJXRLG6KfmL/RwisPuXRD56Ec7kQGZ30xnRHYow5YyUu956AIA6X8?=
- =?us-ascii?Q?aWqW1KZarUK8EGC0xeBMD5cbW7zFnvOBEGXt2ghSFsZOzYlOMjzR1FhsVKAW?=
- =?us-ascii?Q?PWBttDWSGVEELdOpGczY1lEhg4HpTom1hI3QvUXn?=
-Content-ID: <A892F7F4E0985940A28A15764A50996F@eurprd06.prod.outlook.com>
+ id 1qBtrN-00AVWk-Uk; Wed, 21 Jun 2023 09:10:47 +0000
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+ by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id
+ 20230621091030euoutp014ad40326cb733a0a56272604c4496620~qoYt05suO1148511485euoutp01L;
+ Wed, 21 Jun 2023 09:10:30 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com
+ 20230621091030euoutp014ad40326cb733a0a56272604c4496620~qoYt05suO1148511485euoutp01L
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+ s=mail20170921; t=1687338630;
+ bh=A9vJqtefMweXRl5hA0piF7XKpY7+Y1RrvCTm+EtEXlQ=;
+ h=From:To:CC:Subject:Date:In-Reply-To:References:From;
+ b=Ka4ZfoeHZ9KJZ0KIhhdzO1ExiUUNFd4pQTnInOxAgqyf0eUSdqf9fGf4ADqTzHos1
+ ywZFhN8UlbjrBOzPZnyD8ZTVyakxnTGgnKeSkWsclDeJldAylGgwILHjQdvJGQ1yCF
+ Ta2ndNd0iIyvJvB9swtxZqirf7z/BsD/JzVDihvI=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+ eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+ 20230621091030eucas1p2b9431b5e8ae4acfd91cec8a259953008~qoYtbzuHT2538825388eucas1p2C;
+ Wed, 21 Jun 2023 09:10:30 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+ eusmges3new.samsung.com (EUCPMTA) with SMTP id 1D.84.37758.58EB2946; Wed, 21
+ Jun 2023 10:10:30 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+ eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+ 20230621091029eucas1p2f9fd694dae3dfbdfffd25dccf4fcb568~qoYsgN9G-1816318163eucas1p2-;
+ Wed, 21 Jun 2023 09:10:29 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+ eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+ 20230621091029eusmtrp2a0edd6b63446d061037baf6b483c48bb~qoYsaZmkS2225722257eusmtrp2B;
+ Wed, 21 Jun 2023 09:10:29 +0000 (GMT)
+X-AuditID: cbfec7f5-815ff7000002937e-7e-6492be85d3cb
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+ eusmgms2.samsung.com (EUCPMTA) with SMTP id D9.E1.14344.48EB2946; Wed, 21
+ Jun 2023 10:10:28 +0100 (BST)
+Received: from CAMSVWEXC02.scsc.local (unknown [106.1.227.72]) by
+ eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+ 20230621091028eusmtip2a2c40ec1c961aabd77e7ae0ea239ab31~qoYr28XcU1980519805eusmtip2i;
+ Wed, 21 Jun 2023 09:10:28 +0000 (GMT)
+Received: from localhost (106.210.248.248) by CAMSVWEXC02.scsc.local
+ (2002:6a01:e348::6a01:e348) with Microsoft SMTP Server (TLS) id 15.0.1497.2;
+ Wed, 21 Jun 2023 10:10:27 +0100
+From: Joel Granados <j.granados@samsung.com>
+To: <mcgrof@kernel.org>, Russell King <linux@armlinux.org.uk>, Catalin
+ Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Michael
+ Ellerman <mpe@ellerman.id.au>, Heiko Carstens <hca@linux.ibm.com>, Vasily
+ Gorbik <gor@linux.ibm.com>, Alexander Gordeev <agordeev@linux.ibm.com>,
+ Gerald Schaefer <gerald.schaefer@linux.ibm.com>, Andy Lutomirski
+ <luto@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar
+ <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, Dave Hansen
+ <dave.hansen@linux.intel.com>, <x86@kernel.org>, Herbert Xu
+ <herbert@gondor.apana.org.au>, "David S. Miller" <davem@davemloft.net>, Russ
+ Weight <russell.h.weight@intel.com>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, Phillip Potter <phil@philpotter.co.uk>,
+ Clemens Ladisch <clemens@ladisch.de>, Arnd Bergmann <arnd@arndb.de>, Corey
+ Minyard <minyard@acm.org>, Jani Nikula <jani.nikula@linux.intel.com>, Joonas
+ Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, "K. Y.
+ Srinivasan" <kys@microsoft.com>, Haiyang Zhang <haiyangz@microsoft.com>, Wei
+ Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>, Benjamin
+ Herrenschmidt <benh@kernel.crashing.org>, Song Liu <song@kernel.org>, Robin
+ Holt <robinmholt@gmail.com>, Steve Wahl <steve.wahl@hpe.com>, Sudip
+ Mukherjee <sudipm.mukherjee@gmail.com>, Mark Rutland <mark.rutland@arm.com>,
+ "James E.J. Bottomley" <jejb@linux.ibm.com>, "Martin K. Petersen"
+ <martin.petersen@oracle.com>, Doug Gilbert <dgilbert@interlog.com>, David
+ Howells <dhowells@redhat.com>, Jan Harkes <jaharkes@cs.cmu.edu>,
+ <coda@cs.cmu.edu>, Alexander Viro <viro@zeniv.linux.org.uk>, Christian
+ Brauner <brauner@kernel.org>, Chuck Lever <chuck.lever@oracle.com>, Jeff
+ Layton <jlayton@kernel.org>, Trond Myklebust
+ <trond.myklebust@hammerspace.com>, Anna Schumaker <anna@kernel.org>, Jan
+ Kara <jack@suse.cz>, Anton Altaparmakov <anton@tuxera.com>, Mark Fasheh
+ <mark@fasheh.com>, Joel Becker <jlbec@evilplan.org>, Joseph Qi
+ <joseph.qi@linux.alibaba.com>, Kees Cook <keescook@chromium.org>, Iurii
+ Zaikin <yzaikin@google.com>, Eric Biggers <ebiggers@kernel.org>, "Theodore
+ Y. Ts'o" <tytso@mit.edu>, "Darrick J. Wong" <djwong@kernel.org>, John Stultz
+ <jstultz@google.com>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+ <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, John Johansen
+ <john.johansen@canonical.com>, Paul Moore <paul@paul-moore.com>, James
+ Morris <jmorris@namei.org>, "Serge E. Hallyn" <serge@hallyn.com>
+Date: Wed, 21 Jun 2023 11:09:56 +0200
+Message-ID: <20230621091000.424843-8-j.granados@samsung.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20230621091000.424843-1-j.granados@samsung.com>
 MIME-Version: 1.0
-X-OriginatorOrg: tuxera.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR06MB5203.eurprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 652fc101-94e2-493e-8252-08db6bec486b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Jun 2023 08:57:57.4307 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: e7fd1de3-6111-47e9-bf5d-4c1ca2ed0b84
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: RBn0PoAi34nRK74th+2gnqKUwZv6Ui1wVEP1JIE8sP9oUwzZwBJm003JGQ++uDMZ39XyXxwq3pqDHYktzxukhg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR06MB6962
-X-Spam-Score: -0.2 (/)
+X-Originating-IP: [106.210.248.248]
+X-ClientProxiedBy: CAMSVWEXC01.scsc.local (2002:6a01:e347::6a01:e347) To
+ CAMSVWEXC02.scsc.local (2002:6a01:e348::6a01:e348)
+X-Brightmail-Tracker: H4sIAAAAAAAAA01Te0xTdxTe797bewsRdi1m/AJsRBS26ETcWHLcREe26M10zswlW3xtBa5g
+ pOBa1OkyQylvnNE6BgJDEOTRIoWKKAQ6x5CHbLxaqEzU8Iq1CK0iIg9hwmUL/33nfN93ft85
+ yU9MSvoYN/GhiCheHiEN96IdqcqGybZ18QZ1iF+MiYDylkc0NJkvEdBeqkUQVzVHQZW+QgTK
+ hhwRvFQ3MGCPiSNh4GUdDWNlszQM//kUga3gNIJe9UMG5u49JCC/qY+A5yV3CIhWzdBgKUtA
+ kNUWS4EhVo/AkH6FhtGYaQqMg85gGrfRcKVmhoShhn4GkvrnaLCpDkB7xnMRqPJ0NHRf52A4
+ W4MgxeoBv5a7QubZqwRkpqkIuHw3SQSFRh2CyQINA82tzyko1eUR0PQsjobaXAKKC14wMNNU
+ TsNfKTJorzwjgkHtNQb0A90ieJJ/m4EH9ycJqKltpiD1nJ0Ge+KoCIzVWTS032wRQUJiFoKE
+ i9UIzuaqSEgx33glOd1PQ/XMDQbqUmsRTE/Mij4O4Yym7dxE3BmKK8kuQZyxu4PkpqfUiMuI
+ /pnmMqM7KE5bUk9yOfU7uPGeVoKrKO4huEuPoiluqONLTtejprmqjHsMV3nTe9eGPY6bQvjw
+ Q8d4+frN3zmGJXbqyCMdvxE/jA6Pi6KR0YqSkYMYs/64vKiVSUaOYglbhHBL2zlynpCwzxBu
+ N0oEYgzhyuQiOhmJFxy56eFCvxDhqxoj9b/owS+xtFBcQ7hB00XMj6LZd3Hb415ynljB9qzA
+ 2Y9tzDxBsjUO2F4QNI9d2A9x8/nLC6Eo1ht3jF9a0Dixm/D9Zh0hhPXE8ea0BY0DG4DbBmyU
+ oFmOmy8MUsJMT6y6lkkKGOM/LBZS8K7CZkMeLeCf8O2Kf4j5QJjVLMOp1VOLD3yK1Vlji5dx
+ wdbGCkbAHniu6uKi4TzCv8/aGaHQIlygHF90f4RjTYOLjkDcWKoXCRdzxndGlguJnLG6Mo0U
+ 2k44MV5yFq3OWLJDxpIdMpbskINIDXLljypkobzi/Qj+uK9CKlMcjQj1DY6U6dGrX9gy2zh+
+ AxVZn/jWIUKM6hAWk14rnN7Uq0MkTiHSEyd5eeS38qPhvKIOuYspL1entQHNwRI2VBrFH+b5
+ I7z8P5YQO7hFE/7FiVs+/2J90dpY/7vDriO3cps6TtkOvpG3/+v81ebOiVPKigsDhf3Ht76z
+ j9neuHHHhOmkqcsn823tMn5j/i3vfM8Xfrdd1mYZdMemNfa/PWJ2H4h6r90tOVPu97qhac1l
+ sso2G540InPxsRz+QDm0bqusOrl+MruY89oW9iyoxn8vUbClnNlzOmen7cfXwgJ2f2Wx7ht4
+ emp5drU2zRK036PXuHNXY2Bwf8jBBDbA8cL1vsNsWeSUuQZk3n7uzmbVmLR31d4TnVGp9k92
+ +tlSyjiW9Em35OUOKR8mTFl9rAwRqEw7QV0E2/SB7z97sbnT/Ru9y8qVruu2PfI3tLyV31Xh
+ RSnCpBvWkHKF9F+mKDof9AQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Te0xbZRiH851zek5ZhNUO5Ii4YXeJ063j7gsy1On0KMSJMSY6BnRQAW2B
+ 9aIDGSkU5CqBLm6zXMelC+M2KiAQIMqQcZmUrhsdk7GMizAgUMZgTm4WGhP+e77f9/zeL98f
+ LxvnZlAO7MgomVASJRDxyB1E3/qNkcPJ7aow5+xMN6jre0RCt7EEg4GaSgQpzRsENGvrWZDY
+ VcyCNVUXBaakFBzG1jpIWLy2TsLM9ccI5jVZCIZVkxRs3J/EoKz7IQbLVXcxUChXSdhozMVh
+ 6loqgnxdMgHtyVoE7ZeqSZhLWiHAMG4Dt5fmSahuXcVhomuUgvTRDRLmlUEwoF5mgbK0loTB
+ XxmYKbyKIHPaES7U2UNezi8Y5F1UYlD+VzoLrhhqEZTcbcTgmeYqBT39ywTU1JZi0P0khYS2
+ yxhUaP6hYLW7joSbmWIYaMxmwXhlAwXasUEWLJT1UvBg5BkGrW09BPyUayLBlDbHAkNLPgkD
+ v/WxIDUtH0FqUQuCnMtKHDKNTWYla5SEltUm6u2vGMNtP+ZpSjbBVBVWIcYwqMeZlX9ViFEr
+ fiSZPIWeYCqrOnGmuNOfWRrqx5j6iiGMKXmkIJgJ/adM7ZCKZNqWiwmmWX2f+sT1S76PJFou
+ EzpFREtlR3knXcCV7+IFfFd3L76L2xunvF09eEd8fcKEoshvhZIjviH8iLRbtXiMvgA7Ozez
+ xFIgwzTKQGw2zXGnL18SZaAdbC6nHNFDT2+acytz7kjXPbnDsvAuenUwg7RIC4j+Y6iSshwa
+ EF33uGjLIjmHaN3sML55YcsZsqUL7g1ujcI5rVa0SXN6k3dxvOme8+VbOcHZT+uXSqhNtub4
+ 0CM9tZjluT30D8aLW44V5yitG5snNplrdopMBmTxn6d7fh4nLPP30MqGPNzCNP371BRumbOX
+ NraXkhY+Ry+u/Y1ykK16W129ra7eVi9G+FVkK5RLxeFiqStfKhBL5VHh/NBosRaZl6Kx61l9
+ E6qYXuB3IIyNOhDNxnm21i9rVWFc6zBBbJxQEh0skYuE0g7kYf5nLu5gFxpt3qooWbCLp7OH
+ i7unl7OHl6cbz976w5g0AZcTLpAJvxEKY4SS/3sY28pBgcnfkm+UTR8oT9SEiGRWKuriS7Pp
+ Pv666qhTkhbDF012QRfYx9A7nRvvqpvsxHtjnPa//yJbNvJRY2zCZFDn0mcpaTPaEMPuV/tE
+ k9mpB6N4aGXdJsGoe24u5FY9z89HEfhdqLqXazrRuhOdyYyIHS0M5H8e4dXcG7BbVHjAaZTZ
+ pz/xAT8wPvL619x8eUWK8r2d8zX2cUnnhx0Px6HmxVfuGXcey3r95J2YiuGyM/Su5ePSiYMP
+ 0kUBuvg3ufisM1/v35hwVlt2pT/Aq26/avZ4U6rH2NrD06HMwrkXnErKbHS5Gg/Nn8GJ8X67
+ Z7sCxN66wBtTlKHAIWZf1se+IqdD3/MIaYTA5TVcIhX8B9lnSFCdBAAA
+X-CMS-MailID: 20230621091029eucas1p2f9fd694dae3dfbdfffd25dccf4fcb568
+X-Msg-Generator: CA
+X-RootMTR: 20230621091029eucas1p2f9fd694dae3dfbdfffd25dccf4fcb568
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20230621091029eucas1p2f9fd694dae3dfbdfffd25dccf4fcb568
+References: <20230621091000.424843-1-j.granados@samsung.com>
+ <CGME20230621091029eucas1p2f9fd694dae3dfbdfffd25dccf4fcb568@eucas1p2.samsung.com>
+X-Spam-Score: -5.2 (-----)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hi,
- These are all red herrings. You do not need to lock something
- when there is no possibility of another process accessing the data structure.
- All the functions you are quoting are inode destruction. By [...] 
- Content analysis details:   (-0.2 points, 6.0 required)
+ Content preview: In order to remove the end element from the ctl_table struct
+ arrays, we explicitly define the size when registering the targes. We add
+ a size argument to register_sysctl and change all the callers to [...] 
+ Content analysis details:   (-5.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [40.107.105.130 listed in wl.mailspike.net]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [40.107.105.130 listed in list.dnswl.org]
- -0.0 SPF_PASS               SPF: sender matches SPF record
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [210.118.77.11 listed in wl.mailspike.net]
+ -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
+ high trust [210.118.77.11 listed in list.dnswl.org]
  -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
+ -0.0 SPF_PASS               SPF: sender matches SPF record
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
  -0.0 T_SCC_BODY_TEXT_LINE   No description available.
-X-Headers-End: 1q8zqo-0001X7-EE
-Subject: Re: [Linux-ntfs-dev] [BUG] ntfs: possible data races in
- ntfs_clear_extent_inode()
+ -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1qBtrN-00AVWk-Uk
+X-Mailman-Approved-At: Wed, 21 Jun 2023 10:50:30 +0000
+Subject: [Linux-ntfs-dev] [PATCH 07/11] sysctl: Add size to register_sysctl
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -171,65 +217,982 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-From: Anton Altaparmakov via Linux-ntfs-dev
- <linux-ntfs-dev@lists.sourceforge.net>
-Reply-To: Anton Altaparmakov <anton@tuxera.com>
-Cc: "linux-ntfs-dev@lists.sourceforge.net"
- <linux-ntfs-dev@lists.sourceforge.net>,
- "baijiaju1990@outlook.com" <baijiaju1990@outlook.com>,
- Linux Kernel <linux-kernel@vger.kernel.org>
+Cc: Joel Granados <j.granados@samsung.com>, linux-hyperv@vger.kernel.org,
+ linux-ia64@vger.kernel.org, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Amir Goldstein <amir73il@gmail.com>, dri-devel@lists.freedesktop.org,
+ "H. Peter Anvin" <hpa@zytor.com>, linux-s390@vger.kernel.org,
+ linux-scsi@vger.kernel.org, Christophe Leroy <christophe.leroy@csgroup.eu>,
+ codalist@coda.cs.cmu.edu, Matthew Bobrowski <repnop@google.com>,
+ linux-cachefs@redhat.com, Christian Borntraeger <borntraeger@linux.ibm.com>,
+ Sven Schnelle <svens@linux.ibm.com>, Mike Travis <mike.travis@hpe.com>,
+ intel-gfx@lists.freedesktop.org, apparmor@lists.ubuntu.com,
+ Nicholas Piggin <npiggin@gmail.com>, linux-raid@vger.kernel.org,
+ openipmi-developer@lists.sourceforge.net, linux-arm-kernel@lists.infradead.org,
+ fsverity@lists.linux.dev, linux-nfs@vger.kernel.org,
+ Stephen Boyd <sboyd@kernel.org>, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-xfs@vger.kernel.org,
+ linux-ntfs-dev@lists.sourceforge.net, linux-security-module@vger.kernel.org,
+ linux-crypto@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, ocfs2-devel@oss.oracle.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-Hi,
+In order to remove the end element from the ctl_table struct arrays, we
+explicitly define the size when registering the targes.
+We add a size argument to register_sysctl and change all the callers to
+pass the ARRAY_SIZE of their table arg.
 
-These are all red herrings.  You do not need to lock something when there is no possibility of another process accessing the data structure.  All the functions you are quoting are inode destruction.  By very definition nothing can possibly have a reference on an inode which is in this code path as it only gets called when there are no references left.  The inode is about to be freed so any access to it would be accessing freed memory.
+Signed-off-by: Joel Granados <j.granados@samsung.com>
+---
+ arch/arm/kernel/isa.c                         |  2 +-
+ arch/arm64/kernel/armv8_deprecated.c          |  2 +-
+ arch/arm64/kernel/fpsimd.c                    |  6 +++--
+ arch/arm64/kernel/process.c                   |  3 ++-
+ arch/ia64/kernel/crash.c                      |  3 ++-
+ arch/powerpc/kernel/idle.c                    |  3 ++-
+ arch/powerpc/platforms/pseries/mobility.c     |  3 ++-
+ arch/s390/appldata/appldata_base.c            |  4 +++-
+ arch/s390/kernel/debug.c                      |  3 ++-
+ arch/s390/kernel/topology.c                   |  3 ++-
+ arch/s390/mm/cmm.c                            |  3 ++-
+ arch/s390/mm/pgalloc.c                        |  3 ++-
+ arch/x86/entry/vdso/vdso32-setup.c            |  2 +-
+ arch/x86/kernel/itmt.c                        |  3 ++-
+ crypto/fips.c                                 |  3 ++-
+ drivers/base/firmware_loader/fallback_table.c |  6 ++---
+ drivers/cdrom/cdrom.c                         |  3 ++-
+ drivers/char/hpet.c                           |  3 ++-
+ drivers/char/ipmi/ipmi_poweroff.c             |  3 ++-
+ drivers/gpu/drm/i915/i915_perf.c              |  3 ++-
+ drivers/hv/hv_common.c                        |  3 ++-
+ drivers/macintosh/mac_hid.c                   |  3 ++-
+ drivers/md/md.c                               |  3 ++-
+ drivers/misc/sgi-xp/xpc_main.c                |  6 +++--
+ drivers/parport/procfs.c                      | 11 +++++----
+ drivers/perf/arm_pmuv3.c                      |  3 ++-
+ drivers/scsi/scsi_sysctl.c                    |  3 ++-
+ drivers/scsi/sg.c                             |  3 ++-
+ fs/cachefiles/error_inject.c                  |  3 ++-
+ fs/coda/sysctl.c                              |  3 ++-
+ fs/devpts/inode.c                             |  3 ++-
+ fs/eventpoll.c                                |  2 +-
+ fs/lockd/svc.c                                |  3 ++-
+ fs/nfs/nfs4sysctl.c                           |  3 ++-
+ fs/nfs/sysctl.c                               |  3 ++-
+ fs/notify/fanotify/fanotify_user.c            |  3 ++-
+ fs/notify/inotify/inotify_user.c              |  3 ++-
+ fs/ntfs/sysctl.c                              |  3 ++-
+ fs/ocfs2/stackglue.c                          |  3 ++-
+ fs/proc/proc_sysctl.c                         | 23 ++++++++++---------
+ fs/verity/signature.c                         |  4 +++-
+ fs/xfs/xfs_sysctl.c                           |  3 ++-
+ include/linux/sysctl.h                        |  6 +++--
+ kernel/pid_sysctl.h                           |  2 +-
+ kernel/time/timer.c                           |  2 +-
+ kernel/ucount.c                               |  2 +-
+ kernel/utsname_sysctl.c                       |  2 +-
+ lib/test_sysctl.c                             |  9 +++++---
+ net/sunrpc/sysctl.c                           |  3 ++-
+ net/sunrpc/xprtrdma/svc_rdma.c                |  3 ++-
+ net/sunrpc/xprtrdma/transport.c               |  4 +++-
+ net/sunrpc/xprtsock.c                         |  4 +++-
+ net/sysctl_net.c                              |  2 +-
+ security/apparmor/lsm.c                       |  3 ++-
+ security/loadpin/loadpin.c                    |  3 ++-
+ security/yama/yama_lsm.c                      |  3 ++-
+ 56 files changed, 133 insertions(+), 76 deletions(-)
 
-Thus your static analysis tool is giving you false positive because it doesn't understand the context of what is going on.
-
-Best regards,
-
-	Anton
-
-> On 13 Jun 2023, at 05:34, Tuo Li <islituo@gmail.com> wrote:
-> 
-> Hello,
-> 
-> Our static analysis tool finds some possible data races in the NTFS file
-> system in Linux 6.4.0-rc6.
-> 
-> In most calling contexts, the variable ni->ext.base_ntfs_ino is accessed
-> with holding the lock ni->extent_lock. Here is an example:
-> 
->   ntfs_extent_mft_record_free() --> Line 2773 in fs/ntfs/mtf.c
->     mutex_lock(&ni->extent_lock); --> Line 2786 in fs/ntfs/mtf.c (Lock ni->extent_lock)
->     base_ni = ni->ext.base_ntfs_ino; --> Line 2787 in fs/ntfs/mft.c (Access ni->ext.base_ntfs_ino)
-> 
-> However, in the following calling contexts:
-> 
->   ntfs_evict_big_inode() --> Line 2247 in fs/ntfs/inode.c
->      ntfs_clear_extent_inode() --> Line 2274 in fs/ntfs/inode.c
->         if (!is_bad_inode(VFS_I(ni->ext.base_ntfs_ino))) --> Line 2224 in fs/ntfs/inode.c (Access ni->ext.base_ntfs_ino)
-> 
->   ntfs_evict_big_inode() --> Line 2247 in fs/ntfs/inode.c
->     ni->ext.base_ntfs_ino = NULL; --> Line 2285 in fs/ntfs/inode.c (Access ni->ext.base_ntfs_ino)
-> 
-> the variable ni->ext.base_ntfs_ino is accessed without holding the lock
-> ni->extent_lock, and thus data races can occur.
-> 
-> I am not quite sure whether these possible data races are real and how to fix them if they are real.
-> Any feedback would be appreciated, thanks!
-> 
-> Reported-by: BassCheck <bass@buaa.edu.cn>
-> 
-> Best wishes,
-> Tuo Li
-
+diff --git a/arch/arm/kernel/isa.c b/arch/arm/kernel/isa.c
+index 20218876bef2..561432e3c55a 100644
+--- a/arch/arm/kernel/isa.c
++++ b/arch/arm/kernel/isa.c
+@@ -46,5 +46,5 @@ register_isa_ports(unsigned int membase, unsigned int portbase, unsigned int por
+ 	isa_membase = membase;
+ 	isa_portbase = portbase;
+ 	isa_portshift = portshift;
+-	isa_sysctl_header = register_sysctl("bus/isa", ctl_isa_vars);
++	isa_sysctl_header = register_sysctl("bus/isa", ctl_isa_vars, ARRAY_SIZE(ctl_isa_vars));
+ }
+diff --git a/arch/arm64/kernel/armv8_deprecated.c b/arch/arm64/kernel/armv8_deprecated.c
+index 1febd412b4d2..68ed60a521a6 100644
+--- a/arch/arm64/kernel/armv8_deprecated.c
++++ b/arch/arm64/kernel/armv8_deprecated.c
+@@ -569,7 +569,7 @@ static void __init register_insn_emulation(struct insn_emulation *insn)
+ 		sysctl->extra2 = &insn->max;
+ 		sysctl->proc_handler = emulation_proc_handler;
+ 
+-		register_sysctl("abi", sysctl);
++		register_sysctl("abi", sysctl, 1);
+ 	}
+ }
+ 
+diff --git a/arch/arm64/kernel/fpsimd.c b/arch/arm64/kernel/fpsimd.c
+index 2fbafa5cc7ac..ecfb2ef6a036 100644
+--- a/arch/arm64/kernel/fpsimd.c
++++ b/arch/arm64/kernel/fpsimd.c
+@@ -595,7 +595,8 @@ static struct ctl_table sve_default_vl_table[] = {
+ static int __init sve_sysctl_init(void)
+ {
+ 	if (system_supports_sve())
+-		if (!register_sysctl("abi", sve_default_vl_table))
++		if (!register_sysctl("abi", sve_default_vl_table,
++				     ARRAY_SIZE(sve_default_vl_table)))
+ 			return -EINVAL;
+ 
+ 	return 0;
+@@ -619,7 +620,8 @@ static struct ctl_table sme_default_vl_table[] = {
+ static int __init sme_sysctl_init(void)
+ {
+ 	if (system_supports_sme())
+-		if (!register_sysctl("abi", sme_default_vl_table))
++		if (!register_sysctl("abi", sme_default_vl_table,
++				     ARRAY_SIZE(sme_default_vl_table)))
+ 			return -EINVAL;
+ 
+ 	return 0;
+diff --git a/arch/arm64/kernel/process.c b/arch/arm64/kernel/process.c
+index 0fcc4eb1a7ab..cfe232960f2f 100644
+--- a/arch/arm64/kernel/process.c
++++ b/arch/arm64/kernel/process.c
+@@ -729,7 +729,8 @@ static struct ctl_table tagged_addr_sysctl_table[] = {
+ 
+ static int __init tagged_addr_init(void)
+ {
+-	if (!register_sysctl("abi", tagged_addr_sysctl_table))
++	if (!register_sysctl("abi", tagged_addr_sysctl_table,
++			     ARRAY_SIZE(tagged_addr_sysctl_table)))
+ 		return -EINVAL;
+ 	return 0;
+ }
+diff --git a/arch/ia64/kernel/crash.c b/arch/ia64/kernel/crash.c
+index 88b3ce3e66cd..66917b879b2a 100644
+--- a/arch/ia64/kernel/crash.c
++++ b/arch/ia64/kernel/crash.c
+@@ -248,7 +248,8 @@ machine_crash_setup(void)
+ 	if((ret = register_die_notifier(&kdump_init_notifier_nb)) != 0)
+ 		return ret;
+ #ifdef CONFIG_SYSCTL
+-	register_sysctl("kernel", kdump_ctl_table);
++	register_sysctl("kernel", kdump_ctl_table,
++			ARRAY_SIZE(kdump_ctl_table));
+ #endif
+ 	return 0;
+ }
+diff --git a/arch/powerpc/kernel/idle.c b/arch/powerpc/kernel/idle.c
+index b1c0418b25c8..3807169fc7e7 100644
+--- a/arch/powerpc/kernel/idle.c
++++ b/arch/powerpc/kernel/idle.c
+@@ -111,7 +111,8 @@ static struct ctl_table powersave_nap_ctl_table[] = {
+ static int __init
+ register_powersave_nap_sysctl(void)
+ {
+-	register_sysctl("kernel", powersave_nap_ctl_table);
++	register_sysctl("kernel", powersave_nap_ctl_table,
++			ARRAY_SIZE(powersave_nap_ctl_table));
+ 
+ 	return 0;
+ }
+diff --git a/arch/powerpc/platforms/pseries/mobility.c b/arch/powerpc/platforms/pseries/mobility.c
+index 6f30113b5468..9fdbee8ee126 100644
+--- a/arch/powerpc/platforms/pseries/mobility.c
++++ b/arch/powerpc/platforms/pseries/mobility.c
+@@ -65,7 +65,8 @@ static struct ctl_table nmi_wd_lpm_factor_ctl_table[] = {
+ 
+ static int __init register_nmi_wd_lpm_factor_sysctl(void)
+ {
+-	register_sysctl("kernel", nmi_wd_lpm_factor_ctl_table);
++	register_sysctl("kernel", nmi_wd_lpm_factor_ctl_table,
++			ARRAY_SIZE(nmi_wd_lpm_factor_ctl_table));
+ 
+ 	return 0;
+ }
+diff --git a/arch/s390/appldata/appldata_base.c b/arch/s390/appldata/appldata_base.c
+index b07b0610950e..54d8ed1c4518 100644
+--- a/arch/s390/appldata/appldata_base.c
++++ b/arch/s390/appldata/appldata_base.c
+@@ -408,7 +408,9 @@ static int __init appldata_init(void)
+ 	appldata_wq = alloc_ordered_workqueue("appldata", 0);
+ 	if (!appldata_wq)
+ 		return -ENOMEM;
+-	appldata_sysctl_header = register_sysctl(appldata_proc_name, appldata_table);
++	appldata_sysctl_header = register_sysctl(appldata_proc_name,
++						 appldata_table,
++						 ARRAY_SIZE(appldata_table));
+ 	return 0;
+ }
+ 
+diff --git a/arch/s390/kernel/debug.c b/arch/s390/kernel/debug.c
+index a85e0c3e7027..002f843e6523 100644
+--- a/arch/s390/kernel/debug.c
++++ b/arch/s390/kernel/debug.c
+@@ -1564,7 +1564,8 @@ static int debug_sprintf_format_fn(debug_info_t *id, struct debug_view *view,
+  */
+ static int __init debug_init(void)
+ {
+-	s390dbf_sysctl_header = register_sysctl("s390dbf", s390dbf_table);
++	s390dbf_sysctl_header = register_sysctl("s390dbf", s390dbf_table,
++						ARRAY_SIZE(s390dbf_table));
+ 	mutex_lock(&debug_mutex);
+ 	debug_debugfs_root_entry = debugfs_create_dir(DEBUG_DIR_ROOT, NULL);
+ 	initialized = 1;
+diff --git a/arch/s390/kernel/topology.c b/arch/s390/kernel/topology.c
+index 9fd19530c9a5..372d2c7c9a8e 100644
+--- a/arch/s390/kernel/topology.c
++++ b/arch/s390/kernel/topology.c
+@@ -647,7 +647,8 @@ static int __init topology_init(void)
+ 		set_topology_timer();
+ 	else
+ 		topology_update_polarization_simple();
+-	register_sysctl("s390", topology_ctl_table);
++	register_sysctl("s390", topology_ctl_table,
++			ARRAY_SIZE(topology_ctl_table));
+ 
+ 	dev_root = bus_get_dev_root(&cpu_subsys);
+ 	if (dev_root) {
+diff --git a/arch/s390/mm/cmm.c b/arch/s390/mm/cmm.c
+index 5300c6867d5e..918816dcb42a 100644
+--- a/arch/s390/mm/cmm.c
++++ b/arch/s390/mm/cmm.c
+@@ -379,7 +379,8 @@ static int __init cmm_init(void)
+ {
+ 	int rc = -ENOMEM;
+ 
+-	cmm_sysctl_header = register_sysctl("vm", cmm_table);
++	cmm_sysctl_header = register_sysctl("vm", cmm_table,
++					    ARRAY_SIZE(cmm_table));
+ 	if (!cmm_sysctl_header)
+ 		goto out_sysctl;
+ #ifdef CONFIG_CMM_IUCV
+diff --git a/arch/s390/mm/pgalloc.c b/arch/s390/mm/pgalloc.c
+index 66ab68db9842..a723f1a8236a 100644
+--- a/arch/s390/mm/pgalloc.c
++++ b/arch/s390/mm/pgalloc.c
+@@ -35,7 +35,8 @@ static struct ctl_table page_table_sysctl[] = {
+ 
+ static int __init page_table_register_sysctl(void)
+ {
+-	return register_sysctl("vm", page_table_sysctl) ? 0 : -ENOMEM;
++	return register_sysctl("vm", page_table_sysctl,
++			       ARRAY_SIZE(page_table_sysctl)) ? 0 : -ENOMEM;
+ }
+ __initcall(page_table_register_sysctl);
+ 
+diff --git a/arch/x86/entry/vdso/vdso32-setup.c b/arch/x86/entry/vdso/vdso32-setup.c
+index f3b3cacbcbb0..e28cdba83e0e 100644
+--- a/arch/x86/entry/vdso/vdso32-setup.c
++++ b/arch/x86/entry/vdso/vdso32-setup.c
+@@ -72,7 +72,7 @@ static struct ctl_table abi_table2[] = {
+ 
+ static __init int ia32_binfmt_init(void)
+ {
+-	register_sysctl("abi", abi_table2);
++	register_sysctl("abi", abi_table2, ARRAY_SIZE(abi_table2));
+ 	return 0;
+ }
+ __initcall(ia32_binfmt_init);
+diff --git a/arch/x86/kernel/itmt.c b/arch/x86/kernel/itmt.c
+index 670eb08b972a..58ec95fce798 100644
+--- a/arch/x86/kernel/itmt.c
++++ b/arch/x86/kernel/itmt.c
+@@ -105,7 +105,8 @@ int sched_set_itmt_support(void)
+ 		return 0;
+ 	}
+ 
+-	itmt_sysctl_header = register_sysctl("kernel", itmt_kern_table);
++	itmt_sysctl_header = register_sysctl("kernel", itmt_kern_table,
++					     ARRAY_SIZE(itmt_kern_table));
+ 	if (!itmt_sysctl_header) {
+ 		mutex_unlock(&itmt_update_mutex);
+ 		return -ENOMEM;
+diff --git a/crypto/fips.c b/crypto/fips.c
+index 92fd506abb21..05a251680700 100644
+--- a/crypto/fips.c
++++ b/crypto/fips.c
+@@ -70,7 +70,8 @@ static struct ctl_table_header *crypto_sysctls;
+ 
+ static void crypto_proc_fips_init(void)
+ {
+-	crypto_sysctls = register_sysctl("crypto", crypto_sysctl_table);
++	crypto_sysctls = register_sysctl("crypto", crypto_sysctl_table,
++					 ARRAY_SIZE(crypto_sysctl_table));
+ }
+ 
+ static void crypto_proc_fips_exit(void)
+diff --git a/drivers/base/firmware_loader/fallback_table.c b/drivers/base/firmware_loader/fallback_table.c
+index e5ac098d0742..7a2d584233bb 100644
+--- a/drivers/base/firmware_loader/fallback_table.c
++++ b/drivers/base/firmware_loader/fallback_table.c
+@@ -50,9 +50,9 @@ static struct ctl_table firmware_config_table[] = {
+ static struct ctl_table_header *firmware_config_sysct_table_header;
+ int register_firmware_config_sysctl(void)
+ {
+-	firmware_config_sysct_table_header =
+-		register_sysctl("kernel/firmware_config",
+-				firmware_config_table);
++	firmware_config_sysct_table_header = register_sysctl("kernel/firmware_config",
++							     firmware_config_table,
++							     ARRAY_SIZE(firmware_config_table));
+ 	if (!firmware_config_sysct_table_header)
+ 		return -ENOMEM;
+ 	return 0;
+diff --git a/drivers/cdrom/cdrom.c b/drivers/cdrom/cdrom.c
+index 416f723a2dbb..3855da76a16d 100644
+--- a/drivers/cdrom/cdrom.c
++++ b/drivers/cdrom/cdrom.c
+@@ -3680,7 +3680,8 @@ static void cdrom_sysctl_register(void)
+ 	if (!atomic_add_unless(&initialized, 1, 1))
+ 		return;
+ 
+-	cdrom_sysctl_header = register_sysctl("dev/cdrom", cdrom_table);
++	cdrom_sysctl_header = register_sysctl("dev/cdrom", cdrom_table,
++					      ARRAY_SIZE(cdrom_table));
+ 
+ 	/* set the defaults */
+ 	cdrom_sysctl_settings.autoclose = autoclose;
+diff --git a/drivers/char/hpet.c b/drivers/char/hpet.c
+index ee71376f174b..bb1eb801b20c 100644
+--- a/drivers/char/hpet.c
++++ b/drivers/char/hpet.c
+@@ -1027,7 +1027,8 @@ static int __init hpet_init(void)
+ 	if (result < 0)
+ 		return -ENODEV;
+ 
+-	sysctl_header = register_sysctl("dev/hpet", hpet_table);
++	sysctl_header = register_sysctl("dev/hpet", hpet_table,
++					ARRAY_SIZE(hpet_table));
+ 
+ 	result = acpi_bus_register_driver(&hpet_acpi_driver);
+ 	if (result < 0) {
+diff --git a/drivers/char/ipmi/ipmi_poweroff.c b/drivers/char/ipmi/ipmi_poweroff.c
+index 870659d91db2..46b1ea866da9 100644
+--- a/drivers/char/ipmi/ipmi_poweroff.c
++++ b/drivers/char/ipmi/ipmi_poweroff.c
+@@ -675,7 +675,8 @@ static int __init ipmi_poweroff_init(void)
+ 		pr_info("Power cycle is enabled\n");
+ 
+ #ifdef CONFIG_PROC_FS
+-	ipmi_table_header = register_sysctl("dev/ipmi", ipmi_table);
++	ipmi_table_header = register_sysctl("dev/ipmi", ipmi_table,
++					    ARRAY_SIZE(ipmi_table));
+ 	if (!ipmi_table_header) {
+ 		pr_err("Unable to register powercycle sysctl\n");
+ 		rv = -ENOMEM;
+diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+index 050b8ae7b8e7..f43950219ffc 100644
+--- a/drivers/gpu/drm/i915/i915_perf.c
++++ b/drivers/gpu/drm/i915/i915_perf.c
+@@ -5266,7 +5266,8 @@ static int destroy_config(int id, void *p, void *data)
+ 
+ int i915_perf_sysctl_register(void)
+ {
+-	sysctl_header = register_sysctl("dev/i915", oa_table);
++	sysctl_header = register_sysctl("dev/i915", oa_table,
++					ARRAY_SIZE(oa_table));
+ 	return 0;
+ }
+ 
+diff --git a/drivers/hv/hv_common.c b/drivers/hv/hv_common.c
+index 64f9ceca887b..dd751c391cf7 100644
+--- a/drivers/hv/hv_common.c
++++ b/drivers/hv/hv_common.c
+@@ -302,7 +302,8 @@ int __init hv_common_init(void)
+ 		 * message recording won't be available in isolated
+ 		 * guests should the following registration fail.
+ 		 */
+-		hv_ctl_table_hdr = register_sysctl("kernel", hv_ctl_table);
++		hv_ctl_table_hdr = register_sysctl("kernel", hv_ctl_table,
++						   ARRAY_SIZE(hv_ctl_table));
+ 		if (!hv_ctl_table_hdr)
+ 			pr_err("Hyper-V: sysctl table register error");
+ 
+diff --git a/drivers/macintosh/mac_hid.c b/drivers/macintosh/mac_hid.c
+index d8c4d5664145..5d433ef430fa 100644
+--- a/drivers/macintosh/mac_hid.c
++++ b/drivers/macintosh/mac_hid.c
+@@ -243,7 +243,8 @@ static struct ctl_table_header *mac_hid_sysctl_header;
+ 
+ static int __init mac_hid_init(void)
+ {
+-	mac_hid_sysctl_header = register_sysctl("dev/mac_hid", mac_hid_files);
++	mac_hid_sysctl_header = register_sysctl("dev/mac_hid", mac_hid_files,
++						ARRAY_SIZE(mac_hid_files));
+ 	if (!mac_hid_sysctl_header)
+ 		return -ENOMEM;
+ 
+diff --git a/drivers/md/md.c b/drivers/md/md.c
+index 8e344b4b3444..c10cc8ddd94d 100644
+--- a/drivers/md/md.c
++++ b/drivers/md/md.c
+@@ -9633,7 +9633,8 @@ static int __init md_init(void)
+ 	mdp_major = ret;
+ 
+ 	register_reboot_notifier(&md_notifier);
+-	raid_table_header = register_sysctl("dev/raid", raid_table);
++	raid_table_header = register_sysctl("dev/raid", raid_table,
++					    ARRAY_SIZE(raid_table));
+ 
+ 	md_geninit();
+ 	return 0;
+diff --git a/drivers/misc/sgi-xp/xpc_main.c b/drivers/misc/sgi-xp/xpc_main.c
+index 6da509d692bb..264b919d0610 100644
+--- a/drivers/misc/sgi-xp/xpc_main.c
++++ b/drivers/misc/sgi-xp/xpc_main.c
+@@ -1236,8 +1236,10 @@ xpc_init(void)
+ 		goto out_1;
+ 	}
+ 
+-	xpc_sysctl = register_sysctl("xpc", xpc_sys_xpc);
+-	xpc_sysctl_hb = register_sysctl("xpc/hb", xpc_sys_xpc_hb);
++	xpc_sysctl = register_sysctl("xpc", xpc_sys_xpc,
++				     ARRAY_SIZE(xpc_sys_xpc));
++	xpc_sysctl_hb = register_sysctl("xpc/hb", xpc_sys_xpc_hb,
++					ARRAY_SIZE(xpc_sys_xpc_hb));
+ 
+ 	/*
+ 	 * Fill the partition reserved page with the information needed by
+diff --git a/drivers/parport/procfs.c b/drivers/parport/procfs.c
+index 4e5b972c3e26..16cee52f035f 100644
+--- a/drivers/parport/procfs.c
++++ b/drivers/parport/procfs.c
+@@ -464,7 +464,8 @@ int parport_proc_register(struct parport *port)
+ 		err = -ENOENT;
+ 		goto exit_free_tmp_dir_path;
+ 	}
+-	t->devices_header = register_sysctl(tmp_dir_path, t->device_dir);
++	t->devices_header = register_sysctl(tmp_dir_path, t->device_dir,
++					    ARRAY_SIZE(t->device_dir));
+ 	if (t->devices_header == NULL) {
+ 		err = -ENOENT;
+ 		goto  exit_free_tmp_dir_path;
+@@ -478,7 +479,8 @@ int parport_proc_register(struct parport *port)
+ 		goto unregister_devices_h;
+ 	}
+ 
+-	t->port_header = register_sysctl(tmp_dir_path, t->vars);
++	t->port_header = register_sysctl(tmp_dir_path, t->vars,
++					 ARRAY_SIZE(t->vars));
+ 	if (t->port_header == NULL) {
+ 		err = -ENOENT;
+ 		goto unregister_devices_h;
+@@ -544,7 +546,7 @@ int parport_device_proc_register(struct pardevice *device)
+ 
+ 	t->vars[0].data = &device->timeslice;
+ 
+-	t->sysctl_header = register_sysctl(tmp_dir_path, t->vars);
++	t->sysctl_header = register_sysctl(tmp_dir_path, t->vars, ARRAY_SIZE(t->vars));
+ 	if (t->sysctl_header == NULL) {
+ 		kfree(t);
+ 		t = NULL;
+@@ -579,7 +581,8 @@ static int __init parport_default_proc_register(void)
+ 	int ret;
+ 
+ 	parport_default_sysctl_table.sysctl_header =
+-		register_sysctl("dev/parport/default", parport_default_sysctl_table.vars);
++		register_sysctl("dev/parport/default", parport_default_sysctl_table.vars,
++				ARRAY_SIZE(parport_default_sysctl_table.vars));
+ 	if (!parport_default_sysctl_table.sysctl_header)
+ 		return -ENOMEM;
+ 	ret = parport_bus_init();
+diff --git a/drivers/perf/arm_pmuv3.c b/drivers/perf/arm_pmuv3.c
+index c98e4039386d..763f9c8acfbf 100644
+--- a/drivers/perf/arm_pmuv3.c
++++ b/drivers/perf/arm_pmuv3.c
+@@ -1188,7 +1188,8 @@ static void armv8_pmu_register_sysctl_table(void)
+ 	static u32 tbl_registered = 0;
+ 
+ 	if (!cmpxchg_relaxed(&tbl_registered, 0, 1))
+-		register_sysctl("kernel", armv8_pmu_sysctl_table);
++		register_sysctl("kernel", armv8_pmu_sysctl_table,
++				ARRAY_SIZE(armv8_pmu_sysctl_table));
+ }
+ 
+ static int armv8_pmu_init(struct arm_pmu *cpu_pmu, char *name,
+diff --git a/drivers/scsi/scsi_sysctl.c b/drivers/scsi/scsi_sysctl.c
+index 7f0914ea168f..0378bd63fea4 100644
+--- a/drivers/scsi/scsi_sysctl.c
++++ b/drivers/scsi/scsi_sysctl.c
+@@ -25,7 +25,8 @@ static struct ctl_table_header *scsi_table_header;
+ 
+ int __init scsi_init_sysctl(void)
+ {
+-	scsi_table_header = register_sysctl("dev/scsi", scsi_table);
++	scsi_table_header = register_sysctl("dev/scsi", scsi_table,
++					    ARRAY_SIZE(scsi_table));
+ 	if (!scsi_table_header)
+ 		return -ENOMEM;
+ 	return 0;
+diff --git a/drivers/scsi/sg.c b/drivers/scsi/sg.c
+index 037f8c98a6d3..d12cdf875b50 100644
+--- a/drivers/scsi/sg.c
++++ b/drivers/scsi/sg.c
+@@ -1646,7 +1646,8 @@ static struct ctl_table_header *hdr;
+ static void register_sg_sysctls(void)
+ {
+ 	if (!hdr)
+-		hdr = register_sysctl("kernel", sg_sysctls);
++		hdr = register_sysctl("kernel", sg_sysctls,
++				      ARRAY_SIZE(sg_sysctls));
+ }
+ 
+ static void unregister_sg_sysctls(void)
+diff --git a/fs/cachefiles/error_inject.c b/fs/cachefiles/error_inject.c
+index 18de8a876b02..ea6bcce4f6f1 100644
+--- a/fs/cachefiles/error_inject.c
++++ b/fs/cachefiles/error_inject.c
+@@ -24,7 +24,8 @@ static struct ctl_table cachefiles_sysctls[] = {
+ 
+ int __init cachefiles_register_error_injection(void)
+ {
+-	cachefiles_sysctl = register_sysctl("cachefiles", cachefiles_sysctls);
++	cachefiles_sysctl = register_sysctl("cachefiles", cachefiles_sysctls,
++					    ARRAY_SIZE(cachefiles_sysctls));
+ 	if (!cachefiles_sysctl)
+ 		return -ENOMEM;
+ 	return 0;
+diff --git a/fs/coda/sysctl.c b/fs/coda/sysctl.c
+index a247c14aaab7..16224a7c6691 100644
+--- a/fs/coda/sysctl.c
++++ b/fs/coda/sysctl.c
+@@ -42,7 +42,8 @@ static struct ctl_table coda_table[] = {
+ void coda_sysctl_init(void)
+ {
+ 	if ( !fs_table_header )
+-		fs_table_header = register_sysctl("coda", coda_table);
++		fs_table_header = register_sysctl("coda", coda_table,
++						  ARRAY_SIZE(coda_table));
+ }
+ 
+ void coda_sysctl_clean(void)
+diff --git a/fs/devpts/inode.c b/fs/devpts/inode.c
+index fe3db0eda8e4..c17f971a8c4b 100644
+--- a/fs/devpts/inode.c
++++ b/fs/devpts/inode.c
+@@ -612,7 +612,8 @@ static int __init init_devpts_fs(void)
+ {
+ 	int err = register_filesystem(&devpts_fs_type);
+ 	if (!err) {
+-		register_sysctl("kernel/pty", pty_table);
++		register_sysctl("kernel/pty", pty_table,
++				ARRAY_SIZE(pty_table));
+ 	}
+ 	return err;
+ }
+diff --git a/fs/eventpoll.c b/fs/eventpoll.c
+index 980483455cc0..e1a0e6a6d3de 100644
+--- a/fs/eventpoll.c
++++ b/fs/eventpoll.c
+@@ -327,7 +327,7 @@ static struct ctl_table epoll_table[] = {
+ 
+ static void __init epoll_sysctls_init(void)
+ {
+-	register_sysctl("fs/epoll", epoll_table);
++	register_sysctl("fs/epoll", epoll_table, ARRAY_SIZE(epoll_table));
+ }
+ #else
+ #define epoll_sysctls_init() do { } while (0)
+diff --git a/fs/lockd/svc.c b/fs/lockd/svc.c
+index bb94949bc223..84736267f4e1 100644
+--- a/fs/lockd/svc.c
++++ b/fs/lockd/svc.c
+@@ -626,7 +626,8 @@ static int __init init_nlm(void)
+ 
+ #ifdef CONFIG_SYSCTL
+ 	err = -ENOMEM;
+-	nlm_sysctl_table = register_sysctl("fs/nfs", nlm_sysctls);
++	nlm_sysctl_table = register_sysctl("fs/nfs", nlm_sysctls,
++					   ARRAY_SIZE(nlm_sysctls));
+ 	if (nlm_sysctl_table == NULL)
+ 		goto err_sysctl;
+ #endif
+diff --git a/fs/nfs/nfs4sysctl.c b/fs/nfs/nfs4sysctl.c
+index e776200e9a11..4a542ee11e68 100644
+--- a/fs/nfs/nfs4sysctl.c
++++ b/fs/nfs/nfs4sysctl.c
+@@ -40,7 +40,8 @@ static struct ctl_table nfs4_cb_sysctls[] = {
+ int nfs4_register_sysctl(void)
+ {
+ 	nfs4_callback_sysctl_table = register_sysctl("fs/nfs",
+-						     nfs4_cb_sysctls);
++						     nfs4_cb_sysctls,
++						     ARRAY_SIZE(nfs4_cb_sysctls));
+ 	if (nfs4_callback_sysctl_table == NULL)
+ 		return -ENOMEM;
+ 	return 0;
+diff --git a/fs/nfs/sysctl.c b/fs/nfs/sysctl.c
+index f39e2089bc4c..9dafd44670e4 100644
+--- a/fs/nfs/sysctl.c
++++ b/fs/nfs/sysctl.c
+@@ -34,7 +34,8 @@ static struct ctl_table nfs_cb_sysctls[] = {
+ 
+ int nfs_register_sysctl(void)
+ {
+-	nfs_callback_sysctl_table = register_sysctl("fs/nfs", nfs_cb_sysctls);
++	nfs_callback_sysctl_table = register_sysctl("fs/nfs", nfs_cb_sysctls,
++						    ARRAY_SIZE(nfs_cb_sysctls));
+ 	if (nfs_callback_sysctl_table == NULL)
+ 		return -ENOMEM;
+ 	return 0;
+diff --git a/fs/notify/fanotify/fanotify_user.c b/fs/notify/fanotify/fanotify_user.c
+index 22fb1cf7e1fc..78d3bf479f59 100644
+--- a/fs/notify/fanotify/fanotify_user.c
++++ b/fs/notify/fanotify/fanotify_user.c
+@@ -91,7 +91,8 @@ static struct ctl_table fanotify_table[] = {
+ 
+ static void __init fanotify_sysctls_init(void)
+ {
+-	register_sysctl("fs/fanotify", fanotify_table);
++	register_sysctl("fs/fanotify", fanotify_table,
++			ARRAY_SIZE(fanotify_table));
+ }
+ #else
+ #define fanotify_sysctls_init() do { } while (0)
+diff --git a/fs/notify/inotify/inotify_user.c b/fs/notify/inotify/inotify_user.c
+index 1c4bfdab008d..0ce25c4ddfec 100644
+--- a/fs/notify/inotify/inotify_user.c
++++ b/fs/notify/inotify/inotify_user.c
+@@ -90,7 +90,8 @@ static struct ctl_table inotify_table[] = {
+ 
+ static void __init inotify_sysctls_init(void)
+ {
+-	register_sysctl("fs/inotify", inotify_table);
++	register_sysctl("fs/inotify", inotify_table,
++			ARRAY_SIZE(inotify_table));
+ }
+ 
+ #else
+diff --git a/fs/ntfs/sysctl.c b/fs/ntfs/sysctl.c
+index 174fe536a1c0..2c48f48a0b80 100644
+--- a/fs/ntfs/sysctl.c
++++ b/fs/ntfs/sysctl.c
+@@ -44,7 +44,8 @@ int ntfs_sysctl(int add)
+ {
+ 	if (add) {
+ 		BUG_ON(sysctls_root_table);
+-		sysctls_root_table = register_sysctl("fs", ntfs_sysctls);
++		sysctls_root_table = register_sysctl("fs", ntfs_sysctls,
++						     ARRAY_SIZE(ntfs_sysctls));
+ 		if (!sysctls_root_table)
+ 			return -ENOMEM;
+ 	} else {
+diff --git a/fs/ocfs2/stackglue.c b/fs/ocfs2/stackglue.c
+index a8d5ca98fa57..9a653875d1c5 100644
+--- a/fs/ocfs2/stackglue.c
++++ b/fs/ocfs2/stackglue.c
+@@ -673,7 +673,8 @@ static int __init ocfs2_stack_glue_init(void)
+ 
+ 	strcpy(cluster_stack_name, OCFS2_STACK_PLUGIN_O2CB);
+ 
+-	ocfs2_table_header = register_sysctl("fs/ocfs2/nm", ocfs2_nm_table);
++	ocfs2_table_header = register_sysctl("fs/ocfs2/nm", ocfs2_nm_table,
++					     ARRAY_SIZE(ocfs2_nm_table));
+ 	if (!ocfs2_table_header) {
+ 		printk(KERN_ERR
+ 		       "ocfs2 stack glue: unable to register sysctl\n");
+diff --git a/fs/proc/proc_sysctl.c b/fs/proc/proc_sysctl.c
+index 8c415048d540..66c9d7a07d2e 100644
+--- a/fs/proc/proc_sysctl.c
++++ b/fs/proc/proc_sysctl.c
+@@ -43,7 +43,7 @@ struct ctl_table sysctl_mount_point[] = {
+  */
+ struct ctl_table_header *register_sysctl_mount_point(const char *path)
+ {
+-	return register_sysctl(path, sysctl_mount_point);
++	return register_sysctl(path, sysctl_mount_point, 0);
+ }
+ EXPORT_SYMBOL(register_sysctl_mount_point);
+ 
+@@ -1414,17 +1414,11 @@ struct ctl_table_header *__register_sysctl_table(
+  *
+  * See __register_sysctl_table for more details.
+  */
+-struct ctl_table_header *register_sysctl(const char *path, struct ctl_table *table)
++struct ctl_table_header *register_sysctl(const char *path, struct ctl_table *table,
++					 size_t table_size)
+ {
+-	int count = 0;
+-	struct ctl_table *entry;
+-	struct ctl_table_header t_hdr;
+-
+-	t_hdr.ctl_table = table;
+-	list_for_each_table_entry(entry, (&t_hdr))
+-		count++;
+ 	return __register_sysctl_table(&sysctl_table_root.default_set,
+-					path, table, count);
++					path, table, table_size);
+ }
+ EXPORT_SYMBOL(register_sysctl);
+ 
+@@ -1451,7 +1445,14 @@ EXPORT_SYMBOL(register_sysctl);
+ void __init __register_sysctl_init(const char *path, struct ctl_table *table,
+ 				 const char *table_name)
+ {
+-	struct ctl_table_header *hdr = register_sysctl(path, table);
++	int count = 0;
++	struct ctl_table *entry;
++	struct ctl_table_header t_hdr, *hdr;
++
++	t_hdr.ctl_table = table;
++	list_for_each_table_entry(entry, (&t_hdr))
++		count++;
++	hdr = register_sysctl(path, table, count);
+ 
+ 	if (unlikely(!hdr)) {
+ 		pr_err("failed when register_sysctl %s to %s\n", table_name, path);
+diff --git a/fs/verity/signature.c b/fs/verity/signature.c
+index b8c51ad40d3a..f617c6a1f16c 100644
+--- a/fs/verity/signature.c
++++ b/fs/verity/signature.c
+@@ -103,7 +103,9 @@ static struct ctl_table fsverity_sysctl_table[] = {
+ 
+ static int __init fsverity_sysctl_init(void)
+ {
+-	fsverity_sysctl_header = register_sysctl("fs/verity", fsverity_sysctl_table);
++	fsverity_sysctl_header = register_sysctl("fs/verity",
++						 fsverity_sysctl_table,
++						 ARRAY_SIZE(fsverity_sysctl_table));
+ 	if (!fsverity_sysctl_header) {
+ 		pr_err("sysctl registration failed!\n");
+ 		return -ENOMEM;
+diff --git a/fs/xfs/xfs_sysctl.c b/fs/xfs/xfs_sysctl.c
+index fade33735393..61075e9c9e37 100644
+--- a/fs/xfs/xfs_sysctl.c
++++ b/fs/xfs/xfs_sysctl.c
+@@ -213,7 +213,8 @@ static struct ctl_table xfs_table[] = {
+ int
+ xfs_sysctl_register(void)
+ {
+-	xfs_table_header = register_sysctl("fs/xfs", xfs_table);
++	xfs_table_header = register_sysctl("fs/xfs", xfs_table,
++					   ARRAY_SIZE(xfs_table));
+ 	if (!xfs_table_header)
+ 		return -ENOMEM;
+ 	return 0;
+diff --git a/include/linux/sysctl.h b/include/linux/sysctl.h
+index 0495c858989f..71d7935e50f0 100644
+--- a/include/linux/sysctl.h
++++ b/include/linux/sysctl.h
+@@ -227,7 +227,8 @@ extern void retire_sysctl_set(struct ctl_table_set *set);
+ struct ctl_table_header *__register_sysctl_table(
+ 	struct ctl_table_set *set,
+ 	const char *path, struct ctl_table *table, size_t table_size);
+-struct ctl_table_header *register_sysctl(const char *path, struct ctl_table *table);
++struct ctl_table_header *register_sysctl(const char *path, struct ctl_table *table,
++					 size_t table_size);
+ void unregister_sysctl_table(struct ctl_table_header * table);
+ 
+ extern int sysctl_init_bases(void);
+@@ -262,7 +263,8 @@ static inline struct ctl_table_header *register_sysctl_mount_point(const char *p
+ 	return NULL;
+ }
+ 
+-static inline struct ctl_table_header *register_sysctl(const char *path, struct ctl_table *table)
++static inline struct ctl_table_header *register_sysctl(const char *path, struct ctl_table *table,
++						       size_t table_size)
+ {
+ 	return NULL;
+ }
+diff --git a/kernel/pid_sysctl.h b/kernel/pid_sysctl.h
+index d67a4d45bb42..8b24744752cb 100644
+--- a/kernel/pid_sysctl.h
++++ b/kernel/pid_sysctl.h
+@@ -48,7 +48,7 @@ static struct ctl_table pid_ns_ctl_table_vm[] = {
+ };
+ static inline void register_pid_ns_sysctl_table_vm(void)
+ {
+-	register_sysctl("vm", pid_ns_ctl_table_vm);
++	register_sysctl("vm", pid_ns_ctl_table_vm, ARRAY_SIZE(pid_ns_ctl_table_vm));
+ }
+ #else
+ static inline void initialize_memfd_noexec_scope(struct pid_namespace *ns) {}
+diff --git a/kernel/time/timer.c b/kernel/time/timer.c
+index 63a8ce7177dd..de385b365a7a 100644
+--- a/kernel/time/timer.c
++++ b/kernel/time/timer.c
+@@ -265,7 +265,7 @@ static struct ctl_table timer_sysctl[] = {
+ 
+ static int __init timer_sysctl_init(void)
+ {
+-	register_sysctl("kernel", timer_sysctl);
++	register_sysctl("kernel", timer_sysctl, ARRAY_SIZE(timer_sysctl));
+ 	return 0;
+ }
+ device_initcall(timer_sysctl_init);
+diff --git a/kernel/ucount.c b/kernel/ucount.c
+index 2b80264bb79f..59bf6983f1cf 100644
+--- a/kernel/ucount.c
++++ b/kernel/ucount.c
+@@ -365,7 +365,7 @@ static __init int user_namespace_sysctl_init(void)
+ 	 * default set so that registrations in the child sets work
+ 	 * properly.
+ 	 */
+-	user_header = register_sysctl("user", empty);
++	user_header = register_sysctl("user", empty, 0);
+ 	kmemleak_ignore(user_header);
+ 	BUG_ON(!user_header);
+ 	BUG_ON(!setup_userns_sysctls(&init_user_ns));
+diff --git a/kernel/utsname_sysctl.c b/kernel/utsname_sysctl.c
+index 019e3a1566cf..24527b155538 100644
+--- a/kernel/utsname_sysctl.c
++++ b/kernel/utsname_sysctl.c
+@@ -138,7 +138,7 @@ void uts_proc_notify(enum uts_proc proc)
+ 
+ static int __init utsname_sysctl_init(void)
+ {
+-	register_sysctl("kernel", uts_kern_table);
++	register_sysctl("kernel", uts_kern_table, ARRAY_SIZE(uts_kern_table));
+ 	return 0;
+ }
+ 
+diff --git a/lib/test_sysctl.c b/lib/test_sysctl.c
+index 8036aa91a1cb..83d37a163836 100644
+--- a/lib/test_sysctl.c
++++ b/lib/test_sysctl.c
+@@ -166,7 +166,8 @@ static int test_sysctl_setup_node_tests(void)
+ 	test_data.bitmap_0001 = kzalloc(SYSCTL_TEST_BITMAP_SIZE/8, GFP_KERNEL);
+ 	if (!test_data.bitmap_0001)
+ 		return -ENOMEM;
+-	sysctl_test_headers.test_h_setup_node = register_sysctl("debug/test_sysctl", test_table);
++	sysctl_test_headers.test_h_setup_node = register_sysctl("debug/test_sysctl", test_table,
++					     ARRAY_SIZE(test_table));
+ 	if (!sysctl_test_headers.test_h_setup_node) {
+ 		kfree(test_data.bitmap_0001);
+ 		return -ENOMEM;
+@@ -192,7 +193,8 @@ static int test_sysctl_run_unregister_nested(void)
+ 	struct ctl_table_header *unregister;
+ 
+ 	unregister = register_sysctl("debug/test_sysctl/unregister_error",
+-				   test_table_unregister);
++				     test_table_unregister,
++				     ARRAY_SIZE(test_table_unregister));
+ 	if (!unregister)
+ 		return -ENOMEM;
+ 
+@@ -209,7 +211,8 @@ static int test_sysctl_run_register_mount_point(void)
+ 
+ 	sysctl_test_headers.test_h_mnterror
+ 		= register_sysctl("debug/test_sysctl/mnt/mnt_error",
+-				  test_table_unregister);
++				  test_table_unregister,
++				  ARRAY_SIZE(test_table_unregister));
+ 	/*
+ 	 * Don't check the result.:
+ 	 * If it fails (expected behavior), return 0.
+diff --git a/net/sunrpc/sysctl.c b/net/sunrpc/sysctl.c
+index 93941ab12549..61222addda7e 100644
+--- a/net/sunrpc/sysctl.c
++++ b/net/sunrpc/sysctl.c
+@@ -167,7 +167,8 @@ void
+ rpc_register_sysctl(void)
+ {
+ 	if (!sunrpc_table_header)
+-		sunrpc_table_header = register_sysctl("sunrpc", debug_table);
++		sunrpc_table_header = register_sysctl("sunrpc", debug_table,
++						      ARRAY_SIZE(debug_table));
+ }
+ 
+ void
+diff --git a/net/sunrpc/xprtrdma/svc_rdma.c b/net/sunrpc/xprtrdma/svc_rdma.c
+index f0d5eeed4c88..df7fb9c8b785 100644
+--- a/net/sunrpc/xprtrdma/svc_rdma.c
++++ b/net/sunrpc/xprtrdma/svc_rdma.c
+@@ -246,7 +246,8 @@ static int svc_rdma_proc_init(void)
+ 		goto out_err;
+ 
+ 	svcrdma_table_header = register_sysctl("sunrpc/svc_rdma",
+-					       svcrdma_parm_table);
++					       svcrdma_parm_table,
++					       ARRAY_SIZE(svcrdma_parm_table));
+ 	return 0;
+ 
+ out_err:
+diff --git a/net/sunrpc/xprtrdma/transport.c b/net/sunrpc/xprtrdma/transport.c
+index 29b0562d62e7..bf43e05044a3 100644
+--- a/net/sunrpc/xprtrdma/transport.c
++++ b/net/sunrpc/xprtrdma/transport.c
+@@ -790,7 +790,9 @@ int xprt_rdma_init(void)
+ 
+ #if IS_ENABLED(CONFIG_SUNRPC_DEBUG)
+ 	if (!sunrpc_table_header)
+-		sunrpc_table_header = register_sysctl("sunrpc", xr_tunables_table);
++		sunrpc_table_header = register_sysctl("sunrpc",
++						      xr_tunables_table,
++						      ARRAY_SIZE(xr_tunables_table));
+ #endif
+ 	return 0;
+ }
+diff --git a/net/sunrpc/xprtsock.c b/net/sunrpc/xprtsock.c
+index 5f9030b81c9e..7c3d5ed708be 100644
+--- a/net/sunrpc/xprtsock.c
++++ b/net/sunrpc/xprtsock.c
+@@ -3169,7 +3169,9 @@ static struct xprt_class	xs_bc_tcp_transport = {
+ int init_socket_xprt(void)
+ {
+ 	if (!sunrpc_table_header)
+-		sunrpc_table_header = register_sysctl("sunrpc", xs_tunables_table);
++		sunrpc_table_header = register_sysctl("sunrpc",
++						      xs_tunables_table,
++						      ARRAY_SIZE(xs_tunables_table));
+ 
+ 	xprt_register_transport(&xs_local_transport);
+ 	xprt_register_transport(&xs_udp_transport);
+diff --git a/net/sysctl_net.c b/net/sysctl_net.c
+index 1757c18ea065..f96e6633fdd3 100644
+--- a/net/sysctl_net.c
++++ b/net/sysctl_net.c
+@@ -101,7 +101,7 @@ __init int net_sysctl_init(void)
+ 	 * registering "/proc/sys/net" as an empty directory not in a
+ 	 * network namespace.
+ 	 */
+-	net_header = register_sysctl("net", empty);
++	net_header = register_sysctl("net", empty, 0);
+ 	if (!net_header)
+ 		goto out;
+ 	ret = register_pernet_subsys(&sysctl_pernet_ops);
+diff --git a/security/apparmor/lsm.c b/security/apparmor/lsm.c
+index f431251ffb91..b77344506cf3 100644
+--- a/security/apparmor/lsm.c
++++ b/security/apparmor/lsm.c
+@@ -1785,7 +1785,8 @@ static struct ctl_table apparmor_sysctl_table[] = {
+ 
+ static int __init apparmor_init_sysctl(void)
+ {
+-	return register_sysctl("kernel", apparmor_sysctl_table) ? 0 : -ENOMEM;
++	return register_sysctl("kernel", apparmor_sysctl_table,
++			       ARRAY_SIZE(apparmor_sysctl_table)) ? 0 : -ENOMEM;
+ }
+ #else
+ static inline int apparmor_init_sysctl(void)
+diff --git a/security/loadpin/loadpin.c b/security/loadpin/loadpin.c
+index ebae964f7cc9..6f2cc827df41 100644
+--- a/security/loadpin/loadpin.c
++++ b/security/loadpin/loadpin.c
+@@ -256,7 +256,8 @@ static int __init loadpin_init(void)
+ 		enforce ? "" : "not ");
+ 	parse_exclude();
+ #ifdef CONFIG_SYSCTL
+-	if (!register_sysctl("kernel/loadpin", loadpin_sysctl_table))
++	if (!register_sysctl("kernel/loadpin", loadpin_sysctl_table,
++			     ARRAY_SIZE(loadpin_sysctl_table)))
+ 		pr_notice("sysctl registration failed!\n");
+ #endif
+ 	security_add_hooks(loadpin_hooks, ARRAY_SIZE(loadpin_hooks), "loadpin");
+diff --git a/security/yama/yama_lsm.c b/security/yama/yama_lsm.c
+index 2503cf153d4a..7b8164a4b504 100644
+--- a/security/yama/yama_lsm.c
++++ b/security/yama/yama_lsm.c
+@@ -461,7 +461,8 @@ static struct ctl_table yama_sysctl_table[] = {
+ };
+ static void __init yama_init_sysctl(void)
+ {
+-	if (!register_sysctl("kernel/yama", yama_sysctl_table))
++	if (!register_sysctl("kernel/yama", yama_sysctl_table,
++			     ARRAY_SIZE(yama_sysctl_table)))
+ 		panic("Yama: sysctl registration failed.\n");
+ }
+ #else
 -- 
-Anton Altaparmakov <anton at tuxera.com> (replace at with @)
-Lead in File System Development, Tuxera Inc., http://www.tuxera.com/
-Linux NTFS maintainer
+2.30.2
 
 
 
