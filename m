@@ -2,105 +2,100 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FB64745271
-	for <lists+linux-ntfs-dev@lfdr.de>; Sun,  2 Jul 2023 23:13:27 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
-	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C8B4745AA6
+	for <lists+linux-ntfs-dev@lfdr.de>; Mon,  3 Jul 2023 12:56:54 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1qG4No-00016v-M3;
-	Sun, 02 Jul 2023 21:13:25 +0000
+	id 1qGHEf-0007Kw-39;
+	Mon, 03 Jul 2023 10:56:49 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <sashal@kernel.org>) id 1qG2u3-00054S-Kr
- for linux-ntfs-dev@lists.sourceforge.net;
- Sun, 02 Jul 2023 19:38:36 +0000
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95) (envelope-from
+ <3-I6iZAkbAMs9FG1r22v8r66zu.x55x2vB9v8t54Av4A.t53@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
+ id 1qGHDY-00007n-SE for linux-ntfs-dev@lists.sourceforge.net;
+ Mon, 03 Jul 2023 10:55:41 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
- In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:To:From:Subject:Message-ID:Date:
+ MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=6SeZ+LQmOQVt/TSkd3Vz6UburEEZLO3WOtTEppMQpS4=; b=Ri8ovW9Z3fjM69CRqytVZF9XZm
- MB5ruhrGtJfw5MlPrgqUZ0Nv8JbVdc0o77gIpdEW73CyM/oX/phedhYlhZshy8XIUaSM9uXbwtoKi
- 3xB06Mg2qfqQ+yfkcmWFpBSrIWDCF1LXh7aco8EutfgXfL1NLRmEvkfs/E1Lb3WRh2CE=;
+ bh=RE8LSychG4k/uRGiRu7xh8BUIXkRlq01gkyPncQ19GI=; b=HEYc73LgJGcWhXhDFcpm+TKOEl
+ VJqB9w7APY+BHDycqiBSZX6PDoNh/9QK7itxcrkVckAQEozeR7+FmpraB5ByFz4uUQbhQQNri0wGD
+ 0DH/rMyvxsW8+wUxyq6Q14PIPW7mmQ4j5n/vr2gFF0JAqHCgd7ARlS8SRjdoscRUabBs=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=6SeZ+LQmOQVt/TSkd3Vz6UburEEZLO3WOtTEppMQpS4=; b=k096hG238YvnLtArdW8wRUR/hr
- fAUUbzvjyrRX/lP2iYmSFQyTSb9iemLi5iaxKaZD6F6bGx/kQG9WGCyFuyExEunNfm7LjpB+S041F
- uyQqde1go2gV2zHYFVCpB07a558/c4bYfHXvEpK7w2Q8bbJIS3cV6jSx6Ckc90mBhW4E=;
-Received: from dfw.source.kernel.org ([139.178.84.217])
+ h=Content-Type:To:From:Subject:Message-ID:Date:MIME-Version:Sender:Reply-To
+ :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=RE8LSychG4k/uRGiRu7xh8BUIXkRlq01gkyPncQ19GI=; b=J
+ SLOaA03HM73NV4+w6s4MbAiKpirLsl7R8YQ2I38E0zHbwCQ/IetJDSS8RPdm5eC/E3dCxWC5rEZf1
+ caO5TonhvGPlUCxu5gVMyfFRTIedzMKW9jG0vO+cnJbDjiLZptIAW03FwBas+lIqI+MrTE+osNasN
+ MVxGqPPYkYHdVSRU=;
+Received: from mail-oi1-f198.google.com ([209.85.167.198])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1qG2u0-004Cac-7t for linux-ntfs-dev@lists.sourceforge.net;
- Sun, 02 Jul 2023 19:38:36 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 42BE560C8C;
- Sun,  2 Jul 2023 19:38:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D806BC433CA;
- Sun,  2 Jul 2023 19:38:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1688326702;
- bh=0Gc8JN2bcaLif+Exbg4sFXgL2Sb5gM6PzQoioJyn+NA=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=SFOFyjJ0qzFwjLFbOFDU+qwzkbuBfJhXVXYqiaWEbm/kq6PJV1w2qqDXA4on6MPPL
- equbZ0u+Yasad785HLGyL+F3c+lYOlWr47x3dnzJmZGkDuLSGcr4Nji5E/AS37DP5L
- y3ge9Vx6ubDZTcZNfgmAZDctPJs3mjffWQzEo4LJN+s3+y7L6l5tcnwZ68QXgH4tRy
- IuT10FF/TorLZPZRfBbGTj+LK4prIMWcq4gurrhiJuWI3dGRsuBuI+oTZpGsojaG6U
- +MOmRqHMKbHUsIfpkXvb3YSI9Dx8cofZNdm+ZIc1KmOGYWU5SXTckKXOfSJvor76YN
- L++OVp6VjyCkg==
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Date: Sun,  2 Jul 2023 15:38:03 -0400
-Message-Id: <20230702193815.1775684-4-sashal@kernel.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230702193815.1775684-1-sashal@kernel.org>
-References: <20230702193815.1775684-1-sashal@kernel.org>
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
+ id 1qGHDW-004ihg-F0 for linux-ntfs-dev@lists.sourceforge.net;
+ Mon, 03 Jul 2023 10:55:41 +0000
+Received: by mail-oi1-f198.google.com with SMTP id
+ 5614622812f47-39ec7630322so3933311b6e.0
+ for <linux-ntfs-dev@lists.sourceforge.net>;
+ Mon, 03 Jul 2023 03:55:38 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1688381733; x=1690973733;
+ h=to:from:subject:message-id:date:mime-version:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=RE8LSychG4k/uRGiRu7xh8BUIXkRlq01gkyPncQ19GI=;
+ b=TtNMqlsxOjU9//hCFC8bp5Tmat6l58jnnHmrkVa0swRP766I0I2kT9xiaO259vxJfK
+ Gjx9AEtOQuccEaw+cXRXJ9lrPWln2rdMBl3V2IYaTWoUc3Gmn8lZ3oC0MQutTnpgZyDr
+ q6JFyDcFbqZoCda9khJ/Zb9s4IDtzS8wtBsIytkusVqcNi7daR/kaYfKT1dVVjQ5D47s
+ zpEIOBmAfOk5exCjaU8EStSkyyQWYrWcCTnLmdzpV2af5JgS1v4mAfCPT7TweoVqVrl6
+ 1n6iRw8aolOdDrzhQbLRbxngiTViKFWwI2egwSmNvuZ0ixK1smPPRJChgtlBfd23EVe7
+ bfpw==
+X-Gm-Message-State: ABy/qLaKia0mzfUIV68nw9K6Md/z9jSocjeyltX+ldgQA37oK2fbgdkz
+ GJ571rZi6Uloy+PDWBsGxphrw9Nta6awiu7lFYSbxJb9yq/N
+X-Google-Smtp-Source: APBJJlGgiSo7l8Xu2RlauE3GVDBEzAPKvzzZBhSGghuhfclcyczoWXKXtBcxWNc3wYwNrMIGADO75h6BHTlwLi9bv+Z940+0zzSb
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.4.1
-X-Spam-Score: -5.2 (-----)
+X-Received: by 2002:a17:902:e5c5:b0:1b3:e4f1:1b3f with SMTP id
+ u5-20020a170902e5c500b001b3e4f11b3fmr8323989plf.2.1688375032438; Mon, 03 Jul
+ 2023 02:03:52 -0700 (PDT)
+Date: Mon, 03 Jul 2023 02:03:52 -0700
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <0000000000000e649505ff917257@google.com>
+From: syzbot <syzbot+listbbc971fb2ba71e0cdf0c@syzkaller.appspotmail.com>
+To: anton@tuxera.com, linux-fsdevel@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-ntfs-dev@lists.sourceforge.net, 
+ syzkaller-bugs@googlegroups.com
+X-Spam-Score: 0.6 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: From: Danila Chernetsov <listdansp@mail.ru> [ Upstream commit
- aa4b92c5234878d55da96d387ea4d3695ca5e4ab ] In
- ntfs_mft_data_extend_allocation_nolock(), 
- if an error condition occurs prior to 'ctx' being set to a non-NULL value,
- avoid dereferencing the NULL 'ctx' pointer in error handling. 
- Content analysis details:   (-5.2 points, 6.0 required)
+ Content preview:  Hello ntfs maintainers/developers, This is a 31-day syzbot
+ report for the ntfs subsystem. All related reports/information can be found
+ at: https://syzkaller.appspot.com/upstream/s/ntfs During the period, 0 new
+ issues were detected and 0 were fixed. In total, 24 issues are still open
+ and 7 have been fixed so far. 
+ Content analysis details:   (0.6 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
- high trust [139.178.84.217 listed in list.dnswl.org]
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.3 FROM_LOCAL_HEX         From: localpart has long hexadecimal sequence
+ 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
+ mail domains are different
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.0 T_SCC_BODY_TEXT_LINE   No description available.
- -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1qG2u0-004Cac-7t
-X-Mailman-Approved-At: Sun, 02 Jul 2023 21:13:23 +0000
-Subject: [Linux-ntfs-dev] [PATCH AUTOSEL 6.4 04/16] ntfs: do not dereference
- a null ctx on error
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.167.198 listed in wl.mailspike.net]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.167.198 listed in list.dnswl.org]
+X-Headers-End: 1qGHDW-004ihg-F0
+X-Mailman-Approved-At: Mon, 03 Jul 2023 10:56:47 +0000
+Subject: [Linux-ntfs-dev] [syzbot] Monthly ntfs report (Jul 2023)
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -113,94 +108,55 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, Christian Brauner <brauner@kernel.org>,
- linux-ntfs-dev@lists.sourceforge.net, anton@tuxera.com,
- Danila Chernetsov <listdansp@mail.ru>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-From: Danila Chernetsov <listdansp@mail.ru>
+Hello ntfs maintainers/developers,
 
-[ Upstream commit aa4b92c5234878d55da96d387ea4d3695ca5e4ab ]
+This is a 31-day syzbot report for the ntfs subsystem.
+All related reports/information can be found at:
+https://syzkaller.appspot.com/upstream/s/ntfs
 
-In ntfs_mft_data_extend_allocation_nolock(), if an error condition occurs
-prior to 'ctx' being set to a non-NULL value, avoid dereferencing the NULL
-'ctx' pointer in error handling.
+During the period, 0 new issues were detected and 0 were fixed.
+In total, 24 issues are still open and 7 have been fixed so far.
 
-Found by Linux Verification Center (linuxtesting.org) with SVACE.
+Some of the still happening issues:
 
-Signed-off-by: Danila Chernetsov <listdansp@mail.ru>
-Reviewed-by: Namjae Jeon <linkinjeon@kernel.org>
-Signed-off-by: Christian Brauner <brauner@kernel.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
+Ref  Crashes Repro Title
+<1>  3110    Yes   possible deadlock in ntfs_read_folio
+                   https://syzkaller.appspot.com/bug?extid=8ef76b0b1f86c382ad37
+<2>  2554    Yes   kernel BUG at fs/ntfs/aops.c:LINE!
+                   https://syzkaller.appspot.com/bug?extid=6a5a7672f663cce8b156
+<3>  1043    Yes   kernel BUG in __ntfs_grab_cache_pages
+                   https://syzkaller.appspot.com/bug?extid=01b3ade7c86f7dd584d7
+<4>  488     Yes   possible deadlock in map_mft_record
+                   https://syzkaller.appspot.com/bug?extid=cb1fdea540b46f0ce394
+<5>  289     No    KASAN: use-after-free Read in ntfs_test_inode
+                   https://syzkaller.appspot.com/bug?extid=2751da923b5eb8307b0b
+<6>  157     Yes   KASAN: slab-out-of-bounds Read in ntfs_readdir
+                   https://syzkaller.appspot.com/bug?extid=d36761079ac1b585a6df
+<7>  156     No    possible deadlock in __ntfs_clear_inode
+                   https://syzkaller.appspot.com/bug?extid=5ebb8d0e9b8c47867596
+<8>  78      Yes   INFO: rcu detected stall in sys_mount (6)
+                   https://syzkaller.appspot.com/bug?extid=ee7d095f44a683a195f8
+<9>  15      Yes   kernel BUG in ntfs_iget
+                   https://syzkaller.appspot.com/bug?extid=d62e6bd2a2d05103d105
+<10> 13      Yes   KASAN: use-after-free Read in ntfs_attr_find (2)
+                   https://syzkaller.appspot.com/bug?extid=ef50f8eb00b54feb7ba2
+
 ---
- fs/ntfs/mft.c | 36 +++++++++++++++++++-----------------
- 1 file changed, 19 insertions(+), 17 deletions(-)
+This report is generated by a bot. It may contain errors.
+See https://goo.gl/tpsmEJ for more information about syzbot.
+syzbot engineers can be reached at syzkaller@googlegroups.com.
 
-diff --git a/fs/ntfs/mft.c b/fs/ntfs/mft.c
-index 48030899dc6ec..0155f106ec344 100644
---- a/fs/ntfs/mft.c
-+++ b/fs/ntfs/mft.c
-@@ -1955,36 +1955,38 @@ static int ntfs_mft_data_extend_allocation_nolock(ntfs_volume *vol)
- 				"attribute.%s", es);
- 		NVolSetErrors(vol);
- 	}
--	a = ctx->attr;
-+
- 	if (ntfs_rl_truncate_nolock(vol, &mft_ni->runlist, old_last_vcn)) {
- 		ntfs_error(vol->sb, "Failed to truncate mft data attribute "
- 				"runlist.%s", es);
- 		NVolSetErrors(vol);
- 	}
--	if (mp_rebuilt && !IS_ERR(ctx->mrec)) {
--		if (ntfs_mapping_pairs_build(vol, (u8*)a + le16_to_cpu(
-+	if (ctx) {
-+		a = ctx->attr;
-+		if (mp_rebuilt && !IS_ERR(ctx->mrec)) {
-+			if (ntfs_mapping_pairs_build(vol, (u8 *)a + le16_to_cpu(
- 				a->data.non_resident.mapping_pairs_offset),
- 				old_alen - le16_to_cpu(
--				a->data.non_resident.mapping_pairs_offset),
-+					a->data.non_resident.mapping_pairs_offset),
- 				rl2, ll, -1, NULL)) {
--			ntfs_error(vol->sb, "Failed to restore mapping pairs "
-+				ntfs_error(vol->sb, "Failed to restore mapping pairs "
- 					"array.%s", es);
--			NVolSetErrors(vol);
--		}
--		if (ntfs_attr_record_resize(ctx->mrec, a, old_alen)) {
--			ntfs_error(vol->sb, "Failed to restore attribute "
-+				NVolSetErrors(vol);
-+			}
-+			if (ntfs_attr_record_resize(ctx->mrec, a, old_alen)) {
-+				ntfs_error(vol->sb, "Failed to restore attribute "
- 					"record.%s", es);
-+				NVolSetErrors(vol);
-+			}
-+			flush_dcache_mft_record_page(ctx->ntfs_ino);
-+			mark_mft_record_dirty(ctx->ntfs_ino);
-+		} else if (IS_ERR(ctx->mrec)) {
-+			ntfs_error(vol->sb, "Failed to restore attribute search "
-+				"context.%s", es);
- 			NVolSetErrors(vol);
- 		}
--		flush_dcache_mft_record_page(ctx->ntfs_ino);
--		mark_mft_record_dirty(ctx->ntfs_ino);
--	} else if (IS_ERR(ctx->mrec)) {
--		ntfs_error(vol->sb, "Failed to restore attribute search "
--				"context.%s", es);
--		NVolSetErrors(vol);
--	}
--	if (ctx)
- 		ntfs_attr_put_search_ctx(ctx);
-+	}
- 	if (!IS_ERR(mrec))
- 		unmap_mft_record(mft_ni);
- 	up_write(&mft_ni->runlist.lock);
--- 
-2.39.2
+To disable reminders for individual bugs, reply with the following command:
+#syz set <Ref> no-reminders
 
+To change bug's subsystems, reply with:
+#syz set <Ref> subsystems: new-subsystem
+
+You may send multiple commands in a single email message.
 
 
 _______________________________________________
