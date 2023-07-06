@@ -2,28 +2,27 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3B97749DF5
-	for <lists+linux-ntfs-dev@lfdr.de>; Thu,  6 Jul 2023 15:39:46 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
-	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CF7974A613
+	for <lists+linux-ntfs-dev@lfdr.de>; Thu,  6 Jul 2023 23:45:36 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1qHPCy-0000UQ-HE;
-	Thu, 06 Jul 2023 13:39:44 +0000
+	id 1qHWn8-0007fK-74;
+	Thu, 06 Jul 2023 21:45:34 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <jack@suse.cz>) id 1qHPBD-0006MH-BJ
- for linux-ntfs-dev@lists.sourceforge.net;
- Thu, 06 Jul 2023 13:37:55 +0000
+ (envelope-from <jack@suse.cz>) id 1qHQRK-0002hK-8p;
+ Thu, 06 Jul 2023 14:58:39 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
  Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=SvjJMU2RLsCedQ3MvPejpvvnZCxXu+NaMD2t/+cpPw0=; b=QbPkVzgERtZV8NbQWht8DYh+r6
- +42lJxZN0we/KlJHiO9kJLdhLRLD0NYoaAG8TJnihrF//yI2uNS8NJDuh5le/rlNugO4AuE7I5ShG
- CHHGFkWZBQh7voIgKBOsyW+iqJG1mCIPRtG9YYVjAo44NVduldYT8Q19R1srzyoa/rg0=;
+ bh=a3WCjuVtP408kA5MLjuqcXtfVFT/xUBAoafKmCX5mTQ=; b=NrWKA1Wb3E7tBGmCSOhvvEWUM8
+ Z/AZijOORi238PEEOkOeiyAHC5748u2I4VqXSgzridLysc6oaAsx4GW7tEAlwCsBhNya8Y1V2MF6Y
+ N+nHWpxD2Edcgc8/pPstwJlyCEsndicnvhVBLN7MCtiJotKgtOEouAPguXynx8WHDlXI=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
@@ -31,57 +30,55 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=SvjJMU2RLsCedQ3MvPejpvvnZCxXu+NaMD2t/+cpPw0=; b=QIi+TZtAsALcUmyw99zqWx3hG0
- Hd8QN53Ii8b3KMfeZHJyRSwuvB4VcgZdV4yV7VLC9qhINKG7OVBuUXRU96FGZuPpa1rfvYpKMnw69
- W1pN4BbDvANP5Zw86Z95jnEAUSfZ6vQG6dudEooRYpRyhY+ATzz6gRra0/3+AN6td3Bs=;
+ bh=a3WCjuVtP408kA5MLjuqcXtfVFT/xUBAoafKmCX5mTQ=; b=d12nu6lDgdSQQEbHe9SbKEkwn1
+ h0NQehxFPolNzRVcOMTjYB4D2Wdtu2pFsWtkLXcGRhNkjv7uTABSBuUO5f0P8Q1CnswBZKeHZFRIg
+ N4vl1rfsO+FcC8PMKOEJUuYWRwvWD1X1YbHuW6gx4DIbCNx6yQEcYLFM+5JANiWy1XEw=;
 Received: from smtp-out2.suse.de ([195.135.220.29])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1qHPBC-0003nt-C5 for linux-ntfs-dev@lists.sourceforge.net;
- Thu, 06 Jul 2023 13:37:55 +0000
+ id 1qHQRK-008Y5e-EK; Thu, 06 Jul 2023 14:58:39 +0000
 Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
  (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 649191F85D;
- Thu,  6 Jul 2023 13:37:46 +0000 (UTC)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 216BD1F747;
+ Thu,  6 Jul 2023 14:58:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
- t=1688650666; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1688655512; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=SvjJMU2RLsCedQ3MvPejpvvnZCxXu+NaMD2t/+cpPw0=;
- b=FxtLh5kGIwVmCXz1GbBaL0cMrf4GLWoq2HllPiQNXbeDV4mZRYAJZA5Y4ErReOwl9lLf/m
- funLejrrr9NbBC4riU8y4bpQnxWFlC6I1rbevdYHiDJ81fxclMQwxLx7jtY8zgRbQgI1F7
- k3gqUIiNC8hyLZieCGpWOFV788ZrjwY=
+ bh=a3WCjuVtP408kA5MLjuqcXtfVFT/xUBAoafKmCX5mTQ=;
+ b=24baoWftvYiGQFO3002Q0+aX8kw5mHmt4Cu1N910tREAGtuxcOaRXmP0pM+lOVAJim6+VD
+ dQX99wfdHC9+7VMIIenAeKOTV3XT6+7YZiyj/RCSzIS+4DKmzNEvO8ziEQ7uku2gaTxrzh
+ E0opuusKVm/bz4GqT0HBn9z2vEqLBRg=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
- s=susede2_ed25519; t=1688650666;
+ s=susede2_ed25519; t=1688655512;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=SvjJMU2RLsCedQ3MvPejpvvnZCxXu+NaMD2t/+cpPw0=;
- b=Zkz5zzbeCIY1rjiLSW6rwwxZbsRzf8b9k7HZEt80avbP8w7Lh9ua78xp1qIUJl7WE/Ue9g
- fSO71Q3lTo2AUZAw==
+ bh=a3WCjuVtP408kA5MLjuqcXtfVFT/xUBAoafKmCX5mTQ=;
+ b=N/aHHWlEsq3Q8ok8VkNIK3F/VOqPWCTaj4AqfwvPqV9l0evDoZQtQa232xNNYABuuek3bk
+ kdzAUhIiYKjnxQAA==
 Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
  (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 5671D138EE;
- Thu,  6 Jul 2023 13:37:46 +0000 (UTC)
+ by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 01F77138FC;
+ Thu,  6 Jul 2023 14:58:32 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id R40WFarDpmSlWwAAMHmgww
- (envelope-from <jack@suse.cz>); Thu, 06 Jul 2023 13:37:46 +0000
+ by imap2.suse-dmz.suse.de with ESMTPSA id aw5vAJjWpmRoBgAAMHmgww
+ (envelope-from <jack@suse.cz>); Thu, 06 Jul 2023 14:58:32 +0000
 Received: by quack3.suse.cz (Postfix, from userid 1000)
- id C973AA0707; Thu,  6 Jul 2023 15:37:45 +0200 (CEST)
-Date: Thu, 6 Jul 2023 15:37:45 +0200
+ id 818C8A0707; Thu,  6 Jul 2023 16:58:31 +0200 (CEST)
+Date: Thu, 6 Jul 2023 16:58:31 +0200
 From: Jan Kara <jack@suse.cz>
 To: Jeff Layton <jlayton@kernel.org>
-Message-ID: <20230706133745.rmijt7wmwn5rivwh@quack3>
-References: <20230705185755.579053-1-jlayton@kernel.org>
- <20230705190309.579783-1-jlayton@kernel.org>
- <20230705190309.579783-58-jlayton@kernel.org>
+Message-ID: <20230706145831.iwmb7c3jerbkctda@quack3>
+References: <20230705185812.579118-1-jlayton@kernel.org>
+ <20230705185812.579118-4-jlayton@kernel.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20230705190309.579783-58-jlayton@kernel.org>
+In-Reply-To: <20230705185812.579118-4-jlayton@kernel.org>
 X-Spam-Score: -2.5 (--)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
@@ -89,10 +86,10 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Wed 05-07-23 15:01:25,
- Jeff Layton wrote: > In later patches, 
- we're going to change how the inode's ctime field is > used. Switch to using
- accessor functions instead of raw accesses of > inode->i_c [...] 
+ Content preview:  On Wed 05-07-23 14:58:12,
+ Jeff Layton wrote: > Now that everything
+ in-tree is converted to use the accessor functions, > rename the i_ctime
+ field in the inode to discourage direct access. > > Signed-o [...] 
  Content analysis details:   (-2.5 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -108,10 +105,10 @@ X-Spam-Report: Spam detection software,
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
  -0.0 T_SCC_BODY_TEXT_LINE   No description available.
-X-Headers-End: 1qHPBC-0003nt-C5
-X-Mailman-Approved-At: Thu, 06 Jul 2023 13:39:44 +0000
-Subject: Re: [Linux-ntfs-dev] [PATCH v2 60/92] ntfs: convert to ctime
- accessor functions
+X-Headers-End: 1qHQRK-008Y5e-EK
+X-Mailman-Approved-At: Thu, 06 Jul 2023 21:44:57 +0000
+Subject: Re: [Linux-ntfs-dev] [PATCH v2 92/92] fs: rename i_ctime field to
+ __i_ctime
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -124,18 +121,89 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Cc: Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>,
- linux-ntfs-dev@lists.sourceforge.net, linux-kernel@vger.kernel.org,
- Al Viro <viro@zeniv.linux.org.uk>, linux-fsdevel@vger.kernel.org,
- Anton Altaparmakov <anton@tuxera.com>
+Cc: lucho@ionkov.net, rafael@kernel.org, djwong@kernel.org, al@alarsen.net,
+ cmllamas@google.com, andrii@kernel.org, hughd@google.com,
+ john.johansen@canonical.com, agordeev@linux.ibm.com, hch@lst.de,
+ hubcap@omnibond.com, pc@manguebit.com, linux-xfs@vger.kernel.org,
+ bvanassche@acm.org, jeffxu@chromium.org, mpe@ellerman.id.au,
+ john@keeping.me.uk, yi.zhang@huawei.com, jmorris@namei.org,
+ christophe.leroy@csgroup.eu, code@tyhicks.com, stern@rowland.harvard.edu,
+ borntraeger@linux.ibm.com, devel@lists.orangefs.org, mirimmad17@gmail.com,
+ sprasad@microsoft.com, jaharkes@cs.cmu.edu, linux-um@lists.infradead.org,
+ npiggin@gmail.com, viro@zeniv.linux.org.uk, ericvh@kernel.org,
+ surenb@google.com, trond.myklebust@hammerspace.com, anton@tuxera.com,
+ brauner@kernel.org, wsa+renesas@sang-engineering.com,
+ gregkh@linuxfoundation.org, stephen.smalley.work@gmail.com,
+ linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org, lsahlber@redhat.com,
+ senozhatsky@chromium.org, arve@android.com, chuck.lever@oracle.com,
+ svens@linux.ibm.com, jolsa@kernel.org, jack@suse.com, tj@kernel.org,
+ akpm@linux-foundation.org, linux-trace-kernel@vger.kernel.org,
+ xu.xin16@zte.com.cn, shaggy@kernel.org, dhavale@google.com,
+ penguin-kernel@I-love.SAKURA.ne.jp, zohar@linux.ibm.com, linux-mm@kvack.org,
+ joel@joelfernandes.org, edumazet@google.com, sdf@google.com, jomajm@gmail.com,
+ linux-s390@vger.kernel.org, linux-nilfs@vger.kernel.org, paul@paul-moore.com,
+ leon@kernel.org, john.fastabend@gmail.com, mcgrof@kernel.org,
+ chi.minghao@zte.com.cn, codalist@coda.cs.cmu.edu, selinux@vger.kernel.org,
+ zhangpeng362@huawei.com, quic_ugoswami@quicinc.com, yhs@fb.com,
+ yzaikin@google.com, mhiramat@kernel.org, ecryptfs@vger.kernel.org,
+ tkjos@android.com, madkar@cs.stonybrook.edu, gor@linux.ibm.com,
+ yuzhe@nfschina.com, linuxppc-dev@lists.ozlabs.org,
+ reiserfs-devel@vger.kernel.org, miklos@szeredi.hu, huyue2@coolpad.com,
+ jaegeuk@kernel.org, gargaditya08@live.com, maco@android.com,
+ hirofumi@mail.parknet.co.jp, haoluo@google.com, tony.luck@intel.com,
+ tytso@mit.edu, nico@fluxnic.net, linux-ntfs-dev@lists.sourceforge.net,
+ muchun.song@linux.dev, roberto.sassu@huawei.com,
+ linux-f2fs-devel@lists.sourceforge.net, yang.yang29@zte.com.cn,
+ gpiccoli@igalia.com, ebiederm@xmission.com, anna@kernel.org,
+ quic_uaggarwa@quicinc.com, bwarrum@linux.ibm.com, mike.kravetz@oracle.com,
+ jingyuwang_vip@163.com, linux-efi@vger.kernel.org, error27@gmail.com,
+ martin@omnibond.com, trix@redhat.com, ocfs2-devel@lists.linux.dev,
+ ast@kernel.org, sebastian.reichel@collabora.com, clm@fb.com,
+ linux-mtd@lists.infradead.org, willy@infradead.org, marc.dionne@auristor.com,
+ linux-afs@lists.infradead.org, raven@themaw.net, naohiro.aota@wdc.com,
+ daniel@iogearbox.net, dennis.dalessandro@cornelisnetworks.com,
+ linux-rdma@vger.kernel.org, quic_linyyuan@quicinc.com, coda@cs.cmu.edu,
+ slava@dubeyko.com, idryomov@gmail.com, pabeni@redhat.com, adobriyan@gmail.com,
+ serge@hallyn.com, chengzhihao1@huawei.com, axboe@kernel.dk, amir73il@gmail.com,
+ linuszeng@tencent.com, keescook@chromium.org, arnd@arndb.de,
+ autofs@vger.kernel.org, rostedt@goodmis.org, yifeliu@cs.stonybrook.edu,
+ dlemoal@kernel.org, eparis@parisplace.org, ceph-devel@vger.kernel.org,
+ xiang@kernel.org, yijiangshan@kylinos.cn, dhowells@redhat.com,
+ linux-nfs@vger.kernel.org, linux-ext4@vger.kernel.org, kolga@netapp.com,
+ song@kernel.org, samba-technical@lists.samba.org, sfrench@samba.org,
+ jk@ozlabs.org, netdev@vger.kernel.org, rpeterso@redhat.com,
+ linux-fsdevel@vger.kernel.org, bpf@vger.kernel.org, ntfs3@lists.linux.dev,
+ linux-erofs@lists.ozlabs.org, davem@davemloft.net,
+ jfs-discussion@lists.sourceforge.net, princekumarmaurya06@gmail.com,
+ ebiggers@google.com, neilb@suse.de, asmadeus@codewreck.org,
+ linux_oss@crudebyte.com, me@bobcopeland.com, kpsingh@kernel.org,
+ okanatov@gmail.com, almaz.alexandrovich@paragon-software.com,
+ joseph.qi@linux.alibaba.com, hayama@lineo.co.jp, adilger.kernel@dilger.ca,
+ mikulas@artax.karlin.mff.cuni.cz, shaozhengchao@huawei.com,
+ chenzhongjin@huawei.com, ardb@kernel.org, anton.ivanov@cambridgegreys.com,
+ agruenba@redhat.com, richard@nod.at, mark@fasheh.com, shr@devkernel.io,
+ Dai.Ngo@oracle.com, cluster-devel@redhat.com, jgg@ziepe.ca, kuba@kernel.org,
+ riel@surriel.com, salah.triki@gmail.com, dushistov@mail.ru,
+ linux-cifs@vger.kernel.org, hca@linux.ibm.com, chao@kernel.org,
+ apparmor@lists.ubuntu.com, josef@toxicpanda.com, Liam.Howlett@Oracle.com,
+ tom@talpey.com, hdegoede@redhat.com, linux-hardening@vger.kernel.org,
+ aivazian.tigran@gmail.com, dchinner@redhat.com, dsterba@suse.com,
+ xiubli@redhat.com, konishi.ryusuke@gmail.com, jgross@suse.com, jth@kernel.org,
+ rituagar@linux.ibm.com, luisbg@kernel.org, martin.lau@linux.dev,
+ v9fs@lists.linux.dev, fmdefrancesco@gmail.com, linux-unionfs@vger.kernel.org,
+ lrh2000@pku.edu.cn, linux-security-module@vger.kernel.org,
+ ezk@cs.stonybrook.edu, jefflexu@linux.alibaba.com, linux@treblig.org,
+ hannes@cmpxchg.org, phillip@squashfs.org.uk, johannes@sipsolutions.net,
+ sj1557.seo@samsung.com, dwmw2@infradead.org,
+ linux-karma-devel@lists.sourceforge.net, linux-btrfs@vger.kernel.org,
+ jlbec@evilplan.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-On Wed 05-07-23 15:01:25, Jeff Layton wrote:
-> In later patches, we're going to change how the inode's ctime field is
-> used. Switch to using accessor functions instead of raw accesses of
-> inode->i_ctime.
+On Wed 05-07-23 14:58:12, Jeff Layton wrote:
+> Now that everything in-tree is converted to use the accessor functions,
+> rename the i_ctime field in the inode to discourage direct access.
 > 
 > Signed-off-by: Jeff Layton <jlayton@kernel.org>
 
@@ -146,90 +214,40 @@ Reviewed-by: Jan Kara <jack@suse.cz>
 								Honza
 
 > ---
->  fs/ntfs/inode.c | 15 ++++++++-------
->  fs/ntfs/mft.c   |  3 +--
->  2 files changed, 9 insertions(+), 9 deletions(-)
+>  include/linux/fs.h | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
 > 
-> diff --git a/fs/ntfs/inode.c b/fs/ntfs/inode.c
-> index 6c3f38d66579..99ac6ea277c4 100644
-> --- a/fs/ntfs/inode.c
-> +++ b/fs/ntfs/inode.c
-> @@ -654,7 +654,7 @@ static int ntfs_read_locked_inode(struct inode *vi)
->  	 * always changes, when mtime is changed. ctime can be changed on its
->  	 * own, mtime is then not changed, e.g. when a file is renamed.
->  	 */
-> -	vi->i_ctime = ntfs2utc(si->last_mft_change_time);
-> +	inode_set_ctime_to_ts(vi, ntfs2utc(si->last_mft_change_time));
->  	/*
->  	 * Last access to the data within the file. Not changed during a rename
->  	 * for example but changed whenever the file is written to.
-> @@ -1218,7 +1218,7 @@ static int ntfs_read_locked_attr_inode(struct inode *base_vi, struct inode *vi)
->  	vi->i_gid	= base_vi->i_gid;
->  	set_nlink(vi, base_vi->i_nlink);
->  	vi->i_mtime	= base_vi->i_mtime;
-> -	vi->i_ctime	= base_vi->i_ctime;
-> +	inode_set_ctime_to_ts(vi, inode_get_ctime(base_vi));
->  	vi->i_atime	= base_vi->i_atime;
->  	vi->i_generation = ni->seq_no = base_ni->seq_no;
+> diff --git a/include/linux/fs.h b/include/linux/fs.h
+> index 14e38bd900f1..b66442f91835 100644
+> --- a/include/linux/fs.h
+> +++ b/include/linux/fs.h
+> @@ -642,7 +642,7 @@ struct inode {
+>  	loff_t			i_size;
+>  	struct timespec64	i_atime;
+>  	struct timespec64	i_mtime;
+> -	struct timespec64	i_ctime;
+> +	struct timespec64	__i_ctime; /* use inode_*_ctime accessors! */
+>  	spinlock_t		i_lock;	/* i_blocks, i_bytes, maybe i_size */
+>  	unsigned short          i_bytes;
+>  	u8			i_blkbits;
+> @@ -1485,7 +1485,7 @@ struct timespec64 inode_set_ctime_current(struct inode *inode);
+>   */
+>  static inline struct timespec64 inode_get_ctime(const struct inode *inode)
+>  {
+> -	return inode->i_ctime;
+> +	return inode->__i_ctime;
+>  }
 >  
-> @@ -1484,7 +1484,7 @@ static int ntfs_read_locked_index_inode(struct inode *base_vi, struct inode *vi)
->  	vi->i_gid	= base_vi->i_gid;
->  	set_nlink(vi, base_vi->i_nlink);
->  	vi->i_mtime	= base_vi->i_mtime;
-> -	vi->i_ctime	= base_vi->i_ctime;
-> +	inode_set_ctime_to_ts(vi, inode_get_ctime(base_vi));
->  	vi->i_atime	= base_vi->i_atime;
->  	vi->i_generation = ni->seq_no = base_ni->seq_no;
->  	/* Set inode type to zero but preserve permissions. */
-> @@ -2804,13 +2804,14 @@ int ntfs_truncate(struct inode *vi)
->  	 */
->  	if (!IS_NOCMTIME(VFS_I(base_ni)) && !IS_RDONLY(VFS_I(base_ni))) {
->  		struct timespec64 now = current_time(VFS_I(base_ni));
-> +		struct timespec64 ctime = inode_get_ctime(VFS_I(base_ni));
->  		int sync_it = 0;
+>  /**
+> @@ -1498,7 +1498,7 @@ static inline struct timespec64 inode_get_ctime(const struct inode *inode)
+>  static inline struct timespec64 inode_set_ctime_to_ts(struct inode *inode,
+>  						      struct timespec64 ts)
+>  {
+> -	inode->i_ctime = ts;
+> +	inode->__i_ctime = ts;
+>  	return ts;
+>  }
 >  
->  		if (!timespec64_equal(&VFS_I(base_ni)->i_mtime, &now) ||
-> -		    !timespec64_equal(&VFS_I(base_ni)->i_ctime, &now))
-> +		    !timespec64_equal(&ctime, &now))
->  			sync_it = 1;
-> +		inode_set_ctime_to_ts(VFS_I(base_ni), now);
->  		VFS_I(base_ni)->i_mtime = now;
-> -		VFS_I(base_ni)->i_ctime = now;
->  
->  		if (sync_it)
->  			mark_inode_dirty_sync(VFS_I(base_ni));
-> @@ -2928,7 +2929,7 @@ int ntfs_setattr(struct mnt_idmap *idmap, struct dentry *dentry,
->  	if (ia_valid & ATTR_MTIME)
->  		vi->i_mtime = attr->ia_mtime;
->  	if (ia_valid & ATTR_CTIME)
-> -		vi->i_ctime = attr->ia_ctime;
-> +		inode_set_ctime_to_ts(vi, attr->ia_ctime);
->  	mark_inode_dirty(vi);
->  out:
->  	return err;
-> @@ -3004,7 +3005,7 @@ int __ntfs_write_inode(struct inode *vi, int sync)
->  		si->last_data_change_time = nt;
->  		modified = true;
->  	}
-> -	nt = utc2ntfs(vi->i_ctime);
-> +	nt = utc2ntfs(inode_get_ctime(vi));
->  	if (si->last_mft_change_time != nt) {
->  		ntfs_debug("Updating ctime for inode 0x%lx: old = 0x%llx, "
->  				"new = 0x%llx", vi->i_ino, (long long)
-> diff --git a/fs/ntfs/mft.c b/fs/ntfs/mft.c
-> index 0155f106ec34..ad1a8f72da22 100644
-> --- a/fs/ntfs/mft.c
-> +++ b/fs/ntfs/mft.c
-> @@ -2682,8 +2682,7 @@ ntfs_inode *ntfs_mft_record_alloc(ntfs_volume *vol, const int mode,
->  			vi->i_mode &= ~S_IWUGO;
->  
->  		/* Set the inode times to the current time. */
-> -		vi->i_atime = vi->i_mtime = vi->i_ctime =
-> -			current_time(vi);
-> +		vi->i_atime = vi->i_mtime = inode_set_ctime_current(vi);
->  		/*
->  		 * Set the file size to 0, the ntfs inode sizes are set to 0 by
->  		 * the call to ntfs_init_big_inode() below.
 > -- 
 > 2.41.0
 > 
