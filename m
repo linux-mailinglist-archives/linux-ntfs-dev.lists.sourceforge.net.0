@@ -2,28 +2,28 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4800F77C9CC
+	by mail.lfdr.de (Postfix) with ESMTPS id 24DB977C9CB
 	for <lists+linux-ntfs-dev@lfdr.de>; Tue, 15 Aug 2023 10:55:15 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1qVppY-0000jj-61;
-	Tue, 15 Aug 2023 08:55:13 +0000
+	id 1qVppX-0000jU-Tj;
+	Tue, 15 Aug 2023 08:55:12 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <lkp@intel.com>) id 1qVpnt-0002YR-H8
+ (envelope-from <lkp@intel.com>) id 1qVpnL-0008C6-EI
  for linux-ntfs-dev@lists.sourceforge.net;
- Tue, 15 Aug 2023 08:53:28 +0000
+ Tue, 15 Aug 2023 08:52:56 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
  Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=vk11btEzlDw7Pm17eX+dodIAPlJHV66IIXZchlqBPrs=; b=QNv+jzHHcIcoBzvaNNZS81ALK+
- rGekG7NJkcnZaAicA7ytSKzMtlp1/ltRW97Mb3Vp7zmlq3zfQBqGeU5FBy3GOF5HJZDg/a/7Wq+D0
- JLi3HfxhLPmJrfJBD9njdN15iZKf7tpLbWQJm8jnMzAMa+QWsHGVamLLvjvpckYztiFo=;
+ bh=SJICs2ulHbn0RK5IJ0Q/TWcsH+BdMUNJ/nk5miQuy00=; b=F0V2MiGGXXIxRLdr3hzvnTgkNy
+ 5Br5De2aoVKAdHQoCwAJloXPfQNyUS6REg1bpBDHYMBNwcyAwJX0qT5H9x6W19Lq/Udbp7aQn4T1B
+ oNq4i9/Eaj3oYST5QNBcdBta21t+swTedaLdX0Nn9+y7pvk5H1kT38UA6ZswWNlG1W3Y=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
@@ -31,44 +31,44 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=vk11btEzlDw7Pm17eX+dodIAPlJHV66IIXZchlqBPrs=; b=OTCL43VRxEAUXsAFS1RSJ0k+9/
- ZXFoH2+daqVr2H0V9WZl2i2cFiS3HFDmBcT2CWvJnypkQcuflMht7pKXyfe5pl+P/6P4n/UsiWNhP
- o7BsxqDp/Ac1Xeps+JlaX9TDiD9GxpPDOTOd5b4uBSXRcujzL+zlnJS/uzBJ7RdLaeek=;
-Received: from mgamail.intel.com ([134.134.136.31])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ bh=SJICs2ulHbn0RK5IJ0Q/TWcsH+BdMUNJ/nk5miQuy00=; b=miVTigOVe8uXPgOjqiftu6tJ3Z
+ g6PzNkXHU13nNrPIrw0FVFxvugWYnl0XGnbui6Snd1kTE7V0afkORsGT8VukCguEHJzgCehgxIx+W
+ WABrRZmUTUeGlexm4Dr1MDynExihPGdK3b6+Exz9cgpdJ7Ytj8jiMbB708KmU324Uy9U=;
+Received: from mgamail.intel.com ([192.55.52.151])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1qVpnp-006Aqc-Um for linux-ntfs-dev@lists.sourceforge.net;
- Tue, 15 Aug 2023 08:53:28 +0000
+ id 1qVpnI-0008T4-P8 for linux-ntfs-dev@lists.sourceforge.net;
+ Tue, 15 Aug 2023 08:52:56 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692089605; x=1723625605;
+ t=1692089572; x=1723625572;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=uaFwGNIGZ1U4h59Fp01L1+bG1mfDR1Z7wf+Y67FcNNI=;
- b=Ibb+ATtvez29VlVlZOXSS27KJHzKvdD40Oj2sgFagn90OZQNmaa5bhI0
- s/Vme5XgUe4uiKoSvSZo8U2TpF6y7juGMNw815LeL2xSDJz80N2koJkdQ
- U6T9RNnv4h7wPgLYsl62p1u4pTs23SkNuTtBGORj6DbGJHxY82t2eEhNO
- AuhgGibyMGYWa39RZDHGqkPAjR+WNFS9usCwuVmN6wMUZL1L9ivMqplDp
- x8Ah6eNe8McznHhwg56Q1xGSBHELkc8OORMZYEJGpy/yOLuQcuSt3Hv8Z
- OahB7q0N4pO+6TY8KiEHhvQlo+gHPiUvvs7UF9BAzMgaSdMIcKmIYk47j Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10802"; a="436131197"
-X-IronPort-AV: E=Sophos;i="6.01,174,1684825200"; d="scan'208";a="436131197"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Aug 2023 01:53:16 -0700
+ bh=5Sm5/qnqxAxyQO+s/4YGC4l8jiOKtdqXvkk51HFIr0w=;
+ b=Z0U1T58YnGnc1ZJb+SPcVR3Dm4Qd9pn2+77BjzhYSSdy8+MDD2xtMthF
+ +O7jjsI7xIztYc8Qa0I/1gz027qg4b4q/HoEIKUiovJCFgnNIsWkUJAeu
+ pc9ppd2svWt14bx3JvRiDEIqaEglCxpoJYfHd+4YWYh1bsTrhZU15fnIk
+ zI2rq//75XfcBCufeR7tfD0aXIfgiuFd2IZyup/3Pklbi03ppSLj0AejF
+ meDY3U64WtKyYZokWI3DWiGMxwT09QB/HUMRu+30P+CNfBxuEX3SAKfIy
+ MUW6J6A7L2XWcGVNA+yRYtJA9enVYuF1DfCa6jJO+/II/mxcYheq0dq3j A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10802"; a="352558711"
+X-IronPort-AV: E=Sophos;i="6.01,174,1684825200"; d="scan'208";a="352558711"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Aug 2023 01:52:46 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10802"; a="799131782"
-X-IronPort-AV: E=Sophos;i="6.01,174,1684825200"; d="scan'208";a="799131782"
+X-IronPort-AV: E=McAfee;i="6600,9927,10802"; a="980302382"
+X-IronPort-AV: E=Sophos;i="6.01,174,1684825200"; d="scan'208";a="980302382"
 Received: from lkp-server02.sh.intel.com (HELO b5fb8d9e1ffc) ([10.239.97.151])
- by fmsmga008.fm.intel.com with ESMTP; 15 Aug 2023 01:53:12 -0700
+ by fmsmga006.fm.intel.com with ESMTP; 15 Aug 2023 01:52:43 -0700
 Received: from kbuild by b5fb8d9e1ffc with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1qVpn8-0000oH-35;
- Tue, 15 Aug 2023 08:52:52 +0000
+ (envelope-from <lkp@intel.com>) id 1qVpn2-0000oF-2y;
+ Tue, 15 Aug 2023 08:52:38 +0000
 Date: Tue, 15 Aug 2023 16:52:11 +0800
 From: kernel test robot <lkp@intel.com>
 To: Manas Ghandat <ghandatmanas@gmail.com>, anton@tuxera.com,
  linkinjeon@kernel.org
-Message-ID: <202308151601.LQ3EIAQF-lkp@intel.com>
+Message-ID: <202308151606.3Xy20wzx-lkp@intel.com>
 References: <20230815052251.107732-1-ghandatmanas@gmail.com>
 MIME-Version: 1.0
 Content-Disposition: inline
@@ -89,7 +89,7 @@ X-Spam-Report: Spam detection software,
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  -2.3 RCVD_IN_DNSWL_MED      RBL: Sender listed at https://www.dnswl.org/,
- medium trust [134.134.136.31 listed in list.dnswl.org]
+ medium trust [192.55.52.151 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
@@ -100,7 +100,7 @@ X-Spam-Report: Spam detection software,
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
  -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1qVpnp-006Aqc-Um
+X-Headers-End: 1qVpnI-0008T4-P8
 X-Mailman-Approved-At: Tue, 15 Aug 2023 08:55:10 +0000
 Subject: Re: [Linux-ntfs-dev] [PATCH v5] ntfs : fix shift-out-of-bounds in
  ntfs_iget
@@ -140,111 +140,27 @@ url:    https://github.com/intel-lab-lkp/linux/commits/Manas-Ghandat/ntfs-fix-sh
 base:   linus/master
 patch link:    https://lore.kernel.org/r/20230815052251.107732-1-ghandatmanas%40gmail.com
 patch subject: [PATCH v5] ntfs : fix shift-out-of-bounds in ntfs_iget
-config: hexagon-randconfig-r045-20230815 (https://download.01.org/0day-ci/archive/20230815/202308151601.LQ3EIAQF-lkp@intel.com/config)
-compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project.git 4a5ac14ee968ff0ad5d2cc1ffa0299048db4c88a)
-reproduce: (https://download.01.org/0day-ci/archive/20230815/202308151601.LQ3EIAQF-lkp@intel.com/reproduce)
+config: i386-randconfig-i002-20230815 (https://download.01.org/0day-ci/archive/20230815/202308151606.3Xy20wzx-lkp@intel.com/config)
+compiler: clang version 16.0.4 (https://github.com/llvm/llvm-project.git ae42196bc493ffe877a7e3dff8be32035dea4d07)
+reproduce: (https://download.01.org/0day-ci/archive/20230815/202308151606.3Xy20wzx-lkp@intel.com/reproduce)
 
 If you fix the issue in a separate patch/commit (i.e. not just a new version of
 the same patch/commit), kindly add following tags
 | Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202308151601.LQ3EIAQF-lkp@intel.com/
+| Closes: https://lore.kernel.org/oe-kbuild-all/202308151606.3Xy20wzx-lkp@intel.com/
 
 All errors (new ones prefixed by >>):
 
-   In file included from fs/ntfs/inode.c:8:
-   In file included from include/linux/buffer_head.h:12:
-   In file included from include/linux/blk_types.h:10:
-   In file included from include/linux/bvec.h:10:
-   In file included from include/linux/highmem.h:12:
-   In file included from include/linux/hardirq.h:11:
-   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
-   In file included from include/asm-generic/hardirq.h:17:
-   In file included from include/linux/irq.h:20:
-   In file included from include/linux/io.h:13:
-   In file included from arch/hexagon/include/asm/io.h:334:
-   include/asm-generic/io.h:547:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     547 |         val = __raw_readb(PCI_IOBASE + addr);
-         |                           ~~~~~~~~~~ ^
-   include/asm-generic/io.h:560:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     560 |         val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
-         |                                                         ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/little_endian.h:37:51: note: expanded from macro '__le16_to_cpu'
-      37 | #define __le16_to_cpu(x) ((__force __u16)(__le16)(x))
-         |                                                   ^
-   In file included from fs/ntfs/inode.c:8:
-   In file included from include/linux/buffer_head.h:12:
-   In file included from include/linux/blk_types.h:10:
-   In file included from include/linux/bvec.h:10:
-   In file included from include/linux/highmem.h:12:
-   In file included from include/linux/hardirq.h:11:
-   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
-   In file included from include/asm-generic/hardirq.h:17:
-   In file included from include/linux/irq.h:20:
-   In file included from include/linux/io.h:13:
-   In file included from arch/hexagon/include/asm/io.h:334:
-   include/asm-generic/io.h:573:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     573 |         val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
-         |                                                         ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/little_endian.h:35:51: note: expanded from macro '__le32_to_cpu'
-      35 | #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
-         |                                                   ^
-   In file included from fs/ntfs/inode.c:8:
-   In file included from include/linux/buffer_head.h:12:
-   In file included from include/linux/blk_types.h:10:
-   In file included from include/linux/bvec.h:10:
-   In file included from include/linux/highmem.h:12:
-   In file included from include/linux/hardirq.h:11:
-   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
-   In file included from include/asm-generic/hardirq.h:17:
-   In file included from include/linux/irq.h:20:
-   In file included from include/linux/io.h:13:
-   In file included from arch/hexagon/include/asm/io.h:334:
-   include/asm-generic/io.h:584:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     584 |         __raw_writeb(value, PCI_IOBASE + addr);
-         |                             ~~~~~~~~~~ ^
-   include/asm-generic/io.h:594:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     594 |         __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
-         |                                                       ~~~~~~~~~~ ^
-   include/asm-generic/io.h:604:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     604 |         __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
-         |                                                       ~~~~~~~~~~ ^
 >> fs/ntfs/inode.c:1081:10: error: no member named 'sparse_compression_unit' in 'ntfs_volume'
-    1081 |                                 vol->sparse_compression_unit) {
-         |                                 ~~~  ^
-   include/linux/compiler.h:55:47: note: expanded from macro 'if'
-      55 | #define if(cond, ...) if ( __trace_if_var( !!(cond , ## __VA_ARGS__) ) )
-         |                                               ^~~~
-   include/linux/compiler.h:57:52: note: expanded from macro '__trace_if_var'
-      57 | #define __trace_if_var(cond) (__builtin_constant_p(cond) ? (cond) : __trace_if_value(cond))
-         |                                                    ^~~~
->> fs/ntfs/inode.c:1081:10: error: no member named 'sparse_compression_unit' in 'ntfs_volume'
-    1081 |                                 vol->sparse_compression_unit) {
-         |                                 ~~~  ^
-   include/linux/compiler.h:55:47: note: expanded from macro 'if'
-      55 | #define if(cond, ...) if ( __trace_if_var( !!(cond , ## __VA_ARGS__) ) )
-         |                                               ^~~~
-   include/linux/compiler.h:57:61: note: expanded from macro '__trace_if_var'
-      57 | #define __trace_if_var(cond) (__builtin_constant_p(cond) ? (cond) : __trace_if_value(cond))
-         |                                                             ^~~~
->> fs/ntfs/inode.c:1081:10: error: no member named 'sparse_compression_unit' in 'ntfs_volume'
-    1081 |                                 vol->sparse_compression_unit) {
-         |                                 ~~~  ^
-   include/linux/compiler.h:55:47: note: expanded from macro 'if'
-      55 | #define if(cond, ...) if ( __trace_if_var( !!(cond , ## __VA_ARGS__) ) )
-         |                                               ^~~~
-   include/linux/compiler.h:57:86: note: expanded from macro '__trace_if_var'
-      57 | #define __trace_if_var(cond) (__builtin_constant_p(cond) ? (cond) : __trace_if_value(cond))
-         |                                                                                      ^~~~
-   include/linux/compiler.h:68:3: note: expanded from macro '__trace_if_value'
-      68 |         (cond) ?                                        \
-         |          ^~~~
+                                   vol->sparse_compression_unit) {
+                                   ~~~  ^
    fs/ntfs/inode.c:1085:11: error: no member named 'sparse_compression_unit' in 'ntfs_volume'
-    1085 |                                         vol->sparse_compression_unit);
-         |                                         ~~~  ^
+                                           vol->sparse_compression_unit);
+                                           ~~~  ^
    fs/ntfs/debug.h:55:66: note: expanded from macro 'ntfs_error'
-      55 | #define ntfs_error(sb, f, a...)         __ntfs_error(__func__, sb, f, ##a)
-         |                                                                         ^
-   6 warnings and 4 errors generated.
+   #define ntfs_error(sb, f, a...)         __ntfs_error(__func__, sb, f, ##a)
+                                                                           ^
+   2 errors generated.
 
 
 vim +1081 fs/ntfs/inode.c
