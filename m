@@ -2,122 +2,122 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F01A7814B8
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B2367814B7
 	for <lists+linux-ntfs-dev@lfdr.de>; Fri, 18 Aug 2023 23:25:14 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1qX6xz-0005GX-5E;
+	id 1qX6xz-0005Go-DO;
 	Fri, 18 Aug 2023 21:25:12 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-3.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <mjguzik@gmail.com>) id 1qX4tx-0001Mx-GA
+ (envelope-from <ebiederm@xmission.com>) id 1qX6a7-0003Xo-Bc
  for linux-ntfs-dev@lists.sourceforge.net;
- Fri, 18 Aug 2023 19:12:53 +0000
+ Fri, 18 Aug 2023 21:00:32 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=OWrcVU87yoUh0RKV9M2yRE0DuKukk4JlACojS9ceHP8=; b=kXh6lSADoqS/0muSuVvNqyHoc0
- dZDTZYYSPFJVsdd0klUxlylAilgILbUzY+jXRZrE7NLTk962z7gCUcMLTWfZ2tRMYiP9FHrAWgpcy
- rANEwEnSFtPjCn0AtFGlA6THaiynuzLGwhQ5KduCDeVZiCdCBaa1CSuqDZTg6Wy+9VF0=;
+ d=sourceforge.net; s=x; h=Subject:Content-Type:MIME-Version:Message-ID:
+ In-Reply-To:Date:References:Cc:To:From:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=c2HNIZlJkw+5fhfv+glzCmzVWYPxCsHKEZHFrWUnQpg=; b=bFwrf2SCE4T5F1MmGSraUeeDA0
+ VN5NDVW2T1KPDuJP+AH1XXkiFTr3T/3RdMLZrcMbEHO08GL/sHqrD21Lz89A0RA/vHUUVxxZgmie9
+ Pxc/3QRRkVyBc+sFQG7jarrfiWZkvvCE3KS455BIqaVjsWqkVZj7qAw9AjlxrpKEpqYg=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Subject:Content-Type:MIME-Version:Message-ID:In-Reply-To:Date:References:
+ Cc:To:From:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=OWrcVU87yoUh0RKV9M2yRE0DuKukk4JlACojS9ceHP8=; b=c3aTl08/THfeDyVyCpnznEWzB6
- sbGH7oV1iF+IMYxzz0x04+zrRoktD9n3SMpTwCnXoJAp1GJZXGuorM5B/eQ+e0Hp476y+DdIOTn9a
- 8JyrkTlMalrirLnwsgNRcTzFfTjlnXIHiyACjyPkmAc3iJRthtjSZb9Kof6boxmmmW+8=;
-Received: from mail-ej1-f45.google.com ([209.85.218.45])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1qX4tt-008wly-Ab for linux-ntfs-dev@lists.sourceforge.net;
- Fri, 18 Aug 2023 19:12:53 +0000
-Received: by mail-ej1-f45.google.com with SMTP id
- a640c23a62f3a-991c786369cso163881366b.1
- for <linux-ntfs-dev@lists.sourceforge.net>;
- Fri, 18 Aug 2023 12:12:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1692385963; x=1692990763;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=OWrcVU87yoUh0RKV9M2yRE0DuKukk4JlACojS9ceHP8=;
- b=CD7X8wuOyJh3hjNA0vDliciCLObjw+2g/jB/UiL7vFv0dfTNz2zqt9ka7OzQXx6Etm
- GHd44gN+gUK3TGJiqA3Wpn4DaepVFxry/D4k/xOp44QZ3ZhXB+tcMiPxfijyMfy67UBe
- o4hlF2QkFz2DsrQL4A5TuxOVEMCzWZYauEekvdU4PLW1f6sZcM5U304gjCxBKYMtpZFW
- Rw17oZ4+4QtZKKBfVA+uK2PgXRtmYK+U22F1Hus5H3v2Hst5uqCaCj2sS4TghdcTYHaR
- 7Y0AiZVHzv2FDxC+d2sGCOIIF1WQGRybadHOCU7RiIKaO8dOf+8p4qWkx7dAlhWnrk20
- +CBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1692385963; x=1692990763;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=OWrcVU87yoUh0RKV9M2yRE0DuKukk4JlACojS9ceHP8=;
- b=dGrNH4m+hwJ7ZX40nOxedO/SLziZ9IYPHaQ0sFI/Echt8DRMuQboOh+4OXqkvPW1Ul
- 2wgOe1I1Z8gRFN/zFjGTbSSz0e/WBKC2qeWqKNEqCrgzZKYO50DEmvTP46PU0SFV85Sp
- MSxB5Q3kvmAVMEr2YONYzCWPxXoW+EiH3Q0KrRbCKwQPBasvoO89vBNXgUGtBq6ok/nV
- b4eWYareS+8zwisx8ifE7XRsYNmrxDFtxeUypMr4RNPHladcz6hltVhiJ7uWCWLfT/hh
- Lu47P9c09sH9ZYmSmFNauingqDPzWHQgvtV0H0mw01SHdwuvNSA66bMTm5q8UfXqtqOI
- tzVg==
-X-Gm-Message-State: AOJu0YxMf1uyZZzOij2MPAnUPrXE5k1f1L78QbPyqefHm/4KlfUi9vhk
- DLvtx4KkxVg0j4eMe2syzNI=
-X-Google-Smtp-Source: AGHT+IGRHJbhjyMMDvx8RCIHGJ0hyAwfSTlKV+tEW0CLm2KLBsokdoIDwiEAp/HKoE8xlljK4Xul1w==
-X-Received: by 2002:a17:906:cd2:b0:99c:22e0:ae84 with SMTP id
- l18-20020a1709060cd200b0099c22e0ae84mr77324ejh.28.1692385962652; 
- Fri, 18 Aug 2023 12:12:42 -0700 (PDT)
-Received: from f (cst-prg-27-89.cust.vodafone.cz. [46.135.27.89])
- by smtp.gmail.com with ESMTPSA id
- y17-20020a170906525100b00992c92af6f4sm1536006ejm.144.2023.08.18.12.12.41
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 18 Aug 2023 12:12:42 -0700 (PDT)
-Date: Fri, 18 Aug 2023 21:12:39 +0200
-From: Mateusz Guzik <mjguzik@gmail.com>
-To: Kees Cook <keescook@chromium.org>
-Message-ID: <20230818191239.3cprv2wncyyy5yxj@f>
+ bh=c2HNIZlJkw+5fhfv+glzCmzVWYPxCsHKEZHFrWUnQpg=; b=OwXWf1CPHaMl6kaSfDr9QrB92P
+ Gvb08/6TaFrUlbYqDfpFoTV7ejw8hMFNCk/2i2isTKKoNp+L6CnymPUuGPy/7WFlwvFHRyMnB3jN1
+ 9r2aAB9QlkMS3UkD+B2wQ13tpemgxXzp6aHm3giwUZA/yucKK0H7Dskg1vSIpPgPmEYU=;
+Received: from out02.mta.xmission.com ([166.70.13.232])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
+ id 1qX6a7-0005Qz-GE for linux-ntfs-dev@lists.sourceforge.net;
+ Fri, 18 Aug 2023 21:00:32 +0000
+Received: from in01.mta.xmission.com ([166.70.13.51]:45472)
+ by out02.mta.xmission.com with esmtps (TLS1.3) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.93)
+ (envelope-from <ebiederm@xmission.com>)
+ id 1qX6Zw-005O8N-KN; Fri, 18 Aug 2023 15:00:20 -0600
+Received: from ip68-227-168-167.om.om.cox.net ([68.227.168.167]:50332
+ helo=email.froward.int.ebiederm.org.xmission.com)
+ by in01.mta.xmission.com with esmtpsa (TLS1.3) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.93)
+ (envelope-from <ebiederm@xmission.com>)
+ id 1qX6Zt-00540T-Ve; Fri, 18 Aug 2023 15:00:20 -0600
+From: "Eric W. Biederman" <ebiederm@xmission.com>
+To: Mateusz Guzik <mjguzik@gmail.com>
 References: <000000000000c74d44060334d476@google.com>
  <87o7j471v8.fsf@email.froward.int.ebiederm.org>
- <202308181030.0DA3FD14@keescook>
+ <20230818173625.by6bud4u7uz2k4be@f>
+Date: Fri, 18 Aug 2023 15:59:39 -0500
+In-Reply-To: <20230818173625.by6bud4u7uz2k4be@f> (Mateusz Guzik's message of
+ "Fri, 18 Aug 2023 19:36:25 +0200")
+Message-ID: <87a5uo6p8k.fsf@email.froward.int.ebiederm.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/27.1 (gnu/linux)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <202308181030.0DA3FD14@keescook>
-X-Spam-Score: -0.2 (/)
+X-XM-SPF: eid=1qX6Zt-00540T-Ve; ; ;
+ mid=<87a5uo6p8k.fsf@email.froward.int.ebiederm.org>; ; ;
+ hst=in01.mta.xmission.com; ; ; ip=68.227.168.167; ; ;
+ frm=ebiederm@xmission.com; ; ; spf=pass
+X-XM-AID: U2FsdGVkX1/ofGYnSpXkgEFr1C7tIJqjxck0R7gNKbE=
+X-SA-Exim-Connect-IP: 68.227.168.167
+X-SA-Exim-Mail-From: ebiederm@xmission.com
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on sa08.xmission.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-0.2 required=8.0 tests=ALL_TRUSTED,BAYES_50,
+ DCC_CHECK_NEGATIVE,T_TM2_M_HEADER_IN_MSG shortcircuit=no
+ autolearn=disabled version=3.4.2
+X-Spam-Report: * -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
+ *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+ *      [score: 0.4995]
+ *  0.0 T_TM2_M_HEADER_IN_MSG BODY: No description available.
+ * -0.0 DCC_CHECK_NEGATIVE Not listed in DCC
+ *      [sa08 1397; Body=1 Fuz1=1 Fuz2=1]
+X-Spam-DCC: XMission; sa08 1397; Body=1 Fuz1=1 Fuz2=1 
+X-Spam-Combo: ;Mateusz Guzik <mjguzik@gmail.com>
+X-Spam-Relay-Country: 
+X-Spam-Timing: total 1993 ms - load_scoreonly_sql: 0.09 (0.0%),
+ signal_user_changed: 17 (0.8%), b_tie_ro: 14 (0.7%), parse: 1.78
+ (0.1%), extract_message_metadata: 26 (1.3%), get_uri_detail_list: 1.51
+ (0.1%), tests_pri_-2000: 15 (0.7%), tests_pri_-1000: 2.8 (0.1%),
+ tests_pri_-950: 1.54 (0.1%), tests_pri_-900: 1.56 (0.1%),
+ tests_pri_-200: 1.30 (0.1%), tests_pri_-100: 5 (0.3%), tests_pri_-90:
+ 1583 (79.5%), check_bayes: 1576 (79.1%), b_tokenize: 7 (0.4%),
+ b_tok_get_all: 8 (0.4%), b_comp_prob: 3.2 (0.2%), b_tok_touch_all:
+ 1552 (77.9%), b_finish: 1.15 (0.1%), tests_pri_0: 310 (15.6%),
+ check_dkim_signature: 0.66 (0.0%), check_dkim_adsp: 31 (1.6%),
+ poll_dns_idle: 29 (1.4%), tests_pri_10: 2.7 (0.1%), tests_pri_500: 18
+ (0.9%), rewrite_mail: 0.00 (0.0%)
+X-SA-Exim-Version: 4.2.1 (built Sat, 08 Feb 2020 21:53:50 +0000)
+X-SA-Exim-Scanned: Yes (on in01.mta.xmission.com)
+X-Spam-Score: 0.0 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Fri, Aug 18, 2023 at 10:33:26AM -0700, Kees Cook wrote:
- > This is a double-check I left in place,
- since it shouldn't have been reachable:
- > > /* > * may_open() has already checked for this, so it s [...] 
- Content analysis details:   (-0.2 points, 6.0 required)
+ Content preview:  Mateusz Guzik <mjguzik@gmail.com> writes: > On Fri, Aug 18, 
+ 2023 at 11:26:51AM -0500, Eric W. Biederman wrote: >> syzbot
+ <syzbot+6ec38f7a8db3b3fb1002@syzkaller.appspotmail.com>
+ writes: >> >> > Hello, >> > >> > syzbot found the following issue [...] 
+ Content analysis details:   (0.0 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
- provider [mjguzik[at]gmail.com]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.218.45 listed in list.dnswl.org]
- -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [209.85.218.45 listed in wl.mailspike.net]
+ [166.70.13.232 listed in wl.mailspike.net]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [166.70.13.232 listed in list.dnswl.org]
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
-X-Headers-End: 1qX4tt-008wly-Ab
+X-Headers-End: 1qX6a7-0005Qz-GE
 X-Mailman-Approved-At: Fri, 18 Aug 2023 21:25:11 +0000
 Subject: Re: [Linux-ntfs-dev] [syzbot] [ntfs?] WARNING in do_open_execat
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
@@ -134,17 +134,35 @@ List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>,
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
 Cc: brauner@kernel.org,
  syzbot <syzbot+6ec38f7a8db3b3fb1002@syzkaller.appspotmail.com>,
- linux-ntfs-dev@lists.sourceforge.net, syzkaller-bugs@googlegroups.com,
- linux-kernel@vger.kernel.org, linux-mm@kvack.org,
- "Eric W. Biederman" <ebiederm@xmission.com>, linux-fsdevel@vger.kernel.org,
- anton@tuxera.com, viro@zeniv.linux.org.uk
+ keescook@chromium.org, linux-ntfs-dev@lists.sourceforge.net,
+ syzkaller-bugs@googlegroups.com, linux-kernel@vger.kernel.org,
+ linux-mm@kvack.org, viro@zeniv.linux.org.uk, linux-fsdevel@vger.kernel.org,
+ anton@tuxera.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-On Fri, Aug 18, 2023 at 10:33:26AM -0700, Kees Cook wrote:
-> This is a double-check I left in place, since it shouldn't have been reachable:
-> 
+Mateusz Guzik <mjguzik@gmail.com> writes:
+
+> On Fri, Aug 18, 2023 at 11:26:51AM -0500, Eric W. Biederman wrote:
+>> syzbot <syzbot+6ec38f7a8db3b3fb1002@syzkaller.appspotmail.com> writes:
+>> 
+>> > Hello,
+>> >
+>> > syzbot found the following issue on:
+>> 
+>> Not an issue.
+>> Nothing to do with ntfs.
+>> 
+>> The code is working as designed and intended.
+>> 
+>> syzbot generated a malformed exec and the kernel made it
+>> well formed and warned about it.
+>> 
+>
+> There is definitely an issue here.
+>
+> The warn on comes from:
 >         /*
 >          * may_open() has already checked for this, so it should be
 >          * impossible to trip now. But we need to be extra cautious
@@ -154,46 +172,25 @@ On Fri, Aug 18, 2023 at 10:33:26AM -0700, Kees Cook wrote:
 >         if (WARN_ON_ONCE(!S_ISREG(file_inode(file)->i_mode) ||
 >                          path_noexec(&file->f_path)))
 >                 goto exit;
-> 
+>
+> Where path_noexec is:
+>         return (path->mnt->mnt_flags & MNT_NOEXEC) ||
+>                (path->mnt->mnt_sb->s_iflags & SB_I_NOEXEC);
 
-As I mentioned in my other e-mail, the check is racy -- an unlucky
-enough remounting with noexec should trip over it, and probably a chmod
-too.
+My confusion.
 
-However, that's not what triggers the warn in this case.
+I was seeing the message from
+	if (retval == 0)
+		pr_warn_once("process '%s' launched '%s' with NULL argv: empty string added\n",
+			     current->comm, bprm->filename);
 
-The ntfs image used here is intentionally corrupted and the inode at
-hand has a mode of 777 (as in type not specified).
+I made the mistake of assuming that that was generating the backtrace.
+The lack of args to execveat appears to be working fine.
 
-Then the type check in may_open():
-        switch (inode->i_mode & S_IFMT) {
+I see you tracked this down to a non-exhaustive check in may_open.
+Apologies for the noise.
 
-fails to match anything.
-
-This debug printk:
-diff --git a/fs/namei.c b/fs/namei.c
-index e56ff39a79bc..05652e8a1069 100644
---- a/fs/namei.c
-+++ b/fs/namei.c
-@@ -3259,6 +3259,10 @@ static int may_open(struct mnt_idmap *idmap, const struct path *path,
-                if ((acc_mode & MAY_EXEC) && path_noexec(path))
-                        return -EACCES;
-                break;
-+       default:
-+               /* bogus mode! */
-+               printk(KERN_EMERG "got bogus mode inode!\n");
-+               return -EACCES;
-        }
-
-        error = inode_permission(idmap, inode, MAY_OPEN | acc_mode);
-
-catches it.
-
-All that said, I think adding a WARN_ONCE here is prudent, but I
-don't know if denying literally all opts is the way to go.
-
-Do other filesystems have provisions to prevent inodes like this from
-getting here?
+Eric
 
 
 _______________________________________________
