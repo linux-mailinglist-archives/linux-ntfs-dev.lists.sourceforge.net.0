@@ -2,88 +2,90 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 343D7781D05
-	for <lists+linux-ntfs-dev@lfdr.de>; Sun, 20 Aug 2023 10:46:52 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EF5C78495E
+	for <lists+linux-ntfs-dev@lfdr.de>; Tue, 22 Aug 2023 20:24:50 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1qXe5B-0001UV-D5;
-	Sun, 20 Aug 2023 08:46:49 +0000
+	id 1qYW3b-0004gC-Ly;
+	Tue, 22 Aug 2023 18:24:46 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <mjguzik@gmail.com>) id 1qXSAm-0001HM-80
+ (envelope-from <ghandatmanas@gmail.com>) id 1qYVR7-0002SY-Bh
  for linux-ntfs-dev@lists.sourceforge.net;
- Sat, 19 Aug 2023 20:03:47 +0000
+ Tue, 22 Aug 2023 17:45:02 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
- References:In-Reply-To:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
- :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:Subject:From
+ :Reply-To:Cc:To:MIME-Version:Date:Message-ID:Sender:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=aJmwmCW2cEQCd04RE4RrxWMNws0AbxA5Q61XDGT3T+Y=; b=HytbzVx3E3dzw1EcfPLHhbIpnD
- LX8BFYYEM09EjkDB2LSCutz+J00tclnrnuqjx/M92o9+KPrbvje5gOgjgrXRwcySEcFsLEURrvS01
- R/8M3aCzNFWfntQbrtAXHF1v5bCChwSZngHbFbUMWLtV0k+tG7s0HaLjLWZYG14ET5nQ=;
+ bh=D83pxoorKSMZ3KXT4tteloMjPSR576OWtj/BqTWoltc=; b=G4ja46h6qWYJpxWT5hVfXn/A/7
+ djpqniotPa2bw1w9diVuW5skjemQ5b2Q/AwDdKRsZNtYWP1zpDOfJWyK1RAY5dlmOdMJXSGvciTA4
+ 6czmMCTZyhynHx3qsv+Un1ituH+uWi3hLvpcN/icbg5UIvxudYKWtdA7PJUfpCBe3xqQ=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Cc:To:Subject:Message-ID:Date:From:References:In-Reply-To:
- MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Content-Transfer-Encoding:Content-Type:Subject:From:Reply-To:Cc:To:
+ MIME-Version:Date:Message-ID:Sender:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=aJmwmCW2cEQCd04RE4RrxWMNws0AbxA5Q61XDGT3T+Y=; b=KAXhJNvzYOS5AmI/MoObTOTrgQ
- 1Hs6Skvngsi/aTOaGiNFHTSyC1L9dld/WBqzjkJkS/QNBfy5NVoae6xksFS8IcM9kbjpOoUBVwmSD
- bNb5an3e8+mLXw3uq+v9gdbj++pPDBR3fMl9Aps/jLd2W460uGGtt8G3RdwyCKN4iTjA=;
-Received: from mail-oa1-f48.google.com ([209.85.160.48])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ bh=D83pxoorKSMZ3KXT4tteloMjPSR576OWtj/BqTWoltc=; b=RXJV8wKLje1LmUAaPLWTIBfiLk
+ Fn2yFsnA5KuwcNsK25NNXmo5LGqceTk5yEoWFaug4WbBXN5Zjuurua3oxwScfadwyiZ01Zr76VKUu
+ WAkJtPcRZX6OUCPV9rke67cPXx52iFyiG8RxBia73p4yVfv8iCobVslveF32/MIuF9Rs=;
+Received: from mail-pf1-f174.google.com ([209.85.210.174])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1qXSAk-0007Dc-Dc for linux-ntfs-dev@lists.sourceforge.net;
- Sat, 19 Aug 2023 20:03:47 +0000
-Received: by mail-oa1-f48.google.com with SMTP id
- 586e51a60fabf-1c4c6717e61so1446341fac.1
+ id 1qYVR3-00CTcC-TU for linux-ntfs-dev@lists.sourceforge.net;
+ Tue, 22 Aug 2023 17:45:01 +0000
+Received: by mail-pf1-f174.google.com with SMTP id
+ d2e1a72fcca58-686be3cbea0so3877270b3a.0
  for <linux-ntfs-dev@lists.sourceforge.net>;
- Sat, 19 Aug 2023 13:03:46 -0700 (PDT)
+ Tue, 22 Aug 2023 10:44:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1692475421; x=1693080221;
- h=cc:to:subject:message-id:date:from:references:in-reply-to
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=aJmwmCW2cEQCd04RE4RrxWMNws0AbxA5Q61XDGT3T+Y=;
- b=g+rCERemWikecerpqjEDtuCW3J3jHkNm2Fn5WiZ00kYiXRoMVCXXROJJpfAhc15ysl
- UWyXlVSZpz35w9DMq98q4cOxdVKV1k7EtA3CBAk8rCr20aJ/nHENESikDfhiZEiJEyFo
- yTLrMLCL1aTFaD2s021AVlUAsULlYgxSb4homYRDe3mtKQgj76vSGFVxcQd3pRccd42Z
- SlSgLj/i64i7MMUYTgel3/XsUsGJY9+5Za+GFigyUJTVhq09oXN0yrnplUVftBvbvW92
- lJDC2OQrmljAnyqavE9PxuqenvyqAGHnmcXJ2Fq7fuUAF6qD65/hWv45bAEK6auxe91l
- I3EA==
+ d=gmail.com; s=20221208; t=1692726292; x=1693331092;
+ h=content-transfer-encoding:subject:from:reply-to:cc:to
+ :content-language:user-agent:mime-version:date:message-id:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=D83pxoorKSMZ3KXT4tteloMjPSR576OWtj/BqTWoltc=;
+ b=VfouFOcEQm14bIP+hmAy9H5Cbv7pd8goiWgJvgc1/lWxlzx8olBW3oKzSwr9VnqdBi
+ plsJsRPUMXz4Ru4PwMrCp8aDdrOWhuSSnIDwGnUP7utY8nrhv5bXAZKjtoxpOs3IRcT7
+ U9wXwvDoj9coLJ+9yMf4iMbS9wKZ4ZxoM7D8k8xSlgYWlS/VtCgnOy9Tk9nxZ5r6nKX7
+ 03DGfI9Q0eZ6mRNWgpH6ppeR+3UoBXmuuCDsj63/RyrVJzvmsxzgaEx9ZaFZi9TuUGVS
+ VtC7G+VBbngPYQTX0KFlorQMeFIm9skopJwZAwnQgZaJKA6LdrMC1srd+bEbmBtsaG+D
+ khag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1692475421; x=1693080221;
- h=cc:to:subject:message-id:date:from:references:in-reply-to
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=aJmwmCW2cEQCd04RE4RrxWMNws0AbxA5Q61XDGT3T+Y=;
- b=fKZBW5AwssW4nVZ7xrZZDpjJUA1qbTAY4I9/73Hgd+ywOYsykgJ0dQ5I9I0Od8FcNS
- XS3MIIGLFF9X7wJTkqHX7x6aMF/cR1EjoMEL+zuXomu9sZB3OHzWM3yalivygiSvtUuD
- Ihe+B/dSXRYxSVQobhaEUBtgieyZ2BIu4D70IvCiaXRHWyWdbmD9tplKjYvHsX3yS2NL
- 1oNaDoTr5aApzbdrNUJAwaoDA2EVo9VCufrxDUvPo4d8yTySpVcVijTfutROWyt4ZLzO
- cA5bWdSbIRYS2jbdJwwj4y+3PZtVseNbXGmr4x5D5f7053Mrkq3cRXWpT4wtUneejhQb
- CdUg==
-X-Gm-Message-State: AOJu0Yz/hdw9y3JuTQvzuup87OMbQUjaSfSAWzdVCQD16AqwZmX3oP9o
- jXp4VrQY7q+OjxiC6jSItfX4wgp69s5WdIf+LvsV74mS
-X-Google-Smtp-Source: AGHT+IFcQ5JgHH5X+0iR2/3eAmurP/E4fqkFweod4P5W5Y3dD5jml27OqGCNcTMGfxg3F0F72tWMGlj2+wEF2tqx2qQ=
-X-Received: by 2002:a05:6870:6394:b0:1c1:12dc:70b1 with SMTP id
- t20-20020a056870639400b001c112dc70b1mr3579234oap.57.1692475420635; Sat, 19
- Aug 2023 13:03:40 -0700 (PDT)
+ d=1e100.net; s=20221208; t=1692726292; x=1693331092;
+ h=content-transfer-encoding:subject:from:reply-to:cc:to
+ :content-language:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=D83pxoorKSMZ3KXT4tteloMjPSR576OWtj/BqTWoltc=;
+ b=jJidZ0tL9lftrpiv2UB18PJelsi6yL4bb+8s785LMHVZI5bvEwf3h5dyIS6W5nFB4x
+ w6gRmyi+1WEtDcy3cGpP2pC+EUoFNuVOzoMu1QNtiUsDprvV/mCaiRVQefJg7IYTAmUG
+ pt+t/ba2bNq+5j6YtIlVn8aaCJAECOWCTFLk4MxQjV8n70/2fPtoDUuymsQUBo1PdVoQ
+ k0VqBq8hPLWLR7H5R5hKvm0YmWUMpBMBTwwtxPueHMFmLIm55riiw7Ncq+HskbgO+es+
+ +g17bQTmKO9dQtvC5NUWfywkeTuz7+/DN8PhJfzHHGLJqlTX+EB21jCRtyh7AJSuw4np
+ Hv7w==
+X-Gm-Message-State: AOJu0YwN2jQwMpmoo+dghn3YIONVFoxF269mNAYPsfgkXzuSyVqvgsw8
+ ISPr5gVxdCymBS219lrFzTQ=
+X-Google-Smtp-Source: AGHT+IFKTE7SIbTMMWJAx0oW0kr9RcAgSRKog0enFdYErkO+dy/8hNTNi/3zJPYuYshsZtVCFglNpw==
+X-Received: by 2002:a05:6a20:1456:b0:13f:c159:63ec with SMTP id
+ a22-20020a056a20145600b0013fc15963ecmr14333954pzi.24.1692726292148; 
+ Tue, 22 Aug 2023 10:44:52 -0700 (PDT)
+Received: from [10.0.2.15] ([103.37.201.176]) by smtp.gmail.com with ESMTPSA id
+ n15-20020aa78a4f000000b00682a27905b9sm4500417pfa.13.2023.08.22.10.44.49
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 22 Aug 2023 10:44:51 -0700 (PDT)
+Message-ID: <f2b664d5-0710-67ae-fda8-d407af4df6fe@gmail.com>
+Date: Tue, 22 Aug 2023 23:14:46 +0530
 MIME-Version: 1.0
-Received: by 2002:ac9:79d9:0:b0:4f0:1250:dd51 with HTTP; Sat, 19 Aug 2023
- 13:03:40 -0700 (PDT)
-In-Reply-To: <20230819-geblendet-energetisch-a90a2886216c@brauner>
-References: <000000000000c74d44060334d476@google.com>
- <87o7j471v8.fsf@email.froward.int.ebiederm.org>
- <202308181030.0DA3FD14@keescook> <20230818191239.3cprv2wncyyy5yxj@f>
- <20230819-geblendet-energetisch-a90a2886216c@brauner>
-From: Mateusz Guzik <mjguzik@gmail.com>
-Date: Sat, 19 Aug 2023 22:03:40 +0200
-Message-ID: <CAGudoHGnE2=+EqnwjkSD48VvGpK8MVAvYXQeTxA1o=PfOqHQnA@mail.gmail.com>
-To: Christian Brauner <brauner@kernel.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Content-Language: en-US
+To: anton@tuxera.com, linkinjeon@kernel.org,
+ syzbot+ef50f8eb00b54feb7ba2@syzkaller.appspotmail.com
+From: Manas Ghandat <ghandatmanas@gmail.com>
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
@@ -91,30 +93,34 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On 8/19/23, Christian Brauner wrote: > On Fri, Aug 18, 2023
- at 09:12:39PM +0200, Mateusz Guzik wrote: >> On Fri, Aug 18, 2023 at 10:33:26AM
- -0700, Kees Cook wrote: >> > This is a double-check I left [...] 
+ Content preview:  Hi, I was looking at this syzbot issue :
+ https://syzkaller.appspot.com/bug?extid=ef50f8eb00b54feb7ba2
+ While debugging I found that when we are traversing through the attribute
+ list,
+ there is case when the next attribute is null (most likely we are traversing
+ out of the list) and thus there is this err [...] 
  Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [209.85.210.174 listed in wl.mailspike.net]
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.160.48 listed in list.dnswl.org]
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ no trust [209.85.210.174 listed in list.dnswl.org]
  0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
- provider [mjguzik[at]gmail.com]
+ provider [ghandatmanas[at]gmail.com]
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.160.48 listed in wl.mailspike.net]
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
-X-Headers-End: 1qXSAk-0007Dc-Dc
-X-Mailman-Approved-At: Sun, 20 Aug 2023 08:46:48 +0000
-Subject: Re: [Linux-ntfs-dev] [syzbot] [ntfs?] WARNING in do_open_execat
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+X-Headers-End: 1qYVR3-00CTcC-TU
+X-Mailman-Approved-At: Tue, 22 Aug 2023 18:24:44 +0000
+Subject: [Linux-ntfs-dev] fs/ntfs : use-after-free Read in ntfs_attr_find
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -127,121 +133,26 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Cc: syzbot <syzbot+6ec38f7a8db3b3fb1002@syzkaller.appspotmail.com>,
- Theodore Ts'o <tytso@mit.edu>, Kees Cook <keescook@chromium.org>,
- linux-ntfs-dev@lists.sourceforge.net, syzkaller-bugs@googlegroups.com,
- linux-kernel@vger.kernel.org, linux-mm@kvack.org,
- "Eric W. Biederman" <ebiederm@xmission.com>, linux-fsdevel@vger.kernel.org,
- anton@tuxera.com, Al Viro <viro@zeniv.linux.org.uk>
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: 000000000000aefc5005f5df169b@google.com
+Cc: linux-ntfs-dev@lists.sourceforge.net,
+ Linux-kernel-mentees@lists.linuxfoundation.org, linux-kernel@vger.kernel.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-On 8/19/23, Christian Brauner <brauner@kernel.org> wrote:
-> On Fri, Aug 18, 2023 at 09:12:39PM +0200, Mateusz Guzik wrote:
->> On Fri, Aug 18, 2023 at 10:33:26AM -0700, Kees Cook wrote:
->> > This is a double-check I left in place, since it shouldn't have been
->> > reachable:
->> >
->> >         /*
->> >          * may_open() has already checked for this, so it should be
->> >          * impossible to trip now. But we need to be extra cautious
->> >          * and check again at the very end too.
->> >          */
->> >         err = -EACCES;
->> >         if (WARN_ON_ONCE(!S_ISREG(file_inode(file)->i_mode) ||
->> >                          path_noexec(&file->f_path)))
->> >                 goto exit;
->> >
->>
->> As I mentioned in my other e-mail, the check is racy -- an unlucky
->> enough remounting with noexec should trip over it, and probably a chmod
->> too.
->>
->> However, that's not what triggers the warn in this case.
->>
->> The ntfs image used here is intentionally corrupted and the inode at
->> hand has a mode of 777 (as in type not specified).
->>
->> Then the type check in may_open():
->>         switch (inode->i_mode & S_IFMT) {
->>
->> fails to match anything.
->>
->> This debug printk:
->> diff --git a/fs/namei.c b/fs/namei.c
->> index e56ff39a79bc..05652e8a1069 100644
->> --- a/fs/namei.c
->> +++ b/fs/namei.c
->> @@ -3259,6 +3259,10 @@ static int may_open(struct mnt_idmap *idmap, const
->> struct path *path,
->>                 if ((acc_mode & MAY_EXEC) && path_noexec(path))
->>                         return -EACCES;
->>                 break;
->> +       default:
->> +               /* bogus mode! */
->> +               printk(KERN_EMERG "got bogus mode inode!\n");
->> +               return -EACCES;
->>         }
->>
->>         error = inode_permission(idmap, inode, MAY_OPEN | acc_mode);
->>
->> catches it.
->>
->> All that said, I think adding a WARN_ONCE here is prudent, but I
->> don't know if denying literally all opts is the way to go.
->>
->> Do other filesystems have provisions to prevent inodes like this from
->> getting here?
->
-> Bugs reported against the VFS from ntfs/ntfs3 are to be treated with
-> extreme caution. Frankly, if it isn't reproducible without a corrupted
-> ntfs/ntfs3 image it is to be dismissed until further notice.
->
-> In this case it simply seems that ntfs is failing at ensuring that its
-> own inodes it reads from disk have a well-defined type.
->
-> If ntfs fails to validate that its own inodes it puts into the icache
-> are correctly initialized then the vfs doesn't need to try and taper
-> over this.
->
-> If ntfs fails at that, there's no guarantee that it doesn't also fail at
-> setting the correct i_ops for that inode. At which point we can check
-> the type in may_open() but we already used bogus i_ops the whole time on
-> some other inodes.
->
-> We're not here to make up for silly bugs like this. That WARN belongs
-> into ntfs not the vfs.
->
+Hi,
 
-Given the triggered WARN_ON it seemed to me this would be the
-operating procedure, I am happy it is not ;)
+I was looking at this syzbot issue : 
+https://syzkaller.appspot.com/bug?extid=ef50f8eb00b54feb7ba2
 
-Per your description and the one provided by Theodore I take it
-filesystems must not ship botched inodes like this one.
+While debugging I found that when we are traversing through the 
+attribute list, there is case when the next attribute is null (most 
+likely we are traversing out of the list) and thus there is this error. 
+I was wondering if we could add a size field to this attribute list. 
+This would fix this issue. Currently we are just parsing to the next 
+attribute using the length field.
 
-While in this case this is a clear-cut bug in ntfs, I would argue the
-entire ordeal exposes a deficiency in VFS -- it should have a
-debug-only mechanism which catches cases like this early on. For
-example there could be a mandatory function to call when the
-filesystem claims it constructed the inode to assert a bunch on it --
-it would not catch all possible problems, but would definitely catch
-this one (and VFS would have to detect the call was not made).
 
-Perhaps I should write a separate e-mail about this, but I'm surprised
-there is no debug-only (as in not present in production kernels)
-support for asserting the state. To give one example which makes me
-itchy see inode destruction. There are few checks in clear_inode, but
-past that there is almost nothing.
-
-Similarly there are quite a few comments how the caller is required to
-hold a given lock, which should have been converted to lockdep asserts
-years ago.
-
-I'm going to write something up later.
-
--- 
-Mateusz Guzik <mjguzik gmail.com>
 
 
 _______________________________________________
