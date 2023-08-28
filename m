@@ -2,112 +2,125 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB21B78B716
-	for <lists+linux-ntfs-dev@lfdr.de>; Mon, 28 Aug 2023 20:16:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2582778B717
+	for <lists+linux-ntfs-dev@lfdr.de>; Mon, 28 Aug 2023 20:16:07 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1qagmS-0001k2-7C;
+	id 1qagmS-0001k7-GR;
 	Mon, 28 Aug 2023 18:16:04 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <linkinjeon@kernel.org>) id 1qaSUW-0007cE-Eb
+ (envelope-from <ghandatmanas@gmail.com>) id 1qafU4-0002Lj-TO
  for linux-ntfs-dev@lists.sourceforge.net;
- Mon, 28 Aug 2023 03:00:37 +0000
+ Mon, 28 Aug 2023 16:53:01 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
- References:In-Reply-To:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
- :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+ From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Ofj4a+Sr4kDnbjiIrmLs1QHmMJWavBBZY3e/Hnqt7HY=; b=GHN4RYerDwcUuuJB6GDObb7Eye
- os+/VyDF9CzdguAj+C4fjqpCtExKGxUohN6fv+/QIPjNCO+K9ZQjCg12FM9W1o1B1KVv3QoeZ5vCC
- eZXo9c6eL2S4Yj7z2K3g8uagTk3kHpAD0BvPdjeze7xpM2ty4wI0RYqtvDvp3anvEhSo=;
+ bh=5LZIVj4rUAeGJ7xui07ULb5M7AQu4gvcO6R5a7/WUD8=; b=c5Lgw6rJtX+TXbqi4Kq+dxb9GN
+ oYFFLtrqfXH3zf34O3dAqjHxzrCLljEmGki0lZDjU2DPVJhIqSHOm5wepngv5xdndxwHukyUYVAnL
+ MNMpBlc7nELa/1oOfEvE3gm+CrLzhREPfAya5YWCK0V0zm9Ed0jx8BrqmZuIqiSv6jeg=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Cc:To:Subject:Message-ID:Date:From:References:In-Reply-To:
- MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+ Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=Ofj4a+Sr4kDnbjiIrmLs1QHmMJWavBBZY3e/Hnqt7HY=; b=YK9QseaClw3ja/81RPnDE3KRdK
- VFh5gvecMj9RHubLca7k4Grlex6201V8nWwwEVQj1PNqLgT0EdCIibCv0RvaNoMmjMaVQ5zb3DOPX
- D0ov9xxhHtecO9bVWwEolT2mMsPG/i/nEwoPew01q5elK1/UHjrtH1YQcXypyGXT2Ark=;
-Received: from dfw.source.kernel.org ([139.178.84.217])
+ bh=5LZIVj4rUAeGJ7xui07ULb5M7AQu4gvcO6R5a7/WUD8=; b=EajZzvby3RIbjTnXnB1vsDRddV
+ UPl0pQiAkjjkcyN4IC7kIDZXSEnrMz3Udjox5medBkiCEsBqfMezyP/vTJerNle/1dKOJUv/z2A9A
+ A/mhQGoSN6g7VG+GRBK3Ku2QLE6GeSaWXt8JsxezQ9blGyipQsnHnx/lFbUyNXLRzdyY=;
+Received: from mail-pf1-f181.google.com ([209.85.210.181])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1qaSUS-0008Rn-Kk for linux-ntfs-dev@lists.sourceforge.net;
- Mon, 28 Aug 2023 03:00:37 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id E58AA61156
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
+ id 1qafU2-0002h9-My for linux-ntfs-dev@lists.sourceforge.net;
+ Mon, 28 Aug 2023 16:53:01 +0000
+Received: by mail-pf1-f181.google.com with SMTP id
+ d2e1a72fcca58-68a3b66f350so2955708b3a.3
  for <linux-ntfs-dev@lists.sourceforge.net>;
- Mon, 28 Aug 2023 03:00:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F687C433CB
- for <linux-ntfs-dev@lists.sourceforge.net>;
- Mon, 28 Aug 2023 03:00:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1693191626;
- bh=otjFS/8nOzqMsBwSJ/OzkjYo/maytY8GZwVsaXFlmug=;
- h=In-Reply-To:References:From:Date:Subject:To:Cc:From;
- b=WX9rFIsMNS+yrTdGRuXMvADbB9RFUf1yjAQdLR7zTPLJEvcmaT5EErDfdas1WiFdT
- 76i8sX+jykpTO542mqalzMpiANQm10VyLsC/iz9oIw2mADukDoDawsQWuzdPJbejHp
- qOglqbh7kV4ZWYg8Bm65OtSsdINsXwvG7muhZerelCe7Hf/qHMbeWK0p2rE0Vzf7EF
- d9G7jr+MULe2tcthn2OlS4PGjYM0/4+MPq5NBXPtNxVn0evao9YWNSITmDbwtkGKxr
- oV6G0RAKRUtQ66CpcjCHixM7vZ1cbZ3VfghQw4bRpdTLBg/BBye+nJsc5LUyetiKGO
- VXf048NQqXp5w==
-Received: by mail-oo1-f46.google.com with SMTP id
- 006d021491bc7-56d8bc0d909so1812462eaf.3
- for <linux-ntfs-dev@lists.sourceforge.net>;
- Sun, 27 Aug 2023 20:00:26 -0700 (PDT)
-X-Gm-Message-State: AOJu0YyyJtt+RjiY11gPj13rrDYZx0wcGhJMxChrDMVABy3/inG1+EHH
- JSAhYWBhHVfwMz3v1lhz39nXZJncpYyXYuKuYZE=
-X-Google-Smtp-Source: AGHT+IHn+IZlq/F9TsDGUwaduR4k2lI9GSIkPRkjCukEQ4C/QzXTk6ZbBy3ti0e0YyvS2NHc2QQ+pkCPQO4kBE+KG40=
-X-Received: by 2002:a4a:281a:0:b0:573:3711:51c4 with SMTP id
- h26-20020a4a281a000000b00573371151c4mr8363886ooa.8.1693191625380; Sun, 27 Aug
- 2023 20:00:25 -0700 (PDT)
+ Mon, 28 Aug 2023 09:52:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1693241573; x=1693846373;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=5LZIVj4rUAeGJ7xui07ULb5M7AQu4gvcO6R5a7/WUD8=;
+ b=fv6CcC+jDOSDUm/VQO7Qa+aKpCgqesssmlz8xpNRVp2auAsq52rLUTPfM9qIuBjg3g
+ 1oMEevASI9cjIJqFjczV8BtFLZf/jsXGONbGk5KhWJKaLzhTDfNWgtxXXm4nm4iYKbiV
+ cQv1oPeTLF/QFX55MKEqZpi3PSrtsMDl6UB+jqTBm21JAi0xSAaXO+TA0XZnIfrk6oM4
+ MUNF7fjKxVqrqilR6mq+t4jLwD5n3TxiiVQGrZB/LWaFNzioDgh5PCDI30+zmxew9Lh5
+ RMVVeT24xuym6hW4BDR+FPzGVYwV61iF87D7iy0dmLtoCmALFYsD64D9MDmkFTK+pMY+
+ o9xg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1693241573; x=1693846373;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=5LZIVj4rUAeGJ7xui07ULb5M7AQu4gvcO6R5a7/WUD8=;
+ b=BsNv6lIzayVbxnOBqWFkUU3yZgRaZja8NeiDoZCiC3qDOlPK/K3yyvWE5JsT9lZTGu
+ 8VMkaJb+zibtIV89xRZR6FmaUMuSD55G4Ll8QEOaK2XB/XHIhTGpI6W9omlOvyB6gLn3
+ Cq2GvT0mAH4fGj0qHiqrJFfTi+DJOycdSrJXpmGkBGhxfKqr54aAbtQ7iZrN4EX1xXlp
+ 9aBPHXEsR2YFKCfx9pDONIRPxvHuncN4LJlbq8IxnenaXfzH8aQCdLbqdupdQx7a5Lw1
+ tj/CgM5xX0T0hdcmyt6OlJHed57ADpdap/oJle3LwYClK1g07qiH4GSbEDlxNaqErdtb
+ R4gw==
+X-Gm-Message-State: AOJu0YzL7Yghf4bu1daOsr2u43w9l/LEmUyfjUbIZxo0fhw92BaQ17Ly
+ +NXTlwDm+Lo4Ju7YhgCLF+w=
+X-Google-Smtp-Source: AGHT+IGfJ8QxT/w3CIw7NTnwVugoja1tzYfAy1ChGXPlHyrgXaReZKXt9GXsKlrl9rVH64OCwy7IZQ==
+X-Received: by 2002:a05:6a20:dd82:b0:147:fd40:2485 with SMTP id
+ kw2-20020a056a20dd8200b00147fd402485mr24846816pzb.35.1693241572861; 
+ Mon, 28 Aug 2023 09:52:52 -0700 (PDT)
+Received: from [10.0.2.15] ([103.37.201.179]) by smtp.gmail.com with ESMTPSA id
+ s17-20020a62e711000000b00682b299b6besm6881273pfh.70.2023.08.28.09.52.48
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 28 Aug 2023 09:52:52 -0700 (PDT)
+Message-ID: <3216b72e-76d9-368b-a903-cd3acee96438@gmail.com>
+Date: Mon, 28 Aug 2023 22:22:45 +0530
 MIME-Version: 1.0
-Received: by 2002:a05:6802:1090:b0:4f6:2c4a:5156 with HTTP; Sun, 27 Aug 2023
- 20:00:24 -0700 (PDT)
-In-Reply-To: <54a8ae10-71f4-9e91-d2b7-bd4a30a8ac2a@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+To: Namjae Jeon <linkinjeon@kernel.org>
 References: <20230813055948.12513-1-ghandatmanas@gmail.com>
  <2023081621-mosaic-untwist-a786@gregkh>
  <54a8ae10-71f4-9e91-d2b7-bd4a30a8ac2a@gmail.com>
-From: Namjae Jeon <linkinjeon@kernel.org>
-Date: Mon, 28 Aug 2023 12:00:24 +0900
-X-Gmail-Original-Message-ID: <CAKYAXd9-NjSjt-TrJ6fYcPDHcaUm-L=-h5OU98DTw97J2qwmXA@mail.gmail.com>
-Message-ID: <CAKYAXd9-NjSjt-TrJ6fYcPDHcaUm-L=-h5OU98DTw97J2qwmXA@mail.gmail.com>
-To: Manas Ghandat <ghandatmanas@gmail.com>
-X-Spam-Score: -5.2 (-----)
+ <CAKYAXd9-NjSjt-TrJ6fYcPDHcaUm-L=-h5OU98DTw97J2qwmXA@mail.gmail.com>
+Content-Language: en-US
+From: Manas Ghandat <ghandatmanas@gmail.com>
+In-Reply-To: <CAKYAXd9-NjSjt-TrJ6fYcPDHcaUm-L=-h5OU98DTw97J2qwmXA@mail.gmail.com>
+X-Spam-Score: -2.4 (--)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  2023-08-18 15:34 GMT+09:00,
- Manas Ghandat <ghandatmanas@gmail.com>:
- > Sorry for the last reply Greg. The last tag specifies the commit id. >
- Also, I have sent the v5 of the patch in which I have made [...] 
- Content analysis details:   (-5.2 points, 6.0 required)
+ Content preview: I was looking at this issue for some time now. As suggested
+ by Anton, that the vol->sparse_compression_unit is set at the mount. I cannot
+ seem to find the code for that part. It seems that the ntfs_in [...] 
+ Content analysis details:   (-2.4 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
- high trust [139.178.84.217 listed in list.dnswl.org]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.210.181 listed in list.dnswl.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
+ 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
+ provider [ghandatmanas[at]gmail.com]
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [209.85.210.181 listed in wl.mailspike.net]
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1qaSUS-0008Rn-Kk
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+ -2.2 NICE_REPLY_A           Looks like a legit reply (A)
+X-Headers-End: 1qafU2-0002h9-My
 X-Mailman-Approved-At: Mon, 28 Aug 2023 18:16:02 +0000
 Subject: Re: [Linux-ntfs-dev] [PATCH v4] ntfs : fix shift-out-of-bounds in
  ntfs_iget
@@ -128,34 +141,22 @@ Cc: linux-ntfs-dev@lists.sourceforge.net, Greg KH <gregkh@linuxfoundation.org>,
  syzbot+4768a8f039aa677897d0@syzkaller.appspotmail.com,
  linux-fsdevel@vger.kernel.org, Linux-kernel-mentees@lists.linuxfoundation.org,
  anton@tuxera.com
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-2023-08-18 15:34 GMT+09:00, Manas Ghandat <ghandatmanas@gmail.com>:
-> Sorry for the last reply Greg. The last tag specifies the commit id.
-> Also, I have sent the v5 of the patch in which I have made some critical
-> changes. Please take a look at that.
-Have you checked build error report from kernel test robot ?
+I was looking at this issue for some time now. As suggested by Anton, 
+that the vol->sparse_compression_unit is set at the mount. I cannot seem 
+to find the code for that part. It seems that the ntfs_inode struct does 
+not have any sparse_compression_unit. So I am stuck at that part of the 
+problem.
 
->
-> On 17/08/23 00:45, Greg KH wrote:
->> On Sun, Aug 13, 2023 at 11:29:49AM +0530, Manas Ghandat wrote:
->>> Currently there is not check for ni->itype.compressed.block_size when
->>> a->data.non_resident.compression_unit is present and NInoSparse(ni) is
->>> true. Added the required check to calculation of block size.
->>>
->>> Signed-off-by: Manas Ghandat <ghandatmanas@gmail.com>
->>> Reported-by: syzbot+4768a8f039aa677897d0@syzkaller.appspotmail.com
->>> Closes: https://syzkaller.appspot.com/bug?extid=4768a8f039aa677897d0
->>> Fix-commit-ID: upstream f40ddce88593482919761f74910f42f4b84c004b
->> What is this last tag for?  That's a kernel release version, what can be
->> done with that?
->>
->> confused,
->>
->> greg k-h
->
+On 28/08/23 08:30, Namjae Jeon wrote:
+> 2023-08-18 15:34 GMT+09:00, Manas Ghandat <ghandatmanas@gmail.com>:
+>> Sorry for the last reply Greg. The last tag specifies the commit id.
+>> Also, I have sent the v5 of the patch in which I have made some critical
+>> changes. Please take a look at that.
+> Have you checked build error report from kernel test robot ?
 
 
 _______________________________________________
