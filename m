@@ -2,125 +2,115 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EF5C78495E
-	for <lists+linux-ntfs-dev@lfdr.de>; Tue, 22 Aug 2023 20:24:50 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB21B78B716
+	for <lists+linux-ntfs-dev@lfdr.de>; Mon, 28 Aug 2023 20:16:06 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1qYW3b-0004gC-Ly;
-	Tue, 22 Aug 2023 18:24:46 +0000
+	id 1qagmS-0001k2-7C;
+	Mon, 28 Aug 2023 18:16:04 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <ghandatmanas@gmail.com>) id 1qYVR7-0002SY-Bh
+ (envelope-from <linkinjeon@kernel.org>) id 1qaSUW-0007cE-Eb
  for linux-ntfs-dev@lists.sourceforge.net;
- Tue, 22 Aug 2023 17:45:02 +0000
+ Mon, 28 Aug 2023 03:00:37 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:Subject:From
- :Reply-To:Cc:To:MIME-Version:Date:Message-ID:Sender:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
+ References:In-Reply-To:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
+ :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=D83pxoorKSMZ3KXT4tteloMjPSR576OWtj/BqTWoltc=; b=G4ja46h6qWYJpxWT5hVfXn/A/7
- djpqniotPa2bw1w9diVuW5skjemQ5b2Q/AwDdKRsZNtYWP1zpDOfJWyK1RAY5dlmOdMJXSGvciTA4
- 6czmMCTZyhynHx3qsv+Un1ituH+uWi3hLvpcN/icbg5UIvxudYKWtdA7PJUfpCBe3xqQ=;
+ bh=Ofj4a+Sr4kDnbjiIrmLs1QHmMJWavBBZY3e/Hnqt7HY=; b=GHN4RYerDwcUuuJB6GDObb7Eye
+ os+/VyDF9CzdguAj+C4fjqpCtExKGxUohN6fv+/QIPjNCO+K9ZQjCg12FM9W1o1B1KVv3QoeZ5vCC
+ eZXo9c6eL2S4Yj7z2K3g8uagTk3kHpAD0BvPdjeze7xpM2ty4wI0RYqtvDvp3anvEhSo=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:Subject:From:Reply-To:Cc:To:
- MIME-Version:Date:Message-ID:Sender:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Content-Type:Cc:To:Subject:Message-ID:Date:From:References:In-Reply-To:
+ MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=D83pxoorKSMZ3KXT4tteloMjPSR576OWtj/BqTWoltc=; b=RXJV8wKLje1LmUAaPLWTIBfiLk
- Fn2yFsnA5KuwcNsK25NNXmo5LGqceTk5yEoWFaug4WbBXN5Zjuurua3oxwScfadwyiZ01Zr76VKUu
- WAkJtPcRZX6OUCPV9rke67cPXx52iFyiG8RxBia73p4yVfv8iCobVslveF32/MIuF9Rs=;
-Received: from mail-pf1-f174.google.com ([209.85.210.174])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1qYVR3-00CTcC-TU for linux-ntfs-dev@lists.sourceforge.net;
- Tue, 22 Aug 2023 17:45:01 +0000
-Received: by mail-pf1-f174.google.com with SMTP id
- d2e1a72fcca58-686be3cbea0so3877270b3a.0
+ bh=Ofj4a+Sr4kDnbjiIrmLs1QHmMJWavBBZY3e/Hnqt7HY=; b=YK9QseaClw3ja/81RPnDE3KRdK
+ VFh5gvecMj9RHubLca7k4Grlex6201V8nWwwEVQj1PNqLgT0EdCIibCv0RvaNoMmjMaVQ5zb3DOPX
+ D0ov9xxhHtecO9bVWwEolT2mMsPG/i/nEwoPew01q5elK1/UHjrtH1YQcXypyGXT2Ark=;
+Received: from dfw.source.kernel.org ([139.178.84.217])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
+ id 1qaSUS-0008Rn-Kk for linux-ntfs-dev@lists.sourceforge.net;
+ Mon, 28 Aug 2023 03:00:37 +0000
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id E58AA61156
  for <linux-ntfs-dev@lists.sourceforge.net>;
- Tue, 22 Aug 2023 10:44:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1692726292; x=1693331092;
- h=content-transfer-encoding:subject:from:reply-to:cc:to
- :content-language:user-agent:mime-version:date:message-id:from:to:cc
- :subject:date:message-id:reply-to;
- bh=D83pxoorKSMZ3KXT4tteloMjPSR576OWtj/BqTWoltc=;
- b=VfouFOcEQm14bIP+hmAy9H5Cbv7pd8goiWgJvgc1/lWxlzx8olBW3oKzSwr9VnqdBi
- plsJsRPUMXz4Ru4PwMrCp8aDdrOWhuSSnIDwGnUP7utY8nrhv5bXAZKjtoxpOs3IRcT7
- U9wXwvDoj9coLJ+9yMf4iMbS9wKZ4ZxoM7D8k8xSlgYWlS/VtCgnOy9Tk9nxZ5r6nKX7
- 03DGfI9Q0eZ6mRNWgpH6ppeR+3UoBXmuuCDsj63/RyrVJzvmsxzgaEx9ZaFZi9TuUGVS
- VtC7G+VBbngPYQTX0KFlorQMeFIm9skopJwZAwnQgZaJKA6LdrMC1srd+bEbmBtsaG+D
- khag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1692726292; x=1693331092;
- h=content-transfer-encoding:subject:from:reply-to:cc:to
- :content-language:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=D83pxoorKSMZ3KXT4tteloMjPSR576OWtj/BqTWoltc=;
- b=jJidZ0tL9lftrpiv2UB18PJelsi6yL4bb+8s785LMHVZI5bvEwf3h5dyIS6W5nFB4x
- w6gRmyi+1WEtDcy3cGpP2pC+EUoFNuVOzoMu1QNtiUsDprvV/mCaiRVQefJg7IYTAmUG
- pt+t/ba2bNq+5j6YtIlVn8aaCJAECOWCTFLk4MxQjV8n70/2fPtoDUuymsQUBo1PdVoQ
- k0VqBq8hPLWLR7H5R5hKvm0YmWUMpBMBTwwtxPueHMFmLIm55riiw7Ncq+HskbgO+es+
- +g17bQTmKO9dQtvC5NUWfywkeTuz7+/DN8PhJfzHHGLJqlTX+EB21jCRtyh7AJSuw4np
- Hv7w==
-X-Gm-Message-State: AOJu0YwN2jQwMpmoo+dghn3YIONVFoxF269mNAYPsfgkXzuSyVqvgsw8
- ISPr5gVxdCymBS219lrFzTQ=
-X-Google-Smtp-Source: AGHT+IFKTE7SIbTMMWJAx0oW0kr9RcAgSRKog0enFdYErkO+dy/8hNTNi/3zJPYuYshsZtVCFglNpw==
-X-Received: by 2002:a05:6a20:1456:b0:13f:c159:63ec with SMTP id
- a22-20020a056a20145600b0013fc15963ecmr14333954pzi.24.1692726292148; 
- Tue, 22 Aug 2023 10:44:52 -0700 (PDT)
-Received: from [10.0.2.15] ([103.37.201.176]) by smtp.gmail.com with ESMTPSA id
- n15-20020aa78a4f000000b00682a27905b9sm4500417pfa.13.2023.08.22.10.44.49
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 22 Aug 2023 10:44:51 -0700 (PDT)
-Message-ID: <f2b664d5-0710-67ae-fda8-d407af4df6fe@gmail.com>
-Date: Tue, 22 Aug 2023 23:14:46 +0530
+ Mon, 28 Aug 2023 03:00:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F687C433CB
+ for <linux-ntfs-dev@lists.sourceforge.net>;
+ Mon, 28 Aug 2023 03:00:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1693191626;
+ bh=otjFS/8nOzqMsBwSJ/OzkjYo/maytY8GZwVsaXFlmug=;
+ h=In-Reply-To:References:From:Date:Subject:To:Cc:From;
+ b=WX9rFIsMNS+yrTdGRuXMvADbB9RFUf1yjAQdLR7zTPLJEvcmaT5EErDfdas1WiFdT
+ 76i8sX+jykpTO542mqalzMpiANQm10VyLsC/iz9oIw2mADukDoDawsQWuzdPJbejHp
+ qOglqbh7kV4ZWYg8Bm65OtSsdINsXwvG7muhZerelCe7Hf/qHMbeWK0p2rE0Vzf7EF
+ d9G7jr+MULe2tcthn2OlS4PGjYM0/4+MPq5NBXPtNxVn0evao9YWNSITmDbwtkGKxr
+ oV6G0RAKRUtQ66CpcjCHixM7vZ1cbZ3VfghQw4bRpdTLBg/BBye+nJsc5LUyetiKGO
+ VXf048NQqXp5w==
+Received: by mail-oo1-f46.google.com with SMTP id
+ 006d021491bc7-56d8bc0d909so1812462eaf.3
+ for <linux-ntfs-dev@lists.sourceforge.net>;
+ Sun, 27 Aug 2023 20:00:26 -0700 (PDT)
+X-Gm-Message-State: AOJu0YyyJtt+RjiY11gPj13rrDYZx0wcGhJMxChrDMVABy3/inG1+EHH
+ JSAhYWBhHVfwMz3v1lhz39nXZJncpYyXYuKuYZE=
+X-Google-Smtp-Source: AGHT+IHn+IZlq/F9TsDGUwaduR4k2lI9GSIkPRkjCukEQ4C/QzXTk6ZbBy3ti0e0YyvS2NHc2QQ+pkCPQO4kBE+KG40=
+X-Received: by 2002:a4a:281a:0:b0:573:3711:51c4 with SMTP id
+ h26-20020a4a281a000000b00573371151c4mr8363886ooa.8.1693191625380; Sun, 27 Aug
+ 2023 20:00:25 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Content-Language: en-US
-To: anton@tuxera.com, linkinjeon@kernel.org,
- syzbot+ef50f8eb00b54feb7ba2@syzkaller.appspotmail.com
-From: Manas Ghandat <ghandatmanas@gmail.com>
-X-Spam-Score: -0.2 (/)
+Received: by 2002:a05:6802:1090:b0:4f6:2c4a:5156 with HTTP; Sun, 27 Aug 2023
+ 20:00:24 -0700 (PDT)
+In-Reply-To: <54a8ae10-71f4-9e91-d2b7-bd4a30a8ac2a@gmail.com>
+References: <20230813055948.12513-1-ghandatmanas@gmail.com>
+ <2023081621-mosaic-untwist-a786@gregkh>
+ <54a8ae10-71f4-9e91-d2b7-bd4a30a8ac2a@gmail.com>
+From: Namjae Jeon <linkinjeon@kernel.org>
+Date: Mon, 28 Aug 2023 12:00:24 +0900
+X-Gmail-Original-Message-ID: <CAKYAXd9-NjSjt-TrJ6fYcPDHcaUm-L=-h5OU98DTw97J2qwmXA@mail.gmail.com>
+Message-ID: <CAKYAXd9-NjSjt-TrJ6fYcPDHcaUm-L=-h5OU98DTw97J2qwmXA@mail.gmail.com>
+To: Manas Ghandat <ghandatmanas@gmail.com>
+X-Spam-Score: -5.2 (-----)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hi, I was looking at this syzbot issue :
- https://syzkaller.appspot.com/bug?extid=ef50f8eb00b54feb7ba2
- While debugging I found that when we are traversing through the attribute
- list,
- there is case when the next attribute is null (most likely we are traversing
- out of the list) and thus there is this err [...] 
- Content analysis details:   (-0.2 points, 6.0 required)
+ Content preview:  2023-08-18 15:34 GMT+09:00,
+ Manas Ghandat <ghandatmanas@gmail.com>:
+ > Sorry for the last reply Greg. The last tag specifies the commit id. >
+ Also, I have sent the v5 of the patch in which I have made [...] 
+ Content analysis details:   (-5.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [209.85.210.174 listed in wl.mailspike.net]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.210.174 listed in list.dnswl.org]
- 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
- provider [ghandatmanas[at]gmail.com]
+ -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
+ high trust [139.178.84.217 listed in list.dnswl.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
-X-Headers-End: 1qYVR3-00CTcC-TU
-X-Mailman-Approved-At: Tue, 22 Aug 2023 18:24:44 +0000
-Subject: [Linux-ntfs-dev] fs/ntfs : use-after-free Read in ntfs_attr_find
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1qaSUS-0008Rn-Kk
+X-Mailman-Approved-At: Mon, 28 Aug 2023 18:16:02 +0000
+Subject: Re: [Linux-ntfs-dev] [PATCH v4] ntfs : fix shift-out-of-bounds in
+ ntfs_iget
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -133,26 +123,39 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Reply-To: 000000000000aefc5005f5df169b@google.com
-Cc: linux-ntfs-dev@lists.sourceforge.net,
- Linux-kernel-mentees@lists.linuxfoundation.org, linux-kernel@vger.kernel.org
+Cc: linux-ntfs-dev@lists.sourceforge.net, Greg KH <gregkh@linuxfoundation.org>,
+ linux-kernel@vger.kernel.org,
+ syzbot+4768a8f039aa677897d0@syzkaller.appspotmail.com,
+ linux-fsdevel@vger.kernel.org, Linux-kernel-mentees@lists.linuxfoundation.org,
+ anton@tuxera.com
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-Hi,
+2023-08-18 15:34 GMT+09:00, Manas Ghandat <ghandatmanas@gmail.com>:
+> Sorry for the last reply Greg. The last tag specifies the commit id.
+> Also, I have sent the v5 of the patch in which I have made some critical
+> changes. Please take a look at that.
+Have you checked build error report from kernel test robot ?
 
-I was looking at this syzbot issue : 
-https://syzkaller.appspot.com/bug?extid=ef50f8eb00b54feb7ba2
-
-While debugging I found that when we are traversing through the 
-attribute list, there is case when the next attribute is null (most 
-likely we are traversing out of the list) and thus there is this error. 
-I was wondering if we could add a size field to this attribute list. 
-This would fix this issue. Currently we are just parsing to the next 
-attribute using the length field.
-
-
+>
+> On 17/08/23 00:45, Greg KH wrote:
+>> On Sun, Aug 13, 2023 at 11:29:49AM +0530, Manas Ghandat wrote:
+>>> Currently there is not check for ni->itype.compressed.block_size when
+>>> a->data.non_resident.compression_unit is present and NInoSparse(ni) is
+>>> true. Added the required check to calculation of block size.
+>>>
+>>> Signed-off-by: Manas Ghandat <ghandatmanas@gmail.com>
+>>> Reported-by: syzbot+4768a8f039aa677897d0@syzkaller.appspotmail.com
+>>> Closes: https://syzkaller.appspot.com/bug?extid=4768a8f039aa677897d0
+>>> Fix-commit-ID: upstream f40ddce88593482919761f74910f42f4b84c004b
+>> What is this last tag for?  That's a kernel release version, what can be
+>> done with that?
+>>
+>> confused,
+>>
+>> greg k-h
+>
 
 
 _______________________________________________
