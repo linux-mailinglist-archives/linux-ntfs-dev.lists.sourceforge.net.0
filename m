@@ -2,128 +2,87 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2582778B717
-	for <lists+linux-ntfs-dev@lfdr.de>; Mon, 28 Aug 2023 20:16:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8577678D427
+	for <lists+linux-ntfs-dev@lfdr.de>; Wed, 30 Aug 2023 10:35:10 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1qagmS-0001k7-GR;
-	Mon, 28 Aug 2023 18:16:04 +0000
+	id 1qbGfL-0000JR-48;
+	Wed, 30 Aug 2023 08:35:07 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <ghandatmanas@gmail.com>) id 1qafU4-0002Lj-TO
- for linux-ntfs-dev@lists.sourceforge.net;
- Mon, 28 Aug 2023 16:53:01 +0000
+ (envelope-from <viro@ftp.linux.org.uk>) id 1qb8zk-0005uh-IJ;
+ Wed, 30 Aug 2023 00:23:39 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=5LZIVj4rUAeGJ7xui07ULb5M7AQu4gvcO6R5a7/WUD8=; b=c5Lgw6rJtX+TXbqi4Kq+dxb9GN
- oYFFLtrqfXH3zf34O3dAqjHxzrCLljEmGki0lZDjU2DPVJhIqSHOm5wepngv5xdndxwHukyUYVAnL
- MNMpBlc7nELa/1oOfEvE3gm+CrLzhREPfAya5YWCK0V0zm9Ed0jx8BrqmZuIqiSv6jeg=;
+ d=sourceforge.net; s=x; h=Sender:In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=zZxZUyqerb7julFXQ03Jti/01WDk420m8vSi4C3S7Zg=; b=VpYwNnNZA6V8R2fEV02j59dh24
+ Dc98UEXfabr45lIGAwnUGERiwY5atqBDnDfW2kfxhoVObV5xKikUV73ESGUXnZ3MtQ0S9bK0ag/3k
+ M2wvH5isNwtENupC8Uj0aUv+Cm0pFLLtkvabIMvcnUGgf37qoXh8rIMnfcXqiflUPa9o=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
- Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
+ h=Sender:In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+ Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=5LZIVj4rUAeGJ7xui07ULb5M7AQu4gvcO6R5a7/WUD8=; b=EajZzvby3RIbjTnXnB1vsDRddV
- UPl0pQiAkjjkcyN4IC7kIDZXSEnrMz3Udjox5medBkiCEsBqfMezyP/vTJerNle/1dKOJUv/z2A9A
- A/mhQGoSN6g7VG+GRBK3Ku2QLE6GeSaWXt8JsxezQ9blGyipQsnHnx/lFbUyNXLRzdyY=;
-Received: from mail-pf1-f181.google.com ([209.85.210.181])
+ bh=zZxZUyqerb7julFXQ03Jti/01WDk420m8vSi4C3S7Zg=; b=DAVoyRNt5FXPLpQBMNmmdKv8Jq
+ iGjmM6oX5WvX1zWHLCVowr3SftX93xCJnoChCWjVUysTXYBdLz/XLQ6dm8En4BBttLwv/LiXy8I5I
+ lXaTHl/MGWp79vOzWnLgTPm2a7CDwyBnkneqNRpaKNJouWX5szDh0yzkKMEkqWJvv2C8=;
+Received: from zeniv.linux.org.uk ([62.89.141.173])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1qafU2-0002h9-My for linux-ntfs-dev@lists.sourceforge.net;
- Mon, 28 Aug 2023 16:53:01 +0000
-Received: by mail-pf1-f181.google.com with SMTP id
- d2e1a72fcca58-68a3b66f350so2955708b3a.3
- for <linux-ntfs-dev@lists.sourceforge.net>;
- Mon, 28 Aug 2023 09:52:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1693241573; x=1693846373;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=5LZIVj4rUAeGJ7xui07ULb5M7AQu4gvcO6R5a7/WUD8=;
- b=fv6CcC+jDOSDUm/VQO7Qa+aKpCgqesssmlz8xpNRVp2auAsq52rLUTPfM9qIuBjg3g
- 1oMEevASI9cjIJqFjczV8BtFLZf/jsXGONbGk5KhWJKaLzhTDfNWgtxXXm4nm4iYKbiV
- cQv1oPeTLF/QFX55MKEqZpi3PSrtsMDl6UB+jqTBm21JAi0xSAaXO+TA0XZnIfrk6oM4
- MUNF7fjKxVqrqilR6mq+t4jLwD5n3TxiiVQGrZB/LWaFNzioDgh5PCDI30+zmxew9Lh5
- RMVVeT24xuym6hW4BDR+FPzGVYwV61iF87D7iy0dmLtoCmALFYsD64D9MDmkFTK+pMY+
- o9xg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1693241573; x=1693846373;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=5LZIVj4rUAeGJ7xui07ULb5M7AQu4gvcO6R5a7/WUD8=;
- b=BsNv6lIzayVbxnOBqWFkUU3yZgRaZja8NeiDoZCiC3qDOlPK/K3yyvWE5JsT9lZTGu
- 8VMkaJb+zibtIV89xRZR6FmaUMuSD55G4Ll8QEOaK2XB/XHIhTGpI6W9omlOvyB6gLn3
- Cq2GvT0mAH4fGj0qHiqrJFfTi+DJOycdSrJXpmGkBGhxfKqr54aAbtQ7iZrN4EX1xXlp
- 9aBPHXEsR2YFKCfx9pDONIRPxvHuncN4LJlbq8IxnenaXfzH8aQCdLbqdupdQx7a5Lw1
- tj/CgM5xX0T0hdcmyt6OlJHed57ADpdap/oJle3LwYClK1g07qiH4GSbEDlxNaqErdtb
- R4gw==
-X-Gm-Message-State: AOJu0YzL7Yghf4bu1daOsr2u43w9l/LEmUyfjUbIZxo0fhw92BaQ17Ly
- +NXTlwDm+Lo4Ju7YhgCLF+w=
-X-Google-Smtp-Source: AGHT+IGfJ8QxT/w3CIw7NTnwVugoja1tzYfAy1ChGXPlHyrgXaReZKXt9GXsKlrl9rVH64OCwy7IZQ==
-X-Received: by 2002:a05:6a20:dd82:b0:147:fd40:2485 with SMTP id
- kw2-20020a056a20dd8200b00147fd402485mr24846816pzb.35.1693241572861; 
- Mon, 28 Aug 2023 09:52:52 -0700 (PDT)
-Received: from [10.0.2.15] ([103.37.201.179]) by smtp.gmail.com with ESMTPSA id
- s17-20020a62e711000000b00682b299b6besm6881273pfh.70.2023.08.28.09.52.48
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 28 Aug 2023 09:52:52 -0700 (PDT)
-Message-ID: <3216b72e-76d9-368b-a903-cd3acee96438@gmail.com>
-Date: Mon, 28 Aug 2023 22:22:45 +0530
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
+ id 1qb8zi-00015y-Rn; Wed, 30 Aug 2023 00:23:39 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=linux.org.uk; s=zeniv-20220401; h=Sender:In-Reply-To:Content-Type:
+ MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=zZxZUyqerb7julFXQ03Jti/01WDk420m8vSi4C3S7Zg=; b=C+B8K/E0jwmlP3x0ynEg/wW0oT
+ 8W+g7CEhf7EdCVJx+aCWMaLZ8rDm21ORLwQNEzBBlnKI8nSnQEIfBUqrKOBnjUNllXW768GzG3qB7
+ +cpJ/jhntfWbFQ/3QFzCMkG1sg2st+PpzLnPrKtYydQR6EDaMR8Bc+aEbQhcPGU53TF4NXxBCLwrJ
+ Y+Cse/dfbORxx77QJVsCQ4BCKysmxvXtFDzxb882a/rtaocFDwQw24nZDPRB3CytP/MOuWTM+mTfa
+ +8MJ/m4rwupUEXN1Mh5oBPLgZehFHGmgz56mU9Gh95pn90zVDOFdIxrpzwqUqcKtUFnurzTC7a4a3
+ phr8qPBQ==;
+Received: from viro by zeniv.linux.org.uk with local (Exim 4.96 #2 (Red Hat
+ Linux)) id 1qb8vV-001xXV-0L; Wed, 30 Aug 2023 00:19:17 +0000
+Date: Wed, 30 Aug 2023 01:19:17 +0100
+From: Al Viro <viro@zeniv.linux.org.uk>
+To: Jeff Layton <jlayton@kernel.org>
+Message-ID: <20230830001917.GC461907@ZenIV>
+References: <20230705185812.579118-1-jlayton@kernel.org>
+ <20230705185812.579118-3-jlayton@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-To: Namjae Jeon <linkinjeon@kernel.org>
-References: <20230813055948.12513-1-ghandatmanas@gmail.com>
- <2023081621-mosaic-untwist-a786@gregkh>
- <54a8ae10-71f4-9e91-d2b7-bd4a30a8ac2a@gmail.com>
- <CAKYAXd9-NjSjt-TrJ6fYcPDHcaUm-L=-h5OU98DTw97J2qwmXA@mail.gmail.com>
-Content-Language: en-US
-From: Manas Ghandat <ghandatmanas@gmail.com>
-In-Reply-To: <CAKYAXd9-NjSjt-TrJ6fYcPDHcaUm-L=-h5OU98DTw97J2qwmXA@mail.gmail.com>
-X-Spam-Score: -2.4 (--)
+Content-Disposition: inline
+In-Reply-To: <20230705185812.579118-3-jlayton@kernel.org>
+X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: I was looking at this issue for some time now. As suggested
- by Anton, that the vol->sparse_compression_unit is set at the mount. I cannot
- seem to find the code for that part. It seems that the ntfs_in [...] 
- Content analysis details:   (-2.4 points, 6.0 required)
+ Content preview:  On Wed, Jul 05, 2023 at 02:58:11PM -0400, Jeff Layton wrote:
+ > + * POSIX mandates that the old and new parent directories have their ctime
+ and > + * mtime updated, and that inodes of @old_dentry and @new_dentry (if
+ any), have > + * their ctime updated. 
+ Content analysis details:   (-0.1 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.210.181 listed in list.dnswl.org]
+ 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
- provider [ghandatmanas[at]gmail.com]
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [209.85.210.181 listed in wl.mailspike.net]
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
- -2.2 NICE_REPLY_A           Looks like a legit reply (A)
-X-Headers-End: 1qafU2-0002h9-My
-X-Mailman-Approved-At: Mon, 28 Aug 2023 18:16:02 +0000
-Subject: Re: [Linux-ntfs-dev] [PATCH v4] ntfs : fix shift-out-of-bounds in
- ntfs_iget
+X-Headers-End: 1qb8zi-00015y-Rn
+X-Mailman-Approved-At: Wed, 30 Aug 2023 08:35:06 +0000
+Subject: Re: [Linux-ntfs-dev] [PATCH v2 08/92] fs: new helper:
+ simple_rename_timestamp
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -136,27 +95,99 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-ntfs-dev@lists.sourceforge.net, Greg KH <gregkh@linuxfoundation.org>,
- linux-kernel@vger.kernel.org,
- syzbot+4768a8f039aa677897d0@syzkaller.appspotmail.com,
- linux-fsdevel@vger.kernel.org, Linux-kernel-mentees@lists.linuxfoundation.org,
- anton@tuxera.com
+Cc: lucho@ionkov.net, rafael@kernel.org, djwong@kernel.org, al@alarsen.net,
+ cmllamas@google.com, andrii@kernel.org, hughd@google.com,
+ john.johansen@canonical.com, agordeev@linux.ibm.com, hch@lst.de,
+ hubcap@omnibond.com, pc@manguebit.com, linux-xfs@vger.kernel.org,
+ bvanassche@acm.org, jeffxu@chromium.org, mpe@ellerman.id.au,
+ john@keeping.me.uk, yi.zhang@huawei.com, jmorris@namei.org,
+ christophe.leroy@csgroup.eu, code@tyhicks.com, stern@rowland.harvard.edu,
+ borntraeger@linux.ibm.com, devel@lists.orangefs.org, mirimmad17@gmail.com,
+ sprasad@microsoft.com, jaharkes@cs.cmu.edu, linux-um@lists.infradead.org,
+ npiggin@gmail.com, jlbec@evilplan.org, ericvh@kernel.org, surenb@google.com,
+ trond.myklebust@hammerspace.com, anton@tuxera.com, brauner@kernel.org,
+ wsa+renesas@sang-engineering.com, gregkh@linuxfoundation.org,
+ stephen.smalley.work@gmail.com, linux-usb@vger.kernel.org,
+ linux-kernel@vger.kernel.org, lsahlber@redhat.com, senozhatsky@chromium.org,
+ arve@android.com, chuck.lever@oracle.com, svens@linux.ibm.com,
+ jolsa@kernel.org, jack@suse.com, tj@kernel.org, akpm@linux-foundation.org,
+ linux-trace-kernel@vger.kernel.org, xu.xin16@zte.com.cn, shaggy@kernel.org,
+ dhavale@google.com, penguin-kernel@i-love.sakura.ne.jp, zohar@linux.ibm.com,
+ linux-mm@kvack.org, joel@joelfernandes.org, edumazet@google.com,
+ sdf@google.com, jomajm@gmail.com, linux-s390@vger.kernel.org,
+ linux-nilfs@vger.kernel.org, paul@paul-moore.com, leon@kernel.org,
+ john.fastabend@gmail.com, mcgrof@kernel.org, chi.minghao@zte.com.cn,
+ codalist@coda.cs.cmu.edu, selinux@vger.kernel.org, zhangpeng362@huawei.com,
+ quic_ugoswami@quicinc.com, yhs@fb.com, yzaikin@google.com, mhiramat@kernel.org,
+ ecryptfs@vger.kernel.org, tkjos@android.com, madkar@cs.stonybrook.edu,
+ gor@linux.ibm.com, yuzhe@nfschina.com, linuxppc-dev@lists.ozlabs.org,
+ reiserfs-devel@vger.kernel.org, miklos@szeredi.hu, huyue2@coolpad.com,
+ jaegeuk@kernel.org, gargaditya08@live.com, maco@android.com,
+ hirofumi@mail.parknet.co.jp, haoluo@google.com, tony.luck@intel.com,
+ tytso@mit.edu, nico@fluxnic.net, linux-ntfs-dev@lists.sourceforge.net,
+ muchun.song@linux.dev, roberto.sassu@huawei.com,
+ linux-f2fs-devel@lists.sourceforge.net, yang.yang29@zte.com.cn,
+ gpiccoli@igalia.com, ebiederm@xmission.com, anna@kernel.org,
+ quic_uaggarwa@quicinc.com, bwarrum@linux.ibm.com, mike.kravetz@oracle.com,
+ jingyuwang_vip@163.com, linux-efi@vger.kernel.org, error27@gmail.com,
+ martin@omnibond.com, trix@redhat.com, ocfs2-devel@lists.linux.dev,
+ ast@kernel.org, sebastian.reichel@collabora.com, clm@fb.com,
+ linux-mtd@lists.infradead.org, willy@infradead.org, marc.dionne@auristor.com,
+ linux-afs@lists.infradead.org, raven@themaw.net, naohiro.aota@wdc.com,
+ daniel@iogearbox.net, dennis.dalessandro@cornelisnetworks.com,
+ linux-rdma@vger.kernel.org, quic_linyyuan@quicinc.com, coda@cs.cmu.edu,
+ slava@dubeyko.com, idryomov@gmail.com, pabeni@redhat.com, adobriyan@gmail.com,
+ serge@hallyn.com, chengzhihao1@huawei.com, axboe@kernel.dk, amir73il@gmail.com,
+ linuszeng@tencent.com, keescook@chromium.org, arnd@arndb.de,
+ autofs@vger.kernel.org, rostedt@goodmis.org, yifeliu@cs.stonybrook.edu,
+ dlemoal@kernel.org, eparis@parisplace.org, ceph-devel@vger.kernel.org,
+ xiang@kernel.org, yijiangshan@kylinos.cn, dhowells@redhat.com,
+ linux-nfs@vger.kernel.org, linux-ext4@vger.kernel.org, kolga@netapp.com,
+ song@kernel.org, samba-technical@lists.samba.org, sfrench@samba.org,
+ jk@ozlabs.org, netdev@vger.kernel.org, rpeterso@redhat.com,
+ linux-fsdevel@vger.kernel.org, bpf@vger.kernel.org, ntfs3@lists.linux.dev,
+ linux-erofs@lists.ozlabs.org, davem@davemloft.net,
+ jfs-discussion@lists.sourceforge.net, princekumarmaurya06@gmail.com,
+ ebiggers@google.com, neilb@suse.de, asmadeus@codewreck.org,
+ linux_oss@crudebyte.com, me@bobcopeland.com, kpsingh@kernel.org,
+ okanatov@gmail.com, almaz.alexandrovich@paragon-software.com,
+ joseph.qi@linux.alibaba.com, hayama@lineo.co.jp, adilger.kernel@dilger.ca,
+ mikulas@artax.karlin.mff.cuni.cz, shaozhengchao@huawei.com,
+ chenzhongjin@huawei.com, ardb@kernel.org, anton.ivanov@cambridgegreys.com,
+ agruenba@redhat.com, richard@nod.at, mark@fasheh.com, shr@devkernel.io,
+ Dai.Ngo@oracle.com, cluster-devel@redhat.com, jgg@ziepe.ca, kuba@kernel.org,
+ riel@surriel.com, salah.triki@gmail.com, dushistov@mail.ru,
+ linux-cifs@vger.kernel.org, hca@linux.ibm.com, chao@kernel.org,
+ apparmor@lists.ubuntu.com, josef@toxicpanda.com, Liam.Howlett@oracle.com,
+ tom@talpey.com, hdegoede@redhat.com, linux-hardening@vger.kernel.org,
+ aivazian.tigran@gmail.com, dchinner@redhat.com, dsterba@suse.com,
+ xiubli@redhat.com, konishi.ryusuke@gmail.com, jgross@suse.com, jth@kernel.org,
+ rituagar@linux.ibm.com, luisbg@kernel.org, martin.lau@linux.dev,
+ v9fs@lists.linux.dev, fmdefrancesco@gmail.com, linux-unionfs@vger.kernel.org,
+ lrh2000@pku.edu.cn, linux-security-module@vger.kernel.org,
+ ezk@cs.stonybrook.edu, jefflexu@linux.alibaba.com, linux@treblig.org,
+ hannes@cmpxchg.org, phillip@squashfs.org.uk, johannes@sipsolutions.net,
+ sj1557.seo@samsung.com, dwmw2@infradead.org,
+ linux-karma-devel@lists.sourceforge.net, linux-btrfs@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-I was looking at this issue for some time now. As suggested by Anton, 
-that the vol->sparse_compression_unit is set at the mount. I cannot seem 
-to find the code for that part. It seems that the ntfs_inode struct does 
-not have any sparse_compression_unit. So I am stuck at that part of the 
-problem.
+On Wed, Jul 05, 2023 at 02:58:11PM -0400, Jeff Layton wrote:
 
-On 28/08/23 08:30, Namjae Jeon wrote:
-> 2023-08-18 15:34 GMT+09:00, Manas Ghandat <ghandatmanas@gmail.com>:
->> Sorry for the last reply Greg. The last tag specifies the commit id.
->> Also, I have sent the v5 of the patch in which I have made some critical
->> changes. Please take a look at that.
-> Have you checked build error report from kernel test robot ?
+> + * POSIX mandates that the old and new parent directories have their ctime and
+> + * mtime updated, and that inodes of @old_dentry and @new_dentry (if any), have
+> + * their ctime updated.
+
+APPLICATION USAGE
+Some implementations mark for update the last file status change timestamp
+of renamed files and some do not. Applications which make use of the
+last file status change timestamp may behave differently with respect
+to renamed files unless they are designed to allow for either behavior.
+
+So for children POSIX permits rather than mandates.  Doesn't really matter;
+Linux behaviour had been to touch ctime on children since way back, if
+not since the very beginning.
 
 
 _______________________________________________
