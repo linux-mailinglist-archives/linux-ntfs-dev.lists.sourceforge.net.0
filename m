@@ -2,97 +2,101 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27AA778D426
-	for <lists+linux-ntfs-dev@lfdr.de>; Wed, 30 Aug 2023 10:35:10 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 956937913A3
+	for <lists+linux-ntfs-dev@lfdr.de>; Mon,  4 Sep 2023 10:39:33 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1qbGfL-0000JY-Dj;
-	Wed, 30 Aug 2023 08:35:07 +0000
+	id 1qd57K-0001xu-4P;
+	Mon, 04 Sep 2023 08:39:31 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <jlayton@kernel.org>) id 1qb9OW-0007dG-0a;
- Wed, 30 Aug 2023 00:49:14 +0000
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95) (envelope-from
+ <39pX1ZAkbACcVbcNDOOHUDSSLG.JRRJOHXVHUFRQWHQW.FRP@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
+ id 1qd503-0001Bu-U9 for linux-ntfs-dev@lists.sourceforge.net;
+ Mon, 04 Sep 2023 08:32:00 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=MIME-Version:Content-Transfer-Encoding:Content-Type
- :References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:To:From:Subject:Message-ID:Date:
+ MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=l6ldWDOqGKIdEumDQQZraLp712clgs44Ub5voSyAlmQ=; b=DB81R+izd+Z+SCBhDwM1cqsutx
- MExiZUs3tnRZiIIc0sSmGxxYDu/rLrmU0D7VBwqs5MQPQ/JNQkeT8vBVX4D19y1v7YV1OHqSBAOdg
- yNsV/bFgfHaz4KyaNj+ZpqIgV47rAkXfSbU+aIhg3OUn87g//xZMhpRgSaFLwwyxmiMY=;
+ bh=u2OmTOCFNK30sKwAH23PKfFifyHLUed/0eso+ICjivA=; b=mnmMmEC6kgo+HsMAQ3sBw7w8mk
+ +fF4fdRScYXULfhhJ9R6YmR0gDGX5KyP0mRoh/wExrmbEf9LZe+B9t74Cb7CYwoWibmvdBN5N38gn
+ Nn8NIm9YgA8jgga2+DpPkTUmW8dDUkn7Y8r/LSm9PQWLtxSpPg0rhK/dV7hL09MrBMlU=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=MIME-Version:Content-Transfer-Encoding:Content-Type:References:
- In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=l6ldWDOqGKIdEumDQQZraLp712clgs44Ub5voSyAlmQ=; b=PcOPufJi2F/8CChgpDQXPQZd2+
- b4lIl1wqmdkAugsla1fZDrqb2OIVoJXmqlyroqABw0xIgWf7Eqsvjm6YtD4uPv+lXAx8nQg/IwdSE
- tRYaCFpITT6PtpIBUfRdSLba2ZctHiJf75sJu4f34jer4iLmUwhNDeZrS0eyrjc3Rx6M=;
-Received: from dfw.source.kernel.org ([139.178.84.217])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1qb9OT-000243-So; Wed, 30 Aug 2023 00:49:14 +0000
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 727CE61187;
- Wed, 30 Aug 2023 00:49:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15649C433C8;
- Wed, 30 Aug 2023 00:48:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1693356547;
- bh=Y6mimTT4f5bHTNOgMAPJs7UzoDd9JcRrnEgta8s7/7g=;
- h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
- b=R2eMjMGcVP6twJXzPd3GjCC/QAkoBXyIXwyF0PetiX1VDQJtkSU/FrVUdLPhlHeJk
- dBHqNW4EShjtZaWh7sFQvaiUl3mq77UH9KDN3DI2snJ6o1c+81N9JuEjNxovdv+bSx
- sgcIB4JoE+RW7C4bNpHemTP/NmKBpTL7+v/S4iHTHVlduZjb2wd1jti+ZtvOSZrtwV
- l+HJJMf2BwuQ5fHlwOGaHAX0BTHl6xVSRaJy3EeRODk9yD0xK9grM4eFB73+9nNR6U
- SUPRRhBT9hKA3cHo92ct+4AiPcoeZ/GYLow2fGYu2g/oM5lHg/5skk6mbUINrwlVsy
- FRJBQs41w8qcA==
-Message-ID: <d73e7de5056a34578a193185770e46584450d8b7.camel@kernel.org>
-From: Jeff Layton <jlayton@kernel.org>
-To: Al Viro <viro@zeniv.linux.org.uk>
-Date: Tue, 29 Aug 2023 20:48:48 -0400
-In-Reply-To: <20230830001917.GC461907@ZenIV>
-References: <20230705185812.579118-1-jlayton@kernel.org>
- <20230705185812.579118-3-jlayton@kernel.org>
- <20230830001917.GC461907@ZenIV>
-User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
+ h=Content-Type:To:From:Subject:Message-ID:Date:MIME-Version:Sender:Reply-To
+ :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=u2OmTOCFNK30sKwAH23PKfFifyHLUed/0eso+ICjivA=; b=T
+ maXbbYOcKF/rWCF89HZcMptAoemgr1MnAq5FiXcdnudUnMYZKR+hf5i7Mrwwe9omWMR9J1BZOFR/c
+ JPRSIeL4arzw6LmX+DpATMG9i03rpn8LdnFHTn6dgx02CaTtzvZJ95ywE7jcMo3mXerHYPV29kR8k
+ MF1yC42cTTaZADok=;
+Received: from mail-pl1-f197.google.com ([209.85.214.197])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
+ id 1qd500-008sTB-7L for linux-ntfs-dev@lists.sourceforge.net;
+ Mon, 04 Sep 2023 08:31:57 +0000
+Received: by mail-pl1-f197.google.com with SMTP id
+ d9443c01a7336-1c0d58f127fso18035185ad.2
+ for <linux-ntfs-dev@lists.sourceforge.net>;
+ Mon, 04 Sep 2023 01:31:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1693816310; x=1694421110;
+ h=to:from:subject:message-id:date:mime-version:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=u2OmTOCFNK30sKwAH23PKfFifyHLUed/0eso+ICjivA=;
+ b=QizdM0dnVcWyW1rEwXD5hLmUBwqYp8TCPnDeuSR1vp8WHCiQgPmpxTCCNsY73/tEHH
+ gueF9ttwVGfiiAGf1WxxSzN6+CS+jFPGuhHmHgHdFx9bll0uRIVN5L0nDsBtk+E2eMXx
+ gtruL9Spd+xJk3FMY09ivRMa2qF2YdxzSAONMLeBkQPo8AOrXtBVHT4Idaf91BdiBugh
+ H9PjIGrBLxCxgav69/KvV6zMJA0RvBwQQLuy9jSLUdTUSQi+Htu8lK1uY2NSqp66s3y7
+ wWq4M2lHWNi8og+RgetmGFUTi1vT+gdnXEn9iOkg3f4LMsM/JAs6rhrRoAk65ZNG/HhB
+ jA0w==
+X-Gm-Message-State: AOJu0YyDlGxTYeOLkX5U8pRvTaCMkvMYaGnIR0jDATcgu60iZ0DpsIwF
+ EDUvYuixHFalQE0GyrMutRHajfzt+8oSnTF3ko7nQ5+aG2LY
+X-Google-Smtp-Source: AGHT+IGpt2ftf95l/L/nnDQ6ee2mdYHv2fp0o/2P7wmxTTVnU3kxj0nn6GNWriZkj427vEzU0WNk8O3FJ074X+K9J6bLpneNwz1b
 MIME-Version: 1.0
-X-Spam-Score: -5.2 (-----)
+X-Received: by 2002:a17:902:da86:b0:1c3:2af5:19e5 with SMTP id
+ j6-20020a170902da8600b001c32af519e5mr1985746plx.4.1693816310722; Mon, 04 Sep
+ 2023 01:31:50 -0700 (PDT)
+Date: Mon, 04 Sep 2023 01:31:50 -0700
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <00000000000083fba206048457b2@google.com>
+From: syzbot <syzbot+liste99d2b62937cf3368a1d@syzkaller.appspotmail.com>
+To: anton@tuxera.com, linux-fsdevel@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-ntfs-dev@lists.sourceforge.net, 
+ syzkaller-bugs@googlegroups.com
+X-Spam-Score: 0.6 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Wed, 2023-08-30 at 01:19 +0100, Al Viro wrote: > On Wed, 
- Jul 05, 2023 at 02:58:11PM -0400, Jeff Layton wrote: > > > + * POSIX mandates
- that the old and new parent directories have their ctime and > [...] 
- Content analysis details:   (-5.2 points, 6.0 required)
+ Content preview:  Hello ntfs maintainers/developers, This is a 31-day syzbot
+ report for the ntfs subsystem. All related reports/information can be found
+ at: https://syzkaller.appspot.com/upstream/s/ntfs During the period, 1 new
+ issues were detected and 0 were fixed. In total, 25 issues are still open
+ and 7 have been fixed so far. 
+ Content analysis details:   (0.6 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
- high trust [139.178.84.217 listed in list.dnswl.org]
- -0.0 SPF_PASS               SPF: sender matches SPF record
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.214.197 listed in list.dnswl.org]
+ 0.3 FROM_LOCAL_HEX         From: localpart has long hexadecimal sequence
+ 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
+ mail domains are different
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1qb9OT-000243-So
-X-Mailman-Approved-At: Wed, 30 Aug 2023 08:35:06 +0000
-Subject: Re: [Linux-ntfs-dev] [PATCH v2 08/92] fs: new helper:
- simple_rename_timestamp
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [209.85.214.197 listed in wl.mailspike.net]
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+X-Headers-End: 1qd500-008sTB-7L
+X-Mailman-Approved-At: Mon, 04 Sep 2023 08:39:30 +0000
+Subject: [Linux-ntfs-dev] [syzbot] Monthly ntfs report (Sep 2023)
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -105,107 +109,55 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Cc: lucho@ionkov.net, rafael@kernel.org, djwong@kernel.org, al@alarsen.net,
- cmllamas@google.com, andrii@kernel.org, hughd@google.com,
- john.johansen@canonical.com, agordeev@linux.ibm.com, hch@lst.de,
- hubcap@omnibond.com, pc@manguebit.com, linux-xfs@vger.kernel.org,
- bvanassche@acm.org, jeffxu@chromium.org, mpe@ellerman.id.au,
- john@keeping.me.uk, yi.zhang@huawei.com, jmorris@namei.org,
- christophe.leroy@csgroup.eu, code@tyhicks.com, stern@rowland.harvard.edu,
- borntraeger@linux.ibm.com, devel@lists.orangefs.org, mirimmad17@gmail.com,
- sprasad@microsoft.com, jaharkes@cs.cmu.edu, linux-um@lists.infradead.org,
- npiggin@gmail.com, jlbec@evilplan.org, ericvh@kernel.org, surenb@google.com,
- trond.myklebust@hammerspace.com, anton@tuxera.com, brauner@kernel.org,
- wsa+renesas@sang-engineering.com, gregkh@linuxfoundation.org,
- stephen.smalley.work@gmail.com, linux-usb@vger.kernel.org,
- linux-kernel@vger.kernel.org, lsahlber@redhat.com, senozhatsky@chromium.org,
- arve@android.com, chuck.lever@oracle.com, svens@linux.ibm.com,
- jolsa@kernel.org, jack@suse.com, tj@kernel.org, akpm@linux-foundation.org,
- linux-trace-kernel@vger.kernel.org, xu.xin16@zte.com.cn, shaggy@kernel.org,
- dhavale@google.com, penguin-kernel@i-love.sakura.ne.jp, zohar@linux.ibm.com,
- linux-mm@kvack.org, joel@joelfernandes.org, edumazet@google.com,
- sdf@google.com, jomajm@gmail.com, linux-s390@vger.kernel.org,
- linux-nilfs@vger.kernel.org, paul@paul-moore.com, leon@kernel.org,
- john.fastabend@gmail.com, mcgrof@kernel.org, chi.minghao@zte.com.cn,
- codalist@coda.cs.cmu.edu, selinux@vger.kernel.org, zhangpeng362@huawei.com,
- quic_ugoswami@quicinc.com, yhs@fb.com, yzaikin@google.com, mhiramat@kernel.org,
- ecryptfs@vger.kernel.org, tkjos@android.com, madkar@cs.stonybrook.edu,
- gor@linux.ibm.com, yuzhe@nfschina.com, linuxppc-dev@lists.ozlabs.org,
- reiserfs-devel@vger.kernel.org, miklos@szeredi.hu, huyue2@coolpad.com,
- jaegeuk@kernel.org, gargaditya08@live.com, maco@android.com,
- hirofumi@mail.parknet.co.jp, haoluo@google.com, tony.luck@intel.com,
- tytso@mit.edu, nico@fluxnic.net, linux-ntfs-dev@lists.sourceforge.net,
- muchun.song@linux.dev, roberto.sassu@huawei.com,
- linux-f2fs-devel@lists.sourceforge.net, yang.yang29@zte.com.cn,
- gpiccoli@igalia.com, ebiederm@xmission.com, anna@kernel.org,
- quic_uaggarwa@quicinc.com, bwarrum@linux.ibm.com, mike.kravetz@oracle.com,
- jingyuwang_vip@163.com, linux-efi@vger.kernel.org, error27@gmail.com,
- martin@omnibond.com, trix@redhat.com, ocfs2-devel@lists.linux.dev,
- ast@kernel.org, sebastian.reichel@collabora.com, clm@fb.com,
- linux-mtd@lists.infradead.org, willy@infradead.org, marc.dionne@auristor.com,
- linux-afs@lists.infradead.org, raven@themaw.net, naohiro.aota@wdc.com,
- daniel@iogearbox.net, dennis.dalessandro@cornelisnetworks.com,
- linux-rdma@vger.kernel.org, quic_linyyuan@quicinc.com, coda@cs.cmu.edu,
- slava@dubeyko.com, idryomov@gmail.com, pabeni@redhat.com, adobriyan@gmail.com,
- serge@hallyn.com, chengzhihao1@huawei.com, axboe@kernel.dk, amir73il@gmail.com,
- linuszeng@tencent.com, keescook@chromium.org, arnd@arndb.de,
- autofs@vger.kernel.org, rostedt@goodmis.org, yifeliu@cs.stonybrook.edu,
- dlemoal@kernel.org, eparis@parisplace.org, ceph-devel@vger.kernel.org,
- xiang@kernel.org, yijiangshan@kylinos.cn, dhowells@redhat.com,
- linux-nfs@vger.kernel.org, linux-ext4@vger.kernel.org, kolga@netapp.com,
- song@kernel.org, samba-technical@lists.samba.org, sfrench@samba.org,
- jk@ozlabs.org, netdev@vger.kernel.org, rpeterso@redhat.com,
- linux-fsdevel@vger.kernel.org, bpf@vger.kernel.org, ntfs3@lists.linux.dev,
- linux-erofs@lists.ozlabs.org, davem@davemloft.net,
- jfs-discussion@lists.sourceforge.net, princekumarmaurya06@gmail.com,
- ebiggers@google.com, neilb@suse.de, asmadeus@codewreck.org,
- linux_oss@crudebyte.com, me@bobcopeland.com, kpsingh@kernel.org,
- okanatov@gmail.com, almaz.alexandrovich@paragon-software.com,
- joseph.qi@linux.alibaba.com, hayama@lineo.co.jp, adilger.kernel@dilger.ca,
- mikulas@artax.karlin.mff.cuni.cz, shaozhengchao@huawei.com,
- chenzhongjin@huawei.com, ardb@kernel.org, anton.ivanov@cambridgegreys.com,
- agruenba@redhat.com, richard@nod.at, mark@fasheh.com, shr@devkernel.io,
- Dai.Ngo@oracle.com, cluster-devel@redhat.com, jgg@ziepe.ca, kuba@kernel.org,
- riel@surriel.com, salah.triki@gmail.com, dushistov@mail.ru,
- linux-cifs@vger.kernel.org, hca@linux.ibm.com, chao@kernel.org,
- apparmor@lists.ubuntu.com, josef@toxicpanda.com, Liam.Howlett@oracle.com,
- tom@talpey.com, hdegoede@redhat.com, linux-hardening@vger.kernel.org,
- aivazian.tigran@gmail.com, dchinner@redhat.com, dsterba@suse.com,
- xiubli@redhat.com, konishi.ryusuke@gmail.com, jgross@suse.com, jth@kernel.org,
- rituagar@linux.ibm.com, luisbg@kernel.org, martin.lau@linux.dev,
- v9fs@lists.linux.dev, fmdefrancesco@gmail.com, linux-unionfs@vger.kernel.org,
- lrh2000@pku.edu.cn, linux-security-module@vger.kernel.org,
- ezk@cs.stonybrook.edu, jefflexu@linux.alibaba.com, linux@treblig.org,
- hannes@cmpxchg.org, phillip@squashfs.org.uk, johannes@sipsolutions.net,
- sj1557.seo@samsung.com, dwmw2@infradead.org,
- linux-karma-devel@lists.sourceforge.net, linux-btrfs@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-On Wed, 2023-08-30 at 01:19 +0100, Al Viro wrote:
-> On Wed, Jul 05, 2023 at 02:58:11PM -0400, Jeff Layton wrote:
-> 
-> > + * POSIX mandates that the old and new parent directories have their ctime and
-> > + * mtime updated, and that inodes of @old_dentry and @new_dentry (if any), have
-> > + * their ctime updated.
-> 
-> APPLICATION USAGE
-> Some implementations mark for update the last file status change timestamp
-> of renamed files and some do not. Applications which make use of the
-> last file status change timestamp may behave differently with respect
-> to renamed files unless they are designed to allow for either behavior.
->
-> So for children POSIX permits rather than mandates.  Doesn't really matter;
-> Linux behaviour had been to touch ctime on children since way back, if
-> not since the very beginning.
+Hello ntfs maintainers/developers,
 
-Mea culpa. You're quite correct. I'll plan to roll a small patch to
-update the comment over this function.
+This is a 31-day syzbot report for the ntfs subsystem.
+All related reports/information can be found at:
+https://syzkaller.appspot.com/upstream/s/ntfs
 
-Thanks!
--- 
-Jeff Layton <jlayton@kernel.org>
+During the period, 1 new issues were detected and 0 were fixed.
+In total, 25 issues are still open and 7 have been fixed so far.
+
+Some of the still happening issues:
+
+Ref  Crashes Repro Title
+<1>  3784    Yes   possible deadlock in ntfs_read_folio
+                   https://syzkaller.appspot.com/bug?extid=8ef76b0b1f86c382ad37
+<2>  3075    Yes   kernel BUG at fs/ntfs/aops.c:LINE!
+                   https://syzkaller.appspot.com/bug?extid=6a5a7672f663cce8b156
+<3>  1303    Yes   kernel BUG in __ntfs_grab_cache_pages
+                   https://syzkaller.appspot.com/bug?extid=01b3ade7c86f7dd584d7
+<4>  604     Yes   possible deadlock in map_mft_record
+                   https://syzkaller.appspot.com/bug?extid=cb1fdea540b46f0ce394
+<5>  388     Yes   KASAN: slab-out-of-bounds Read in ntfs_readdir
+                   https://syzkaller.appspot.com/bug?extid=d36761079ac1b585a6df
+<6>  297     No    KASAN: use-after-free Read in ntfs_test_inode
+                   https://syzkaller.appspot.com/bug?extid=2751da923b5eb8307b0b
+<7>  211     No    possible deadlock in __ntfs_clear_inode
+                   https://syzkaller.appspot.com/bug?extid=5ebb8d0e9b8c47867596
+<8>  33      Yes   kernel BUG in ntfs_lookup_inode_by_name
+                   https://syzkaller.appspot.com/bug?extid=d532380eef771ac0034b
+<9>  28      Yes   kernel BUG in ntfs_iget
+                   https://syzkaller.appspot.com/bug?extid=d62e6bd2a2d05103d105
+<10> 12      Yes   KASAN: use-after-free Read in ntfs_lookup_inode_by_name
+                   https://syzkaller.appspot.com/bug?extid=3625b78845a725e80f61
+
+---
+This report is generated by a bot. It may contain errors.
+See https://goo.gl/tpsmEJ for more information about syzbot.
+syzbot engineers can be reached at syzkaller@googlegroups.com.
+
+To disable reminders for individual bugs, reply with the following command:
+#syz set <Ref> no-reminders
+
+To change bug's subsystems, reply with:
+#syz set <Ref> subsystems: new-subsystem
+
+You may send multiple commands in a single email message.
 
 
 _______________________________________________
