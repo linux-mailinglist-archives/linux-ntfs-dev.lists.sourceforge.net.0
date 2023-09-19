@@ -2,28 +2,28 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id C44A47A5B11
-	for <lists+linux-ntfs-dev@lfdr.de>; Tue, 19 Sep 2023 09:35:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 717977A5B05
+	for <lists+linux-ntfs-dev@lfdr.de>; Tue, 19 Sep 2023 09:35:47 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1qiVGx-0007vi-RB;
-	Tue, 19 Sep 2023 07:35:51 +0000
+	id 1qiVGq-0007p6-95;
+	Tue, 19 Sep 2023 07:35:44 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-3.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <willy@infradead.org>) id 1qiSiS-0005Gf-SS
+ (envelope-from <willy@infradead.org>) id 1qiSiR-0000RX-3W
  for linux-ntfs-dev@lists.sourceforge.net;
- Tue, 19 Sep 2023 04:52:03 +0000
+ Tue, 19 Sep 2023 04:52:02 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
  In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=pZNvvzzb8w2vdFH9XpjAcLrT4q6laln9GH3DKBbL5lk=; b=dp28IhFKg02xtgfvAW0M5IDY0l
- /iVcvMWmLUZd1n6K1Ah5uzL3XCpvt9KxxwaXyIuSokbbybpsepOuGTC0YWEzpxC2AYUAR2rn9CADk
- PAKNFgjsM+Q762FdRrwo3ehQy7rT48ixalCtZOQkK0SUB4wvdnhzz34IrB5lUI4CK8KU=;
+ bh=eD9qeqLIAE6j0vOOrRLuvTWmaHXtpk57wthTjNsTMno=; b=VQvbKP6oiwclj6nWMjmG+IFwpZ
+ eUmEhfzy7TzKoCYn3327vMRWOVD4AR8AA34V0OIpMIWM8QtNBGx96nirNumOYeBcuRxba33vuGsv5
+ jxCfmt5E7xl6OsFnzsoT0Vc5ayQfRrnY9Mo1dalrV5JQOiyb+J9PX82f04CKWwWN5TpU=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -31,30 +31,30 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=pZNvvzzb8w2vdFH9XpjAcLrT4q6laln9GH3DKBbL5lk=; b=WZFja57icxxarJRYSiB77EO2Cl
- 0ykCvZIynwwpB6Ah9/OOdUYj+1Z+tb0qYaaxJ+3Xqdudtf35pi1Z65Gf/IMT11RuQxi3WYTOPdjX1
- kTEZYR9Rw2E7LuydVySgxp2b0LwI4/FeUBoqa6CpfJ4pgup1Jy0puQafkguaIye4uzrk=;
+ bh=eD9qeqLIAE6j0vOOrRLuvTWmaHXtpk57wthTjNsTMno=; b=Czngf0l8WajpFrMkf2URGZ+NBt
+ lQNMN4W3SrfiaMWJDKDgmGX22DAZPWptWp+Hcxw7NIg365UvT32XQ42fcyOzrQv6JyZELRBmaYC1p
+ dszyHgDnM8ReDJJ6yDqN1/KXv/10HW0KuSJw7wrEuLa/d47SivO5+xGm7vV97hw9ElAY=;
 Received: from casper.infradead.org ([90.155.50.34])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1qiSiQ-00084U-Gs for linux-ntfs-dev@lists.sourceforge.net;
- Tue, 19 Sep 2023 04:52:03 +0000
+ id 1qiSiM-00E5g5-VM for linux-ntfs-dev@lists.sourceforge.net;
+ Tue, 19 Sep 2023 04:52:01 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
  References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
  Content-Type:Content-ID:Content-Description;
- bh=pZNvvzzb8w2vdFH9XpjAcLrT4q6laln9GH3DKBbL5lk=; b=vlHuFO3J5hTc0bA9Y5eZsBGTUR
- gIOokCz7IVLf8s9nb1CBtsPw4gYX8HsPRNyEkacAQL0BEaXuYi4W2E/fpL9QuwlajtlmT++3kY4C/
- JI+8DQUdEY3kgmUq6I0GOCUijjI3lrcOTGdz+b91Ld2VQAJd4d9JgWqhJv+tXvtUNQqKJUsT9Qnrp
- UWfEVLRs2HnkJveuwkXhz38ERzovHe6GR+SUmi8hiT6s1DG9pFBOfBnA4WNAacKceLtHFTsobRu0Q
- gCkWduE1kfBuReaCTnb7P6VxZxCvLoRs69GVk6bYbJDaUMNfmgBVpsUNUzWqiFWAIM54eceNmXt0O
- YKcB2s/g==;
+ bh=eD9qeqLIAE6j0vOOrRLuvTWmaHXtpk57wthTjNsTMno=; b=peOzT/gXR0NZxtHy2NkqTZ6cwi
+ hGA3cJ8jI4qvkbcPnElLxuoeNequmIu2zB71bwHg/qaef83CY7m8fXsuDyn+oQLiRVgDxn4217aRW
+ CIrDiW30qHHbVOi6M4kEbNFvqsRqcoYdKEMD6VBI39VtCVzyXYtiz72xA5AKoYY+vV+6w85WHt4ud
+ u8h1C/+GwMPuQSed+I+Oh6uqLL/OO/Y4AAgFEtH8kH8zRdegjle7H+nodil+0STSKwqWjvXVzG7+P
+ WLUViJHG4uIiGDRfvqPS/AVCsnrxW5Px77OfJvxBDw+7kgZLMpWVBsXOkmVgL7ZleAtSbPm36zPJ5
+ DQ4VZt5w==;
 Received: from willy by casper.infradead.org with local (Exim 4.94.2 #2 (Red
- Hat Linux)) id 1qiSi5-00FFmI-3U; Tue, 19 Sep 2023 04:51:41 +0000
+ Hat Linux)) id 1qiSi5-00FFmO-7E; Tue, 19 Sep 2023 04:51:41 +0000
 From: "Matthew Wilcox (Oracle)" <willy@infradead.org>
 To: Andrew Morton <akpm@linux-foundation.org>
-Date: Tue, 19 Sep 2023 05:51:31 +0100
-Message-Id: <20230919045135.3635437-23-willy@infradead.org>
+Date: Tue, 19 Sep 2023 05:51:32 +0100
+Message-Id: <20230919045135.3635437-24-willy@infradead.org>
 X-Mailer: git-send-email 2.37.1
 In-Reply-To: <20230919045135.3635437-1-willy@infradead.org>
 References: <20230919045135.3635437-1-willy@infradead.org>
@@ -66,11 +66,11 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: Convert the _page variants to call them. Saves a few hidden
- calls to compound_head(). Signed-off-by: Matthew Wilcox (Oracle)
- <willy@infradead.org>
- --- fs/ufs/util.c | 43 +++++++++++++++++++++++++ fs/ufs/util.h | 13
- +++++++++---- 2 files changed, 34 insertions(+), 22 d [...] 
+ Content preview:  Switch to the folio APIs,
+ saving one folio->page->folio conversion.
+ Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org> ---
+ fs/ufs/inode.c
+ | 25 ++++++++++++ 1 file changed, 12 insertions(+), 13 deletions(-) 
  Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -83,10 +83,10 @@ X-Spam-Report: Spam detection software,
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Headers-End: 1qiSiQ-00084U-Gs
+X-Headers-End: 1qiSiM-00E5g5-VM
 X-Mailman-Approved-At: Tue, 19 Sep 2023 07:35:40 +0000
-Subject: [Linux-ntfs-dev] [PATCH 22/26] ufs: Add ufs_get_locked_folio and
- ufs_put_locked_folio
+Subject: [Linux-ntfs-dev] [PATCH 23/26] ufs: Use ufs_get_locked_folio() in
+ ufs_alloc_lastblock()
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -109,114 +109,72 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-Convert the _page variants to call them.  Saves a few hidden calls to
-compound_head().
+Switch to the folio APIs, saving one folio->page->folio conversion.
 
 Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org>
 ---
- fs/ufs/util.c | 43 +++++++++++++++++++++++++------------------
- fs/ufs/util.h | 13 +++++++++----
- 2 files changed, 34 insertions(+), 22 deletions(-)
+ fs/ufs/inode.c | 25 ++++++++++++-------------
+ 1 file changed, 12 insertions(+), 13 deletions(-)
 
-diff --git a/fs/ufs/util.c b/fs/ufs/util.c
-index 08ddf41eaaad..151b400cb3b6 100644
---- a/fs/ufs/util.c
-+++ b/fs/ufs/util.c
-@@ -229,43 +229,50 @@ ufs_set_inode_dev(struct super_block *sb, struct ufs_inode_info *ufsi, dev_t dev
- 		ufsi->i_u1.i_data[0] = cpu_to_fs32(sb, fs32);
- }
+diff --git a/fs/ufs/inode.c b/fs/ufs/inode.c
+index 21a4779a2de5..5b289374d4fd 100644
+--- a/fs/ufs/inode.c
++++ b/fs/ufs/inode.c
+@@ -1057,7 +1057,7 @@ static int ufs_alloc_lastblock(struct inode *inode, loff_t size)
+ 	struct ufs_sb_private_info *uspi = UFS_SB(sb)->s_uspi;
+ 	unsigned i, end;
+ 	sector_t lastfrag;
+-	struct page *lastpage;
++	struct folio *folio;
+ 	struct buffer_head *bh;
+ 	u64 phys64;
  
-+struct page *ufs_get_locked_page(struct address_space *mapping, pgoff_t index)
-+{
-+	struct folio *folio = ufs_get_locked_folio(mapping, index);
-+
-+	if (folio)
-+		return folio_file_page(folio, index);
-+	return NULL;
-+}
-+
- /**
-- * ufs_get_locked_page() - locate, pin and lock a pagecache page, if not exist
-+ * ufs_get_locked_folio() - locate, pin and lock a pagecache folio, if not exist
-  * read it from disk.
-  * @mapping: the address_space to search
-  * @index: the page index
-  *
-- * Locates the desired pagecache page, if not exist we'll read it,
-+ * Locates the desired pagecache folio, if not exist we'll read it,
-  * locks it, increments its reference
-  * count and returns its address.
-  *
-  */
+@@ -1068,18 +1068,17 @@ static int ufs_alloc_lastblock(struct inode *inode, loff_t size)
+ 
+ 	lastfrag--;
+ 
+-	lastpage = ufs_get_locked_page(mapping, lastfrag >>
++	folio = ufs_get_locked_folio(mapping, lastfrag >>
+ 				       (PAGE_SHIFT - inode->i_blkbits));
+-       if (IS_ERR(lastpage)) {
+-               err = -EIO;
+-               goto out;
+-       }
 -
--struct page *ufs_get_locked_page(struct address_space *mapping,
-+struct folio *ufs_get_locked_folio(struct address_space *mapping,
- 				 pgoff_t index)
- {
- 	struct inode *inode = mapping->host;
--	struct page *page = find_lock_page(mapping, index);
--	if (!page) {
--		page = read_mapping_page(mapping, index, NULL);
-+	struct folio *folio = filemap_lock_folio(mapping, index);
-+	if (!folio) {
-+		folio = read_mapping_folio(mapping, index, NULL);
+-       end = lastfrag & ((1 << (PAGE_SHIFT - inode->i_blkbits)) - 1);
+-       bh = page_buffers(lastpage);
+-       for (i = 0; i < end; ++i)
+-               bh = bh->b_this_page;
++	if (IS_ERR(folio)) {
++		err = -EIO;
++		goto out;
++	}
  
--		if (IS_ERR(page)) {
--			printk(KERN_ERR "ufs_change_blocknr: "
--			       "read_mapping_page error: ino %lu, index: %lu\n",
-+		if (IS_ERR(folio)) {
-+			printk(KERN_ERR "ufs_change_blocknr: read_mapping_folio error: ino %lu, index: %lu\n",
- 			       mapping->host->i_ino, index);
--			return page;
-+			return folio;
- 		}
++	end = lastfrag & ((1 << (PAGE_SHIFT - inode->i_blkbits)) - 1);
++	bh = folio_buffers(folio);
++	for (i = 0; i < end; ++i)
++		bh = bh->b_this_page;
  
--		lock_page(page);
-+		folio_lock(folio);
+        err = ufs_getfrag_block(inode, lastfrag, bh, 1);
  
--		if (unlikely(page->mapping == NULL)) {
-+		if (unlikely(folio->mapping == NULL)) {
- 			/* Truncate got there first */
--			unlock_page(page);
--			put_page(page);
-+			folio_unlock(folio);
-+			folio_put(folio);
- 			return NULL;
- 		}
- 	}
--	if (!page_has_buffers(page))
--		create_empty_buffers(page, 1 << inode->i_blkbits, 0);
--	return page;
-+	if (!folio_buffers(folio))
-+		folio_create_empty_buffers(folio, 1 << inode->i_blkbits, 0);
-+	return folio;
+@@ -1095,7 +1094,7 @@ static int ufs_alloc_lastblock(struct inode *inode, loff_t size)
+ 		*/
+ 	       set_buffer_uptodate(bh);
+ 	       mark_buffer_dirty(bh);
+-	       set_page_dirty(lastpage);
++		folio_mark_dirty(folio);
+        }
+ 
+        if (lastfrag >= UFS_IND_FRAGMENT) {
+@@ -1113,7 +1112,7 @@ static int ufs_alloc_lastblock(struct inode *inode, loff_t size)
+ 	       }
+        }
+ out_unlock:
+-       ufs_put_locked_page(lastpage);
++       ufs_put_locked_folio(folio);
+ out:
+        return err;
  }
-diff --git a/fs/ufs/util.h b/fs/ufs/util.h
-index 89247193d96d..62542561d150 100644
---- a/fs/ufs/util.h
-+++ b/fs/ufs/util.h
-@@ -273,12 +273,17 @@ extern void _ubh_ubhcpymem_(struct ufs_sb_private_info *, unsigned char *, struc
- extern void _ubh_memcpyubh_(struct ufs_sb_private_info *, struct ufs_buffer_head *, unsigned char *, unsigned);
- 
- /* This functions works with cache pages*/
--extern struct page *ufs_get_locked_page(struct address_space *mapping,
--					pgoff_t index);
-+struct page *ufs_get_locked_page(struct address_space *mapping, pgoff_t index);
-+struct folio *ufs_get_locked_folio(struct address_space *mapping, pgoff_t index);
-+static inline void ufs_put_locked_folio(struct folio *folio)
-+{
-+       folio_unlock(folio);
-+       folio_put(folio);
-+}
-+
- static inline void ufs_put_locked_page(struct page *page)
- {
--       unlock_page(page);
--       put_page(page);
-+	ufs_put_locked_folio(page_folio(page));
- }
- 
- 
 -- 
 2.40.1
 
