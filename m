@@ -2,17 +2,17 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D2057A5B04
-	for <lists+linux-ntfs-dev@lfdr.de>; Tue, 19 Sep 2023 09:35:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 00E997A5B07
+	for <lists+linux-ntfs-dev@lfdr.de>; Tue, 19 Sep 2023 09:35:49 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1qiVGr-0007q6-7F;
-	Tue, 19 Sep 2023 07:35:45 +0000
+	id 1qiVGt-0007rK-7X;
+	Tue, 19 Sep 2023 07:35:47 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-3.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <willy@infradead.org>) id 1qiSiR-0005GN-PU
+ (envelope-from <willy@infradead.org>) id 1qiSiR-0000Rk-On
  for linux-ntfs-dev@lists.sourceforge.net;
  Tue, 19 Sep 2023 04:52:02 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -21,9 +21,9 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=1TQFktAQGh0zDqA+GJQVLyWb3smQ1H0QN8aDeY770F0=; b=M/SwTWWRNsCOJ12YXV42lEHH7T
- ynQJCocR0LSu4uSROueWXm1ucv38Ex+sJ/4OatFGVh4J8JRTLKGDBc8pXyAf1aJhE4AMj10rxTp2K
- lNMH0nX2VUHfpRkG9d+pvjdbeh0uJYKn6h2qiNhEnga8bMjTNuXZWb+pw+0IpZpE1NMw=;
+ bh=N6ovGOYS7j9q8wOyOWu2B5Uq08RUxsjTVDWIGzX0CMc=; b=X+P75gLMBrnBPO5WWNDNpYRwTz
+ U6jUb6tH8sIs4TyM5gp521igsOE8BcEVZjnYXU7oP9c9hjvAwEQEv58X2OD07FFCGS8hTmn97MhXx
+ 6enNdepGHLaoemWpVMIla0jX+QK+nGxhI6ZQls6tjknoaO1hHnmbKnXV64C8kt3auy5g=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -31,62 +31,65 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=1TQFktAQGh0zDqA+GJQVLyWb3smQ1H0QN8aDeY770F0=; b=R1mXw7HZzDMcrZNeFfV0kZHCkf
- 6Wkx/LH4iCTNhisRS6E/QsU4cE4/lOy8uz+/12GwQ9a3EDIURSTuEardjyiLkGAqm/OYIee1/NOlI
- uIoNP770GBQMrdBxV2YK6Rj2Wp1dVYy1hFoyKHGZeMBwLqPiP5751ak9AVvAlckB4l9I=;
-Received: from casper.infradead.org ([90.155.50.34])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ bh=N6ovGOYS7j9q8wOyOWu2B5Uq08RUxsjTVDWIGzX0CMc=; b=DAa0z72zO3mBmfN+GsIzgsdqFb
+ jOZd0eikKh9R6FN5N8W5lujSERthlUmwKyRTBPv9+TJVA/ffrUKR4Uo8rMoGg7BGv9+gZXsZBI61h
+ f5eScWyvCt+eM+1LXK6CxnWwiRGFhk+R+zqCDa9BuUl43ieprGIN3Aq7/RV7op0f2EZc=;
+Received: from [90.155.50.34] (helo=casper.infradead.org)
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1qiSiM-00E5fv-VU for linux-ntfs-dev@lists.sourceforge.net;
+ id 1qiSiN-00084K-Nb for linux-ntfs-dev@lists.sourceforge.net;
  Tue, 19 Sep 2023 04:52:02 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
  References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
  Content-Type:Content-ID:Content-Description;
- bh=1TQFktAQGh0zDqA+GJQVLyWb3smQ1H0QN8aDeY770F0=; b=PxHiF6cktFd/+CJWwFu4VfrtIM
- PU0/626kh0C0ccZjcHWLIbaeSrDKQSavppRX9DRoE01nHmzI0HlowA9/DqHak5U+KPUXKjQOdJsMs
- ZdwfK6M84AaKO9czXr1z7XfamvIK16jDsF+5FVERFeDeCp8meD7EpMpnB1ZpZfBurluqv/wWqIQ9i
- QrQ+B/blKNm3erh45AQnHTEWTOxqp2w0H0iFhdgfFEPkO9daOJuNfy5L7uoCrQdv+ULCTdbsbDSn0
- VsYB0iwbBHo3ho/jG4t1edo/ibYE4JPT0lVSSVCNpJvJ4DFaYIkEKiH/kWvwbRREVnyH8qtiMOMoD
- 4z+k4GNw==;
+ bh=N6ovGOYS7j9q8wOyOWu2B5Uq08RUxsjTVDWIGzX0CMc=; b=gSD3y3/0A4Cql8OnDXKyDsG0Fv
+ 9uPTYM++ZTTpjlvVSbjwWQXbSealfQoNsXpNk2+yC1nPtlDm2XYBVpaA8ICYBxXivHGctfLVMCF/S
+ H6CDp5UXLG6U9JliMb4c7sUyywozbLxXn3gdN7RlpWMgYuYvfWoka3oJzZKC9nzW4NvUylmkovvEK
+ gpggozbu5Ll4n5Mq7yQkrMVUXxrEnf2CCIY/+JT/CeSHmWaBsaCYS9SG/KwfCMwEVYfosVeKkbnbY
+ opkub3P2d6AHdTtVu1T+4I5q42urpgatsRyE9F/eCAGFUAE4t6ifmEG7dtjhZ4NOGLG+Lz22GVv29
+ 2qKJiJwA==;
 Received: from willy by casper.infradead.org with local (Exim 4.94.2 #2 (Red
- Hat Linux)) id 1qiSi3-00FFl8-RD; Tue, 19 Sep 2023 04:51:39 +0000
+ Hat Linux)) id 1qiSi3-00FFlG-VI; Tue, 19 Sep 2023 04:51:40 +0000
 From: "Matthew Wilcox (Oracle)" <willy@infradead.org>
 To: Andrew Morton <akpm@linux-foundation.org>
-Date: Tue, 19 Sep 2023 05:51:22 +0100
-Message-Id: <20230919045135.3635437-14-willy@infradead.org>
+Date: Tue, 19 Sep 2023 05:51:23 +0100
+Message-Id: <20230919045135.3635437-15-willy@infradead.org>
 X-Mailer: git-send-email 2.37.1
 In-Reply-To: <20230919045135.3635437-1-willy@infradead.org>
 References: <20230919045135.3635437-1-willy@infradead.org>
 MIME-Version: 1.0
-X-Spam-Score: -0.2 (/)
+X-Spam-Score: 1.1 (+)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: Remove a number of folio->page->folio conversions.
+ Content preview: All users have now been converted to get_nth_block().
  Signed-off-by:
- Matthew Wilcox (Oracle) <willy@infradead.org> --- fs/nilfs2/mdt.c | 16
- +++++++++-------
- 1 file changed, 9 insertions(+), 7 deletions(-) 
- Content analysis details:   (-0.2 points, 6.0 required)
+ Matthew Wilcox (Oracle) <willy@infradead.org> --- fs/nilfs2/page.h | 6 ------
+ 1 file changed, 6 deletions(-) diff --git a/fs/nilfs2/page.h b/fs/nilfs2/page.h
+ index 344d71942d36..d249ea1cefff 100644 --- a/fs/nilfs2/page.h +++
+ b/fs/nilfs2/page.h
+ @@ -52,10 +52,4 @@ unsigned long nilfs_find_uncommitted_extent(st [...] 
+ Content analysis details:   (1.1 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  0.0 SPF_NONE               SPF: sender does not publish an SPF Record
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
-X-Headers-End: 1qiSiM-00E5fv-VU
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
+X-Headers-End: 1qiSiN-00084K-Nb
 X-Mailman-Approved-At: Tue, 19 Sep 2023 07:35:40 +0000
-Subject: [Linux-ntfs-dev] [PATCH 13/26] nilfs2: Convert
- nilfs_mdt_get_frozen_buffer to use a folio
+Subject: [Linux-ntfs-dev] [PATCH 14/26] nilfs2: Remove
+ nilfs_page_get_nth_block
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -109,44 +112,28 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-Remove a number of folio->page->folio conversions.
+All users have now been converted to get_nth_block().
 
 Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org>
 ---
- fs/nilfs2/mdt.c | 16 +++++++++-------
- 1 file changed, 9 insertions(+), 7 deletions(-)
+ fs/nilfs2/page.h | 6 ------
+ 1 file changed, 6 deletions(-)
 
-diff --git a/fs/nilfs2/mdt.c b/fs/nilfs2/mdt.c
-index 11b7cf4acc92..7b754e6494d7 100644
---- a/fs/nilfs2/mdt.c
-+++ b/fs/nilfs2/mdt.c
-@@ -592,17 +592,19 @@ nilfs_mdt_get_frozen_buffer(struct inode *inode, struct buffer_head *bh)
- {
- 	struct nilfs_shadow_map *shadow = NILFS_MDT(inode)->mi_shadow;
- 	struct buffer_head *bh_frozen = NULL;
--	struct page *page;
-+	struct folio *folio;
- 	int n;
+diff --git a/fs/nilfs2/page.h b/fs/nilfs2/page.h
+index 344d71942d36..d249ea1cefff 100644
+--- a/fs/nilfs2/page.h
++++ b/fs/nilfs2/page.h
+@@ -52,10 +52,4 @@ unsigned long nilfs_find_uncommitted_extent(struct inode *inode,
+ #define NILFS_PAGE_BUG(page, m, a...) \
+ 	do { nilfs_page_bug(page); BUG(); } while (0)
  
--	page = find_lock_page(shadow->inode->i_mapping, bh->b_folio->index);
--	if (page) {
--		if (page_has_buffers(page)) {
-+	folio = filemap_lock_folio(shadow->inode->i_mapping,
-+			bh->b_folio->index);
-+	if (!IS_ERR(folio)) {
-+		bh_frozen = folio_buffers(folio);
-+		if (bh_frozen) {
- 			n = bh_offset(bh) >> inode->i_blkbits;
--			bh_frozen = nilfs_page_get_nth_block(page, n);
-+			bh_frozen = get_nth_bh(bh_frozen, n);
- 		}
--		unlock_page(page);
--		put_page(page);
-+		folio_unlock(folio);
-+		folio_put(folio);
- 	}
- 	return bh_frozen;
- }
+-static inline struct buffer_head *
+-nilfs_page_get_nth_block(struct page *page, unsigned int count)
+-{
+-	return get_nth_bh(page_buffers(page), count);
+-}
+-
+ #endif /* _NILFS_PAGE_H */
 -- 
 2.40.1
 
