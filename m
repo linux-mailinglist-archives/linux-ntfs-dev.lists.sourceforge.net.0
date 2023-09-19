@@ -2,17 +2,17 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C62A7A5B10
-	for <lists+linux-ntfs-dev@lfdr.de>; Tue, 19 Sep 2023 09:35:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A6537A5B0E
+	for <lists+linux-ntfs-dev@lfdr.de>; Tue, 19 Sep 2023 09:35:52 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1qiVGx-0007vI-E2;
-	Tue, 19 Sep 2023 07:35:51 +0000
+	id 1qiVGw-0007uJ-E8;
+	Tue, 19 Sep 2023 07:35:50 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <willy@infradead.org>) id 1qiSiR-0006Fw-DB
+ (envelope-from <willy@infradead.org>) id 1qiSiQ-0005yx-Gp
  for linux-ntfs-dev@lists.sourceforge.net;
  Tue, 19 Sep 2023 04:52:03 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -21,9 +21,9 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=2doX7aDgrAV7u7ZEcXBGS632IaXA7nYXC8nB0Wjw2AM=; b=ej0PQ6PkW9zT1acMydPTYAUE8f
- QXlBiQ1K3RAa5+zc6h6DUcyzYpdR+sYkyOqXma5J0fMjKM6dYmJ9Ps85yLwAxKm5vyP0mQkbsM2Pb
- U/qfynQcyBNpRpf8gne27Lcc+11WZcR5FE5H8BCCMclN5lWFaZ9JKIS3vzUXXsDJjAhk=;
+ bh=ls5QcLT4iw9HwtdteFtFIYm/lsPpx02xEwWSdEB7w9A=; b=KknV7vUFhQyIu3Euq+3Q3mDK3m
+ mK/IqRrJ5u8rQ9AY4gaRyXhLSiGeYgydxdxCu25tN/1JKybYrEiXnk0bFPEb0gXEYQLo/iyNpmn4q
+ laTnCS7uqxMUh+WOncwEZA4zdyH/TI/2hb60hdUMlME4e3bfyWq5tRw/MRh/4dIkfaFM=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -31,30 +31,30 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=2doX7aDgrAV7u7ZEcXBGS632IaXA7nYXC8nB0Wjw2AM=; b=WdQWc1tbzYkbpvYbQDKZIVD3a9
- YorvPwshEbQC45ZJBGpe3C5YySgY0D17BTDhuOSOWSP0H/vgoPqIb2TBlVy90mLmHAtXkWIFHa1BZ
- c1zhotYYYjMUzFhfyRusCsZxL6wIT0exsm6VwXtmD68qYlr0njiE+n86c6Rw9PF7Uzbk=;
+ bh=ls5QcLT4iw9HwtdteFtFIYm/lsPpx02xEwWSdEB7w9A=; b=hD5/dvgVfVZYG8kDaLqClnZK+n
+ Pe1HoTuts2ENEEHvVhahmsQDkTs2laUVcHOiWC53pMjG3p+7k1PfjfIGxyrHhkxe41Aw8Mg3NSEhl
+ B8su6vY78WNcSIsgX+olZMvYR4P6mFhVUSS9Rg3eq9TbGhOdbJIOWLu9hehPLhko3Enw=;
 Received: from [90.155.50.34] (helo=casper.infradead.org)
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1qiSiP-00084P-3C for linux-ntfs-dev@lists.sourceforge.net;
+ id 1qiSiO-00084N-LD for linux-ntfs-dev@lists.sourceforge.net;
  Tue, 19 Sep 2023 04:52:03 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
  References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
  Content-Type:Content-ID:Content-Description;
- bh=2doX7aDgrAV7u7ZEcXBGS632IaXA7nYXC8nB0Wjw2AM=; b=YMDYI3tcP/V35p5WncnIj/BrAr
- XUoRasfcU8i20RVKwUtyAx9iEmK4sGP35/0nHnERPeaQEyXECJWIHcwiLDhJapT34M7q3VukM0Kvt
- tIetHNtSr72HTN6lewKJuBdpm63HYc5o4H1hdwoxmH0jg9JrwvuaQSvCa+legrZdjVbmRJ0R8AC/M
- Salg5oSem9sZ3lZ2PWIc1IDPZ6TmqQjmObN2Esh+XxNDV7UPp+r+ammg93kP6cdwEVfRfFAzP1GfH
- IypS9E2RPuHrNVJxHP4Ef9lMmgcPQImuVXuAjgVnn1gY97T2SEo6Ukw2It9UDiFQI+otoTKQpUIPC
- hg8xHJ7Q==;
+ bh=ls5QcLT4iw9HwtdteFtFIYm/lsPpx02xEwWSdEB7w9A=; b=v/s0YAYridL5AWm2wYWPZkGzsB
+ K9clHYJMlcJOaX+NmKb7HW9F2eDrR9hnEfFhe6YOq/YMCptTWYV3mUL+G2wUZGCpLuLp0qpTeuzgI
+ tfpqOXserkhg/kyyX467Dysruzd3eSm3vC0glEAeMMY65rYuin/KFRuS0Lsm8EzJZCmpYoky31QWW
+ yeFE0mR+6iFAOMdA38W8yDlIG1gMZUZEaZpturMo+/2erCJzbJ4Un6ZNsjv4H8NyPK4ef/kgPaHCh
+ mbJX2zDqicJe9xcLmKePQpOVdc2efB17nrycatRVsH+bWRoVmcgvJ+9lCUkxoi7Ky4qPa1vl5H4DH
+ AFTza2Gg==;
 Received: from willy by casper.infradead.org with local (Exim 4.94.2 #2 (Red
- Hat Linux)) id 1qiSi4-00FFlm-Hl; Tue, 19 Sep 2023 04:51:40 +0000
+ Hat Linux)) id 1qiSi4-00FFlu-M6; Tue, 19 Sep 2023 04:51:40 +0000
 From: "Matthew Wilcox (Oracle)" <willy@infradead.org>
 To: Andrew Morton <akpm@linux-foundation.org>
-Date: Tue, 19 Sep 2023 05:51:27 +0100
-Message-Id: <20230919045135.3635437-19-willy@infradead.org>
+Date: Tue, 19 Sep 2023 05:51:28 +0100
+Message-Id: <20230919045135.3635437-20-willy@infradead.org>
 X-Mailer: git-send-email 2.37.1
 In-Reply-To: <20230919045135.3635437-1-willy@infradead.org>
 References: <20230919045135.3635437-1-willy@infradead.org>
@@ -66,11 +66,11 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Convert each element of the pages array to a folio before
- using it. This in no way renders the function large-folio safe, but it does
- remove a lot of hidden calls to compound_head(). Signed-off-by: Matthew Wilcox
- (Oracle) <willy@infradead.org> --- fs/ntfs/file.c | 89 +++++++++++++++++++++++
- 1 file changed, 41 insertions(+), 48 deletions(-) 
+ Content preview:  Use the folio API throughout,
+ saving six hidden calls to compound_head().
+ Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org> ---
+ fs/ntfs3/file.c
+ | 31 ++++++++++++++++ 1 file changed, 16 insertions(+), 15 deletions(-) 
  Content analysis details:   (1.1 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -84,10 +84,10 @@ X-Spam-Report: Spam detection software,
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-X-Headers-End: 1qiSiP-00084P-3C
+X-Headers-End: 1qiSiO-00084N-LD
 X-Mailman-Approved-At: Tue, 19 Sep 2023 07:35:40 +0000
-Subject: [Linux-ntfs-dev] [PATCH 18/26] ntfs: Convert
- ntfs_prepare_pages_for_non_resident_write() to folios
+Subject: [Linux-ntfs-dev] [PATCH 19/26] ntfs3: Convert ntfs_zero_range() to
+ use a folio
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -110,255 +110,84 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-Convert each element of the pages array to a folio before using it.
-This in no way renders the function large-folio safe, but it does remove
-a lot of hidden calls to compound_head().
+Use the folio API throughout, saving six hidden calls to compound_head().
 
 Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org>
 ---
- fs/ntfs/file.c | 89 +++++++++++++++++++++++---------------------------
- 1 file changed, 41 insertions(+), 48 deletions(-)
+ fs/ntfs3/file.c | 31 ++++++++++++++++---------------
+ 1 file changed, 16 insertions(+), 15 deletions(-)
 
-diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
-index cbc545999cfe..099141d20db6 100644
---- a/fs/ntfs/file.c
-+++ b/fs/ntfs/file.c
-@@ -567,7 +567,7 @@ static int ntfs_prepare_pages_for_non_resident_write(struct page **pages,
- 	LCN lcn;
- 	s64 bh_pos, vcn_len, end, initialized_size;
- 	sector_t lcn_block;
+diff --git a/fs/ntfs3/file.c b/fs/ntfs3/file.c
+index 962f12ce6c0a..a003a69091a2 100644
+--- a/fs/ntfs3/file.c
++++ b/fs/ntfs3/file.c
+@@ -187,7 +187,7 @@ static int ntfs_zero_range(struct inode *inode, u64 vbo, u64 vbo_to)
+ 	struct buffer_head *head, *bh;
+ 	u32 bh_next, bh_off, to;
+ 	sector_t iblock;
 -	struct page *page;
 +	struct folio *folio;
- 	struct inode *vi;
- 	ntfs_inode *ni, *base_ni = NULL;
- 	ntfs_volume *vol;
-@@ -601,20 +601,6 @@ static int ntfs_prepare_pages_for_non_resident_write(struct page **pages,
- 			(long long)pos, bytes);
- 	blocksize = vol->sb->s_blocksize;
- 	blocksize_bits = vol->sb->s_blocksize_bits;
--	u = 0;
--	do {
--		page = pages[u];
--		BUG_ON(!page);
--		/*
--		 * create_empty_buffers() will create uptodate/dirty buffers if
--		 * the page is uptodate/dirty.
--		 */
--		if (!page_has_buffers(page)) {
--			create_empty_buffers(page, blocksize, 0);
--			if (unlikely(!page_has_buffers(page)))
--				return -ENOMEM;
--		}
--	} while (++u < nr_pages);
- 	rl_write_locked = false;
- 	rl = NULL;
- 	err = 0;
-@@ -626,14 +612,21 @@ static int ntfs_prepare_pages_for_non_resident_write(struct page **pages,
- 	end = pos + bytes;
- 	cend = (end + vol->cluster_size - 1) >> vol->cluster_size_bits;
- 	/*
--	 * Loop over each page and for each page over each buffer.  Use goto to
-+	 * Loop over each buffer in each folio.  Use goto to
- 	 * reduce indentation.
- 	 */
- 	u = 0;
--do_next_page:
--	page = pages[u];
--	bh_pos = (s64)page->index << PAGE_SHIFT;
--	bh = head = page_buffers(page);
-+do_next_folio:
-+	folio = page_folio(pages[u]);
-+	bh_pos = folio_pos(folio);
-+	head = folio_buffers(folio);
-+	if (!head)
-+		/*
-+		 * create_empty_buffers() will create uptodate/dirty
-+		 * buffers if the folio is uptodate/dirty.
-+		 */
-+		head = folio_create_empty_buffers(folio, blocksize, 0);
-+	bh = head;
- 	do {
- 		VCN cdelta;
- 		s64 bh_end;
-@@ -653,15 +646,15 @@ static int ntfs_prepare_pages_for_non_resident_write(struct page **pages,
- 			if (buffer_uptodate(bh))
- 				continue;
- 			/*
--			 * The buffer is not uptodate.  If the page is uptodate
-+			 * The buffer is not uptodate.  If the folio is uptodate
- 			 * set the buffer uptodate and otherwise ignore it.
- 			 */
--			if (PageUptodate(page)) {
-+			if (folio_test_uptodate(folio)) {
- 				set_buffer_uptodate(bh);
- 				continue;
- 			}
- 			/*
--			 * Neither the page nor the buffer are uptodate.  If
-+			 * Neither the folio nor the buffer are uptodate.  If
- 			 * the buffer is only partially being written to, we
- 			 * need to read it in before the write, i.e. now.
- 			 */
-@@ -679,7 +672,7 @@ static int ntfs_prepare_pages_for_non_resident_write(struct page **pages,
- 					ntfs_submit_bh_for_read(bh);
- 					*wait_bh++ = bh;
- 				} else {
--					zero_user(page, bh_offset(bh),
-+					folio_zero_range(folio, bh_offset(bh),
- 							blocksize);
- 					set_buffer_uptodate(bh);
- 				}
-@@ -706,7 +699,7 @@ static int ntfs_prepare_pages_for_non_resident_write(struct page **pages,
- 					(bh_cofs >> blocksize_bits);
- 			set_buffer_mapped(bh);
- 			/*
--			 * If the page is uptodate so is the buffer.  If the
-+			 * If the folio is uptodate so is the buffer.  If the
- 			 * buffer is fully outside the write, we ignore it if
- 			 * it was already allocated and we mark it dirty so it
- 			 * gets written out if we allocated it.  On the other
-@@ -714,7 +707,7 @@ static int ntfs_prepare_pages_for_non_resident_write(struct page **pages,
- 			 * marking it dirty we set buffer_new so we can do
- 			 * error recovery.
- 			 */
--			if (PageUptodate(page)) {
-+			if (folio_test_uptodate(folio)) {
- 				if (!buffer_uptodate(bh))
- 					set_buffer_uptodate(bh);
- 				if (unlikely(was_hole)) {
-@@ -754,7 +747,8 @@ static int ntfs_prepare_pages_for_non_resident_write(struct page **pages,
- 						ntfs_submit_bh_for_read(bh);
- 						*wait_bh++ = bh;
- 					} else {
--						zero_user(page, bh_offset(bh),
-+						folio_zero_range(folio,
-+								bh_offset(bh),
- 								blocksize);
- 						set_buffer_uptodate(bh);
- 					}
-@@ -773,7 +767,7 @@ static int ntfs_prepare_pages_for_non_resident_write(struct page **pages,
- 			 */
- 			if (bh_end <= pos || bh_pos >= end) {
- 				if (!buffer_uptodate(bh)) {
--					zero_user(page, bh_offset(bh),
-+					folio_zero_range(folio, bh_offset(bh),
- 							blocksize);
- 					set_buffer_uptodate(bh);
- 				}
-@@ -786,7 +780,7 @@ static int ntfs_prepare_pages_for_non_resident_write(struct page **pages,
- 				u8 *kaddr;
- 				unsigned pofs;
- 					
--				kaddr = kmap_atomic(page);
-+				kaddr = kmap_local_folio(folio, 0);
- 				if (bh_pos < pos) {
- 					pofs = bh_pos & ~PAGE_MASK;
- 					memset(kaddr + pofs, 0, pos - bh_pos);
-@@ -795,8 +789,8 @@ static int ntfs_prepare_pages_for_non_resident_write(struct page **pages,
- 					pofs = end & ~PAGE_MASK;
- 					memset(kaddr + pofs, 0, bh_end - end);
- 				}
--				kunmap_atomic(kaddr);
--				flush_dcache_page(page);
-+				kunmap_local(kaddr);
-+				flush_dcache_folio(folio);
- 			}
- 			continue;
- 		}
-@@ -809,11 +803,12 @@ static int ntfs_prepare_pages_for_non_resident_write(struct page **pages,
- 		initialized_size = ni->allocated_size;
- 		read_unlock_irqrestore(&ni->size_lock, flags);
- 		if (bh_pos > initialized_size) {
--			if (PageUptodate(page)) {
-+			if (folio_test_uptodate(folio)) {
- 				if (!buffer_uptodate(bh))
- 					set_buffer_uptodate(bh);
- 			} else if (!buffer_uptodate(bh)) {
--				zero_user(page, bh_offset(bh), blocksize);
-+				folio_zero_range(folio, bh_offset(bh),
-+						blocksize);
- 				set_buffer_uptodate(bh);
- 			}
- 			continue;
-@@ -927,17 +922,17 @@ static int ntfs_prepare_pages_for_non_resident_write(struct page **pages,
- 				bh->b_blocknr = -1;
- 				/*
- 				 * If the buffer is uptodate we skip it.  If it
--				 * is not but the page is uptodate, we can set
--				 * the buffer uptodate.  If the page is not
-+				 * is not but the folio is uptodate, we can set
-+				 * the buffer uptodate.  If the folio is not
- 				 * uptodate, we can clear the buffer and set it
- 				 * uptodate.  Whether this is worthwhile is
- 				 * debatable and this could be removed.
- 				 */
--				if (PageUptodate(page)) {
-+				if (folio_test_uptodate(folio)) {
- 					if (!buffer_uptodate(bh))
- 						set_buffer_uptodate(bh);
- 				} else if (!buffer_uptodate(bh)) {
--					zero_user(page, bh_offset(bh),
-+					folio_zero_range(folio, bh_offset(bh),
- 						blocksize);
- 					set_buffer_uptodate(bh);
- 				}
-@@ -1167,7 +1162,7 @@ static int ntfs_prepare_pages_for_non_resident_write(struct page **pages,
- 	} while (bh_pos += blocksize, (bh = bh->b_this_page) != head);
- 	/* If there are no errors, do the next page. */
- 	if (likely(!err && ++u < nr_pages))
--		goto do_next_page;
-+		goto do_next_folio;
- 	/* If there are no errors, release the runlist lock if we took it. */
- 	if (likely(!err)) {
- 		if (unlikely(rl_write_locked)) {
-@@ -1185,9 +1180,8 @@ static int ntfs_prepare_pages_for_non_resident_write(struct page **pages,
- 		bh = *--wait_bh;
- 		wait_on_buffer(bh);
- 		if (likely(buffer_uptodate(bh))) {
--			page = bh->b_page;
--			bh_pos = ((s64)page->index << PAGE_SHIFT) +
--					bh_offset(bh);
-+			folio = bh->b_folio;
-+			bh_pos = folio_pos(folio) + bh_offset(bh);
- 			/*
- 			 * If the buffer overflows the initialized size, need
- 			 * to zero the overflowing region.
-@@ -1197,7 +1191,7 @@ static int ntfs_prepare_pages_for_non_resident_write(struct page **pages,
  
- 				if (likely(bh_pos < initialized_size))
- 					ofs = initialized_size - bh_pos;
--				zero_user_segment(page, bh_offset(bh) + ofs,
-+				folio_zero_segment(folio, bh_offset(bh) + ofs,
- 						blocksize);
- 			}
- 		} else /* if (unlikely(!buffer_uptodate(bh))) */
-@@ -1324,21 +1318,20 @@ static int ntfs_prepare_pages_for_non_resident_write(struct page **pages,
- 	u = 0;
- 	end = bh_cpos << vol->cluster_size_bits;
- 	do {
--		page = pages[u];
+ 	for (; idx < idx_end; idx += 1, from = 0) {
+ 		page_off = (loff_t)idx << PAGE_SHIFT;
+@@ -195,16 +195,17 @@ static int ntfs_zero_range(struct inode *inode, u64 vbo, u64 vbo_to)
+ 						       PAGE_SIZE;
+ 		iblock = page_off >> inode->i_blkbits;
+ 
+-		page = find_or_create_page(mapping, idx,
+-					   mapping_gfp_constraint(mapping,
+-								  ~__GFP_FS));
+-		if (!page)
+-			return -ENOMEM;
++		folio = __filemap_get_folio(mapping, idx,
++				FGP_LOCK | FGP_ACCESSED | FGP_CREAT,
++				mapping_gfp_constraint(mapping, ~__GFP_FS));
++		if (IS_ERR(folio))
++			return PTR_ERR(folio);
+ 
+-		if (!page_has_buffers(page))
+-			create_empty_buffers(page, blocksize, 0);
++		head = folio_buffers(folio);
++		if (!head)
++			head = folio_create_empty_buffers(folio, blocksize, 0);
+ 
 -		bh = head = page_buffers(page);
-+		folio = page_folio(pages[u]);
-+		bh = head = folio_buffers(folio);
++		bh = head;
+ 		bh_off = 0;
  		do {
- 			if (u == nr_pages &&
--					((s64)page->index << PAGE_SHIFT) +
--					bh_offset(bh) >= end)
-+			    folio_pos(folio) + bh_offset(bh) >= end)
- 				break;
- 			if (!buffer_new(bh))
- 				continue;
- 			clear_buffer_new(bh);
+ 			bh_next = bh_off + blocksize;
+@@ -220,14 +221,14 @@ static int ntfs_zero_range(struct inode *inode, u64 vbo, u64 vbo_to)
+ 			}
+ 
+ 			/* Ok, it's mapped. Make sure it's up-to-date. */
+-			if (PageUptodate(page))
++			if (folio_test_uptodate(folio))
+ 				set_buffer_uptodate(bh);
+ 
  			if (!buffer_uptodate(bh)) {
--				if (PageUptodate(page))
-+				if (folio_test_uptodate(folio))
- 					set_buffer_uptodate(bh);
- 				else {
--					zero_user(page, bh_offset(bh),
-+					folio_zero_range(folio, bh_offset(bh),
- 							blocksize);
- 					set_buffer_uptodate(bh);
+ 				err = bh_read(bh, 0);
+ 				if (err < 0) {
+-					unlock_page(page);
+-					put_page(page);
++					folio_unlock(folio);
++					folio_put(folio);
+ 					goto out;
  				}
+ 			}
+@@ -237,10 +238,10 @@ static int ntfs_zero_range(struct inode *inode, u64 vbo, u64 vbo_to)
+ 		} while (bh_off = bh_next, iblock += 1,
+ 			 head != (bh = bh->b_this_page));
+ 
+-		zero_user_segment(page, from, to);
++		folio_zero_segment(folio, from, to);
+ 
+-		unlock_page(page);
+-		put_page(page);
++		folio_unlock(folio);
++		folio_put(folio);
+ 		cond_resched();
+ 	}
+ out:
 -- 
 2.40.1
 
