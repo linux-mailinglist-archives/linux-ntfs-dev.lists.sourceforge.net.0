@@ -2,28 +2,28 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6341B7A5B08
-	for <lists+linux-ntfs-dev@lfdr.de>; Tue, 19 Sep 2023 09:35:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15C007A5B0D
+	for <lists+linux-ntfs-dev@lfdr.de>; Tue, 19 Sep 2023 09:35:52 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1qiVGt-0007rh-Jk;
-	Tue, 19 Sep 2023 07:35:47 +0000
+	id 1qiVGw-0007th-17;
+	Tue, 19 Sep 2023 07:35:50 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-3.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <willy@infradead.org>) id 1qiSiQ-0006Fe-Mi
+ (envelope-from <willy@infradead.org>) id 1qiSiS-0005GZ-HC
  for linux-ntfs-dev@lists.sourceforge.net;
- Tue, 19 Sep 2023 04:52:02 +0000
+ Tue, 19 Sep 2023 04:52:03 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
  In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=oqmyw7VJeqHD8iPpgh4YPr5AogAt6MQN9sHGZpQ6Xjk=; b=KvPYDnsobnU8D2wbCbZcQC+1gc
- XowzPe/rlGIv3yLh6qAdZTAvqSu+DEaOXqMaArG94V9f5w+zV3Oo7LDgKeG/D5ntxQl8jbWzNzlyt
- K7XSvYw2sU2CQHagYWjfAmYmrb43n5T/DMYXuz+ce6jv/+HRJYif8zIIMWbIjoJqaxTo=;
+ bh=Wsr22ZpjWpe8fxWjxYKfzNniRcYvF9L97ZdEJ2FF4/Y=; b=Grq5zvFiweptrmhqcYWkDq9M0f
+ JU4l+vOrQ3RWPLM+bhZxD/pRsi04iltlHfT+qbkwSQwk3ux+mJPAW5pkxUpKmeH6HZiQSYAiQk/lJ
+ 6kJ9//sjp5+Di8xRWPVXlz1E+FGPpR3H08+X2u2FEPg9NOZCdVx/dqsQvofwGAQaIyWs=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -31,62 +31,63 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=oqmyw7VJeqHD8iPpgh4YPr5AogAt6MQN9sHGZpQ6Xjk=; b=ZjPmjj1sk+JPJkTPV6sTMrRsxe
- LpAVbIW9SMjut0cB0v9n7cEvu3ojApePqvMUTdOijnnq0RGV5jxPSJYHKZ7aC5f9REDYkepNho3EQ
- pWooK4dpqSW4868i+P0CiYUdXKaCLrf9a0FVeymgD+KKVLVEa8d1emW111D2C9W5u5Bo=;
-Received: from [90.155.50.34] (helo=casper.infradead.org)
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ bh=Wsr22ZpjWpe8fxWjxYKfzNniRcYvF9L97ZdEJ2FF4/Y=; b=AfWbqZ4XfZKrTd2sAWgKSXHA8L
+ HDRTgq7N3a8K8nff+XWKdmVtiN9brcyQ6xHefKZWnIE2SJoMPwsG1bGdPfi0VATGBS4kKQTYBtGt4
+ Qkr7rtzGNnnBeEU/ukyxtXnm8oDYrg2YtHGhnxcFC53uYIrrn99LNsmNxBD6ImAIFxbw=;
+Received: from casper.infradead.org ([90.155.50.34])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1qiSiN-00084D-DB for linux-ntfs-dev@lists.sourceforge.net;
- Tue, 19 Sep 2023 04:52:02 +0000
+ id 1qiSiM-00E5g1-Vl for linux-ntfs-dev@lists.sourceforge.net;
+ Tue, 19 Sep 2023 04:52:03 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
  References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
  Content-Type:Content-ID:Content-Description;
- bh=oqmyw7VJeqHD8iPpgh4YPr5AogAt6MQN9sHGZpQ6Xjk=; b=E4YYIjUp3IuVjZH5MCxn9/nKpu
- Hh21HO1FgQ5l0yFuR8lBrzTKjwN77QtvHgH7HsY6/hwMfJWDY0UAh02WnRXPPElykkpAlqZmBWeIV
- eNkuj2Gp/o8PjVKAYe0nJcDm29dA61si/jGvCAX6vVu9nX7clOZR5ZJasF8aWG3RXxcK70KOAmQiS
- V/o8WI5+8jOwXUceYUQVhHOFWdoUK9g3uIL+Auum/J8H+YJYEL2+b0lOqxTCaKY/nooLebuqCi4G5
- 4dUpHT0k3B87XotVNZH1TIicqqawgo16ESNqdHcj6iQv7Mn5fdND8PoDTTmUqSP6m1861PlUDEO9e
- yKKdIwGg==;
+ bh=Wsr22ZpjWpe8fxWjxYKfzNniRcYvF9L97ZdEJ2FF4/Y=; b=T9U5RVACwbd7AAB82CL/l0k+UE
+ zI2IZM4sDnWMkQ33XEdZPdnclIedsV87svEtWA03dh1zyPCojpR7M9Z/Bs4Zzeg2JAQuL6/YKH/R6
+ brduY6HIG9abxXrBkHnMfxtngSsthzsLhEHP2CJmNKrVEUDnuqcovcojf5gcjOKyYAHD0B2HBS+St
+ 6JUeyMnOUNlR9XWhjn1Nytwg/pDuvIA5UwSYZp4QHIS5eCcnwopsmJ1HgrOcXYVmfMzdhnnKh8FtE
+ X/W6ZD2+BQ8iI6fl3Ali+zlE+XVBiI9tptXwRbZ7OU6BAqsANol2OOFeb7ISAhS7Y3H5iQPnGfj9T
+ YO7UoAig==;
 Received: from willy by casper.infradead.org with local (Exim 4.94.2 #2 (Red
- Hat Linux)) id 1qiSi4-00FFlO-3N; Tue, 19 Sep 2023 04:51:40 +0000
+ Hat Linux)) id 1qiSi4-00FFlW-9j; Tue, 19 Sep 2023 04:51:40 +0000
 From: "Matthew Wilcox (Oracle)" <willy@infradead.org>
 To: Andrew Morton <akpm@linux-foundation.org>
-Date: Tue, 19 Sep 2023 05:51:24 +0100
-Message-Id: <20230919045135.3635437-16-willy@infradead.org>
+Date: Tue, 19 Sep 2023 05:51:25 +0100
+Message-Id: <20230919045135.3635437-17-willy@infradead.org>
 X-Mailer: git-send-email 2.37.1
 In-Reply-To: <20230919045135.3635437-1-willy@infradead.org>
 References: <20230919045135.3635437-1-willy@infradead.org>
 MIME-Version: 1.0
-X-Spam-Score: 1.1 (+)
+X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  This function was already using a folio, so this update to
- the new API removes a single folio->page->folio conversion. Signed-off-by:
- Matthew Wilcox (Oracle) <willy@infradead.org> --- fs/nilfs2/segment.c | 7
- +++---- 1 file changed, 3 insertions(+), 4 deletions(-) 
- Content analysis details:   (1.1 points, 6.0 required)
+ Content preview:  The caller already has the folio, so pass it in and use the
+ folio API throughout saving five hidden calls to compound_head().
+ Signed-off-by:
+ Matthew Wilcox (Oracle) <willy@infradead.org> --- fs/ntfs/aops.c | 44
+ +++++++++++++++++++
+ 1 file changed, 19 insertions(+), 25 deletions(-) 
+ Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
+ 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-X-Headers-End: 1qiSiN-00084D-DB
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+X-Headers-End: 1qiSiM-00E5g1-Vl
 X-Mailman-Approved-At: Tue, 19 Sep 2023 07:35:40 +0000
-Subject: [Linux-ntfs-dev] [PATCH 15/26] nilfs2: Convert
- nilfs_lookup_dirty_data_buffers to use folio_create_empty_buffers
+Subject: [Linux-ntfs-dev] [PATCH 16/26] ntfs: Convert ntfs_read_block() to
+ use a folio
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -109,32 +110,145 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-This function was already using a folio, so this update to the new API
-removes a single folio->page->folio conversion.
+The caller already has the folio, so pass it in and use the folio API
+throughout saving five hidden calls to compound_head().
 
 Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org>
 ---
- fs/nilfs2/segment.c | 7 +++----
- 1 file changed, 3 insertions(+), 4 deletions(-)
+ fs/ntfs/aops.c | 44 +++++++++++++++++++-------------------------
+ 1 file changed, 19 insertions(+), 25 deletions(-)
 
-diff --git a/fs/nilfs2/segment.c b/fs/nilfs2/segment.c
-index 7ec16879756e..94388fe83cf8 100644
---- a/fs/nilfs2/segment.c
-+++ b/fs/nilfs2/segment.c
-@@ -731,10 +731,9 @@ static size_t nilfs_lookup_dirty_data_buffers(struct inode *inode,
- 			continue;
- 		}
- 		head = folio_buffers(folio);
--		if (!head) {
--			create_empty_buffers(&folio->page, i_blocksize(inode), 0);
--			head = folio_buffers(folio);
--		}
-+		if (!head)
-+			head = folio_create_empty_buffers(folio,
-+					i_blocksize(inode), 0);
- 		folio_unlock(folio);
+diff --git a/fs/ntfs/aops.c b/fs/ntfs/aops.c
+index 4e158bce4192..d66a9f5ffde9 100644
+--- a/fs/ntfs/aops.c
++++ b/fs/ntfs/aops.c
+@@ -145,13 +145,12 @@ static void ntfs_end_buffer_async_read(struct buffer_head *bh, int uptodate)
+ }
  
- 		bh = head;
+ /**
+- * ntfs_read_block - fill a @page of an address space with data
+- * @page:	page cache page to fill with data
++ * ntfs_read_block - fill a @folio of an address space with data
++ * @folio:	page cache folio to fill with data
+  *
+- * Fill the page @page of the address space belonging to the @page->host inode.
+  * We read each buffer asynchronously and when all buffers are read in, our io
+  * completion handler ntfs_end_buffer_read_async(), if required, automatically
+- * applies the mst fixups to the page before finally marking it uptodate and
++ * applies the mst fixups to the folio before finally marking it uptodate and
+  * unlocking it.
+  *
+  * We only enforce allocated_size limit because i_size is checked for in
+@@ -161,7 +160,7 @@ static void ntfs_end_buffer_async_read(struct buffer_head *bh, int uptodate)
+  *
+  * Contains an adapted version of fs/buffer.c::block_read_full_folio().
+  */
+-static int ntfs_read_block(struct page *page)
++static int ntfs_read_block(struct folio *folio)
+ {
+ 	loff_t i_size;
+ 	VCN vcn;
+@@ -178,7 +177,7 @@ static int ntfs_read_block(struct page *page)
+ 	int i, nr;
+ 	unsigned char blocksize_bits;
+ 
+-	vi = page->mapping->host;
++	vi = folio->mapping->host;
+ 	ni = NTFS_I(vi);
+ 	vol = ni->vol;
+ 
+@@ -188,15 +187,10 @@ static int ntfs_read_block(struct page *page)
+ 	blocksize = vol->sb->s_blocksize;
+ 	blocksize_bits = vol->sb->s_blocksize_bits;
+ 
+-	if (!page_has_buffers(page)) {
+-		create_empty_buffers(page, blocksize, 0);
+-		if (unlikely(!page_has_buffers(page))) {
+-			unlock_page(page);
+-			return -ENOMEM;
+-		}
+-	}
+-	bh = head = page_buffers(page);
+-	BUG_ON(!bh);
++	head = folio_buffers(folio);
++	if (!head)
++		head = folio_create_empty_buffers(folio, blocksize, 0);
++	bh = head;
+ 
+ 	/*
+ 	 * We may be racing with truncate.  To avoid some of the problems we
+@@ -205,11 +199,11 @@ static int ntfs_read_block(struct page *page)
+ 	 * may leave some buffers unmapped which are now allocated.  This is
+ 	 * not a problem since these buffers will just get mapped when a write
+ 	 * occurs.  In case of a shrinking truncate, we will detect this later
+-	 * on due to the runlist being incomplete and if the page is being
++	 * on due to the runlist being incomplete and if the folio is being
+ 	 * fully truncated, truncate will throw it away as soon as we unlock
+ 	 * it so no need to worry what we do with it.
+ 	 */
+-	iblock = (s64)page->index << (PAGE_SHIFT - blocksize_bits);
++	iblock = (s64)folio->index << (PAGE_SHIFT - blocksize_bits);
+ 	read_lock_irqsave(&ni->size_lock, flags);
+ 	lblock = (ni->allocated_size + blocksize - 1) >> blocksize_bits;
+ 	init_size = ni->initialized_size;
+@@ -221,7 +215,7 @@ static int ntfs_read_block(struct page *page)
+ 	}
+ 	zblock = (init_size + blocksize - 1) >> blocksize_bits;
+ 
+-	/* Loop through all the buffers in the page. */
++	/* Loop through all the buffers in the folio. */
+ 	rl = NULL;
+ 	nr = i = 0;
+ 	do {
+@@ -299,7 +293,7 @@ static int ntfs_read_block(struct page *page)
+ 			if (!err)
+ 				err = -EIO;
+ 			bh->b_blocknr = -1;
+-			SetPageError(page);
++			folio_set_error(folio);
+ 			ntfs_error(vol->sb, "Failed to read from inode 0x%lx, "
+ 					"attribute type 0x%x, vcn 0x%llx, "
+ 					"offset 0x%x because its location on "
+@@ -312,13 +306,13 @@ static int ntfs_read_block(struct page *page)
+ 		/*
+ 		 * Either iblock was outside lblock limits or
+ 		 * ntfs_rl_vcn_to_lcn() returned error.  Just zero that portion
+-		 * of the page and set the buffer uptodate.
++		 * of the folio and set the buffer uptodate.
+ 		 */
+ handle_hole:
+ 		bh->b_blocknr = -1UL;
+ 		clear_buffer_mapped(bh);
+ handle_zblock:
+-		zero_user(page, i * blocksize, blocksize);
++		folio_zero_range(folio, i * blocksize, blocksize);
+ 		if (likely(!err))
+ 			set_buffer_uptodate(bh);
+ 	} while (i++, iblock++, (bh = bh->b_this_page) != head);
+@@ -349,11 +343,11 @@ static int ntfs_read_block(struct page *page)
+ 		return 0;
+ 	}
+ 	/* No i/o was scheduled on any of the buffers. */
+-	if (likely(!PageError(page)))
+-		SetPageUptodate(page);
++	if (likely(!folio_test_error(folio)))
++		folio_mark_uptodate(folio);
+ 	else /* Signal synchronous i/o error. */
+ 		nr = -EIO;
+-	unlock_page(page);
++	folio_unlock(folio);
+ 	return nr;
+ }
+ 
+@@ -433,7 +427,7 @@ static int ntfs_read_folio(struct file *file, struct folio *folio)
+ 	/* NInoNonResident() == NInoIndexAllocPresent() */
+ 	if (NInoNonResident(ni)) {
+ 		/* Normal, non-resident data stream. */
+-		return ntfs_read_block(page);
++		return ntfs_read_block(folio);
+ 	}
+ 	/*
+ 	 * Attribute is resident, implying it is not compressed or encrypted.
 -- 
 2.40.1
 
