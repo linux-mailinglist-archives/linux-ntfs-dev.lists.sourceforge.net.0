@@ -2,28 +2,28 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1750C7A5B01
-	for <lists+linux-ntfs-dev@lfdr.de>; Tue, 19 Sep 2023 09:35:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EF3C7A5B0C
+	for <lists+linux-ntfs-dev@lfdr.de>; Tue, 19 Sep 2023 09:35:51 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1qiVGo-0007oO-Bs;
-	Tue, 19 Sep 2023 07:35:42 +0000
+	id 1qiVGu-0007su-ST;
+	Tue, 19 Sep 2023 07:35:48 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-3.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <willy@infradead.org>) id 1qiSiO-0005yS-S8
+ (envelope-from <willy@infradead.org>) id 1qiSiS-0005GT-8j
  for linux-ntfs-dev@lists.sourceforge.net;
- Tue, 19 Sep 2023 04:52:01 +0000
+ Tue, 19 Sep 2023 04:52:02 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
  In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=3+ygHFl8VBE//i+jIFbzwz27nrHn7+CKZunR4nMah8o=; b=k+RuxA3jhUqngwe67LPGBUopXc
- 2zt/ZhtQnt6MuFEsY9XlWUmrcbcLKokPuJeKxqI0uTQlIa7NxbN4NEFwMMjgsCbL//6u5850ii+Tz
- oXPB/3qrR8WOTe+7GMDJGuguzqIm5nns0jPNF/Yw253kK1zL24xpXcBpbPa44hCubErI=;
+ bh=PtzeHJtzB8Xd695+Qb2V5yYYQNsOpQ3Yl0mwaGuBV/4=; b=jHhfK99YaDASncG9OXmLHVCO9K
+ gaWbdBP2a2rn7c00/Wu5MENNPBZPQ9Exixy5+tuFJX38wHpE9MBEQSvT5Pv4vjO+hlLIH2B1SD71F
+ mQaI1lDgx+cXMr+0JgLc+XXS3zYeMcCKrm2mrORtP1bW0RQhe/iSZr/L9eZnBjvYSOFQ=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -31,30 +31,30 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=3+ygHFl8VBE//i+jIFbzwz27nrHn7+CKZunR4nMah8o=; b=dOKtAfvwCdv9ThmtpZb4aT8I7H
- 3NrvMaeRZwrSTQHspddSGHyDETTElTteoW6ZBHy8ogsEjo4W9F2a479PTOVEHRqrKvAu7HF+kPp3q
- 6O8sJtw7UuOpxJ5R9QqAmatbObruz+g9Foh77hFpqk66qlv00gItZxqZBORrtAWYHM+k=;
+ bh=PtzeHJtzB8Xd695+Qb2V5yYYQNsOpQ3Yl0mwaGuBV/4=; b=Bx9Y846fafU0mE/AjMybro655n
+ vnboAZsy6v/QzA3zVgMmiLXhtCZhtm+06KmLkhwC6dG1ssGvvqaEtTU59CcUO2UAc+mbvtqeElkgj
+ 77SXfmPcnrqdMUgNCZ9Da2wPzQFFe8xbREBg9AWuZLmuB525AuhQa9S4CaE9/f/ZT61Q=;
 Received: from [90.155.50.34] (helo=casper.infradead.org)
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1qiSiM-00E5fq-Np for linux-ntfs-dev@lists.sourceforge.net;
- Tue, 19 Sep 2023 04:52:01 +0000
+ id 1qiSiN-00084A-0M for linux-ntfs-dev@lists.sourceforge.net;
+ Tue, 19 Sep 2023 04:52:02 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
  References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
  Content-Type:Content-ID:Content-Description;
- bh=3+ygHFl8VBE//i+jIFbzwz27nrHn7+CKZunR4nMah8o=; b=a0R1TMwjL7kTjAJn7QXnrOIurK
- Jk/KsvVgMWmyNgxqWN5vSm+fsVeErc+p2SA6/+JKtl/gEKJ+0QYncbcX+TH5IXWFm1kSYWvPuG2ip
- OajcUmwdb2Q1jdRy96OBqSI9A3X6nYI2Gne1jBNmqMZ6G5e8vDS82vesYeCBU0BKkKmDnaXSuLJHc
- F7rpZc3aYOtL9zGBN5ZI0SUwLCUcCJ640FT9Vttt57wR7CXyJ/CsYUcOsChqRuHWhIJUulzwRwF2F
- onoE1mEjpIOAFxCaBkVNUPExG2E40+aJJmfa3dlcBJgvTjZj82jejSKPCVarzwlrbvnhwKs75NSoo
- nKz21X2g==;
+ bh=PtzeHJtzB8Xd695+Qb2V5yYYQNsOpQ3Yl0mwaGuBV/4=; b=QTFrpw3bHURLE6EYb/R+wluNva
+ FnBtPTD1w+5XMNC7zEhc9bao72bgXNpxKd9qDjhuUyi1OuP6S2MMpTObEptvPQkhWhifCbXvosRRU
+ e8lQf84HnBxa1MgfnDbHOnH/NdKVSKXT9I1ZfvD/Yk4oywa3zMeniEGFTRzWVl47KpSohjCj0nWeQ
+ KMTRaC5Exg3bFQFNKJH7wxQjQzaewJnEQmEGfJuzU4j/MZpiupUYbK/JOi51oS+Otgux4g8Yb+Qav
+ 1tTYnMC0HU19LUaCIHSlX1Doe6hKM9E7DF14ZicqYzh3cMxcMxgkZBmcxG54de+EwiKG/t7IMORtB
+ 5T5MdMFw==;
 Received: from willy by casper.infradead.org with local (Exim 4.94.2 #2 (Red
- Hat Linux)) id 1qiSi3-00FFkV-21; Tue, 19 Sep 2023 04:51:39 +0000
+ Hat Linux)) id 1qiSi3-00FFki-6d; Tue, 19 Sep 2023 04:51:39 +0000
 From: "Matthew Wilcox (Oracle)" <willy@infradead.org>
 To: Andrew Morton <akpm@linux-foundation.org>
-Date: Tue, 19 Sep 2023 05:51:17 +0100
-Message-Id: <20230919045135.3635437-9-willy@infradead.org>
+Date: Tue, 19 Sep 2023 05:51:18 +0100
+Message-Id: <20230919045135.3635437-10-willy@infradead.org>
 X-Mailer: git-send-email 2.37.1
 In-Reply-To: <20230919045135.3635437-1-willy@infradead.org>
 References: <20230919045135.3635437-1-willy@infradead.org>
@@ -66,10 +66,11 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: Remove several folio->page->folio conversions. Signed-off-by:
- Matthew Wilcox (Oracle) <willy@infradead.org> --- fs/gfs2/quota.c | 37
- +++++++++++++++++++
- 1 file changed, 19 insertions(+), 18 deletions(-) 
+ Content preview: Remove a number of folio->page->folio conversions.
+ Signed-off-by:
+ Matthew Wilcox (Oracle) <willy@infradead.org> --- fs/nilfs2/mdt.c | 20
+ +++++++++++---------
+ 1 file changed, 11 insertions(+), 9 deletions(-) 
  Content analysis details:   (1.1 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -83,10 +84,10 @@ X-Spam-Report: Spam detection software,
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-X-Headers-End: 1qiSiM-00E5fq-Np
-X-Mailman-Approved-At: Tue, 19 Sep 2023 07:35:39 +0000
-Subject: [Linux-ntfs-dev] [PATCH 08/26] gfs2: Convert
- gfs2_write_buf_to_page() to use a folio
+X-Headers-End: 1qiSiN-00084A-0M
+X-Mailman-Approved-At: Tue, 19 Sep 2023 07:35:40 +0000
+Subject: [Linux-ntfs-dev] [PATCH 09/26] nilfs2: Convert
+ nilfs_mdt_freeze_buffer to use a folio
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -109,86 +110,53 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-Remove several folio->page->folio conversions.
+Remove a number of folio->page->folio conversions.
 
 Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org>
 ---
- fs/gfs2/quota.c | 37 +++++++++++++++++++------------------
- 1 file changed, 19 insertions(+), 18 deletions(-)
+ fs/nilfs2/mdt.c | 20 +++++++++++---------
+ 1 file changed, 11 insertions(+), 9 deletions(-)
 
-diff --git a/fs/gfs2/quota.c b/fs/gfs2/quota.c
-index 171b2713d2e5..0ee4865ebdca 100644
---- a/fs/gfs2/quota.c
-+++ b/fs/gfs2/quota.c
-@@ -736,7 +736,7 @@ static int gfs2_write_buf_to_page(struct gfs2_sbd *sdp, unsigned long index,
- 	struct gfs2_inode *ip = GFS2_I(sdp->sd_quota_inode);
- 	struct inode *inode = &ip->i_inode;
- 	struct address_space *mapping = inode->i_mapping;
+diff --git a/fs/nilfs2/mdt.c b/fs/nilfs2/mdt.c
+index 19c8158605ed..db2260d6e44d 100644
+--- a/fs/nilfs2/mdt.c
++++ b/fs/nilfs2/mdt.c
+@@ -560,17 +560,19 @@ int nilfs_mdt_freeze_buffer(struct inode *inode, struct buffer_head *bh)
+ {
+ 	struct nilfs_shadow_map *shadow = NILFS_MDT(inode)->mi_shadow;
+ 	struct buffer_head *bh_frozen;
 -	struct page *page;
 +	struct folio *folio;
- 	struct buffer_head *bh;
- 	u64 blk;
- 	unsigned bsize = sdp->sd_sb.sb_bsize, bnum = 0, boff = 0;
-@@ -745,15 +745,15 @@ static int gfs2_write_buf_to_page(struct gfs2_sbd *sdp, unsigned long index,
- 	blk = index << (PAGE_SHIFT - sdp->sd_sb.sb_bsize_shift);
- 	boff = off % bsize;
+ 	int blkbits = inode->i_blkbits;
  
--	page = grab_cache_page(mapping, index);
+-	page = grab_cache_page(shadow->inode->i_mapping, bh->b_folio->index);
 -	if (!page)
 -		return -ENOMEM;
--	if (!page_has_buffers(page))
--		create_empty_buffers(page, bsize, 0);
-+	folio = filemap_grab_folio(mapping, index);
++	folio = filemap_grab_folio(shadow->inode->i_mapping,
++			bh->b_folio->index);
 +	if (IS_ERR(folio))
 +		return PTR_ERR(folio);
-+	bh = folio_buffers(folio);
-+	if (!bh)
-+		bh = folio_create_empty_buffers(folio, bsize, 0);
  
--	bh = page_buffers(page);
--	for(;;) {
--		/* Find the beginning block within the page */
-+	for (;;) {
-+		/* Find the beginning block within the folio */
- 		if (pg_off >= ((bnum * bsize) + bsize)) {
- 			bh = bh->b_this_page;
- 			bnum++;
-@@ -766,9 +766,10 @@ static int gfs2_write_buf_to_page(struct gfs2_sbd *sdp, unsigned long index,
- 				goto unlock_out;
- 			/* If it's a newly allocated disk block, zero it */
- 			if (buffer_new(bh))
--				zero_user(page, bnum * bsize, bh->b_size);
-+				folio_zero_range(folio, bnum * bsize,
-+						bh->b_size);
- 		}
--		if (PageUptodate(page))
-+		if (folio_test_uptodate(folio))
- 			set_buffer_uptodate(bh);
- 		if (bh_read(bh, REQ_META | REQ_PRIO) < 0)
- 			goto unlock_out;
-@@ -784,17 +785,17 @@ static int gfs2_write_buf_to_page(struct gfs2_sbd *sdp, unsigned long index,
- 		break;
+-	if (!page_has_buffers(page))
+-		create_empty_buffers(page, 1 << blkbits, 0);
++	bh_frozen = folio_buffers(folio);
++	if (!bh_frozen)
++		bh_frozen = folio_create_empty_buffers(folio, 1 << blkbits, 0);
+ 
+-	bh_frozen = nilfs_page_get_nth_block(page, bh_offset(bh) >> blkbits);
++	bh_frozen = get_nth_bh(bh_frozen, bh_offset(bh) >> blkbits);
+ 
+ 	if (!buffer_uptodate(bh_frozen))
+ 		nilfs_copy_buffer(bh_frozen, bh);
+@@ -582,8 +584,8 @@ int nilfs_mdt_freeze_buffer(struct inode *inode, struct buffer_head *bh)
+ 		brelse(bh_frozen); /* already frozen */
  	}
  
--	/* Write to the page, now that we have setup the buffer(s) */
--	memcpy_to_page(page, off, buf, bytes);
--	flush_dcache_page(page);
 -	unlock_page(page);
 -	put_page(page);
-+	/* Write to the folio, now that we have setup the buffer(s) */
-+	memcpy_to_folio(folio, off, buf, bytes);
-+	flush_dcache_folio(folio);
 +	folio_unlock(folio);
 +	folio_put(folio);
- 
  	return 0;
- 
- unlock_out:
--	unlock_page(page);
--	put_page(page);
-+	folio_unlock(folio);
-+	folio_put(folio);
- 	return -EIO;
  }
  
 -- 
