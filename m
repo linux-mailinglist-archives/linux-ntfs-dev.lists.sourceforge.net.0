@@ -2,28 +2,28 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D90D7A5B13
-	for <lists+linux-ntfs-dev@lfdr.de>; Tue, 19 Sep 2023 09:35:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B7D137A5B03
+	for <lists+linux-ntfs-dev@lfdr.de>; Tue, 19 Sep 2023 09:35:46 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1qiVGy-0007we-LM;
-	Tue, 19 Sep 2023 07:35:52 +0000
+	id 1qiVGq-0007pa-PJ;
+	Tue, 19 Sep 2023 07:35:44 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <willy@infradead.org>) id 1qiSiS-0000S9-Ok
+ (envelope-from <willy@infradead.org>) id 1qiSiP-0005yl-Mn
  for linux-ntfs-dev@lists.sourceforge.net;
- Tue, 19 Sep 2023 04:52:03 +0000
+ Tue, 19 Sep 2023 04:52:02 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
  In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Q2rvHiZsdLzh9BkWBreljgYK2jHDgtKfuRI348f+Xvk=; b=K/OnkbnRqgzmZ4bnhEzUzbdhVR
- nhpfquwXz/PPOH+378kw6YAt3LnnSTwKp5Gv3ekVxFPJ/UUjGXwGExPww2YzUXs23wCV/DioxuI37
- YLMVWcyVhBapjJeaq4rxcxQCKXnSB/1AJGdtt5ylr6CyXLd7tp38Dx8fiWXjixTqDdIo=;
+ bh=9fxuIUmv0rn3plQF4/og445RxsuZjG3jMIUqfxIahw8=; b=ATA7DqPG+TLw4C3YqMH1KEq5Na
+ q5tkw2/RCydDCLce/IrGUP8ceSd0GRcd+z5e349F0XBopShlUWEXOdljERt3RIqZrwPirWyiFLZMv
+ RImImt7CCjRSXmXhqyVupT2PbF82P2VcmXxFyYKCPEiwjOWsTOdlZRxbP+1vy5b2pW3E=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -31,30 +31,30 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=Q2rvHiZsdLzh9BkWBreljgYK2jHDgtKfuRI348f+Xvk=; b=Xv0/rEfi+Y4WDoMOFBPcIviFW0
- +5HPLxcIU6TiQ5hOmc9tGxH5Ii91uim9IyiRWrmBW6SAIguVSUGi/xQFAcSSWhj0eAym4A8jIIWzb
- FqRrh+r8U4fxxWGBF+93uam97MQYoMmehszUVXFCF0U5HHmeqjbidyebMFbY1FWu0NKU=;
+ bh=9fxuIUmv0rn3plQF4/og445RxsuZjG3jMIUqfxIahw8=; b=OWsY2v/17aUanVpZcRfBsz/CcC
+ RHiSurGiAsHb0G+abZmHmsgBl6GLmCC9BZumrEnwWMecb7gKCQQfXdS8xRbtmwjJdCfGWQOOnEYVx
+ iPc6WUzx9diTvbgOMiTBj4gn1aCEwjqwv10FhJOR4QcMnKTuNsCqYEfLpDsGWZCE1nU8=;
 Received: from casper.infradead.org ([90.155.50.34])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1qiSiM-00E5gD-Vp for linux-ntfs-dev@lists.sourceforge.net;
- Tue, 19 Sep 2023 04:52:03 +0000
+ id 1qiSiM-00E5gI-Ur for linux-ntfs-dev@lists.sourceforge.net;
+ Tue, 19 Sep 2023 04:52:02 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
  References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
  Content-Type:Content-ID:Content-Description;
- bh=Q2rvHiZsdLzh9BkWBreljgYK2jHDgtKfuRI348f+Xvk=; b=MVTTzmN0Fi2gnVe+AUohv2o0f6
- 7yctAStcuK2DhcLE0Ga6gJ/VoUaFh8OXtwYF/lq55K3kZphTrHd/O30WbD79IwcIlGhpCuXvN8oW3
- 2kjSuMSoCdzD8TGcnORMAPVBmEMaDVwYyV6u7mogoKMTEKqydGQAfprDtmiE0agygD9g+CE/zfGGN
- KmaUmB5NL7QFqTNmo/cCnvesjjJD5V5dz7XELmdKzsYUW8WaiIvppz6AxxoNsADw8+QgWOGmhYYCC
- ViTsXbnzEQ1MH5z7C+1RF5twYiK/8Jyv3u77QfWEz2LJhzbiSG+nHoaZIYdiGn5MQRKdmCQfpQPMR
- vRUsTNZw==;
+ bh=9fxuIUmv0rn3plQF4/og445RxsuZjG3jMIUqfxIahw8=; b=BFaYsLdAmE7gx/PdwTImssQtTC
+ R3BHPO08LdZ/3NOe3UnaYNyA5T+h74fBjO/dQ3DQ2k2mvGCXpO6sCdOlRDFkW2rFPLvhGxcX1cejV
+ 8va1HkPghMIs3g1aqcQFF22ZBkJbCakeV2qQxnwJIXoW3E8R/v87B6ybyvhgM12J+uc2R/wOoDC60
+ uwar+aEergefltYvlguaRjvNidrrTrwg6LA0c68y51IHET1tQV2kWWuc586cGqR40fCw5WeFVQyYn
+ QsEm7H89GPpjrRvgk67mJJYnXcqi3vp9+B/jLtlZCgtQ0/fRK38kc7800mNwfT5ZBAlnb2Rez3fwZ
+ 4FzLFRJg==;
 Received: from willy by casper.infradead.org with local (Exim 4.94.2 #2 (Red
- Hat Linux)) id 1qiSi2-00FFkH-43; Tue, 19 Sep 2023 04:51:38 +0000
+ Hat Linux)) id 1qiSi2-00FFkJ-6R; Tue, 19 Sep 2023 04:51:38 +0000
 From: "Matthew Wilcox (Oracle)" <willy@infradead.org>
 To: Andrew Morton <akpm@linux-foundation.org>
-Date: Tue, 19 Sep 2023 05:51:10 +0100
-Message-Id: <20230919045135.3635437-2-willy@infradead.org>
+Date: Tue, 19 Sep 2023 05:51:11 +0100
+Message-Id: <20230919045135.3635437-3-willy@infradead.org>
 X-Mailer: git-send-email 2.37.1
 In-Reply-To: <20230919045135.3635437-1-willy@infradead.org>
 References: <20230919045135.3635437-1-willy@infradead.org>
@@ -66,13 +66,12 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: Almost all callers want to know the first BH that was
- allocated
- for this folio. We already have that handy, so return it. Signed-off-by:
- Matthew Wilcox (Oracle) <willy@infradead.org> --- fs/buffer.c | 24
- +++++++++++++
- include/linux/buffer_head.h | 4 ++-- 2 files changed, 15 insertions(+), 13
- deletions(-) 
+ Content preview: Saves a folio->page->folio conversion. Signed-off-by: Matthew
+ Wilcox (Oracle) <willy@infradead.org> --- fs/mpage.c | 3 +-- 1 file changed,
+ 1 insertion(+), 2 deletions(-) diff --git a/fs/mpage.c b/fs/mpage.c index
+ 242e213ee064..964a6efe594d 100644 --- a/fs/mpage.c +++ b/fs/mpage.c @@ -119, 8
+ +119, 7 @@ static void map_buffer_to_folio(struct folio *folio,
+ struct buffer_he [...] 
  Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -85,10 +84,10 @@ X-Spam-Report: Spam detection software,
  valid
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
-X-Headers-End: 1qiSiM-00E5gD-Vp
-X-Mailman-Approved-At: Tue, 19 Sep 2023 07:35:41 +0000
-Subject: [Linux-ntfs-dev] [PATCH 01/26] buffer: Make
- folio_create_empty_buffers() return a buffer_head
+X-Headers-End: 1qiSiM-00E5gI-Ur
+X-Mailman-Approved-At: Tue, 19 Sep 2023 07:35:39 +0000
+Subject: [Linux-ntfs-dev] [PATCH 02/26] mpage: Convert map_buffer_to_folio()
+ to folio_create_empty_buffers()
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -111,88 +110,27 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-Almost all callers want to know the first BH that was allocated
-for this folio.  We already have that handy, so return it.
+Saves a folio->page->folio conversion.
 
 Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org>
 ---
- fs/buffer.c                 | 24 +++++++++++++-----------
- include/linux/buffer_head.h |  4 ++--
- 2 files changed, 15 insertions(+), 13 deletions(-)
+ fs/mpage.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/fs/buffer.c b/fs/buffer.c
-index ad2526dd7cb4..1b9e691714bd 100644
---- a/fs/buffer.c
-+++ b/fs/buffer.c
-@@ -1646,8 +1646,8 @@ EXPORT_SYMBOL(block_invalidate_folio);
-  * block_dirty_folio() via private_lock.  try_to_free_buffers
-  * is already excluded via the folio lock.
-  */
--void folio_create_empty_buffers(struct folio *folio, unsigned long blocksize,
--				unsigned long b_state)
-+struct buffer_head *folio_create_empty_buffers(struct folio *folio,
-+		unsigned long blocksize, unsigned long b_state)
- {
- 	struct buffer_head *bh, *head, *tail;
- 	gfp_t gfp = GFP_NOFS | __GFP_ACCOUNT | __GFP_NOFAIL;
-@@ -1674,6 +1674,8 @@ void folio_create_empty_buffers(struct folio *folio, unsigned long blocksize,
+diff --git a/fs/mpage.c b/fs/mpage.c
+index 242e213ee064..964a6efe594d 100644
+--- a/fs/mpage.c
++++ b/fs/mpage.c
+@@ -119,8 +119,7 @@ static void map_buffer_to_folio(struct folio *folio, struct buffer_head *bh,
+ 			folio_mark_uptodate(folio);
+ 			return;
+ 		}
+-		create_empty_buffers(&folio->page, i_blocksize(inode), 0);
+-		head = folio_buffers(folio);
++		head = folio_create_empty_buffers(folio, i_blocksize(inode), 0);
  	}
- 	folio_attach_private(folio, head);
- 	spin_unlock(&folio->mapping->private_lock);
-+
-+	return head;
- }
- EXPORT_SYMBOL(folio_create_empty_buffers);
  
-@@ -1775,13 +1777,15 @@ static struct buffer_head *folio_create_buffers(struct folio *folio,
- 						struct inode *inode,
- 						unsigned int b_state)
- {
-+	struct buffer_head *bh;
-+
- 	BUG_ON(!folio_test_locked(folio));
- 
--	if (!folio_buffers(folio))
--		folio_create_empty_buffers(folio,
--					   1 << READ_ONCE(inode->i_blkbits),
--					   b_state);
--	return folio_buffers(folio);
-+	bh = folio_buffers(folio);
-+	if (!bh)
-+		bh = folio_create_empty_buffers(folio,
-+				1 << READ_ONCE(inode->i_blkbits), b_state);
-+	return bh;
- }
- 
- /*
-@@ -2671,10 +2675,8 @@ int block_truncate_page(struct address_space *mapping,
- 		return PTR_ERR(folio);
- 
- 	bh = folio_buffers(folio);
--	if (!bh) {
--		folio_create_empty_buffers(folio, blocksize, 0);
--		bh = folio_buffers(folio);
--	}
-+	if (!bh)
-+		bh = folio_create_empty_buffers(folio, blocksize, 0);
- 
- 	/* Find the buffer that contains "offset" */
- 	offset = offset_in_folio(folio, from);
-diff --git a/include/linux/buffer_head.h b/include/linux/buffer_head.h
-index 3dc4720e4773..1001244a8941 100644
---- a/include/linux/buffer_head.h
-+++ b/include/linux/buffer_head.h
-@@ -203,8 +203,8 @@ struct buffer_head *alloc_page_buffers(struct page *page, unsigned long size,
- 		bool retry);
- void create_empty_buffers(struct page *, unsigned long,
- 			unsigned long b_state);
--void folio_create_empty_buffers(struct folio *folio, unsigned long blocksize,
--				unsigned long b_state);
-+struct buffer_head *folio_create_empty_buffers(struct folio *folio,
-+		unsigned long blocksize, unsigned long b_state);
- void end_buffer_read_sync(struct buffer_head *bh, int uptodate);
- void end_buffer_write_sync(struct buffer_head *bh, int uptodate);
- void end_buffer_async_write(struct buffer_head *bh, int uptodate);
+ 	page_bh = head;
 -- 
 2.40.1
 
