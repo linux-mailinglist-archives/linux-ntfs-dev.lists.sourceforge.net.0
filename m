@@ -2,96 +2,103 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7B4C7AD8D0
-	for <lists+linux-ntfs-dev@lfdr.de>; Mon, 25 Sep 2023 15:18:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 57CC77AE02E
+	for <lists+linux-ntfs-dev@lfdr.de>; Mon, 25 Sep 2023 22:01:35 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
 	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1qklTT-0001tP-RF;
-	Mon, 25 Sep 2023 13:18:06 +0000
+	id 1qkrlu-0006pq-EZ;
+	Mon, 25 Sep 2023 20:01:33 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-3.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <brauner@kernel.org>) id 1qklQF-0001kh-E5
- for linux-ntfs-dev@lists.sourceforge.net;
- Mon, 25 Sep 2023 13:14:45 +0000
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95) (envelope-from
+ <3dI4RZQkbAAcz56rhsslyhwwpk.nvvnsl1zlyjvu0lu0.jvt@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
+ id 1qklrz-0005VM-27 for linux-ntfs-dev@lists.sourceforge.net;
+ Mon, 25 Sep 2023 13:43:25 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:To:From:Subject:Message-ID:In-Reply-To
+ :Date:MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=uwGB2aehoV8pAjRIdZYu44BpH3BJtMyOs0wR8olL188=; b=aNNl0M/AKRt2t6yUeK03K80a4w
- Q6NlzujXUdWmP4u44zAjNrDGMywIivSjVLOxcZVaLxigZkFDt43OQeUTWjcLk4EQgyg6ofkzxdoQc
- 9+5KMFCfwVPOkWuPRybBzn1A6luPHarUjv0WUh67E817vgJPelWBhUds9Ua+pU4K8Nxc=;
+ bh=VF68zkfKFnG1LgMixZRaqdDmbqccd5ovmXesnmna+Hw=; b=OsT6dJk/uaoSCSKhRjpql2JuZa
+ ysuebHPEoxuBFwad7Rl4gBAwdXsu3Ic1V8EJT6Da8lTugYz7NC5AQ0FB1ZvuGKwnLdzNsO7xPqBmH
+ Ck/5QN+QFI/RBsAqMFsVufGm+ExmVUiKwMpEzliin/Uw7R+YNLwHFvIluwmmwQE625bw=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=uwGB2aehoV8pAjRIdZYu44BpH3BJtMyOs0wR8olL188=; b=QBoe3mfCMIu79pJd9zr9LLTI0/
- uiZ/dKLu3sVli0yB4C1ZCkDcBjnAajQd3odtbM6A7pePbCgmPBqxCvrmSlH2wLzqH/B2QSusgoqBt
- 1QNgfZ/GiYjaCQddROCbAZbp9CgJnz8XKdf72FFItdrA1dsApgy0AirYK0LFqqQy3T2g=;
-Received: from dfw.source.kernel.org ([139.178.84.217])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1qklQA-0002Cs-4T for linux-ntfs-dev@lists.sourceforge.net;
- Mon, 25 Sep 2023 13:14:45 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 84BCB61028;
- Mon, 25 Sep 2023 13:14:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D99AC433C7;
- Mon, 25 Sep 2023 13:14:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1695647674;
- bh=BQ4g/Wj+xZ88lUHX2e0MEdWfVFrj8gWigGSQws/C+OE=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=iq0IBIuacuNvbGcGb9Ti0CcEvr6Sp0QYbEStx/bZp4GhzR5lIwfu7/m0Vtmu1kmtW
- TTVFo8Hq2EWgLpdbbwDFahZIQ8spoHhbXpPtfedcTP1qWsrmB6YQSKQsGemDxYzHI9
- aZq7HgQTKnlOiLT4TE0iKWHSjb4DgssAEowLF212RDgO8jhD3U/1OZPjNfVZ2DSgai
- 1N6V2LVFVArDnOL1BAOBsIwZCmrDbdrxYfI7JG1FKjLRFwondlKvRVklhGw48oZ8wN
- eQVtV8dnYI21hoHd+nOzXhREe/LIyJ2xOdbvdASLEZP6xJQLOE7Ule7iO8JVspq58X
- W4OZ7tpdr+YwA==
-Date: Mon, 25 Sep 2023 15:14:29 +0200
-From: Christian Brauner <brauner@kernel.org>
-To: syzbot <syzbot+2751da923b5eb8307b0b@syzkaller.appspotmail.com>
-Message-ID: <20230925-mitangeklagt-kranz-992ed028ecdf@brauner>
-References: <000000000000b782b505c2847180@google.com>
- <000000000000a27dcc060624b16e@google.com>
+ h=Content-Type:To:From:Subject:Message-ID:In-Reply-To:Date:MIME-Version:
+ Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=VF68zkfKFnG1LgMixZRaqdDmbqccd5ovmXesnmna+Hw=; b=J
+ JF0upNcAMW5ttRzN3tQDZ3i7F6RaL/bXr9kJ+4Xc59umru/r8AKo/TlFXp3MHgFj1pJVTA06+yRQx
+ Qbxalp/hcfBQEIpG1oJbiWBm5MQj5UPUOKj/un4g1qUwOqnja256shc0xGUxe/m/QzSjB1d3Jg2KA
+ oUOlIYpS8nhczZLY=;
+Received: from mail-oa1-f70.google.com ([209.85.160.70])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
+ id 1qklrt-005uYo-NB for linux-ntfs-dev@lists.sourceforge.net;
+ Mon, 25 Sep 2023 13:43:25 +0000
+Received: by mail-oa1-f70.google.com with SMTP id
+ 586e51a60fabf-1dcf9fda747so8664879fac.1
+ for <linux-ntfs-dev@lists.sourceforge.net>;
+ Mon, 25 Sep 2023 06:43:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1695649396; x=1696254196;
+ h=to:from:subject:message-id:in-reply-to:date:mime-version
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=VF68zkfKFnG1LgMixZRaqdDmbqccd5ovmXesnmna+Hw=;
+ b=v6ZWJM5K/9ww1CbWIqwvl10VqgszVN/CW5gxQNH/U7buj+/xpIUUlnlyPPfxekUxJx
+ kK4GXC8d50mrSnMa2ERCDGltFFKqGr/1dbBWBmt1Rk9mUVKlh3a7el3klhZm2U/xu9TP
+ tOJd14QaGIWWzfiVhTsS8gVImYzjrIHTzsgv0wWKNmXpq8OzMXhe6fkcFsG+mOgZVNWp
+ ZyypQpu+S3FMkEKUXBIjfhqxb4JcQmJ7aP+tWcfGbr+dLxY8paSHiYfQ4xpFDwtpMW32
+ Sbg+E5qd0i7r4wXFkYuKxbCz5V173VucIGvZUhe0n9hu8/eroaB6KVSh+m3uMfiIvbeq
+ X53Q==
+X-Gm-Message-State: AOJu0YydmMEbtOFST9wMNSbl1KUa97c/ZsHqjZmC2UxgHXHfLYg4FUUK
+ gU1zTPZW1s3hq4djx0AWGLnFg62dOeuC6zGenJyLDeF7UPEF
+X-Google-Smtp-Source: AGHT+IH0gZAmpaZ1qZbrt0tpkkEfhIsEo+C5auJfqutx56kdHSyN7W98CPA4+w0Qa8eUCvdlIErilRyMMEjPale+9HIQijRDA5sl
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <000000000000a27dcc060624b16e@google.com>
-X-Spam-Score: -2.7 (--)
+X-Received: by 2002:a05:6870:a89d:b0:1c0:350a:92d5 with SMTP id
+ eb29-20020a056870a89d00b001c0350a92d5mr3078159oab.4.1695649396125; Mon, 25
+ Sep 2023 06:43:16 -0700 (PDT)
+Date: Mon, 25 Sep 2023 06:43:16 -0700
+In-Reply-To: <20230925-mitangeklagt-kranz-992ed028ecdf@brauner>
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <000000000000eb76ea06062f23aa@google.com>
+From: syzbot <syzbot+2751da923b5eb8307b0b@syzkaller.appspotmail.com>
+To: anton@tuxera.com, brauner@kernel.org, linkinjeon@kernel.org, 
+ linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-ntfs-dev@lists.sourceforge.net, linux@roeck-us.net, 
+ phil@philpotter.co.uk, syzkaller-bugs@googlegroups.com, 
+ torvalds@linux-foundation.org
+X-Spam-Score: 3.1 (+++)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Sun, Sep 24, 2023 at 06:15:29PM -0700, syzbot wrote: >
- syzbot has bisected this issue to: > > commit
- 78a06688a4d40d9bb6138e2b9ad3353d7bf0157a
- > Author: Christian Brauner <brauner@kernel.org> > Date [...] 
- Content analysis details:   (-2.7 points, 6.0 required)
+ Content preview:  Hello,
+ syzbot has tested the proposed patch and the reproducer
+ did not trigger any issue: Reported-and-tested-by:
+ syzbot+2751da923b5eb8307b0b@syzkaller.appspotmail.com
+ Content analysis details:   (3.1 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
+ 0.3 FROM_LOCAL_HEX         From: localpart has long hexadecimal sequence
+ 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
+ mail domains are different
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [209.85.160.70 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  2.5 SORTED_RECIPS          Recipient list is sorted by address
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
- high trust [139.178.84.217 listed in list.dnswl.org]
- -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1qklQA-0002Cs-4T
-X-Mailman-Approved-At: Mon, 25 Sep 2023 13:18:04 +0000
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.160.70 listed in list.dnswl.org]
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+X-Headers-End: 1qklrt-005uYo-NB
+X-Mailman-Approved-At: Mon, 25 Sep 2023 20:01:31 +0000
 Subject: Re: [Linux-ntfs-dev] [syzbot] [ntfs?] KASAN: use-after-free Read in
  ntfs_test_inode
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
@@ -106,39 +113,27 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-ntfs-dev@lists.sourceforge.net, syzkaller-bugs@googlegroups.com,
- linux-kernel@vger.kernel.org, phil@philpotter.co.uk, anton@tuxera.com,
- linux-fsdevel@vger.kernel.org, torvalds@linux-foundation.org,
- linux@roeck-us.net
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-On Sun, Sep 24, 2023 at 06:15:29PM -0700, syzbot wrote:
-> syzbot has bisected this issue to:
-> 
-> commit 78a06688a4d40d9bb6138e2b9ad3353d7bf0157a
-> Author: Christian Brauner <brauner@kernel.org>
-> Date:   Thu Sep 7 16:03:40 2023 +0000
-> 
->     ntfs3: drop inode references in ntfs_put_super()
-> 
-> bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=1674a5c1680000
-> start commit:   3aba70aed91f Merge tag 'gpio-fixes-for-v6.6-rc3' of git://..
-> git tree:       upstream
-> final oops:     https://syzkaller.appspot.com/x/report.txt?x=1574a5c1680000
-> console output: https://syzkaller.appspot.com/x/log.txt?x=1174a5c1680000
-> kernel config:  https://syzkaller.appspot.com/x/.config?x=e4ca82a1bedd37e4
-> dashboard link: https://syzkaller.appspot.com/bug?extid=2751da923b5eb8307b0b
-> syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=136b4412680000
-> C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=11aec0dc680000
-> 
-> Reported-by: syzbot+2751da923b5eb8307b0b@syzkaller.appspotmail.com
-> Fixes: 78a06688a4d4 ("ntfs3: drop inode references in ntfs_put_super()")
-> 
-> For information about bisection process see: https://goo.gl/tpsmEJ#bisection
+Hello,
 
-#syz test: https://gitlab.com/brauner/linux.git 493c71926c20309226b6d73f6b661a9813de5f0b
+syzbot has tested the proposed patch and the reproducer did not trigger any issue:
+
+Reported-and-tested-by: syzbot+2751da923b5eb8307b0b@syzkaller.appspotmail.com
+
+Tested on:
+
+commit:         493c7192 ntfs3: put resources during ntfs_fill_super()
+git tree:       https://gitlab.com/brauner/linux.git
+console output: https://syzkaller.appspot.com/x/log.txt?x=121d3e1e680000
+kernel config:  https://syzkaller.appspot.com/x/.config?x=df91a3034fe3f122
+dashboard link: https://syzkaller.appspot.com/bug?extid=2751da923b5eb8307b0b
+compiler:       Debian clang version 15.0.6, GNU ld (GNU Binutils for Debian) 2.40
+
+Note: no patches were applied.
+Note: testing is done by a robot and is best-effort only.
 
 
 _______________________________________________
