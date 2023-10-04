@@ -2,98 +2,101 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52A857B8B7B
-	for <lists+linux-ntfs-dev@lfdr.de>; Wed,  4 Oct 2023 20:55:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 69F3F7C968D
+	for <lists+linux-ntfs-dev@lfdr.de>; Sat, 14 Oct 2023 23:49:21 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1qo71Q-0008Io-2P;
-	Wed, 04 Oct 2023 18:54:58 +0000
+	id 1qrmVb-0003M3-DR;
+	Sat, 14 Oct 2023 21:49:18 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <jlayton@kernel.org>) id 1qo71O-0008Ih-8p
- for linux-ntfs-dev@lists.sourceforge.net;
- Wed, 04 Oct 2023 18:54:57 +0000
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95) (envelope-from
+ <3EmUdZQkbAIEx34pfqqjwfuuni.lttlqjzxjwhtsyjsy.htr@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
+ id 1qo1hY-0007fN-Tb for linux-ntfs-dev@lists.sourceforge.net;
+ Wed, 04 Oct 2023 13:14:09 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:To:From:Subject:Message-ID:Date:
+ MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=RTEnheyFv9iDuEkvqBYnekqg0aEWjvVLUA/Jo1FQ4YI=; b=S2tCBjZ14LWPh/zEKAw7qB25Xg
- kC6SUKsFH3UeKUpTapxmGF8Gh1ZHGnTTS0k/cZQWY8joTS5SRfsTPeIyJKe8c1ufXUGVJehADVzI/
- 2FvVirnnEoHVmCONe49+AFmgQUU0C+BctC5x+VOLWGI/jL9U/+WOEVs2dgGy+u4KRsH8=;
+ bh=WnT9mm81EGurra3sbmIkgyRkR1mbNMjC0mH42Ehxctc=; b=GiuXsYlUpZFY9bwVmibyT2oc4E
+ kLaQiuJVtmkTFhD8uzAKnRlL1picN0ZxEHjeYEkeJ/XjCITeUmNH8dYerM0tw02K9Ljh/xFdvW7Z5
+ b2Z36b6Fron+O4RoH/Y0hMQeRKOo2OtdopWvAqkamHYkhv46ZTs7wAIP8CrvEbTyrEXs=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=RTEnheyFv9iDuEkvqBYnekqg0aEWjvVLUA/Jo1FQ4YI=; b=HjJQ/7OyU79T2PvtvM0/0lnWcN
- ktMa0kXBa9aSBCG4pi02N1iFkFCCJeP3OfgCEzfmzaEHL1ES0Y40AKDsnJNbwG5hp95CpvFLv92P6
- bhwERYapiBABKNz6EXD5vCXlZ696f949KvTH+mW6MsvOg3XJZ/YmUOg5FNFT5xnQF3D4=;
-Received: from dfw.source.kernel.org ([139.178.84.217])
+ h=Content-Type:To:From:Subject:Message-ID:Date:MIME-Version:Sender:Reply-To
+ :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=WnT9mm81EGurra3sbmIkgyRkR1mbNMjC0mH42Ehxctc=; b=h
+ x8fI9h07zt1B9PvM0orpcLKnu6TKB99bE/2a6YHIue7eKPfsd3k5s2KecaM6qFJZnUCvJwaYgiBqw
+ zKZABOQKH8gX3GtSQzBc+/b5eny96B+Ke0XUUGD6dzBX56pLSMjNzDoTEXtr1WAIk5nTr13yDOOpg
+ irPcyN9NNVs41I38=;
+Received: from mail-ot1-f70.google.com ([209.85.210.70])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1qo71M-0005Ah-7Z for linux-ntfs-dev@lists.sourceforge.net;
- Wed, 04 Oct 2023 18:54:57 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 0D19B6123A;
- Wed,  4 Oct 2023 18:54:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D90DC433CC;
- Wed,  4 Oct 2023 18:54:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1696445690;
- bh=vmHegbrB1oSokmePb7JoVPLdiAExigQLg7wn3ynfsJw=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=INItqUqaI27NvvvE5+f2tZOATG7etmaMQ+tvY1oJvHuuW4o8Y2c87saqn55UH9C6A
- l59gMO03/odl8au7XqZQiOVHe+bDbIn+ysKo01RdRJCpfFdoxXMr2SdUUramm+2B5j
- JyYL5mEpRvzVvSP8Qp2ViY3eozbrGuEvkbSBiKP8oQRRLXX2V7RubNokI/9gZ0GvpJ
- ES7lzuheQGCSyr73HqNRYcFJrpW00+J+RTlHzy9rQSsWGmmlXpPZIlclvIL3aOOMxR
- s0tSNH7enRmElEjPevyv4/bLnPvO2QWgNQ8domQBbkelfvDma3qkGiWUzWnojgJjeH
- RAx1HYi9WE9Yw==
-From: Jeff Layton <jlayton@kernel.org>
-To: Alexander Viro <viro@zeniv.linux.org.uk>,
- Christian Brauner <brauner@kernel.org>, linux-fsdevel@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Date: Wed,  4 Oct 2023 14:52:39 -0400
-Message-ID: <20231004185347.80880-52-jlayton@kernel.org>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20231004185347.80880-1-jlayton@kernel.org>
-References: <20231004185221.80802-1-jlayton@kernel.org>
- <20231004185347.80880-1-jlayton@kernel.org>
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
+ id 1qo1hP-0003iU-JZ for linux-ntfs-dev@lists.sourceforge.net;
+ Wed, 04 Oct 2023 13:14:06 +0000
+Received: by mail-ot1-f70.google.com with SMTP id
+ 46e09a7af769-6c7a9cd75caso1650763a34.3
+ for <linux-ntfs-dev@lists.sourceforge.net>;
+ Wed, 04 Oct 2023 06:13:59 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1696425234; x=1697030034;
+ h=to:from:subject:message-id:date:mime-version:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=WnT9mm81EGurra3sbmIkgyRkR1mbNMjC0mH42Ehxctc=;
+ b=cCVv/QPkUhDSXxkoXywh5mFd1sp57BMTmxiqjfjfb9UPbfEIcqY6U3GoCTxTc/FrdD
+ bfRAwYuUBaSsmP3M/Py08KSWw6Yy0DET9D4waS/+me/An5qHi6UIS3GQXqA+v2YZZuaT
+ rZF+eFK515Vm5J8MwlxLmeags3GBRQXiaFDfmXjFtHVwywJFyLgnuT26RRrjV7h15qVn
+ Yc5lBXQvpj1If1So1czx3i2r/uMBuTV/dOUB+mFqh3U+dtORZuMjc7ffyKiTZxSemc73
+ TzmjMfHaVwr90xrQr5JCBRwYXFberQCqNCLjSNPyzrkzN+dWabZTqXx5MNNyGbTmyeUk
+ +eIA==
+X-Gm-Message-State: AOJu0Yw8wkQUlOnq2JRfedt/KRJiDk5INCxT8Rfi3QBWSa3228iVEYS9
+ Y+SdndGSD88fSKUMuTYKUFOhS1BEX9u/8lN2oXAV14xZ2UfU
+X-Google-Smtp-Source: AGHT+IGUAofh+8r+Oh0/Def6ijScSV5T+rXKZ1byN0sspuCtt3jKMjaAac5Opyu0n9CfSLMyLrKcuanu0px3GQjZ5OBYLrh7g3u7
 MIME-Version: 1.0
-X-Spam-Score: -5.2 (-----)
+X-Received: by 2002:a05:6870:3a18:b0:1dd:39ce:e252 with SMTP id
+ du24-20020a0568703a1800b001dd39cee252mr1011367oab.0.1696425234278; Wed, 04
+ Oct 2023 06:13:54 -0700 (PDT)
+Date: Wed, 04 Oct 2023 06:13:54 -0700
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <0000000000007a31ca0606e3c7b4@google.com>
+From: syzbot <syzbot+list840e3c8e5a11b542fa0b@syzkaller.appspotmail.com>
+To: anton@tuxera.com, linux-fsdevel@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-ntfs-dev@lists.sourceforge.net, 
+ syzkaller-bugs@googlegroups.com
+X-Spam-Score: 0.6 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: Convert to using the new inode timestamp accessor functions.
- Signed-off-by: Jeff Layton <jlayton@kernel.org> --- fs/ntfs/inode.c | 25
- +++++++++++++ fs/ntfs/mft.c | 2 +- 2 files changed, 14 insertions(+),
- 13 deletions(-)
- Content analysis details:   (-5.2 points, 6.0 required)
+ Content preview:  Hello ntfs maintainers/developers, This is a 31-day syzbot
+ report for the ntfs subsystem. All related reports/information can be found
+ at: https://syzkaller.appspot.com/upstream/s/ntfs During the period, 1 new
+ issues were detected and 1 were fixed. In total, 24 issues are still open
+ and 8 have been fixed so far. 
+ Content analysis details:   (0.6 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
- high trust [139.178.84.217 listed in list.dnswl.org]
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.3 FROM_LOCAL_HEX         From: localpart has long hexadecimal sequence
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1qo71M-0005Ah-7Z
-Subject: [Linux-ntfs-dev] [PATCH v2 54/89] ntfs: convert to new timestamp
- accessors
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.210.70 listed in list.dnswl.org]
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [209.85.210.70 listed in wl.mailspike.net]
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
+ mail domains are different
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+X-Headers-End: 1qo1hP-0003iU-JZ
+X-Mailman-Approved-At: Sat, 14 Oct 2023 21:49:17 +0000
+Subject: [Linux-ntfs-dev] [syzbot] Monthly ntfs report (Oct 2023)
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -106,128 +109,55 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Cc: linux-ntfs-dev@lists.sourceforge.net
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-Convert to using the new inode timestamp accessor functions.
+Hello ntfs maintainers/developers,
 
-Signed-off-by: Jeff Layton <jlayton@kernel.org>
+This is a 31-day syzbot report for the ntfs subsystem.
+All related reports/information can be found at:
+https://syzkaller.appspot.com/upstream/s/ntfs
+
+During the period, 1 new issues were detected and 1 were fixed.
+In total, 24 issues are still open and 8 have been fixed so far.
+
+Some of the still happening issues:
+
+Ref  Crashes Repro Title
+<1>  4008    Yes   possible deadlock in ntfs_read_folio
+                   https://syzkaller.appspot.com/bug?extid=8ef76b0b1f86c382ad37
+<2>  3219    Yes   kernel BUG at fs/ntfs/aops.c:LINE!
+                   https://syzkaller.appspot.com/bug?extid=6a5a7672f663cce8b156
+<3>  1420    Yes   kernel BUG in __ntfs_grab_cache_pages
+                   https://syzkaller.appspot.com/bug?extid=01b3ade7c86f7dd584d7
+<4>  638     Yes   possible deadlock in map_mft_record
+                   https://syzkaller.appspot.com/bug?extid=cb1fdea540b46f0ce394
+<5>  396     Yes   KASAN: slab-out-of-bounds Read in ntfs_readdir
+                   https://syzkaller.appspot.com/bug?extid=d36761079ac1b585a6df
+<6>  232     No    possible deadlock in __ntfs_clear_inode
+                   https://syzkaller.appspot.com/bug?extid=5ebb8d0e9b8c47867596
+<7>  37      Yes   kernel BUG in ntfs_iget
+                   https://syzkaller.appspot.com/bug?extid=d62e6bd2a2d05103d105
+<8>  36      Yes   kernel BUG in ntfs_lookup_inode_by_name
+                   https://syzkaller.appspot.com/bug?extid=d532380eef771ac0034b
+<9>  15      Yes   KASAN: use-after-free Read in ntfs_attr_find (2)
+                   https://syzkaller.appspot.com/bug?extid=ef50f8eb00b54feb7ba2
+<10> 13      Yes   KASAN: use-after-free Read in ntfs_lookup_inode_by_name
+                   https://syzkaller.appspot.com/bug?extid=3625b78845a725e80f61
+
 ---
- fs/ntfs/inode.c | 25 +++++++++++++------------
- fs/ntfs/mft.c   |  2 +-
- 2 files changed, 14 insertions(+), 13 deletions(-)
+This report is generated by a bot. It may contain errors.
+See https://goo.gl/tpsmEJ for more information about syzbot.
+syzbot engineers can be reached at syzkaller@googlegroups.com.
 
-diff --git a/fs/ntfs/inode.c b/fs/ntfs/inode.c
-index 99ac6ea277c4..aba1e22db4e9 100644
---- a/fs/ntfs/inode.c
-+++ b/fs/ntfs/inode.c
-@@ -648,7 +648,7 @@ static int ntfs_read_locked_inode(struct inode *vi)
- 	 * mtime is the last change of the data within the file. Not changed
- 	 * when only metadata is changed, e.g. a rename doesn't affect mtime.
- 	 */
--	vi->i_mtime = ntfs2utc(si->last_data_change_time);
-+	inode_set_mtime_to_ts(vi, ntfs2utc(si->last_data_change_time));
- 	/*
- 	 * ctime is the last change of the metadata of the file. This obviously
- 	 * always changes, when mtime is changed. ctime can be changed on its
-@@ -659,7 +659,7 @@ static int ntfs_read_locked_inode(struct inode *vi)
- 	 * Last access to the data within the file. Not changed during a rename
- 	 * for example but changed whenever the file is written to.
- 	 */
--	vi->i_atime = ntfs2utc(si->last_access_time);
-+	inode_set_atime_to_ts(vi, ntfs2utc(si->last_access_time));
- 
- 	/* Find the attribute list attribute if present. */
- 	ntfs_attr_reinit_search_ctx(ctx);
-@@ -1217,9 +1217,9 @@ static int ntfs_read_locked_attr_inode(struct inode *base_vi, struct inode *vi)
- 	vi->i_uid	= base_vi->i_uid;
- 	vi->i_gid	= base_vi->i_gid;
- 	set_nlink(vi, base_vi->i_nlink);
--	vi->i_mtime	= base_vi->i_mtime;
-+	inode_set_mtime_to_ts(vi, inode_get_mtime(base_vi));
- 	inode_set_ctime_to_ts(vi, inode_get_ctime(base_vi));
--	vi->i_atime	= base_vi->i_atime;
-+	inode_set_atime_to_ts(vi, inode_get_atime(base_vi));
- 	vi->i_generation = ni->seq_no = base_ni->seq_no;
- 
- 	/* Set inode type to zero but preserve permissions. */
-@@ -1483,9 +1483,9 @@ static int ntfs_read_locked_index_inode(struct inode *base_vi, struct inode *vi)
- 	vi->i_uid	= base_vi->i_uid;
- 	vi->i_gid	= base_vi->i_gid;
- 	set_nlink(vi, base_vi->i_nlink);
--	vi->i_mtime	= base_vi->i_mtime;
-+	inode_set_mtime_to_ts(vi, inode_get_mtime(base_vi));
- 	inode_set_ctime_to_ts(vi, inode_get_ctime(base_vi));
--	vi->i_atime	= base_vi->i_atime;
-+	inode_set_atime_to_ts(vi, inode_get_atime(base_vi));
- 	vi->i_generation = ni->seq_no = base_ni->seq_no;
- 	/* Set inode type to zero but preserve permissions. */
- 	vi->i_mode	= base_vi->i_mode & ~S_IFMT;
-@@ -2805,13 +2805,14 @@ int ntfs_truncate(struct inode *vi)
- 	if (!IS_NOCMTIME(VFS_I(base_ni)) && !IS_RDONLY(VFS_I(base_ni))) {
- 		struct timespec64 now = current_time(VFS_I(base_ni));
- 		struct timespec64 ctime = inode_get_ctime(VFS_I(base_ni));
-+		struct timespec64 mtime = inode_get_mtime(VFS_I(base_ni));
- 		int sync_it = 0;
- 
--		if (!timespec64_equal(&VFS_I(base_ni)->i_mtime, &now) ||
-+		if (!timespec64_equal(&mtime, &now) ||
- 		    !timespec64_equal(&ctime, &now))
- 			sync_it = 1;
- 		inode_set_ctime_to_ts(VFS_I(base_ni), now);
--		VFS_I(base_ni)->i_mtime = now;
-+		inode_set_mtime_to_ts(VFS_I(base_ni), now);
- 
- 		if (sync_it)
- 			mark_inode_dirty_sync(VFS_I(base_ni));
-@@ -2925,9 +2926,9 @@ int ntfs_setattr(struct mnt_idmap *idmap, struct dentry *dentry,
- 		}
- 	}
- 	if (ia_valid & ATTR_ATIME)
--		vi->i_atime = attr->ia_atime;
-+		inode_set_atime_to_ts(vi, attr->ia_atime);
- 	if (ia_valid & ATTR_MTIME)
--		vi->i_mtime = attr->ia_mtime;
-+		inode_set_mtime_to_ts(vi, attr->ia_mtime);
- 	if (ia_valid & ATTR_CTIME)
- 		inode_set_ctime_to_ts(vi, attr->ia_ctime);
- 	mark_inode_dirty(vi);
-@@ -2996,7 +2997,7 @@ int __ntfs_write_inode(struct inode *vi, int sync)
- 	si = (STANDARD_INFORMATION*)((u8*)ctx->attr +
- 			le16_to_cpu(ctx->attr->data.resident.value_offset));
- 	/* Update the access times if they have changed. */
--	nt = utc2ntfs(vi->i_mtime);
-+	nt = utc2ntfs(inode_get_mtime(vi));
- 	if (si->last_data_change_time != nt) {
- 		ntfs_debug("Updating mtime for inode 0x%lx: old = 0x%llx, "
- 				"new = 0x%llx", vi->i_ino, (long long)
-@@ -3014,7 +3015,7 @@ int __ntfs_write_inode(struct inode *vi, int sync)
- 		si->last_mft_change_time = nt;
- 		modified = true;
- 	}
--	nt = utc2ntfs(vi->i_atime);
-+	nt = utc2ntfs(inode_get_atime(vi));
- 	if (si->last_access_time != nt) {
- 		ntfs_debug("Updating atime for inode 0x%lx: old = 0x%llx, "
- 				"new = 0x%llx", vi->i_ino,
-diff --git a/fs/ntfs/mft.c b/fs/ntfs/mft.c
-index ad1a8f72da22..6fd1dc4b08c8 100644
---- a/fs/ntfs/mft.c
-+++ b/fs/ntfs/mft.c
-@@ -2682,7 +2682,7 @@ ntfs_inode *ntfs_mft_record_alloc(ntfs_volume *vol, const int mode,
- 			vi->i_mode &= ~S_IWUGO;
- 
- 		/* Set the inode times to the current time. */
--		vi->i_atime = vi->i_mtime = inode_set_ctime_current(vi);
-+		simple_inode_init_ts(vi);
- 		/*
- 		 * Set the file size to 0, the ntfs inode sizes are set to 0 by
- 		 * the call to ntfs_init_big_inode() below.
--- 
-2.41.0
+To disable reminders for individual bugs, reply with the following command:
+#syz set <Ref> no-reminders
 
+To change bug's subsystems, reply with:
+#syz set <Ref> subsystems: new-subsystem
+
+You may send multiple commands in a single email message.
 
 
 _______________________________________________
