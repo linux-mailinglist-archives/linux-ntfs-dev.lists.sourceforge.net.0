@@ -2,99 +2,120 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E3E87C9694
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CA0F7C9695
 	for <lists+linux-ntfs-dev@lfdr.de>; Sat, 14 Oct 2023 23:49:22 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1qrmVd-0003Nx-93;
+	id 1qrmVd-0003OJ-HE;
 	Sat, 14 Oct 2023 21:49:20 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-3.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <brauner@kernel.org>) id 1qpsq3-0002WJ-UP;
- Mon, 09 Oct 2023 16:10:38 +0000
+ (envelope-from <yikebaer61@gmail.com>) id 1qqOoT-0002xE-J7
+ for linux-ntfs-dev@lists.sourceforge.net;
+ Wed, 11 Oct 2023 02:19:04 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
- In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:Cc:To:
+ Subject:Message-ID:Date:From:MIME-Version:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=DKIztmNQcH504fteiT67Hvcb59ZRmpmLX2wFhNZjIcI=; b=dYld1uZYQ9akm+BF0ltOr1XAOh
- c7R+UtGUPLbXayj81TqXBfeyi44FhD8WY4Gdc0hpMDYKQ1i6AI601RjU5MjHg20GX8ng0mX4FbyuH
- fMpvX9rmeW5Sexa52AqK4HXxjXbbidA6AZ99IKyfbZ4T3+jCm6/9wsntKR8s23Ca4hJk=;
+ bh=IjhCQdR9FSIb4mXchtT0S67Pn10MnE0igEvhgyIFe/Q=; b=ZDG3N63hAqAqv3s1uhhbPtaWr1
+ AWfVsu8CtPrPkQZroO9rJGa3+ChEfUgdEr8o2hEi+BzzUgaUiE1VkMIOfu59tWoQaEWw8mn5vIqyr
+ iUUwD4xvme2DwM85J8C+Km0upzLJVknYHOATFaszYpufijl9xR/OvYpQl3zTCqunkdkw=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=DKIztmNQcH504fteiT67Hvcb59ZRmpmLX2wFhNZjIcI=; b=Jua/mWqreMycyxkIU/c+pfwUdX
- XGmJNyXLuQdtcEgLHeSNe/7W1QxlhvPK9T89TtqGJ+kbWaaYU4tmsdDru3dYIh0S1gecXMm9c+qxH
- 8O6rBhJ5q9kmXdiFtqaIL4CypftY3N7LVIUwreJ53NnAhbfvhI3gzC61fxY5h8OU15mo=;
-Received: from sin.source.kernel.org ([145.40.73.55])
+ h=Content-Transfer-Encoding:Content-Type:Cc:To:Subject:Message-ID:Date:From
+ :MIME-Version:Sender:Reply-To:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=IjhCQdR9FSIb4mXchtT0S67Pn10MnE0igEvhgyIFe/Q=; b=O
+ r0JaWSh3R9Q7qrqu9UKwctbGgOn2cks0yBt4ojbtgdzGipwUFul8lTKdFv29JX7Hw42zxZtT8O9RS
+ C1LbNpUi4jgXf/uM5GfirdrmWkiy08tA6bWLg89uN4nWlZz22Vu1DQYGyL1URgFuLJDhYuQvtBueG
+ vmia80WrFy6fHt9M=;
+Received: from mail-lf1-f42.google.com ([209.85.167.42])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1qpsq0-008bRK-Nc; Mon, 09 Oct 2023 16:10:34 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id 8AAB4CE149F;
- Mon,  9 Oct 2023 16:10:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A92FFC433C8;
- Mon,  9 Oct 2023 16:09:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1696867824;
- bh=keW4wOj90e6SAzWHDhiijPY7xlKn91ViUXq7+ZBy/qA=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=uXLBAcbtT3qSJRhL/8M371BpeA1C5ljwEOv35PPhR9AAXbskswQIJClC2lj7Rj5gp
- Wf8DMgzdk7F1Im4JpcUlzudlx2J7u7qAkCKVl53l50QCMlVywy97j4Z/z6YC81cPOB
- ZEhm/bd89ThwJczgLVLfYGYQSRgf/gJFEhHLWwuJMYiWS6kKeieI6gsrdpEaduSXjN
- MyDpNqeyNgkjuA9pNpJc3RCwGGB/UZ94Td6pVCF9naF2MzsC97YBscCdHyiZxAMM7J
- TNVG7+Kfo/TbzJEmvAHe6SdjHTFA0oLVhgfu0YPY0D5YqFYWH70KP0wz8Tk3JvnzVy
- Fp4FzyfzRg4Qw==
-From: Christian Brauner <brauner@kernel.org>
-To: Jeff Layton <jlayton@kernel.org>
-Date: Mon,  9 Oct 2023 18:09:31 +0200
-Message-Id: <20231009-charmant-locken-893b11849e84@brauner>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231004185221.80802-1-jlayton@kernel.org>
-References: 
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
+ id 1qqOoQ-00BNb3-PI for linux-ntfs-dev@lists.sourceforge.net;
+ Wed, 11 Oct 2023 02:19:04 +0000
+Received: by mail-lf1-f42.google.com with SMTP id
+ 2adb3069b0e04-50307acd445so7996514e87.0
+ for <linux-ntfs-dev@lists.sourceforge.net>;
+ Tue, 10 Oct 2023 19:19:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1696990736; x=1697595536; darn=lists.sourceforge.net;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=IjhCQdR9FSIb4mXchtT0S67Pn10MnE0igEvhgyIFe/Q=;
+ b=A/RFosBQWfgqF6Pcf/Oq10yUydNkASPV2RPeQ6rr9roJjXoRUC/0tot2G/rDzzfHk6
+ vOxYdGkmOZAsB2mEKNuVhM+gx3JZ6assl2zpeNQjk7xwlkAbxkSXfI0si8CeXMJeXjqy
+ oAcK3t3Aoy8bmC5uKjjbpW5w+LpTQRViKN+NPeha9Rlyqnurj1V/T1cBek2x4PVo7NJK
+ qlE49qG7k9ue39AlPxj8psvkcAqThnq8oURzAqQij2/zuhNip3qgaXvn1eI5JF4H/VT3
+ XbFyj/RT753y8N4OKniSUtl+sMrwQhnAFwCrvjQPydsGFxdp5IU8AQxdmoz8lKLuwT7i
+ O12A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1696990736; x=1697595536;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=IjhCQdR9FSIb4mXchtT0S67Pn10MnE0igEvhgyIFe/Q=;
+ b=rNs4Ok2dfqAdQ8nZbwgVbsFbUSn2Li8lZyTyPls4MEcCR+ZRQs2TYP/ZWUFjkEcRCZ
+ LhwHhM9htbrDN0yP7jEYTWd40Y5rh7cGOnoH2iHZn93V3fqQzNPSn+FHRUBF7atJMKA/
+ fFzOVEIg1/tJFV7ELHAXR5iAI+EiQMqILqKHROaLHh0yA9kTMHOofVaRn4cOlISGEgVs
+ t6AKrTlta7cLBxyxqfD3bfJeL2G94MUze+s5FSFFyd+ayYjTshdIP0anH4tpxFF52/T8
+ 9IPTUterCCRQcDjp1ETtGNgUgi4NseDAzre5k69JIhXA0ZWCPw3GlQMIq4iptJW1b5kz
+ 8UqQ==
+X-Gm-Message-State: AOJu0YzU/rKSPsNHOzRiA3HdCwWUIW7O0Y9ywNUXMTvm2VMd4Fgds2AX
+ Y8UOe73BNNOi6Ec9U17bwsuoZhLkCZceOAlZZD4=
+X-Google-Smtp-Source: AGHT+IG455eJiJRDOe/hop6m/utv20TiZn18bkPOboRVVmi0yObSKu9mZc8I/dQ5g7g9loxS9h9Dk7pogKaU30lJLmQ=
+X-Received: by 2002:a19:7119:0:b0:503:2e6:6862 with SMTP id
+ m25-20020a197119000000b0050302e66862mr14460379lfc.32.1696990735472; Tue, 10
+ Oct 2023 19:18:55 -0700 (PDT)
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=10941; i=brauner@kernel.org;
- h=from:subject:message-id; bh=IjD9jhCYjdIJ9vPkYDocQbsMoCTgovwgHUWkZ/3GCzk=;
- b=owGbwMvMwCU28Zj0gdSKO4sYT6slMaSqqLYye23auu+81JbW5Y9by59u2veoRtMoSybRa4ps7qMV
- 1SnPO0pZGMS4GGTFFFkc2k3C5ZbzVGw2ytSAmcPKBDKEgYtTAG4yFyPDct4beVfC7N9kTeGsyQvesc
- LrVB9X8d5HrqtS30c2lc/vYPgrs2DPvYLs+5rO5WFr0n0CStp+xH9eLnqRR9iW68ZB+QY+AA==
-X-Developer-Key: i=brauner@kernel.org; a=openpgp;
- fpr=4880B8C9BD0E5106FC070F4F7B3C391EFEA93624
-X-Spam-Score: -2.5 (--)
-X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+From: Yikebaer Aizezi <yikebaer61@gmail.com>
+Date: Wed, 11 Oct 2023 10:18:44 +0800
+Message-ID: <CALcu4rYmqcMReMWCDx60=-WeTgNMZGxNGc3GMUXhdS6kNBDw_w@mail.gmail.com>
+To: anton@tuxera.com, linux-ntfs-dev@lists.sourceforge.net
+X-Spam-Score: 0.1 (/)
+X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.lw.sourceforge.com",
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Wed, Oct 04, 2023 at 02:52:21PM -0400, Jeff Layton wrote:
- > v2: > - bugfix in mtime handling > - incorporate _sec and _nsec accessor
- functions (Chuck Lever) > - move i_generation to plug hole after [...] 
- Content analysis details:   (-2.5 points, 6.0 required)
- pts rule name              description
+ 
+ Content preview:  Hello, When using Healer to fuzz the latest Linux kernel,
+   the following crash was triggered. HEAD commit: f291209eca5eba0b4704fa0832af57b12dbc1a02
+    ( Merge tag 'net-6.6-rc5' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net）
+    git tree: upstream 
+ 
+ Content analysis details:   (0.1 points, 6.0 required)
+ 
+  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -2.3 RCVD_IN_DNSWL_MED      RBL: Sender listed at https://www.dnswl.org/,
- medium trust [145.40.73.55 listed in list.dnswl.org]
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+                              no trust
+                             [209.85.167.42 listed in list.dnswl.org]
+  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+  0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
+                             provider
+                             [yikebaer61[at]gmail.com]
+  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
+                             in digit
+                             [yikebaer61[at]gmail.com]
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+                             [209.85.167.42 listed in wl.mailspike.net]
+ -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
+                             author's domain
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1qpsq0-008bRK-Nc
+                             envelope-from domain
+  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+                             valid
+X-Headers-End: 1qqOoQ-00BNb3-PI
 X-Mailman-Approved-At: Sat, 14 Oct 2023 21:49:17 +0000
-Subject: Re: [Linux-ntfs-dev] [PATCH v2 00/89] fs: new accessor methods for
- inode atime and mtime
+Subject: [Linux-ntfs-dev] KASAN: slab-out-of-bounds Read in ntfs_readdir
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -107,330 +128,124 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Cc: Latchesar Ionkov <lucho@ionkov.net>,
- Konstantin Komarov <almaz.alexandrovich@paragon-software.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>, "Darrick J. Wong" <djwong@kernel.org>,
- Anders Larsen <al@alarsen.net>, Carlos Llamas <cmllamas@google.com>,
- Andrii Nakryiko <andrii@kernel.org>, Mattia Dongili <malattia@linux.it>,
- Hugh Dickins <hughd@google.com>, John Johansen <john.johansen@canonical.com>,
- Yonghong Song <yonghong.song@linux.dev>,
- Alexander Gordeev <agordeev@linux.ibm.com>, Christoph Hellwig <hch@lst.de>,
- Mike Marshall <hubcap@omnibond.com>, Paulo Alcantara <pc@manguebit.com>,
- linux-xfs@vger.kernel.org, linux-bcachefs@vger.kernel.org,
- Michael Ellerman <mpe@ellerman.id.au>, James Morris <jmorris@namei.org>,
- Christophe Leroy <christophe.leroy@csgroup.eu>,
- Christoph Hellwig <hch@infradead.org>,
- Christian Borntraeger <borntraeger@linux.ibm.com>, devel@lists.orangefs.org,
- Shyam Prasad N <sprasad@microsoft.com>, linux-um@lists.infradead.org,
- Nicholas Piggin <npiggin@gmail.com>, Alexander Viro <viro@zeniv.linux.org.uk>,
- Eric Van Hensbergen <ericvh@kernel.org>,
- Suren Baghdasaryan <surenb@google.com>,
- Trond Myklebust <trond.myklebust@hammerspace.com>,
- Anton Altaparmakov <anton@tuxera.com>, Christian Brauner <brauner@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Stephen Smalley <stephen.smalley.work@gmail.com>, linux-usb@vger.kernel.org,
- linux-kernel@vger.kernel.org, Ronnie Sahlberg <lsahlber@redhat.com>,
- Sergey Senozhatsky <senozhatsky@chromium.org>, arve@android.com,
- Chuck Lever <chuck.lever@oracle.com>, Sven Schnelle <svens@linux.ibm.com>,
- Jiri Olsa <jolsa@kernel.org>, Jan Kara <jack@suse.com>,
- Tejun Heo <tj@kernel.org>, Andrew Morton <akpm@linux-foundation.org>,
- linux-trace-kernel@vger.kernel.org,
- Linus Torvalds <torvalds@linux-foundation.org>,
- Dave Kleikamp <shaggy@kernel.org>, linux-mm@kvack.org,
- Joel Fernandes <joel@joelfernandes.org>, Eric Dumazet <edumazet@google.com>,
- Stanislav Fomichev <sdf@google.com>, linux-s390@vger.kernel.org,
- linux-nilfs@vger.kernel.org, Paul Moore <paul@paul-moore.com>,
- Leon Romanovsky <leon@kernel.org>, John Fastabend <john.fastabend@gmail.com>,
- Luis Chamberlain <mcgrof@kernel.org>, codalist@coda.cs.cmu.edu,
- Iurii Zaikin <yzaikin@google.com>, Masami Hiramatsu <mhiramat@kernel.org>,
- Todd Kjos <tkjos@android.com>, Vasily Gorbik <gor@linux.ibm.com>,
- selinux@vger.kernel.org, Brian Foster <bfoster@redhat.com>,
- linuxppc-dev@lists.ozlabs.org, reiserfs-devel@vger.kernel.org,
- Miklos Szeredi <miklos@szeredi.hu>, Yue Hu <huyue2@coolpad.com>,
- Jaegeuk Kim <jaegeuk@kernel.org>, Martijn Coenen <maco@android.com>,
- OGAWA Hirofumi <hirofumi@mail.parknet.co.jp>, Hao Luo <haoluo@google.com>,
- Tony Luck <tony.luck@intel.com>, Theodore Ts'o <tytso@mit.edu>,
- Nicolas Pitre <nico@fluxnic.net>, linux-ntfs-dev@lists.sourceforge.net,
- Muchun Song <muchun.song@linux.dev>, linux-f2fs-devel@lists.sourceforge.net,
- "Guilherme G. Piccoli" <gpiccoli@igalia.com>, gfs2@lists.linux.dev,
- Eric Biederman <ebiederm@xmission.com>, Anna Schumaker <anna@kernel.org>,
- Brad Warrum <bwarrum@linux.ibm.com>, Mike Kravetz <mike.kravetz@oracle.com>,
- linux-efi@vger.kernel.org, Martin Brandenburg <martin@omnibond.com>,
- ocfs2-devel@lists.linux.dev, Alexei Starovoitov <ast@kernel.org>,
- platform-driver-x86@vger.kernel.org, Chris Mason <clm@fb.com>,
- linux-mtd@lists.infradead.org, linux-hardening@vger.kernel.org,
- Marc Dionne <marc.dionne@auristor.com>, Jiri Slaby <jirislaby@kernel.org>,
- linux-afs@lists.infradead.org, Ian Kent <raven@themaw.net>,
- Naohiro Aota <naohiro.aota@wdc.com>, Daniel Borkmann <daniel@iogearbox.net>,
- Dennis Dalessandro <dennis.dalessandro@cornelisnetworks.com>,
- linux-rdma@vger.kernel.org, coda@cs.cmu.edu, ilpo.jarvinen@linux.intel.com,
- Ilya Dryomov <idryomov@gmail.com>, Paolo Abeni <pabeni@redhat.com>,
- "Serge E. Hallyn" <serge@hallyn.com>,
- Christian Schoenebeck <linux_oss@crudebyte.com>,
- Kees Cook <keescook@chromium.org>, Arnd Bergmann <arnd@arndb.de>,
- autofs@vger.kernel.org, Steven Rostedt <rostedt@goodmis.org>,
- Mark Gross <markgross@kernel.org>, Damien Le Moal <dlemoal@kernel.org>,
- Eric Paris <eparis@parisplace.org>, ceph-devel@vger.kernel.org,
- Gao Xiang <xiang@kernel.org>, Jan Harkes <jaharkes@cs.cmu.edu>,
- linux-nfs@vger.kernel.org, linux-ext4@vger.kernel.org,
- Olga Kornievskaia <kolga@netapp.com>, Song Liu <song@kernel.org>,
- samba-technical@lists.samba.org, Steve French <sfrench@samba.org>,
- Jeremy Kerr <jk@ozlabs.org>, netdev@vger.kernel.org,
- Bob Peterson <rpeterso@redhat.com>, linux-fsdevel@vger.kernel.org,
- bpf@vger.kernel.org, ntfs3@lists.linux.dev, linux-erofs@lists.ozlabs.org,
- "David S. Miller" <davem@davemloft.net>,
- Chandan Babu R <chandan.babu@oracle.com>, jfs-discussion@lists.sourceforge.net,
- Jan Kara <jack@suse.cz>, Neil Brown <neilb@suse.de>,
- Dominique Martinet <asmadeus@codewreck.org>,
- Amir Goldstein <amir73il@gmail.com>, Bob Copeland <me@bobcopeland.com>,
- KP Singh <kpsingh@kernel.org>, linux-unionfs@vger.kernel.org,
- David Howells <dhowells@redhat.com>, Joseph Qi <joseph.qi@linux.alibaba.com>,
- Andreas Dilger <adilger.kernel@dilger.ca>,
- Mikulas Patocka <mikulas@artax.karlin.mff.cuni.cz>,
- Ard Biesheuvel <ardb@kernel.org>,
- Anton Ivanov <anton.ivanov@cambridgegreys.com>,
- Andreas Gruenbacher <agruenba@redhat.com>, Richard Weinberger <richard@nod.at>,
- Mark Fasheh <mark@fasheh.com>, Dai Ngo <Dai.Ngo@oracle.com>,
- Jason Gunthorpe <jgg@ziepe.ca>, linux-serial@vger.kernel.org,
- Jakub Kicinski <kuba@kernel.org>, Salah Triki <salah.triki@gmail.com>,
- Evgeniy Dushistov <dushistov@mail.ru>, linux-cifs@vger.kernel.org,
- Heiko Carstens <hca@linux.ibm.com>, Chao Yu <chao@kernel.org>,
- apparmor@lists.ubuntu.com, Josef Bacik <josef@toxicpanda.com>,
- Tom Talpey <tom@talpey.com>, Hans de Goede <hdegoede@redhat.com>,
- "Tigran A. Aivazian" <aivazian.tigran@gmail.com>,
- David Sterba <dsterba@suse.com>, Xiubo Li <xiubli@redhat.com>,
- Ryusuke Konishi <konishi.ryusuke@gmail.com>,
- Johannes Thumshirn <jth@kernel.org>, Ritu Agarwal <rituagar@linux.ibm.com>,
- Luis de Bethencourt <luisbg@kernel.org>,
- Martin KaFai Lau <martin.lau@linux.dev>, v9fs@lists.linux.dev,
- Kent Overstreet <kent.overstreet@linux.dev>, David Sterba <dsterba@suse.cz>,
- linux-security-module@vger.kernel.org, Jeffle Xu <jefflexu@linux.alibaba.com>,
- Phillip Lougher <phillip@squashfs.org.uk>,
- Johannes Berg <johannes@sipsolutions.net>,
- Sungjong Seo <sj1557.seo@samsung.com>, David Woodhouse <dwmw2@infradead.org>,
- linux-karma-devel@lists.sourceforge.net, linux-btrfs@vger.kernel.org,
- Joel Becker <jlbec@evilplan.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-On Wed, Oct 04, 2023 at 02:52:21PM -0400, Jeff Layton wrote:
-> v2:
-> - bugfix in mtime handling
-> - incorporate _sec and _nsec accessor functions (Chuck Lever)
-> - move i_generation to plug hole after changing timestamps (Amir Goldstein)
-> 
-> While working on the multigrain timestamp changes, Linus suggested
-> adding some similar wrappers for accessing the atime and mtime that we
-> have for the ctime. With that, we could then move to using discrete
-> integers instead of struct timespec64 in struct inode and shrink it.
-> 
-> This patch implements this. Linus suggested using macros for the new
-> accessors, but the existing ctime wrappers were static inlines and since
-> there are only 3 different timestamps, I didn't see that trying to
-> fiddle with macros would gain us anything (other than less verbosity in
-> fs.h).
-> 
-> [...]
-
-This was applied on top of -next but vfs.ctime is now based on v6.6-rc3
-as stable tag otherwise this is too much of a moving target with other
-stuff in -next. Anything that had to be dropped and requires fixups
-should just be explained in the pr. The sooner this sees some -next, the
-better, I think.
-
----
-
-Applied to the vfs.ctime branch of the vfs/vfs.git tree.
-Patches in the vfs.ctime branch should appear in linux-next soon.
-
-Please report any outstanding bugs that were missed during review in a
-new review to the original patch series allowing us to drop it.
-
-It's encouraged to provide Acked-bys and Reviewed-bys even though the
-patch has now been applied. If possible patch trailers will be updated.
-
-Note that commit hashes shown below are subject to change due to rebase,
-trailer updates or similar. If in doubt, please check the listed branch.
-
-tree:   https://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs.git
-branch: vfs.ctime
-
-[01/86] fs: new accessor methods for atime and mtime
-        https://git.kernel.org/vfs/vfs/c/22f45fee808d
-[02/86] fs: convert core infrastructure to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/6ac95fb71485
-[03/86] spufs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/9953073d5f20
-[04/86] hypfs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/1d64bfe22112
-[05/86] android: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/a8a74b6b4f2c
-[06/86] char: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/671ffa0775a7
-[07/86] qib: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/ebd5458f3b52
-[08/86] ibmasm: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/1d4257d57a41
-[09/86] misc: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/d4bf8378b9cb
-[10/86] x86: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/070601b1e496
-[11/86] tty: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/5c9f26b87bed
-[12/86] function: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/092f46404245
-[13/86] legacy: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/5c51d80e51d0
-[14/86] usb: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/4707a33afd6f
-[15/86] 9p: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/20fc454b4493
-[16/86] adfs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/3e8d59046f6d
-[17/86] affs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/60d4d0d37086
-[18/86] afs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/6471772aa6fe
-[19/86] autofs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/3eaad981548b
-[20/86] befs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/21d0433caf69
-[21/86] bfs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/06e502c123a6
-[22/86] btrfs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/f62049d7838d
-[23/86] ceph: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/ac7750d84e38
-[24/86] coda: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/5c4bf2507baa
-[25/86] configfs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/3b930e187f16
-[26/86] cramfs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/bb0bf9d3bda8
-[27/86] debugfs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/7dc950e659d6
-[28/86] devpts: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/a1eb5c26d5a1
-[29/86] efivarfs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/17b5652aa824
-[30/86] efs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/a3cfbea29e7d
-[31/86] erofs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/2beccde96d66
-[32/86] exfat: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/522f3c42c9e7
-[33/86] ext2: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/07be81fce412
-[34/86] ext4: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/2ff285d78c4d
-[35/86] f2fs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/c495130561ae
-[36/86] fat: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/e57260ae3226
-[37/86] freevxfs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/a83513cd029e
-[38/86] fuse: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/5f1e57582b4e
-[39/86] gfs2: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/a5f1a9296668
-[40/86] hfs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/7ee8d53576e9
-[41/86] hfsplus: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/2179ad3569f6
-[42/86] hostfs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/c3e1be490207
-[43/86] hpfs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/e08a2ea26b41
-[44/86] hugetlbfs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/a9701db0ca64
-[45/86] isofs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/362d327da07e
-[46/86] jffs2: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/36a8a5a63218
-[47/86] jfs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/acd529413de5
-[48/86] kernfs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/05acde68936b
-[49/86] minix: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/34c1ca111ec1
-[50/86] nfs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/77e808456854
-[51/86] nfsd: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/a800ed7ebbbf
-[52/86] nilfs2: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/4ddc9518c2fa
-[53/86] ntfs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/0d15c2118b1a
-[54/86] ntfs3: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/82f8d5fde753
-[55/86] ocfs2: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/45251ebaca70
-[56/86] omfs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/e7c1ff814326
-[57/86] openpromfs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/cb62db1d3c61
-[58/86] orangefs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/68e257a49aed
-[59/86] overlayfs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/d482d98dc1bd
-[60/86] proc: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/8c8afe8a25fa
-[61/86] pstore: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/b0be548328a2
-[62/86] qnx4: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/c28589f2d838
-[63/86] qnx6: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/ae0f3d29e728
-[64/86] ramfs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/6315fd97a8fc
-[65/86] reiserfs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/8eceb9b75a5b
-[66/86] romfs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/6d3dd456da31
-[67/86] client: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/b14d4c14f51b
-[68/86] server: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/bec3d7ffcecd
-[69/86] squashfs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/d7d5ff75af52
-[70/86] sysv: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/39f012d8743e
-[71/86] tracefs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/22ada3856de8
-[72/86] ubifs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/af8b66e1d4b7
-[73/86] udf: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/1da45142f95a
-[74/86] ufs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/41c46d3bb9b3
-[75/86] vboxsf: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/cc36ec7935eb
-[76/86] xfs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/ee3be90b2ba7
-[77/86] zonefs: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/8c798cc16b17
-[78/86] linux: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/dd53b64b6f51
-[79/86] ipc: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/f132b3723b71
-[80/86] bpf: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/448a018f67a3
-[81/86] mm: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/b6f5b3d5ffc9
-[82/86] sunrpc: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/fc9db028b8d7
-[83/86] apparmor: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/794ef2a745ec
-[84/86] selinux: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/3d57ee3686d7
-[85/86] security: convert to new timestamp accessors
-        https://git.kernel.org/vfs/vfs/c/71f6d9ebaf43
-[86/86] fs: rename inode i_atime and i_mtime fields
-        https://git.kernel.org/vfs/vfs/c/fea0e8fc7829
-
-
-_______________________________________________
-Linux-ntfs-dev mailing list
-Linux-ntfs-dev@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev
+SGVsbG8sCgpXaGVuIHVzaW5nIEhlYWxlciB0byBmdXp6IHRoZSBsYXRlc3QgTGludXgga2VybmVs
+LCAgdGhlIGZvbGxvd2luZyBjcmFzaAp3YXMgdHJpZ2dlcmVkLgoKSEVBRCBjb21taXQ6IGYyOTEy
+MDllY2E1ZWJhMGI0NzA0ZmEwODMyYWY1N2IxMmRiYzFhMDIgKCAgTWVyZ2UgdGFnCiduZXQtNi42
+LXJjNScgb2YKZ2l0Oi8vZ2l0Lmtlcm5lbC5vcmcvcHViL3NjbS9saW51eC9rZXJuZWwvZ2l0L25l
+dGRldi9uZXTvvIkKZ2l0IHRyZWU6IHVwc3RyZWFtCgpNeSBsb2NhbCBMaW51eCByZXBvc2l0b3J5
+IGlzIGEgZmV3IGNvbW1pdHMgYmVoaW5kIHRoZSBtYWluIGJyYW5jaCwgc28KSSBwdWxsZWQgdGhl
+IGxhdGVzdCBicmFuY2ggYW5kIHZhbGlkYXRlZCB0aGUgY3Jhc2ggb24gaXQuIFRoZSBpc3N1ZQpz
+dGlsbCBwZXJzaXN0cy4KCmNvbnNvbGUgb3V0cHV0OgpodHRwczovL2RyaXZlLmdvb2dsZS5jb20v
+ZmlsZS9kLzFOZERYZWQwc0c5YUJOUFo5bXJpTXQ4OWw2WDVHZzVaTi92aWV3P3VzcD1kcml2ZV9s
+aW5rCmtlcm5lbCBjb25maWc6aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2ZpbGUvZC8xMXVlQnVa
+LTJ2T3ZRUkFIN3FsR2liNkpBQ3ZrMVdtSnEvdmlldz91c3A9ZHJpdmVfbGluawpDIHJlcHJvZHVj
+ZXI6aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2ZpbGUvZC8xU2R6b0huRUF5X0JSQ1JpR3NJeXht
+Y2s1NlNyS0RuOUgvdmlldz91c3A9ZHJpdmVfbGluawpTeXpsYW5nIHJlcHJvZHVjZXI6Cmh0dHBz
+Oi8vZHJpdmUuZ29vZ2xlLmNvbS9maWxlL2QvMWNGbktqZjJFOW1rby04TktnZVQ3WUJvTUlwdTNh
+aEt2L3ZpZXc/dXNwPWRyaXZlX2xpbmsKCklmIHlvdSBmaXggdGhpcyBpc3N1ZSwgcGxlYXNlIGFk
+ZCB0aGUgZm9sbG93aW5nIHRhZyB0byB0aGUgY29tbWl0OgpSZXBvcnRlZC1ieTogWWlrZWJhZXIg
+QWl6ZXppIDx5aWtlYmFlcjYxQGdtYWlsLmNvbT4KCj09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQpCVUc6IEtBU0FOOiBzbGFi
+LW91dC1vZi1ib3VuZHMgaW4gbnRmc19maWxsZGlyIGZzL250ZnMvZGlyLmM6MTAyMSBbaW5saW5l
+XQpCVUc6IEtBU0FOOiBzbGFiLW91dC1vZi1ib3VuZHMgaW4gbnRmc19yZWFkZGlyKzB4MTQ1Ny8w
+eDI5YTAgZnMvbnRmcy9kaXIuYzoxMjAwClJlYWQgb2Ygc2l6ZSAxIGF0IGFkZHIgZmZmZjg4ODA2
+MDk5ZGZmMSBieSB0YXNrIHN5ei1leGVjdXRvci4yLzE5MDEyCgpDUFU6IDIgUElEOiAxOTAxMiBD
+b21tOiBzeXotZXhlY3V0b3IuMiBOb3QgdGFpbnRlZCA2LjYuMC1yYzQtZ2YyOTEyMDllY2E1ZSAj
+NApIYXJkd2FyZSBuYW1lOiBRRU1VIFN0YW5kYXJkIFBDIChpNDQwRlggKyBQSUlYLCAxOTk2KSwg
+QklPUwpyZWwtMS4xMi4wLTU5LWdjOWJhNTI3NmUzMjEtcHJlYnVpbHQucWVtdS5vcmcgMDQvMDEv
+MjAxNApDYWxsIFRyYWNlOgogPFRBU0s+CiBfX2R1bXBfc3RhY2sgbGliL2R1bXBfc3RhY2suYzo4
+OCBbaW5saW5lXQogZHVtcF9zdGFja19sdmwrMHhkNS8weDE1MCBsaWIvZHVtcF9zdGFjay5jOjEw
+NgogcHJpbnRfYWRkcmVzc19kZXNjcmlwdGlvbiBtbS9rYXNhbi9yZXBvcnQuYzozNjQgW2lubGlu
+ZV0KIHByaW50X3JlcG9ydCsweGMxLzB4NWUwIG1tL2thc2FuL3JlcG9ydC5jOjQ3NQoga2FzYW5f
+cmVwb3J0KzB4YmEvMHhmMCBtbS9rYXNhbi9yZXBvcnQuYzo1ODgKIG50ZnNfZmlsbGRpciBmcy9u
+dGZzL2Rpci5jOjEwMjEgW2lubGluZV0KIG50ZnNfcmVhZGRpcisweDE0NTcvMHgyOWEwIGZzL250
+ZnMvZGlyLmM6MTIwMAogd3JhcF9kaXJlY3RvcnlfaXRlcmF0b3IrMHhhMS8weGUwIGZzL3JlYWRk
+aXIuYzo2NwogaXRlcmF0ZV9kaXIrMHgxZWEvMHg2MDAgZnMvcmVhZGRpci5jOjEwNgogX19kb19z
+eXNfZ2V0ZGVudHMgZnMvcmVhZGRpci5jOjMyMiBbaW5saW5lXQogX19zZV9zeXNfZ2V0ZGVudHMg
+ZnMvcmVhZGRpci5jOjMwNyBbaW5saW5lXQogX194NjRfc3lzX2dldGRlbnRzKzB4MTRhLzB4MmQw
+IGZzL3JlYWRkaXIuYzozMDcKIGRvX3N5c2NhbGxfeDY0IGFyY2gveDg2L2VudHJ5L2NvbW1vbi5j
+OjUwIFtpbmxpbmVdCiBkb19zeXNjYWxsXzY0KzB4MzUvMHhiMCBhcmNoL3g4Ni9lbnRyeS9jb21t
+b24uYzo4MAogZW50cnlfU1lTQ0FMTF82NF9hZnRlcl9od2ZyYW1lKzB4NjMvMHhjZApSSVA6IDAw
+MzM6MHg3ZjU0MTc4OGVjZWQKQ29kZTogYzMgZTggOTcgMmIgMDAgMDAgMGYgMWYgODAgMDAgMDAg
+MDAgMDAgZjMgMGYgMWUgZmEgNDggODkgZjggNDgKODkgZjcgNDggODkgZDYgNDggODkgY2EgNGQg
+ODkgYzIgNGQgODkgYzggNGMgOGIgNGMgMjQgMDggMGYgMDUgPDQ4PiAzZAowMSBmMCBmZiBmZiA3
+MyAwMSBjMyA0OCBjNyBjMSBiMCBmZiBmZiBmZiBmNyBkOCA2NCA4OSAwMSA0OApSU1A6IDAwMmI6
+MDAwMDdmNTQxODU4ZDAyOCBFRkxBR1M6IDAwMDAwMjQ2IE9SSUdfUkFYOiAwMDAwMDAwMDAwMDAw
+MDRlClJBWDogZmZmZmZmZmZmZmZmZmZkYSBSQlg6IDAwMDA3ZjU0MTc5Y2JmODAgUkNYOiAwMDAw
+N2Y1NDE3ODhlY2VkClJEWDogMDAwMDAwMDAwMDAwMDA0MCBSU0k6IDAwMDAwMDAwMjAwMDE2NDAg
+UkRJOiAwMDAwMDAwMDAwMDAwMDAzClJCUDogMDAwMDdmNTQxNzhmMDRhNiBSMDg6IDAwMDAwMDAw
+MDAwMDAwMDAgUjA5OiAwMDAwMDAwMDAwMDAwMDAwClIxMDogMDAwMDAwMDAwMDAwMDAwMCBSMTE6
+IDAwMDAwMDAwMDAwMDAyNDYgUjEyOiAwMDAwMDAwMDAwMDAwMDAwClIxMzogMDAwMDAwMDAwMDAw
+MDAwYiBSMTQ6IDAwMDA3ZjU0MTc5Y2JmODAgUjE1OiAwMDAwN2Y1NDE4NTZkMDAwCiA8L1RBU0s+
+CgpBbGxvY2F0ZWQgYnkgdGFzayAxOTAxMjoKIGthc2FuX3NhdmVfc3RhY2srMHgxZS8weDQwIG1t
+L2thc2FuL2NvbW1vbi5jOjQ1CiBrYXNhbl9zZXRfdHJhY2srMHgyMS8weDMwIG1tL2thc2FuL2Nv
+bW1vbi5jOjUyCiBfX19fa2FzYW5fa21hbGxvYyBtbS9rYXNhbi9jb21tb24uYzozNzQgW2lubGlu
+ZV0KIF9fX19rYXNhbl9rbWFsbG9jIG1tL2thc2FuL2NvbW1vbi5jOjMzMyBbaW5saW5lXQogX19r
+YXNhbl9rbWFsbG9jKzB4OWUvMHhhMCBtbS9rYXNhbi9jb21tb24uYzozODMKIGthc2FuX2ttYWxs
+b2MgaW5jbHVkZS9saW51eC9rYXNhbi5oOjE5OCBbaW5saW5lXQogX19kb19rbWFsbG9jX25vZGUg
+bW0vc2xhYl9jb21tb24uYzoxMDIzIFtpbmxpbmVdCiBfX2ttYWxsb2MrMHg1ZC8weDE5MCBtbS9z
+bGFiX2NvbW1vbi5jOjEwMzYKIGttYWxsb2MgaW5jbHVkZS9saW51eC9zbGFiLmg6NjAzIFtpbmxp
+bmVdCiBudGZzX3JlYWRkaXIrMHgxMTgwLzB4MjlhMCBmcy9udGZzL2Rpci5jOjExNjIKIHdyYXBf
+ZGlyZWN0b3J5X2l0ZXJhdG9yKzB4YTEvMHhlMCBmcy9yZWFkZGlyLmM6NjcKIGl0ZXJhdGVfZGly
+KzB4MWVhLzB4NjAwIGZzL3JlYWRkaXIuYzoxMDYKIF9fZG9fc3lzX2dldGRlbnRzIGZzL3JlYWRk
+aXIuYzozMjIgW2lubGluZV0KIF9fc2Vfc3lzX2dldGRlbnRzIGZzL3JlYWRkaXIuYzozMDcgW2lu
+bGluZV0KIF9feDY0X3N5c19nZXRkZW50cysweDE0YS8weDJkMCBmcy9yZWFkZGlyLmM6MzA3CiBk
+b19zeXNjYWxsX3g2NCBhcmNoL3g4Ni9lbnRyeS9jb21tb24uYzo1MCBbaW5saW5lXQogZG9fc3lz
+Y2FsbF82NCsweDM1LzB4YjAgYXJjaC94ODYvZW50cnkvY29tbW9uLmM6ODAKIGVudHJ5X1NZU0NB
+TExfNjRfYWZ0ZXJfaHdmcmFtZSsweDYzLzB4Y2QKClRoZSBidWdneSBhZGRyZXNzIGJlbG9uZ3Mg
+dG8gdGhlIG9iamVjdCBhdCBmZmZmODg4MDYwOTlkZjgwCiB3aGljaCBiZWxvbmdzIHRvIHRoZSBj
+YWNoZSBrbWFsbG9jLTY0IG9mIHNpemUgNjQKVGhlIGJ1Z2d5IGFkZHJlc3MgaXMgbG9jYXRlZCA1
+NyBieXRlcyB0byB0aGUgcmlnaHQgb2YKIGFsbG9jYXRlZCA1Ni1ieXRlIHJlZ2lvbiBbZmZmZjg4
+ODA2MDk5ZGY4MCwgZmZmZjg4ODA2MDk5ZGZiOCkKClRoZSBidWdneSBhZGRyZXNzIGJlbG9uZ3Mg
+dG8gdGhlIHBoeXNpY2FsIHBhZ2U6CnBhZ2U6ZmZmZmVhMDAwMTgyNjc0MCByZWZjb3VudDoxIG1h
+cGNvdW50OjAgbWFwcGluZzowMDAwMDAwMDAwMDAwMDAwCmluZGV4OjB4MCBwZm46MHg2MDk5ZApm
+bGFnczogMHhmZmYwMDAwMDAwMDgwMChzbGFifG5vZGU9MHx6b25lPTF8bGFzdGNwdXBpZD0weDdm
+ZikKcGFnZV90eXBlOiAweGZmZmZmZmZmKCkKcmF3OiAwMGZmZjAwMDAwMDAwODAwIGZmZmY4ODgw
+MTE0NDI2NDAgZmZmZmVhMDAwMDU3NjkwMCBkZWFkMDAwMDAwMDAwMDA0CnJhdzogMDAwMDAwMDAw
+MDAwMDAwMCAwMDAwMDAwMDgwMjAwMDIwIDAwMDAwMDAxZmZmZmZmZmYgMDAwMDAwMDAwMDAwMDAw
+MApwYWdlIGR1bXBlZCBiZWNhdXNlOiBrYXNhbjogYmFkIGFjY2VzcyBkZXRlY3RlZApwYWdlX293
+bmVyIHRyYWNrcyB0aGUgcGFnZSBhcyBhbGxvY2F0ZWQKcGFnZSBsYXN0IGFsbG9jYXRlZCB2aWEg
+b3JkZXIgMCwgbWlncmF0ZXR5cGUgVW5tb3ZhYmxlLCBnZnBfbWFzawoweDEyY2MwKEdGUF9LRVJO
+RUx8X19HRlBfTk9XQVJOfF9fR0ZQX05PUkVUUlkpLCBwaWQgODA5MCwgdGdpZCA4MDkwCihzeXot
+ZXhlY3V0b3IuMiksIHRzIDI0MDk4MTYzMDk4NywgZnJlZV90cyAwCiBwcmVwX25ld19wYWdlIG1t
+L3BhZ2VfYWxsb2MuYzoxNTQzIFtpbmxpbmVdCiBnZXRfcGFnZV9mcm9tX2ZyZWVsaXN0KzB4ZjA5
+LzB4MmM1MCBtbS9wYWdlX2FsbG9jLmM6MzE3MAogX19hbGxvY19wYWdlcysweDFjNy8weDQ5MCBt
+bS9wYWdlX2FsbG9jLmM6NDQyNgogYWxsb2NfcGFnZXMrMHgxYTYvMHgyNzAgbW0vbWVtcG9saWN5
+LmM6MjI5NwogYWxsb2Nfc2xhYl9wYWdlIG1tL3NsdWIuYzoxODcwIFtpbmxpbmVdCiBhbGxvY2F0
+ZV9zbGFiKzB4MjYxLzB4MzkwIG1tL3NsdWIuYzoyMDE3CiBuZXdfc2xhYiBtbS9zbHViLmM6MjA3
+MCBbaW5saW5lXQogX19fc2xhYl9hbGxvYysweGJkYS8weDE1ZTAgbW0vc2x1Yi5jOjMyMjMKIF9f
+c2xhYl9hbGxvYy5jb25zdHByb3AuMCsweDU2LzB4YTAgbW0vc2x1Yi5jOjMzMjIKIF9fc2xhYl9h
+bGxvY19ub2RlIG1tL3NsdWIuYzozMzc1IFtpbmxpbmVdCiBzbGFiX2FsbG9jX25vZGUgbW0vc2x1
+Yi5jOjM0NjggW2lubGluZV0KIF9fa21lbV9jYWNoZV9hbGxvY19ub2RlKzB4MTM2LzB4MzQwIG1t
+L3NsdWIuYzozNTE3CiBrbWFsbG9jX3RyYWNlKzB4MjIvMHhkMCBtbS9zbGFiX2NvbW1vbi5jOjEx
+MTQKIGttYWxsb2MgaW5jbHVkZS9saW51eC9zbGFiLmg6NTk5IFtpbmxpbmVdCiBremFsbG9jIGlu
+Y2x1ZGUvbGludXgvc2xhYi5oOjcyMCBbaW5saW5lXQogc25tcDZfYWxsb2NfZGV2IG5ldC9pcHY2
+L2FkZHJjb25mLmM6MzUwIFtpbmxpbmVdCiBpcHY2X2FkZF9kZXYrMHg1MzMvMHgxM2IwIG5ldC9p
+cHY2L2FkZHJjb25mLmM6NDA0CiBhZGRyY29uZl9ub3RpZnkrMHg3NTMvMHgxOTYwIG5ldC9pcHY2
+L2FkZHJjb25mLmM6MzU4OQogbm90aWZpZXJfY2FsbF9jaGFpbisweGI2LzB4M2MwIGtlcm5lbC9u
+b3RpZmllci5jOjkzCiBjYWxsX25ldGRldmljZV9ub3RpZmllcnNfaW5mbysweGI1LzB4MTMwIG5l
+dC9jb3JlL2Rldi5jOjE5NzAKIGNhbGxfbmV0ZGV2aWNlX25vdGlmaWVyc19leHRhY2sgbmV0L2Nv
+cmUvZGV2LmM6MjAwOCBbaW5saW5lXQogY2FsbF9uZXRkZXZpY2Vfbm90aWZpZXJzIG5ldC9jb3Jl
+L2Rldi5jOjIwMjIgW2lubGluZV0KIHJlZ2lzdGVyX25ldGRldmljZSsweGYyMy8weDE0YzAgbmV0
+L2NvcmUvZGV2LmM6MTAxNjkKIHZldGhfbmV3bGluaysweDMxYy8weDk4MCBkcml2ZXJzL25ldC92
+ZXRoLmM6MTkwOAogcnRubF9uZXdsaW5rX2NyZWF0ZSBuZXQvY29yZS9ydG5ldGxpbmsuYzozNDg1
+IFtpbmxpbmVdCiBfX3J0bmxfbmV3bGluaysweDExMGEvMHgxOGUwIG5ldC9jb3JlL3J0bmV0bGlu
+ay5jOjM3MDUKIHJ0bmxfbmV3bGluaysweDY0LzB4YTAgbmV0L2NvcmUvcnRuZXRsaW5rLmM6Mzcx
+OApwYWdlX293bmVyIGZyZWUgc3RhY2sgdHJhY2UgbWlzc2luZwoKTWVtb3J5IHN0YXRlIGFyb3Vu
+ZCB0aGUgYnVnZ3kgYWRkcmVzczoKIGZmZmY4ODgwNjA5OWRlODA6IDAwIDAwIDAwIDAwIDAwIDAw
+IGZjIGZjIGZjIGZjIGZjIGZjIGZjIGZjIGZjIGZjCiBmZmZmODg4MDYwOTlkZjAwOiAwMCAwMCAw
+MCAwMCAwMCAwMCBmYyBmYyBmYyBmYyBmYyBmYyBmYyBmYyBmYyBmYwo+ZmZmZjg4ODA2MDk5ZGY4
+MDogMDAgMDAgMDAgMDAgMDAgMDAgMDAgZmMgZmMgZmMgZmMgZmMgZmMgZmMgZmMgZmMKICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIF4K
+IGZmZmY4ODgwNjA5OWUwMDA6IDAwIDAwIDAwIDAwIDAwIDAwIDAwIDAwIDAwIDAwIDAwIDAwIDAw
+IDAwIDAwIDAwCiBmZmZmODg4MDYwOTllMDgwOiAwMCAwMCAwMCAwMCAwMCBmYyBmYyBmYyBmYyBm
+YyBmYyBmYyBmYyAwMCAwMCAwMAo9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KCgpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpMaW51eC1udGZzLWRldiBtYWlsaW5nIGxpc3QKTGludXgt
+bnRmcy1kZXZAbGlzdHMuc291cmNlZm9yZ2UubmV0Cmh0dHBzOi8vbGlzdHMuc291cmNlZm9yZ2Uu
+bmV0L2xpc3RzL2xpc3RpbmZvL2xpbnV4LW50ZnMtZGV2Cg==
