@@ -2,28 +2,28 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 815977CB45D
-	for <lists+linux-ntfs-dev@lfdr.de>; Mon, 16 Oct 2023 22:13:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B4C87CB43A
+	for <lists+linux-ntfs-dev@lfdr.de>; Mon, 16 Oct 2023 22:13:03 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1qsTxg-0006au-V6;
-	Mon, 16 Oct 2023 20:13:13 +0000
+	id 1qsTxT-0006SA-RY;
+	Mon, 16 Oct 2023 20:13:00 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <willy@infradead.org>) id 1qsTwP-0006QD-1Y
+ (envelope-from <willy@infradead.org>) id 1qsTwF-00031K-H5
  for linux-ntfs-dev@lists.sourceforge.net;
- Mon, 16 Oct 2023 20:11:53 +0000
+ Mon, 16 Oct 2023 20:11:42 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
  In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=1MRD3/MDyXo+/XqOlq/B5TtIgREACynS4klWCDOin7o=; b=H0HO72UjGWXclY/XsDTQC89v1L
- pESW6ZnevbeX2+gjhVV4TMdCjCBLZwtktIJxnF9rtN7pnhtje4yyml++Do/XCUfAqezvBYVObvyj5
- iGXk99jEYz7IVDRGIhuXkdKpROkHoB3sCi9OT2sXB577kVqlfPdKIml9snpti97It7CE=;
+ bh=hkFmO69yPLA3lrHUTcCDRb/XpyIM9MLoIhqVDeYMT6U=; b=a517dry13kopN3W/zojM/2g1ZZ
+ H454PSyZMjBFa1PWi9ktuj1zTrMggIhsJyXr6y3SJoxuxcafsrdj5aKatI/bCTw1dZLBdXb7foKgT
+ z023glPIWctDElCOLpOiicWPyv9MYm6mHAEL3vMIj75OxnuNv+QE3fk+n5ReXM3Of2Gk=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -31,46 +31,48 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=1MRD3/MDyXo+/XqOlq/B5TtIgREACynS4klWCDOin7o=; b=P5slyyBIWr55jBewamNLpQEn2r
- 2sEz7yggbkoHicK8DZL67OqDjIax8XBdjY5UtW5SHGUoJJZ5aXu5OD37GHdGn+4DSSarpOylhjgNd
- uNwYdruciZehiD9Bwd3egIMug6Nvt+18YWA2pjpzRsrUmNRFJ6Y8S4pGEXzTFoO0ZLgc=;
-Received: from casper.infradead.org ([90.155.50.34])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ bh=hkFmO69yPLA3lrHUTcCDRb/XpyIM9MLoIhqVDeYMT6U=; b=QZnyElWu1IHdeK8oF0YvWKtL38
+ OatsGpuiNueSlsQMoj4nn3heIw93YqfGMIPjES5lfjvHq0kMUukx68KTTCH+TZVNT2v3+wdoqZXu2
+ 8CASTg55WEdwJ04rsA+/UktDk4+UeDF/tpCRv2sXDGf88IkhaljRKWaK79gXaotdpv5M=;
+Received: from [90.155.50.34] (helo=casper.infradead.org)
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1qsTwE-00063t-1R for linux-ntfs-dev@lists.sourceforge.net;
- Mon, 16 Oct 2023 20:11:53 +0000
+ id 1qsTwB-00H4wd-DU for linux-ntfs-dev@lists.sourceforge.net;
+ Mon, 16 Oct 2023 20:11:42 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
  References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
  Content-Type:Content-ID:Content-Description;
- bh=1MRD3/MDyXo+/XqOlq/B5TtIgREACynS4klWCDOin7o=; b=F6beEH1hsFbpnEX6mH5J+/m/Qg
- WzIDy18lFCUyXAfnl6LKWrxfsN1CiVBS7YS8hD7F75LWuAQhlPSvLtE7Vf1rCMud58l8hopJpm5X3
- XmfJaHI5B0GjIw1LoCheBWV5ZliP1tGc0zB/95whyQxPLSOJv3StefjuPAMOv6BRoI2/QbR2sVj69
- 5ZwdtrWaAnQYpANja0fycQcWPpgPSsiT8RR9tFk1uU6UyLYXe6ev4C46Ku9N33dOJs2gi/El0sXPM
- QyzxkoGusiCPgWiddmYkFKFpavqEWcra1cT6cu8NY5yGvyOH3EMQ8VodshzLkg3CrJrb3faXplMbU
- ne7P8hjQ==;
+ bh=hkFmO69yPLA3lrHUTcCDRb/XpyIM9MLoIhqVDeYMT6U=; b=dyibn8wk9YnVZbYsz3Lm7UaEUX
+ 3cvmVMuAX8fTYmL+3PgVglDlVv5YZOzlVEwnLwnLGPDbS7yvvcDCQt0sbhvRLALYwrvW3IPHd8fj8
+ YN2jxmzcOTAZt/CDrVVxW8+E7sp6Hi8ApI1CoOQA7MqtpadNHUzSaqo0MQWtiT2PfUd6MlheSZfBF
+ 21aGISlFg5iTBUfA6Dg2JzDKM7gslD0mYyzgSZj2Deq+c+UpmxTgF6sKufuZQNxuhzsVoqBxqGO6I
+ N7HPIl9G0hTKsqYFq8mJzQPJ/JOmdKn7rEvcF0pnmtDESno9U7x2sImjw7qPiLdUFeqjS13rH+rYQ
+ oqNJZ3ZQ==;
 Received: from willy by casper.infradead.org with local (Exim 4.94.2 #2 (Red
- Hat Linux)) id 1qsTvp-0085av-GT; Mon, 16 Oct 2023 20:11:17 +0000
+ Hat Linux)) id 1qsTvp-0085b4-KM; Mon, 16 Oct 2023 20:11:17 +0000
 From: "Matthew Wilcox (Oracle)" <willy@infradead.org>
 To: Andrew Morton <akpm@linux-foundation.org>
-Date: Mon, 16 Oct 2023 21:10:56 +0100
-Message-Id: <20231016201114.1928083-10-willy@infradead.org>
+Date: Mon, 16 Oct 2023 21:10:57 +0100
+Message-Id: <20231016201114.1928083-11-willy@infradead.org>
 X-Mailer: git-send-email 2.37.1
 In-Reply-To: <20231016201114.1928083-1-willy@infradead.org>
 References: <20231016201114.1928083-1-willy@infradead.org>
 MIME-Version: 1.0
-X-Spam-Score: -0.2 (/)
+X-Spam-Score: 1.1 (+)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: Remove several folio->page->folio conversions. Signed-off-by:
- Matthew Wilcox (Oracle) <willy@infradead.org> Reviewed-by: Andreas Gruenbacher
- <agruenba@redhat.com> --- fs/gfs2/quota.c | 37 +++++++++++++++++++ 1 file
- changed, 19 in [...] 
- Content analysis details:   (-0.2 points, 6.0 required)
+ Content preview: Remove a number of folio->page->folio conversions.
+ Signed-off-by:
+ Matthew Wilcox (Oracle) <willy@infradead.org> Acked-by: Ryusuke Konishi
+ <konishi.ryusuke@gmail.com>
+ --- fs/nilfs2/mdt.c | 20 +++++++++++--------- 1 file changed, 11 insertions(+),
+ 9 del [...] 
+ Content analysis details:   (1.1 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  0.0 SPF_NONE               SPF: sender does not publish an SPF Record
@@ -82,10 +84,11 @@ X-Spam-Report: Spam detection software,
  envelope-from domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
-X-Headers-End: 1qsTwE-00063t-1R
+ 1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
+X-Headers-End: 1qsTwB-00H4wd-DU
 X-Mailman-Approved-At: Mon, 16 Oct 2023 20:12:56 +0000
-Subject: [Linux-ntfs-dev] [PATCH v2 09/27] gfs2: Convert
- gfs2_write_buf_to_page() to use a folio
+Subject: [Linux-ntfs-dev] [PATCH v2 10/27] nilfs2: Convert
+ nilfs_mdt_freeze_buffer to use a folio
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -99,97 +102,63 @@ List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
 Cc: Pankaj Raghav <p.raghav@samsung.com>, linux-nilfs@vger.kernel.org,
- Andreas Gruenbacher <agruenba@redhat.com>,
  linux-ntfs-dev@lists.sourceforge.net, linux-ext4@vger.kernel.org,
  reiserfs-devel@vger.kernel.org,
  "Matthew Wilcox \(Oracle\)" <willy@infradead.org>, gfs2@lists.linux.dev,
  ocfs2-devel@lists.linux.dev, linux-fsdevel@vger.kernel.org,
- ntfs3@lists.linux.dev
+ ntfs3@lists.linux.dev, Ryusuke Konishi <konishi.ryusuke@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-Remove several folio->page->folio conversions.
+Remove a number of folio->page->folio conversions.
 
 Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org>
-Reviewed-by: Andreas Gruenbacher <agruenba@redhat.com>
+Acked-by: Ryusuke Konishi <konishi.ryusuke@gmail.com>
 ---
- fs/gfs2/quota.c | 37 +++++++++++++++++++------------------
- 1 file changed, 19 insertions(+), 18 deletions(-)
+ fs/nilfs2/mdt.c | 20 +++++++++++---------
+ 1 file changed, 11 insertions(+), 9 deletions(-)
 
-diff --git a/fs/gfs2/quota.c b/fs/gfs2/quota.c
-index 6affd261a754..e45654ee4f4d 100644
---- a/fs/gfs2/quota.c
-+++ b/fs/gfs2/quota.c
-@@ -760,7 +760,7 @@ static int gfs2_write_buf_to_page(struct gfs2_sbd *sdp, unsigned long index,
- 	struct gfs2_inode *ip = GFS2_I(sdp->sd_quota_inode);
- 	struct inode *inode = &ip->i_inode;
- 	struct address_space *mapping = inode->i_mapping;
+diff --git a/fs/nilfs2/mdt.c b/fs/nilfs2/mdt.c
+index 19c8158605ed..db2260d6e44d 100644
+--- a/fs/nilfs2/mdt.c
++++ b/fs/nilfs2/mdt.c
+@@ -560,17 +560,19 @@ int nilfs_mdt_freeze_buffer(struct inode *inode, struct buffer_head *bh)
+ {
+ 	struct nilfs_shadow_map *shadow = NILFS_MDT(inode)->mi_shadow;
+ 	struct buffer_head *bh_frozen;
 -	struct page *page;
 +	struct folio *folio;
- 	struct buffer_head *bh;
- 	u64 blk;
- 	unsigned bsize = sdp->sd_sb.sb_bsize, bnum = 0, boff = 0;
-@@ -769,15 +769,15 @@ static int gfs2_write_buf_to_page(struct gfs2_sbd *sdp, unsigned long index,
- 	blk = index << (PAGE_SHIFT - sdp->sd_sb.sb_bsize_shift);
- 	boff = off % bsize;
+ 	int blkbits = inode->i_blkbits;
  
--	page = grab_cache_page(mapping, index);
+-	page = grab_cache_page(shadow->inode->i_mapping, bh->b_folio->index);
 -	if (!page)
 -		return -ENOMEM;
--	if (!page_has_buffers(page))
--		create_empty_buffers(page, bsize, 0);
-+	folio = filemap_grab_folio(mapping, index);
++	folio = filemap_grab_folio(shadow->inode->i_mapping,
++			bh->b_folio->index);
 +	if (IS_ERR(folio))
 +		return PTR_ERR(folio);
-+	bh = folio_buffers(folio);
-+	if (!bh)
-+		bh = folio_create_empty_buffers(folio, bsize, 0);
  
--	bh = page_buffers(page);
--	for(;;) {
--		/* Find the beginning block within the page */
-+	for (;;) {
-+		/* Find the beginning block within the folio */
- 		if (pg_off >= ((bnum * bsize) + bsize)) {
- 			bh = bh->b_this_page;
- 			bnum++;
-@@ -790,9 +790,10 @@ static int gfs2_write_buf_to_page(struct gfs2_sbd *sdp, unsigned long index,
- 				goto unlock_out;
- 			/* If it's a newly allocated disk block, zero it */
- 			if (buffer_new(bh))
--				zero_user(page, bnum * bsize, bh->b_size);
-+				folio_zero_range(folio, bnum * bsize,
-+						bh->b_size);
- 		}
--		if (PageUptodate(page))
-+		if (folio_test_uptodate(folio))
- 			set_buffer_uptodate(bh);
- 		if (bh_read(bh, REQ_META | REQ_PRIO) < 0)
- 			goto unlock_out;
-@@ -808,17 +809,17 @@ static int gfs2_write_buf_to_page(struct gfs2_sbd *sdp, unsigned long index,
- 		break;
+-	if (!page_has_buffers(page))
+-		create_empty_buffers(page, 1 << blkbits, 0);
++	bh_frozen = folio_buffers(folio);
++	if (!bh_frozen)
++		bh_frozen = folio_create_empty_buffers(folio, 1 << blkbits, 0);
+ 
+-	bh_frozen = nilfs_page_get_nth_block(page, bh_offset(bh) >> blkbits);
++	bh_frozen = get_nth_bh(bh_frozen, bh_offset(bh) >> blkbits);
+ 
+ 	if (!buffer_uptodate(bh_frozen))
+ 		nilfs_copy_buffer(bh_frozen, bh);
+@@ -582,8 +584,8 @@ int nilfs_mdt_freeze_buffer(struct inode *inode, struct buffer_head *bh)
+ 		brelse(bh_frozen); /* already frozen */
  	}
  
--	/* Write to the page, now that we have setup the buffer(s) */
--	memcpy_to_page(page, off, buf, bytes);
--	flush_dcache_page(page);
 -	unlock_page(page);
 -	put_page(page);
-+	/* Write to the folio, now that we have setup the buffer(s) */
-+	memcpy_to_folio(folio, off, buf, bytes);
-+	flush_dcache_folio(folio);
 +	folio_unlock(folio);
 +	folio_put(folio);
- 
  	return 0;
- 
- unlock_out:
--	unlock_page(page);
--	put_page(page);
-+	folio_unlock(folio);
-+	folio_put(folio);
- 	return -EIO;
  }
  
 -- 
