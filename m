@@ -2,17 +2,17 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C53D7CB451
-	for <lists+linux-ntfs-dev@lfdr.de>; Mon, 16 Oct 2023 22:13:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 563C47CB449
+	for <lists+linux-ntfs-dev@lfdr.de>; Mon, 16 Oct 2023 22:13:09 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1qsTxd-0006Wq-NN;
-	Mon, 16 Oct 2023 20:13:10 +0000
+	id 1qsTxV-0006UA-TZ;
+	Mon, 16 Oct 2023 20:13:02 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-3.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <willy@infradead.org>) id 1qsTwG-0006VG-K5
+ (envelope-from <willy@infradead.org>) id 1qsTwF-00041i-NW
  for linux-ntfs-dev@lists.sourceforge.net;
  Mon, 16 Oct 2023 20:11:43 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -21,9 +21,9 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=oWqn2JXFKP4TLO9EIFStc+ZKIjdbaY7Lskcv1xTeMOQ=; b=CF/1r1aLlwbzXZyHJOptW5mYPE
- z6SLexyz7F7Ps8quteNnV2yW4oz+2Lw350uYiu3vVEZ5SjP25qhXsZiesG627JiDiGg1d0gngirsw
- j+LK6c2QM2fFwO6T/W+3WL5j4/Pv0CoFKGQthw7uCy6n3PmYFKHt9rkvMVAETsRe6TgA=;
+ bh=mUIK9nBwhAI9Ryy/+0vVqkN8LwxEIln+yTemaK9zJBo=; b=f5byGHISLyKjlT/B2iO+Iwt3QM
+ OCWzturB2QyJIlpz4RKK85IKMamrC++BP8ecjecFygq27F94k5xHrBBn8MDcJ02P0kWW+VDetDKJC
+ DqqGyoHa62GsENItDhb4DpV54Lz5y0iFossNolWPozdtIuvrj86irujtjJ5kKgxV9O/M=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -31,30 +31,30 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=oWqn2JXFKP4TLO9EIFStc+ZKIjdbaY7Lskcv1xTeMOQ=; b=PabIUI+yRoUdJG0tCeXejsnW+Q
- 6ZIW+0fofGKcfrNoHpgWIKpltA86ix9nVWTE85cpLZjxgFpSFmvWTRD/6FUY6ZE25mLr+0Q/5Ztmp
- PvmhSZbn5QrsgH84MrA4NX/hrVN8VxwPN3qpj/MbRwymmu/WDYadtVLLtdfXFSkl4r24=;
+ bh=mUIK9nBwhAI9Ryy/+0vVqkN8LwxEIln+yTemaK9zJBo=; b=YEVU8FATVifE4lV/q2UZXfxmFO
+ 9+vH1IEjw6gPoUaDA7a6UHHAl0jrty1s2PvsZ8R5v8HTQlWn0wFsnLYASH/VjhVC/GryoXgzOi9et
+ Skp6kaqAJZQpF1GFJVHhEHSZ5jaAqNwsBdGZTwiAn4nV6pIWAQMB/kiC+RGkhkNtwWKI=;
 Received: from [90.155.50.34] (helo=casper.infradead.org)
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1qsTwC-00H4wh-1R for linux-ntfs-dev@lists.sourceforge.net;
+ id 1qsTwC-00H4wk-4D for linux-ntfs-dev@lists.sourceforge.net;
  Mon, 16 Oct 2023 20:11:43 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
  References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
  Content-Type:Content-ID:Content-Description;
- bh=oWqn2JXFKP4TLO9EIFStc+ZKIjdbaY7Lskcv1xTeMOQ=; b=XgF2LHYyFYj9Silu4DTI6Jb+wI
- 7S9nhoWN66LOn+Rfb6K+sBhOfU3VhpvXHa9P8+zTX5j0KmQEeTSGHNCREGJGaYMSkVAnDWmMEn6C5
- +Mt13RnLUw55kRTGG1PaECz0gzT+9tpmxPPsasOHuo2D2zkicFr5Tfelmpc0wm0F6/B6pMZcSgs+p
- JYPw5sIxZOepG9MEVyJ+BRmQBv9YNrAsraxb1RoeKPegGVnd7yx6WtPkx7UO8K+VcG6Cqlg9pnyUw
- 3C86CPWTo1X2bVzt0tMFwzFJbqQfzyfRyLWDvcDtJH4MbsUbcq7l1pkTnRjut2d5RsPHXxhdDpDJ6
- HvEgR2lg==;
+ bh=mUIK9nBwhAI9Ryy/+0vVqkN8LwxEIln+yTemaK9zJBo=; b=B+GlRioYNmeYvG4yzAvGbAV781
+ F+G7VQqsop6vEVTkB2N/9IRAC+b3I9QGtXyU3FDR6O7Op1I7/FV5sir1YuPG8ox133s3C6PYNc+Fu
+ 2TS1jzq3LSyq29zz12aDl+3LZfQS++8IkDcNOo1IznSF+6OigiahHw8yFL7Zwg3zZz6YuWDaGiOPJ
+ DHg/Qy6Nq/Ajn9BVTw7QpDWYDJRi8Ev03+h9K1z4pGFqvUwuJFy08imY/iFoWk9PyLlasGh+5/226
+ +dfNLVu37Js+UunnA87mo1Jg6qmIlj8ST7V1xEpHcBDhQ1i00gGkiy8nxNjkqAFUM6nFeC4tMR3+M
+ QIAWS5bQ==;
 Received: from willy by casper.infradead.org with local (Exim 4.94.2 #2 (Red
- Hat Linux)) id 1qsTvr-0085cs-JA; Mon, 16 Oct 2023 20:11:19 +0000
+ Hat Linux)) id 1qsTvr-0085d0-Ne; Mon, 16 Oct 2023 20:11:19 +0000
 From: "Matthew Wilcox (Oracle)" <willy@infradead.org>
 To: Andrew Morton <akpm@linux-foundation.org>
-Date: Mon, 16 Oct 2023 21:11:11 +0100
-Message-Id: <20231016201114.1928083-25-willy@infradead.org>
+Date: Mon, 16 Oct 2023 21:11:12 +0100
+Message-Id: <20231016201114.1928083-26-willy@infradead.org>
 X-Mailer: git-send-email 2.37.1
 In-Reply-To: <20231016201114.1928083-1-willy@infradead.org>
 References: <20231016201114.1928083-1-willy@infradead.org>
@@ -66,11 +66,11 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Switch to the folio APIs,
- saving one folio->page->folio conversion.
- Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org> ---
- fs/ufs/inode.c
- | 25 ++++++++++++ 1 file changed, 12 insertions(+), 13 deletions(-) 
+ Content preview:  Convert the locked_page argument to a folio, then use folios
+ throughout. Saves three hidden calls to compound_head(). Signed-off-by:
+ Matthew
+ Wilcox (Oracle) <willy@infradead.org> --- fs/ufs/balloc.c | 20 +++++++++
+ 1 file changed, 9 insertions(+), 11 deletions(-) 
  Content analysis details:   (1.1 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -84,10 +84,10 @@ X-Spam-Report: Spam detection software,
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-X-Headers-End: 1qsTwC-00H4wh-1R
+X-Headers-End: 1qsTwC-00H4wk-4D
 X-Mailman-Approved-At: Mon, 16 Oct 2023 20:12:56 +0000
-Subject: [Linux-ntfs-dev] [PATCH v2 24/27] ufs: Use ufs_get_locked_folio()
- in ufs_alloc_lastblock()
+Subject: [Linux-ntfs-dev] [PATCH v2 25/27] ufs;
+ Convert ufs_change_blocknr() to use folios
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -110,71 +110,84 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-Switch to the folio APIs, saving one folio->page->folio conversion.
+Convert the locked_page argument to a folio, then use folios throughout.
+Saves three hidden calls to compound_head().
 
 Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org>
 ---
- fs/ufs/inode.c | 25 ++++++++++++-------------
- 1 file changed, 12 insertions(+), 13 deletions(-)
+ fs/ufs/balloc.c | 20 +++++++++-----------
+ 1 file changed, 9 insertions(+), 11 deletions(-)
 
-diff --git a/fs/ufs/inode.c b/fs/ufs/inode.c
-index 338e4b97312f..ebce93b08281 100644
---- a/fs/ufs/inode.c
-+++ b/fs/ufs/inode.c
-@@ -1063,7 +1063,7 @@ static int ufs_alloc_lastblock(struct inode *inode, loff_t size)
- 	struct ufs_sb_private_info *uspi = UFS_SB(sb)->s_uspi;
- 	unsigned i, end;
- 	sector_t lastfrag;
--	struct page *lastpage;
-+	struct folio *folio;
- 	struct buffer_head *bh;
- 	u64 phys64;
+diff --git a/fs/ufs/balloc.c b/fs/ufs/balloc.c
+index 2436e3f82147..53c11be2b2c1 100644
+--- a/fs/ufs/balloc.c
++++ b/fs/ufs/balloc.c
+@@ -240,6 +240,7 @@ static void ufs_change_blocknr(struct inode *inode, sector_t beg,
+ 			       unsigned int count, sector_t oldb,
+ 			       sector_t newb, struct page *locked_page)
+ {
++	struct folio *folio, *locked_folio = page_folio(locked_page);
+ 	const unsigned blks_per_page =
+ 		1 << (PAGE_SHIFT - inode->i_blkbits);
+ 	const unsigned mask = blks_per_page - 1;
+@@ -247,42 +248,39 @@ static void ufs_change_blocknr(struct inode *inode, sector_t beg,
+ 	pgoff_t index, cur_index, last_index;
+ 	unsigned pos, j, lblock;
+ 	sector_t end, i;
+-	struct page *page;
+ 	struct buffer_head *head, *bh;
  
-@@ -1074,18 +1074,17 @@ static int ufs_alloc_lastblock(struct inode *inode, loff_t size)
+ 	UFSD("ENTER, ino %lu, count %u, oldb %llu, newb %llu\n",
+ 	      inode->i_ino, count,
+ 	     (unsigned long long)oldb, (unsigned long long)newb);
  
- 	lastfrag--;
+-	BUG_ON(!locked_page);
+-	BUG_ON(!PageLocked(locked_page));
++	BUG_ON(!folio_test_locked(locked_folio));
  
--	lastpage = ufs_get_locked_page(mapping, lastfrag >>
-+	folio = ufs_get_locked_folio(mapping, lastfrag >>
- 				       (PAGE_SHIFT - inode->i_blkbits));
--       if (IS_ERR(lastpage)) {
--               err = -EIO;
--               goto out;
--       }
+-	cur_index = locked_page->index;
++	cur_index = locked_folio->index;
+ 	end = count + beg;
+ 	last_index = end >> (PAGE_SHIFT - inode->i_blkbits);
+ 	for (i = beg; i < end; i = (i | mask) + 1) {
+ 		index = i >> (PAGE_SHIFT - inode->i_blkbits);
+ 
+ 		if (likely(cur_index != index)) {
+-			page = ufs_get_locked_page(mapping, index);
+-			if (!page)/* it was truncated */
++			folio = ufs_get_locked_folio(mapping, index);
++			if (!folio) /* it was truncated */
+ 				continue;
+-			if (IS_ERR(page)) {/* or EIO */
++			if (IS_ERR(folio)) {/* or EIO */
+ 				ufs_error(inode->i_sb, __func__,
+ 					  "read of page %llu failed\n",
+ 					  (unsigned long long)index);
+ 				continue;
+ 			}
+ 		} else
+-			page = locked_page;
++			folio = locked_folio;
+ 
+-		head = page_buffers(page);
++		head = folio_buffers(folio);
+ 		bh = head;
+ 		pos = i & mask;
+ 		for (j = 0; j < pos; ++j)
+ 			bh = bh->b_this_page;
+ 
 -
--       end = lastfrag & ((1 << (PAGE_SHIFT - inode->i_blkbits)) - 1);
--       bh = page_buffers(lastpage);
--       for (i = 0; i < end; ++i)
--               bh = bh->b_this_page;
-+	if (IS_ERR(folio)) {
-+		err = -EIO;
-+		goto out;
-+	}
+ 		if (unlikely(index == last_index))
+ 			lblock = end & mask;
+ 		else
+@@ -313,7 +311,7 @@ static void ufs_change_blocknr(struct inode *inode, sector_t beg,
+ 		} while (bh != head);
  
-+	end = lastfrag & ((1 << (PAGE_SHIFT - inode->i_blkbits)) - 1);
-+	bh = folio_buffers(folio);
-+	for (i = 0; i < end; ++i)
-+		bh = bh->b_this_page;
- 
-        err = ufs_getfrag_block(inode, lastfrag, bh, 1);
- 
-@@ -1101,7 +1100,7 @@ static int ufs_alloc_lastblock(struct inode *inode, loff_t size)
- 		*/
- 	       set_buffer_uptodate(bh);
- 	       mark_buffer_dirty(bh);
--	       set_page_dirty(lastpage);
-+		folio_mark_dirty(folio);
-        }
- 
-        if (lastfrag >= UFS_IND_FRAGMENT) {
-@@ -1119,7 +1118,7 @@ static int ufs_alloc_lastblock(struct inode *inode, loff_t size)
- 	       }
-        }
- out_unlock:
--       ufs_put_locked_page(lastpage);
-+       ufs_put_locked_folio(folio);
- out:
-        return err;
+ 		if (likely(cur_index != index))
+-			ufs_put_locked_page(page);
++			ufs_put_locked_folio(folio);
+  	}
+ 	UFSD("EXIT\n");
  }
 -- 
 2.40.1
