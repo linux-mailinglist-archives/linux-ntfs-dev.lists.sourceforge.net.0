@@ -2,94 +2,122 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 342737CB45F
-	for <lists+linux-ntfs-dev@lfdr.de>; Mon, 16 Oct 2023 22:13:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 104C67CD863
+	for <lists+linux-ntfs-dev@lfdr.de>; Wed, 18 Oct 2023 11:39:52 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1qsTxh-0006bl-LX;
-	Mon, 16 Oct 2023 20:13:14 +0000
+	id 1qt31o-0004wE-Lz;
+	Wed, 18 Oct 2023 09:39:49 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <willy@infradead.org>) id 1qsTwQ-000320-Rs
+ (envelope-from <konishi.ryusuke@gmail.com>) id 1qspxH-0007PR-Ul
  for linux-ntfs-dev@lists.sourceforge.net;
- Mon, 16 Oct 2023 20:11:53 +0000
+ Tue, 17 Oct 2023 19:42:14 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
- In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:Cc:To:
+ Subject:Message-ID:Date:From:In-Reply-To:References:MIME-Version:Sender:
+ Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+ :Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=X8mRrCWoh60tJHvgFEfEUpm9OOOoUDDQzSoWoHIX+sI=; b=E1N71ZUAtNTBKCpgSdMIClUGmU
- yyLa0f3vHaY+VcAyGks3iCClce+vE9D81o3mDtQjwyrRENfq4qnBNM4Dtp/JgspAdrseqOPCTT2hg
- Ct45+Lq1raEjuFB7SpTvBAqmNcsSeyophzI1Hem8tlja8Su77Are14LRE8Rga7lch/gQ=;
+ bh=nEdPLPUGt3bDYuqJR132GTKL4Kbaz2ZIt3XjP65gcfI=; b=nFAWQOD2S5bZIw9J9rKHll4JNg
+ kKXehts/KBEw9Iz2ULHq1+4iknujvJUYqp2kD9omJPy4wZ9hu7r2SDLYhkDqi3kEq5GNTm5Jf202E
+ 0o7tdYLSAgymwEd/ohatC3L3iUc9XB5m3tPYpsFHFlXZFwHGefR2EC+BWxIrrLsyenA4=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:Cc:To:Subject:Message-ID:Date:From
+ :In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=X8mRrCWoh60tJHvgFEfEUpm9OOOoUDDQzSoWoHIX+sI=; b=imxVCqDaVRc7kgr/lyTm37kvfq
- 3YqJySZHgEEejEIRn+TpU0AySavuXTAVwtLdMUPdoE7tJAhLAakHHcbz4PDMOXx/fI+7yWJuzwWCp
- OeBxJBktWRGQkWGJQ0f8pK2zOVFqGxoBXw2ugaWckqK92rmJnnTln4GTPttbRLfupllI=;
-Received: from casper.infradead.org ([90.155.50.34])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1qsTwE-00063y-1U for linux-ntfs-dev@lists.sourceforge.net;
- Mon, 16 Oct 2023 20:11:53 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
- References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
- Content-Type:Content-ID:Content-Description;
- bh=X8mRrCWoh60tJHvgFEfEUpm9OOOoUDDQzSoWoHIX+sI=; b=YJNZePtnwpOliTGHJjTYiDjQnO
- /Ct6vciHeOCLCPFN2eWcPXY3DA3MgRqhp/B6xBo+dPxJPMw7uGZlGUwe3/AAAIAXwLWVEGr7k1Yri
- leUp19SvPUTBn9tRDbN4rcM6QBgDTDIs5XZphkr7gcxFhwN81UqpRgqWEOLrkiwGZvkqfHnfpu+ZQ
- l9HJBStapxIcWZa2ogmyZAs3T2J2But1mpRrTa9o7ktZxAtMH4N8v9e7P20EDrKWjkkfsYvJU3dlX
- mPT2c1y2p+DPodVn0kTht6EVx7bLtLiFn9mbZx0I8qlaThmHPjM+B7pSDwbo/Zak8vgVOu6vfEQ1A
- Zoe7pgyg==;
-Received: from willy by casper.infradead.org with local (Exim 4.94.2 #2 (Red
- Hat Linux)) id 1qsTvs-0085dG-0C; Mon, 16 Oct 2023 20:11:20 +0000
-From: "Matthew Wilcox (Oracle)" <willy@infradead.org>
-To: Andrew Morton <akpm@linux-foundation.org>
-Date: Mon, 16 Oct 2023 21:11:14 +0100
-Message-Id: <20231016201114.1928083-28-willy@infradead.org>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20231016201114.1928083-1-willy@infradead.org>
-References: <20231016201114.1928083-1-willy@infradead.org>
+ bh=nEdPLPUGt3bDYuqJR132GTKL4Kbaz2ZIt3XjP65gcfI=; b=XjHr81pf1Dq4YcJxSQ4Wck01cW
+ 1SarX1XzjNk/XN0Jz2/37A6/f73oIitz1aa1Zo0m0dX7ilko7FrLyAx2aLyA5xmn7j2G6n04hFk6R
+ FV8xObtXu7ZSNBzf3k8RT9kXjGj8sPbJii3tfhK41+Kc9UpPiXa9X4maq2enP5w98MgQ=;
+Received: from mail-vs1-f47.google.com ([209.85.217.47])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
+ id 1qspxC-000wRR-E7 for linux-ntfs-dev@lists.sourceforge.net;
+ Tue, 17 Oct 2023 19:42:14 +0000
+Received: by mail-vs1-f47.google.com with SMTP id
+ ada2fe7eead31-457c2d81f7fso2008878137.3
+ for <linux-ntfs-dev@lists.sourceforge.net>;
+ Tue, 17 Oct 2023 12:42:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1697571721; x=1698176521; darn=lists.sourceforge.net;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=nEdPLPUGt3bDYuqJR132GTKL4Kbaz2ZIt3XjP65gcfI=;
+ b=DFoGmE74PWfAKGKvQd/I3IBrBOaJ2FHfXrhWREsLS8WtbccZlUmWjaMeZz8urep0AG
+ VQHeoWn8WnWvNruVqzd3Ts9yAk7wuOoQucsdEyJtOpjL0StkxJ/qPotdhXmIQmyY5jjM
+ VLAeAIXnOowAzP9DnwXG6ME/z5fJqq1M45QRGv5/fuT5fAopAuLjWR0vebEJasZ/Zzeh
+ VNypxr+RqEGLofxk+LrjUZWNwwfjgAKWiAA7Id/yLxsYgK/sEL/X+2vzi/2NSYd1ryEp
+ 7u/ZJN+1PhevXuxoMy15YL/mSBdv5zstl6dTGNcDwVH+f652kJM2LgXOyrInHIiPPxnp
+ Ri3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1697571721; x=1698176521;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=nEdPLPUGt3bDYuqJR132GTKL4Kbaz2ZIt3XjP65gcfI=;
+ b=dQyYK/kwhWLYi+Jn/2IwSWToxaWden+4X2ua46N8Eet1s5G/7J9StCeCn1QnalYtZ2
+ oP3kcFu6C4PxW+ZDhMPI7z537Mwx7ZVfrfbhMMphp6x3NmvJXkI+cZvfz4M5u9qVhPz9
+ LUl6PeP+VLAWazOUfDCGEFZaFc8vzeG+gtm4hev/1d+Xs1eLkRoDAcfyrQ6HGt6EDhE5
+ B2dGB/WUXDTVtrVV9c7gv2R885mlh0/sEz0vk4hktNYehr37F3lDsLG+9syRmilO+6OU
+ 6EShjngoYJShHUU1m4DSELy0f+rxgLM3xqZaVdUE81tI2WidTp9Y0Cth3IYqReVBboS4
+ 8HiA==
+X-Gm-Message-State: AOJu0Yy4m8krrggLTIMXMik5rygettD+MqDhZDaHtE6W75P49tuNyTIU
+ cC+hRpO/G9vAV0NbjQ+06tE5tnNXAMmJ2bkqDrw=
+X-Google-Smtp-Source: AGHT+IEGVouf3g52zAQZKqogAWOdoqW2ayEa2oclPTWNKWf5D8raecPXGS+4xiqVaAbbP8NV0hXO6xERMf3T6Nmer6s=
+X-Received: by 2002:a67:c186:0:b0:457:dd92:f913 with SMTP id
+ h6-20020a67c186000000b00457dd92f913mr3741772vsj.14.1697571721243; Tue, 17 Oct
+ 2023 12:42:01 -0700 (PDT)
 MIME-Version: 1.0
+References: <20231016201114.1928083-1-willy@infradead.org>
+ <20231016201114.1928083-2-willy@infradead.org>
+In-Reply-To: <20231016201114.1928083-2-willy@infradead.org>
+From: Ryusuke Konishi <konishi.ryusuke@gmail.com>
+Date: Wed, 18 Oct 2023 04:41:44 +0900
+Message-ID: <CAKFNMonj9XQe1PdeCny7N8MFAHwQVQNDf6A2S4g-gxX4iJLvZQ@mail.gmail.com>
+To: "Matthew Wilcox (Oracle)" <willy@infradead.org>
 X-Spam-Score: -0.2 (/)
-X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.lw.sourceforge.com",
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  With all users converted,
- remove the old create_empty_buffers()
- and rename folio_create_empty_buffers() to create_empty_buffers().
- Signed-off-by:
- Matthew Wilcox (Oracle) <willy@infradead.org> --- fs/buffer.c | 13 +++
- fs/ext4/inode.c
- | 6 +++--- fs/ext4/move_extent.c | 4 ++-- fs/gfs2/aops.c | 2 +- fs/gfs2/bmap.c
- | 2 +- fs [...] 
+ 
+ Content preview:  On Tue, Oct 17, 2023 at 5:11 AM Matthew Wilcox (Oracle)
+   wrote: > > Rename grow_dev_page() to grow_dev_folio() and make it return a
+    bool. > Document what that bool means; it's more subtle than it fir [...]
+    
+ 
  Content analysis details:   (-0.2 points, 6.0 required)
- pts rule name              description
+ 
+  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+  0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
+                             provider
+                             [konishi.ryusuke[at]gmail.com]
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+                             [209.85.217.47 listed in wl.mailspike.net]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+                              no trust
+                             [209.85.217.47 listed in list.dnswl.org]
+ -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
+                             author's domain
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
-X-Headers-End: 1qsTwE-00063y-1U
-X-Mailman-Approved-At: Mon, 16 Oct 2023 20:12:56 +0000
-Subject: [Linux-ntfs-dev] [PATCH v2 27/27] buffer: Remove
- folio_create_empty_buffers()
+                             envelope-from domain
+  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+                             valid
+X-Headers-End: 1qspxC-000wRR-E7
+X-Mailman-Approved-At: Wed, 18 Oct 2023 09:39:47 +0000
+Subject: Re: [Linux-ntfs-dev] [PATCH v2 01/27] buffer: Return bool from
+ grow_dev_folio()
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -104,357 +132,99 @@ List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>,
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
 Cc: Pankaj Raghav <p.raghav@samsung.com>, linux-nilfs@vger.kernel.org,
  linux-ntfs-dev@lists.sourceforge.net, linux-ext4@vger.kernel.org,
- reiserfs-devel@vger.kernel.org,
- "Matthew Wilcox \(Oracle\)" <willy@infradead.org>, gfs2@lists.linux.dev,
+ reiserfs-devel@vger.kernel.org, gfs2@lists.linux.dev,
  ocfs2-devel@lists.linux.dev, linux-fsdevel@vger.kernel.org,
- ntfs3@lists.linux.dev
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+ Andrew Morton <akpm@linux-foundation.org>, ntfs3@lists.linux.dev
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-With all users converted, remove the old create_empty_buffers() and
-rename folio_create_empty_buffers() to create_empty_buffers().
-
-Signed-off-by: Matthew Wilcox (Oracle) <willy@infradead.org>
----
- fs/buffer.c                 | 13 +++----------
- fs/ext4/inode.c             |  6 +++---
- fs/ext4/move_extent.c       |  4 ++--
- fs/gfs2/aops.c              |  2 +-
- fs/gfs2/bmap.c              |  2 +-
- fs/gfs2/meta_io.c           |  2 +-
- fs/gfs2/quota.c             |  2 +-
- fs/mpage.c                  |  2 +-
- fs/nilfs2/mdt.c             |  2 +-
- fs/nilfs2/page.c            |  4 ++--
- fs/nilfs2/segment.c         |  2 +-
- fs/ntfs/aops.c              |  4 ++--
- fs/ntfs/file.c              |  2 +-
- fs/ntfs3/file.c             |  2 +-
- fs/ocfs2/aops.c             |  2 +-
- fs/reiserfs/inode.c         |  2 +-
- fs/ufs/util.c               |  2 +-
- include/linux/buffer_head.h |  4 +---
- 18 files changed, 25 insertions(+), 34 deletions(-)
-
-diff --git a/fs/buffer.c b/fs/buffer.c
-index 81cdf36e5196..bf76b7a27bfa 100644
---- a/fs/buffer.c
-+++ b/fs/buffer.c
-@@ -1646,7 +1646,7 @@ EXPORT_SYMBOL(block_invalidate_folio);
-  * block_dirty_folio() via private_lock.  try_to_free_buffers
-  * is already excluded via the folio lock.
-  */
--struct buffer_head *folio_create_empty_buffers(struct folio *folio,
-+struct buffer_head *create_empty_buffers(struct folio *folio,
- 		unsigned long blocksize, unsigned long b_state)
- {
- 	struct buffer_head *bh, *head, *tail;
-@@ -1677,13 +1677,6 @@ struct buffer_head *folio_create_empty_buffers(struct folio *folio,
- 
- 	return head;
- }
--EXPORT_SYMBOL(folio_create_empty_buffers);
--
--void create_empty_buffers(struct page *page,
--			unsigned long blocksize, unsigned long b_state)
--{
--	folio_create_empty_buffers(page_folio(page), blocksize, b_state);
--}
- EXPORT_SYMBOL(create_empty_buffers);
- 
- /**
-@@ -1783,7 +1776,7 @@ static struct buffer_head *folio_create_buffers(struct folio *folio,
- 
- 	bh = folio_buffers(folio);
- 	if (!bh)
--		bh = folio_create_empty_buffers(folio,
-+		bh = create_empty_buffers(folio,
- 				1 << READ_ONCE(inode->i_blkbits), b_state);
- 	return bh;
- }
-@@ -2686,7 +2679,7 @@ int block_truncate_page(struct address_space *mapping,
- 
- 	bh = folio_buffers(folio);
- 	if (!bh)
--		bh = folio_create_empty_buffers(folio, blocksize, 0);
-+		bh = create_empty_buffers(folio, blocksize, 0);
- 
- 	/* Find the buffer that contains "offset" */
- 	offset = offset_in_folio(folio, from);
-diff --git a/fs/ext4/inode.c b/fs/ext4/inode.c
-index 31c8f2641870..61277f7f8722 100644
---- a/fs/ext4/inode.c
-+++ b/fs/ext4/inode.c
-@@ -1033,7 +1033,7 @@ static int ext4_block_write_begin(struct folio *folio, loff_t pos, unsigned len,
- 
- 	head = folio_buffers(folio);
- 	if (!head)
--		head = folio_create_empty_buffers(folio, blocksize, 0);
-+		head = create_empty_buffers(folio, blocksize, 0);
- 	bbits = ilog2(blocksize);
- 	block = (sector_t)folio->index << (PAGE_SHIFT - bbits);
- 
-@@ -1163,7 +1163,7 @@ static int ext4_write_begin(struct file *file, struct address_space *mapping,
- 	 * starting the handle.
- 	 */
- 	if (!folio_buffers(folio))
--		folio_create_empty_buffers(folio, inode->i_sb->s_blocksize, 0);
-+		create_empty_buffers(folio, inode->i_sb->s_blocksize, 0);
- 
- 	folio_unlock(folio);
- 
-@@ -3654,7 +3654,7 @@ static int __ext4_block_zero_page_range(handle_t *handle,
- 
- 	bh = folio_buffers(folio);
- 	if (!bh)
--		bh = folio_create_empty_buffers(folio, blocksize, 0);
-+		bh = create_empty_buffers(folio, blocksize, 0);
- 
- 	/* Find the buffer that contains "offset" */
- 	pos = blocksize;
-diff --git a/fs/ext4/move_extent.c b/fs/ext4/move_extent.c
-index 7fe448fb948b..3aa57376d9c2 100644
---- a/fs/ext4/move_extent.c
-+++ b/fs/ext4/move_extent.c
-@@ -184,7 +184,7 @@ mext_page_mkuptodate(struct folio *folio, unsigned from, unsigned to)
- 	blocksize = i_blocksize(inode);
- 	head = folio_buffers(folio);
- 	if (!head)
--		head = folio_create_empty_buffers(folio, blocksize, 0);
-+		head = create_empty_buffers(folio, blocksize, 0);
- 
- 	block = (sector_t)folio->index << (PAGE_SHIFT - inode->i_blkbits);
- 	for (bh = head, block_start = 0; bh != head || !block_start;
-@@ -380,7 +380,7 @@ move_extent_per_page(struct file *o_filp, struct inode *donor_inode,
- 	 * but keeping in mind that i_size will not change */
- 	bh = folio_buffers(folio[0]);
- 	if (!bh)
--		bh = folio_create_empty_buffers(folio[0],
-+		bh = create_empty_buffers(folio[0],
- 				1 << orig_inode->i_blkbits, 0);
- 	for (i = 0; i < data_offset_in_page; i++)
- 		bh = bh->b_this_page;
-diff --git a/fs/gfs2/aops.c b/fs/gfs2/aops.c
-index 52fad5bcb047..74f3302348a5 100644
---- a/fs/gfs2/aops.c
-+++ b/fs/gfs2/aops.c
-@@ -130,7 +130,7 @@ static int __gfs2_jdata_write_folio(struct folio *folio,
- 	if (folio_test_checked(folio)) {
- 		folio_clear_checked(folio);
- 		if (!folio_buffers(folio)) {
--			folio_create_empty_buffers(folio,
-+			create_empty_buffers(folio,
- 					inode->i_sb->s_blocksize,
- 					BIT(BH_Dirty)|BIT(BH_Uptodate));
- 		}
-diff --git a/fs/gfs2/bmap.c b/fs/gfs2/bmap.c
-index f7ea1af9d842..398db80cb9c6 100644
---- a/fs/gfs2/bmap.c
-+++ b/fs/gfs2/bmap.c
-@@ -71,7 +71,7 @@ static int gfs2_unstuffer_folio(struct gfs2_inode *ip, struct buffer_head *dibh,
- 		struct buffer_head *bh = folio_buffers(folio);
- 
- 		if (!bh)
--			bh = folio_create_empty_buffers(folio,
-+			bh = create_empty_buffers(folio,
- 				BIT(inode->i_blkbits), BIT(BH_Uptodate));
- 
- 		if (!buffer_mapped(bh))
-diff --git a/fs/gfs2/meta_io.c b/fs/gfs2/meta_io.c
-index f6d40d51f5ed..25ceb0805df2 100644
---- a/fs/gfs2/meta_io.c
-+++ b/fs/gfs2/meta_io.c
-@@ -134,7 +134,7 @@ struct buffer_head *gfs2_getbuf(struct gfs2_glock *gl, u64 blkno, int create)
- 				mapping_gfp_mask(mapping) | __GFP_NOFAIL);
- 		bh = folio_buffers(folio);
- 		if (!bh)
--			bh = folio_create_empty_buffers(folio,
-+			bh = create_empty_buffers(folio,
- 				sdp->sd_sb.sb_bsize, 0);
- 	} else {
- 		folio = __filemap_get_folio(mapping, index,
-diff --git a/fs/gfs2/quota.c b/fs/gfs2/quota.c
-index e45654ee4f4d..570a60aa3480 100644
---- a/fs/gfs2/quota.c
-+++ b/fs/gfs2/quota.c
-@@ -774,7 +774,7 @@ static int gfs2_write_buf_to_page(struct gfs2_sbd *sdp, unsigned long index,
- 		return PTR_ERR(folio);
- 	bh = folio_buffers(folio);
- 	if (!bh)
--		bh = folio_create_empty_buffers(folio, bsize, 0);
-+		bh = create_empty_buffers(folio, bsize, 0);
- 
- 	for (;;) {
- 		/* Find the beginning block within the folio */
-diff --git a/fs/mpage.c b/fs/mpage.c
-index 964a6efe594d..ffb064ed9d04 100644
---- a/fs/mpage.c
-+++ b/fs/mpage.c
-@@ -119,7 +119,7 @@ static void map_buffer_to_folio(struct folio *folio, struct buffer_head *bh,
- 			folio_mark_uptodate(folio);
- 			return;
- 		}
--		head = folio_create_empty_buffers(folio, i_blocksize(inode), 0);
-+		head = create_empty_buffers(folio, i_blocksize(inode), 0);
- 	}
- 
- 	page_bh = head;
-diff --git a/fs/nilfs2/mdt.c b/fs/nilfs2/mdt.c
-index 7b754e6494d7..c97c77a39668 100644
---- a/fs/nilfs2/mdt.c
-+++ b/fs/nilfs2/mdt.c
-@@ -568,7 +568,7 @@ int nilfs_mdt_freeze_buffer(struct inode *inode, struct buffer_head *bh)
- 
- 	bh_frozen = folio_buffers(folio);
- 	if (!bh_frozen)
--		bh_frozen = folio_create_empty_buffers(folio, 1 << blkbits, 0);
-+		bh_frozen = create_empty_buffers(folio, 1 << blkbits, 0);
- 
- 	bh_frozen = get_nth_bh(bh_frozen, bh_offset(bh) >> blkbits);
- 
-diff --git a/fs/nilfs2/page.c b/fs/nilfs2/page.c
-index 696215d899bf..06b04758f289 100644
---- a/fs/nilfs2/page.c
-+++ b/fs/nilfs2/page.c
-@@ -34,7 +34,7 @@ static struct buffer_head *__nilfs_get_folio_block(struct folio *folio,
- 	struct buffer_head *bh = folio_buffers(folio);
- 
- 	if (!bh)
--		bh = folio_create_empty_buffers(folio, 1 << blkbits, b_state);
-+		bh = create_empty_buffers(folio, 1 << blkbits, b_state);
- 
- 	first_block = (unsigned long)index << (PAGE_SHIFT - blkbits);
- 	bh = get_nth_bh(bh, block - first_block);
-@@ -204,7 +204,7 @@ static void nilfs_copy_folio(struct folio *dst, struct folio *src,
- 	sbh = folio_buffers(src);
- 	dbh = folio_buffers(dst);
- 	if (!dbh)
--		dbh = folio_create_empty_buffers(dst, sbh->b_size, 0);
-+		dbh = create_empty_buffers(dst, sbh->b_size, 0);
- 
- 	if (copy_dirty)
- 		mask |= BIT(BH_Dirty);
-diff --git a/fs/nilfs2/segment.c b/fs/nilfs2/segment.c
-index 94388fe83cf8..55e31cc903d1 100644
---- a/fs/nilfs2/segment.c
-+++ b/fs/nilfs2/segment.c
-@@ -732,7 +732,7 @@ static size_t nilfs_lookup_dirty_data_buffers(struct inode *inode,
- 		}
- 		head = folio_buffers(folio);
- 		if (!head)
--			head = folio_create_empty_buffers(folio,
-+			head = create_empty_buffers(folio,
- 					i_blocksize(inode), 0);
- 		folio_unlock(folio);
- 
-diff --git a/fs/ntfs/aops.c b/fs/ntfs/aops.c
-index c4426992a2ee..71e31e789b29 100644
---- a/fs/ntfs/aops.c
-+++ b/fs/ntfs/aops.c
-@@ -189,7 +189,7 @@ static int ntfs_read_block(struct folio *folio)
- 
- 	head = folio_buffers(folio);
- 	if (!head)
--		head = folio_create_empty_buffers(folio, blocksize, 0);
-+		head = create_empty_buffers(folio, blocksize, 0);
- 	bh = head;
- 
- 	/*
-@@ -555,7 +555,7 @@ static int ntfs_write_block(struct folio *folio, struct writeback_control *wbc)
- 	head = folio_buffers(folio);
- 	if (!head) {
- 		BUG_ON(!folio_test_uptodate(folio));
--		head = folio_create_empty_buffers(folio, blocksize,
-+		head = create_empty_buffers(folio, blocksize,
- 				(1 << BH_Uptodate) | (1 << BH_Dirty));
- 	}
- 	bh = head;
-diff --git a/fs/ntfs/file.c b/fs/ntfs/file.c
-index 099141d20db6..297c0b9db621 100644
---- a/fs/ntfs/file.c
-+++ b/fs/ntfs/file.c
-@@ -625,7 +625,7 @@ static int ntfs_prepare_pages_for_non_resident_write(struct page **pages,
- 		 * create_empty_buffers() will create uptodate/dirty
- 		 * buffers if the folio is uptodate/dirty.
- 		 */
--		head = folio_create_empty_buffers(folio, blocksize, 0);
-+		head = create_empty_buffers(folio, blocksize, 0);
- 	bh = head;
- 	do {
- 		VCN cdelta;
-diff --git a/fs/ntfs3/file.c b/fs/ntfs3/file.c
-index 135af3340a19..a5a30a24ce5d 100644
---- a/fs/ntfs3/file.c
-+++ b/fs/ntfs3/file.c
-@@ -203,7 +203,7 @@ static int ntfs_zero_range(struct inode *inode, u64 vbo, u64 vbo_to)
- 
- 		head = folio_buffers(folio);
- 		if (!head)
--			head = folio_create_empty_buffers(folio, blocksize, 0);
-+			head = create_empty_buffers(folio, blocksize, 0);
- 
- 		bh = head;
- 		bh_off = 0;
-diff --git a/fs/ocfs2/aops.c b/fs/ocfs2/aops.c
-index 001ad1d288ec..ba790219d528 100644
---- a/fs/ocfs2/aops.c
-+++ b/fs/ocfs2/aops.c
-@@ -601,7 +601,7 @@ int ocfs2_map_page_blocks(struct page *page, u64 *p_blkno,
- 
- 	head = folio_buffers(folio);
- 	if (!head)
--		head = folio_create_empty_buffers(folio, bsize, 0);
-+		head = create_empty_buffers(folio, bsize, 0);
- 
- 	for (bh = head, block_start = 0; bh != head || !block_start;
- 	     bh = bh->b_this_page, block_start += bsize) {
-diff --git a/fs/reiserfs/inode.c b/fs/reiserfs/inode.c
-index d7df556220a4..1d825459ee6e 100644
---- a/fs/reiserfs/inode.c
-+++ b/fs/reiserfs/inode.c
-@@ -2535,7 +2535,7 @@ static int reiserfs_write_full_folio(struct folio *folio,
- 	 */
- 	head = folio_buffers(folio);
- 	if (!head)
--		head = folio_create_empty_buffers(folio, s->s_blocksize,
-+		head = create_empty_buffers(folio, s->s_blocksize,
- 				     (1 << BH_Dirty) | (1 << BH_Uptodate));
- 
- 	/*
-diff --git a/fs/ufs/util.c b/fs/ufs/util.c
-index d32de30009a0..13ba34e6d64f 100644
---- a/fs/ufs/util.c
-+++ b/fs/ufs/util.c
-@@ -264,6 +264,6 @@ struct folio *ufs_get_locked_folio(struct address_space *mapping,
- 		}
- 	}
- 	if (!folio_buffers(folio))
--		folio_create_empty_buffers(folio, 1 << inode->i_blkbits, 0);
-+		create_empty_buffers(folio, 1 << inode->i_blkbits, 0);
- 	return folio;
- }
-diff --git a/include/linux/buffer_head.h b/include/linux/buffer_head.h
-index 3d85a0cf0ca5..5f23ee599889 100644
---- a/include/linux/buffer_head.h
-+++ b/include/linux/buffer_head.h
-@@ -201,9 +201,7 @@ struct buffer_head *folio_alloc_buffers(struct folio *folio, unsigned long size,
- 					gfp_t gfp);
- struct buffer_head *alloc_page_buffers(struct page *page, unsigned long size,
- 		bool retry);
--void create_empty_buffers(struct page *, unsigned long,
--			unsigned long b_state);
--struct buffer_head *folio_create_empty_buffers(struct folio *folio,
-+struct buffer_head *create_empty_buffers(struct folio *folio,
- 		unsigned long blocksize, unsigned long b_state);
- void end_buffer_read_sync(struct buffer_head *bh, int uptodate);
- void end_buffer_write_sync(struct buffer_head *bh, int uptodate);
--- 
-2.40.1
-
-
-
-_______________________________________________
-Linux-ntfs-dev mailing list
-Linux-ntfs-dev@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev
+T24gVHVlLCBPY3QgMTcsIDIwMjMgYXQgNToxMeKAr0FNIE1hdHRoZXcgV2lsY294IChPcmFjbGUp
+IHdyb3RlOgo+Cj4gUmVuYW1lIGdyb3dfZGV2X3BhZ2UoKSB0byBncm93X2Rldl9mb2xpbygpIGFu
+ZCBtYWtlIGl0IHJldHVybiBhIGJvb2wuCj4gRG9jdW1lbnQgd2hhdCB0aGF0IGJvb2wgbWVhbnM7
+IGl0J3MgbW9yZSBzdWJ0bGUgdGhhbiBpdCBmaXJzdCBhcHBlYXJzLgo+IEFsc28gcmVuYW1lIHRo
+ZSAnZmFpbGVkJyBsYWJlbCB0byAndW5sb2NrJyBiZWFjdXNlIGl0J3Mgbm90IGV4YWN0bHkKPiAn
+ZmFpbGVkJy4gIEl0IGp1c3QgaGFzbid0IHN1Y2NlZWRlZC4KPgo+IFNpZ25lZC1vZmYtYnk6IE1h
+dHRoZXcgV2lsY294IChPcmFjbGUpIDx3aWxseUBpbmZyYWRlYWQub3JnPgo+IC0tLQo+ICBmcy9i
+dWZmZXIuYyB8IDM5ICsrKysrKysrKysrKysrKysrKysrKystLS0tLS0tLS0tLS0tLS0tLQo+ICAx
+IGZpbGUgY2hhbmdlZCwgMjIgaW5zZXJ0aW9ucygrKSwgMTcgZGVsZXRpb25zKC0pCj4KPiBkaWZm
+IC0tZ2l0IGEvZnMvYnVmZmVyLmMgYi9mcy9idWZmZXIuYwo+IGluZGV4IGIzM2NjNzRlOTY0OS4u
+ZGVjNDFkODQwNDRiIDEwMDY0NAo+IC0tLSBhL2ZzL2J1ZmZlci5jCj4gKysrIGIvZnMvYnVmZmVy
+LmMKPiBAQCAtMTAyNCwyNCArMTAyNCwyNiBAQCBzdGF0aWMgc2VjdG9yX3QgZm9saW9faW5pdF9i
+dWZmZXJzKHN0cnVjdCBmb2xpbyAqZm9saW8sCj4gIH0KPgo+ICAvKgo+IC0gKiBDcmVhdGUgdGhl
+IHBhZ2UtY2FjaGUgcGFnZSB0aGF0IGNvbnRhaW5zIHRoZSByZXF1ZXN0ZWQgYmxvY2suCj4gKyAq
+IENyZWF0ZSB0aGUgcGFnZS1jYWNoZSBmb2xpbyB0aGF0IGNvbnRhaW5zIHRoZSByZXF1ZXN0ZWQg
+YmxvY2suCj4gICAqCj4gICAqIFRoaXMgaXMgdXNlZCBwdXJlbHkgZm9yIGJsb2NrZGV2IG1hcHBp
+bmdzLgo+ICsgKgo+ICsgKiBSZXR1cm5zIGZhbHNlIGlmIHdlIGhhdmUgYSAncGVybWFuZW50JyBm
+YWlsdXJlLiAgUmV0dXJucyB0cnVlIGlmCj4gKyAqIHdlIHN1Y2NlZWRlZCwgb3IgdGhlIGNhbGxl
+ciBzaG91bGQgcmV0cnkuCj4gICAqLwo+IC1zdGF0aWMgaW50Cj4gLWdyb3dfZGV2X3BhZ2Uoc3Ry
+dWN0IGJsb2NrX2RldmljZSAqYmRldiwgc2VjdG9yX3QgYmxvY2ssCj4gK3N0YXRpYyBib29sIGdy
+b3dfZGV2X2ZvbGlvKHN0cnVjdCBibG9ja19kZXZpY2UgKmJkZXYsIHNlY3Rvcl90IGJsb2NrLAo+
+ICAgICAgICAgICAgICAgcGdvZmZfdCBpbmRleCwgaW50IHNpemUsIGludCBzaXplYml0cywgZ2Zw
+X3QgZ2ZwKQo+ICB7Cj4gICAgICAgICBzdHJ1Y3QgaW5vZGUgKmlub2RlID0gYmRldi0+YmRfaW5v
+ZGU7Cj4gICAgICAgICBzdHJ1Y3QgZm9saW8gKmZvbGlvOwo+ICAgICAgICAgc3RydWN0IGJ1ZmZl
+cl9oZWFkICpiaDsKPiAgICAgICAgIHNlY3Rvcl90IGVuZF9ibG9jazsKPiAtICAgICAgIGludCBy
+ZXQgPSAwOwo+ICsgICAgICAgYm9vbCByZXQ7Cj4KPiAgICAgICAgIGZvbGlvID0gX19maWxlbWFw
+X2dldF9mb2xpbyhpbm9kZS0+aV9tYXBwaW5nLCBpbmRleCwKPiAgICAgICAgICAgICAgICAgICAg
+ICAgICBGR1BfTE9DSyB8IEZHUF9BQ0NFU1NFRCB8IEZHUF9DUkVBVCwgZ2ZwKTsKPiAgICAgICAg
+IGlmIChJU19FUlIoZm9saW8pKQo+IC0gICAgICAgICAgICAgICByZXR1cm4gUFRSX0VSUihmb2xp
+byk7Cj4gKyAgICAgICAgICAgICAgIHJldHVybiBmYWxzZTsKPgo+ICAgICAgICAgYmggPSBmb2xp
+b19idWZmZXJzKGZvbGlvKTsKPiAgICAgICAgIGlmIChiaCkgewo+IEBAIC0xMDUwLDE0ICsxMDUy
+LDE3IEBAIGdyb3dfZGV2X3BhZ2Uoc3RydWN0IGJsb2NrX2RldmljZSAqYmRldiwgc2VjdG9yX3Qg
+YmxvY2ssCj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIChzZWN0b3Jf
+dClpbmRleCA8PCBzaXplYml0cywgc2l6ZSk7Cj4gICAgICAgICAgICAgICAgICAgICAgICAgZ290
+byBkb25lOwo+ICAgICAgICAgICAgICAgICB9Cj4gKwo+ICsgICAgICAgICAgICAgICAvKiBDYWxs
+ZXIgc2hvdWxkIHJldHJ5IGlmIHRoaXMgY2FsbCBmYWlscyAqLwo+ICsgICAgICAgICAgICAgICBy
+ZXQgPSB0cnVlOwo+ICAgICAgICAgICAgICAgICBpZiAoIXRyeV90b19mcmVlX2J1ZmZlcnMoZm9s
+aW8pKQo+IC0gICAgICAgICAgICAgICAgICAgICAgIGdvdG8gZmFpbGVkOwo+ICsgICAgICAgICAg
+ICAgICAgICAgICAgIGdvdG8gdW5sb2NrOwo+ICAgICAgICAgfQo+Cj4gLSAgICAgICByZXQgPSAt
+RU5PTUVNOwo+ICsgICAgICAgcmV0ID0gZmFsc2U7Cj4gICAgICAgICBiaCA9IGZvbGlvX2FsbG9j
+X2J1ZmZlcnMoZm9saW8sIHNpemUsIGdmcCB8IF9fR0ZQX0FDQ09VTlQpOwo+ICAgICAgICAgaWYg
+KCFiaCkKPiAtICAgICAgICAgICAgICAgZ290byBmYWlsZWQ7Cj4gKyAgICAgICAgICAgICAgIGdv
+dG8gdW5sb2NrOwo+Cj4gICAgICAgICAvKgo+ICAgICAgICAgICogTGluayB0aGUgZm9saW8gdG8g
+dGhlIGJ1ZmZlcnMgYW5kIGluaXRpYWxpc2UgdGhlbS4gIFRha2UgdGhlCj4gQEAgLTEwNzAsMTkg
+KzEwNzUsMTkgQEAgZ3Jvd19kZXZfcGFnZShzdHJ1Y3QgYmxvY2tfZGV2aWNlICpiZGV2LCBzZWN0
+b3JfdCBibG9jaywKPiAgICAgICAgICAgICAgICAgICAgICAgICAoc2VjdG9yX3QpaW5kZXggPDwg
+c2l6ZWJpdHMsIHNpemUpOwo+ICAgICAgICAgc3Bpbl91bmxvY2soJmlub2RlLT5pX21hcHBpbmct
+PnByaXZhdGVfbG9jayk7Cj4gIGRvbmU6Cj4gLSAgICAgICByZXQgPSAoYmxvY2sgPCBlbmRfYmxv
+Y2spID8gMSA6IC1FTlhJTzsKPiAtZmFpbGVkOgo+ICsgICAgICAgcmV0ID0gYmxvY2sgPCBlbmRf
+YmxvY2s7Cj4gK3VubG9jazoKPiAgICAgICAgIGZvbGlvX3VubG9jayhmb2xpbyk7Cj4gICAgICAg
+ICBmb2xpb19wdXQoZm9saW8pOwo+ICAgICAgICAgcmV0dXJuIHJldDsKPiAgfQo+Cj4gIC8qCj4g
+LSAqIENyZWF0ZSBidWZmZXJzIGZvciB0aGUgc3BlY2lmaWVkIGJsb2NrIGRldmljZSBibG9jaydz
+IHBhZ2UuICBJZgo+IC0gKiB0aGF0IHBhZ2Ugd2FzIGRpcnR5LCB0aGUgYnVmZmVycyBhcmUgc2V0
+IGRpcnR5IGFsc28uCj4gKyAqIENyZWF0ZSBidWZmZXJzIGZvciB0aGUgc3BlY2lmaWVkIGJsb2Nr
+IGRldmljZSBibG9jaydzIGZvbGlvLiAgSWYKPiArICogdGhhdCBmb2xpbyB3YXMgZGlydHksIHRo
+ZSBidWZmZXJzIGFyZSBzZXQgZGlydHkgYWxzby4KPiAgICovCj4gLXN0YXRpYyBpbnQKPiAtZ3Jv
+d19idWZmZXJzKHN0cnVjdCBibG9ja19kZXZpY2UgKmJkZXYsIHNlY3Rvcl90IGJsb2NrLCBpbnQg
+c2l6ZSwgZ2ZwX3QgZ2ZwKQo+ICtzdGF0aWMgYm9vbCBncm93X2J1ZmZlcnMoc3RydWN0IGJsb2Nr
+X2RldmljZSAqYmRldiwgc2VjdG9yX3QgYmxvY2ssCj4gKyAgICAgICAgICAgICAgIGludCBzaXpl
+LCBnZnBfdCBnZnApCj4gIHsKPiAgICAgICAgIHBnb2ZmX3QgaW5kZXg7Cj4gICAgICAgICBpbnQg
+c2l6ZWJpdHM7Cj4gQEAgLTEwOTksMTEgKzExMDQsMTEgQEAgZ3Jvd19idWZmZXJzKHN0cnVjdCBi
+bG9ja19kZXZpY2UgKmJkZXYsIHNlY3Rvcl90IGJsb2NrLCBpbnQgc2l6ZSwgZ2ZwX3QgZ2ZwKQo+
+ICAgICAgICAgICAgICAgICAgICAgICAgICJkZXZpY2UgJXBnXG4iLAo+ICAgICAgICAgICAgICAg
+ICAgICAgICAgIF9fZnVuY19fLCAodW5zaWduZWQgbG9uZyBsb25nKWJsb2NrLAo+ICAgICAgICAg
+ICAgICAgICAgICAgICAgIGJkZXYpOwo+IC0gICAgICAgICAgICAgICByZXR1cm4gLUVJTzsKPiAr
+ICAgICAgICAgICAgICAgcmV0dXJuIGZhbHNlOwo+ICAgICAgICAgfQo+Cj4gLSAgICAgICAvKiBD
+cmVhdGUgYSBwYWdlIHdpdGggdGhlIHByb3BlciBzaXplIGJ1ZmZlcnMuLiAqLwo+IC0gICAgICAg
+cmV0dXJuIGdyb3dfZGV2X3BhZ2UoYmRldiwgYmxvY2ssIGluZGV4LCBzaXplLCBzaXplYml0cywg
+Z2ZwKTsKPiArICAgICAgIC8qIENyZWF0ZSBhIGZvbGlvIHdpdGggdGhlIHByb3BlciBzaXplIGJ1
+ZmZlcnMuLiAqLwo+ICsgICAgICAgcmV0dXJuIGdyb3dfZGV2X2ZvbGlvKGJkZXYsIGJsb2NrLCBp
+bmRleCwgc2l6ZSwgc2l6ZWJpdHMsIGdmcCk7Cj4gIH0KPgo+ICBzdGF0aWMgc3RydWN0IGJ1ZmZl
+cl9oZWFkICoKPiAtLQo+IDIuNDAuMQoKVGhpcyBjaGFuZ2VzIHRoZSByZXR1cm4gdHlwZSBvZiBn
+cm93X2J1ZmZlcnMoKSBmcm9tICJpbnQiICB0byAiYm9vbCIuCkJ1dCwgaXQgc2VlbXMgdGhhdCB0
+aGUgY2FsbGVyLCBfX2dldGJsa19zbG93KCksIGhhcyBub3QgY2hhbmdlZCB0aGUKdHlwZSBvZiB0
+aGUgdmFyaWFibGUgInJldCIgdGhhdCByZWNlaXZlcyBpdHMgcmV0dXJuIHZhbHVlOgoKICAgICAg
+ICBmb3IgKDs7KSB7CiAgICAgICAgICAgICAgICBzdHJ1Y3QgYnVmZmVyX2hlYWQgKmJoOwogICAg
+ICAgICAgICAgICAgaW50IHJldDsKCiAgICAgICAgICAgICAgICBiaCA9IF9fZmluZF9nZXRfYmxv
+Y2soYmRldiwgYmxvY2ssIHNpemUpOwogICAgICAgICAgICAgICAgaWYgKGJoKQogICAgICAgICAg
+ICAgICAgICAgICAgICByZXR1cm4gYmg7CgogICAgICAgICAgICAgICAgcmV0ID0gZ3Jvd19idWZm
+ZXJzKGJkZXYsIGJsb2NrLCBzaXplLCBnZnApOwogICAgICAgICAgICAgICAgaWYgKHJldCA8IDAp
+CiAgICAgICAgICAgICAgICAgICAgICAgIHJldHVybiBOVUxMOwogICAgICAgIH0KClNvLCBpdCBs
+b29rcyBsaWtlIHRoZSBlcnJvciBjaGVjayBpbW1lZGlhdGVseSBhZnRlciBjYWxsaW5nCmdyb3df
+YnVmZmVycygpIHdpbGwgbm90IGJyYW5jaCBsaWtlIGJlZm9yZS4KSXMgdGhpcyBva2F5ID8gICBP
+ciwgYW0gSSBtaXNzaW5nIHNvbWUgb3RoZXIgY2hhbmdlcz8KCkFsc28sIHRoZXJlIGlzIGEgdHlw
+byBpbiB0aGUgY2hhbmdlbG9nOiAiYmVhY3VzZSIgLT4gImJlY2F1c2UiLgoKUmVnYXJkcywKUnl1
+c3VrZSBLb25pc2hpCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KTGludXgtbnRmcy1kZXYgbWFpbGluZyBsaXN0CkxpbnV4LW50ZnMtZGV2QGxpc3RzLnNv
+dXJjZWZvcmdlLm5ldApodHRwczovL2xpc3RzLnNvdXJjZWZvcmdlLm5ldC9saXN0cy9saXN0aW5m
+by9saW51eC1udGZzLWRldgo=
