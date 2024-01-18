@@ -2,164 +2,127 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D62882F0FD
-	for <lists+linux-ntfs-dev@lfdr.de>; Tue, 16 Jan 2024 16:05:41 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
-	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB69B831600
+	for <lists+linux-ntfs-dev@lfdr.de>; Thu, 18 Jan 2024 10:40:34 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1rPl0U-0006iX-Ct;
-	Tue, 16 Jan 2024 15:05:38 +0000
+	id 1rQOsy-0005Zo-OZ;
+	Thu, 18 Jan 2024 09:40:32 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-3.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <anton@tuxera.com>) id 1rPl0S-0006iQ-LK
+ (envelope-from <sshegde@linux.ibm.com>) id 1rQOLu-0005FN-NG
  for linux-ntfs-dev@lists.sourceforge.net;
- Tue, 16 Jan 2024 15:05:37 +0000
+ Thu, 18 Jan 2024 09:06:23 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=MIME-Version:Content-Transfer-Encoding:Content-ID:
- Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From:Sender
- :Reply-To:Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To
- :Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Message-Id:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=a2ghqPNGqWw6LeEcFYLiQrfhf775QrVCwdm3euzaNn4=; b=XT9YeURSejYUnE9iPUjZMJAzcg
- b7jnpF+VevmSzLSD639AhgrOzhg6NctUuzXhcr51YgtCOqSoST/aPtgBL2TMcxy7RlhkciTDENkh3
- iU7Q9MyUrAJgwnKBF7EIHnNNLGbcvoG5AWOpkA1u7w7ihp3Vqmd7EOHY2cAFbd2Ei76c=;
+ bh=dW6SN3AhL0Lcxi0KIl8tKzSobcAeQPzLd4TnKFmh2CA=; b=kXeX2Duf1FJ53A41QddjdAVapz
+ se7jEjESYJ7ymFDSXu0dh4B0QdkOrf47BYszlJd0IQvBprWcW8IA2WWNy0jujHmk2EoFyQqrMSppd
+ 9N/QylU3FG/yGK8Szrp7Hz8c8mxc8gRpdCNFVVe2aoH+/XfpPu+10dMW4Su0JIHxeJ4A=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:
- In-Reply-To:References:Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=a2ghqPNGqWw6LeEcFYLiQrfhf775QrVCwdm3euzaNn4=; b=fkw+zj+fzxWA1JbAmK8I/KPC/Q
- 9GHADOJehBRnvGr0GxDd3ik4mMPXS6AT6Tv1rMhROmyLfq8MBBa6pt8LYLRPlt6OuollrziBlbpFC
- tXzQJiPtsWCdPqPX40XUk74AgQz+4vCKbpBakTpwhlNENKM6aCJ/64r19I5FRheXzCyQ=;
-Received: from mail-db5eur02on2096.outbound.protection.outlook.com
- ([40.107.249.96] helo=EUR02-DB5-obe.outbound.protection.outlook.com)
+ h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From
+ :Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=dW6SN3AhL0Lcxi0KIl8tKzSobcAeQPzLd4TnKFmh2CA=; b=e
+ XFyZWU4jBiT3zYi17TeAcNF6PZBSWlX5Jsf2TnNBSbpOti53Rw+dJvLBMeqW6oyuwwHNpFNFnZMPU
+ iWqEAXTOLCi7oQOj4oYQnCGqeQ+J6cvW1GcZTL7liCxogB+g9lh4xjheioju2a19sTAD8if7D2l5J
+ L2eh+wPkCqYBnSKI=;
+Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1rPl0M-00042t-Gz for linux-ntfs-dev@lists.sourceforge.net;
- Tue, 16 Jan 2024 15:05:36 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=V0tPgLEgm8+fsuQNdcEoYnSZd6zm7Fp6HjF4rng24VK+OVtoOd2dKpfxKCkVR5SqpoWzeQtApkOuIXfcfx5ADePXBRPQUp6skjBCKgFWtk/0KA5f7Az016VwBMrudY8ENMTuFVH+oDxTJ/w1KYMbIRsNKELWY+X3wNu8Dg82EL9mxhWI0Ru1ph/kOmUdstM5cfiKgwPHsuxxbcn/dqkaO5WUr+oPHjdOWPI2YjjJ9nGwrGAnk4rCVTNuAlSytNoqHqf2ycfgtpWLYAI0IKt+o/h4Y292bCo1X7OEGrweoGfghw0A2mrRmQTL+nfzyRoQGwue77CVdPWfr7iWFnjkOw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=a2ghqPNGqWw6LeEcFYLiQrfhf775QrVCwdm3euzaNn4=;
- b=iCF3Hhp8I1T109tBszEo7pDpWU9mdUdM2YxWmxA5WDeSlpHocPcGsfB48skhHXhB8EVViYoC4CcOhuA7MsQGmm+cNv6Ik0DIDOtpZH3iO3Ojh2anBA6j+4vM5JvVY/eyzBWVjxlgeKWmVfqUJ5BDhZRzccRA4XIW3vOiUsy7p9JD7wDj2nfopbBBB1IQYmGBC0ZPgdxj3+TMTdy4C8ugbLyP2Ll3O6B6hUdx0hpNZKs2FrGIr8cwNv82uYtnnytuAsgo0nuYKbRsdYKM86DshBfYtwfXbZYsPjM5HzFYrNMqLpvvr/n1Hiwthtnl1fdY97AaFwCk/cRwp6VrCDsBPg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=tuxera.com; dmarc=pass action=none header.from=tuxera.com;
- dkim=pass header.d=tuxera.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tuxera.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=a2ghqPNGqWw6LeEcFYLiQrfhf775QrVCwdm3euzaNn4=;
- b=EKWR/Kme7mkjyp+a7S0lQxg+gqOW/upOQ9DMhGimBy4dO/qhape2/rT31L1mo5gpSIEwnSPTzcmkKwQIabJVIopx+dgBKlkVEjOMMqmMKgOX3lqdgY84PioO5ipcJqQPxxMIQMnnmw7WzEz6KavvimagOPAs76HsstCk3Y8UZQr09vEQOJKfHtyc+sr2fVKjXlsQATiHQX4TowqVDmB5e5ZITawWe4EGt2URG55e+IL5n1vpOaOittWY4PeEK+oJvhCqDZ+N9uGMNfOZpl2x0cKmlAdROzrEXBolKOgRtsXsbaHcuMcHV/ulFG86ggIZku9wzXFXNqsJxDUYqRqTTw==
-Received: from AS8PR06MB7239.eurprd06.prod.outlook.com (2603:10a6:20b:254::18)
- by PAXPR06MB7997.eurprd06.prod.outlook.com (2603:10a6:102:1a9::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.23; Tue, 16 Jan
- 2024 11:32:37 +0000
-Received: from AS8PR06MB7239.eurprd06.prod.outlook.com
- ([fe80::6306:f08a:57eb:467c]) by AS8PR06MB7239.eurprd06.prod.outlook.com
- ([fe80::6306:f08a:57eb:467c%4]) with mapi id 15.20.7181.027; Tue, 16 Jan 2024
- 11:32:37 +0000
-To: Christian Brauner <brauner@kernel.org>
-Thread-Topic: [PATCH] Remove NTFS classic
-Thread-Index: AQHaSGGfEiUWkRrnEEiuiqZRoPZdx7DcR0iAgAAHWAA=
-Date: Tue, 16 Jan 2024 11:32:37 +0000
-Message-ID: <5056D55B-C421-4E83-A076-308857D5F26D@tuxera.com>
-References: <20240115072025.2071931-1-willy@infradead.org>
- <20240116-fernbedienung-vorwort-a21384fd7962@brauner>
- <1B634C72-9768-43E9-93B6-3396CBAA958E@tuxera.com>
- <20240116-gutgesinnt-autodidaktisch-d1ac1d2f8253@brauner>
-In-Reply-To: <20240116-gutgesinnt-autodidaktisch-d1ac1d2f8253@brauner>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=tuxera.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AS8PR06MB7239:EE_|PAXPR06MB7997:EE_
-x-ms-office365-filtering-correlation-id: 0f64dc1f-e52b-49ba-4922-08dc1686d768
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 5WxyINDTqmWzZNVmMMLW/Z+ED6vUuz00XfYWGZjeEII6uI2XqLIxmjilYdQz00Xl59xAa3yf3hBbXyjKsXenUxlkvmum+xPBzocGunGC3WpmNTGlZTzIll2GhpB8Z4mhs9aRWQSvbSeHiKqHCsgz0Wx0Js0Vp0PaRViVR0DCIU7MKxmWmY80lj1OK9FQC4N5Z/R/hTl8OSH4OljF1TLA8sO0IGyBiO4LIZxHAvh9gxoYuu6AokzAlWJEIFDnt16wpbZzBnOLvdFImOrnlVONTgNRreR73iFNzpAK2R5fgUpYbGkVJVul/RgRjZyolgG7N/8T1LQ035SComXqp9RldqomVueSIPWNEDAHTxXIgkArgz/oZTlzVq/bWyfFCdQdRKk5/iybU8WTeUsR8MYiYs3JRs3lLEhNeKrmoRQ49v90yLaZFCtREKsvcatjzmxOLF75nwcZ/OjBQS02gqrto3S0a9CqYWhsdWW7oh5xuNe1xrRQvRbdSWGfKxpFeB3ITDY8u7LXTJM684pHw9SMAqxnHtwEkCRhB51MH3l9Opcz7UjmJgdPL55o9L/vegi5wdR2IvayuY1zFosl0vjyV0WTwreqq2CUj2lYklRuQ6794iZzHBzrI50h5x2aDjfeAGwF/dxAhHNzJ0xvQXkHsw==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:AS8PR06MB7239.eurprd06.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(396003)(366004)(39840400004)(346002)(376002)(136003)(230922051799003)(64100799003)(451199024)(1800799012)(186009)(122000001)(86362001)(38100700002)(2616005)(26005)(36756003)(33656002)(38070700009)(83380400001)(6512007)(6506007)(966005)(316002)(6486002)(4744005)(54906003)(66476007)(53546011)(91956017)(66556008)(64756008)(66446008)(66946007)(76116006)(6916009)(2906002)(8936002)(8676002)(5660300002)(4326008)(71200400001)(478600001)(41300700001)(45980500001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?b+1kajr5WuHcJ71nZeSJLPuNIjWSCb1rnaCsuUcwikj3Bh6C+JKTyUfLqLhz?=
- =?us-ascii?Q?g7Svx03ipz7IiFY38/78vU/eGJMuFNxxdvP2Y4yZv3W+HeThha7D9fsqj21S?=
- =?us-ascii?Q?tcuqtg7XHipC/xTZrk8RpDPrZ+wWVDLBPQYs4YRIFXEynCCc5JC2+zisnpDS?=
- =?us-ascii?Q?Y78/I/buYDk9UCGgnGONg+dWqXlC9I+VmqYFBD3lCzIRWWHYy4klBxh18pV/?=
- =?us-ascii?Q?E8OhgNl+h3siwDDRDlNz9qWGCsaH5chax8R5fdZqRpguEkoGkEQT5fSnufGR?=
- =?us-ascii?Q?L1kFARhWfnF1baNJO/pUferGSXwD8DtvZDzSlfSwtYYFfF9LbgfBp+4T0t6W?=
- =?us-ascii?Q?xpxnPh/Ylo27ojHNTpArojNjae3wQ1EE5A3h5nnXNF/k0v2gh+Fedf/ChxzJ?=
- =?us-ascii?Q?+O0A0xrGViZOrwAxRJMTaoDa+hbkB0HzULl6YA+SoHV15Dk8LdBwqPqkOjf3?=
- =?us-ascii?Q?z5st7TBjLy3wuCwdLEITymhCTSlLsihgl/OeMkLn1OxNGlh28OVnTwElyO/7?=
- =?us-ascii?Q?m/iyRhra6qyNLel94y+6okuQhSl4LurO3Kqwm0O0yoZmxrX+ziOwaLPH7w4a?=
- =?us-ascii?Q?EIUF0TxgBzevM0/eac4h+C5N+hLfjr4+IE04dIz3UXt3lSxLMT2m80anEoP6?=
- =?us-ascii?Q?wls/bOTKF46fZ/LEkO3oVY5hj3/fe9BlTy9GW4nypu76XOyXnh6EBNlJ0whD?=
- =?us-ascii?Q?lfn8aQRhp8L1LNarIuIZjFLsh7MqRU6x7e8VFfnBYtqbuPKeIteQ08Gzegzv?=
- =?us-ascii?Q?N6N34kN0JPwrNNRf3GQRg/qAH+nEpM2+sR66tSUymETd4qzQw5bmD1TTsMRW?=
- =?us-ascii?Q?3tX4SZo8pDL38AQerq8ZaoCWSb2KyBwijXUmHj2+D9Z89M0JCdkS1dJcCkkM?=
- =?us-ascii?Q?8e8M/WLN7DdnXRopQQ+PsMO/pw9sGKDRS0S5jMgEeDPsOcmwXu9kfw7v2C5u?=
- =?us-ascii?Q?Ir2VXlsBHI5MQHguMY1ZH9h/sUxFIpzfQrnf2KToRtvaFu5V60LMlmHojnd3?=
- =?us-ascii?Q?fTmmHSPM9a74u4I6nlWezGrKiFtK9txdAWZMuNEMU/kRxbnWvAymJJ7dRsGU?=
- =?us-ascii?Q?2rpaLmMWB1WdjosGaMu8FjIu+mecqwI2Iq9FEAtyanVn1wIf9RWiBOq52uaD?=
- =?us-ascii?Q?MttfIJwnXDPoIurW0Rw10jbfFJ3pYiAUrE7WD/v6JjE050moPETMZr52Zfij?=
- =?us-ascii?Q?dDqfyzp9P7DoVE0Cc5HIg8chYamEDxyKBR/Et5WrZngD+DeeK6Tcj6+IIMlL?=
- =?us-ascii?Q?Xvn9g99kTZRSaYeNDETxvhF/lC0EWk2kJh5brHRWFfCVNjdKX8fLKku6yKQm?=
- =?us-ascii?Q?JLqvVQ7RqqpmqipN5fdL/CykiLiNxZ3gDBmVIWpeDsw9SQk5Bje+0YGi+Nh3?=
- =?us-ascii?Q?tRnkWxRhUn9eW8OJqRMP9JnTvpH2Gf8phoItdwaQbjjZfWOQJclj1WMAx0Eu?=
- =?us-ascii?Q?B7CvTBN9Sk6NmSl/RYt3jqDSb/QZq1fS9VXNUeF9DBTzhBzgUqnnru48yOyf?=
- =?us-ascii?Q?M24ypUWg+lNZEqI33cKexPb+Dz+ss0VtEtQYLjbYMIZc+hePAudmR5L9VeOq?=
- =?us-ascii?Q?mAbWgRdEYK5HZ3UnwIVyoq/O5StVZraxdulcrIOT?=
-Content-ID: <3C1DB479CDFF4742A873974943ED4218@eurprd06.prod.outlook.com>
+ id 1rQOLs-0003Il-RF for linux-ntfs-dev@lists.sourceforge.net;
+ Thu, 18 Jan 2024 09:06:23 +0000
+Received: from pps.filterd (m0353725.ppops.net [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id
+ 40I7L5Br031729; Thu, 18 Jan 2024 08:04:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com;
+ h=from : to : cc : subject
+ : date : message-id : mime-version : content-transfer-encoding; s=pp1;
+ bh=dW6SN3AhL0Lcxi0KIl8tKzSobcAeQPzLd4TnKFmh2CA=;
+ b=OBK3Uu4xnAqt0dl7fLOvpH/dqie3h3kpd8tLlyyaLATTVcXpH3tfbUk9+5Aa7G/SkG9K
+ rGke8RGRKvHW/aFLsNURz+WoPhu6p4+ZAR4f7hRro7yFdqwJQoe3DUPPpYvvR26ZYt/R
+ Qg925ljlJjVAh/KroqGlufbV/gNP5L1cKnfvqs2NlZ5GAecZzrlc27e2WIU8ZjhqpTQX
+ SjPlEsa1eJyZFyPTHu4YK/Nk5lErAvcvnC8hHQzhtgzR3JmMv+/iKT6ycjNjUGi6helL
+ Yw1phm/qMsyUNa1osixjIXNf705SlW8gt+qgt6G7PBP5QEubARkXtE1F/fv6+PJyoTXS mA== 
+Received: from ppma11.dal12v.mail.ibm.com
+ (db.9e.1632.ip4.static.sl-reverse.com [50.22.158.219])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3vpw6pvauv-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Thu, 18 Jan 2024 08:04:03 +0000
+Received: from pps.filterd (ppma11.dal12v.mail.ibm.com [127.0.0.1])
+ by ppma11.dal12v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id
+ 40I7BDoX006508; Thu, 18 Jan 2024 08:04:03 GMT
+Received: from smtprelay05.fra02v.mail.ibm.com ([9.218.2.225])
+ by ppma11.dal12v.mail.ibm.com (PPS) with ESMTPS id 3vm7j21nb2-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Thu, 18 Jan 2024 08:04:02 +0000
+Received: from smtpav04.fra02v.mail.ibm.com (smtpav04.fra02v.mail.ibm.com
+ [10.20.54.103])
+ by smtprelay05.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
+ 40I841Q036045078
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Thu, 18 Jan 2024 08:04:01 GMT
+Received: from smtpav04.fra02v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 2FADC20043;
+ Thu, 18 Jan 2024 08:04:01 +0000 (GMT)
+Received: from smtpav04.fra02v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id F40FD20040;
+ Thu, 18 Jan 2024 08:03:58 +0000 (GMT)
+Received: from li-c1fdab4c-355a-11b2-a85c-ef242fe9efb4.in.ibm.com (unknown
+ [9.109.201.126])
+ by smtpav04.fra02v.mail.ibm.com (Postfix) with ESMTP;
+ Thu, 18 Jan 2024 08:03:58 +0000 (GMT)
+To: linux-kernel@vger.kernel.org, linux-ntfs-dev@lists.sourceforge.net,
+ linux-xfs@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
+Date: Thu, 18 Jan 2024 13:33:23 +0530
+Message-Id: <20240118080326.13137-1-sshegde@linux.ibm.com>
+X-Mailer: git-send-email 2.39.3
 MIME-Version: 1.0
-X-OriginatorOrg: tuxera.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR06MB7239.eurprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0f64dc1f-e52b-49ba-4922-08dc1686d768
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Jan 2024 11:32:37.4508 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: e7fd1de3-6111-47e9-bf5d-4c1ca2ed0b84
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: TevyAL1tKtCsg18vj8HF4s9Z9JrcVSKLpRkQyE+am6jE6NBl39lNU9tOpZbydwq3xxnS4lYx10DEFZ7AucM0Rg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR06MB7997
-X-Spam-Score: -0.2 (/)
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: sHUTBHPs0bn-MPgVd2jK5MQVyP9-lhbG
+X-Proofpoint-ORIG-GUID: sHUTBHPs0bn-MPgVd2jK5MQVyP9-lhbG
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-18_04,2024-01-17_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 spamscore=0
+ malwarescore=0 lowpriorityscore=0 mlxlogscore=696 priorityscore=1501
+ phishscore=0 adultscore=0 clxscore=1011 mlxscore=0 impostorscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311290000 definitions=main-2401180056
+X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hi, > On 16 Jan 2024, at 11:06,
- Christian Brauner <brauner@kernel.org>
- wrote: > On Tue, Jan 16, 2024 at 09:51:47AM +0000, Anton Altaparmakov wrote:
- >> It seems there is consensus to remove it so please ad [...] 
- Content analysis details:   (-0.2 points, 6.0 required)
+ Content preview:  When going through the code observed a case in scheduler,
+ where #ifdef CONFIG_SMP was used to inside an #ifdef CONFIG_SMP. That didn't
+ make sense since first one is good enough and second one is a dup [...] 
+ Content analysis details:   (-0.1 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [40.107.249.96 listed in wl.mailspike.net]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [40.107.249.96 listed in list.dnswl.org]
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
+ 0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
+ [148.163.158.5 listed in wl.mailspike.net]
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid -0.0 T_SCC_BODY_TEXT_LINE   No description available.
-X-Headers-End: 1rPl0M-00042t-Gz
-Subject: Re: [Linux-ntfs-dev] [PATCH] Remove NTFS classic
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+X-Headers-End: 1rQOLs-0003Il-RF
+X-Mailman-Approved-At: Thu, 18 Jan 2024 09:40:31 +0000
+Subject: [Linux-ntfs-dev] [RFC PATCH 0/3] remove duplicate ifdefs
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -172,44 +135,111 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-From: Anton Altaparmakov via Linux-ntfs-dev
- <linux-ntfs-dev@lists.sourceforge.net>
-Reply-To: Anton Altaparmakov <anton@tuxera.com>
-Cc: Linux FS-devel Mailing List <linux-fsdevel@vger.kernel.org>,
- "linux-ntfs-dev@lists.sourceforge.net"
- <linux-ntfs-dev@lists.sourceforge.net>,
- "ntfs3@lists.linux.dev" <ntfs3@lists.linux.dev>,
- "Matthew Wilcox \(Oracle\)" <willy@infradead.org>
+From: Shrikanth Hegde via Linux-ntfs-dev <linux-ntfs-dev@lists.sourceforge.net>
+Reply-To: Shrikanth Hegde <sshegde@linux.ibm.com>
+Cc: peterz@infradead.org, mpe@ellerman.id.au, sshegde@linux.ibm.com,
+ mingo@kernel.org, anton@tuxera.com, chandan.babu@oracle.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-Hi,
+When going through the code observed a case in scheduler,
+where #ifdef CONFIG_SMP was used to inside an #ifdef CONFIG_SMP.
+That didn't make sense since first one is good enough and second
+one is a duplicate.
 
-> On 16 Jan 2024, at 11:06, Christian Brauner <brauner@kernel.org> wrote:
-> On Tue, Jan 16, 2024 at 09:51:47AM +0000, Anton Altaparmakov wrote:
->> It seems there is consensus to remove it so please add:
-> 
-> Well, we'll try. This is one of those cases where we might end up not
-> being able to do it.
+This could improve code readability. No functional change is intended.
+Maybe this is not an issue these days as language servers can parse
+the config and users can read the code without bothering about
+whats true and whats not.
 
-If that happens, I am happy to update the APIs as Matthew detailed but obviously I do not want to waste my time doing that if it will be removed anyway...
+Does this change makes sense?
 
-Best regards,
+Since this might be present in other code areas wrote a very basic
+python script which helps in finding these cases. It doesn't handle any
+complicated #defines or space separated "# if". At some places the
+log collected had to be manually corrected due to space separated ifdefs.
+Thats why its not a treewide change.
+There might be an opportunity for other files as well.
 
-Anton
+Logic is very simple. If there is #ifdef or #if or #ifndef add that
+variable to list. Upon every subsequent #ifdef or #if or #ifndef
+check if the same variable is in the list. If yes flag
+an error. Verification was done manually later checking for any #undef
+or any error due to script. These were the ones that flagged out and
+made sense after going through code.
 
-> But imho this is a case where there's sufficient
-> reason to at least try and remove this code precisely because we have an
-> alternative implementation that's been around for a while.
-> 
-> IOW, this isn't like reiserfs where we're actually getting rid of a
-> filesystem completely.
+ifdefs were collected using grep in below way and that file was used as
+the input to the script.
+grep -rIwn --include="*.c*" --include="*.h"  -e "#if" -e "#ifndef" -e "#ifdef" -e "#else" -e "#endif" * > /tmp/input.txt
 
--- 
-Anton Altaparmakov <anton at tuxera.com> (replace at with @)
-Lead in File System Development, Tuxera Inc., http://www.tuxera.com/
-Linux NTFS maintainer
+---------------------------------------------------------------------
+script used:
+---------------------------------------------------------------------
+import os
+import argparse
+
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--file",
+                            help="file to input to script",
+                            type=str)
+    parser.add_argument("--verbose",
+                            help="Print additional debugging info, 0 to disable ",
+                            type=int)
+    args = parser.parse_args()
+    return args
+
+def parseFiles(args):
+    file_to_parse = open(args.file, "r")
+    lines = file_to_parse.readlines()
+    check_length = len(lines)
+    ifdefs_list = []
+    i=0
+
+    while i < check_length:
+        line = lines[i]
+        last_word = line.strip().split(":")[2]
+        last_word = last_word.split("/")[0]
+
+        if (args.verbose):
+            print(line)
+        last_word_splits = last_word.split()
+        if (args.verbose):
+            print(last_word_splits)
+        if last_word_splits[0] == "#ifdef" or last_word_splits[0] == "#ifndef" or last_word_splits[0] == "#if":
+            if last_word_splits[1] in ifdefs_list:
+                print("This is duplicate and may be fixed: %s, parent_list:\n" % (line))
+                print(ifdefs_list)
+            ifdefs_list.append(last_word_splits[1])
+        if last_word_splits[0] == "#endif"":
+            ifdefs_list.pop()
+
+        i=i+1
+
+if __name__ == "__main__":
+    args = parse_args()
+    parseFiles(args)
+-------------------------------------------------------------------------
+
+
+Shrikanth Hegde (3):
+  sched: remove duplicate ifdefs
+  fs: remove depulicate ifdefs
+  arch/powerpc: remove duplicate ifdefs
+
+ arch/powerpc/include/asm/paca.h           | 4 ----
+ arch/powerpc/kernel/asm-offsets.c         | 2 --
+ arch/powerpc/platforms/powermac/feature.c | 2 --
+ arch/powerpc/xmon/xmon.c                  | 2 --
+ fs/ntfs/inode.c                           | 2 --
+ fs/xfs/xfs_sysfs.c                        | 4 ----
+ kernel/sched/core.c                       | 4 +---
+ kernel/sched/fair.c                       | 2 --
+ 8 files changed, 1 insertion(+), 21 deletions(-)
+
+--
+2.39.3
 
 
 
