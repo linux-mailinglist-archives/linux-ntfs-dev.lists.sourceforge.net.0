@@ -2,74 +2,74 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4490A869FA8
-	for <lists+linux-ntfs-dev@lfdr.de>; Tue, 27 Feb 2024 19:56:44 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB47086C7F1
+	for <lists+linux-ntfs-dev@lfdr.de>; Thu, 29 Feb 2024 12:22:29 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1rf2d7-0007DQ-NC;
-	Tue, 27 Feb 2024 18:56:41 +0000
+	id 1rfeUc-0003AG-HE;
+	Thu, 29 Feb 2024 11:22:27 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95) (envelope-from
- <3bMzdZQkbALEjpqbRccViRggZU.XffXcVljViTfekVek.Tfd@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
- id 1revyT-000632-Ca for linux-ntfs-dev@lists.sourceforge.net;
- Tue, 27 Feb 2024 11:50:17 +0000
+ <3b1zgZQkbAN4SYZKALLERAPPID.GOOGLEUSERCONTENT.COM@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
+ id 1rfdf5-0004oh-AM for linux-ntfs-dev@lists.sourceforge.net;
+ Thu, 29 Feb 2024 10:29:11 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Type:To:From:Subject:Message-ID:In-Reply-To
  :Date:MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=tH203RrzLyAOiwyFP5B31fo86XWdWzsP+OL8gKwsz6A=; b=O3ukus1h2DZay8upp3ctWzWpfa
- IkRCXMGNZXAHdmap+7YR9mQRcp7ezZEHRwqBN7B3HmVU/SiF/g9YdtBAwF04MkrvLXJ8k4LAlRGPw
- rWjCqCULgj3qS73LcJ4tRTij0sZ1zKWMRxpa7fjOM7uJqVPJnscZkJsrw/LZQkQFW8qc=;
+ bh=due3BSO2Q9QQy1tfU+DhYvgI9lxf7h7yLmfxg2bj9yE=; b=OjeCJPL4ECko3Es60mL6FgYpi7
+ h2719u7FH0uQaCSXYq9VT1qhb9uI5ygdYswwt5lGbvmhJk4JqdzHKrYjq00G5mfdcadsIjt+DUzCX
+ 6HDKNyeuudhXXJCNtGGEb3LIFxD2iYqEA3Hy7Gai2JvueEmEU0TvuE8UutR9nM7mvBdg=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Type:To:From:Subject:Message-ID:In-Reply-To:Date:MIME-Version:
  Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:Content-Description:
  Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=tH203RrzLyAOiwyFP5B31fo86XWdWzsP+OL8gKwsz6A=; b=D
- BqYMdDweE1DrjGkO9x4DJ9Xmu5tbzatZ2M7pC2PmN3rEwelLE/mhXP4GblXDuhO85Thh/2pRZVHg5
- dW7BZIil1atvgr+zviC92bs/uSKnTPjeuAi5wNZrmkoP/e2/Rq7dHas4Pc+vjk/lAyAkjT798hEgN
- bsgCka+SlqRXH6uI=;
-Received: from mail-il1-f197.google.com ([209.85.166.197])
+ List-Owner:List-Archive; bh=due3BSO2Q9QQy1tfU+DhYvgI9lxf7h7yLmfxg2bj9yE=; b=I
+ ztcyVyDRhrudmtYrbSwVneNcbJ1SN/TsMnwkr/lQDzBFRTINCLEP54EobgAE4lHS+7X37Jz7b9Vt4
+ HLubJel2znhjGedP+lFLXaxJ9o1/UaNBdEsvED4JFYmJu0OhI9prHVtpFmm1v7l+GQZTeZgYJypOu
+ 13WqZhCiSblxVQHw=;
+Received: from mail-io1-f71.google.com ([209.85.166.71])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1revyR-0006H5-5O for linux-ntfs-dev@lists.sourceforge.net;
- Tue, 27 Feb 2024 11:50:17 +0000
-Received: by mail-il1-f197.google.com with SMTP id
- e9e14a558f8ab-3651a261194so24930655ab.1
+ id 1rfdf3-0001bw-9F for linux-ntfs-dev@lists.sourceforge.net;
+ Thu, 29 Feb 2024 10:29:09 +0000
+Received: by mail-io1-f71.google.com with SMTP id
+ ca18e2360f4ac-7c75dee76c0so55189139f.1
  for <linux-ntfs-dev@lists.sourceforge.net>;
- Tue, 27 Feb 2024 03:50:15 -0800 (PST)
+ Thu, 29 Feb 2024 02:29:09 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1709034604; x=1709639404;
+ d=1e100.net; s=20230601; t=1709202543; x=1709807343;
  h=to:from:subject:message-id:in-reply-to:date:mime-version
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=tH203RrzLyAOiwyFP5B31fo86XWdWzsP+OL8gKwsz6A=;
- b=pBV9pAyKexHUkk4ZtpjbJWFlraDWHo3HGIOP6D2EHo0WT0woGoLyiD9i+VZn5YeSEX
- V5K8wA2GcJ+UZIOw4u+84G0GyBoIse3U9QHaJuz3zfkQ4W67BoBOuDDn/qXX22OUBk8v
- 213PRdnejknIaYLbDK6wVT7L09Au+fddZStgJhaFN2YNwvh1mt9zqitZKakmEfh2T6dj
- ALprBzEuC9ytnVa7flaVsV/ULsG+pKz52a73GTkFU476+1nrgRO4yvbFYwKqdGKJ4Dvi
- e/w511JEU7UyiqnDzmDKJIq7eJdO/GFLht0mmblswYJQn4xzInL6qD6KzFtiSzGuwwF1
- 7VHQ==
+ bh=due3BSO2Q9QQy1tfU+DhYvgI9lxf7h7yLmfxg2bj9yE=;
+ b=wLoUCDUEXd/jSKeqdRt/XdXdzlOe65bVxUbO08WpdpS1lAamTqlvuIv59ABVOgGbQP
+ WrIesr1LntI5tc+pUYfFIWnlbbpdueIKnxSIwNsR714/fVZ432xhCNkwFdynz9d+x0f2
+ 9nCR2gWwAm1aw18aZ4efASr32k2gWQutbNeluteAMSYSu8fumAhZ4e5lMBQ8hV63FhGm
+ 0XhqxanQgd2liZHwyzJaDxOadzs6UHkPXPn8KM26+ygn2vr1GWZf9okNgReoM/Z7Q3sS
+ aACcxdRMTAR23u73Z4GMa8OjXEnDmMAURkYUZsm6m/SYBiQzCYfVpmf9eeSDyhXXisw3
+ /gqg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUxMLnnXAM1OWFLLonsMulWX4qmcB/oigHGsOB9PX+h77QRBKdICXEPK/V7VR+VWlCW0l0wb+xbjf+9TKULR2is01lch/yyxDrn+YMI+T0/8HTToCA=
-X-Gm-Message-State: AOJu0Ywr9jyzB6Ugx4L7P6sg8M2eGoR+wNxhQvq3yNLHdGvmtzWmBAW7
- TvUgtx2hMyzn+05wnzCW1I4x5z5Ux9AlLxjvxSWEui3Nk4swT5tWy09HrlP5Ra5KOHyHYKWEddm
- tdXi4ISXsxZboiIgqH2rnd3c5rzsGL7abhHdb9xgrINNJ6yLQc2HR0fE=
-X-Google-Smtp-Source: AGHT+IErUXetTcqvT7hKSEl4qfD4Oi1EaI+bTCZF6SZx92+OOHC9FGESt/LzHWLlFekaHASkBANwL4udJotYzCs33lO7v8FCTsQL
+ AJvYcCUtR0vj43K84Q8ry8+RC5YBlBS+KziRQ0Apgo6WuVTexv4GIXvCxos5ap27et74kdVmlJJtnONGoP8DuVXA+Kw/a8MDzjH4qQl0VycIIo6G1lteLp4=
+X-Gm-Message-State: AOJu0YyfZuh4OpBfkz5uCY4Cx8HndpNHlzv6LwcNUGxBvG4CA+9XyNRx
+ /FcExVT1VUwuSSuyV/jkvnUqOwqTvGQ7fv/7i5ISj0ZbH62WeVf1pPFPus7dyxIfUggHw1SDHgh
+ +3wqc8t8wCyzm7XYJrwk00omJfKWymJFRhsWE10ofdq0wIFT/NaM/7Jw=
+X-Google-Smtp-Source: AGHT+IG2pzGB/bSL5lyIW4of4SnG2AETh2eVcWNY2PjmAky9W70Ne3ilD1c0bgJEXD2NQSMBqAVmrCjpUxXXw1IVIbbE8VsD2goT
 MIME-Version: 1.0
-X-Received: by 2002:a05:6e02:1808:b0:365:21f4:7030 with SMTP id
- a8-20020a056e02180800b0036521f47030mr743713ilv.4.1709034604595; Tue, 27 Feb
- 2024 03:50:04 -0800 (PST)
-Date: Tue, 27 Feb 2024 03:50:04 -0800
-In-Reply-To: <0000000000009146bb05f71b03a0@google.com>
+X-Received: by 2002:a05:6638:3c45:b0:474:ba84:8ded with SMTP id
+ bg5-20020a0566383c4500b00474ba848dedmr69269jab.0.1709202543676; Thu, 29 Feb
+ 2024 02:29:03 -0800 (PST)
+Date: Thu, 29 Feb 2024 02:29:03 -0800
+In-Reply-To: <000000000000602c0e05f55d793c@google.com>
 X-Google-Appengine-App-Id: s~syzkaller
 X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <0000000000008414ba06125ba07f@google.com>
-From: syzbot <syzbot+d3cd38158cd7c8d1432c@syzkaller.appspotmail.com>
+Message-ID: <0000000000007717e5061282baa0@google.com>
+From: syzbot <syzbot+d62e6bd2a2d05103d105@syzkaller.appspotmail.com>
 To: almaz.alexandrovich@paragon-software.com, anton@tuxera.com, 
  axboe@kernel.dk, brauner@kernel.org, jack@suse.cz, linkinjeon@kernel.org, 
  linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org, 
@@ -77,7 +77,7 @@ To: almaz.alexandrovich@paragon-software.com, anton@tuxera.com,
  syzkaller-bugs@googlegroups.com
 X-Spam-Score: 3.0 (+++)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
@@ -90,20 +90,19 @@ X-Spam-Report: Spam detection software,
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  0.3 FROM_LOCAL_HEX         From: localpart has long hexadecimal sequence
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.166.71 listed in list.dnswl.org]
  0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
  mail domains are different
- 2.5 SORTED_RECIPS          Recipient list is sorted by address
  -0.0 SPF_PASS               SPF: sender matches SPF record
+ 2.5 SORTED_RECIPS          Recipient list is sorted by address
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.166.197 listed in wl.mailspike.net]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.166.197 listed in list.dnswl.org]
+ [209.85.166.71 listed in wl.mailspike.net]
  -0.0 T_SCC_BODY_TEXT_LINE   No description available.
-X-Headers-End: 1revyR-0006H5-5O
-X-Mailman-Approved-At: Tue, 27 Feb 2024 18:56:40 +0000
-Subject: Re: [Linux-ntfs-dev] [syzbot] [ntfs3?] KASAN: use-after-free Read
- in ntfs_read_folio
+X-Headers-End: 1rfdf3-0001bw-9F
+X-Mailman-Approved-At: Thu, 29 Feb 2024 11:22:25 +0000
+Subject: Re: [Linux-ntfs-dev] [syzbot] [ntfs3?] kernel BUG in ntfs_iget
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -128,13 +127,13 @@ Date:   Wed Nov 1 17:43:10 2023 +0000
 
     fs: Block writes to mounted block devices
 
-bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=15a70f4a180000
-start commit:   ac865f00af29 Merge tag 'pci-v6.7-fixes-2' of git://git.ker..
+bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=105d5a6a180000
+start commit:   2639772a11c8 get_maintainer: remove stray punctuation when..
 git tree:       upstream
-kernel config:  https://syzkaller.appspot.com/x/.config?x=655f8abe9fe69b3b
-dashboard link: https://syzkaller.appspot.com/bug?extid=d3cd38158cd7c8d1432c
-syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=12769ba5e80000
-C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=10c2b97ee80000
+kernel config:  https://syzkaller.appspot.com/x/.config?x=f8e72bae38c079e4
+dashboard link: https://syzkaller.appspot.com/bug?extid=d62e6bd2a2d05103d105
+syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=1358d65ee80000
+C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=10dbbe45e80000
 
 If the result looks correct, please mark the issue as fixed by replying with:
 
