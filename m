@@ -2,106 +2,146 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6C298776F3
-	for <lists+linux-ntfs-dev@lfdr.de>; Sun, 10 Mar 2024 14:15:59 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 941E287859D
+	for <lists+linux-ntfs-dev@lfdr.de>; Mon, 11 Mar 2024 17:41:28 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1rjJ1u-0006Mw-2N;
-	Sun, 10 Mar 2024 13:15:54 +0000
+	id 1rjiiL-0006wO-Pb;
+	Mon, 11 Mar 2024 16:41:25 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95) (envelope-from
- <3UBXtZQkbAGUVbcNDOOHUDSSLG.JRRJOHXVHUFRQWHQW.FRP@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
- id 1rj8Yw-000855-Q3 for linux-ntfs-dev@lists.sourceforge.net;
- Sun, 10 Mar 2024 02:05:19 +0000
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
+ (envelope-from <jack@suse.cz>) id 1rjiXc-0006a6-Ha
+ for linux-ntfs-dev@lists.sourceforge.net;
+ Mon, 11 Mar 2024 16:30:21 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:To:From:Subject:Message-ID:In-Reply-To
- :Date:MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=eAtcZ0jcmff76E8g+uUmd6ptddX0gjsk2MQCSo48DN0=; b=UNtMtYNJBzjIxZkcAl5TRt1Htn
- 3JTgwT+YlatCwpBv8zz36mi2WY7cV8XySGsBEjFeFe6s5kogZSZF9KyAXhdvfIgN0CHN9UclM9uO9
- pUsdpXQNN1959CQMnUl2oMNeLBwbsObYRNk7YJZ+Ii04/eAoq+7Sjxyh9l2iphQyDKlM=;
+ bh=xlY58PQIEZEdZ0oT4/HKEiEUKCBshfHvCO+3mj9Nk2Q=; b=lqq2FZJ42/JrnNoxduQUluAvbQ
+ x+Y8nkbIX7Yi7QX+BXVbXd0SVZ3ALH4I3bUUuRJD9ZWYkgeNl5xoy6vsKP6pyrvTS7uPfvGeCMQ+j
+ +30hufk0UkBkQfFSTjOxWnl52ELGmYBVAim5qEP3ONj/Zk3vF/2JiF+KMfr9j8Gvjo84=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:To:From:Subject:Message-ID:In-Reply-To:Date:MIME-Version:
- Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=eAtcZ0jcmff76E8g+uUmd6ptddX0gjsk2MQCSo48DN0=; b=E
- pe38feXjPEX8XGND7NuPVlk9KHz5T6rlf6HS+45Gu/6/3YumPelhedMlGlo1Fe0i3zTZofuQ+SJ8z
- vBPXBh333AznaiywJf9of42WpV5iPzg1S+50p1EXERTqHMMkr5LRzVyP9Ny/nXlTM9Pk5P+rXkgCo
- T9vNOUlAyPpHp6cU=;
-Received: from mail-io1-f70.google.com ([209.85.166.70])
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=xlY58PQIEZEdZ0oT4/HKEiEUKCBshfHvCO+3mj9Nk2Q=; b=XpyLTOalhBq368xSsJTE8uhy4X
+ HBosw1xGow/5ehJBar+iRayhr3iNGVKleNzC7cQ68uAOi/SaQDeNOWlm3GFuYQTwV2FBmZeFhS8q2
+ xpJmSfzDsNDYWJpZG7Aaq1tDafljykSn+GkTGKhL3+tWulObi6Uql8KSk2xFgvbh1LD0=;
+Received: from smtp-out2.suse.de ([195.135.223.131])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1rj8Yn-0000jz-28 for linux-ntfs-dev@lists.sourceforge.net;
- Sun, 10 Mar 2024 02:05:19 +0000
-Received: by mail-io1-f70.google.com with SMTP id
- ca18e2360f4ac-7c8ad1653f8so30612739f.0
- for <linux-ntfs-dev@lists.sourceforge.net>;
- Sat, 09 Mar 2024 18:05:15 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1710036304; x=1710641104;
- h=to:from:subject:message-id:in-reply-to:date:mime-version
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=eAtcZ0jcmff76E8g+uUmd6ptddX0gjsk2MQCSo48DN0=;
- b=IYVQvrShW9y4A8H9zbx+/d63biBCwHh1kXlKvcdctjuDTp7FwQPQuaSYbENvg2lyvY
- g0O9XP29J3hvmsBpS26OSSLn/pXL8DrsQ0cHjZ2UrvdtFJ/3+dJVRcQiCxtxahHa/4tK
- Bg3GfNcIdjD4DP6VQ1gDVJR/e4PK58y3/E5xrl+APQOC/MsEl0VElJfB8SKwCgPY9Jwx
- vWLsr4T4xMkGjwCUBrfMELFvuHFFFh0yfDCik0rvluzvgbTV+pAU8JYocxo5XNRzbCZh
- KobxAVIaPFgKhRLjhcbZOfwexcLkWUQMCKYuaexBgQ/zqfO+EXsKCjs9pBG+0Kn4OquN
- SIyw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXSTc7G4r2Vg3Herw5O5kATyqO2b4CPfJRBxuRCFD69f3OiYdwJsIksJ/NCy8PiAB5HKqX4yvnUkR/PbxqJ/i8evsJ25EkSYP09Wv88n55GdmpHnMs=
-X-Gm-Message-State: AOJu0YxRa2p5gjPRMO8GkOG5uPT7iC0Yw+HOspWzXnjqnLsKOzeJahQR
- TOIHuLI9NT9F5+MgUN1UemO4+NQOdb+XTYEls8fOP7PMRHVJfk9aeh2q9/yBhFeqcs0FQBmxW6t
- 16L4+UDQXS05VCE1sQELCreSyn34BFDIaBJmuzrsiat0QIJe9dmuAt0s=
-X-Google-Smtp-Source: AGHT+IE6e/IIewGxQAV4bqB6X0atmmjTjDjRrTeEujE/9OhtcHQe4bLNbPc1G6ogefC3EoR0pjUbedvrrFrSIyeg1cQ727HyyOZJ
+ id 1rjiXR-0000N1-CL for linux-ntfs-dev@lists.sourceforge.net;
+ Mon, 11 Mar 2024 16:30:20 +0000
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id F363A5C935;
+ Mon, 11 Mar 2024 16:30:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
+ t=1710174604; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=xlY58PQIEZEdZ0oT4/HKEiEUKCBshfHvCO+3mj9Nk2Q=;
+ b=EaSN6TUOiHhqpFiAXRpmZQ3LmmgBHPh6R0gFlvGGE5Ydh4I9/cPxviDw34MD4T7qLvqXDv
+ grF3ISrVcjt7h2CewPTLQ9lvNSHGIFc3tVC2hcjOF4oCRlqO9+fpL4T2sgKaEztRHB8Mi+
+ eRGcjHmH99rpY79tXU4nxgfsMkJGD5o=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
+ s=susede2_ed25519; t=1710174604;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=xlY58PQIEZEdZ0oT4/HKEiEUKCBshfHvCO+3mj9Nk2Q=;
+ b=OlQ0bu9/b27YVVIWO0yK5y8hKCXGIpxbeAeirruUZb3P9z88zL7ShirGK+QPGThV86pxC8
+ v3CsSXLqkZXV1uDA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
+ t=1710174604; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=xlY58PQIEZEdZ0oT4/HKEiEUKCBshfHvCO+3mj9Nk2Q=;
+ b=EaSN6TUOiHhqpFiAXRpmZQ3LmmgBHPh6R0gFlvGGE5Ydh4I9/cPxviDw34MD4T7qLvqXDv
+ grF3ISrVcjt7h2CewPTLQ9lvNSHGIFc3tVC2hcjOF4oCRlqO9+fpL4T2sgKaEztRHB8Mi+
+ eRGcjHmH99rpY79tXU4nxgfsMkJGD5o=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
+ s=susede2_ed25519; t=1710174604;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=xlY58PQIEZEdZ0oT4/HKEiEUKCBshfHvCO+3mj9Nk2Q=;
+ b=OlQ0bu9/b27YVVIWO0yK5y8hKCXGIpxbeAeirruUZb3P9z88zL7ShirGK+QPGThV86pxC8
+ v3CsSXLqkZXV1uDA==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id E8B2E136BA;
+ Mon, 11 Mar 2024 16:30:03 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id PBvJOIsx72VNFwAAD6G6ig
+ (envelope-from <jack@suse.cz>); Mon, 11 Mar 2024 16:30:03 +0000
+Received: by quack3.suse.cz (Postfix, from userid 1000)
+ id A7776A0807; Mon, 11 Mar 2024 17:29:59 +0100 (CET)
+Date: Mon, 11 Mar 2024 17:29:59 +0100
+From: Jan Kara <jack@suse.cz>
+To: syzbot <syzbot+cb1fdea540b46f0ce394@syzkaller.appspotmail.com>
+Message-ID: <20240311162959.odjj34j2vvypax6n@quack3>
+References: <0000000000002a6cba05eb5c7fbd@google.com>
+ <0000000000007c3484061344da08@google.com>
 MIME-Version: 1.0
-X-Received: by 2002:a05:6602:2dc5:b0:7c8:b219:4547 with SMTP id
- l5-20020a0566022dc500b007c8b2194547mr3316iow.2.1710036304535; Sat, 09 Mar
- 2024 18:05:04 -0800 (PST)
-Date: Sat, 09 Mar 2024 18:05:04 -0800
-In-Reply-To: <0000000000002a6cba05eb5c7fbd@google.com>
-X-Google-Appengine-App-Id: s~syzkaller
-X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <0000000000007c3484061344da08@google.com>
-From: syzbot <syzbot+cb1fdea540b46f0ce394@syzkaller.appspotmail.com>
-To: almaz.alexandrovich@paragon-software.com, anton@tuxera.com, 
- axboe@kernel.dk, brauner@kernel.org, jack@suse.cz, 
- linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-ntfs-dev@lists.sourceforge.net, ntfs3@lists.linux.dev, 
- syzkaller-bugs@googlegroups.com
-X-Spam-Score: 3.0 (+++)
+Content-Disposition: inline
+In-Reply-To: <0000000000007c3484061344da08@google.com>
+Authentication-Results: smtp-out2.suse.de;
+	none
+X-Spam-Level: *
+X-Spam-Score: 1.67
+X-Spamd-Result: default: False [1.67 / 50.00]; ARC_NA(0.00)[];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; BAYES_HAM(-0.03)[56.45%];
+ FROM_HAS_DN(0.00)[]; TO_DN_SOME(0.00)[];
+ TO_MATCH_ENVRCPT_ALL(0.00)[];
+ URI_HIDDEN_PATH(1.00)[https://syzkaller.appspot.com/x/.config?x=68e0be42c8ee4bb4];
+ TAGGED_RCPT(0.00)[cb1fdea540b46f0ce394];
+ MIME_GOOD(-0.10)[text/plain]; NEURAL_HAM_LONG(-1.00)[-1.000];
+ RCVD_COUNT_THREE(0.00)[3];
+ DKIM_SIGNED(0.00)[suse.cz:s=susede2_rsa,suse.cz:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; RCPT_COUNT_SEVEN(0.00)[11];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.cz:email,suse.com:email];
+ FUZZY_BLOCKED(0.00)[rspamd.com]; FROM_EQ_ENVFROM(0.00)[];
+ MIME_TRACE(0.00)[0:+]; MID_RHS_NOT_FQDN(0.50)[];
+ RCVD_TLS_ALL(0.00)[]; SUSPICIOUS_RECIPS(1.50)[];
+ SUBJECT_HAS_QUESTION(0.00)[]
+X-Spam-Flag: NO
+X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: syzbot suspects this issue was fixed by commit: commit
+ Content preview:  On Sat 09-03-24 18:05:04, syzbot wrote: > syzbot suspects
+ this issue was fixed by commit: > > commit
  6f861765464f43a71462d52026fbddfc858239a5
- Author: Jan Kara <jack@suse.cz> Date: Wed Nov 1 17:43:10 2023 +0000 fs: Block
- writes to mounted block devices 
- Content analysis details:   (3.0 points, 6.0 required)
+ > Author: Jan Kara <jack@suse.cz> > Date: Wed Nov 1 17:43: [...] 
+ Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.3 FROM_LOCAL_HEX         From: localpart has long hexadecimal sequence
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.166.70 listed in list.dnswl.org]
- 2.5 SORTED_RECIPS          Recipient list is sorted by address
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
- mail domains are different
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.166.70 listed in wl.mailspike.net]
- -0.0 T_SCC_BODY_TEXT_LINE   No description available.
-X-Headers-End: 1rj8Yn-0000jz-28
-X-Mailman-Approved-At: Sun, 10 Mar 2024 13:15:53 +0000
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid -0.0 T_SCC_BODY_TEXT_LINE   No description available.
+X-Headers-End: 1rjiXR-0000N1-CL
+X-Mailman-Approved-At: Mon, 11 Mar 2024 16:41:24 +0000
 Subject: Re: [Linux-ntfs-dev] [syzbot] [ntfs3?] possible deadlock in
  map_mft_record
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
@@ -116,31 +156,41 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
+Cc: axboe@kernel.dk, brauner@kernel.org, jack@suse.cz,
+ linux-ntfs-dev@lists.sourceforge.net, syzkaller-bugs@googlegroups.com,
+ linux-kernel@vger.kernel.org, almaz.alexandrovich@paragon-software.com,
+ linux-fsdevel@vger.kernel.org, ntfs3@lists.linux.dev, anton@tuxera.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-syzbot suspects this issue was fixed by commit:
-
-commit 6f861765464f43a71462d52026fbddfc858239a5
-Author: Jan Kara <jack@suse.cz>
-Date:   Wed Nov 1 17:43:10 2023 +0000
-
-    fs: Block writes to mounted block devices
-
-bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=12b28b99180000
-start commit:   e4cf7c25bae5 Merge tag 'kbuild-fixes-v6.2' of git://git.ke..
-git tree:       upstream
-kernel config:  https://syzkaller.appspot.com/x/.config?x=68e0be42c8ee4bb4
-dashboard link: https://syzkaller.appspot.com/bug?extid=cb1fdea540b46f0ce394
-syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=151db82a480000
-C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=10f0e670480000
-
-If the result looks correct, please mark the issue as fixed by replying with:
+On Sat 09-03-24 18:05:04, syzbot wrote:
+> syzbot suspects this issue was fixed by commit:
+> 
+> commit 6f861765464f43a71462d52026fbddfc858239a5
+> Author: Jan Kara <jack@suse.cz>
+> Date:   Wed Nov 1 17:43:10 2023 +0000
+> 
+>     fs: Block writes to mounted block devices
+> 
+> bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=12b28b99180000
+> start commit:   e4cf7c25bae5 Merge tag 'kbuild-fixes-v6.2' of git://git.ke..
+> git tree:       upstream
+> kernel config:  https://syzkaller.appspot.com/x/.config?x=68e0be42c8ee4bb4
+> dashboard link: https://syzkaller.appspot.com/bug?extid=cb1fdea540b46f0ce394
+> syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=151db82a480000
+> C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=10f0e670480000
+> 
+> If the result looks correct, please mark the issue as fixed by replying with:
+ 
+Looks good.
 
 #syz fix: fs: Block writes to mounted block devices
 
-For information about bisection process see: https://goo.gl/tpsmEJ#bisection
+								Honza
+-- 
+Jan Kara <jack@suse.com>
+SUSE Labs, CR
 
 
 _______________________________________________
