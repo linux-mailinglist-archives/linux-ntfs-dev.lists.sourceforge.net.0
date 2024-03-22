@@ -2,110 +2,99 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EBD087FCA9
-	for <lists+linux-ntfs-dev@lfdr.de>; Tue, 19 Mar 2024 12:14:20 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id F2883887101
+	for <lists+linux-ntfs-dev@lfdr.de>; Fri, 22 Mar 2024 17:39:43 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
+	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1rmXQ9-0005Wy-8T;
-	Tue, 19 Mar 2024 11:14:18 +0000
+	id 1rnhvh-0005Pw-4X;
+	Fri, 22 Mar 2024 16:39:41 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-3.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95) (envelope-from
- <353D5ZQkbAOQYefQGRRKXGVVOJ.MUUMRKaYKXIUTZKTZ.IUS@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
- id 1rmXFS-00039W-FO for linux-ntfs-dev@lists.sourceforge.net;
- Tue, 19 Mar 2024 11:03:14 +0000
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
+ (envelope-from <johan@kernel.org>) id 1rnhrO-0005Kg-QA
+ for linux-ntfs-dev@lists.sourceforge.net;
+ Fri, 22 Mar 2024 16:35:15 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:To:From:Subject:Message-ID:In-Reply-To
- :Date:MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=NS31IZUVISj+9f5GH0XsvKxqqRb+tl8wJ9ZGlJagits=; b=KFUTJklvUOvFe0r+9dVzlrCqRN
- B1Ukg71X7QCaLE3zGr4LPHb9wjHijAIcTotFIUNhiDenw9tjabXT6/ffdMyJ/8MkEG50IHq2HMjN7
- q4RRxAnN6ZdLlXejCMGQn1lDYlAVoZoXhdZ53g7RWMoOntKP2V22dBEOAmN9jA+TR2GQ=;
+ bh=MErBleQEYzs7mQ+EADpYf8JTzUCq7hrKcdrgXruLDRc=; b=kjPJ7wlcLX9wqaldy2zlPd5f+2
+ jIbfbh2jdxEcC2o9E6ZLYOZ4nwfnavilCBvAiy84TRXnDyBsKFJzS0/L1xfj0WdzFuddBSf04yL3r
+ 3VQ5/u7wXaB214ZT++ACjoAVTfFUM5JMxi55qkAgyQySFOPonyuuuF5B8UERCaDTwMsE=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:To:From:Subject:Message-ID:In-Reply-To:Date:MIME-Version:
- Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=NS31IZUVISj+9f5GH0XsvKxqqRb+tl8wJ9ZGlJagits=; b=D
- y7g69QQd5E3I0hwNBQVw3Hx2yh+OWNJ9gK8ss0H77wYop0U4MKcaeOJWaFy7C48Wo5+TX48P2Zom/
- Q2/IWImXIY34DbHeZJM8mXDz+3lEw2KzdY1+wnMkFce8K1BEy49qNlSXKhPmlcYq2BCLrjQDCk03C
- IKhyKAlI5BO4SmWY=;
-Received: from mail-io1-f72.google.com ([209.85.166.72])
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=MErBleQEYzs7mQ+EADpYf8JTzUCq7hrKcdrgXruLDRc=; b=J5+h+cW5ogwj+QPjt/fIo7sVDe
+ LYEcWOK87Jy8HLsAC5apnrpXs0Ux/Glzx+XfnANgwyrXbimcCzx5VZnDKUi8+ApoAyPPbJYWH7iJH
+ CwSD1kHI5G5cq1qYf4g3N2+UdcoBWS87UayobXcZwXVvb0aElP3EQKDJnMkGRPhVFCkU=;
+Received: from dfw.source.kernel.org ([139.178.84.217])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1rmXFK-0007hS-L2 for linux-ntfs-dev@lists.sourceforge.net;
- Tue, 19 Mar 2024 11:03:14 +0000
-Received: by mail-io1-f72.google.com with SMTP id
- ca18e2360f4ac-7cbdcfcd458so430596439f.1
- for <linux-ntfs-dev@lists.sourceforge.net>;
- Tue, 19 Mar 2024 04:03:14 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1710846183; x=1711450983;
- h=to:from:subject:message-id:in-reply-to:date:mime-version
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=NS31IZUVISj+9f5GH0XsvKxqqRb+tl8wJ9ZGlJagits=;
- b=HoKNvvFjOedlQ5S1lptZKq4k6lRK/ehUboCya/CxtJ9+2myyQIRsox5a1x7Im53y8X
- f8VpHoKefdJ1W/LeRlcjWZ9dBt0x3aNmIGxQtlK2ON4HmHx3f19QM12pqaVExUwpI4/+
- 6R5wSD7sZnii8sQKm50IsmjW+u2WTPpABCUzghRUzAFtnpM/UjxrJHwL/8BVyNOJhnlO
- jEXdaydZlRPgtsLGiqzNPt6NgUINLk7Y5cNrna8HCPJcTBbJz3WfkVHOTcCO7pytB3Tz
- rM6eq1QXbFQ5MDTdLjMcFstNeKaWoZW9jCyCY6K0qkKzxhhCZLJV8YvKZGkUw/ecg3ZD
- Bv8g==
-X-Forwarded-Encrypted: i=1;
- AJvYcCU2ZCYOhvxjPoLj5r/pydZA6RUtUlhQXjyUAGBFaOWkQZoMRvCOuUULoVEMRs+gIewp86BJHF7ytbpQODeIMoZHXvsTGPsqk0mDIkNLosR0zgqn+ds=
-X-Gm-Message-State: AOJu0Yz4MTfg57/2Kdd3HiTxoijd+xMvBJKNDJoNAvEi1nBjuUmgHnbw
- Xs8LV2CS2n3dNYISeddwbwZOYYvf2Ylm6gpiHjs3yQn5p3v7KThnaX+zGU5Y6nWn2t3NuOWRg7Z
- n6sJuDjKv9ar9VNywil7AiDh+QpCO9KgTmSwA4GCUWRMiopn9zt7E4B0=
-X-Google-Smtp-Source: AGHT+IFiDK1WT/n8TCOKAH5CGiH/AJ5QTidJfxOX7D2n/lTfWZAch3GSOQ51Bj+zC4HRoLqpgpszLLuCibMY38T8UfSWzD9bvdOO
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
+ id 1rnhrK-0005g5-NZ for linux-ntfs-dev@lists.sourceforge.net;
+ Fri, 22 Mar 2024 16:35:15 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 5809B6145B;
+ Fri, 22 Mar 2024 16:35:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E76F9C433C7;
+ Fri, 22 Mar 2024 16:34:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1711125299;
+ bh=Cm01Q1014eD7bi3Ghg+OrTnDa1xuGXQVz909MO6xnV0=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=oilfk1zhhkn6/QOWDSz8/xIOh7J5NgEpjruYLPRoOiQu7qb+7CCiRMJ6HGhhZ3G37
+ 22WO4Fni5z3Nn7DxP/5MjqDRY7el+s5C9bv1JZLU3yPq9l2G/H2M5wDVc+w63r7+qr
+ gRkiw253U2LkRccgdcHyUFCWWFGf7Aj3XuXLGbxiLUJ4iJjg8uEi6i5CfxoXwxh4G/
+ o8LVa3+Z9Eu1eszg90WUqbizm0iKL+6ux4d7yM2nI8UlJC3wYW+t6pHNq52RMjk9qD
+ YY2utGSjPSnX9dN/R6u1dKE9EPLmLyWFf3JI9xM26pzu+T+qh+sMa8wrSsM7V8LRf+
+ KI6AYxOrY3dTQ==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+ (envelope-from <johan@kernel.org>) id 1rnhrJ-000000002rv-2vlb;
+ Fri, 22 Mar 2024 17:35:09 +0100
+Date: Fri, 22 Mar 2024 17:35:09 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Christian Brauner <brauner@kernel.org>,
+ "Matthew Wilcox (Oracle)" <willy@infradead.org>
+Message-ID: <Zf2zPf5TO5oYt3I3@hovoldconsulting.com>
+References: <20240115072025.2071931-1-willy@infradead.org>
+ <20240116-fernbedienung-vorwort-a21384fd7962@brauner>
 MIME-Version: 1.0
-X-Received: by 2002:a05:6e02:1c02:b0:366:c200:a9fa with SMTP id
- l2-20020a056e021c0200b00366c200a9famr121313ilh.1.1710846183604; Tue, 19 Mar
- 2024 04:03:03 -0700 (PDT)
-Date: Tue, 19 Mar 2024 04:03:03 -0700
-In-Reply-To: <000000000000aefc5005f5df169b@google.com>
-X-Google-Appengine-App-Id: s~syzkaller
-X-Google-Appengine-App-Id-Alias: syzkaller
-Message-ID: <0000000000000a1c180614016bc9@google.com>
-From: syzbot <syzbot+ef50f8eb00b54feb7ba2@syzkaller.appspotmail.com>
-To: almaz.alexandrovich@paragon-software.com, anton@tuxera.com, 
- brauner@kernel.org, david@fromorbit.com, ghandatmanas@gmail.com, 
- linkinjeon@kernel.org, linux-fsdevel@vger.kernel.org, 
- linux-kernel-mentees@lists.linuxfoundation.org, linux-kernel@vger.kernel.org, 
- linux-ntfs-dev@lists.sourceforge.net, ntfs3@lists.linux.dev, 
- syzkaller-bugs@googlegroups.com, syzkaller@googlegroups.com, 
- willy@infradead.org
-X-Spam-Score: 3.0 (+++)
+Content-Disposition: inline
+In-Reply-To: <20240116-fernbedienung-vorwort-a21384fd7962@brauner>
+X-Spam-Score: -5.4 (-----)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: syzbot suspects this issue was fixed by commit: commit
- 7ffa8f3d30236e0ab897c30bdb01224ff1fe1c89
- Author: Matthew Wilcox (Oracle) <willy@infradead.org> Date: Mon Jan 15
- 07:20:25 2024 +0000 fs: Remove NTFS classic 
- Content analysis details:   (3.0 points, 6.0 required)
+ Content preview:  On Tue, Jan 16, 2024 at 10:33:49AM +0100, Christian Brauner
+ wrote: > On Mon, 15 Jan 2024 07:20:25 +0000, Matthew Wilcox (Oracle) wrote:
+ > > The replacement, NTFS3, was merged over two years ago. It is [...] 
+ Content analysis details:   (-5.4 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.3 FROM_LOCAL_HEX         From: localpart has long hexadecimal sequence
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.166.72 listed in list.dnswl.org]
- 2.5 SORTED_RECIPS          Recipient list is sorted by address
- 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
- mail domains are different
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.166.72 listed in wl.mailspike.net]
- -0.0 T_SCC_BODY_TEXT_LINE   No description available.
-X-Headers-End: 1rmXFK-0007hS-L2
-X-Mailman-Approved-At: Tue, 19 Mar 2024 11:14:16 +0000
-Subject: Re: [Linux-ntfs-dev] [syzbot] [ntfs3?] KASAN: use-after-free Read
- in ntfs_attr_find (2)
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
+ high trust [139.178.84.217 listed in list.dnswl.org]
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ -0.2 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1rnhrK-0005g5-NZ
+X-Mailman-Approved-At: Fri, 22 Mar 2024 16:39:40 +0000
+Subject: Re: [Linux-ntfs-dev] [PATCH] fs: Remove NTFS classic
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -118,31 +107,51 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
+Cc: regressions@lists.linux.dev, linux-ntfs-dev@lists.sourceforge.net,
+ linux-fsdevel@vger.kernel.org, ntfs3@lists.linux.dev,
+ Anton Altaparmakov <anton@tuxera.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-syzbot suspects this issue was fixed by commit:
+On Tue, Jan 16, 2024 at 10:33:49AM +0100, Christian Brauner wrote:
+> On Mon, 15 Jan 2024 07:20:25 +0000, Matthew Wilcox (Oracle) wrote:
+> > The replacement, NTFS3, was merged over two years ago.  It is now time to
+> > remove the original from the tree as it is the last user of several APIs,
+> > and it is not worth changing.
 
-commit 7ffa8f3d30236e0ab897c30bdb01224ff1fe1c89
-Author: Matthew Wilcox (Oracle) <willy@infradead.org>
-Date:   Mon Jan 15 07:20:25 2024 +0000
+> I see no reason to not at least try and remove it given that we have
+> ntfs3 as a replacement. Worst case is we have to put it back in. Let's
+> try it.
 
-    fs: Remove NTFS classic
+This patch breaks boot of my Lenovo ThinkPad X13s where I have an fstab
+entry to access firmware from the original Windows partition; ended up
+in some kind of systemd emergency mode.
 
-bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=11fafac9180000
-start commit:   9d64bf433c53 Merge tag 'perf-tools-for-v6.8-1-2024-01-09' ..
-git tree:       upstream
-kernel config:  https://syzkaller.appspot.com/x/.config?x=7a6ff9d9d5d2dc4a
-dashboard link: https://syzkaller.appspot.com/bug?extid=ef50f8eb00b54feb7ba2
-syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=13d79fbde80000
-C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=14be4a73e80000
+Fix is easy enough once I figured out what broke, but requires changing
+the fs type from 'ntfs' to 'ntfs3' in the fstab (after enabling NTFS3 in
+the kernel config).
 
-If the result looks correct, please mark the issue as fixed by replying with:
+Is it possible to provide an alias or something to avoid breaking
+people's machines like this? Perhaps something is needed for the Kconfig
+too.
 
-#syz fix: fs: Remove NTFS classic
+I also now get a bunch of warning when listing the root directory:
 
-For information about bisection process see: https://goo.gl/tpsmEJ#bisection
+[   68.967970] ntfs3: nvme0n1p3: ino=130d6, Correct links count -> 1.
+[   68.969137] ntfs3: nvme0n1p3: ino=13a, Correct links count -> 1.
+[   68.969798] ntfs3: nvme0n1p3: ino=3ad, Correct links count -> 1.
+[   68.970431] ntfs3: nvme0n1p3: ino=3d9, Correct links count -> 1.
+[   68.971150] ntfs3: nvme0n1p3: ino=26, Correct links count -> 1.
+[   68.971780] ntfs3: nvme0n1p3: ino=eb, Correct links count -> 1.
+[   68.972263] ntfs3: nvme0n1p3: ino=1ce, Correct links count -> 1.
+[   68.973062] ntfs3: nvme0n1p3: ino=a608, Correct links count -> 1.
+
+Flagging this as a regression so that Thorsten is aware of it:
+
+#regzbot introduced: 7ffa8f3d3023
+
+Johan
 
 
 _______________________________________________
