@@ -2,127 +2,107 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4449B8914F1
-	for <lists+linux-ntfs-dev@lfdr.de>; Fri, 29 Mar 2024 09:01:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3175D893551
+	for <lists+linux-ntfs-dev@lfdr.de>; Sun, 31 Mar 2024 20:08:31 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1rq7B9-0005Ah-Kr;
-	Fri, 29 Mar 2024 08:01:35 +0000
+	id 1rqzbX-0005PB-Md;
+	Sun, 31 Mar 2024 18:08:28 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <justinstitt@google.com>) id 1rpzDB-0000pg-3A
- for linux-ntfs-dev@lists.sourceforge.net;
- Thu, 28 Mar 2024 23:31:09 +0000
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95) (envelope-from
+ <3D4QJZgkbAHQkqrcSddWjShhaV.YggYdWmkWjUgflWfl.Uge@M3KW2WVRGUFZ5GODRSRYTGD7.apphosting.bounces.google.com>)
+ id 1rqxJ7-0001Gm-Dg for linux-ntfs-dev@lists.sourceforge.net;
+ Sun, 31 Mar 2024 15:41:17 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:To:From:Subject:Message-ID:In-Reply-To
+ :Date:MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=/qNXZWa7ff+gZO9/7qJdAv1MXiheIN0/3fR3ZzkSZyM=; b=LY48L70XRR+3OzVCNOE1arFrGt
- qqGK/Tvdpr9lLqmz+wEwqrqIwMC5iLPhhmtoOndxw5dcIx2sH6M57NWucIl7xNBI1dksYKlZC+rn7
- l5LSWdc20cixQno44hqewEiekXJc/BUV27p6QKjGZ960FJtu1cdy+X640ZF3AH2xxdSY=;
+ bh=RMPIvofFZ0pzeDlA+dJFHUiRuMTw5ZBBa6f9TDeB6IA=; b=VW3LS+Q0g3eEEk3b/gofMExTrp
+ nxQgwd3f48xdPRC/sEhkJu8Z5nRZ00a8cEgoYhKb5BN8CW9TG7oOlhE5PWQN2/G9DWpeB+qXmggOf
+ iibfrYtBSQkW1QU20ydDGy60NWJ+BMV4DC7fQWBUqbyLHwNgs8axjl+NhVkHmnsBBOnU=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=/qNXZWa7ff+gZO9/7qJdAv1MXiheIN0/3fR3ZzkSZyM=; b=d4u5KLnfy9m4GFsvOBMOa3IsoH
- NHc5VerF7d0h475u2MqyYdQmqHlo+qRE2XLFX4e/FHmZfnTBmvyFHF0aVwV66so7URtxzOuuGxZK9
- WMDG6QmspJeDdpqSgHwZuGtUQu5EtyXQUGDQKc9g0CcT35gHNWvd1fibrWvEXj+nnnG0=;
-Received: from mail-yw1-f174.google.com ([209.85.128.174])
+ h=Content-Type:To:From:Subject:Message-ID:In-Reply-To:Date:MIME-Version:
+ Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=RMPIvofFZ0pzeDlA+dJFHUiRuMTw5ZBBa6f9TDeB6IA=; b=X
+ GvHLCj8tkLnrY8Wpqk6e2Z4Annes8/qAUCKv1kKIJ5ImBcQY5CkzUuvG9DbKua5MP6dOshwh80Ip2
+ DWd/vvi9xbKstPhYNWiMHYxS2xxONYbgpo4UF9J/i8Upvs6I4LTRgPRBgnfnBon+/Mt47bELues8/
+ j5I4wvHrBhJDODqU=;
+Received: from mail-io1-f72.google.com ([209.85.166.72])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1rpzD5-0004yh-JW for linux-ntfs-dev@lists.sourceforge.net;
- Thu, 28 Mar 2024 23:31:09 +0000
-Received: by mail-yw1-f174.google.com with SMTP id
- 00721157ae682-611248b4805so15908187b3.0
+ id 1rqxJ3-0001rh-H2 for linux-ntfs-dev@lists.sourceforge.net;
+ Sun, 31 Mar 2024 15:41:17 +0000
+Received: by mail-io1-f72.google.com with SMTP id
+ ca18e2360f4ac-7c88a694b46so298216839f.1
  for <linux-ntfs-dev@lists.sourceforge.net>;
- Thu, 28 Mar 2024 16:31:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1711668653; x=1712273453;
- darn=lists.sourceforge.net; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=/qNXZWa7ff+gZO9/7qJdAv1MXiheIN0/3fR3ZzkSZyM=;
- b=nQ5LEw9LEmtoWGuvIAaWRq1hHyYamj48srFdnNRJN9JU+VqbnACG/FoEobu8V9Yovq
- cciT6vfFaVuZaRnTjZA1Wu5tOd1wJhdSLppQIk0GTgplNy+AJGu/KNp4KF4+Kx8VLG47
- GQndxUSwMI8duMaKHL+43R1Sv/78274bvhQ6Am70FwOxKT3qzQwGfnuLTJZF+u8SdVP7
- waEbxKtpxUSuEENT7murO1x5A+dzJYdoQaN5B9NvoR/GB55qu4ClDGdhpNVPFemlker5
- rVlqsEHLBNYniNXNOi2JV1FiOYMjeAD5xAd/2MQ50FhgumGmg+pJxZyFamqcl9g7x7P8
- EIGA==
+ Sun, 31 Mar 2024 08:41:13 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1711668653; x=1712273453;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=/qNXZWa7ff+gZO9/7qJdAv1MXiheIN0/3fR3ZzkSZyM=;
- b=P1hH4XAriPNgs88jUGISjmYsPnRSCk6cuV2j2RF1wJ2KyarFrx0mfVNgNK04gH+lk1
- wkaQEjuACfVYpP3xuS8o1yijcn+nQuQ/B77MWEJBediALsbriOEknt9yUAnKbJSOlheq
- osr42zO3pe1DxQe2kDKTwwRnhzNf851t48sv/NjKhx7QEl/y2UKTI2t+nJpe83x8fvrZ
- jlSg4qW0u63c2Qi3Bh6KL5ONmt/hNxb12+fuJPelOCQXXl/6W8nioDr3T46SLqtt97Ho
- OCs7jbxXbyfBHiKvBBdKFNIRBpc6Lp1+80ckvjtTdVpf8SZVNlUmWCuwahCh7EfvuyTk
- vhsg==
+ d=1e100.net; s=20230601; t=1711899663; x=1712504463;
+ h=to:from:subject:message-id:in-reply-to:date:mime-version
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=RMPIvofFZ0pzeDlA+dJFHUiRuMTw5ZBBa6f9TDeB6IA=;
+ b=nw1+TZhIZTUw5KCTPGMcxkzAam+WWtecCWiFn0vBM0O3FTljruRAobM/NKuzOEJU/g
+ t80IMno6q0nxhI6yYdK2BOEL97Id2ZTV25HiCUkzztWY2BHK9vql2xRONTTWnhUT/vuS
+ vfn3Mf1uS2IgZsBajCfUtYtMmXSTMwlHyyQhr5BUZz4Z/2RT26j7T+hJMehPo9zsQM6+
+ xCYoiNnKSGCNgAFOGbkmtsDTLlBeMBGV5rzQTrv3ChuHCtmQ2sQTgLc9xVb/U60PELwt
+ CdjPI3Q5ipFifJVv6PBIYBNQZhP9vzkEou9cxawCFx7dDqXL5KsmRYgq+5d6jg9MaDf1
+ bm9w==
 X-Forwarded-Encrypted: i=1;
- AJvYcCV++WmWgCSnYp5GdccUSWwLRk+k+SOGYaLfqgL6oWinZmsD2CzXE9VhhvcrRlzKYQGws/aVspqPqP/hUXszxWAgOXNAsjcs/giINIpmCwbbl9gyWGc=
-X-Gm-Message-State: AOJu0YzEDzoGBWVjHbsy3qtRV7n1pdd9ZwWTVV29q1aaumQ0EU3RrySQ
- eu5X+4Ebkv2A31NtYqumn+li5G5RZyvr8PSpiO2C5Df3NAcZrXTIehWeMDRVXdU7+fxo8toNJjx
- Jr//A
-X-Google-Smtp-Source: AGHT+IH/359JmtRlhVfnHXRBxGMxdiBxsOXPtiJP+s9PFPDvBB1vfKbmbWpup/GqtPGDEEuv8/wGDQ==
-X-Received: by 2002:a5d:8454:0:b0:7d0:807d:33dc with SMTP id
- w20-20020a5d8454000000b007d0807d33dcmr699533ior.15.1711668299282; 
- Thu, 28 Mar 2024 16:24:59 -0700 (PDT)
-Received: from google.com (30.64.135.34.bc.googleusercontent.com.
- [34.135.64.30]) by smtp.gmail.com with ESMTPSA id
- x15-20020a6bda0f000000b007d06ef8020bsm669877iob.40.2024.03.28.16.24.58
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 28 Mar 2024 16:24:58 -0700 (PDT)
-Date: Thu, 28 Mar 2024 23:24:56 +0000
-To: Arnd Bergmann <arnd@kernel.org>
-Message-ID: <a5vkpjykxex64vti4wvx7h64jthw7inc23uelol5s3beezoiuz@scl2uhf6pkl7>
-References: <20240328140512.4148825-1-arnd@kernel.org>
- <20240328140512.4148825-8-arnd@kernel.org>
+ AJvYcCUwicTCRrMm+0QXMxOqozsqcr+Rd6zmDM7KxY2cNHruOItDLW+yl65sW9rtc6ZixpnP95zUgYIMr6wLL1tzPbHbEEoD9fxJrnWCBN18Q+L8Rz3sdKg=
+X-Gm-Message-State: AOJu0YySEsD9ZnzZ01lzhfqjh02wW4DT0HclkTpgvQNdvWEYk0bUT3cR
+ XT/nUyZ70nDb8cCoh+W1RehP8KJEa+myAq0Tiq8FszmwqorHKi3DOFqfvMOCrlHn7l/6q4EdT9d
+ aYqDeqL+nztsP5W41gJPmgaH/w2qv7/ym/zkVEGwRMtYvN30X1+1wg+Q=
+X-Google-Smtp-Source: AGHT+IEs3YkKutFNOonb15d5RKFj0anpMUEzpVWKAAfIa29yd9R+rbNaHMJtBfq5H3RMplyKrtWIE7u7ls65Czyj4h0zrEBkTqeb
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20240328140512.4148825-8-arnd@kernel.org>
-X-Spam-Score: -15.7 (---------------)
+X-Received: by 2002:a05:6638:140c:b0:47e:b7a7:f4fe with SMTP id
+ k12-20020a056638140c00b0047eb7a7f4femr286348jad.1.1711899663146; Sun, 31 Mar
+ 2024 08:41:03 -0700 (PDT)
+Date: Sun, 31 Mar 2024 08:41:03 -0700
+In-Reply-To: <000000000000e05bc805e99789e1@google.com>
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <000000000000504d0d0614f6b3dd@google.com>
+From: syzbot <syzbot+01b3ade7c86f7dd584d7@syzkaller.appspotmail.com>
+To: almaz.alexandrovich@paragon-software.com, anton@tuxera.com, 
+ axboe@kernel.dk, brauner@kernel.org, jack@suse.cz, linkinjeon@kernel.org, 
+ linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-ntfs-dev@lists.sourceforge.net, ntfs3@lists.linux.dev, 
+ syzkaller-bugs@googlegroups.com
+X-Spam-Score: 3.1 (+++)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hi, On Thu, Mar 28, 2024 at 03:04:51PM +0100, Arnd Bergmann
- wrote: > From: Arnd Bergmann <arnd@arndb.de> > > The strncpy() here can cause
- a non-terminated string, which older gcc > versions such as gcc-9 [...] 
- Content analysis details:   (-15.7 points, 6.0 required)
+ Content preview: syzbot suspects this issue was fixed by commit: commit
+ 6f861765464f43a71462d52026fbddfc858239a5
+ Author: Jan Kara <jack@suse.cz> Date: Wed Nov 1 17:43:10 2023 +0000 fs: Block
+ writes to mounted block devices 
+ Content analysis details:   (3.1 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.0 SPF_PASS               SPF: sender matches SPF record
- -7.5 USER_IN_DEF_DKIM_WL    From: address is in the default DKIM
- welcome-list
- -7.5 USER_IN_DEF_SPF_WL     From: address is in the default SPF
- welcome-list
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.3 FROM_LOCAL_HEX         From: localpart has long hexadecimal sequence
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.166.72 listed in list.dnswl.org]
  -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.128.174 listed in wl.mailspike.net]
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -0.5 ENV_AND_HDR_SPF_MATCH  Env and Hdr From used in default SPF WL
- Match
-X-Headers-End: 1rpzD5-0004yh-JW
-X-Mailman-Approved-At: Fri, 29 Mar 2024 08:01:34 +0000
-Subject: Re: [Linux-ntfs-dev] [PATCH 07/11] block/partitions/ldm: convert
- strncpy() to strscpy()
+ [209.85.166.72 listed in wl.mailspike.net]
+ 2.5 SORTED_RECIPS          Recipient list is sorted by address
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+ 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
+ mail domains are different
+X-Headers-End: 1rqxJ3-0001rh-H2
+X-Mailman-Approved-At: Sun, 31 Mar 2024 18:08:26 +0000
+Subject: Re: [Linux-ntfs-dev] [syzbot] [ntfs3?] kernel BUG in
+ __ntfs_grab_cache_pages
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -135,83 +115,31 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-From: Justin Stitt via Linux-ntfs-dev <linux-ntfs-dev@lists.sourceforge.net>
-Reply-To: Justin Stitt <justinstitt@google.com>
-Cc: Jens Axboe <axboe@kernel.dk>, Arnd Bergmann <arnd@arndb.de>,
- linux-ntfs-dev@lists.sourceforge.net,
- "Richard Russon \(FlatCap\)" <ldm@flatcap.org>, linux-kernel@vger.kernel.org,
- linux-block@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-Hi,
+syzbot suspects this issue was fixed by commit:
 
-On Thu, Mar 28, 2024 at 03:04:51PM +0100, Arnd Bergmann wrote:
-> From: Arnd Bergmann <arnd@arndb.de>
-> 
-> The strncpy() here can cause a non-terminated string, which older gcc
-> versions such as gcc-9 warn about:
-> 
-> In function 'ldm_parse_tocblock',
->     inlined from 'ldm_validate_tocblocks' at block/partitions/ldm.c:386:7,
->     inlined from 'ldm_partition' at block/partitions/ldm.c:1457:7:
-> block/partitions/ldm.c:134:2: error: 'strncpy' specified bound 16 equals destination size [-Werror=stringop-truncation]
->   134 |  strncpy (toc->bitmap1_name, data + 0x24, sizeof (toc->bitmap1_name));
->       |  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> block/partitions/ldm.c:145:2: error: 'strncpy' specified bound 16 equals destination size [-Werror=stringop-truncation]
->   145 |  strncpy (toc->bitmap2_name, data + 0x46, sizeof (toc->bitmap2_name));
->       |  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> 
-> New versions notice that the code is correct after all because of the
-> following termination, but replacing the strncpy() with strscpy_pad()
-> or strcpy() avoids the warning and simplifies the code at the same time.
-> 
-> Use the padding version here to keep the existing behavior, in case
-> the code relies on not including uninitialized data.
-> 
-> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+commit 6f861765464f43a71462d52026fbddfc858239a5
+Author: Jan Kara <jack@suse.cz>
+Date:   Wed Nov 1 17:43:10 2023 +0000
 
-Thanks for the patch!
+    fs: Block writes to mounted block devices
 
-This helps towards: https://github.com/KSPP/linux/issues/90
+bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=1636d11d180000
+start commit:   42dc814987c1 Merge tag 'media/v6.6-2' of git://git.kernel...
+git tree:       upstream
+kernel config:  https://syzkaller.appspot.com/x/.config?x=e4ca82a1bedd37e4
+dashboard link: https://syzkaller.appspot.com/bug?extid=01b3ade7c86f7dd584d7
+syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=118cd46c680000
+C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=136d04a6680000
 
-Reviewed-by: Justin Stitt <justinstitt@google.com>
+If the result looks correct, please mark the issue as fixed by replying with:
 
-> ---
->  block/partitions/ldm.c | 6 ++----
->  1 file changed, 2 insertions(+), 4 deletions(-)
-> 
-> diff --git a/block/partitions/ldm.c b/block/partitions/ldm.c
-> index 38e58960ae03..2bd42fedb907 100644
-> --- a/block/partitions/ldm.c
-> +++ b/block/partitions/ldm.c
-> @@ -131,8 +131,7 @@ static bool ldm_parse_tocblock (const u8 *data, struct tocblock *toc)
->  		ldm_crit ("Cannot find TOCBLOCK, database may be corrupt.");
->  		return false;
->  	}
-> -	strncpy (toc->bitmap1_name, data + 0x24, sizeof (toc->bitmap1_name));
-> -	toc->bitmap1_name[sizeof (toc->bitmap1_name) - 1] = 0;
-> +	strscpy_pad(toc->bitmap1_name, data + 0x24, sizeof(toc->bitmap1_name));
->  	toc->bitmap1_start = get_unaligned_be64(data + 0x2E);
->  	toc->bitmap1_size  = get_unaligned_be64(data + 0x36);
->  
-> @@ -142,8 +141,7 @@ static bool ldm_parse_tocblock (const u8 *data, struct tocblock *toc)
->  				TOC_BITMAP1, toc->bitmap1_name);
->  		return false;
->  	}
-> -	strncpy (toc->bitmap2_name, data + 0x46, sizeof (toc->bitmap2_name));
-> -	toc->bitmap2_name[sizeof (toc->bitmap2_name) - 1] = 0;
-> +	strscpy_pad(toc->bitmap2_name, data + 0x46, sizeof(toc->bitmap2_name));
->  	toc->bitmap2_start = get_unaligned_be64(data + 0x50);
->  	toc->bitmap2_size  = get_unaligned_be64(data + 0x58);
->  	if (strncmp (toc->bitmap2_name, TOC_BITMAP2,
-> -- 
-> 2.39.2
-> 
+#syz fix: fs: Block writes to mounted block devices
 
-Thanks
-Justin
+For information about bisection process see: https://goo.gl/tpsmEJ#bisection
 
 
 _______________________________________________
