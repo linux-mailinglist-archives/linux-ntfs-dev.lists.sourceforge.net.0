@@ -2,28 +2,28 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAF0C89DC01
-	for <lists+linux-ntfs-dev@lfdr.de>; Tue,  9 Apr 2024 16:16:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52ABB89DC02
+	for <lists+linux-ntfs-dev@lfdr.de>; Tue,  9 Apr 2024 16:16:57 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1ruCHO-0005JT-TN;
+	id 1ruCHP-0005Js-6X;
 	Tue, 09 Apr 2024 14:16:55 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <arnd@kernel.org>) id 1ruC2d-0007tK-2f
+ (envelope-from <arnd@kernel.org>) id 1ruC2h-0007tf-TI
  for linux-ntfs-dev@lists.sourceforge.net;
- Tue, 09 Apr 2024 14:01:39 +0000
+ Tue, 09 Apr 2024 14:01:44 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
  In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=+c5210IpZH8fBO4nm+TwWSxP/ttebKKGwb5/KKGmKQg=; b=Vi3iwhVX1hwcKosCDlXE7t5hpY
- XovJCix60OpxH/5v426tO344ql1xk8TrbbJPZPMqrkbdmLNHLxUQrWAQ7E0kO0cvHvs4huEFIE7gp
- Zm+zdMJBGysytivYtEE4K2o1aTWOO+dQ+qwE8Z2z4NQ5FY0OcMt3XJf7npZWxbskIYss=;
+ bh=u9fmECIRb3p9F2+rt8vjBEkyZ00N2v/R7QYpZpTA2z0=; b=Gk1eXMKlwYhJc0JGT2CMqs+3Oc
+ OTfKxXw5WOt8JAr12lTMHGpO9p/KMNMjpPySSpeD1XcgkOqPd6cpHTqYSB41N604mc99sdQwZJxLf
+ I48Xz2Tqc8IXxbkrbJyoyXLqb0bTtvR4El73mZEwd/zOvIXmI9VLak/hNQy17WYMWfTk=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
@@ -31,33 +31,33 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=+c5210IpZH8fBO4nm+TwWSxP/ttebKKGwb5/KKGmKQg=; b=eO8h9HB1BV0EZIVmJHF1v9wHHT
- GgT3C1rCrYczUVj62ePEWq9WE6aJ2BkUnB8r5n7YS2i4+wqwhIKHsXUbqh/9mTnCPPrL3h2+lDCtL
- fvht0JXsbyfgVoeycVyrXIsc0O9uAL7N+Jal3Vr913x4QTHWsWRyUYCf6Zv5H+JpZWRY=;
+ bh=u9fmECIRb3p9F2+rt8vjBEkyZ00N2v/R7QYpZpTA2z0=; b=gqBu6e9ft0BV2gdW7AnLHmpbqu
+ t/NZvH17c/JSwAlT1qrjkM2zejPsRijJ2UO6/YpwSs8VbXE8nEWDB+9fNFSgvawzAXOiHWtn26QYB
+ YeEN3L+u8cSNs3eoGo6GRzH5AoHx6cqt+pD/vk2PHTHRgfwgZfmFn/gmBTIOJMVUSKp0=;
 Received: from dfw.source.kernel.org ([139.178.84.217])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1ruC2c-0001o1-OT for linux-ntfs-dev@lists.sourceforge.net;
- Tue, 09 Apr 2024 14:01:39 +0000
+ id 1ruC2h-0001oq-JS for linux-ntfs-dev@lists.sourceforge.net;
+ Tue, 09 Apr 2024 14:01:44 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 6CE6B6178B;
+ by dfw.source.kernel.org (Postfix) with ESMTP id 44E436177F;
+ Tue,  9 Apr 2024 14:01:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5330C43390;
  Tue,  9 Apr 2024 14:01:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7EB6C433C7;
- Tue,  9 Apr 2024 14:01:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1712671288;
- bh=pzK3De1dss+tVtAMUbtIdEjmw37wYh3hyKahO2Wukx4=;
+ s=k20201202; t=1712671293;
+ bh=KBapuCoet5kfjziaVWML59WbPosua5uheV6EN7HL7cc=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=kROJxz2HYgYmtGzuLOF1DPUe3tsYi9DEJ86893KsN4RG8ZJ2ez8cLLlpXAt1q+/Kl
- qsw9cy559op7Gxv7hDeh2gK/p4ba26iuHzPTC7VRjy8fdJqsEeWuiV5tQ46ZllP7S9
- ZbUqQqTcngs3Ytvsbwu6cLLEvXW7Nxt/JPx3GQl+ZFB1AvwyGc2YMLAo/hvg8tvBen
- 9+cEIqTiHYc4GkmUn3bcMfpPwm+rwip2PT02QzrvVG9nPIOB5mO9PSmbiNRWl9VXLs
- FleNYGV2Q6GW30vC1shIToVxt1l6zXaHmiQ47V5iFp8JJYeekoGWzq1qZ5bqNjGgJK
- yhlh3nw+JpfcQ==
+ b=CI+tE9nqa8mKqJOIqe+CfUonGLG1fsbzMR/Wd7a5I1Vi2laBO5bxr2CoMJV9PXJmW
+ l3B5LTh7o9wALv4UUWeYM/t6wiBxQSugqqL1qMaxru2tX3syz5zQ1dsosUQsa29l8T
+ p7IjRvBsv+ejS31ytc4jFbGqhglSJWpDfeCARtT2DuJQwR0l7vlr6MAVUGv1hn/+RL
+ LYOEYFvgKimhfwTM29K1/o3+OR9G+feE3zRGY+tAuvl6i500jl0QwnR+iS9P/aFQXM
+ zLfT5yP+z3QnvGF/tWNTahJ46H894mg0QFW7RX22FGXq0UqZrFoQ1e9EbWlVu3+fcI
+ vfZrusQ178Ykg==
 From: Arnd Bergmann <arnd@kernel.org>
 To: linux-kbuild@vger.kernel.org
-Date: Tue,  9 Apr 2024 16:00:57 +0200
-Message-Id: <20240409140059.3806717-5-arnd@kernel.org>
+Date: Tue,  9 Apr 2024 16:00:58 +0200
+Message-Id: <20240409140059.3806717-6-arnd@kernel.org>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20240409140059.3806717-1-arnd@kernel.org>
 References: <20240409140059.3806717-1-arnd@kernel.org>
@@ -69,12 +69,10 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: From: Arnd Bergmann <arnd@arndb.de> gcc-9 warns about a
- possibly
- non-terminated string copy: kernel/trace/blktrace.c: In function
- 'do_blk_trace_setup':
- kernel/trace/blktrace.c:527:2: error: 'strncpy' specified bound 32 equals
- destination size [-Werror=stringop-truncation] 
+ Content preview:  From: Arnd Bergmann <arnd@arndb.de> The remaining warnings
+ of this type have been addressed, so it can now be enabled by default, rather
+ than only for W=1. Signed-off-by: Arnd Bergmann <arnd@arndb.de> --- v2: no
+ changes --- scripts/Makefile.extrawarn | 1 - 1 file changed, 1 deletion(-)
  Content analysis details:   (-6.9 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -90,10 +88,10 @@ X-Spam-Report: Spam detection software,
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
  -1.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1ruC2c-0001o1-OT
+X-Headers-End: 1ruC2h-0001oq-JS
 X-Mailman-Approved-At: Tue, 09 Apr 2024 14:16:52 +0000
-Subject: [Linux-ntfs-dev] [PATCH 4/5] [v2] blktrace: convert strncpy() to
- strscpy_pad()
+Subject: [Linux-ntfs-dev] [PATCH 5/5] [v2] kbuild: enable
+ -Wstringop-truncation globally
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -124,37 +122,28 @@ Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
 From: Arnd Bergmann <arnd@arndb.de>
 
-gcc-9 warns about a possibly non-terminated string copy:
-
-kernel/trace/blktrace.c: In function 'do_blk_trace_setup':
-kernel/trace/blktrace.c:527:2: error: 'strncpy' specified bound 32 equals destination size [-Werror=stringop-truncation]
-
-Newer versions are fine here because they see the following explicit
-nul-termination. Using strscpy_pad() avoids the warning and
-simplifies the code a little. The padding helps  give a clean
-buffer to userspace.
+The remaining warnings of this type have been addressed, so it can
+now be enabled by default, rather than only for W=1.
 
 Signed-off-by: Arnd Bergmann <arnd@arndb.de>
 ---
-v2: actually use padding version of strscpy.
+v2: no changes
 ---
- kernel/trace/blktrace.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ scripts/Makefile.extrawarn | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/kernel/trace/blktrace.c b/kernel/trace/blktrace.c
-index d5d94510afd3..8fd292d34d89 100644
---- a/kernel/trace/blktrace.c
-+++ b/kernel/trace/blktrace.c
-@@ -524,8 +524,7 @@ static int do_blk_trace_setup(struct request_queue *q, char *name, dev_t dev,
- 	if (!buts->buf_size || !buts->buf_nr)
- 		return -EINVAL;
+diff --git a/scripts/Makefile.extrawarn b/scripts/Makefile.extrawarn
+index 57edc80661fd..f4d69092698b 100644
+--- a/scripts/Makefile.extrawarn
++++ b/scripts/Makefile.extrawarn
+@@ -107,7 +107,6 @@ else
+ KBUILD_CFLAGS += $(call cc-disable-warning, format-overflow-non-kprintf)
+ KBUILD_CFLAGS += $(call cc-disable-warning, format-truncation-non-kprintf)
+ endif
+-KBUILD_CFLAGS += $(call cc-disable-warning, stringop-truncation)
  
--	strncpy(buts->name, name, BLKTRACE_BDEV_SIZE);
--	buts->name[BLKTRACE_BDEV_SIZE - 1] = '\0';
-+	strscpy_pad(buts->name, name, BLKTRACE_BDEV_SIZE);
+ KBUILD_CFLAGS += -Wno-override-init # alias for -Wno-initializer-overrides in clang
  
- 	/*
- 	 * some device names have larger paths - convert the slashes
 -- 
 2.39.2
 
