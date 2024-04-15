@@ -2,62 +2,93 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8B768A5A17
-	for <lists+linux-ntfs-dev@lfdr.de>; Mon, 15 Apr 2024 20:45:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2269B8A5A18
+	for <lists+linux-ntfs-dev@lfdr.de>; Mon, 15 Apr 2024 20:45:46 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1rwRKp-0003BO-LU;
-	Mon, 15 Apr 2024 18:45:43 +0000
+	id 1rwRKp-0003Bn-Up;
+	Mon, 15 Apr 2024 18:45:44 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <brauner@kernel.org>) id 1rwQYH-00032I-Uf
+ (envelope-from <torvalds@linuxfoundation.org>) id 1rwQs9-0003X7-O5
  for linux-ntfs-dev@lists.sourceforge.net;
- Mon, 15 Apr 2024 17:55:34 +0000
+ Mon, 15 Apr 2024 18:16:06 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
+ In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
+ :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=2o+tlibINR/eZfk6tIXcyjFtJxSng96iNLQnbszTsxc=; b=WSICpjKCm8CHI9cMwge4qflZzr
- DHQCZu99PNEAo5wUdmWOf/HUlECCKi+ifCpZem/kyArwHc+ljKBSBzrzGmcsyGPy/Jk9X2YeGEXkX
- kMcra6Fd2DLIO3duBOx6YKIti6XdaV1xcLY2YA8GyhmmThrtB5yxvSLKPsddlCTOsNEg=;
+ bh=WYfOEsGC0slx6ThijhpmfrIi/hp4YLF9aD3FqVog84w=; b=BbCELd/7dYp9GFbFEgWPjO0H0T
+ qiLScKknHq+8uoiCmtTbwhOM8X4vAwu5+Dy2P1lMvsbakUDAYz7nWDQVwCa26uWlzqvGom7FbLXqL
+ ebhrOk8+KOqwlbP4yegrfSdM87u+EjynyshxV5aNgo8q30xCgQgeNsPhrPcNnN5ir3DE=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+ MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=2o+tlibINR/eZfk6tIXcyjFtJxSng96iNLQnbszTsxc=; b=YMSiV5JNKRfTQKYUTcYU3blan4
- mNdh1KtVDcKG+ZDi4UExpPUfBd3ur08bMMNoUmeEjm82muacDhXfXP9xOEYSyQypQ5oYxY08rkHAf
- VVck6yfUdbqi4eatcGeGFzEovXuVdza82oqlcV4ZBzM5P5NcWrlnkzEecXDZJ/IN38PA=;
-Received: from sin.source.kernel.org ([145.40.73.55])
+ bh=WYfOEsGC0slx6ThijhpmfrIi/hp4YLF9aD3FqVog84w=; b=HjYUB/Ju5MxV4ly1rdwMNVvUMk
+ 4A1fJT7sV3FU9+2lbPWAbuygZjI9bXjoEGvSXl4c1Bkgp0D876l09hE2DaT/EE9GssEOdG6deXQI/
+ qpduLQ9s4qgiOx7k9xVzrQoyGXLLi5YZyx/dJyIy6Yt2GgoxhyyKJRt//kpcI83nizLw=;
+Received: from mail-ed1-f47.google.com ([209.85.208.47])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1rwQYH-00056S-4W for linux-ntfs-dev@lists.sourceforge.net;
- Mon, 15 Apr 2024 17:55:33 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id CAAB7CE0BA1;
- Mon, 15 Apr 2024 14:16:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0A60C113CC;
- Mon, 15 Apr 2024 14:15:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1713190563;
- bh=POUu+BmJw+CBnJ9Kwm3jygYbdus3ecGREVH9HKmuLxE=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=Zm40G7FTBAqwnrlws7v2v3nVZyYf8vrOrlQZMS2vQf/vbjKVwSgydwRZHyhzWB0XU
- MUGX8jzJftacjemMk/R+Otnoqr2D1wKvyeK3BLvY6nlNAY2lr/34WXy0oh8uVd7V67
- w7A03WXDFQtpkDbIdKDyyxzXP+01DTO37kHjVX3Wgsa3xNUVW6amoS23evshg0+nFm
- EiYiG/CIPfzYj/mdVoBMJEkiSzJUZRWEdgv0nMPL3lVNDVS4N7xIGz8BkgQKfaMZKc
- fgDEhwLmQRRbSIF1Ibz0YHj1bd9BLs7UdnzNtjgmKOxhFomMsEDWb2TVSxgjHHr2VR
- YywY5Tg7KByUw==
-Date: Mon, 15 Apr 2024 16:15:56 +0200
-From: Christian Brauner <brauner@kernel.org>
-To: Linus Torvalds <torvalds@linux-foundation.org>
-Message-ID: <20240415-warzen-rundgang-ce78bedb5f19@brauner>
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
+ id 1rwQs6-0006r0-El for linux-ntfs-dev@lists.sourceforge.net;
+ Mon, 15 Apr 2024 18:16:06 +0000
+Received: by mail-ed1-f47.google.com with SMTP id
+ 4fb4d7f45d1cf-56c5d05128dso3718960a12.0
+ for <linux-ntfs-dev@lists.sourceforge.net>;
+ Mon, 15 Apr 2024 11:16:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linux-foundation.org; s=google; t=1713204951; x=1713809751;
+ darn=lists.sourceforge.net; 
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=WYfOEsGC0slx6ThijhpmfrIi/hp4YLF9aD3FqVog84w=;
+ b=DzznYKM3pPn6zCOs5TsgtGWKfFDR9IZAad7u01ARBGyFBRNhLsUTnIifgrWcFgwpdT
+ +nDeZy0XkHABTSuTLJl3YuftbrTA71I0jQ9Nw4tWuMxRYCNckWxvE5vvaKjPvCdQ/+ji
+ 1nBND+LMGm3bL+z7kx2SvNTAzkCDz0JjEILj8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1713204951; x=1713809751;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=WYfOEsGC0slx6ThijhpmfrIi/hp4YLF9aD3FqVog84w=;
+ b=ngSGR06d+Swkc/uD7G0gnOpjmdG3nEn+0JLCvDaRnPiUp7sJppAjD5kMB4psigHltt
+ lwKZ6dQD13TLyTg5+Rq+6Ee5e6U3p+rq5+8zZghfRkRDyL47wgoGfxgRSp9WRwX5X3cq
+ Hxxlqsx9l7Oi2JKvKU35p7YstvHAvqhwIYWRqukdDId1E0ODSoZFLVNT9V+RGrj7FHpi
+ OmeQIOYbiy1Quvocc/2PaQEc5sqOTh7/d3u2uCBa43VC9zJ4FX/R+lAnnydUrb2/25Kr
+ P4VA2wIYj9yMG8r8AUiylKTn3b/Op33tW/EL7SqZrCKW27yqdq2mI7JZbrr5dWbOnGxz
+ AU0A==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVuLdCyphgnrhqvoOwdn/RgbnMwl0RdhZ+ADFDCkss8/0GuXpGMVMnx70s9bwDwPCpMHYWtY1/2zDJbl+n3E7zeJk7oRqwnmc6ojFw5+XwSieykcJc=
+X-Gm-Message-State: AOJu0YzW85BB1CR9gFY8lM+9xHov6mfWB9WoOyVr/YSz3gRTVLX6sRpT
+ TPCj6/H9sVNdj2DPyimgErgO18RO85XViMjuNpcE9NxrpaungpZwUpAZrB2fkaLN7s77ZYxtsH+
+ mWqOc9w==
+X-Google-Smtp-Source: AGHT+IFGozHu4olTzn2sCmKixmZ568izM+Fql6DKbUgi57DJaWJ5w/bsxl7LRS1V7X3ZxahH+7w8Yw==
+X-Received: by 2002:a17:907:6d27:b0:a52:2a36:38bf with SMTP id
+ sa39-20020a1709076d2700b00a522a3638bfmr8522120ejc.55.1713194643728; 
+ Mon, 15 Apr 2024 08:24:03 -0700 (PDT)
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com.
+ [209.85.208.53]) by smtp.gmail.com with ESMTPSA id
+ wn5-20020a170907068500b00a4df061728fsm5587578ejb.83.2024.04.15.08.24.03
+ for <linux-ntfs-dev@lists.sourceforge.net>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 15 Apr 2024 08:24:03 -0700 (PDT)
+Received: by mail-ed1-f53.google.com with SMTP id
+ 4fb4d7f45d1cf-56e477db7fbso5289147a12.3
+ for <linux-ntfs-dev@lists.sourceforge.net>;
+ Mon, 15 Apr 2024 08:24:03 -0700 (PDT)
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWRGI+Lfea7WHLGVYOkd27xR5BPN7fq4ic1TJAirsy0UyoM6Ryzm5caSsIIl99nvs26hE4A3AuaHMEvchwIIT3J504wf5jzWabRYHKQD+geE9gDS5U=
+X-Received: by 2002:a17:906:e0da:b0:a52:5c9a:1c8b with SMTP id
+ gl26-20020a170906e0da00b00a525c9a1c8bmr2466375ejb.5.1713194642825; Mon, 15
+ Apr 2024 08:24:02 -0700 (PDT)
+MIME-Version: 1.0
 References: <Zf2zPf5TO5oYt3I3@hovoldconsulting.com>
  <20240325-faucht-kiesel-82c6c35504b3@brauner>
  <ZgFN8LMYPZzp6vLy@hovoldconsulting.com>
@@ -68,35 +99,48 @@ References: <Zf2zPf5TO5oYt3I3@hovoldconsulting.com>
  <Zhz_axTjkJ6Aqeys@hovoldconsulting.com>
  <8FE8DF1E-C216-4A56-A16E-450D2AED7F5E@tuxera.com>
  <Zh0SicjFHCkMaOc0@hovoldconsulting.com>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <Zh0SicjFHCkMaOc0@hovoldconsulting.com>
-X-Spam-Score: -7.4 (-------)
+ <20240415-warzen-rundgang-ce78bedb5f19@brauner>
+In-Reply-To: <20240415-warzen-rundgang-ce78bedb5f19@brauner>
+From: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Mon, 15 Apr 2024 08:23:46 -0700
+X-Gmail-Original-Message-ID: <CAHk-=whPTEYv3F9tgvJf-OakOxyGw2jzRVD0BMkXmC5ANPj0YA@mail.gmail.com>
+Message-ID: <CAHk-=whPTEYv3F9tgvJf-OakOxyGw2jzRVD0BMkXmC5ANPj0YA@mail.gmail.com>
+To: Christian Brauner <brauner@kernel.org>
+X-Spam-Score: 0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Mon, Apr 15, 2024 at 01:42:01PM +0200, Johan Hovold wrote:
- > On Mon, Apr 15, 2024 at 11:32:50AM +0000, Anton Altaparmakov wrote: > >
- > Had a look at ntfs3 code and it is corrupting your volume. Eve [...] 
- Content analysis details:   (-7.4 points, 6.0 required)
+ Content preview:  On Mon, 15 Apr 2024 at 07:16,
+ Christian Brauner <brauner@kernel.org>
+ wrote: > > (1) Since the ntfs3 driver is supposed to serve as a drop-in
+ replacement
+ > for the legacy ntfs driver we should to it th [...] 
+ Content analysis details:   (0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
+ 0.0 RCVD_IN_DNSWL_BLOCKED  RBL: ADMINISTRATOR NOTICE: The query to
+ DNSWL was blocked.  See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [209.85.208.47 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.208.47 listed in wl.mailspike.net]
+ 0.0 URIBL_BLOCKED          ADMINISTRATOR NOTICE: The query to URIBL was
+ blocked.  See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [URIs: linux-foundation.org]
+ 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
+ mail domains are different
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
- high trust [145.40.73.55 listed in list.dnswl.org]
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
- -2.2 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1rwQYH-00056S-4W
+X-Headers-End: 1rwQs6-0006r0-El
 X-Mailman-Approved-At: Mon, 15 Apr 2024 18:45:42 +0000
 Subject: Re: [Linux-ntfs-dev] [PATCH 2/2] ntfs3: remove warning
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
@@ -123,50 +167,31 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-On Mon, Apr 15, 2024 at 01:42:01PM +0200, Johan Hovold wrote:
-> On Mon, Apr 15, 2024 at 11:32:50AM +0000, Anton Altaparmakov wrote:
-> 
-> > Had a look at ntfs3 code and it is corrupting your volume.  Every such
-> > message you are seeing is damaging a file or directory on your volume.
-> 
-> That's what I feared, thanks for confirming.
->  
-> > I would personally suggest you modify your /etc/fstab to mount
-> > read-only.  If it is getting simple things like this wrong who knows
-> > what else it is doing incorrect...
-> 
-> I fully agree and that's partly also why I asked Christian to make sure
-> that the alias fs type is always mounted RO.
-> 
-> But it seems we have a bigger problem here and should just restore the
-> old ntfs driver for now.
+On Mon, 15 Apr 2024 at 07:16, Christian Brauner <brauner@kernel.org> wrote:
+>
+> (1) Since the ntfs3 driver is supposed to serve as a drop-in replacement
+>     for the legacy ntfs driver we should to it the same way we did it
+>     for ext3 and ext4 where ext4 registers itself also for the ext3
+>     driver. In other words, we would register ntfs3 as ntfs3 filesystem
+>     type and as legacy ntfs filesystem type.
 
-Hey Linus,
+I think that if just registering it under the same name solves the
+immediate issue, that's the one we should just go for.
 
-A brief summary:
+>     To make it fully compatible
+>     we also need to make sure it's persistently mounted read-only.
 
-The removal of the legacy ntfs driver has caused a regression for some
-users that rely on the legacy ntfs driver to be available during boot.
-The affected user here is Johan (Cc'ed). In addition he's seeing dmesg
-warnings that he didn't see before with the legacy ntfs driver.
+My reaction to that is "only if it turns out we really need to".
 
-I see the following options to resolve this:
+It sounds unlikely that somebody has an old ntfs setup and then tries
+to mount things rw which didn't use to work and things go sideways if
+that then suddenly works.
 
-(1) Since the ntfs3 driver is supposed to serve as a drop-in replacement
-    for the legacy ntfs driver we should to it the same way we did it
-    for ext3 and ext4 where ext4 registers itself also for the ext3
-    driver. In other words, we would register ntfs3 as ntfs3 filesystem
-    type and as legacy ntfs filesystem type. To make it fully compatible
-    we also need to make sure it's persistently mounted read-only.
+But "unlikely" isn't "impossible", of course - it's just that I'd
+suggest we actually wait for that report to happen and ask what the
+heck they were doing and why they were doing that...
 
-(2) We revert the ntfs driver (for now) as we are in the middle of the
-    cycle.
-
-If you decide (2) is the right way to go then I would suggest we try the
-removal once more next cycle with the proposed change in (1) in place if
-you're up for that.
-
-Christian
+              Linus
 
 
 _______________________________________________
