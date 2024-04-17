@@ -2,108 +2,100 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40B5A8A6BD4
-	for <lists+linux-ntfs-dev@lfdr.de>; Tue, 16 Apr 2024 15:08:12 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id A52718A886F
+	for <lists+linux-ntfs-dev@lfdr.de>; Wed, 17 Apr 2024 18:07:21 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1rwiXh-0006RQ-EQ;
-	Tue, 16 Apr 2024 13:08:10 +0000
+	id 1rx7oc-0002Re-Id;
+	Wed, 17 Apr 2024 16:07:18 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <johan@kernel.org>) id 1rwiLs-0005jW-P8
- for linux-ntfs-dev@lists.sourceforge.net;
- Tue, 16 Apr 2024 12:55:57 +0000
+ (envelope-from <almaz.alexandrovich@paragon-software.com>)
+ id 1rx7oa-0002RU-Mk for linux-ntfs-dev@lists.sourceforge.net;
+ Wed, 17 Apr 2024 16:07:17 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+ From:References:CC:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=k8EOIXqf/TnfxoLLuX8uyFaSEyK92+puFuxeJL3vbys=; b=S0wXleu5iaktTsDhXhAgKrCpS4
- m39lIsKaOJDSEVYa6vInCFJ6oZcCOuxb2ALyLD2wLXSDDI7AsRnnnYgoc+YAISrmal26SJxmCUY4Z
- jNYqk0T/HNPOIh9vZjXWlm2bfn6PQsz7Mukgtgt2DvDGJbJnjPF84R7f0Kd+WeJLJCaM=;
+ bh=5HR+GG9SCNa/Fu4bWlTHqrfnklhDGqCwal0cb0yJpso=; b=WmMKpLJMtOsAjaKKc6EAlwAbW7
+ iDLbNymDPeyuqrU9sDHojl/fV+I/PNqbILM3zDyEKIunSXEb2rwfgy+IsMKwrfrScco18A39j5raA
+ DIO2SE46BtfbF4deEhdHiKZMqhjmWqxR4UdsZNFnEAQHAErWeyhl5cFOK1iyWk3jOAJA=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:
+ Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=k8EOIXqf/TnfxoLLuX8uyFaSEyK92+puFuxeJL3vbys=; b=K9ZufLLGvSlOlz02uos+iSeXdz
- AtTcDl6AZhNkZB2iz4a24EcK28v/YQ8jvnvYTdv5pz5+Q5K3dtl4smKS+/R+4eHFo37fd442qL0YH
- w5Xrt6M0BjX+kkHYh6+y8VBQ2lLswHtHPxhIxj6orU7np1t2cTuLVmp2Ue/LkrHvXmT0=;
-Received: from sin.source.kernel.org ([145.40.73.55])
+ bh=5HR+GG9SCNa/Fu4bWlTHqrfnklhDGqCwal0cb0yJpso=; b=LUIsfK6LTOrHFXMLCgOUdXsulW
+ 90PyAUYvgw1x6UFqR9cmhe1gHiscNW2F0s5hBzEp3FWMXraMHv6+4JnNX8/D6DVDx2aiBcAhyF94I
+ MUK9D9K54FVlbVaxLsiHkHjGsv/T+FRILx4lqQv2BLdkQ/ycaUTPLbmAZm0HpNOOlmUY=;
+Received: from relayaws-01.paragon-software.com ([35.157.23.187])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1rwiLs-0004cn-Hm for linux-ntfs-dev@lists.sourceforge.net;
- Tue, 16 Apr 2024 12:55:57 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id 00D1ECE1057;
- Tue, 16 Apr 2024 12:55:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06064C2BD10;
- Tue, 16 Apr 2024 12:55:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1713272143;
- bh=vS50xrw5prwzj+VNQBlQu3Y5Io9p8bmnxxpzPj+x/Vw=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=BHT+3klZ7SSMK9w5c++xbc6dBTQiAJ15T8aUAzrEzEyS8TGK+mBkp+Mjjrb7s6H46
- yc0BaGFcO6BO5c/HNtHeZQPsJSmMtcmIplh5mzzHhbqFiDoBXjqf7OplY20brwHPYM
- vjWmkofxRZLgD7IsaN1NBftoz4tMKK3sIcNNjhURja2Z3T4hBhGJT6ixRz+slWDTyb
- T7POWEtN7URTTkwJMMydiv502MCDXvrcTC3aN+/ObM4AQZJ2zsfuL/saoSXx+FoZCW
- EUR6IpZZb2pCkFvzkRp2xpZTW1i3GMwd4OieQoHt3yXiwJgTvLu9UB/er9PTLur/e4
- EAKeOJEXrQ7/w==
-Received: from johan by xi.lan with local (Exim 4.97.1)
- (envelope-from <johan@kernel.org>) id 1rwiLe-0000000037N-12tc;
- Tue, 16 Apr 2024 14:55:42 +0200
-Date: Tue, 16 Apr 2024 14:55:42 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Christian Brauner <brauner@kernel.org>
-Message-ID: <Zh51TvFSlXhTGPJy@hovoldconsulting.com>
-References: <Zhz5S3TA-Nd_8LY8@hovoldconsulting.com>
- <Zhz_axTjkJ6Aqeys@hovoldconsulting.com>
- <8FE8DF1E-C216-4A56-A16E-450D2AED7F5E@tuxera.com>
- <Zh0SicjFHCkMaOc0@hovoldconsulting.com>
- <20240415-warzen-rundgang-ce78bedb5f19@brauner>
- <CAHk-=whPTEYv3F9tgvJf-OakOxyGw2jzRVD0BMkXmC5ANPj0YA@mail.gmail.com>
- <Zh1MCw7Q0VIKrrMi@hovoldconsulting.com>
- <CAHk-=whN3V4Jzy+Mv8UZGTJ5VEk_ihCS8tu3VskW-HCfBg6r=g@mail.gmail.com>
- <Zh1Qa2aB2Dg_-mW4@hovoldconsulting.com>
- <20240416-genutzt-bestleistung-f76707a9ddba@brauner>
+ id 1rx7oZ-0001nd-JB for linux-ntfs-dev@lists.sourceforge.net;
+ Wed, 17 Apr 2024 16:07:16 +0000
+Received: from dlg2.mail.paragon-software.com
+ (vdlg-exch-02.paragon-software.com [172.30.1.105])
+ by relayaws-01.paragon-software.com (Postfix) with ESMTPS id 2F7E71FE9;
+ Wed, 17 Apr 2024 15:59:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=paragon-software.com; s=mail; t=1713369579;
+ bh=5HR+GG9SCNa/Fu4bWlTHqrfnklhDGqCwal0cb0yJpso=;
+ h=Date:Subject:To:CC:References:From:In-Reply-To;
+ b=aGuzyX+Bef2BO+H53d4nZxDdDBmpoTpsESG8PiUklBG1ssfJtmzLjyKe4yDu2OtkN
+ UFkgRYAbeC1f9VZYgxcKAKfoq0LIO0XMB+nQ96m7hBTsS3w1TThJ5mr8KAdqfJQyvF
+ hDAScC9s8paOXd7SwVWsrLdTUkCvNlSXawQFUAJg=
+Received: from [192.168.211.17] (192.168.211.17) by
+ vdlg-exch-02.paragon-software.com (172.30.1.105) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.7; Wed, 17 Apr 2024 19:07:07 +0300
+Message-ID: <015aa42b-abac-4810-8743-43913ab8e2d9@paragon-software.com>
+Date: Wed, 17 Apr 2024 19:07:06 +0300
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20240416-genutzt-bestleistung-f76707a9ddba@brauner>
-X-Spam-Score: -2.0 (--)
+User-Agent: Mozilla Thunderbird
+To: Christian Brauner <brauner@kernel.org>, Johan Hovold <johan@kernel.org>,
+ "Matthew Wilcox (Oracle)" <willy@infradead.org>, Anton Altaparmakov
+ <anton@tuxera.com>, Namjae Jeon <linkinjeon@kernel.org>,
+ <ntfs3@lists.linux.dev>
+References: <Zf2zPf5TO5oYt3I3@hovoldconsulting.com>
+ <20240325-faucht-kiesel-82c6c35504b3@brauner>
+Content-Language: en-US
+In-Reply-To: <20240325-faucht-kiesel-82c6c35504b3@brauner>
+X-Originating-IP: [192.168.211.17]
+X-ClientProxiedBy: vdlg-exch-02.paragon-software.com (172.30.1.105) To
+ vdlg-exch-02.paragon-software.com (172.30.1.105)
+X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Tue, Apr 16, 2024 at 12:38:56PM +0200, Christian Brauner
- wrote: > On Mon, Apr 15, 2024 at 06:06:03PM +0200, Johan Hovold wrote: >
- > Ah, right, I forgot about CONFIG_NTFS_RW as I've never enabled it. > > >
- > Judging from the now removed Kconfig entry perhaps not that many people
- > > did: > > > > The only supported operation is [...] 
- Content analysis details:   (-2.0 points, 6.0 required)
+ Content preview:  On 25.03.2024 11:34, Christian Brauner wrote: > This causes
+ visible changes for users that rely on ntfs3 to serve as an > alternative
+ for the legacy ntfs driver. Print statements such as this > should [...] 
+ Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 RCVD_IN_DNSWL_BLOCKED  RBL: ADMINISTRATOR NOTICE: The query to
- DNSWL was blocked.  See
+ 0.0 URIBL_BLOCKED          ADMINISTRATOR NOTICE: The query to URIBL was
+ blocked.  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [145.40.73.55 listed in list.dnswl.org]
+ for more information. [URIs: paragon-software.com]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid -1.8 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1rwiLs-0004cn-Hm
-X-Mailman-Approved-At: Tue, 16 Apr 2024 13:08:08 +0000
+ valid
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+X-Headers-End: 1rx7oZ-0001nd-JB
 Subject: Re: [Linux-ntfs-dev] [PATCH 2/2] ntfs3: remove warning
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -117,83 +109,51 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Cc: Linux regressions mailing list <regressions@lists.linux.dev>,
- "linux-ntfs-dev@lists.sourceforge.net"
- <linux-ntfs-dev@lists.sourceforge.net>,
- "Matthew Wilcox \(Oracle\)" <willy@infradead.org>,
- Konstantin Komarov <almaz.alexandrovich@paragon-software.com>,
- Linux FS-devel Mailing List <linux-fsdevel@vger.kernel.org>,
- "ntfs3@lists.linux.dev" <ntfs3@lists.linux.dev>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- Anton Altaparmakov <anton@tuxera.com>
-Content-Type: text/plain; charset="us-ascii"
+From: Konstantin Komarov via Linux-ntfs-dev
+ <linux-ntfs-dev@lists.sourceforge.net>
+Reply-To: Konstantin Komarov <almaz.alexandrovich@paragon-software.com>
+Cc: linux-fsdevel@vger.kernel.org, linux-ntfs-dev@lists.sourceforge.net,
+ regressions@lists.linux.dev
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-On Tue, Apr 16, 2024 at 12:38:56PM +0200, Christian Brauner wrote:
-> On Mon, Apr 15, 2024 at 06:06:03PM +0200, Johan Hovold wrote:
+On 25.03.2024 11:34, Christian Brauner wrote:
+> This causes visible changes for users that rely on ntfs3 to serve as an
+> alternative for the legacy ntfs driver. Print statements such as this
+> should probably be made conditional on a debug config option or similar.
+>
+> Cc: "Matthew Wilcox (Oracle)" <willy@infradead.org>
+> Cc: Johan Hovold <johan@kernel.org>
+> Link: https://lore.kernel.org/r/Zf2zPf5TO5oYt3I3@hovoldconsulting.com
+> Signed-off-by: Christian Brauner <brauner@kernel.org>
+> ---
+>   fs/ntfs3/inode.c | 1 -
+>   1 file changed, 1 deletion(-)
+>
+> diff --git a/fs/ntfs3/inode.c b/fs/ntfs3/inode.c
+> index eb7a8c9fba01..8cc94a6a97ed 100644
+> --- a/fs/ntfs3/inode.c
+> +++ b/fs/ntfs3/inode.c
+> @@ -424,7 +424,6 @@ static struct inode *ntfs_read_mft(struct inode *inode,
+>   
+>   	if (names != le16_to_cpu(rec->hard_links)) {
+>   		/* Correct minor error on the fly. Do not mark inode as dirty. */
+> -		ntfs_inode_warn(inode, "Correct links count -> %u.", names);
+>   		rec->hard_links = cpu_to_le16(names);
+>   		ni->mi.dirty = true;
+>   	}
+Hello Christian, all,
 
-> > Ah, right, I forgot about CONFIG_NTFS_RW as I've never enabled it.
-> > 
-> > Judging from the now removed Kconfig entry perhaps not that many people
-> > did:
-> > 
-> > 	The only supported operation is overwriting existing files,
-> > 	without changing the file length.  No file or directory
-> > 	creation, deletion or renaming is possible. 
-> > 
-> > but I guess it still makes my argument above mostly moot.
-> > 
-> > At least if we disable write support in ntfs3 by default for now...
-> 
-> I think we can disable write support in ntfs3 for now. I've picked up
-> the patch to make ntfs3 serve I sent some time ago that Johan tested
-> now.
+The initial and true reason for multiple warnings is the disregard of 
+short (DOS) names when counting hard links.
 
-Note that I actually meant that write support should be disabled
-completely in ntfs3 for now.
+This patch should fixes this bug:
+https://lore.kernel.org/ntfs3/0cb0b314-e4f6-40a2-9628-0fe7d905a676@paragon-software.com/T/#u
 
-After this first encounter I have zero confidence in that driver and
-pushing people towards using it (by removing the old, read-only one) is
-just gonna result in further corrupted filesystems. At least make sure
-it can't modify anything by default and mark write-support as
-experimental and broken or something as that's apparently what it is.
+There is no longer a need to suppress the message itself.
 
-> The only thing left is to disable write support for ntfs3 as legacy ntfs
-> driver for now. I took a stab at this. The following two patches
-> I'm appending _should_ be enough iiuc. Johan, please take a look and
-> please test.
 
-I skimmed them and gave them a quick spin. It seems that not specifying
-either "ro" or "rw" in fstab now results in a ro mount, but I can still
-specify "rw" explicitly (in fstab or command line) and end up with:
-
-	/dev/nvme0n1p3 on /mnt/windows type ntfs (rw,relatime,uid=0,gid=0,iocharset=iso8859-1)
-
-For obvious reasons, I did not dare listing the root directory or write
-anything, but it looks like it's not read-only.
-
-Using just my naive temporary hack from yesterday:
-
-diff --git a/fs/ntfs3/super.c b/fs/ntfs3/super.c
-index 8d2e51bae2cb..26be6c6d1032 100644
---- a/fs/ntfs3/super.c
-+++ b/fs/ntfs3/super.c
-@@ -1177,6 +1177,9 @@ static int ntfs_fill_super(struct super_block *sb, struct fs_context *fc)
-        sb->s_xattr = ntfs_xattr_handlers;
-        sb->s_d_op = options->nocase ? &ntfs_dentry_ops : NULL;
-
-+       ntfs_warn(sb, "ntfs3 driver is broken, mounting read only");
-+       sb->s_flags |= SB_RDONLY;
-+
-        options->nls = ntfs_load_nls(options->nls_name);
-        if (IS_ERR(options->nls)) {
-                options->nls = NULL;
-
-seems to prevent also explicit rw mounts (but judging from your patches
-it is not necessarily sufficient to prevent all modifications).
-
-Johan
 
 
 _______________________________________________
