@@ -2,114 +2,70 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D43B97C568
-	for <lists+linux-ntfs-dev@lfdr.de>; Thu, 19 Sep 2024 09:55:35 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F4399944DF
+	for <lists+linux-ntfs-dev@lfdr.de>; Tue,  8 Oct 2024 11:56:27 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1srC0j-0005KQ-06;
-	Thu, 19 Sep 2024 07:55:33 +0000
+	id 1sy6x6-0001QQ-Tx;
+	Tue, 08 Oct 2024 09:56:24 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
- by sfs-ml-3.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <tukkek@gmail.com>) id 1sqtXu-0001Ac-N7
+ (envelope-from <g.ryurikov@securitycode.ru>) id 1sy6C3-0000De-Pb
  for linux-ntfs-dev@lists.sourceforge.net;
- Wed, 18 Sep 2024 12:12:34 +0000
+ Tue, 08 Oct 2024 09:07:47 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:To:Subject:Message-ID:Date:From:
- MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
+ :Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=PretEWRXgrsNBz1PhTxjlLkiGBA8DochlAFsyW6wwV8=; b=dLXmFPiKzk9uGqls4/TolM2uf6
- yovWJsRRYlnlnnvN0e3INQ17XM7k+Cd8IVgDRqgElp+jHMyqt84C+mM8WjVB4CgfsFeZaUP7FOr/3
- 37lIBJL66Y/k9024wJy1tGlFvUfdh0pjCGgkP3YmMyV9/GCYQLcq7btagJJgWSQ0vpfY=;
+ bh=Y2l5Ho12WXLXc3s4eoz5lfW6298r///qon9AsIeSybs=; b=Nx+rJax+aVvT08SD3fWbeE2XMc
+ yoNkThEz30jnLgSHuatKMSMUQd2dfBBYVb6mIZ5QQb6pKNXcTww7/ox3EgKOSfJQVT+7rCSwvaxV8
+ BB7Xh+ml+nx4Ew6DEGNs+Wk1R5BfhfgULqAJEFX+0o0xA7/T6Pyozqhuw0BwJZVejArM=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:To:Subject:Message-ID:Date:From:MIME-Version:Sender:Reply-To
- :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:
+ Subject:CC:To:From:Sender:Reply-To:Content-ID:Content-Description:Resent-Date
+ :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=PretEWRXgrsNBz1PhTxjlLkiGBA8DochlAFsyW6wwV8=; b=M
- Qm/GWd2et9nEBEf9BbXBH4wcOOINzdXmZbMHxGuzpjpT8hLYlx2IPaw72OoR8SEC6VcBVk9onfavy
- NHnHSHFvKoHtI53tZsfe6bQ20byifkpdUNDeQydr4fwROc4MFiPQajTdFfUsTtqU++9szPpnVV8Wv
- vTjwW7XgX94wuHbE=;
-Received: from mail-ed1-f48.google.com ([209.85.208.48])
+ List-Owner:List-Archive; bh=Y2l5Ho12WXLXc3s4eoz5lfW6298r///qon9AsIeSybs=; b=m
+ LZRq3Foz/vFqvjTbEYXdyc5uIy9Hn8pyQipPEWEq8qoZHOkg7eLvpY8cYsRIUxKIAkAaMvk1aoyOB
+ AsKSRf5itTQnrjX/W3mFTnbDB7OWemWNyXhdrt4wTzTOngfjdfFgyUoCq8Jem+RvsK4f0v/MLTCbG
+ MfJKIjNM1xDGgr08=;
+Received: from msk-mailedge.securitycode.ru ([195.133.217.143])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1sqtXs-0003xe-47 for linux-ntfs-dev@lists.sourceforge.net;
- Wed, 18 Sep 2024 12:12:32 +0000
-Received: by mail-ed1-f48.google.com with SMTP id
- 4fb4d7f45d1cf-5c3ed267a7bso8667644a12.3
- for <linux-ntfs-dev@lists.sourceforge.net>;
- Wed, 18 Sep 2024 05:12:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1726661540; x=1727266340; darn=lists.sourceforge.net;
- h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
- :date:message-id:reply-to;
- bh=PretEWRXgrsNBz1PhTxjlLkiGBA8DochlAFsyW6wwV8=;
- b=YkRvtD5sTSY0Zwfx8nuSt99aZW8eF35o+ZL0VFt7l5EYX4s9cnq10V16TRfPE9/RxG
- Fj/QHDsDMvUZtMxgeS9ybqBvaVXRHfhMN+euNF42MijlPzlhQao7T9VSrJ4I9npi5hfQ
- 0KZvRkEf6uILPqShUXcaVr/eQQew9vICAgz7O/QUql0biT+hPyOh3xZAbcEYW7jQxQGX
- vfAPDBBP8iO2s34iubrQiFSnH/NhpDM5EiZ5E8xqdteaPxOCMQJkVNOje92F/gHSwhW4
- JT9VB+w9QRgDuBCTvgoQLkcjF319x6l8Wg6OTc015aB8ipwV2pQADPWHUsrjYG9mzXon
- d8DA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1726661540; x=1727266340;
- h=to:subject:message-id:date:from:mime-version:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=PretEWRXgrsNBz1PhTxjlLkiGBA8DochlAFsyW6wwV8=;
- b=vgOXZ73uh6Ab1at2jMgd9aCqAqEYa2+EzLwu+K654XvcPnoa43hB0ceUhxAwkuFe/Y
- M3CmOl0I/J49BdBxfy4tD4BCjGxy1kRZ0/XTwpLchh911hTC9uBPLSC3AdA2EZiUuH4A
- 9Au7x+Fu58iXnq5AO+xLxxv/B+cQtMycnvRWbZu6QkstkLCMnHxe8rQgWlrD9eOU8k5k
- AgAAfSc/f3Ux8u0m4JsE8+6zdVHMcaHiJhyHfhR2CgxWLGm3KiRYQtfAOLWJvmrLaTw2
- EZ0kDvBszS5blqwxQncFXuhZUuBlVVACv9rkKXQ2g2p1urDu4gxptmOs99Ot5TF0okdV
- jQVw==
-X-Gm-Message-State: AOJu0Yyc0YMWEmTWj9rwu/m8AnuRK7AfBPHo3UkQrXfdCxGf7IHzJxap
- fWdm7ziLEEsUsx76qiHOAnd+zD4tnGwoBOnE8fCxS7ZP+YnHTFPR/epTwcCQoZg7+8yhf5e58G3
- cxxpiDLhMuJpm25yKKBvG6bX2OhWr
-X-Google-Smtp-Source: AGHT+IEW7vIU5BUeSA1aiTksk8nu65PK0g/ABFbgiFzlucqB17FksWjlspl9uwr90c0pX1rCkh/QyTs67LPQn4OR558=
-X-Received: by 2002:a50:c908:0:b0:59e:f6e7:5521 with SMTP id
- 4fb4d7f45d1cf-5c413e2095cmr15574283a12.19.1726661540119; Wed, 18 Sep 2024
- 05:12:20 -0700 (PDT)
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
+ id 1sy6C2-0005b9-CY for linux-ntfs-dev@lists.sourceforge.net;
+ Tue, 08 Oct 2024 09:07:47 +0000
+From: George Rurikov <g.ryurikov@securitycode.ru>
+To: <stable@vger.kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Date: Tue, 8 Oct 2024 11:52:01 +0300
+Message-ID: <20241008085201.2209609-1-g.ryurikov@securitycode.ru>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-From: Alex Henry <tukkek@gmail.com>
-Date: Wed, 18 Sep 2024 09:12:08 -0300
-Message-ID: <CAM+iiifFJYzM9tVL+UFAkkaBMeqp22w4n1Go+uAO8DhdLmNfjw@mail.gmail.com>
-To: linux-ntfs-dev@lists.sourceforge.net
-X-Spam-Score: -1.2 (-)
+X-ClientProxiedBy: MSK-EX1.Securitycode.ru (172.17.8.91) To
+ MSK-EX2.Securitycode.ru (172.17.8.92)
+X-Spam-Score: 0.0 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hello friends, I hope I'm in the right place! I booted into
- Windows by mistake this morning, foolishly did a hard-reset, not thinking
- anything of it and then my Linux system wouldn't work. I just happened to
- install a new DKMS driver yesterday so [...] 
- Content analysis details:   (-1.2 points, 6.0 required)
+ Content preview:  From: George Ryurikov <g.ryurikov@securitycode.ru> Danila
+ Chernetsov <listdansp@mail.ru> commit aa4b92c5234878d55da96d387ea4d3695ca5e4ab
+ upstream. 
+ Content analysis details:   (0.0 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
- provider [tukkek[at]gmail.com]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.208.48 listed in list.dnswl.org]
- -1.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.208.48 listed in wl.mailspike.net]
- 0.0 HTML_MESSAGE           BODY: HTML included in message
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
-X-Headers-End: 1sqtXs-0003xe-47
-X-Mailman-Approved-At: Thu, 19 Sep 2024 07:55:28 +0000
-Subject: [Linux-ntfs-dev] Log unsafe read-only re-mount as an error
+X-Headers-End: 1sy6C2-0005b9-CY
+X-Mailman-Approved-At: Tue, 08 Oct 2024 09:56:24 +0000
+Subject: [Linux-ntfs-dev] [PATCH 5.10] ntfs: do not dereference a null ctx
+ on error
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -122,82 +78,92 @@ List-Post: <mailto:linux-ntfs-dev@lists.sourceforge.net>
 List-Help: <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev>, 
  <mailto:linux-ntfs-dev-request@lists.sourceforge.net?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============7790679370577722157=="
+Cc: Christian Brauner <brauner@kernel.org>, lvc-project@linuxtesting.org,
+ linux-ntfs-dev@lists.sourceforge.net,
+ George Ryurikov <g.ryurikov@securitycode.ru>, linux-kernel@vger.kernel.org,
+ Anton Altaparmakov <anton@tuxera.com>, Danila
+ Chernetsov <listdansp@mail.ru>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
---===============7790679370577722157==
-Content-Type: multipart/alternative; boundary="000000000000bf0dd2062263b789"
-
---000000000000bf0dd2062263b789
-Content-Type: text/plain; charset="UTF-8"
-
-Hello friends, I hope I'm in the right place!
-
-I booted into Windows by mistake this morning, foolishly did a hard-reset,
-not thinking anything of it and then my Linux system wouldn't work. I just
-happened to install a new DKMS driver yesterday so I assumed that was the
-issue and started digging...
-
-It took me over half an hour to trace the issue back to the boot message
-saying my root NTFS drive (a small SSD I use for both OS system-files) was
-unsafe and mounted read-only. I did as instructed, booted and re-booted
-Windows and here I am again a happy-penguin writing this.
-
-While I am extremely thankful for that message which led me to easily fix
-the issue, I'd suggest that you consider making it an error-priority
-log-event. That would have saved me a good chunk of time and I can only
-imagine less-skilled or less-lucky users could have missed it entirely.
-
-Conceptually speaking, the unsafe status and the read-only re-mount was in
-fact the one error that had my system broken and with it fixed everything's
-back to normal.
-
-Thank you all who put in the hard work that goes unnoticed until something
-breaks! Cheers!
-
---000000000000bf0dd2062263b789
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hello friends, I hope I&#39;m in the right place!</di=
-v><div><br></div><div>I booted into Windows by mistake this morning, foolis=
-hly did a hard-reset, not thinking anything of it and then my Linux system =
-wouldn&#39;t work. I just happened to install a new DKMS driver yesterday s=
-o I assumed that was the issue and started digging...<br></div><div><br></d=
-iv><div>It took me over half an hour to trace the issue back to the boot me=
-ssage saying my root NTFS drive (a small SSD I use for both OS system-files=
-) was unsafe and mounted read-only. I did as instructed, booted and re-boot=
-ed Windows and here I am again a happy-penguin writing this.</div><div><br>=
-</div><div>While I am extremely thankful for that message which led me to e=
-asily fix the issue, I&#39;d suggest that you consider making it an error-p=
-riority log-event. That would have saved me a good chunk of time and I can =
-only imagine less-skilled or less-lucky users could have missed it entirely=
-.<br></div><div><br></div><div>Conceptually speaking, the unsafe status and=
- the read-only re-mount was in fact the one error that had my system broken=
- and with it fixed everything&#39;s back to normal.</div><div><br></div><di=
-v>Thank you all who put in the hard work that goes unnoticed until somethin=
-g breaks! Cheers!<br></div></div>
-
---000000000000bf0dd2062263b789--
-
-
---===============7790679370577722157==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-
---===============7790679370577722157==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Linux-ntfs-dev mailing list
-Linux-ntfs-dev@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/linux-ntfs-dev
-
---===============7790679370577722157==--
-
+RnJvbTogR2VvcmdlIFJ5dXJpa292IDxnLnJ5dXJpa292QHNlY3VyaXR5Y29kZS5ydT4KCkRhbmls
+YSBDaGVybmV0c292IDxsaXN0ZGFuc3BAbWFpbC5ydT4KCmNvbW1pdCBhYTRiOTJjNTIzNDg3OGQ1
+NWRhOTZkMzg3ZWE0ZDM2OTVjYTVlNGFiIHVwc3RyZWFtLgoKSW4gbnRmc19tZnRfZGF0YV9leHRl
+bmRfYWxsb2NhdGlvbl9ub2xvY2soKSwgaWYgYW4gZXJyb3IgY29uZGl0aW9uIG9jY3Vycwpwcmlv
+ciB0byAnY3R4JyBiZWluZyBzZXQgdG8gYSBub24tTlVMTCB2YWx1ZSwgYXZvaWQgZGVyZWZlcmVu
+Y2luZyB0aGUgTlVMTAonY3R4JyBwb2ludGVyIGluIGVycm9yIGhhbmRsaW5nLgoKRm91bmQgYnkg
+TGludXggVmVyaWZpY2F0aW9uIENlbnRlciAobGludXh0ZXN0aW5nLm9yZykgd2l0aCBTVkFDRS4K
+ClNpZ25lZC1vZmYtYnk6IERhbmlsYSBDaGVybmV0c292IDxsaXN0ZGFuc3BAbWFpbC5ydT4KUmV2
+aWV3ZWQtYnk6IE5hbWphZSBKZW9uIDxsaW5raW5qZW9uQGtlcm5lbC5vcmc+ClNpZ25lZC1vZmYt
+Ynk6IENocmlzdGlhbiBCcmF1bmVyIDxicmF1bmVyQGtlcm5lbC5vcmc+ClNpZ25lZC1vZmYtYnk6
+IEdlb3JnZSBSeXVyaWtvdiA8Zy5yeXVyaWtvdkBzZWN1cml0eWNvZGUucnU+Ci0tLQogZnMvbnRm
+cy9tZnQuYyB8IDM2ICsrKysrKysrKysrKysrKysrKystLS0tLS0tLS0tLS0tLS0tLQogMSBmaWxl
+IGNoYW5nZWQsIDE5IGluc2VydGlvbnMoKyksIDE3IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBh
+L2ZzL250ZnMvbWZ0LmMgYi9mcy9udGZzL21mdC5jCmluZGV4IDBkNjJjZDViYjdmOC4uM2ZlYjIx
+ODE3NGZhIDEwMDY0NAotLS0gYS9mcy9udGZzL21mdC5jCisrKyBiL2ZzL250ZnMvbWZ0LmMKQEAg
+LTE5NTUsMzYgKzE5NTUsMzggQEAgc3RhdGljIGludCBudGZzX21mdF9kYXRhX2V4dGVuZF9hbGxv
+Y2F0aW9uX25vbG9jayhudGZzX3ZvbHVtZSAqdm9sKQogICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICJhdHRyaWJ1dGUuJXMiLCBlcyk7CiAgICAgICAgICAgICAgICBOVm9sU2V0RXJyb3Jz
+KHZvbCk7CiAgICAgICAgfQotICAgICAgIGEgPSBjdHgtPmF0dHI7CisKICAgICAgICBpZiAobnRm
+c19ybF90cnVuY2F0ZV9ub2xvY2sodm9sLCAmbWZ0X25pLT5ydW5saXN0LCBvbGRfbGFzdF92Y24p
+KSB7CiAgICAgICAgICAgICAgICBudGZzX2Vycm9yKHZvbC0+c2IsICJGYWlsZWQgdG8gdHJ1bmNh
+dGUgbWZ0IGRhdGEgYXR0cmlidXRlICIKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAi
+cnVubGlzdC4lcyIsIGVzKTsKICAgICAgICAgICAgICAgIE5Wb2xTZXRFcnJvcnModm9sKTsKICAg
+ICAgICB9Ci0gICAgICAgaWYgKG1wX3JlYnVpbHQgJiYgIUlTX0VSUihjdHgtPm1yZWMpKSB7Ci0g
+ICAgICAgICAgICAgICBpZiAobnRmc19tYXBwaW5nX3BhaXJzX2J1aWxkKHZvbCwgKHU4KilhICsg
+bGUxNl90b19jcHUoCisgICAgICAgaWYgKGN0eCkgeworICAgICAgICAgICAgICAgYSA9IGN0eC0+
+YXR0cjsKKyAgICAgICAgICAgICAgIGlmIChtcF9yZWJ1aWx0ICYmICFJU19FUlIoY3R4LT5tcmVj
+KSkgeworICAgICAgICAgICAgICAgICAgICAgICBpZiAobnRmc19tYXBwaW5nX3BhaXJzX2J1aWxk
+KHZvbCwgKHU4ICopYSArIGxlMTZfdG9fY3B1KAogICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgIGEtPmRhdGEubm9uX3Jlc2lkZW50Lm1hcHBpbmdfcGFpcnNfb2Zmc2V0KSwKICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICBvbGRfYWxlbiAtIGxlMTZfdG9fY3B1KAotICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgIGEtPmRhdGEubm9uX3Jlc2lkZW50Lm1hcHBpbmdfcGFpcnNf
+b2Zmc2V0KSwKKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGEtPmRhdGEu
+bm9uX3Jlc2lkZW50Lm1hcHBpbmdfcGFpcnNfb2Zmc2V0KSwKICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICBybDIsIGxsLCAtMSwgTlVMTCkpIHsKLSAgICAgICAgICAgICAgICAgICAgICAg
+bnRmc19lcnJvcih2b2wtPnNiLCAiRmFpbGVkIHRvIHJlc3RvcmUgbWFwcGluZyBwYWlycyAiCisg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbnRmc19lcnJvcih2b2wtPnNiLCAiRmFpbGVk
+IHRvIHJlc3RvcmUgbWFwcGluZyBwYWlycyAiCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAiYXJyYXkuJXMiLCBlcyk7Ci0gICAgICAgICAgICAgICAgICAgICAgIE5Wb2xT
+ZXRFcnJvcnModm9sKTsKLSAgICAgICAgICAgICAgIH0KLSAgICAgICAgICAgICAgIGlmIChudGZz
+X2F0dHJfcmVjb3JkX3Jlc2l6ZShjdHgtPm1yZWMsIGEsIG9sZF9hbGVuKSkgewotICAgICAgICAg
+ICAgICAgICAgICAgICBudGZzX2Vycm9yKHZvbC0+c2IsICJGYWlsZWQgdG8gcmVzdG9yZSBhdHRy
+aWJ1dGUgIgorICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIE5Wb2xTZXRFcnJvcnModm9s
+KTsKKyAgICAgICAgICAgICAgICAgICAgICAgfQorICAgICAgICAgICAgICAgICAgICAgICBpZiAo
+bnRmc19hdHRyX3JlY29yZF9yZXNpemUoY3R4LT5tcmVjLCBhLCBvbGRfYWxlbikpIHsKKyAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICBudGZzX2Vycm9yKHZvbC0+c2IsICJGYWlsZWQgdG8g
+cmVzdG9yZSBhdHRyaWJ1dGUgIgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgInJlY29yZC4lcyIsIGVzKTsKKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBOVm9s
+U2V0RXJyb3JzKHZvbCk7CisgICAgICAgICAgICAgICAgICAgICAgIH0KKyAgICAgICAgICAgICAg
+ICAgICAgICAgZmx1c2hfZGNhY2hlX21mdF9yZWNvcmRfcGFnZShjdHgtPm50ZnNfaW5vKTsKKyAg
+ICAgICAgICAgICAgICAgICAgICAgbWFya19tZnRfcmVjb3JkX2RpcnR5KGN0eC0+bnRmc19pbm8p
+OworICAgICAgICAgICAgICAgfSBlbHNlIGlmIChJU19FUlIoY3R4LT5tcmVjKSkgeworICAgICAg
+ICAgICAgICAgICAgICAgICBudGZzX2Vycm9yKHZvbC0+c2IsICJGYWlsZWQgdG8gcmVzdG9yZSBh
+dHRyaWJ1dGUgc2VhcmNoICIKKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAiY29udGV4
+dC4lcyIsIGVzKTsKICAgICAgICAgICAgICAgICAgICAgICAgTlZvbFNldEVycm9ycyh2b2wpOwog
+ICAgICAgICAgICAgICAgfQotICAgICAgICAgICAgICAgZmx1c2hfZGNhY2hlX21mdF9yZWNvcmRf
+cGFnZShjdHgtPm50ZnNfaW5vKTsKLSAgICAgICAgICAgICAgIG1hcmtfbWZ0X3JlY29yZF9kaXJ0
+eShjdHgtPm50ZnNfaW5vKTsKLSAgICAgICB9IGVsc2UgaWYgKElTX0VSUihjdHgtPm1yZWMpKSB7
+Ci0gICAgICAgICAgICAgICBudGZzX2Vycm9yKHZvbC0+c2IsICJGYWlsZWQgdG8gcmVzdG9yZSBh
+dHRyaWJ1dGUgc2VhcmNoICIKLSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAiY29udGV4
+dC4lcyIsIGVzKTsKLSAgICAgICAgICAgICAgIE5Wb2xTZXRFcnJvcnModm9sKTsKLSAgICAgICB9
+Ci0gICAgICAgaWYgKGN0eCkKICAgICAgICAgICAgICAgIG50ZnNfYXR0cl9wdXRfc2VhcmNoX2N0
+eChjdHgpOworICAgICAgIH0KICAgICAgICBpZiAoIUlTX0VSUihtcmVjKSkKICAgICAgICAgICAg
+ICAgIHVubWFwX21mdF9yZWNvcmQobWZ0X25pKTsKICAgICAgICB1cF93cml0ZSgmbWZ0X25pLT5y
+dW5saXN0LmxvY2spOwotLQoyLjM0LjEKCtCX0LDRj9Cy0LvQtdC90LjQtSDQviDQutC+0L3RhNC4
+0LTQtdC90YbQuNCw0LvRjNC90L7RgdGC0LgKCtCU0LDQvdC90L7QtSDRjdC70LXQutGC0YDQvtC9
+0L3QvtC1INC/0LjRgdGM0LzQviDQuCDQu9GO0LHRi9C1INC/0YDQuNC70L7QttC10L3QuNGPINC6
+INC90LXQvNGDINGP0LLQu9GP0Y7RgtGB0Y8g0LrQvtC90YTQuNC00LXQvdGG0LjQsNC70YzQvdGL
+0LzQuCDQuCDQv9GA0LXQtNC90LDQt9C90LDRh9C10L3RiyDQuNGB0LrQu9GO0YfQuNGC0LXQu9GM
+0L3QviDQtNC70Y8g0LDQtNGA0LXRgdCw0YLQsC4g0JXRgdC70Lgg0JLRiyDQvdC1INGP0LLQu9GP
+0LXRgtC10YHRjCDQsNC00YDQtdGB0LDRgtC+0Lwg0LTQsNC90L3QvtCz0L4g0L/QuNGB0YzQvNCw
+LCDQv9C+0LbQsNC70YPQudGB0YLQsCwg0YPQstC10LTQvtC80LjRgtC1INC90LXQvNC10LTQu9C1
+0L3QvdC+INC+0YLQv9GA0LDQstC40YLQtdC70Y8sINC90LUg0YDQsNGB0LrRgNGL0LLQsNC50YLQ
+tSDRgdC+0LTQtdGA0LbQsNC90LjQtSDQtNGA0YPQs9C40Lwg0LvQuNGG0LDQvCwg0L3QtSDQuNGB
+0L/QvtC70YzQt9GD0LnRgtC1INC10LPQviDQsiDQutCw0LrQuNGFLdC70LjQsdC+INGG0LXQu9GP
+0YUsINC90LUg0YXRgNCw0L3QuNGC0LUg0Lgg0L3QtSDQutC+0L/QuNGA0YPQudGC0LUg0LjQvdGE
+0L7RgNC80LDRhtC40Y4g0LvRjtCx0YvQvCDRgdC/0L7RgdC+0LHQvtC8LgoKCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkxpbnV4LW50ZnMtZGV2IG1haWxp
+bmcgbGlzdApMaW51eC1udGZzLWRldkBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQKaHR0cHM6Ly9saXN0
+cy5zb3VyY2Vmb3JnZS5uZXQvbGlzdHMvbGlzdGluZm8vbGludXgtbnRmcy1kZXYK
