@@ -2,28 +2,28 @@ Return-Path: <linux-ntfs-dev-bounces@lists.sourceforge.net>
 X-Original-To: lists+linux-ntfs-dev@lfdr.de
 Delivered-To: lists+linux-ntfs-dev@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3175A3B963
-	for <lists+linux-ntfs-dev@lfdr.de>; Wed, 19 Feb 2025 10:32:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55963A3B966
+	for <lists+linux-ntfs-dev@lfdr.de>; Wed, 19 Feb 2025 10:32:22 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
 	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <linux-ntfs-dev-bounces@lists.sourceforge.net>)
-	id 1tkgRH-0001Zk-Nn;
-	Wed, 19 Feb 2025 09:32:19 +0000
+	id 1tkgRI-0001aH-WA;
+	Wed, 19 Feb 2025 09:32:20 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-3.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <gregkh@linuxfoundation.org>) id 1tfg1B-0006Ue-A8
+ (envelope-from <gregkh@linuxfoundation.org>) id 1tkg37-0000vG-Si
  for linux-ntfs-dev@lists.sourceforge.net;
- Wed, 05 Feb 2025 14:04:42 +0000
+ Wed, 19 Feb 2025 09:07:21 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
  In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=XVpznc9qhIYaZtK8Z8MTDCZPHqzqIWTup5LmdVY4xsw=; b=Tt42FWRxXYtmfwM0pEmnZFnuuI
- f3B5z5u8eRg3ucbWc9TjMyMS9Q+Nmg778LGpllgqRN2YB6qmtqkoeBN7jAkCWab4TXq2FEebu9Yjk
- rbC1cSUZ3Nzjx+VsKy12w/Gvw6AJONPhMa+Zoabh0ShNqJguPU9eB+K5vpdgpbbLeSZI=;
+ bh=Ddh+L3AwjnRAT0IWAV0R8kuBGXGOk3+2yCCLK7EbxVk=; b=NrCJDOLhMF6i8jDMQrgfjfRoBx
+ FyVWfdSqM/OSDQbs2ncPvk43GIACigE8lTHiobOgErd6nbu5NCrz77yUhdlxtYV2ZjmrzjY1AkoSY
+ oMuzJV0b3+/vObuDdmvj+D/PcOkci/SkIuioBWQA5NhL/TEmSaj1QKnjgz1l2vY4p1G8=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:
@@ -31,74 +31,74 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=XVpznc9qhIYaZtK8Z8MTDCZPHqzqIWTup5LmdVY4xsw=; b=mfqwdmz9tPjmKARiUY+HQmzXpl
- 0mDyJU4OiPnpXDYDJA/oGj34ragmZrKnY+qYRNAIPjKVDyhxQbB3lEbJ3dhanqsGYq5X51d4Pf5rd
- ijQl9Fi4+K1sg+FyXJxWFTcneqEYotUGaf1y5pJ5TTrdWawMAdGEazlK53RRfYHBr6DA=;
-Received: from nyc.source.kernel.org ([147.75.193.91])
+ bh=Ddh+L3AwjnRAT0IWAV0R8kuBGXGOk3+2yCCLK7EbxVk=; b=FF2WGnhS+tKYx6CPazyBDTYm8f
+ GwIHQW8CP9JY3zwDlrIKErUaYR2wHB15w+39V1AQTz0I1TYrSykwwUdrN8z6wcBLBGtNMggqd4eGs
+ iAT8XuNNFiQBJGUttZ6NSLaFMR2qZs5h9OccT8QHi8jXVMO5mOTUQU63hix70LQC+EdA=;
+Received: from dfw.source.kernel.org ([139.178.84.217])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1tfg1A-0004F8-N3 for linux-ntfs-dev@lists.sourceforge.net;
- Wed, 05 Feb 2025 14:04:41 +0000
+ id 1tkg36-0000Ab-Is for linux-ntfs-dev@lists.sourceforge.net;
+ Wed, 19 Feb 2025 09:07:21 +0000
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id 12FCAA43667;
- Wed,  5 Feb 2025 13:46:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56614C4CED1;
- Wed,  5 Feb 2025 13:48:08 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTP id BBFED5C57E4;
+ Wed, 19 Feb 2025 09:06:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36B29C4CED1;
+ Wed, 19 Feb 2025 09:07:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1738763288;
- bh=dANetWE4vxK7TbQZkq/E6iIOA3/0ksjPLj5aNY28tTE=;
+ s=korg; t=1739956029;
+ bh=alKQu8aUTswDDHY9XuOpsjXbqwBj2L/YC+lwURUYX9U=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=KnOMHpO/v7YAfa6xGCrvA5QwiUGdvoMXnQrkhxxT+ZJJldjURyaVWyKaW4KkUvZwJ
- CoaDb0pm2brabHAucxNeXwpbbfqu2NVODsiFveNt5XLTV9tAPOdtKcctH5M4zskOQD
- /hZ2JY4UN5darp8z3Ae2ZYfMmbveHqTH1alwPRHo=
+ b=jiSCSrnwVTh36dHeYTIFidXoM9NaiGwh3Y8DKdGxVaE0fKWUA2BPXa//QK80zXpTm
+ DWvhEd3DmuVIVSoesrMnHZ+kWTArIm6kRuP+BB7qQVcA290GsUYlTra1q+dXRkm+d5
+ stRxqoWjTWJIf2Ns/5jP8WkSJymyRYidwgz/bOfg=
 From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 To: stable@vger.kernel.org
-Date: Wed,  5 Feb 2025 14:38:52 +0100
-Message-ID: <20250205134420.803684419@linuxfoundation.org>
+Date: Wed, 19 Feb 2025 09:20:14 +0100
+Message-ID: <20250219082653.301541884@linuxfoundation.org>
 X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250205134420.279368572@linuxfoundation.org>
-References: <20250205134420.279368572@linuxfoundation.org>
+In-Reply-To: <20250219082652.891560343@linuxfoundation.org>
+References: <20250219082652.891560343@linuxfoundation.org>
 User-Agent: quilt/0.68
 X-stable: review
 X-Patchwork-Hint: ignore
 MIME-Version: 1.0
-X-Spam-Score: -2.5 (--)
+X-Spam-Score: -5.4 (-----)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  6.6-stable review patch. If anyone has any objections, please
+ Content preview:  6.1-stable review patch. If anyone has any objections, please
  let me know. From: Randy Dunlap <rdunlap@infradead.org> 
- Content analysis details:   (-2.5 points, 6.0 required)
+ Content analysis details:   (-5.4 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
+ -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
+ high trust [139.178.84.217 listed in list.dnswl.org]
  0.0 RCVD_IN_VALIDITY_CERTIFIED_BLOCKED RBL: ADMINISTRATOR NOTICE:
  The query to Validity was blocked.  See
  https://knowledge.validity.com/hc/en-us/articles/20961730681243
  for more information.
- [147.75.193.91 listed in sa-trusted.bondedsender.org]
+ [139.178.84.217 listed in sa-accredit.habeas.com]
  0.0 RCVD_IN_VALIDITY_RPBL_BLOCKED RBL: ADMINISTRATOR NOTICE: The
  query to Validity was blocked.  See
  https://knowledge.validity.com/hc/en-us/articles/20961730681243
  for more information.
- [147.75.193.91 listed in bl.score.senderscore.com]
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ [139.178.84.217 listed in bl.score.senderscore.com]
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -2.3 RCVD_IN_DNSWL_MED      RBL: Sender listed at https://www.dnswl.org/,
- medium trust [147.75.193.91 listed in list.dnswl.org]
- -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1tfg1A-0004F8-N3
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ -0.2 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1tkg36-0000Ab-Is
 X-Mailman-Approved-At: Wed, 19 Feb 2025 09:32:15 +0000
-Subject: [Linux-ntfs-dev] [PATCH 6.6 013/393] partitions: ldm: remove the
+Subject: [Linux-ntfs-dev] [PATCH 6.1 010/578] partitions: ldm: remove the
  initial kernel-doc notation
 X-BeenThere: linux-ntfs-dev@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -121,7 +121,7 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: linux-ntfs-dev-bounces@lists.sourceforge.net
 
-6.6-stable review patch.  If anyone has any objections, please let me know.
+6.1-stable review patch.  If anyone has any objections, please let me know.
 
 ------------------
 
